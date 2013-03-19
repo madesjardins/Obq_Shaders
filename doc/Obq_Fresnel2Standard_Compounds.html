@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Obq_Fresnel2Standard_Compounds (Softimage 2012 SAP)</title>
+
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: black; width: 20px;"></td>
+<td style="background-color: black;"><big><big><br>
+<br>
+</big></big></td>
+<td style="width: 20px; background-color: black;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(97, 97, 97);"></td>
+<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Fresnel2Standard_Compounds</font></big></big></td>
+<td style="background-color: rgb(97, 97, 97);"></td>
+</tr>
+<tr>
+<td></td>
+<td style="background-color: white;">
+<p><span style="font-weight: bold;">Category:</span>
+Compounds </p>
+<p><span style="font-weight: bold;">Output:</span>
+Values for the Arnold Standard Shader.</p>
+<p>These compounds are used along the Obq_Fresnel shader
+and the Arnold
+Standard Shader in order to have energy conserving colored scales. They
+differ in the type of material they represent.</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Documentation</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Before use</span></td>
+<td style="background-color: rgb(231, 231, 231);">Make
+sure all scale values of the Standard shader are set to 0 and that all
+fresnel features are turned off.</td>
+<td></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">How to connect</span></td>
+<td style="background-color: rgb(231, 231, 231);">Simply
+connect an Obq_Fresnel in each Fresnel&nbsp;Ports of a compound.<br>
+<ul>
+<li>Fresnel Metal inputs are for use with
+the&nbsp;"Metal " Material Type of the Obq_Fresnel.</li>
+<li>Fresnel Refractive inputs are for use with
+the&nbsp;"Refractive " Material Type of the Obq_Fresnel.</li>
+</ul>
+You
+must also connect your texture nodes in the appropriate inputs.
+Connect the outputs of the compound to the corresponding inputs of the
+Standard.<br>
+<br>
+Don't forget to change the IOR of the standard
+according to the, lets say, green value of the IOR of the Obq_Fresnel
+for
+refractive material types.<br>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">General idea</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+priority of energy consumption of parameters is in a top to bottom
+order in the compound gui. In other words, if visually the Ks is above
+the Kd, only what is not consumed by the specular scale
+will be passed down to the diffuse scale. Note that the scales in the
+compounds does not represent absolute values like the ones in the
+Standard, the represent the ratio of the available energy. Krs means Kr
+or Ks.<br>
+<br>
+Exemple : In priority order : Ks above Kd. <br>
+<ul>
+<li>Ks = 1 and Kd = 1 : Ks will take 100% of the
+energy leaving 0% to the Kd.</li>
+<li>Ks = 0.5 and Kd = 0.5 : Ks will take 50% of the
+energy and Kd will take 50% of (100%-50%) = 25%.</li>
+</ul>
+This
+means that the compound will never create more energy, but it can
+absorb some. If you want to be sure energy is conserved, all scales
+should be 1 or at least the diffuse scale (Kd) if it exists.<br>
+<br>
+Another
+Example ( Obq_Fresnels2Standard_Dielectric ): Fresnel outputs a color
+&lt; (1,1,1) that is a colored reflection scale. The Kr multiplies
+that
+value.&nbsp;(1,1,1) minus the result will yield the light not
+reflected. The Kt then multiplies that value to give the transmitted
+light. The light that is passed down to specular and diffuse is the
+difference between the light not reflected and the transmitted light,
+meaning that its the light that wasn't reflected nor refracted. Unless
+you had fun with the Kt ( Kt &lt; 1 ), no light will be passed
+down,
+otherwise, it will be split according to the priority of the scales
+like in the previous example.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Compounds</span></td>
+<td style="background-color: rgb(231, 231, 231);">Here
+is a list of the different compounds and their uses :<br>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_SimpleMetal</span>:
+This is probably the simplest compounds and is for metals that might
+have a diffuse component.</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_PerforatedMetal</span>:
+This is a strange compounds that is used for this metal plates
+perforated by tiny holes. You must uncheck "Opaque" in Arnold
+properties for this to work. To better approximate this, there's a
+checkbox to enable opacity based on incidence ray/normal.</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_LayeredDiffuse</span>:
+The "Layered" series are a nice way to simulate a material covered with
+a refracting coating like varnish for example. Note that the Kt_color
+tint the transmitted light. This one only allows the layer underneath
+the varnish to be diffuse.</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_LayeredNonMetal</span>:
+Is a generalization of the previous one by adding a specular term to
+the layer underneath.</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_LayeredMetal</span>
+: Another "Layered" version but this time, 2 Obq_Fresnel are required:
+one refractive type for the varnish and one metal type for the layer
+underneath.</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_SimpleDielectric</span>
+: The simplest compound for dielectrics like water, glass, gems, etc.
+&nbsp;</li>
+</ul>
+<ul>
+<li><span style="text-decoration: underline;">Obq_Fresnel2Standard_Dielectric</span>
+: A generalization of the previous compound. Note
+that this time, the Kt_color doesn't tint the the specular nor the
+diffuse part because the rays didn't pass through the refracted part
+before.</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">SSS</span></td>
+<td style="background-color: rgb(231, 231, 231);">But
+what about SSS ? Well, this one you'll have to set it on your own in
+the Standard because it doesn't depend on the fresnel term. If you
+don't want to add too much energy with it, I would suggest to lower the
+scales to account for scattered light.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Render
+Tree Usage</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td><small><big>Here's a render tree
+example of a piece of wood covered with a little bit of vegetable oil</big></small>.<br>
+<br>
+<img style="width: 100%;" onclick="window.open('Obq_Fresnel2Standardex.jpg')" alt="Environment Example" src="Obq_Fresnel2Standardex.jpg"></td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Copyrights</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td><small><big>Copyright</big></small><small><big>
+(c)</big></small><small><big>&nbsp; 2012
+Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
+</big></small><small><big><br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.</big><br>
+<br>
+<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<hr style="width: 100%; height: 2px;"></td>
+<td style="background-color: white;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</body></html>

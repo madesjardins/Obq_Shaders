@@ -1,0 +1,693 @@
+# SPDL - Obq_Fresnel v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{C8DBDAB0-D0AE-4762-8183-C7EFE8803380}";
+PropertySet "Obq_Fresnel_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{6D333C19-6F12-4D41-AF8E-CD733EF0628A}";
+		Type = color;
+	}
+	Parameter "mode" input
+	{
+		guid = "{802A4B85-FB6E-45D8-919E-9A2FDAB32B8C}";
+		texturable = off;
+		type = integer;
+		value = 1;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "presets" input
+	{
+		GUID = "{9CD76B1A-E7BE-4807-8F9F-E926A6A06FE9}";
+		Texturable = on;
+		Type = integer;
+		Value = 10;
+		Value Minimum = 0;
+		Value Maximum = 41;
+	}
+	Parameter "method" input
+	{
+		GUID = "{FFABEE5D-A339-4FD4-BE02-566B4E83A59C}";
+		Type = integer;
+		Texturable = on;
+		Value = 0;
+		Value Maximum = 2;
+	}
+	Parameter "ratioFsFp" input
+	{
+		GUID = "{3B0C6FF1-1905-4DEE-8C4F-5ECEBC21C9E3}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.5;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "transmittance" input
+	{
+		GUID = "{59823AD4-A10A-4F91-9FCA-9F548F3CAF89}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "iorFilename" input
+	{
+		GUID = "{8F4EE91E-4A28-4DEF-876A-DC4DA298578C}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "lambdaUnits" input
+	{
+		GUID = "{8C2251BF-A9F5-40A5-B5DE-A005BF1D6838}";
+		Texturable = off;
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "iorRGB" input
+	{
+		GUID = "{14724312-D0EC-4559-BA0E-9FD652281216}";
+		Type = color;
+		Texturable = on;
+		Value = 1.33 1.33 1.33;
+	}
+	Parameter "kRGB" input
+	{
+		GUID = "{f6f1727e-c615-4e81-a764-3968e988b1d3}";
+		Type = color;
+		Texturable = on;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "iorInRGB" input
+	{
+		GUID = "{df77dd19-66b1-4517-b042-bb279712982f}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "backfaceMode" input
+	{
+		GUID = "{0136C375-8B95-43B3-8E84-007742B166F5}";
+		Type = Integer;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "degamma" input
+	{
+		GUID = "{E329FEF5-3EA1-4F37-9153-380A53C75E68}";
+		Type = Boolean;
+		Texturable = on;
+		Value = Off;
+	}
+	Parameter "iorExpression" input
+	{
+		GUID = "{6CF08162-BF03-4061-A2BC-A6D01856520E}";
+		Type = String;
+		Texturable = Off;
+		Animatable = Off;
+		Value = "";
+	}
+	Parameter "ior4standard" input
+	{
+		GUID = "{6533FA6E-2101-47A5-A271-C7AC9DC05DCA}";
+		Type = Scalar;
+		Texturable = Off;
+		Value = 1.0;
+	}
+}
+
+phenomenon "Obq_Fresnel_declare"
+{
+	Name = "Obq_Fresnel";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Custom" = 0,
+			"Preset" = 1,
+			"File" = 2
+		}
+	}
+	#################################################################
+	# ADD MATERIAL PRESETS HERE AND DOWN IN THE LOGIC SECTION       #
+	# KEEP ALPHABETICAL ORDER, NUMBERS ARE ONLY IMPORTANT FOR LOGIC #
+	#################################################################
+	presets
+	{
+		Name = "Presets";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"---------------------- METALS -----------------------" = 39,
+			"Aluminium (Al) [Rakic]" = 0,
+			"Aluminium Copper (AlCu)" = 1,
+			"Chromium (Cr) [Palik]" = 2,
+			"Chromium (Cr) [Sopra]" = 3,
+			"Cobalt (Co) [Sopra]" = 4,
+			"Copper (Cu) [Palik]" = 5,
+			"Gold (Au) [Palik]" = 6,
+			"Iridium (Ir) [Palik]" = 7,
+			"Lithium (Li) [Sopra]" = 8,
+			"Mercury (Hg) [Palik]" = 9,
+			"Nickel (Ni) [Palik]" = 10,
+			"Osmium (Os) [Palik]" = 11,
+			"Palladium (Pd) [Sopra]" = 12,
+			"Platinum (Pt) [Palik]" = 13,
+			"Rhodium (Rh) [Palik]" = 14,
+			"Silver (Ag) [Palik]" = 15,
+			"Tantalum (Ta) [Sopra]" = 16,
+			"Titanium (Ti) [Sopra]" = 17,
+			"Tungsten (W) [Palik]" = 18,
+			"---------------------- LIQUIDS ----------------------" = 41,
+			"Acetone (CH3COCH3) [Rheims]" = 19,
+			"Ethanol (C2H5OH) [Rheims]" = 20,
+			"Ethylene Glycol (C2H4(OH)2) [El-Kashef]" = 21,
+			"Glycerol (C3H5(OH)3) [Birkhoff]" = 22,
+			"Honey [RobinWood]" = 23,
+			"Milk [RobinWood]" = 24,
+			"Shampoo [RobinWood]" = 25,
+			"Vegetable Oil [RobinWood]" = 26,
+			"Water (H20) [Hale]" = 27,
+			"-------------------- CRYSTALS etc. ------------------" = 38,
+			"Acrylic (Plexiglass)" = 28,
+			"Crystal [RobinWood]" = 29,
+			"Diamond (C) [Handbook of Optics]" = 30,
+			"Emerald [RobinWood]" = 31,
+			"Garnet [RobinWood]" = 32,
+			"Glass (Schott N-KF9 crown/flint)" = 33,
+			"Ice (H20) [Warren]" = 34,
+			"Salt (NaCl) [Palik]" = 35,
+			"---------------------- PLASTICS ---------------------" = 40,
+			"Cellulose [Kasarova]" = 36,
+			"Polystyrene (PS) [Kasarova]" = 37
+			
+		}
+	}
+	method
+	{
+		Name = "Material Type";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Refractive" = 0,
+			"Metal" = 1
+		}
+	}
+	ratioFsFp
+	{
+		Name = "Ratio of polarized Fs/Fp";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	transmittance
+	{
+		Name = "Output Refraction Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	iorFilename
+	{
+		Name = "Filename";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "dscontrol"
+		{
+		Class = "edit";
+		Caption = ";file=1;openfile=1;initialdir=C:\\Users\\madesjardins\\Downloads\\spds;filefilter=Comma separated (*.csv)|*.csv|Tab Separated (*.txt)|*.txt|SPD (*.spd)|*.spd";
+		}
+	}
+	lambdaUnits
+	{
+		Name = "Wavelength Units";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Nano (nm) [360-830]" = 0,
+			"Micro (um) [0.360-0.830]" = 1
+		}
+	}
+	iorRGB
+	{
+		Name = "n";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	kRGB
+	{
+		Name = "k";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	iorInRGB
+	{
+		Name = "n";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	backfaceMode
+	{
+		Name = "Backface";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Same as Frontface" = 0,
+			"Swap IORs (Media In -> n2)" = 1,
+			"Always White" = 2,
+			"Always Black" = 3,
+		}
+	}
+	degamma
+	{
+		Name = "DeGamma metals for linear workflow";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	iorExpression
+	{
+		Name = "Expression for \nstandard IOR";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	Tab "Main"
+	{
+	Group "Settings"
+	{
+		mode;
+		presets;
+	}
+	Group "File (*.csv, *.txt, *.spd)"
+	{		
+		iorFilename;
+		lambdaUnits;
+	}
+	Group "Refractive Indices" 
+	{
+		iorRGB;
+	}
+	Group "Extinction Coefficients" 
+	{
+		kRGB;
+	}
+	Group "Equations"
+	{
+		method;
+	}
+	Group "Options"
+	{
+		ratioFsFp;
+		backfaceMode;
+	}
+	Group "Output"
+	{
+		transmittance;
+		degamma;
+	}
+	Group "Standard IOR"
+	{
+		iorExpression;
+	}
+	}
+	Tab "Media In"
+	{
+		Group "Refractive Indices"
+		{
+			iorInRGB;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+	Group "Settings"
+	{
+		presets;
+	}
+	Group "Refractive Indices" 
+	{
+		iorRGB;
+	}
+	Group "Extinction Coefficients" 
+	{
+		kRGB;
+	}
+	Group "Equations"
+	{
+		method;
+	}
+	Group "Media In IOR"
+	{
+		iorInRGB;
+	}
+	Group "Options"
+	{
+		ratioFsFp;
+		backfaceMode;
+	}
+	Group "Output"
+	{
+		transmittance;
+		degamma;
+	}
+}
+
+Language = "VBScript";
+Logic
+{
+
+Function Min2(a, b)
+  If a < b Then Min2 = a Else Min2 = b
+End Function
+
+Sub iorExpression()
+	PPG.iorExpression.Value = PPG.ior4standard.Parent & ".ior4standard"
+	If PPG.method.Value = 1 Then
+		PPG.ior4standard.Value = 1.0
+	Else
+		PPG.ior4standard.Value = Min2(Min2(PPG.iorRGB.red.Value, PPG.iorRGB.green.Value),PPG.iorRGB.blue.Value)
+	End If
+End Sub
+
+Sub iorRGB_OnChanged()
+	iorExpression()
+End Sub
+
+Sub visibility()
+	If PPG.mode.Value = 0 Then
+		PPG.presets.Show(False)
+		PPG.iorFilename.Show(False)
+		PPG.lambdaUnits.Show(False)
+		PPG.iorRGB.Show(True)
+		PPG.kRGB.Show(True)
+
+	ElseIf PPG.mode.Value = 1 Then
+		PPG.presets.Show(True)
+		PPG.iorFilename.Show(False)
+		PPG.lambdaUnits.Show(False)
+		PPG.iorRGB.Show(True)
+		PPG.kRGB.Show(True)
+
+	Else
+		PPG.presets.Show(False)
+		PPG.iorFilename.Show(True)
+		PPG.lambdaUnits.Show(True)
+		PPG.iorRGB.Show(False)
+		PPG.kRGB.Show(False)
+	End If
+	iorExpression()
+End Sub
+
+' fresnel modes
+Sub mode_OnChanged()
+	visibility()
+	If PPG.Mode.Value = 1 Then
+		presets_OnChanged()
+	End If
+End Sub
+
+Sub method_OnChanged()
+	If PPG.method.Value = 0 Then
+		PPG.backfaceMode.ReadOnly = False
+		PPG.degamma.ReadOnly = True
+	Else
+		PPG.backfaceMode.ReadOnly = True
+		PPG.degamma.ReadOnly = False
+	End If
+	visibility()
+End Sub
+
+'############################################################################
+'# ADD NEW MATERIAL HERE AND DON'T FORGET TO ADD IT IN THE LAYOUT COMBO BOX #
+'# .spd, .csv and .txt, can be taken from :									#  										#
+'# PBRT																		#
+'# http://www.filmetrics.com/refractive-index-database         				#
+'# or http://refractiveindex.info/?group=METALS&material=Gold               #
+'############################################################################
+Sub presets_OnChanged()
+	If PPG.mode.Value <> 2 Then
+		If PPG.presets.Value = 0 Then			' Aluminium (Al) [Rakic]: 
+			iorCoeffs = ARRAY(1.449155, 1.001740, 0.647396, 7.601177, 6.563776, 5.491455)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 1 Then		' Aluminium Copper (AlCu) [Sopra]: 
+			iorCoeffs = ARRAY(1.049350, 0.730861, 0.481557, 6.276177, 5.397362, 4.473320 )			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 2 Then		' Chromium (Cr) [Palik] : 
+			iorCoeffs = ARRAY(3.688235, 3.029824, 1.993906, 4.355763, 4.417995, 4.170561)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+					
+		ElseIf PPG.presets.Value = 3 Then		' Chromium (Cr) [Sopra]: 
+			iorCoeffs = ARRAY(3.283521, 3.061074, 2.367759, 3.310467, 3.315495, 3.142524)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 4 Then		' Cobalt (Co) [Sopra]: 
+			iorCoeffs = ARRAY(2.840297, 2.287227, 1.747429, 4.362236, 3.948306, 3.411762)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 5 Then		' Copper (Cu) [Palik]: 
+			iorCoeffs = ARRAY(0.208290, 0.902008, 1.163979, 3.231294, 2.644833, 2.396479)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 6 Then		' Gold (Au) [Palik]: 
+			iorCoeffs = ARRAY(0.069151, 0.475555, 1.425000, 3.306609, 2.534851, 1.879887)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 7 Then		' Iridium (Ir) [Palik] : 
+			iorCoeffs = ARRAY(2.570349, 2.200906, 1.841503, 4.672384, 4.268734, 3.691551)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 8 Then		' Lithium (Li) [Sopra] : 
+			iorCoeffs = ARRAY(0.216897, 0.211033, 0.238636, 2.953033, 2.441761, 1.924313)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 9 Then		' Mercury (Hg) [Palik]: 
+			iorCoeffs = ARRAY(2.000870, 1.527040, 1.077720, 5.276174, 4.609653, 3.887567)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 10 Then		' Nickel (Ni) [Palik]: 
+			iorCoeffs = ARRAY(1.962000, 1.765581, 1.636740, 3.749604, 3.219683, 2.673572)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 11 Then		' Osmium (Os) [Palik] : 
+			iorCoeffs = ARRAY(3.838104, 4.766280, 5.050468, 1.406860, 1.845926, 3.489195 )			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 12 Then		' Palladium (Pd) [Sopra]: 
+			iorCoeffs = ARRAY(1.783771, 1.618432, 1.419298, 4.322661, 3.813865, 3.277611)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 13 Then		' Platinum (Pt) [Palik]: 
+			iorCoeffs = ARRAY(2.354088, 2.109960, 1.854782, 4.167079, 3.683204, 3.162992)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 14 Then		' Rhodium (Rh) [Palik] : 
+			iorCoeffs = ARRAY(2.153759, 1.960654, 1.746566, 5.631534, 4.983996, 4.464543)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 15 Then		' Silver (Ag) [Palik]: 
+			iorCoeffs = ARRAY(0.126424, 0.126369, 0.148710, 4.033813, 3.292307, 2.497092)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 16 Then		' Tantalum (Ta) [Sopra]: 
+			iorCoeffs = ARRAY(1.733288, 2.464163, 2.828470, 1.958841, 1.879870, 2.109391)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 17 Then		' Titanium (Ti) [Sopra]: 
+			iorCoeffs = ARRAY(2.148396, 1.884445, 1.694813 , 2.948774, 2.588382,2.277432)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 18 Then		' Tungsten (W) [Palik] : 
+			iorCoeffs = ARRAY(3.632274, 3.481157, 3.325304, 2.914366, 2.743532, 2.536031 )			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 19 Then		' Acetone (CH3COCH3) [Rheims] : 
+			iorCoeffs = ARRAY(1.357421, 1.360909, 1.364760, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 20 Then		' Ethanol (C2H5OH) [Rheims] : 
+			iorCoeffs = ARRAY(1.360071, 1.363299, 1.366863, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 21 Then		' Ethylene Glycol (C2H4(OH)2) [El-Kashef] : 
+			iorCoeffs = ARRAY(1.429173, 1.447738, 1.475020, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 22 Then		' Glycerol (C3H5(OH)3) [Birkhoff] : 
+			iorCoeffs = ARRAY(1.469583, 1.473622, 1.478556, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 23 Then		' Honey [RobinWood] : 
+			iorCoeffs = ARRAY(1.494,1.494,1.494,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 24 Then		' Milk [RobinWood] : 
+			iorCoeffs = ARRAY(1.35,1.35,1.35,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 25 Then		' Shampoo [RobinWood] : 
+			iorCoeffs = ARRAY(1.362,1.362,1.362,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 26 Then		' Vegetable Oil [RobinWood] : 
+			iorCoeffs = ARRAY(1.47,1.47,1.47,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 27 Then		' Water (H20) [Hale]: 
+			iorCoeffs = ARRAY(1.331360, 1.333526, 1.337320, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 28 Then		' Acrylic (Plexiglass) : 
+			iorCoeffs = ARRAY(1.488679, 1.493900, 1.500615, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 29 Then		' Crystal [RobinWood] : 
+			iorCoeffs = ARRAY(2.000,2.000,2.000,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 30 Then		' Diamond (C) [Handbook of Optics]: 
+			iorCoeffs = ARRAY(2.410488, 2.424416, 2.445981, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 31 Then		' Emerald [RobinWood] : 
+			iorCoeffs = ARRAY(1.58,1.58,1.58,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 32 Then		' Garnet [RobinWood] : 
+			iorCoeffs = ARRAY(1.78,1.78,1.78,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 33 Then		' Glass (Schott N-KF9 crown/flint) : 
+			iorCoeffs = ARRAY(1.520699, 1.526158, 1.534755, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+			
+		ElseIf PPG.presets.Value = 34 Then		' Ice (H20) [Warren]: 
+			iorCoeffs = ARRAY(1.308167, 1.311282, 1.316024, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+		
+		ElseIf PPG.presets.Value = 35 Then		' Salt (NaCl) [Palik]: 
+			iorCoeffs = ARRAY(1.540770, 1.547610, 1.558407, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+
+		ElseIf PPG.presets.Value = 36 Then		' Cellulose: 
+			iorCoeffs = ARRAY(1.468276, 1.472993, 1.479583, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+
+		ElseIf PPG.presets.Value = 37 Then		' Polystyrene: 
+			iorCoeffs = ARRAY(1.586042, 1.597204, 1.612763, 0.000000, 0.000000, 0.000000)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+
+		Else
+			iorCoeffs = ARRAY(1.00,1.0,1.0,0.0,0.0,0.0)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 0
+			method_OnChanged()
+		End If
+	End If
+End Sub
+
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel_v204.html"
+	mode_OnChanged()
+	PPG.iorExpression.ReadOnly = True
+End Sub
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_Fresnel";
+}

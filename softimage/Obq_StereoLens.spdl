@@ -1,0 +1,721 @@
+# SPDL Obq_StereoLens v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{B51DD5A8-F37F-4655-9BF3-F5723736E2B9}";
+PropertySet "Obq_StereoLens"
+{
+	Parameter "out" output
+	{
+		GUID = "{CD8093F9-D5A7-4E66-9DFF-53B013765522}";
+		Type = color;
+		flags = 1;
+	}
+
+	Parameter "viewMode" input
+	{
+		GUID = "{03ED9264-541C-48AD-90CA-E0FB1DE425DF}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 4;
+	}
+	Parameter "leftCamera" input
+	{
+		GUID = "{F1349FB3-4485-4D9C-8861-0635B91F9D21}";
+		Type = string;
+		flags = 1;
+		Value = "StereoCamera_Left";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "rightCamera" input
+	{
+		GUID = "{CC58C2A5-821E-4744-972D-66FCB616B31A}";
+		Type = string;
+		flags = 1;
+		Value = "StereoCamera_Right";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "cameraStatus" input
+	{
+		GUID = "{D3447F5C-9C6A-428E-A0C4-0A1B48F695FA}";
+		Type = string;
+		flags = 1;
+		Value = "No Camera Associated";
+		Animatable = Off;
+	}
+	Parameter "filmbackX" input
+	{
+		GUID = "{FAAC7800-4A53-4067-A66E-75EAE51AA128}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.314;
+	}
+	Parameter "leftCenterOffset" input
+	{
+		GUID = "{03073F40-8491-43ED-A570-5D5B24948A83}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+	}
+	Parameter "rightCenterOffset" input
+	{
+		GUID = "{4A632690-8D60-4632-A6AB-DCAC7372E72C}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+	}
+	Parameter "dof" input
+	{
+		GUID = "{A546CFFB-E822-42B4-A363-6626F7D2BD26}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+	}
+	Parameter "useRigDof" input
+	{
+		GUID = "{16FBDEE9-1025-4B03-B7A3-D2573745FF4F}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+	}
+	Parameter "rigDepth" input
+	{
+		GUID = "{B065728D-75DC-4667-9D27-D4BCF6FEFF4A}";
+		Type = scalar;
+		flags = 1;
+		Value = 100.0;
+	}
+	Parameter "useCameraInterest" input
+	{
+		GUID = "{0C0553B2-49BA-417D-9D05-9D5502D5C771}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+	}
+	Parameter "cameraInterest" input
+	{
+		GUID = "{A990AC0C-25E6-4EEA-BBDF-20297585B5F3}";
+		Type = string;
+		flags = 1;
+		Value = "StereoCamera_Interest";
+	}
+	Parameter "cameraInterestStatus" input
+	{
+		GUID = "{467D53CC-F0F7-4970-8394-53FDEFD8AAB3}";
+		Type = string;
+		flags = 1;
+		Value = "No interest Associated";
+	}
+	Parameter "interestX" input
+	{
+		GUID = "{85462FF9-3748-4482-90CD-5AC7A11AED97}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+	}
+	Parameter "interestY" input
+	{
+		GUID = "{32BD524D-371E-4D90-9A02-CE295B942D8B}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+	}
+	Parameter "interestZ" input
+	{
+		GUID = "{8687A769-32A6-4E56-8953-FDAF5730CD22}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+	}
+	Parameter "recalculateDistanceForSideCameras" input
+	{
+		GUID = "{D3DD6193-ABE0-47A8-988C-8AE95C731003}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+	}
+	Parameter "focalPlaneIsPlane" input
+	{
+		GUID = "{2FCB762E-CFE3-41A9-A3B0-E8B1EE54C969}";
+		Type = boolean;
+		flags = 1;
+		Value = on;
+	}
+	Parameter "targetResolutionX" input
+	{
+		GUID = "{17BDD4A9-1BC9-4CA3-8893-A6DC9A47F579}";
+		Type = integer;
+		flags = 1;
+		Value = 1920.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "targetResolutionY" input
+	{
+		GUID = "{93F27764-8687-4878-9D1B-E0F34A03C22E}";
+		Type = integer;
+		flags = 1;
+		Value = 1080.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "filterSize" input
+	{
+		GUID = "{70DADCF4-9ED0-4582-8815-5F677267A467}";
+		Type = scalar;
+		flags = 1;
+		Value = 3.0;
+		Value Minimum = 0;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "renderResolutionX" input
+	{
+		GUID = "{EDC24268-2ABB-4889-85D3-9EFF06D7D268}";
+		Type = integer;
+		flags = 1;
+		Value = 1920.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "renderResolutionY" input
+	{
+		GUID = "{0CCAE2A3-20A9-4FA0-96A4-9F5F7901877F}";
+		Type = integer;
+		flags = 1;
+		Value = 1080.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "leftCropInfo" input
+	{
+		GUID = "{DEDB0691-B838-4F21-942F-32C8FE977D9A}";
+		Type = string;
+		flags = 1;
+		Value = "Not Stereo";
+		Animatable = Off;
+	}
+	Parameter "rightCropInfo" input
+	{
+		GUID = "{20235B1F-F26F-4527-A7B6-93444DA2DC85}";
+		Type = string;
+		flags = 1;
+		Value = "Not Stereo";
+		Animatable = Off;
+	}
+	Parameter "useOverscan" input
+	{
+		GUID = "{42A881A6-6936-433B-AEF6-5EBAE6D45341}";
+		Type = boolean;
+		flags = 1;
+		Value = on;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "totalOverscanPixels" input
+	{
+		GUID = "{5DB2326A-4062-4950-99DC-C59760A8873F}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "updatePassResolution" input
+	{
+		GUID = "{772627E4-06EF-4D96-AF3A-013ACF4DBF5A}";
+		Type = boolean;
+		flags = 1;
+		Value = on;
+		Texturable = Off;
+		Animatable = Off;
+	}
+}
+
+MetaShader "Obq_StereoLens_params_meta"
+{
+	Name = "Obq_StereoLens";
+	Type = lens;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_StereoLens";
+	}	
+}
+
+Defaults
+{
+	viewMode
+	{
+		Name = "View Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Center Camera" = 0,
+			"Left Camera" = 1,
+			"Right Camera" = 2,
+			"Stereo Camera <left-right>" = 3,
+			"Stereo Camera <down-up>" = 4
+		}
+	}
+	leftCamera
+	{
+		Name = "Left";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rightCamera
+	{
+		Name = "Right";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	filmbackX
+	{
+		Name = "Filmback X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	leftCenterOffset
+	{
+		Name = "Left Optical Center Offset";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rightCenterOffset
+	{
+		Name = "Right Optical Center Offset";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	cameraStatus
+	{
+		Name = "Status";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	dof
+	{
+		Name = "Enable DoF";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	useRigDof
+	{
+		Name = "Use a custom/rig focus distance";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rigDepth
+	{
+		Name = "Focus distance";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	useCameraInterest
+	{
+		Name = "Use camera interest as focus point";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	cameraInterest
+	{
+		Name = "Camera Interest";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	cameraInterestStatus
+	{
+		Name = "Status";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	interestX
+	{
+		Name = "interest X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	interestY
+	{
+		Name = "interest Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	interestZ
+	{
+		Name = "interest Z";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	recalculateDistanceForSideCameras
+	{
+		Name = "Recalculate focus distance for left and right cameras";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	focalPlaneIsPlane
+	{
+		Name = "Focal plane is a plane";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	useOverscan
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	targetResolutionX
+	{
+		Name = "Width";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 4096;
+	}
+	targetResolutionY
+	{
+		Name = "Height";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 4096;
+	}
+	filterSize
+	{
+		Name = "Filter size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	renderResolutionX
+	{
+		Name = "Width";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	renderResolutionY
+	{
+		Name = "Height";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	leftCropInfo
+	{
+		Name = "Left crop";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rightCropInfo
+	{
+		Name = "Right crop";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	totalOverscanPixels
+	{
+		Name = "Total Pixel Overscan";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	updatePassResolution
+	{
+		Name = "Automatic update of pass output resolution";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+}
+
+Layout "Default"
+{
+	Tab "Main"
+	{
+		Group "View Mode"
+		{
+			viewMode;
+		}
+		Group "Cameras"
+		{
+			Button pickCameras,aligncenter = "Pick Left and Right Cameras",180;
+			leftCamera;
+			rightCamera;
+			cameraStatus;
+		}
+		Group "Camera Interest"
+		{
+			cameraInterest;
+			cameraInterestStatus;
+		}
+		Group "DoF Advanced Options"
+		{
+			recalculateDistanceForSideCameras;
+			focalPlaneIsPlane;
+			useRigDof;
+			rigDepth;
+		}
+		Group "Automatic Overscan"
+		{
+		useOverscan;
+		}
+		Group "Target Resolution"
+		{
+			Row
+			{
+				targetResolutionX;
+				targetResolutionY;
+			}
+		}
+		
+		Group "Render Resolution"
+		{
+			Row
+			{
+				renderResolutionX;
+				renderResolutionY;
+			}
+			updatePassResolution;
+		}
+		Group "Nuke Info"
+		{
+			leftCropInfo;
+			rightCropInfo;
+		}
+	}
+#	Tab "Debug"
+#	{
+#		dof;
+#		useCameraInterest;
+#		filterSize;
+#		filmbackX;
+#		leftCenterOffset;
+#		rightCenterOffset;
+#		totalOverscanPixels;
+#	}
+}
+
+Layout "RenderTree"
+{
+
+}
+
+Language = "VBScript";
+Logic
+{	
+	Sub checkCameras()
+		Set oLCamera = Dictionary.GetObject(PPG.leftCamera.Value & "",false)
+		Set oRCamera = Dictionary.GetObject(PPG.rightCamera.Value & "",false)
+		If TypeName( oLCamera ) = "Nothing" AND TypeName( oRCamera ) = "Nothing" Then
+			PPG.cameraStatus.Value = "!! Both cameras are NOT valid !!"
+		ElseIf TypeName( oLCamera ) = "Nothing" Then
+			PPG.cameraStatus.Value = "!! Left camera is NOT valid !!"
+		ElseIf TypeName( oRCamera ) = "Nothing" then
+			PPG.cameraStatus.Value = "!! Right camera is NOT valid !!"
+		Else
+			PPG.cameraStatus.Value = "Both cameras are valid."
+		End If
+	End Sub
+
+	Sub leftCamera_OnChanged()
+		SetExpr PPG.filmbackX.Parent & ".filmbackX", PPG.leftCamera.Value & ".camera.projplanewidth"
+		SetExpr PPG.leftCenterOffset.Parent & ".leftCenterOffset", PPG.leftCamera.Value & ".camera.projplaneoffx"
+		checkCameras()
+	End Sub
+	
+	Sub rightCamera_OnChanged()
+		SetExpr PPG.rightCenterOffset.Parent & ".rightCenterOffset", PPG.rightCamera.Value & ".camera.projplaneoffx"
+		checkCameras()
+	End Sub
+
+	Sub checkCameraInterest()
+		Set oInterest = Dictionary.GetObject(PPG.cameraInterest.Value & "",false)
+		If TypeName( oInterest ) = "Nothing" Then
+			PPG.cameraInterestStatus.Value = "!! Interest is NOT valid !!"
+			Application.RemoveAnimation PPG.interestX.Parent & ".interestX", 1, "", "", "", ""
+			Application.RemoveAnimation PPG.interestY.Parent & ".interestY", 1, "", "", "", ""
+			Application.RemoveAnimation PPG.interestZ.Parent & ".interestZ", 1, "", "", "", ""
+		Else
+			PPG.cameraInterestStatus.Value = "Interest is valid."
+			SetExpr PPG.interestX.Parent & ".interestX", PPG.cameraInterest.Value & ".kine.global.posx"
+			SetExpr PPG.interestY.Parent & ".interestY", PPG.cameraInterest.Value & ".kine.global.posy"
+			SetExpr PPG.interestZ.Parent & ".interestZ", PPG.cameraInterest.Value & ".kine.global.posz"
+		End If
+	End Sub
+
+	Sub useCameraInterest_OnChanged()
+		IF PPG.useCameraInterest.Value = true AND PPG.dof.Value = true AND PPG.useRigDof = false Then
+			PPG.cameraInterest.Show(True)
+			PPG.cameraInterestStatus.Show(True)
+			checkCameraInterest()
+		Else
+			PPG.cameraInterest.Show(False)
+			PPG.cameraInterestStatus.Show(False)
+		End If
+	End Sub
+	
+	Sub useRigDof_OnChanged()
+		useCameraInterest_OnChanged()		
+	End Sub
+	
+	Sub dof_OnChanged()
+		IF PPG.useCameraInterest.Value = true AND PPG.dof.Value = true Then
+			PPG.cameraInterest.Show(True)
+			PPG.cameraInterestStatus.Show(True)
+			checkCameraInterest()
+		Else
+			PPG.cameraInterest.Show(False)
+			PPG.cameraInterestStatus.Show(False)
+		End If
+	End Sub
+
+	Sub cameraInterest_OnChanged()
+		checkCameraInterest()
+	End Sub
+
+	Sub useRigDof_OnChanged()
+		IF PPG.useRigDof.Value = true Then
+			PPG.rigDepth.Show(True)
+		Else
+			PPG.rigDepth.Show(False)
+		End If
+		PPG.Refresh
+	End Sub
+
+
+	function Ceil( Number )
+		Ceil = Int( Number )
+		if Ceil <> Number then
+			Ceil = Ceil + 1
+		end if
+	end function
+
+	function Floor( Number )
+		Floor = Int( Number )
+	end function
+	
+	function Round( Number )
+		Round = Int(Number + 0.5)
+	end function
+
+	Sub updatePassResolution_OnChanged()
+		IF PPG.updatePassResolution.Value = true Then
+			SetValue "Passes.Current.ImageLockAspectRatio", false
+			SetValue "Passes.Current.ImageWidth", PPG.renderResolutionX.Value
+			SetValue "Passes.Current.ImageHeight", PPG.renderResolutionY.Value
+		End If
+	End Sub
+
+	Sub change_targetResolution()
+		If PPG.viewMode.Value = 3 then
+			If PPG.useOverscan.Value = true then
+				bleed = Floor( Ceil(PPG.filterSize)/2)
+				PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
+				PPG.renderResolutionY.Value = PPG.targetResolutionY.Value
+				PPG.totalOverscanPixels.Value = 4*bleed
+				PPG.leftCropInfo = "Crop { box {" & bleed & " " & 0 & " " & PPG.targetResolutionX + bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
+				PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX - bleed & " " & 0 & " " & PPG.renderResolutionX - bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
+			Else
+				PPG.renderResolutionX.Value = 2*PPG.targetResolutionX
+				PPG.renderResolutionY.Value = PPG.targetResolutionY
+				PPG.totalOverscanPixels.Value = 0
+				PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
+				PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
+			End If
+		ElseIf PPG.viewMode.Value = 4 then
+			If PPG.useOverscan.Value = true then
+				bleed = Floor( Ceil(PPG.filterSize.Value)/2)
+				PPG.renderResolutionX.Value = PPG.targetResolutionX 
+				PPG.renderResolutionY.Value = 2*(PPG.targetResolutionY.Value + 2*bleed)
+				PPG.totalOverscanPixels.Value = 4*bleed
+				PPG.leftCropInfo = "Crop { box {" & 0 & " " & bleed & " " & PPG.targetResolutionX & " " &  PPG.targetResolutionY + bleed & "} reformat true crop false name Left}"
+				PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY - bleed - PPG.targetResolutionY & " " & PPG.targetResolutionX & " " &  PPG.renderResolutionY - bleed & "} reformat true crop false name Right}"
+			Else
+				PPG.renderResolutionX.Value = PPG.targetResolutionX
+				PPG.renderResolutionY.Value = 2.0*PPG.targetResolutionY
+				PPG.totalOverscanPixels.Value = 0
+				PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX.Value & " " & PPG.targetResolutionY.Value &"} reformat true crop false name Left}"
+				PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY.Value - PPG.targetResolutionY.Value & " " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value &"} reformat true crop false name Right}"
+			End If
+		Else
+			PPG.renderResolutionX.Value = PPG.targetResolutionX
+			PPG.renderResolutionY.Value = PPG.targetResolutionY
+			PPG.totalOverscanPixels.Value = 0
+			PPG.leftCropInfo = "none"
+			PPG.rightCropInfo = "none"
+		End If
+		updatePassResolution_OnChanged()
+	End Sub
+
+	Sub filterSize_OnChanged()
+		change_targetResolution()
+	End Sub
+	
+	Sub targetResolutionX_OnChanged()
+		change_targetResolution()
+	End Sub
+	
+	Sub targetResolutionY_OnChanged()
+		change_targetResolution()
+	End Sub
+
+	Sub viewMode_OnChanged()
+		change_targetResolution()
+		If PPG.viewMode = 3 Or PPG.viewMode = 4 Then
+			PPG.leftCropInfo.Show(True)
+			PPG.rightCropInfo.Show(True)
+			PPG.useOverscan.Readonly = False
+		Else
+			PPG.useOverscan.Readonly = True
+			PPG.leftCropInfo.Show(False)
+			PPG.rightCropInfo.Show(False)
+		End If
+		PPG.Refresh
+	End Sub
+
+	Sub useOverscan_OnChanged()
+		change_targetResolution()
+		PPG.Refresh
+	End sub
+	
+	Sub pickCameras_OnClicked()	
+		dim leftC, rightC, button
+		DeselectAll
+		PickObject "Select Left Camera", "Select Left Camera", leftC, button
+		if button <> 0 then
+			PickObject "Select Right Camera", "Select Right Camera", rightC, button
+			if button <> 0 then
+				PPG.leftCamera.Value = leftC
+				PPG.rightCamera.Value = rightC
+				leftCamera_OnChanged()
+				rightCamera_OnChanged()
+			end if
+		end if
+	End Sub
+	
+	Function myReplace(str1,str2,str3)
+		myReplace=Replace(str1,str2,str3)
+	End Function 	
+	
+'	Sub guessCameras_OnClicked()	
+'		dim leftC, rightC
+'		str1 = PPG.dof.Parent
+'		str2 = ".camera." & PPG.Name
+'		str3 = myReplace(str1,str2,"")
+'		strL = myReplace(str3,"Center","Left")
+'		strR = myReplace(str3,"Center","Right")
+'		PPG.leftCamera.Value = strL
+'		PPG.rightCamera.Value = strR
+'	End Sub
+	
+	Sub triggerfishInit()
+		'TriggerFish rig
+		PPG.leftCamera.Value = "Stereo_Camera.LeftCamera"
+		PPG.rightCamera.Value = "Stereo_Camera.RightCamera"
+		PPG.cameraInterest.Value = "Stereo_Camera.Camera_Interest"
+		SetExpr PPG.useRigDof.Parent & ".useRigDof", PPG.useRigDof.Model & ".Camera_info.DOF"
+		SetExpr PPG.rigDepth.Parent & ".rigDepth", PPG.rigDepth.Model & ".dof_anim.DisplayInfo_DOF.depth"
+		leftCamera_onChanged()
+		rightCamera_OnChanged()
+		cameraInterest_OnChanged()
+	End Sub
+	
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_StereoLens_v204.html"
+		'Setting Expressions
+		SetExpr PPG.dof.Parent & ".dof", "Passes.Arnold_Render_Options.enable_depth_of_field"
+		SetExpr PPG.useCameraInterest.Parent & ".useCameraInterest", "Passes.Arnold_Render_Options.use_interest_distance"
+		SetExpr PPG.filterSize.Parent & ".filterSize", "Passes.Arnold_Render_Options.output_filter_width"		
+		leftCamera_onChanged()
+		rightCamera_OnChanged()
+		cameraInterest_OnChanged()
+		useCameraInterest_OnChanged()
+		useRigDof_OnChanged()
+		useOverscan_OnChanged()
+		viewMode_OnChanged()
+		PPG.cameraStatus.ReadOnly = True
+		PPG.cameraInterestStatus.ReadOnly = True
+		PPG.renderResolutionX.ReadOnly = True
+		PPG.renderResolutionY.ReadOnly = True
+		PPG.totalOverscanPixels.ReadOnly = True
+		'triggerfishInit()
+		PPG.Refresh
+	End Sub
+}

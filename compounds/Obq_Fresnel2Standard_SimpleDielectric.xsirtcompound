@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsi_file type="ShaderCompound" name="Obq_Fresnel2Standard_SimpleDielectric" category="Obq_Compounds" formatversion="1.1" compoundversion="1.0" color="6732954" editable="1">
+	<definition>
+		<nodes>
+			<node type="shader" progid="SIUtilityShaders.Color4Passthrough.1.0" index="0">
+				<param name="Name" type="31"><![CDATA[Fresnel_R_in]]></param>
+				<param name="input.red" type="4" value="0.000000"></param>
+				<param name="input.green" type="4" value="0.000000"></param>
+				<param name="input.blue" type="4" value="0.000000"></param>
+				<param name="input.alpha" type="4" value="0.000000"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-1173</prop>
+					<prop name="posy">-2178</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_color_math_basic.1.0" index="1">
+				<param name="Name" type="31"><![CDATA[Fresnel_x_Kr]]></param>
+				<param name="input1.red" type="4" value="0.000000"></param>
+				<param name="input1.green" type="4" value="0.000000"></param>
+				<param name="input1.blue" type="4" value="0.000000"></param>
+				<param name="input1.alpha" type="4" value="0.000000"></param>
+				<param name="input2.red" type="4" value="1.000000"></param>
+				<param name="input2.green" type="4" value="1.000000"></param>
+				<param name="input2.blue" type="4" value="1.000000"></param>
+				<param name="input2.alpha" type="4" value="1.000000"></param>
+				<param name="op" type="3" value="2"></param>
+				<param name="alpha" type="11" value="false"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-443</prop>
+					<prop name="posy">-2146</prop>
+					<prop name="state">ConnectedOnly</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_scalar_to_color.1.0" index="2">
+				<param name="Name" type="31"><![CDATA[Kr_scalar2color]]></param>
+				<param name="input" type="4" value="1.000000"></param>
+				<param name="alpha" type="4" value="1.000000"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-1167</prop>
+					<prop name="posy">-1954</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_scalar_switch.1.0" index="3">
+				<param name="Name" type="31"><![CDATA[Reflection_Scale]]></param>
+				<param name="input" type="11" value="true"></param>
+				<param name="scalar1" type="4" value="1.000000"></param>
+				<param name="scalar2" type="4" value="0.000000"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-689</prop>
+					<prop name="posy">-2398</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_color_math_basic.1.0" index="4">
+				<param name="Name" type="31"><![CDATA[Effective_R]]></param>
+				<param name="input1.red" type="4" value="0.000000"></param>
+				<param name="input1.green" type="4" value="0.000000"></param>
+				<param name="input1.blue" type="4" value="0.000000"></param>
+				<param name="input1.alpha" type="4" value="0.000000"></param>
+				<param name="input2.red" type="4" value="1.000000"></param>
+				<param name="input2.green" type="4" value="1.000000"></param>
+				<param name="input2.blue" type="4" value="1.000000"></param>
+				<param name="input2.alpha" type="4" value="0.000000"></param>
+				<param name="op" type="3" value="2"></param>
+				<param name="alpha" type="11" value="false"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-769</prop>
+					<prop name="posy">-2077</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_scalar_math_logic.1.0" index="5">
+				<param name="Name" type="31"><![CDATA[User_Kr_Scale_equal_0]]></param>
+				<param name="input1" type="4" value="1.000000"></param>
+				<param name="input2" type="4" value="0.000000"></param>
+				<param name="op" type="3" value="3"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-960</prop>
+					<prop name="posy">-2382</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_color_math_basic.1.0" index="6">
+				<param name="Name" type="31"><![CDATA[Color_x_T]]></param>
+				<param name="input1.red" type="4" value="0.000000"></param>
+				<param name="input1.green" type="4" value="0.000000"></param>
+				<param name="input1.blue" type="4" value="0.000000"></param>
+				<param name="input1.alpha" type="4" value="0.000000"></param>
+				<param name="input2.red" type="4" value="1.000000"></param>
+				<param name="input2.green" type="4" value="1.000000"></param>
+				<param name="input2.blue" type="4" value="1.000000"></param>
+				<param name="input2.alpha" type="4" value="1.000000"></param>
+				<param name="op" type="3" value="2"></param>
+				<param name="alpha" type="11" value="false"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-58</prop>
+					<prop name="posy">-2076</prop>
+					<prop name="state">ConnectedOnly</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_color_math_basic.1.0" index="7">
+				<param name="Name" type="31"><![CDATA[Rest_for_T]]></param>
+				<param name="input1.red" type="4" value="1.000000"></param>
+				<param name="input1.green" type="4" value="1.000000"></param>
+				<param name="input1.blue" type="4" value="1.000000"></param>
+				<param name="input1.alpha" type="4" value="1.000000"></param>
+				<param name="input2.red" type="4" value="1.000000"></param>
+				<param name="input2.green" type="4" value="1.000000"></param>
+				<param name="input2.blue" type="4" value="1.000000"></param>
+				<param name="input2.alpha" type="4" value="0.000000"></param>
+				<param name="op" type="3" value="1"></param>
+				<param name="alpha" type="11" value="false"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-359</prop>
+					<prop name="posy">-1968</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+			<node type="shader" progid="Softimage.sib_scalar_switch.1.0" index="8">
+				<param name="Name" type="31"><![CDATA[Refraction_Scale]]></param>
+				<param name="input" type="11" value="true"></param>
+				<param name="scalar1" type="4" value="1.000000"></param>
+				<param name="scalar2" type="4" value="1.000000"></param>
+				<datablob category="ui_infos">
+					<prop name="posx">-567</prop>
+					<prop name="posy">-1716</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+		</nodes>
+		<connections>
+			<cnx from_node="0" from_port="result" to_node="4" to_port="input1"> </cnx>
+			<cnx from_node="2" from_port="out" to_node="4" to_port="input2"> </cnx>
+			<cnx from_node="4" from_port="out" to_node="1" to_port="input1"> </cnx>
+			<cnx from_node="4" from_port="out" to_node="7" to_port="input2"> </cnx>
+			<cnx from_node="5" from_port="out" to_node="3" to_port="input"> </cnx>
+			<cnx from_node="7" from_port="out" to_node="6" to_port="input1"> </cnx>
+		</connections>
+		<exposed_ports>
+			<port index="0" portname="input" username="Fresnel_In2" displayname="Fresnel Refractive"></port>
+			<port index="1" portname="input2" username="Kr_color_In2" displayname="Kr_color"></port>
+			<port index="5" portname="input1" username="Kr_In2" displayname="Kr">
+				<secondaryport index="2" portname="input"></secondaryport>
+			</port>
+			<port index="6" portname="input2" username="Kt_color_In2" displayname="Kt_color"></port>
+			<port index="8" portname="scalar1" username="Kt_In" displayname="Kt">
+				<secondaryport index="8" portname="scalar2"></secondaryport>
+			</port>
+			<port index="1" portname="out" username="Krs_color_Out1" displayname="Krs_color"></port>
+			<port index="3" portname="out" username="Krs_Out" displayname="Krs"></port>
+			<port index="6" portname="out" username="Kt_color_Out" displayname="Kt_color"></port>
+			<port index="8" portname="out" username="Kt_Out1" displayname="Kt"></port>
+		</exposed_ports>
+		<layout>
+			<item type="input" name="Fresnel_In2" ppgvis="1" ppggroup="Fresnel" portvis="1"> </item>
+			<item type="input" name="Kr_color_In2" ppgvis="1" ppggroup="Reflection" portvis="1"> </item>
+			<item type="input" name="Kr_In2" min="0" max="1" ppgvis="1" ppggroup="Reflection" portvis="1"> </item>
+			<item type="input" name="Kt_color_In2" ppgvis="1" ppggroup="Refraction" portvis="1"> </item>
+			<item type="input" name="Kt_In" min="0" max="1" ppgvis="1" ppggroup="Refraction" portvis="1"> </item>
+			<item type="output" name="Krs_color_Out1" ppgvis="1" portvis="1"> </item>
+			<item type="output" name="Krs_Out" ppgvis="1" portvis="1"> </item>
+			<item type="output" name="Kt_color_Out" ppgvis="1" portvis="1"> </item>
+			<item type="output" name="Kt_Out1" ppgvis="1" portvis="1"> </item>
+		</layout>
+		<ppglogic lang="VBScript"><![CDATA[PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel2Standard_Compounds.html"]]></ppglogic>
+	</definition>
+</xsi_file>

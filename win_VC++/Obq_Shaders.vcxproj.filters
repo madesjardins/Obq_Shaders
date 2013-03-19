@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Obq">
+      <UniqueIdentifier>{a04706bb-3353-437a-b4ff-7eecfa321872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pbrt">
+      <UniqueIdentifier>{8573d355-79c5-4438-9108-d5442078a7d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pbrt">
+      <UniqueIdentifier>{e2d20d8c-66bb-4502-8e00-e940de837b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Obq">
+      <UniqueIdentifier>{7a0911e7-fef0-43c3-a2be-0115121d565c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Obq_AngularCamera.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Atmosphere.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Bend4Stereo.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_ChangeRange.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Environment.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Fresnel.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_IESLightFilter.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Opacity.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_RandomColor.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_RGBComEmit.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_RGBComLightFilter.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Simbiont.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_StereoLens.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_SurfaceEnvironment.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Thickness.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_TransformUV.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_UVRemapLensDistortion.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_VolumeThickness.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pbrt\spectrum.cpp">
+      <Filter>Source Files\pbrt</Filter>
+    </ClCompile>
+    <ClCompile Include="Obq_Shaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\pbrt\spectrum.h">
+      <Filter>Header Files\pbrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_Atmosphere.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_Environment.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_Fresnel.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_StereoLens.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_SurfaceEnvironment.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_Thickness.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_VolumeThickness.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

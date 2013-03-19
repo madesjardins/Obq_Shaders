@@ -1,0 +1,355 @@
+# SPDL - Obq_VolumeThickness v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{15423177-1E0C-4117-A4E3-5503AA2A3F7A}";
+PropertySet "Obq_VolumeThickness_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{F53024BF-A51F-482B-8DCE-DA8E4C9EEB2D}";
+		Type = color;
+	}
+	Parameter "colorIn" input
+	{
+		GUID = "{87EC1C5C-ED6C-4F64-BE0C-5A05C0F8835B}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "emissionColor" input
+	{
+		GUID = "{20FF2CBA-5010-4372-957A-18D2B3FAD9DC}";
+		Type = color;
+		Texturable = on;
+		Value = 0.0 0.0 0.0 0.0;
+	}
+	Parameter "alphaMode" input
+	{
+		GUID = "{96FF2802-36BB-4E6F-95E3-00A3EFEF9B1D}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "alpha" input
+	{
+		GUID = "{05FF8A79-16E5-4EA0-BFAB-B5955B843818}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "thicknessMode" input
+	{
+		GUID = "{9A870104-A77F-4819-B58C-0EB96F0AECF1}";
+		Type = integer;
+		Texturable = off;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "thickness" input
+	{
+		GUID = "{564E6F98-940A-42F2-A769-7CA6346F6AC9}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "accumulatedThicknessThreshold" input
+	{
+		GUID = "{25BD381C-6277-4388-8A28-A8AFD9B5F9AA}";
+		Type = scalar;
+		Texturable = off;
+		Value = 0.95;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "radius" input
+	{
+		GUID = "{77E0EBDB-BEE4-4305-81EB-CA6C575969C1}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "exponent" input
+	{
+		GUID = "{77E0EBDB-BEE4-4305-81EB-CA6C575969C1}";
+		Type = scalar;
+		Texturable = on;
+		Value = 3.0;
+	}
+	Parameter "useAbsorption" input
+	{
+		GUID = "{5C7D0EC0-0740-41F7-A119-C601EC467585}";
+		Type = boolean;
+		Texturable = off;
+		Value = off;
+	}
+	Parameter "absorption" input
+	{
+		GUID = "{CE98B217-D05B-4670-ADA6-AA84A320D99A}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.1;
+		Value Minimum = 0.0;
+	}
+	Parameter "diffuseMode" input
+	{
+		GUID = "{0F78326B-64B5-4AB6-BE07-DF1D82FE87DF}";
+		Type = integer;
+		Texturable = off;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 5;
+	}
+	Parameter "autoTransparencyMode" input
+	{
+		GUID = "{0F267CF8-2A29-4186-94FD-A3ADC439E0CF}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "shadowModifier" input
+	{
+		GUID = "{4779DF3D-B622-4A02-BFC3-21607A325898}";
+		Type = scalar;
+		Texturable = off;
+		Value = 1.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "lightPropagationDistance" input
+	{
+		GUID = "{2A43DA64-6C46-4FB3-8F6F-F5EDB97FCDDB}";
+		Type = scalar;
+		Texturable = off;
+		Value = 0.1;
+		Value Minimum = 0.0;
+	}
+	Parameter "doubleHemisphericalDiffuse" input
+	{
+		GUID = "{25F04366-EB7F-4CA9-A1D3-2F69B2EB7C38}";
+		Type = boolean;
+		Texturable = off;
+		Value = on;
+	}
+	Parameter "lightPropagationDistanceDiffuse" input
+	{
+		GUID = "{73EBC22A-A2CE-458F-BB54-029E1C0C771C}";
+		Type = scalar;
+		Texturable = off;
+		Value = 0.1;
+		Value Minimum = 0.0;
+	}
+}
+
+phenomenon "Obq_VolumeThickness_declare"
+{
+	Name = "Obq_VolumeThickness";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	colorIn
+	{
+		Name = "Diffuse";
+		UIType = "rgba";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	emissionColor
+	{
+		Name = "Emission";
+		UIType = "rgba";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	alphaMode
+	{
+	Name = "Alpha mode";
+	Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	UIType = "Combo";
+		Items
+		{
+			"Alpha Parameter" = 0,
+			"Diffuse Alpha" = 1,
+			"Emission Alpha" = 2,
+			"Max of Diffuse and Emission Alpha" = 3
+		}
+	}
+	alpha
+	{
+	Name = "Alpha";
+	Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	thicknessMode
+	{
+	Name = "Thickness mode";
+	Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	UIType = "Combo";
+		Items
+		{
+			"Sphere Particles" = 0,
+			"Custom Thickness" = 1
+		}
+	}
+	thickness
+	{
+		Name = "Thickness";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	accumulatedThicknessThreshold
+	{
+		Name = "Accumulated threshold";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	radius
+	{
+		Name = "Radius";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 To 10.0;
+	}
+	exponent
+	{
+		Name = "Exponent";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -4.0 To 4.0;
+	}
+	useAbsorption
+	{
+		Name = "Use absorption";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	absorption
+	{
+		Name = "Absorption coefficient";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 5;
+	}
+	diffuseMode
+	{
+	Name = "GI response";
+	Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	UIType = "Combo";
+		Items
+		{
+			"Full" = 4,
+			"Full (Emission only)" = 5,
+			"Direct*sqrt(opacity)" = 3,
+			"Direct*opacity" = 2,
+			"Direct" = 1,
+			"None" = 0
+		}
+	}
+	autoTransparencyMode
+	{
+	Name = "Mode Used";
+	Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	UIType = "Combo";
+		Items
+		{
+			"Always" = 0,
+			"Shadow-Only" = 1
+		}
+	}
+	shadowModifier
+	{
+		Name = "Occlusion modifier";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	lightPropagationDistance
+	{
+		Name = "Direct illumination sampling distance";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 To 1.0;
+	}
+	doubleHemisphericalDiffuse
+	{
+		Name = "Double hemispherical diffuse sampling";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	lightPropagationDistanceDiffuse
+	{
+		Name = "Indirect illumination sampling distance";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 To 1.0;
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Particle Color"
+	{
+		colorIn;
+		emissionColor;
+		alphaMode;
+		alpha;
+	}
+	Group "Thickness Parameters"
+	{
+		#thickness;
+		radius;
+		exponent;
+		absorption;
+		accumulatedThicknessThreshold;
+	}
+	Group "Auto-Transparency"
+	{
+		autoTransparencyMode;
+	}
+	Group "Advanced Ray Options"
+	{
+		diffuseMode;
+		doubleHemisphericalDiffuse;
+		lightPropagationDistance;
+		lightPropagationDistanceDiffuse;
+	}
+	Group "Shadows Options"
+	{
+		shadowModifier;
+	}
+}
+
+Layout "RenderTree"
+{
+	colorIn;
+	emissionColor;
+	alpha;
+	thickness;
+	accumulatedThicknessThreshold;
+	radius;
+	exponent;
+	#useAbsorption;
+	absorption;
+}
+
+Language = "VBScript";
+Logic
+{
+
+Sub autoTransparencyMode_OnChanged()
+	If PPG.autoTransparencyMode.Value = 0 Then
+		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "Always", ""
+	Else
+		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "shadow-only", ""
+	End If
+End Sub
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_VolumeThickness_v204.html"
+	autoTransparencyMode_OnChanged()
+End Sub
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_VolumeThickness";
+}

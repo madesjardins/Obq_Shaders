@@ -1,0 +1,60 @@
+# SPDL - Obq_IESLightFilter v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{5170A012-1639-0000-0000-1999DA2873C1}";
+PropertySet
+{
+   Parameter "out" output
+   {
+      guid = "{0F15C5DD-A3CC-418B-9FF2-08C5BF5FB6C3}";
+      type = model;
+   }
+   Parameter "filename" input
+   {
+      guid = "{CC411161-870C-4CD2-BFE0-15DAF5D6EA8F}";
+      Type = string;
+	  Value = "";
+      texturable = off;
+   }
+}
+
+MetaShader
+{
+   Name = "Obq_IESLightFilter";
+   Type = light;
+   Renderer "Arnold Render"
+   {
+      Name = "Obq_IESLightFilter";
+   }
+}
+
+Defaults
+{
+   filename
+   {
+      Name = "IES Profile";
+	  Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "dscontrol"
+	  {
+	    Class = "edit";
+	    Caption = ";file=1;openfile=1;initialdir=D:\\local\\madesjardins\\Downloads\\IES;filefilter=IES light profile (*.ies)|*.ies|All Files (*.*)|*.*";
+	  }
+   }
+}
+
+Layout "Default"
+{
+   Group "Main"
+   {
+      filename;
+   }
+}
+
+
+Layout "RenderTree"
+{
+	filename;
+}
+
+
+

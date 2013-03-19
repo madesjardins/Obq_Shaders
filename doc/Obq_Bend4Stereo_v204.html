@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Obq_Bend4Stereo v2.04.1 (win64 - SItoA 2.04.1 - Arnold
+4.0.7.1)</title>
+
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: black; width: 20px;"></td>
+<td style="background-color: black;"><big><big><br>
+<br>
+</big></big></td>
+<td style="width: 20px; background-color: black;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(97, 97, 97);"></td>
+<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Bend4Stereo</font>
+</big></big></td>
+<td style="background-color: rgb(97, 97, 97);"></td>
+</tr>
+<tr>
+<td></td>
+<td style="background-color: white;">
+<p><font color="Blue">| &nbsp;<a href="#Description">Description</a>
+&nbsp;| &nbsp;<a href="#Installation">Installation</a>
+&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
+&nbsp;</font><font color="Blue">|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
+&nbsp;|</font></p>
+<p><span style="font-weight: bold;">Category:</span>
+Texture </p>
+<p><span style="font-weight: bold;">Shader
+Family:</span>&nbsp;Texture</p>
+<p><span style="font-weight: bold;">Output:</span>
+Color</p>
+<p>Obq_Bend4Stereo is a passthrough node that changes the
+ray direction for camera rays. Used with stereo cameras, this allows
+the shading of the two cameras to be calculated from a single one.
+</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Description"></a>Bend
+Mode</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Bend Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);">How
+to bend :<br>
+<ul>
+<li>Don't bend : leave ray direction as-is.</li>
+<li>Bend from left : both cameras will be
+calculated as if coming from the left camera.<br>
+</li>
+<li>Bend from right : both cameras will be
+calculated as if coming from the right camera.
+</li>
+<li>Bend from center :&nbsp;both cameras will
+be calculated as if coming from the center camera.</li>
+</ul>
+<span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Cameras</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Center</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+center camera.<span style="font-style: italic;"></span>&nbsp;<span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Left</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+left camera.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Right</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+right camera.</td>
+<td></td>
+</tr>
+<tr>
+<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">CameraStatus</span></td>
+<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Tells
+if all cameras are valid.<br>
+<br>
+<span style="font-style: italic;">The pick
+order is center, left, right.</span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<ol>
+<li>Copy the <strong><em>Obq_Bend4Stereo.dll</em></strong>
+in the proper
+"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
+folder and the <strong><em>Obq</em></strong><strong><em>Bend4Stereo.</em></strong><strong><em>spdl</em></strong>
+in
+the proper "<strong><em>SItoA\Application\spdl</em></strong>"
+folder.</li>
+<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
+Visual C++ 2010 redistributable package (x64)</a> if not already
+done.</li>
+</ol>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
+Tree Usage</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>Use the Obq_Bend4Stereo on all materials as a
+passthrough right before the "Surface" port of the material node or the
+"camera" port of a "ray_switch" node. In this stereo frame, the magenta
+and green in the highlights represent disparities between the render
+with&nbsp;and without bending. <br>
+<br>
+<img style="width: 100%;" onclick="window.open('bendEx.jpg')" alt="Bend4Stereo Example" src="bendEx.jpg"></td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td><small><big>Copyright (c) 2012
+Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
+<br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.</big><br>
+<br>
+<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<hr style="width: 100%; height: 2px;"></td>
+<td style="background-color: white;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</body></html>

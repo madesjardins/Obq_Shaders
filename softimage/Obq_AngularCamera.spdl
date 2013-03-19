@@ -1,0 +1,76 @@
+# SPDL Obq_AngularCamera v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{E1CBDF7C-FBF5-4AF9-BD91-CBA61FC4E97E}";
+PropertySet "Obq_AngularCamera"
+{
+	Parameter "out" output
+	{
+		GUID = "{2654B3C7-6ED3-48E3-A100-A903744860B1}";
+		Type = color;
+		flags = 1;
+	}
+	Parameter "angle" input
+	{
+		GUID = "{8426A7C7-266D-4F79-BA55-1AC28DCD507C}";
+		Type = scalar;
+		Value = 360;
+		Value Minimum = 0;
+		Value Maximum = 360;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "flip" input
+	{
+		GUID = "{F0BD726A-2FCC-4795-92CE-08E89D45B597}";
+		Type = boolean;
+		Value = off;
+		Texturable = Off;
+		Animatable = Off;
+	}
+}
+
+MetaShader "Obq_AngularCamera_params_meta"
+{
+	Name = "Obq_AngularCamera";
+	Type = lens;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_AngularCamera";
+	}	
+}
+
+Defaults
+{
+	angle
+	{
+		Name = "Angle";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	flip
+	{
+		Name = "Flip front<->back";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+}
+
+Layout "Default"
+{
+		angle;
+		flip;
+}
+
+Layout "RenderTree"
+{
+
+}
+
+Language = "VBScript";
+Logic
+{	
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_AngularCamera_v204.html"
+		PPG.Refresh
+	End Sub
+}
