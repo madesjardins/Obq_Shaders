@@ -38,13 +38,13 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRGBComLightFilterMethod);
 // Arnold enum params
 enum Obq_RGBComLightFilter_Params {p_defaultC, p_channel};
 
-const AtRGB colorArray[] = {AI_RGB_RED, AI_RGB_GREEN, AI_RGB_BLUE};
+const AtRGB colorArray[] = {AI_RGB_RED, AI_RGB_GREEN, AI_RGB_BLUE, AI_RGB_WHITE, AI_RGB_BLACK};
 
 //const char *enum_Obq_LightFilter[] = {"Obq_RGBComLightFilter"};
 
 typedef struct 
 {
-	AtColor defaultC;
+	AtColor defaultColor;
 	int channel;
    
 }
@@ -54,8 +54,8 @@ ShaderData;
 // Arnold node parameters
 node_parameters
 {
-   AiParameterRGB ( "defaultC", 1.0f,1.0f,1.0f );
-   AiParameterInt ( "channel", 3 );
+   AiParameterRGB ( "defaultColor", 1.0f,1.0f,1.0f );
+   AiParameterInt ( "channel", 5 );
 }
 
 
@@ -74,7 +74,7 @@ node_update
 {	
 	ShaderData *data = (ShaderData*) AiNodeGetLocalData(node);
 	data->channel = AiNodeGetInt(node,"channel");
-	data->defaultC = AiNodeGetRGB(node,"defaultC");
+	data->defaultColor = AiNodeGetRGB(node,"defaultColor");
 }
 
 
@@ -86,7 +86,7 @@ shader_evaluate
 	
 	// Unoccluded intensity
 	bool ret = false;
-	if(data->channel != 3)
+	if(data->channel < 5)
 		if(AiStateGetMsgBool("ComRGB", &ret))
 			if(ret)
 			{
@@ -94,7 +94,7 @@ shader_evaluate
 				return;
 			}
 
-	sg->Liu =  data->defaultC;
+	sg->Liu =  data->defaultColor;
 }
 
 
@@ -105,18 +105,3 @@ node_finish
 	ShaderData *data = (ShaderData*) AiNodeGetLocalData(node);
 	AiFree(data);
 }
-
-////-------------------
-//// Arnold node loader
-//node_loader
-//{
-//if (i > 0)
-//		return FALSE;
-//
-//	node->methods      = ObqRGBComLightFilterMethod;
-//	node->output_type  = AI_TYPE_RGB;
-//	node->name         = "Obq_RGBComLightFilter";
-//	node->node_type    = AI_NODE_SHADER;
-//	strcpy(node->version, AI_VERSION);
-//	return TRUE;
-//}

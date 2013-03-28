@@ -1,4 +1,4 @@
-# SPDL - Obq_RGBComLightFilter v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_RGBComLightFilter v2.06.0b (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{5170A012-1639-0000-0001-1999DA2873C1}";
@@ -10,7 +10,7 @@ PropertySet "Obq_RGBComLightFilter_params"
       guid = "{0F15C5DD-A3CC-418B-9FF2-08C5BF5FB6C3}";
       type = model;
    }
-   Parameter "defaultC" input
+   Parameter "defaultColor" input
    {
       guid = "{2FFC2AC0-B543-4B4D-B302-3AFA715AB4C5}";
       Type = color;
@@ -21,9 +21,9 @@ PropertySet "Obq_RGBComLightFilter_params"
    {
       guid = "{B65A8A03-6920-4A0F-9DF3-E44317D046C6}";
       Type = integer;
-	  Value = 3;
+	  Value = 5;
 	  Value Minimum = 0;
-	  Value Maximum = 3;
+	  Value Maximum = 5;
       texturable = off;
    }
 }
@@ -40,28 +40,30 @@ MetaShader
 
 Defaults
 {
-   defaultC
+   defaultColor
    {
       Name = "Default Color";
 	  UIType = "rgb";
    }
    channel
    {
-		Name = "Listen on channel";
+		Name = "Response to Obq_RGBComEmit";
 		UIType = "Combo";
 		Items
 		{
-			"Off" = 3,
+			"Use Default" = 5,
 			"Red" = 0,
 			"Green" = 1,
-			"Blue" = 2
+			"Blue" = 2,
+			"White" = 3,
+			"Black" = 4,
 		}
    }
 }
 
 Layout "Default"
 {
-      defaultC;
+      defaultColor;
 	  channel;
 }
 

@@ -1,5 +1,5 @@
 /*
-Obq_RGBComEmit v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0):
+Obq_RGBComEmit v2.06.0b (SItoA 2.6.0 - Arnold 4.0.11.0):
 
 
 
@@ -34,10 +34,10 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRGBComEmitSimpleMethods);
 //
 node_parameters
 {
-	AiParameterRGBA ( "passthroughC", 1.0f,1.0f,1.0f, 1.0f );
+	AiParameterRGBA ( "passthrough", 1.0f,1.0f,1.0f, 1.0f );
 }
 
-enum ObqRGBComEmitSimpleParams{p_passthroughC};
+enum ObqRGBComEmitSimpleParams{p_passthrough};
 
 node_initialize
 {
@@ -45,7 +45,6 @@ node_initialize
 
 node_update
 {
-
 }
 
 node_finish
@@ -54,24 +53,13 @@ node_finish
 
 shader_evaluate
 {
+
+	// Set RGB
 	AiStateSetMsgBool("ComRGB", true);
-	sg->out.RGBA = AiShaderEvalParamRGBA(p_passthroughC);
+	sg->out.RGBA = AiShaderEvalParamRGBA(p_passthrough);
 	AiStateSetMsgBool("ComRGB", false);
+
 }
 
-
-
-//node_loader
-//{
-//	if (i > 0)
-//		return FALSE;
-//
-//	node->methods      = ObqRGBComEmitSimpleMethods;
-//	node->output_type  = AI_TYPE_RGBA;
-//	node->name         = "Obq_RGBComEmit";
-//	node->node_type    = AI_NODE_SHADER;
-//	strcpy(node->version, AI_VERSION);
-//	return TRUE;
-//}
 
 

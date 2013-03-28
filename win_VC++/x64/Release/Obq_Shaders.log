@@ -1,5 +1,5 @@
-﻿Build started 19/03/2013 3:39:04 PM.
-     1>Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES\win_VC++\Obq_Shaders.vcxproj" on node 2 (build target(s)).
+﻿Build started 28/03/2013 8:06:32 AM.
+     1>Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\Obq_Shaders.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -28,7 +28,7 @@
      1>Obq_Shaders.cpp(197): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : see declaration of 'sprintf'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v207a.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.12.1-windows\lib" ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v207a.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES\bin\Obq_Shaders_v207a.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v207a.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v207a.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.12.1-windows\lib" ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v207a.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\bin\Obq_Shaders_v207a.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v207a.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Atmosphere.obj
          x64\Release\Obq_Bend4Stereo.obj
          x64\Release\Obq_ChangeRange.obj
@@ -51,14 +51,14 @@
             Creating library ..\bin\Obq_Shaders_v207a.lib and object ..\bin\Obq_Shaders_v207a.exp
          Generating code
          Finished generating code
-         Obq_Shaders.vcxproj -> D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES\win_VC++\..\bin\Obq_Shaders_v207a.dll
+         Obq_Shaders.vcxproj -> D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\..\bin\Obq_Shaders_v207a.dll
        Manifest:
          C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\bin\Obq_Shaders_v207a.dll;#2" /manifest x64\Release\Obq_Shaders_v207a.dll.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "x64\Release\Obq_Shaders.unsuccessfulbuild".
          Touching "x64\Release\Obq_Shaders.lastbuildstate".
-     1>Done Building Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES\win_VC++\Obq_Shaders.vcxproj" (build target(s)).
+     1>Done Building Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\Obq_Shaders.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:10.69
+Time Elapsed 00:00:06.06
