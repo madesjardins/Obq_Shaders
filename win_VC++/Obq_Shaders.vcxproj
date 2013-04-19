@@ -75,8 +75,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\</OutDir>
-    <TargetName>Obq_Shaders_v207a</TargetName>
+    <TargetName>Obq_Shaders_v208a</TargetName>
     <ExtensionsToDeleteOnClean>$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,22 +125,40 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\local\madesjardins\Arnold\Arnold-4.0.12.1-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\lib;D:\local\madesjardins\Arnold\Arnold-4.0.12.1-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib;D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ai.lib;dte_2600_64.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
     </Link>
+    <PostBuildEvent>
+      <Command>del /F /Q $(IntDir)*.*</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <Bscmake>
+      <OutputFile>$(IntDir)$(TargetName).bsc</OutputFile>
+    </Bscmake>
+    <Xdcmake>
+      <OutputFile>$(IntDir)$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <BuildLog>
+      <Path>$(IntDir)\$(MSBuildProjectName).log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Obq_AngularCamera.cpp" />
@@ -153,6 +172,7 @@
     <ClCompile Include="..\src\Obq_RandomColor.cpp" />
     <ClCompile Include="..\src\Obq_RGBComEmit.cpp" />
     <ClCompile Include="..\src\Obq_RGBComLightFilter.cpp" />
+    <ClCompile Include="..\src\Obq_Shaders.cpp" />
     <ClCompile Include="..\src\Obq_Simbiont.cpp" />
     <ClCompile Include="..\src\Obq_StereoLens.cpp" />
     <ClCompile Include="..\src\Obq_SurfaceEnvironment.cpp" />
@@ -161,7 +181,6 @@
     <ClCompile Include="..\src\Obq_UVRemapLensDistortion.cpp" />
     <ClCompile Include="..\src\Obq_VolumeThickness.cpp" />
     <ClCompile Include="..\src\pbrt\spectrum.cpp" />
-    <ClCompile Include="Obq_Shaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Obq_Atmosphere.h" />

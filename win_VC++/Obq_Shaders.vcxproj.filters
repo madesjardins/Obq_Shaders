@@ -84,7 +84,7 @@
     <ClCompile Include="..\src\pbrt\spectrum.cpp">
       <Filter>Source Files\pbrt</Filter>
     </ClCompile>
-    <ClCompile Include="Obq_Shaders.cpp">
+    <ClCompile Include="..\src\Obq_Shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

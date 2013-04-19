@@ -6,6 +6,9 @@ Obq_Shaders for Arnold
 Maya ID Block is: 0x0011CD40 : 0x0011CE3F
 Registered for Oblique FX [Marc-Antoine Desjardins]
 
+When compiling for linux and macosx, please use the Makefile from within the folder.
+Simply change the TARGETNAME and ARNOLD path before running make.
+
 
 License
 ===========

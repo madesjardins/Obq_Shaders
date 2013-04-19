@@ -1,5 +1,7 @@
-V207a
-This version was compiled on March 28th 2013 for SItoA 2.7.0 using Arnold 4.0.12.1. by Marc-Antoine Desjardins
+v206b - win -			SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+V207a - win - 			SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208a - linux, macosx - 	SItoA 2.8.0 - Arnold 4.0.13.1 by Jan Walters
+V208a - win - 			SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
 
 FIXES:
 	Obq_StereoLens : crash when using rig with only 2 cameras and shader on left camera.
@@ -9,7 +11,8 @@ ADDITIONS:
 CHANGES:
 
 NEW SHADERS:
-	Obq_RGBComEmits & RGBComLightFilter : Simple Combo to change light color in a render tree branch, useful for per light colored shadows for example. 
+	Obq_RGBComEmits & RGBComLightFilter : Simple Combo to change light color in a render tree branch, useful for per light colored shadows for example.
+	Obq_Opacity : A simple and optimized opacity shader receiving both color and scalar input for opacity.
 
 REMOVED SHADERS:
 

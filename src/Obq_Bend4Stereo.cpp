@@ -32,6 +32,8 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <iostream>
+#include <string> 
 
 // Arnold Thingy
 //

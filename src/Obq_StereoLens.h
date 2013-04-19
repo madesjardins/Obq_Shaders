@@ -34,6 +34,8 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <cstring>
 #include <cmath>
 #include <cstdlib>
+#include <iostream>
+#include <string> 
 
 // Arnold thingy
 // 
