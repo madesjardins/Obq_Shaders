@@ -37,14 +37,14 @@ node_parameters
    AiParameterINT("mode", 1);						// Fresnel Mode, custom, presets, files
    AiParameterSTR("iorFilename","");				// eta filename
    AiParameterINT("lambdaUnits", 0);				// 0 = nano, 1 = micro (*1000)
-   AiParameterRGB("iorRGB",1.333f,1.333f,1.333f);	// refractive indices
-   AiParameterRGB("kRGB",0.0f,0.0f,0.0f);			// extinction coeffs
+   AiParameterRGB("iorRGB",0.069151f,0.475555f,1.425f);	// refractive indices
+   AiParameterRGB("kRGB",3.306609f,2.534851f,1.879887f);			// extinction coeffs
    AiParameterINT("method", 1);						// Method to compute IOR
    AiParameterRGB("iorInRGB",1.0f,1.0f,1.0f);		// Media in which the object is
    AiParameterFLT("ratioFsFp", 0.5f);				// Ratio Fs Fp
    AiParameterBOOL("transmittance", false);			// T = 1 - R
    AiParameterINT("backfaceMode",1);				// backface mode
-   AiParameterBOOL("degamma",false);				//degamma 2.2
+   AiParameterBOOL("degamma",true);				//degamma 2.2
 
 }
 

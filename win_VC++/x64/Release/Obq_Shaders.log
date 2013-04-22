@@ -1,4 +1,4 @@
-﻿Build started 19/04/2013 8:03:12 AM.
+﻿Build started 22/04/2013 8:33:46 AM.
      1>Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\Obq_Shaders.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -27,7 +27,7 @@
          Obq_VolumeThickness.cpp
          spectrum.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v208a.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib" ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v208a.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"x64\Release\Obq_Shaders_v208a.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v208a.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v208b.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib" ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v208b.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"x64\Release\Obq_Shaders_v208b.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v208b.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Atmosphere.obj
          x64\Release\Obq_Bend4Stereo.obj
          x64\Release\Obq_ChangeRange.obj
@@ -47,12 +47,12 @@
          x64\Release\Obq_UVRemapLensDistortion.obj
          x64\Release\Obq_VolumeThickness.obj
          x64\Release\spectrum.obj
-            Creating library ..\bin\Obq_Shaders_v208a.lib and object ..\bin\Obq_Shaders_v208a.exp
+            Creating library ..\bin\Obq_Shaders_v208b.lib and object ..\bin\Obq_Shaders_v208b.exp
          Generating code
          Finished generating code
-         Obq_Shaders.vcxproj -> D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\..\bin\Obq_Shaders_v208a.dll
+         Obq_Shaders.vcxproj -> D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\..\bin\Obq_Shaders_v208b.dll
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\bin\Obq_Shaders_v208a.dll;#2" /manifest x64\Release\Obq_Shaders_v208a.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\bin\Obq_Shaders_v208b.dll;#2" /manifest x64\Release\Obq_Shaders_v208b.dll.intermediate.manifest
        PostBuildEvent:
          del /F /Q x64\Release\*.*
          :VCEnd
@@ -62,4 +62,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.03
+Time Elapsed 00:00:06.56

@@ -1,0 +1,23 @@
+V208b - linux, macosx - 	SItoA 2.8.0 - Arnold 4.0.14.0 by Jan Walters
+V208b - win - 			SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+
+FIXES:
+	Obq_Fresnel default Arnold parameters match the default .spdl ones <win>.	
+ADDITIONS:
+
+CHANGES:
+	Linux and macosx compiled with Arnold version 4.0.14.0.
+	Obq_Fresnel "DeGamma metals for linear workflow" is now On by default.
+	Obq_Fresnel default preset is Gold.
+
+NEW SHADERS:
+	
+REMOVED SHADERS:
+
+
+Enjoy and give feedback please.
+
+--
+Marc-Antoine Desjardins
+ObliqueFX
+madesjardins@obliquefx.com
