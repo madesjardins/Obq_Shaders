@@ -1,0 +1,40 @@
+To install:
+
+  + copy the content of the "softimage\spdl" folder into "Addons\SItoA\Application\spdl",
+
+  + copy the content of "Fresnel2Standard_Compounds" into "Addons\SItoA\Data\RTcompounds",
+
+  + copy the "bin\Obq_Shaders_vXXXy.dll" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",	[Windows]
+  + copy the "bin\Obq_Shaders_vXXXy.so" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
+  + copy the "bin\Obq_Shaders_vXXXy.dylib" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
+
+  
+  + copy the "bin\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows & non-"Lite"]
+    arbitrary directory (AD). If you chose the AD method, you'll need to append this AD 
+    to the PATH environment variable. For example, you can add : 
+    "set PATH=%PATH%;\\serverX\dte_folder" in the .bat that launches Softimage (withtout quotes). 
+    You will also need copy the "\bin\dte_components" folder somewhere and change the path
+    on line 30 of the Obq_Simbiont.spdl (the "componentLibsPath" parameters).
+    If you don't posess a copy of DarkTree, you can download some DarkTree files here :
+    http://www.darksim.com/html/downloads.html
+  
+
+"Lite" version :
+
+  The "Lite" version contains all the same shaders except for those requiring other libs than Arnold's.
+  Here's the list of the shaders you won't find in the "Lite" version :
+
+	* Obq_Simbiont
+
+
+Linux and Mac OSX :
+
+  Because Obq_Simbiont requires a Windows library, it is not available for Linux and Mac OSX.  
+
+
+
+Enjoy.
+--
+Marc-Antoine Desjardins
+ObliqueFX
+madesjardins@obliquefx.com

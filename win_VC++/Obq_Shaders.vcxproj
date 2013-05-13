@@ -125,19 +125,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\include;..\src;..\src\dte;..\src\ldpk;..\src\pbrt;..\src\yafaray;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\lib;D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib;..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ai.lib;dte_2600_64.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -183,6 +182,32 @@
     <ClCompile Include="..\src\pbrt\spectrum.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\dte\dtengine.h" />
+    <ClInclude Include="..\src\dte\misc.h" />
+    <ClInclude Include="..\src\dte\tform.h" />
+    <ClInclude Include="..\src\dte\vmat.h" />
+    <ClInclude Include="..\src\ldpk\ldpk.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_classic_3de_mixed_distortion.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_error.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_example_radial_distortion.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_generic_anamorphic_distortion.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_generic_distortion_base.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_generic_radial_distortion.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_ldp_builtin.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_lookup_table.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_model_parser.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_plugin_loader.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_power_ct.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_radial_decentered_distortion.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_table_generator.h" />
+    <ClInclude Include="..\src\ldpk\ldpk_vec2d.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_anamorphic_deg_6.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_classic_3de_mixed.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_common_sdv.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_example_radial_deg_8.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_radial_decentered_deg_4.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ldp_radial_deg_8.h" />
+    <ClInclude Include="..\src\ldpk\tde4_ld_plugin.h" />
     <ClInclude Include="..\src\Obq_Atmosphere.h" />
     <ClInclude Include="..\src\Obq_Environment.h" />
     <ClInclude Include="..\src\Obq_Fresnel.h" />

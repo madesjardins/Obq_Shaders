@@ -30,6 +30,8 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "ai.h"
 
+#define _OBQFULLVERSION // Comment for "lite" version (no other libs required), exclude sources from build and remove linkage to other libs
+
 extern AtNodeMethods* ObqAtmosphereSimpleMethods;
 extern AtNodeMethods* Obq_AngularCameraMethods;
 extern AtNodeMethods* ObqBend4StereoSimpleMethods;
@@ -42,7 +44,9 @@ extern AtNodeMethods* ObqRandomColorSimpleMethods;
 extern AtNodeMethods* ObqRGBComEmitSimpleMethods;
 extern AtNodeMethods* ObqRGBComLightFilterMethod;
 #ifdef _WIN32 // only works on windows
+#ifdef _OBQFULLVERSION //
 extern AtNodeMethods* ObqSimbiontMethods;
+#endif
 #endif
 extern AtNodeMethods* Obq_StereoLensMethods;
 extern AtNodeMethods* ObqSurfaceEnvironmentSimpleMethods;
@@ -66,7 +70,9 @@ enum SHADERS
    OBQ_RGBCOMEMIT,
    OBQ_RGBCOMLIGHTFILTER,
 #ifdef _WIN32 // only works on windows
+#ifdef _OBQFULLVERSION
    OBQ_SIMBIONT,
+#endif
 #endif
    OBQ_STEREOLENS,
    OBQ_SURFACEENVIRONMENT,
@@ -147,12 +153,14 @@ node_loader
 		node->node_type    = AI_NODE_SHADER;
 		break;
 #ifdef _WIN32 // only works on windows
+#ifdef _OBQFULLVERSION
 	case OBQ_SIMBIONT:
 		node->methods      = ObqSimbiontMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Simbiont";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+#endif
 #endif
 	case OBQ_STEREOLENS:
 		node->methods     = Obq_StereoLensMethods;

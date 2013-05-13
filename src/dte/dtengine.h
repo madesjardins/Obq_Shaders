@@ -13,7 +13,7 @@
 #ifdef DLL_BUILD
 #define DTE_EXPORT extern "C" __declspec(dllexport)
 #else
-#define DTE_EXPORT extern "C"
+#define DTE_EXPORT extern "C" __declspec(dllimport)
 #endif
 #else
 #define DTE_EXPORT extern "C"

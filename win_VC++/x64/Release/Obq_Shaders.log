@@ -1,9 +1,9 @@
-﻿Build started 22/04/2013 8:33:46 AM.
+﻿Build started 13/05/2013 8:18:37 AM.
      1>Project "D:\local\madesjardins\Obq_Shaders\OBQ_SOURCES_GIT\win_VC++\Obq_Shaders.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\include" /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\src\Obq_AngularCamera.cpp ..\src\Obq_Atmosphere.cpp ..\src\Obq_Bend4Stereo.cpp ..\src\Obq_ChangeRange.cpp ..\src\Obq_Environment.cpp ..\src\Obq_Fresnel.cpp ..\src\Obq_IESLightFilter.cpp ..\src\Obq_Opacity.cpp ..\src\Obq_RandomColor.cpp ..\src\Obq_RGBComEmit.cpp ..\src\Obq_RGBComLightFilter.cpp ..\src\Obq_Shaders.cpp ..\src\Obq_Simbiont.cpp ..\src\Obq_StereoLens.cpp ..\src\Obq_SurfaceEnvironment.cpp ..\src\Obq_Thickness.cpp ..\src\Obq_TransformUV.cpp ..\src\Obq_UVRemapLensDistortion.cpp ..\src\Obq_VolumeThickness.cpp ..\src\pbrt\spectrum.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\include" /I..\src /I..\src\dte /I..\src\ldpk /I..\src\pbrt /I..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\src\Obq_AngularCamera.cpp ..\src\Obq_Atmosphere.cpp ..\src\Obq_Bend4Stereo.cpp ..\src\Obq_ChangeRange.cpp ..\src\Obq_Environment.cpp ..\src\Obq_Fresnel.cpp ..\src\Obq_IESLightFilter.cpp ..\src\Obq_Opacity.cpp ..\src\Obq_RandomColor.cpp ..\src\Obq_RGBComEmit.cpp ..\src\Obq_RGBComLightFilter.cpp ..\src\Obq_Shaders.cpp ..\src\Obq_Simbiont.cpp ..\src\Obq_StereoLens.cpp ..\src\Obq_SurfaceEnvironment.cpp ..\src\Obq_Thickness.cpp ..\src\Obq_TransformUV.cpp ..\src\Obq_UVRemapLensDistortion.cpp ..\src\Obq_VolumeThickness.cpp ..\src\pbrt\spectrum.cpp
          Obq_AngularCamera.cpp
          Obq_Atmosphere.cpp
          Obq_Bend4Stereo.cpp
@@ -16,7 +16,7 @@
          Obq_RGBComEmit.cpp
          Obq_RGBComLightFilter.cpp
          Obq_Shaders.cpp
-     1>..\src\Obq_Shaders.cpp(197): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>..\src\Obq_Shaders.cpp(205): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : see declaration of 'sprintf'
          Obq_Simbiont.cpp
          Obq_StereoLens.cpp
@@ -27,7 +27,7 @@
          Obq_VolumeThickness.cpp
          spectrum.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v208b.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\lib /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib" ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v208b.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"x64\Release\Obq_Shaders_v208b.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v208b.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Obq_Shaders_v208b.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"D:\local\madesjardins\Arnold\Arnold-4.0.14.0-windows\lib" /LIBPATH:..\lib ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders_v208b.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"x64\Release\Obq_Shaders_v208b.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Obq_Shaders_v208b.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Atmosphere.obj
          x64\Release\Obq_Bend4Stereo.obj
          x64\Release\Obq_ChangeRange.obj
@@ -62,4 +62,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.56
+Time Elapsed 00:00:06.47
