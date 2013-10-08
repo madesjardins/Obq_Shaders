@@ -50,6 +50,7 @@ node_parameters
 	AiParameterFLT ( "intensityCam"   , 1.0f );
 	AiParameterFLT ( "intensityDifGI"   , 1.0f );
 	AiParameterFLT ( "intensityRfl"   , 1.0f );
+	AiParameterFLT ( "intensityGlossy", 1.0f);
 	AiParameterFLT ( "intensityRfr"   , 1.0f );
 	AiParameterBOOL ( "globalRotation", true);
 	AiParameterVEC ( "rotation"   , 0.0f, 0.0f, 0.0f );
@@ -186,8 +187,10 @@ shader_evaluate
 			intensity =  AiShaderEvalParamFlt(p_intensityDifGI);
 			break;
 		case AI_RAY_REFLECTED:
-		case AI_RAY_GLOSSY:
 			intensity =  AiShaderEvalParamFlt(p_intensityRfl);
+			break;
+		case AI_RAY_GLOSSY:
+			intensity =  AiShaderEvalParamFlt(p_intensityGlossy);
 			break;
 		case AI_RAY_REFRACTED:
 			intensity =  AiShaderEvalParamFlt(p_intensityRfr);

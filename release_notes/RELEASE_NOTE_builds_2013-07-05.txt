@@ -1,0 +1,35 @@
+v206 - win - 		SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+v207 - win - 		SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208 - win - 		SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+v209 - win -		SITOA 2.9.0 - Arnold 4.0.15.1 by Marc-Antoine Desjardins
+
+
+FIXES:
+		
+
+ADDITIONS:
+
+
+CHANGES:
+	Builds won't have letters because it's easier to overwrite them this way.
+	Builds will be done for SItoA 2.6 and up in normal and Lite versions only for windows at first.
+
+NEW SHADERS:
+	+ Obq_Hair : Dual Scattering (Zinke et al.) implementation of Sadeghi et al. artist friendly hair shading system using importance sampling from Ou et al.'s IShair.
+	+ Obq_Root2Tip : A small shader that interpolates a root color and a tip color along a hair.
+
+REMOVED SHADERS:
+
+
+COMING SOON :
+	+ Obq_Measured : A shader for measured material.
+	+ New documentation system for all obq shaders
+	+ Linux builds
+
+
+Enjoy and give feedback please.
+
+--
+Marc-Antoine Desjardins
+ObliqueFX
+madesjardins@obliquefx.com

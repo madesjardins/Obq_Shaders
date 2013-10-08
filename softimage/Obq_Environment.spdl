@@ -128,6 +128,14 @@ PropertySet "Obq_Environment_params"
 		Value = 1;
 		Value Minimum = 0;
 	}
+		Parameter "intensityGlossy" input
+	{
+		GUID = "{21995C92-48C4-40C7-982C-F7E61762F95F}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
 		Parameter "intensityRfr" input
 	{
 		GUID = "{47AFF816-BEEE-4D74-A5AC-ED7615AEEF60}";
@@ -291,6 +299,12 @@ Defaults
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 0 To 2;
 	}
+	intensityGlossy
+	{
+		Name = "Glossy";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
 	intensityRfr
 	{
 		Name = "Refraction";
@@ -349,6 +363,7 @@ Layout "Default"
 			intensityCam;
 			intensityDifGI;
 			intensityRfl;
+			intensityGlossy;
 			intensityRfr;
 		}
 	}
@@ -396,6 +411,7 @@ Layout "RenderTree"
 		intensityCam;
 		intensityDifGI;
 		intensityRfl;
+		intensityGlossy;
 		intensityRfr;
 	}
 
@@ -457,7 +473,7 @@ sub useSampleCount_OnChanged()
 End sub
 
 sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Environment_v206a.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Environment.html"
 	onSurfaceMode_OnChanged()
 	sampleLevel_OnChanged()
 	useSampleCount_OnChanged()

@@ -1,0 +1,32 @@
+v206 - win - 		SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+v207 - win - 		SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208 - win - 		SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+v209 - win -		SITOA 2.9.0 - Arnold 4.0.15.1 by Marc-Antoine Desjardins
+
+
+FIXES:
+		
+
+ADDITIONS:
+	+ Obq_Thickness : "Enter surface by (0.0001 units)" is now applied to single rays too (non blurred).
+	+ Obq_Environment : Reflection and Glossy rays are now separated and have their own intensity sliders.
+
+CHANGES:
+
+NEW SHADERS:
+
+REMOVED SHADERS:
+
+
+COMING SOON :
+	+ Obq_Measured : A shader for measured material.
+	+ New documentation system for all obq shaders
+	+ Linux builds
+
+
+Enjoy and give feedback please.
+
+--
+Marc-Antoine Desjardins
+ObliqueFX
+madesjardins@obliquefx.com

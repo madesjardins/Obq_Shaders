@@ -93,6 +93,21 @@
     <ClCompile Include="..\src\Obq_Simbiont.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Obq_Hair.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Root2Tip.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_Shadow.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Obq_MeasuredMaterial.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ObqISBrdf.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\pbrt\spectrum.h">
@@ -131,16 +146,28 @@
     <ClInclude Include="..\src\dte\vmat.h">
       <Filter>Header Files\dte</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Obq_Hair.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_Common.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_classic_3de_mixed_distortion.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ldpk\ldpk_cylindric_extender.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_error.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_example_radial_distortion.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ldpk\ldpk_extender_base.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_generic_anamorphic_distortion.h">
@@ -153,6 +180,9 @@
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_ldp_builtin.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ldpk\ldpk_linear_extender.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_lookup_table.h">
@@ -170,13 +200,25 @@
     <ClInclude Include="..\src\ldpk\ldpk_radial_decentered_distortion.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ldpk\ldpk_rotation_extender.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ldpk\ldpk_squeeze_extender.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_table_generator.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\ldpk_vec2d.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ldpk\tde4_ld_all_builtins.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\ldpk\tde4_ld_plugin.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ldpk\tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\tde4_ldp_anamorphic_deg_6.h">
@@ -191,11 +233,20 @@
     <ClInclude Include="..\src\ldpk\tde4_ldp_example_radial_deg_8.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\ldpk\tde4_ldp_radial_decentered_deg_4.h">
+    <ClInclude Include="..\src\ldpk\tde4_ldp_radial_decentered_deg_4_cylindric.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ldpk\tde4_ldp_radial_deg_8.h">
       <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_BrdfRead.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Obq_MeasuredMaterial.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ObqISBrdf.h">
+      <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

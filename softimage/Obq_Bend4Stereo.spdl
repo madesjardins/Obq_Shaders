@@ -202,7 +202,7 @@ Logic
 	End Sub
 	
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Bend4Stereo_v204.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Bend4Stereo.html"
 		'Setting Expressions
 		checkCameras()
 		bendMode_OnChanged()

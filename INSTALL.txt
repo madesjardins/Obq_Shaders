@@ -1,18 +1,22 @@
-To install:
+HOW TO INSTALL
+==============
+
+  Windows requirements : 
+	Microsoft Visual C++ 2010 redistributable package (x64)
 
   + copy the content of the "softimage\spdl" folder into "Addons\SItoA\Application\spdl",
 
   + copy the content of "Fresnel2Standard_Compounds" into "Addons\SItoA\Data\RTcompounds",
 
-  + copy the "bin\Obq_Shaders_vXXXy.dll" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",	[Windows]
-  + copy the "bin\Obq_Shaders_vXXXy.so" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
-  + copy the "bin\Obq_Shaders_vXXXy.dylib" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
+  + copy the "bin\Obq_Shaders_vXXX.dll" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",	[Windows]
+  + copy the "bin\Obq_Shaders_vXXX.so" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
+  + copy the "bin\Obq_Shaders_vXXX.dylib" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
 
   
-  + copy the "bin\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows & non-"Lite"]
+  + copy the "bin\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows && non-"Lite"]
     arbitrary directory (AD). If you chose the AD method, you'll need to append this AD 
     to the PATH environment variable. For example, you can add : 
-    "set PATH=%PATH%;\\serverX\dte_folder" in the .bat that launches Softimage (withtout quotes). 
+    "set PATH=%PATH%;\\serverX\dte_folder" in the .bat that launches Softimage (without the quotes).
     You will also need copy the "\bin\dte_components" folder somewhere and change the path
     on line 30 of the Obq_Simbiont.spdl (the "componentLibsPath" parameters).
     If you don't posess a copy of DarkTree, you can download some DarkTree files here :
@@ -32,6 +36,33 @@ Linux and Mac OSX :
   Because Obq_Simbiont requires a Windows library, it is not available for Linux and Mac OSX.  
 
 
+
+HOW TO COMPILE
+==============
+
+Requirements:
+	Microsoft Visual C++ (Express) 2010 [windows]
+	Windows SDK [windows]
+	Arnold Libraries/Includes [all OS]
+	GLM 0.9.4.3 (or above) [all OS]
+	GCC 4.1.2 (or above) [Linux, Mac OSX]
+
+
+On windows, simply open the VC++ solution (Obq_Shaders.sln) in the folder "win_VC++" and build a Release x64 version.
+You will have to modify the Arnold path in "Additional Include Directories" and "Additional Library Directories".
+When compiling a Lite version, you must comment the "#define _OBQFULLVERSION" on line 33 of the Obq_Shaders.cpp and remove the dte_2600_64.lib from  "Additional Dependencies".
+
+When compiling for linux and macosx, please use the Makefile from within the folder.
+Simply change the TARGETNAME and ARNOLD path before running make.
+
+
+SItoA ARNOLD VERSION
+====================
+2.10= 4.0.16.2
+2.9 = 4.0.15.1
+2.8 = 4.0.14.0
+2.7 = 4.0.12.1
+2.6 = 4.0.11.0
 
 Enjoy.
 --

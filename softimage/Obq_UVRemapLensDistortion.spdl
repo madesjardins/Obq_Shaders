@@ -16,7 +16,7 @@ PropertySet "Obq_UVRemapLensDistortion_pset"
 		flags = 1;
 		Value = 0;
 		Value Minimum = 0;
-		Value Maximum = 4;
+		Value Maximum = 6;
 		Texturable = Off;
 	}
 	Parameter "k1" input
@@ -388,7 +388,177 @@ PropertySet "Obq_UVRemapLensDistortion_pset"
 		flags  = 1;
 		Value = 0.0;
 		Texturable = Off;
+	}
+	Parameter "raddec4c00" input
+	{
+		GUID = "{AD08AC6A-8A6C-437A-89B4-4474C44BB197}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
 	}	
+	Parameter "raddec4c01" input
+	{
+		GUID = "{25454FE9-B6FB-4C14-AA9B-2613169B674F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c02" input
+	{
+		GUID = "{C08C807A-5D70-48B3-ACBA-D4222234D653}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c03" input
+	{
+		GUID = "{B9719BDE-5BB9-4914-9065-7004CFC5A20A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c04" input
+	{
+		GUID = "{64543357-669B-4289-8E2B-6A8CC463877B}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c05" input
+	{
+		GUID = "{94622F70-E1AD-4E7E-8906-2A0DACB94371}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "raddec4c06" input
+	{
+		GUID = "{0B798109-DB6C-4D04-9B36-F1217C67E57D}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c07" input
+	{
+		GUID = "{48120562-1D26-4D38-A560-898522F64C50}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "ana4c00" input
+	{
+		GUID = "{6BEACA8F-F973-4465-9F09-CC1FD2B8816C}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c01" input
+	{
+		GUID = "{711AD6E3-E29C-4BD3-B48D-C50A1D3BD744}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c02" input
+	{
+		GUID = "{ECAC9589-3D7C-4E5D-8576-FD9CE429F237}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c03" input
+	{
+		GUID = "{14E52D19-C032-49DC-A4D4-BC6C282A152C}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c04" input
+	{
+		GUID = "{46442130-B03F-48E9-8D9B-280A7DDCB40A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c05" input
+	{
+		GUID = "{9DBD7505-2A79-407F-B779-C808B8FCDDDF}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c06" input
+	{
+		GUID = "{381B2532-3B4C-4162-9197-7B9BFDE05725}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c07" input
+	{
+		GUID = "{1BE5B410-235D-4951-BF83-F28AC40DC669}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c08" input
+	{
+		GUID = "{50D5B966-21C7-4941-8CD5-90910CC5C5C3}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c09" input
+	{
+		GUID = "{EC2666CD-9BFC-45E2-93C4-92C0AB44F972}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c10" input
+	{
+		GUID = "{5681C48A-4970-4BD9-9210-B5FA7932DE76}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c11" input
+	{
+		GUID = "{641DF7D6-4EFD-4F2D-B167-1377FAACDFDF}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}	
+	Parameter "ana4c12" input
+	{
+		GUID = "{7AB7014D-F57B-4B14-884F-E879D2EB4E04}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
 }
 
 phenomenon "Obq_UVRemapLensDistortion_declare"
@@ -416,7 +586,9 @@ Defaults
 			"3DE Classic LD Model" = 1,
 			"3DE4 Anamorphic, Degree 6" = 2,
 			"3DE4 Radial - Fisheye, Degree 8" = 3,
-			"3DE4 Radial - Standard, Degree 4" = 4
+			"3DE4 Radial - Standard, Degree 4" = 4,
+			"3DE4 Radial - Decentered Cylindric, Degree 4" = 5,
+			"3DE4 Anamorphic Rotate Squeeze, Degree 4" = 6
 		}
 	}
 	k1
@@ -687,7 +859,132 @@ Defaults
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange =  -1 to 1;
 	}
-	
+	raddec4c00
+	{
+		Name = "Distortion - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c01
+	{
+		Name = "U - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c02
+	{
+		Name = "V - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c03
+	{
+		Name = "Quartic Distortion - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c04
+	{
+		Name = "U - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c05
+	{
+		Name = "V - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c06
+	{
+		Name = "Phi - Cylindric Direction";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	raddec4c07
+	{
+		Name = "B - Cylindric Bending";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c00
+	{
+		Name = "Cx02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c01
+	{
+		Name = "Cy02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c02
+	{
+		Name = "Cx22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c03
+	{
+		Name = "Cy22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c04
+	{
+		Name = "Cx04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c05
+	{
+		Name = "Cy04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c06
+	{
+		Name = "Cx24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c07
+	{
+		Name = "Cy24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c08
+	{
+		Name = "Cx44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c09
+	{
+		Name = "Cy44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -1 to 1;
+	}
+	ana4c10
+	{
+		Name = "Lens Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -180 to 180;
+	}
+	ana4c11
+	{
+		Name = "Squeeze-X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 3;
+	}
+	ana4c12
+	{
+		Name = "Squeeze-Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 3;
+	}
 }
 
 Layout "Default"
@@ -735,7 +1032,28 @@ Layout "Default"
 		stand4c02; 
 		stand4c03; 
 		stand4c04; 
-		stand4c05;		
+		stand4c05;
+		raddec4c00; 
+		raddec4c01; 
+		raddec4c02; 
+		raddec4c03; 
+		raddec4c04; 
+		raddec4c05;	
+		raddec4c06; 
+		raddec4c07;
+		ana4c00; 
+		ana4c01; 
+		ana4c02; 
+		ana4c03; 
+		ana4c04; 
+		ana4c05; 
+		ana4c06; 
+		ana4c07; 
+		ana4c08; 
+		ana4c09; 
+		ana4c10; 
+		ana4c11; 
+		ana4c12; 
 	}
     Group "Film Aperture"
 	{
@@ -804,6 +1122,27 @@ Logic
 			PPG.stand4c03.Show(False)
 			PPG.stand4c04.Show(False)
 			PPG.stand4c05.Show(False)
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
         ElseIf PPG.distortionModel.Value = 1 Then
 			PPG.k1.Show(False)
 			PPG.k2.Show(False)
@@ -850,6 +1189,27 @@ Logic
 			PPG.stand4c03.Show(False)
 			PPG.stand4c04.Show(False)
 			PPG.stand4c05.Show(False)
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
 		ElseIf PPG.distortionModel.Value = 2 Then
 			PPG.k1.Show(False)
 			PPG.k2.Show(False)
@@ -896,6 +1256,27 @@ Logic
 			PPG.stand4c03.Show(False)
 			PPG.stand4c04.Show(False)
 			PPG.stand4c05.Show(False)
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
 		ElseIf PPG.distortionModel.Value = 3 Then
 			PPG.k1.Show(False)
 			PPG.k2.Show(False)
@@ -942,7 +1323,28 @@ Logic
 			PPG.stand4c03.Show(False)
 			PPG.stand4c04.Show(False)
 			PPG.stand4c05.Show(False)
-		Else
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
+		ElseIf PPG.distortionModel.Value = 4 Then
 			PPG.k1.Show(False)
 			PPG.k2.Show(False)
 			PPG.anamorphicSqueeze.Show(False)
@@ -988,11 +1390,166 @@ Logic
 			PPG.stand4c03.Show(True)
 			PPG.stand4c04.Show(True)
 			PPG.stand4c05.Show(True)
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
+		ElseIf PPG.distortionModel.Value = 5 Then
+			PPG.k1.Show(False)
+			PPG.k2.Show(False)
+			PPG.anamorphicSqueeze.Show(False)
+			PPG.asymmetricDistortionX.Show(False)
+			PPG.asymmetricDistortionY.Show(False)
+            PPG.centerX.Show(False)
+            PPG.centerY.Show(False)
+			PPG.centerX3DEq.Show(True)
+            PPG.centerY3DEq.Show(True)
+            PPG.filmbackX3DEq.Show(True)
+            PPG.filmbackY3DEq.Show(True)
+            PPG.pixelRatio3DEq.Show(True)
+			PPG.c3dc00.Show(False)
+			PPG.c3dc01.Show(False)
+			PPG.c3dc02.Show(False)
+			PPG.c3dc03.Show(False)
+			PPG.c3dc04.Show(False)
+			PPG.ana6c00.Show(False)
+			PPG.ana6c01.Show(False)
+			PPG.ana6c02.Show(False)
+			PPG.ana6c03.Show(False)
+			PPG.ana6c04.Show(False)
+			PPG.ana6c05.Show(False)
+			PPG.ana6c06.Show(False)
+			PPG.ana6c07.Show(False)
+			PPG.ana6c08.Show(False)
+			PPG.ana6c09.Show(False)
+			PPG.ana6c10.Show(False)
+			PPG.ana6c11.Show(False)
+			PPG.ana6c12.Show(False)
+			PPG.ana6c13.Show(False)
+			PPG.ana6c14.Show(False)
+			PPG.ana6c15.Show(False)
+			PPG.ana6c16.Show(False)
+			PPG.ana6c17.Show(False)
+			PPG.fish8c00.Show(False)
+			PPG.fish8c01.Show(False)
+			PPG.fish8c02.Show(False)
+			PPG.fish8c03.Show(False)
+			PPG.stand4c00.Show(False)
+			PPG.stand4c01.Show(False)
+			PPG.stand4c02.Show(False)
+			PPG.stand4c03.Show(False)
+			PPG.stand4c04.Show(False)
+			PPG.stand4c05.Show(False)
+			PPG.raddec4c00.Show(True)
+			PPG.raddec4c01.Show(True)
+			PPG.raddec4c02.Show(True)
+			PPG.raddec4c03.Show(True)
+			PPG.raddec4c04.Show(True)
+			PPG.raddec4c05.Show(True)
+			PPG.raddec4c06.Show(True)
+			PPG.raddec4c07.Show(True)
+			PPG.ana4c00.Show(False)
+			PPG.ana4c01.Show(False)
+			PPG.ana4c02.Show(False)
+			PPG.ana4c03.Show(False)
+			PPG.ana4c04.Show(False)
+			PPG.ana4c05.Show(False)
+			PPG.ana4c06.Show(False)
+			PPG.ana4c07.Show(False)
+			PPG.ana4c08.Show(False)
+			PPG.ana4c09.Show(False)
+			PPG.ana4c10.Show(False)
+			PPG.ana4c11.Show(False)
+			PPG.ana4c12.Show(False)
+		Else
+			PPG.k1.Show(False)
+			PPG.k2.Show(False)
+			PPG.anamorphicSqueeze.Show(False)
+			PPG.asymmetricDistortionX.Show(False)
+			PPG.asymmetricDistortionY.Show(False)
+            PPG.centerX.Show(False)
+            PPG.centerY.Show(False)
+			PPG.centerX3DEq.Show(True)
+            PPG.centerY3DEq.Show(True)
+            PPG.filmbackX3DEq.Show(True)
+            PPG.filmbackY3DEq.Show(True)
+            PPG.pixelRatio3DEq.Show(True)
+			PPG.c3dc00.Show(False)
+			PPG.c3dc01.Show(False)
+			PPG.c3dc02.Show(False)
+			PPG.c3dc03.Show(False)
+			PPG.c3dc04.Show(False)
+			PPG.ana6c00.Show(False)
+			PPG.ana6c01.Show(False)
+			PPG.ana6c02.Show(False)
+			PPG.ana6c03.Show(False)
+			PPG.ana6c04.Show(False)
+			PPG.ana6c05.Show(False)
+			PPG.ana6c06.Show(False)
+			PPG.ana6c07.Show(False)
+			PPG.ana6c08.Show(False)
+			PPG.ana6c09.Show(False)
+			PPG.ana6c10.Show(False)
+			PPG.ana6c11.Show(False)
+			PPG.ana6c12.Show(False)
+			PPG.ana6c13.Show(False)
+			PPG.ana6c14.Show(False)
+			PPG.ana6c15.Show(False)
+			PPG.ana6c16.Show(False)
+			PPG.ana6c17.Show(False)
+			PPG.fish8c00.Show(False)
+			PPG.fish8c01.Show(False)
+			PPG.fish8c02.Show(False)
+			PPG.fish8c03.Show(False)
+			PPG.stand4c00.Show(False)
+			PPG.stand4c01.Show(False)
+			PPG.stand4c02.Show(False)
+			PPG.stand4c03.Show(False)
+			PPG.stand4c04.Show(False)
+			PPG.stand4c05.Show(False)
+			PPG.raddec4c00.Show(False)
+			PPG.raddec4c01.Show(False)
+			PPG.raddec4c02.Show(False)
+			PPG.raddec4c03.Show(False)
+			PPG.raddec4c04.Show(False)
+			PPG.raddec4c05.Show(False)
+			PPG.raddec4c06.Show(False)
+			PPG.raddec4c07.Show(False)
+			PPG.ana4c00.Show(True)
+			PPG.ana4c01.Show(True)
+			PPG.ana4c02.Show(True)
+			PPG.ana4c03.Show(True)
+			PPG.ana4c04.Show(True)
+			PPG.ana4c05.Show(True)
+			PPG.ana4c06.Show(True)
+			PPG.ana4c07.Show(True)
+			PPG.ana4c08.Show(True)
+			PPG.ana4c09.Show(True)
+			PPG.ana4c10.Show(True)
+			PPG.ana4c11.Show(True)
+			PPG.ana4c12.Show(True)
 		End If
 	End Sub
 
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_UVRemapLensDistortion_v204.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_UVRemapLensDistortion.html"
 		distortionModel_OnChanged()
 		PPG.Refresh
 	End Sub

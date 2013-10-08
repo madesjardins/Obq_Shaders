@@ -344,7 +344,7 @@ Sub autoTransparencyMode_OnChanged()
 End Sub
 
 Sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_VolumeThickness_v204.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_VolumeThickness.html"
 	autoTransparencyMode_OnChanged()
 End Sub
 }

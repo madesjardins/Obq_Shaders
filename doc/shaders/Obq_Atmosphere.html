@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_Atmosphere v2.04.1 (win64 - SItoA 2.4.0 -
+Arnold 4.0.7.1)</title>
+
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: black; width: 20px;"></td>
+<td style="background-color: black;"><big><big><br>
+<br>
+</big></big></td>
+<td style="width: 20px; background-color: black;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(97, 97, 97);"></td>
+<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Atmosphere</font>
+</big></big></td>
+<td style="background-color: rgb(97, 97, 97);"></td>
+</tr>
+<tr>
+<td></td>
+<td style="background-color: white;">
+<p><font color="Blue">| &nbsp;<a href="#Darktree">Description</a>
+&nbsp;| &nbsp;<a href="#Installation">Installation</a>
+&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
+&nbsp;|&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
+&nbsp;|</font></p>
+<p><span style="font-weight: bold;">Category:</span>
+Texture </p>
+<p><span style="font-weight: bold;">Shader
+Family:</span> Texture</p>
+<p><span style="font-weight: bold;">Output:</span>
+Color</p>
+<p>Obq_Atmosphere is a shader made for planetary
+atmosphere, but can also be used as a simple ray marcher.
+</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Darktree"></a>Volume</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Diffuse Color</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+diffuse color of media.<span style="font-style: italic;"></span><span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Enable 3D
+color texture</span></td>
+<td style="background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-style: italic;"></span>Enables the
+evaluation of a 3D texture and not just the surface texture for diffuse
+color.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231); font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Absorption
+Coefficient</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+absorption coefficient of the media</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Enable 3D absorption function</span></td>
+<td style="background-color: rgb(231, 231, 231);">Enables
+the evaluation of a 3D texture and not just the surface texture for
+absorption.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Asymmetry</span></td>
+<td style="background-color: rgb(231, 231, 231);">Asymmetry
+of the phase function, negative value correspond to back-scattering, 0
+is isotropic and positive correspond to forward-scattering.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Radius Falloff</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>This
+mode was designed for spherical objects like planets. Samples closer to
+the edge of the sphere absorb less. The different modes are :<br>
+</span>
+<ul>
+<li><span style="font-weight: bold; font-style: italic;">Don't use
+Radius Falloff</span> : should be selected
+for simple ray marching mode.</li>
+<li><span style="font-weight: bold; font-style: italic;">Get center
+from object matrix</span> : use the matrix of the object to find
+center. <span style="font-style: italic;">In order for
+this to work, you must use the user option "preserve_scene_data true"</span>.</li>
+<li><span style="font-weight: bold; font-style: italic;">Get center
+from object center vector</span> : use the object center vector
+in the "Geo" tab as center.</li>
+</ul>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Start</span></td>
+<td style="background-color: rgb(231, 231, 231);">Radius
+ratio at which the falloff start. <br>
+<span style="font-style: italic;"></span></td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Speed</span></td>
+<td style="background-color: rgb(231, 231, 231);">Exponent
+that modifies the rate of the falloff.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Silhouette Falloff</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Enable</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span></span><span></span><span></span>Enables
+a silhouette falloff similar to an incidence camera/surface node.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Bias</span></td>
+<td style="background-color: rgb(231, 231, 231);">Controls
+the contrast. Values below 0.5 create larger dark areas, values above
+0.5 create larger light areas. </td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Gain</span></td>
+<td style="background-color: rgb(231, 231, 231);">Controls
+the brightness of the effect.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Geometric Information</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Object center</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>Center
+of the sphere. Used for "Get center from object center vector" radius
+falloff mode.</span><span></span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Ray Marching</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Size</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span></span>Size
+of each steps in the ray marching process in&nbsp;units. It is
+important to scale the steps based on the scale of the scene. The
+bigger the steps, the faster the render.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Jitter ratio</span></td>
+<td style="background-color: rgb(231, 231, 231);">Random
+step size ratio modification to prevent artifacts.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Enable maximum ray length</span></td>
+<td style="background-color: rgb(231, 231, 231);">Enables
+a maximum ray length after which the march stops and return accumulated
+color.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Maximum ray length</span></td>
+<td style="background-color: rgb(231, 231, 231);">Maximum
+ray length.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Bias-Gain</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Enable</span></td>
+<td style="background-color: rgb(231, 231, 231);">Enables
+a bias and gain operation on the final opacity.<span style="font-style: italic;"></span><span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Bias</span></td>
+<td style="background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-style: italic;"></span>Controls
+the contrast. Values below 0.5 create larger dark areas, values above
+0.5 create larger light areas.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231); font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Gain</span></td>
+<td style="background-color: rgb(231, 231, 231);">Controls
+the brightness of the effect.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Advanced Options</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Non-opaque hit compensation</span></td>
+<td style="background-color: rgb(231, 231, 231);">When
+a non-opaque object is hit during the ray marching process, a
+compensation must be done :<br>
+<ul>
+<li><span style="font-weight: bold;">Never</span>
+: don't compensate.</li>
+<li><span style="font-weight: bold;">By
+dropping max opacity</span> : the maximum opacity is lowered by
+that object's opacity.</li>
+<li><span style="font-weight: bold;">By
+raising total opacity </span>: raises the accumulated opacity so
+far by that object's opacity [default].</li>
+</ul>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Color/Opactiy
+compensation</span></td>
+<td style="background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-style: italic;"></span>Because there will
+be a double alpha multiplication effect if left as-is for values lower
+than 1, a compensation must be done, a sort of unpremult operation.<br>
+<ul>
+<li><span style="font-weight: bold;">Never
+</span>: don't unpremult color.</li>
+<li><span style="font-weight: bold;">Before
+Bias-Gain </span>: unpremult before bias and gain operations
+[default].</li>
+<li><span style="font-weight: bold;">After
+Bias-Gain </span>: unpremult after bias and gain operations.</li>
+</ul>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231); font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Enable for
+reflection and refraction rays</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+ray marching will also occur for reflection and refraction rays and not
+only camera rays.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<ol>
+<li>Copy the <strong><em>Obq_Atmosphere.dll</em></strong>
+in the proper
+"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
+folder and the <strong><em>Obq_Atmosphere.spdl</em></strong>
+in
+the proper "<strong><em>SItoA\Application\spdl</em></strong>"
+folder.</li>
+<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
+Visual C++ 2010 redistributable package (x64)</a> if not already
+done.</li>
+</ol>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
+Tree Usage</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>A planetary atmosphere.<br>
+<br>
+<img style="width: 884px;" onclick="window.open('atmoEx_01.jpg')" alt="Atmosphere Example" src="atmoEx_01.jpg">
+<br>
+<br>A cube inside a volume with a fractal in the absorption port.<br>
+<br>
+<img style="width: 884px;" onclick="window.open('atmoEx_02.jpg')" alt="Another Atmosphere Example" src="atmoEx_02.jpg">
+<br>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>Copyright (c) 2012 Marc-Antoine Desjardins,
+ObliqueFX <small><big>(madesjardins@obliquefx.com)</big></small><br>
+<br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.<br>
+<br>
+Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a><big>
+</big></td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<hr style="width: 100%; height: 2px;"></td>
+<td style="background-color: white;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</body></html>

@@ -70,7 +70,7 @@ Language = "VBScript";
 Logic
 {	
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_AngularCamera_v204.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_AngularCamera.html"
 		PPG.Refresh
 	End Sub
 }

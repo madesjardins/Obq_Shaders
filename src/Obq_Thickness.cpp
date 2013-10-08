@@ -134,6 +134,7 @@ shader_evaluate
 		bool numOfHitMode = (thicknessMode == 1);
 		bool volumeMode = (thicknessMode == 2);
 		bool multiplyByDepth = AiShaderEvalParamBool(p_multiplyByDepth);
+		float enterSurface = AiShaderEvalParamFlt(p_enterSurface);
 
 		// Max Distance to use for ray tracing purpose
 		double maxDistance2use = AI_BIG;
@@ -241,7 +242,7 @@ shader_evaluate
 		if(sampleLevel == 1 || coneAngle == 0.0f || gloss == 1.0f || ( useSampleCount && sampleCount <=1 ))
 		{
 			// We create a probe and send it
-			AtPoint p[1] = {sg->P};
+			AtPoint p[1] = {sg->P - enterSurface*AI_EPSILON*sg->Ngf};
 
 			scalarout = depthRayTrace(sg,p,rayDir, intersectOthers, maxRayDepth, maxDistance2use,noHitValue, numOfHitMode, multNdotR, NdotRExp, volumeMode,multiplyByDepth);
 		}
@@ -263,8 +264,6 @@ shader_evaluate
 
 			// Max angle deviation
 			float maxAngle = float(coneAngle*AI_DTOR);
-			
-			float enterSurface = AiShaderEvalParamFlt(p_enterSurface);
 
 			// use normal as max
 			if( AiShaderEvalParamBool(p_useVdotNForMaxAngle) )
@@ -291,7 +290,7 @@ shader_evaluate
 
 			while(iSample < nSamples && AiSamplerGetSample(iter, rnd)) 
 			{ 
-				AtPoint p[1] = {sg->P - enterSurface*float(AI_EPSILON)*sg->Ngf};
+				AtPoint p[1] = {sg->P - enterSurface*AI_EPSILON*sg->Ngf};
 
 				// get theta phi
 				float theta, phi;

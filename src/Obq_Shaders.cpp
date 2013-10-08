@@ -1,5 +1,5 @@
 /*
-main.cpp	 v2.06.0b (win64 - SItoA 2.6.0 - Arnold 4.0.11.0) :
+main.cpp	 v2.09.0a (win64 - SItoA 2.9.0 - Arnold 4.0.15.1) :
 
 This is the main for Obq_Shaders.dll. It's a node loader.
 
@@ -29,8 +29,10 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 */
 
 #include "ai.h"
+#include <algorithm>
 
-#define _OBQFULLVERSION // Comment for "lite" version (no other libs required), exclude sources from build and remove linkage to other libs
+//#define _OBQFULLVERSION // Comment for "lite" version (no other libs required), exclude sources from build and remove linkage to other libs
+//#define _OBQHAIR // Comment for "NoHair" version and exclude sources from build
 
 extern AtNodeMethods* ObqAtmosphereSimpleMethods;
 extern AtNodeMethods* Obq_AngularCameraMethods;
@@ -38,11 +40,17 @@ extern AtNodeMethods* ObqBend4StereoSimpleMethods;
 extern AtNodeMethods* ObqChangeRangeSimpleMethods;
 extern AtNodeMethods* ObqEnvironmentSimpleMethods;
 extern AtNodeMethods* ObqFresnelSimpleMethods;
+#ifdef _OBQHAIR
+extern AtNodeMethods* ObqHairSimpleParams;
+#endif
 extern AtNodeMethods* ObqIESLightFilterMethod;
+extern AtNodeMethods* ObqMeasuredMaterialSimpleMethods;
 extern AtNodeMethods* ObqOpacitySimpleMethods;
 extern AtNodeMethods* ObqRandomColorSimpleMethods;
 extern AtNodeMethods* ObqRGBComEmitSimpleMethods;
 extern AtNodeMethods* ObqRGBComLightFilterMethod;
+extern AtNodeMethods* ObqRoot2TipSimpleMethods;
+extern AtNodeMethods* ObqShadowSimpleMethods;
 #ifdef _WIN32 // only works on windows
 #ifdef _OBQFULLVERSION //
 extern AtNodeMethods* ObqSimbiontMethods;
@@ -64,11 +72,17 @@ enum SHADERS
    OBQ_CHANGERANGE,
    OBQ_ENVIRONMENT,
    OBQ_FRESNEL,
+#ifdef _OBQHAIR
+   OBQ_HAIR,
+#endif
    OBQ_IESLIGHTFILTER,
+   OBQ_MEASUREDMATERIAL,
    OBQ_OPACITY,
    OBQ_RANDOMCOLOR,
    OBQ_RGBCOMEMIT,
    OBQ_RGBCOMLIGHTFILTER,
+   OBQ_ROOT2TIP,
+   OBQ_SHADOW,
 #ifdef _WIN32 // only works on windows
 #ifdef _OBQFULLVERSION
    OBQ_SIMBIONT,
@@ -122,10 +136,24 @@ node_loader
 		node->name         = "Obq_Fresnel";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+#ifdef _OBQHAIR
+	case OBQ_HAIR:
+		node->methods      = ObqHairSimpleParams;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Hair";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+#endif
 	case OBQ_IESLIGHTFILTER:
 		node->methods      = ObqIESLightFilterMethod;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_IESLightFilter";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_MEASUREDMATERIAL:
+		node->methods      = ObqMeasuredMaterialSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_MeasuredMaterial";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_OPACITY:
@@ -151,6 +179,18 @@ node_loader
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_RGBComLightFilter";
 		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_ROOT2TIP:
+		node->methods      = ObqRoot2TipSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Root2Tip";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_SHADOW:
+	   node->methods      = ObqShadowSimpleMethods;
+	   node->output_type  = AI_TYPE_RGB;
+	   node->name         = "Obq_Shadow";
+	   node->node_type    = AI_NODE_SHADER;
 		break;
 #ifdef _WIN32 // only works on windows
 #ifdef _OBQFULLVERSION

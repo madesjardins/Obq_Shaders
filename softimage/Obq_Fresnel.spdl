@@ -681,7 +681,7 @@ End Sub
 
 
 Sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel_v204.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
 	mode_OnChanged()
 	PPG.iorExpression.ReadOnly = True
 End Sub

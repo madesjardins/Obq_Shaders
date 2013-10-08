@@ -42,7 +42,7 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqEnvironmentSimpleMethods);
 
 // This is the enumeration for parameters
 //
-enum ObqEnvironmentSimpleParams { p_tex, p_considerAlpha, p_mapMode, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensityCam, p_intensityDifGI, p_intensityRfl, p_intensityRfr, p_globalRotation , p_rotation, p_flipU, p_flipV, p_opaque };
+enum ObqEnvironmentSimpleParams { p_tex, p_considerAlpha, p_mapMode, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensityCam, p_intensityDifGI, p_intensityRfl, p_intensityGlossy, p_intensityRfr, p_globalRotation , p_rotation, p_flipU, p_flipV, p_opaque };
 
 
 // This is the enumeration for the mapping mode

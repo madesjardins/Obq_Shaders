@@ -494,7 +494,7 @@ Logic
 {
 
 sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Atmosphere_v204.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Atmosphere.html"
 End sub
 
 }

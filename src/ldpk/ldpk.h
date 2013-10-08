@@ -1,23 +1,23 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_ldpk_sdv
 #define ldpk_ldpk_sdv
 
-#include "ldpk/ldpk_error.h"
-#include "ldpk/ldpk_vec2d.h"
-#include "ldpk/ldpk_lookup_table.h"
-#include "ldpk/ldpk_plugin_loader.h"
-#include "ldpk/ldpk_model_parser.h"
-#include "ldpk/ldpk_table_generator.h"
-#include "ldpk/ldpk_generic_distortion_base.h"
-#include "ldpk/ldpk_example_radial_distortion.h"
-#include "ldpk/ldpk_radial_decentered_distortion.h"
-#include "ldpk/ldpk_generic_radial_distortion.h"
-#include "ldpk/ldpk_generic_anamorphic_distortion.h"
-#include "ldpk/ldpk_classic_3de_mixed_distortion.h"
+#include <ldpk/ldpk_error.h>
+#include <ldpk/ldpk_vec2d.h>
+#include <ldpk/ldpk_lookup_table.h>
+#include <ldpk/ldpk_plugin_loader.h>
+#include <ldpk/ldpk_model_parser.h>
+#include <ldpk/ldpk_table_generator.h>
+#include <ldpk/ldpk_generic_distortion_base.h>
+#include <ldpk/ldpk_example_radial_distortion.h>
+#include <ldpk/ldpk_radial_decentered_distortion.h>
+#include <ldpk/ldpk_generic_radial_distortion.h>
+#include <ldpk/ldpk_generic_anamorphic_distortion.h>
+#include <ldpk/ldpk_classic_3de_mixed_distortion.h>
 
 //! @mainpage LDPK - The Lens Distortion Plugin Kit
 //!
@@ -57,11 +57,11 @@
 //!     to unit coordinates and takes care about <b>lens center offset</b>. These are the classes 3DE4 communicates with.
 //!     For developing a compositing node, we recommend to build the node around one (or more) of these classes,
 //!     because they all have the same interface and are completely equipped with lookup tables for inverting the model function.
-//!     - tde4_ldp_radial_decentered_deg_4
+//!     - tde4_ldp_radial_decentered_deg_4_cylindric
 //!     - tde4_ldp_radial_deg_8
 //!     - tde4_ldp_anamorphic_deg_6
 //!     - tde4_ldp_classic_3de_mixed
-//!   - ldpk::ldp_builtin - This class contains the six built-in parameters
+//!   - ldpk::ldp_builtin - This class contains the seven built-in parameters
 //!     and provides a lookup-table mechanism for inverting the distortion function.
 //!   - ldpk::lookup_table - A class that provides a lookup-table for the inverse
 //!     distortion function. This class is used by ldpk::ldp_builtin.

@@ -1,19 +1,19 @@
-Obq_Shaders
-===========
+Obq_Arnold_Shaders
+==================
 
-Obq_Shaders for Arnold
+Arnold shaders developed by ObliqueFX.
 
 Maya ID Block is: 0x0011CD40 : 0x0011CE3F
 Registered for Oblique FX [Marc-Antoine Desjardins]
 
-When compiling for linux and macosx, please use the Makefile from within the folder.
-Simply change the TARGETNAME and ARNOLD path before running make.
+Read the provided INSTALL.txt file to learn how to compile and/or install the shaders.
 
+To help us make better shaders and documentation, please report all bugs, send us comments or suggestions and send some renders with a short description of the project to madesjardins@obliquefx.com.
 
 License
 ===========
 
-Copyright (c) 2012 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -34,3 +34,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+

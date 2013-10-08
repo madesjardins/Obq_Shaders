@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_generic_distortion_base_sdv
@@ -9,7 +9,7 @@
 //! @file ldpk_generic_distortion_base.h
 //! @brief Base class for distortion models
 
-#include "ldpk/ldpk_error.h"
+#include <ldpk/ldpk_error.h>
 #include <cmath>
 #include <functional>
 #include <iostream>
@@ -108,14 +108,14 @@ namespace ldpk
 //! Same as method instead of operator
 		vec2_type eval(const vec2_type& p) const
 			{ return (*this)(p); }
-//! @brief Jacobi-Matrix. The result is a matrix g_{ij} = d/dp_j f(p)_i, where f represents the distortion function.
+//! @brief Jacobi-Matrix. The result is a matrix g_{ij} = d/dp_j f(p)_i, where f represents the undistort-function.
 //! We compute this by means of difference quotients. This requires four evaluations. For better performance,
 //! you can implement the analytic form in your derived distortion class.
-		virtual mat2_type jacobi(const vec2_type& p) const
+		virtual mat2_type jacobi(const vec2_type& p_dn) const
 			{
 			const double epsilon = 1e-4;
-			return	trans(mat2_type((eval(p + vec2_type(epsilon,0)) - eval(p - vec2_type(epsilon,0))) / (2.0 * epsilon),
-						(eval(p + vec2_type(0,epsilon)) - eval(p - vec2_type(0,epsilon))) / (2.0 * epsilon)));
+			return	trans(mat2_type((eval(p_dn + vec2_type(epsilon,0)) - eval(p_dn - vec2_type(epsilon,0))) / (2.0 * epsilon),
+						(eval(p_dn + vec2_type(0,epsilon)) - eval(p_dn - vec2_type(0,epsilon))) / (2.0 * epsilon)));
 			}
 //! Not all distortion functions will support this
 		virtual void derive(double* dg,int n_parameters,const vec2_type& p_dn) const

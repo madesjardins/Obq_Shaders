@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_generic_anamorphic_distortion_sdv
@@ -9,7 +9,7 @@
 //! @file gld_generic_anamorphic_distortion.h
 //! @brief A polynomial anamorphic distortion model of degree N (even).
 
-#include "ldpk/ldpk_generic_distortion_base.h"
+#include <ldpk/ldpk_generic_distortion_base.h>
 
 namespace ldpk
 	{
@@ -182,7 +182,7 @@ namespace ldpk
 			}
 		std::ostream& out(std::ostream& cout) const
 			{
-			int p = int(cout.precision());
+			int p = cout.precision();
 			cout.precision(5);
 			for(int i_r = 0;i_r <= N;i_r += 2)
 				{
@@ -211,6 +211,210 @@ namespace ldpk
 				}
 			cout.precision(p);
 			return cout;
+			}
+		};
+
+//! @brief Specialization for degree-4 for better performance. Also, this allows
+//! us to implement the Jacobian quite easy.
+	template <class VEC2,class MAT2>
+	class generic_anamorphic_distortion<VEC2,MAT2,4>:public ldpk::generic_distortion_base<VEC2,MAT2,(4 + 2) * (4 + 4) / 4 - 2>
+		{
+	public:
+		typedef generic_distortion_base<VEC2,MAT2,(4 + 2) * (4 + 4) / 4 - 2> base_type;
+		typedef VEC2 vec2_type;
+		typedef MAT2 mat2_type;
+	private:
+// Model parameters
+		double _cx02,_cx22,_cx04,_cx24,_cx44;
+		double _cy02,_cy22,_cy04,_cy24,_cy44;
+// Array for linear index access.
+		double *_c[10];
+// Coefficients, as used in evaluating functions. Calculated in prepare().
+		double _cx_for_x2,_cx_for_y2,_cx_for_x4,_cx_for_x2_y2,_cx_for_y4;
+		double _cy_for_x2,_cy_for_y2,_cy_for_x4,_cy_for_x2_y2,_cy_for_y4;
+
+	public:
+		generic_anamorphic_distortion()
+			{
+//! Linear access to coefficients.
+			_c[0] = &_cx02;_c[1] = &_cy02;
+			_c[2] = &_cx22;_c[3] = &_cy22;
+			_c[4] = &_cx04;_c[5] = &_cy04;
+			_c[6] = &_cx24;_c[7] = &_cy24;
+			_c[8] = &_cx44;_c[9] = &_cy44;
+			}
+//! Get coefficient as demanded by base class
+		double get_coeff(int i) const
+			{
+			base_type::check_range(i);
+			return *_c[i];
+			}
+//! Set coefficient as demanded by base class
+		void set_coeff(int i,double q)
+			{
+			base_type::check_range(i);
+			*_c[i] = q;
+			}
+//! To be invoked by initializeParameters().
+		void prepare()
+			{
+			_cx_for_x2 = _cx02 + _cx22;
+			_cx_for_y2 = _cx02 - _cx22;
+
+			_cx_for_x4 = _cx04 + _cx24 + _cx44;
+			_cx_for_x2_y2 = 2.0 * _cx04 - 6.0 * _cx44;
+			_cx_for_y4 = _cx04 - _cx24 + _cx44;
+
+			_cy_for_x2 = _cy02 + _cy22;
+			_cy_for_y2 = _cy02 - _cy22;
+
+			_cy_for_x4 = _cy04 + _cy24 + _cy44;
+			_cy_for_x2_y2 = 2.0 * _cy04 - 6.0 * _cy44;
+			_cy_for_y4 = _cy04 - _cy24 + _cy44;
+			}
+//! @brief As usual, we define the distortion mapping in diagonally normalized coordinates,
+//! (hence the suffix _dn). The operator expects, that p_dn is already shifted so that
+//! the lens center is (0,0).
+		vec2_type operator()(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x4 = x2 * x2;
+			double y = p_dn[1],y2 = y * y,y4 = y2 * y2;
+			double xq = x * (1.0
+					+ x2 * _cx_for_x2 + y2 * _cx_for_y2
+					+ x4 * _cx_for_x4 + x2 * y2 * _cx_for_x2_y2 + y4 * _cx_for_y4);
+			double yq = y * (1.0
+					+ x2 * _cy_for_x2 + y2 * _cy_for_y2
+					+ x4 * _cy_for_x4 + x2 * y2 * _cy_for_x2_y2 + y4 * _cy_for_y4);
+			return vec2_type(xq,yq);
+			}
+//! Jacobi-Matrix
+		mat2_type jacobi_test(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x3 = x2 * x,x4 = x2 * x2;
+			double y = p_dn[1],y2 = y * y,y3 = y2 * y,y4 = y2 * y2;
+			mat2_type m;
+			m[0][0] = 1.0 + x2 * 3.0 * _cx_for_x2 + y2 * _cx_for_y2
+				+ x4 * 5.0 * _cx_for_x4 + x2 * y2 * 3.0 * _cx_for_x2_y2 + y4 * _cx_for_y4;
+			m[1][1] = 1.0 + y2 * 3.0 * _cy_for_y2 + x2 * _cy_for_x2
+				+ y4 * 5.0 * _cy_for_y4 + x2 * y2 * 3.0 * _cy_for_x2_y2 + x4 * _cy_for_x4;
+			m[0][1] = x * y * 2.0 * _cx_for_y2
+				+ x * y3 * 4.0 * _cx_for_y4 + x3 * y * 2.0 * _cx_for_x2_y2;
+			m[1][0] = x * y * 2.0 * _cy_for_x2
+				+ x3 * y * 4.0 * _cy_for_x4 + x * y3 * 2.0 * _cy_for_x2_y2;
+			return m;
+			}
+		};
+//! @brief Specialization for degree-6 for better performance. Also, this allows
+//! us to implement the Jacobian quite easy.
+	template <class VEC2,class MAT2>
+	class generic_anamorphic_distortion<VEC2,MAT2,6>:public ldpk::generic_distortion_base<VEC2,MAT2,(6 + 2) * (6 + 4) / 4 - 2>
+		{
+	public:
+		typedef generic_distortion_base<VEC2,MAT2,(6 + 2) * (6 + 4) / 4 - 2> base_type;
+		typedef VEC2 vec2_type;
+		typedef MAT2 mat2_type;
+	private:
+// Model parameters
+		double _cx02,_cx22,_cx04,_cx24,_cx44,_cx06,_cx26,_cx46,_cx66;
+		double _cy02,_cy22,_cy04,_cy24,_cy44,_cy06,_cy26,_cy46,_cy66;
+// Array for linear index access.
+		double *_c[18];
+// Coefficients, as used in evaluating functions. Calculated in prepare().
+		double _cx_for_x2,_cx_for_y2,_cx_for_x4,_cx_for_x2_y2,_cx_for_y4,_cx_for_x6,_cx_for_x4_y2,_cx_for_x2_y4,_cx_for_y6;
+		double _cy_for_x2,_cy_for_y2,_cy_for_x4,_cy_for_x2_y2,_cy_for_y4,_cy_for_x6,_cy_for_x4_y2,_cy_for_x2_y4,_cy_for_y6;
+
+	public:
+		generic_anamorphic_distortion()
+			{
+//! Linear access to coefficients.
+			_c[ 0] = &_cx02;_c[ 1] = &_cy02;
+			_c[ 2] = &_cx22;_c[ 3] = &_cy22;
+			_c[ 4] = &_cx04;_c[ 5] = &_cy04;
+			_c[ 6] = &_cx24;_c[ 7] = &_cy24;
+			_c[ 8] = &_cx44;_c[ 9] = &_cy44;
+			_c[10] = &_cx06;_c[11] = &_cy06;
+			_c[12] = &_cx26;_c[13] = &_cy26;
+			_c[14] = &_cx46;_c[15] = &_cy46;
+			_c[16] = &_cx66;_c[17] = &_cy66;
+			}
+//! Get coefficient as demanded by base class
+		double get_coeff(int i) const
+			{
+			base_type::check_range(i);
+			return *_c[i];
+			}
+//! Set coefficient as demanded by base class
+		void set_coeff(int i,double q)
+			{
+			base_type::check_range(i);
+			*_c[i] = q;
+			}
+//! To be invoked by initializeParameters().
+		void prepare()
+			{
+			_cx_for_x2 = _cx02 + _cx22;
+			_cx_for_y2 = _cx02 - _cx22;
+
+			_cx_for_x4 = _cx04 + _cx24 + _cx44;
+			_cx_for_x2_y2 = 2.0 * _cx04 - 6.0 * _cx44;
+			_cx_for_y4 = _cx04 - _cx24 + _cx44;
+
+			_cx_for_x6 = _cx06 + _cx26 + _cx46 + _cx66;
+			_cx_for_x4_y2 = 3.0 * _cx06 + _cx26 - 5.0 * _cx46 - 15.0 * _cx66;
+			_cx_for_x2_y4 = 3.0 * _cx06 - _cx26 - 5.0 * _cx46 + 15.0 * _cx66;
+			_cx_for_y6 = _cx06 - _cx26 + _cx46 - _cx66;
+
+			_cy_for_x2 = _cy02 + _cy22;
+			_cy_for_y2 = _cy02 - _cy22;
+
+			_cy_for_x4 = _cy04 + _cy24 + _cy44;
+			_cy_for_x2_y2 = 2.0 * _cy04 - 6.0 * _cy44;
+			_cy_for_y4 = _cy04 - _cy24 + _cy44;
+
+			_cy_for_x6 = _cy06 + _cy26 + _cy46 + _cy66;
+			_cy_for_x4_y2 = 3.0 * _cy06 + _cy26 - 5.0 * _cy46 - 15.0 * _cy66;
+			_cy_for_x2_y4 = 3.0 * _cy06 - _cy26 - 5.0 * _cy46 + 15.0 * _cy66;
+			_cy_for_y6 = _cy06 - _cy26 + _cy46 - _cy66;
+			}
+//! @brief As usual, we define the distortion mapping in diagonally normalized coordinates,
+//! (hence the suffix _dn). The operator expects, that p_dn is already shifted so that
+//! the lens center is (0,0).
+		vec2_type operator()(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x4 = x2 * x2,x6 = x4 * x2;
+			double y = p_dn[1],y2 = y * y,y4 = y2 * y2,y6 = y4 * y2;
+			double xq = x * (1.0
+					+ x2 * _cx_for_x2 + y2 * _cx_for_y2
+					+ x4 * _cx_for_x4 + x2 * y2 * _cx_for_x2_y2 + y4 * _cx_for_y4
+					+ x6 * _cx_for_x6 + x4 * y2 * _cx_for_x4_y2 + x2 * y4 * _cx_for_x2_y4 + y6 * _cx_for_y6);
+			double yq = y * (1.0
+					+ x2 * _cy_for_x2 + y2 * _cy_for_y2
+					+ x4 * _cy_for_x4 + x2 * y2 * _cy_for_x2_y2 + y4 * _cy_for_y4
+					+ x6 * _cy_for_x6 + x4 * y2 * _cy_for_x4_y2 + x2 * y4 * _cy_for_x2_y4 + y6 * _cy_for_y6);
+			return vec2_type(xq,yq);
+			}
+//! @brief Jacobi-Matrix, tested against difference quotient method in base class.
+//! We calculated the Jacobian of the undistort()-function (that is operator()).
+//! Note, that this is computed for diagonally normalized coordinates, whereas
+//! the plugin class uses unit coordinates (because 3DE4 does so).
+		mat2_type jacobi(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x3 = x2 * x,x4 = x2 * x2,x5 = x3 * x2,x6 = x4 * x2;
+			double y = p_dn[1],y2 = y * y,y3 = y2 * y,y4 = y2 * y2,y5 = y3 * y2,y6 = y4 * y2;
+			mat2_type m;
+			m[0][0] = 1.0 + x2 * 3.0 * _cx_for_x2 + y2 * _cx_for_y2
+				+ x4 * 5.0 * _cx_for_x4 + x2 * y2 * 3.0 * _cx_for_x2_y2 + y4 * _cx_for_y4
+				+ x6 * 7.0 * _cx_for_x6 + x4 * y2 * 5.0 * _cx_for_x4_y2 + x2 * y4 * 3.0 * _cx_for_x2_y4 + y6 * _cx_for_y6;
+			m[1][1] = 1.0 + y2 * 3.0 * _cy_for_y2 + x2 * _cy_for_x2
+				+ y4 * 5.0 * _cy_for_y4 + x2 * y2 * 3.0 * _cy_for_x2_y2 + x4 * _cy_for_x4
+				+ x6 * _cy_for_x6 + x4 * y2 * 3.0 * _cy_for_x4_y2 + x2 * y4 * 5.0 * _cy_for_x2_y4 + y6 * 7.0 * _cy_for_y6;
+			m[0][1] = x * y * 2.0 * _cx_for_y2
+				+ x * y3 * 4.0 * _cx_for_y4 + x3 * y * 2.0 * _cx_for_x2_y2
+				+ x5 * y * 2.0 * _cx_for_x4_y2 + x3 * y3 * 4.0 * _cx_for_x2_y4 + x * y5 * 6.0 * _cx_for_y6;
+			m[1][0] = x * y * 2.0 * _cy_for_x2
+				+ x3 * y * 4.0 * _cy_for_x4 + x * y3 * 2.0 * _cy_for_x2_y2
+				+ x5 * y * 6.0 * _cy_for_x6 + x3 * y3 * 4.0 * _cy_for_x4_y2 + x * y5 * 2.0 * _cy_for_x2_y4;
+			return m;
 			}
 		};
 	}

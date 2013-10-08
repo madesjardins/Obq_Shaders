@@ -169,7 +169,7 @@ Logic
 {
 
 def OnInit():
-	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_ChangeRange_v204.html");
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ChangeRange.html");
 
 }
 

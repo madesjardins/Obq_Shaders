@@ -1,0 +1,28 @@
+This version was compiled on October 30th 2012 for SItoA 2.04.0 using Arnold 4.0.7.1.
+
+FIXES:
+	- Total internal reflection is now taken into account in the Obq_Fresnel.
+
+ADDITIONS:
+	- Obq_Fesnel : 		in order to have proper metallic colors in a linear workflow, a new checkbox
+				was added to deGamma the resulting reflection color.
+
+CHANGES:
+	- The bias and gain operations now give the same results as the Arnold bias and gain.
+	- Float functions like expf(), powf(), sinf() and cosf() were replaced to facilitate linux builds.
+
+NEW SHADERS:
+	- Obq_AngularCamera
+	- Obq_Atmosphere
+	- Obq_Bend4Stereo
+
+REMOVED SHADERS:
+	- Obq_RotateUV ( Obq_TransformUV does the same and more )
+
+
+Enjoy and give feedback please.
+
+--
+Marc-Antoine Desjardins
+ObliqueFX
+madesjardins@obliquefx.com

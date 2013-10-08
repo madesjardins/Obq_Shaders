@@ -33,6 +33,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#include <algorithm>
 
 const float c_1over4PI = float(1.0/(4.0*AI_PI));
 

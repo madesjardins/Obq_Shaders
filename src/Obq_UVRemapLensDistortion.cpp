@@ -35,8 +35,11 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
-#include "ldpk/ldpk.h"
-
+#include <ldpk/ldpk.h>
+#include <ldpk/ldpk_cylindric_extender.h>
+#include <ldpk/ldpk_rotation_extender.h>
+#include <ldpk/ldpk_squeeze_extender.h>
+#include <ldpk/ldpk_linear_extender.h>
 // Struct
 //
 typedef struct 
@@ -50,6 +53,21 @@ typedef struct
 	ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,6>* anamorphic6;
 	ldpk::generic_radial_distortion<ldpk::vec2d,ldpk::mat2d,8>* fisheye8;
 	ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>* standard4;
+
+	// radial decentered cylindric degree 4 
+	ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>* _radial;
+	ldpk::cylindric_extender_2<ldpk::vec2d,ldpk::mat2d>* _cylindric;
+
+	// anamorphic rotation squeeze 
+	ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,4>* _anamorphic;
+	ldpk::rotation_extender<ldpk::vec2d,ldpk::mat2d>* _rotation;
+	ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>* _squeeze_x;
+	ldpk::squeeze_y_extender<ldpk::vec2d,ldpk::mat2d>* _squeeze_y;
+	ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>* _pa;
+
+//! Concatenating extenders for better performance
+	ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>* _rot_sqx_sqy_pa;
+	ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>* _pa_rot;
 }
 ShaderData;
 
@@ -61,12 +79,11 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqUVRemapLensDistortionSimpleMethods);
 
 // Enum for params
 //
-enum ObqUVRemapLensDistortionSimpleParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05};
+enum ObqUVRemapLensDistortionSimpleParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05, p_raddec4c00, p_raddec4c01, p_raddec4c02, p_raddec4c03, p_raddec4c04, p_raddec4c05, p_raddec4c06, p_raddec4c07, p_ana4c00, p_ana4c01,p_ana4c02,p_ana4c03,p_ana4c04,p_ana4c05,p_ana4c06,p_ana4c07,p_ana4c08,p_ana4c09, p_ana4c10, p_ana4c11,p_ana4c12};
 
 // Enum for distortion model
 //
-enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4};
-
+enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4,RADIAL_DECENTERED_CYLINDRIC4, ANAMORPHIC4};
 
 
 node_parameters
@@ -117,7 +134,27 @@ node_parameters
 	AiParameterFLT("stand4c03" , 0.0f);
 	AiParameterFLT("stand4c04" , 0.0f);
 	AiParameterFLT("stand4c05" , 0.0f);
-	
+	AiParameterFLT("raddec4c00" , 0.0f);
+	AiParameterFLT("raddec4c01" , 0.0f);
+	AiParameterFLT("raddec4c02" , 0.0f);
+	AiParameterFLT("raddec4c03" , 0.0f);
+	AiParameterFLT("raddec4c04" , 0.0f);
+	AiParameterFLT("raddec4c05" , 0.0f);
+	AiParameterFLT("raddec4c06" , 0.0f);
+	AiParameterFLT("raddec4c07" , 0.0f);
+	AiParameterFLT("ana4c00" , 0.0f);
+	AiParameterFLT("ana4c01" , 0.0f);
+	AiParameterFLT("ana4c02" , 0.0f);
+	AiParameterFLT("ana4c03" , 0.0f);
+	AiParameterFLT("ana4c04" , 0.0f);
+	AiParameterFLT("ana4c05" , 0.0f);
+	AiParameterFLT("ana4c06" , 0.0f);
+	AiParameterFLT("ana4c07" , 0.0f);
+	AiParameterFLT("ana4c08" , 0.0f);
+	AiParameterFLT("ana4c09" , 0.0f);
+	AiParameterFLT("ana4c10" , 0.0f);
+	AiParameterFLT("ana4c11" , 1.0f);
+	AiParameterFLT("ana4c12" , 1.0f);
 }
 
 
@@ -214,9 +251,21 @@ node_initialize
 	data->fisheye8 = new ldpk::generic_radial_distortion<ldpk::vec2d,ldpk::mat2d,8>;		// 4 params
 	data->standard4 = new ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>;		// 6 param
 
+	data->_radial = new ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>;
+	data->_cylindric = new ldpk::cylindric_extender_2<ldpk::vec2d,ldpk::mat2d>;
+
+
+	data->_anamorphic = new ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,4>;
+	data->_rotation = new ldpk::rotation_extender<ldpk::vec2d,ldpk::mat2d>;
+	data->_squeeze_x = new ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>;
+	data->_squeeze_y = new ldpk::squeeze_y_extender<ldpk::vec2d,ldpk::mat2d>;
+	data->_pa = new ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>;
+	data->_rot_sqx_sqy_pa = new ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>;
+	data->_pa_rot = new ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>;
+	
 	// Set data
 	AiNodeSetLocalData(node,data);
-
+	
 }
 
 node_update
@@ -285,6 +334,37 @@ node_update
 		data->standard4->set_coeff(5,params[p_stand4c05].FLT);
 		data->standard4->eval(ldpk::vec2d(0.0,0.0));
 		break;
+	case RADIAL_DECENTERED_CYLINDRIC4:
+		data->_radial->set_coeff(0,params[p_raddec4c00].FLT);
+		data->_radial->set_coeff(1,params[p_raddec4c01].FLT);
+		data->_radial->set_coeff(2,params[p_raddec4c02].FLT);
+		data->_radial->set_coeff(3,params[p_raddec4c03].FLT);
+		data->_radial->set_coeff(4,params[p_raddec4c04].FLT);
+		data->_radial->set_coeff(5,params[p_raddec4c05].FLT);
+		data->_cylindric->set_phi(params[p_raddec4c06].FLT);
+		data->_cylindric->set_b(params[p_raddec4c07].FLT);
+		data->_cylindric->eval(data->_radial->eval(ldpk::vec2d(0.0,0.0)));
+		break;
+	case ANAMORPHIC4:
+		data->_anamorphic->set_coeff(0,params[p_ana4c00].FLT);
+		data->_anamorphic->set_coeff(1,params[p_ana4c01].FLT);
+		data->_anamorphic->set_coeff(2,params[p_ana4c02].FLT);
+		data->_anamorphic->set_coeff(3,params[p_ana4c03].FLT);
+		data->_anamorphic->set_coeff(4,params[p_ana4c04].FLT);
+		data->_anamorphic->set_coeff(5,params[p_ana4c05].FLT);
+		data->_anamorphic->set_coeff(6,params[p_ana4c06].FLT);
+		data->_anamorphic->set_coeff(7,params[p_ana4c07].FLT);
+		data->_anamorphic->set_coeff(8,params[p_ana4c08].FLT);
+		data->_anamorphic->set_coeff(9,params[p_ana4c09].FLT);
+		data->_rotation->set_phi(params[p_ana4c10].FLT*AI_DTOR);
+		data->_squeeze_x->set_sq(params[p_ana4c11].FLT);
+		data->_squeeze_y->set_sq(params[p_ana4c12].FLT);
+		data->_pa->set_sq(data->aspect);
+		data->_rot_sqx_sqy_pa->set(*(data->_rotation), (*data->_squeeze_x), (*data->_squeeze_y), (*data->_pa));
+		data->_pa_rot->set((*data->_pa),(*data->_rotation));
+		data->_anamorphic->prepare();
+		data->_rot_sqx_sqy_pa->eval(data->_anamorphic->eval(data->_pa_rot->eval_inv(ldpk::vec2d(0.0,0.0))));
+		break;
 	}
 
 }
@@ -297,6 +377,15 @@ node_finish
 	delete data->anamorphic6;
 	delete data->fisheye8;
 	delete data->standard4;
+	delete data->_radial;
+	delete data->_cylindric;
+	delete data->_anamorphic;
+	delete data->_rotation;
+	delete data->_squeeze_x;
+	delete data->_squeeze_y;
+	delete data->_pa;
+	delete data->_rot_sqx_sqy_pa;
+	delete data->_pa_rot;
 	AiFree(data);
 }
 
@@ -355,6 +444,12 @@ shader_evaluate
 			break;
 		case STANDARD4: // 3DEq model
 			p = (data->standard4->eval(ldpk::vec2d(x,y)));
+			break;
+		case RADIAL_DECENTERED_CYLINDRIC4:
+			p = (data->_cylindric->eval(data->_radial->eval(ldpk::vec2d(x,y))));
+			break;
+		case ANAMORPHIC4:
+			p = data->_rot_sqx_sqy_pa->eval(data->_anamorphic->eval(data->_pa_rot->eval_inv(ldpk::vec2d(x,y))));
 			break;
 		}
 

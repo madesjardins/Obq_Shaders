@@ -1,0 +1,339 @@
+# SPDL - Obq_MeasuredMaterial v2.09.0 (SItoA 2.9.0 - Arnold 4.0.15.1)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{A5AE7236-2B6E-4FF3-B70D-C8DEB8744386}";
+PropertySet "Obq_MeasuredMaterial_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{575BFED6-E8DF-4595-B671-D19541BC6B03}";
+		Type = color;
+	}
+	Parameter "filename" input
+	{
+		GUID = "{4BFA9588-D479-4930-99BF-E979B0DF6DB0}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "resolution" input
+	{
+		GUID = "{DEBEC9B0-D8E3-435F-9187-68340C75A325}";
+		Texturable = off;
+		Type = integer;
+		Value = 91;
+		Value Minimum = 3;
+		Value Maximum = 361;
+	}
+	Parameter "samples" input
+	{
+		GUID = "{9BF2215B-DD95-462F-9B22-5071875FD885}";
+		Texturable = off;
+		Type = integer;
+		Value = 4;
+		Value Minimum = 0;
+	}
+	Parameter "direct_color" input
+	{
+		GUID = "{FB1ED2ED-7A4A-4F47-B905-14F92889803F}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "direct_scale" input
+	{
+		GUID = "{E4A1D0AF-652A-4244-BA9A-656CEC8D3F2B}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "indirect_color" input
+	{
+		GUID = "{65C331D4-2F02-464B-BC87-EC5BFEDEDA5A}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "indirect_scale" input
+	{
+		GUID = "{150250D8-185B-431B-80E5-AA19E2C87222}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "useImportanceSampling" input
+	{
+		GUID = "{41E50201-B7C4-45A4-B838-7A2D28643993}";
+		Texturable = off;
+		Type = boolean;
+		Value = on;
+	}
+	Parameter "useHalfs" input
+	{
+		GUID = "{991D7DD1-30B9-4320-B1B9-1BBDD5CFD841}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "useJitters" input
+	{
+		GUID = "{2ADB750D-43F5-4EBB-9C67-F054AF499987}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "binMaxDif" input
+	{
+		GUID = "{DC1312EC-CB71-45EA-8D04-82DA4EEC9E9F}";
+		Texturable = off;
+		Type = integer;
+		Value = 5;
+		Value Minimum = 1;
+	}
+	Parameter "useMIS" input
+	{
+		GUID = "{EF8D2657-7CB5-4EB2-91A5-B0CBC7037516}";
+		Texturable = off;
+		Type = boolean;
+		Value = on;
+	}
+	Parameter "direct_AOV" input
+	{
+		GUID = "{26E143A5-E456-40F3-B465-34ACDF828729}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "indirect_AOV" input
+	{
+		GUID = "{985B1F3C-324A-49E9-9616-8A4E5BE7A98C}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_MeasuredMaterial";
+}
+
+phenomenon "Obq_MeasuredMaterial_declare"
+{
+	Name = "Obq_MeasuredMaterial";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	filename
+	{
+		Name = "Filename";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "dscontrol"
+		{
+		Class = "edit";
+		Caption = ";file=1;openfile=1;initialdir=F:\\MSKBRDF;filefilter= Regular Isotropic (*.binary)|*.binary|Material Sketcher (*.mskbrdf)|*.mskbrdf";
+		}
+	}
+	resolution
+	{
+		Name = "Resolution";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	samples
+	{
+		Name = "Sampling";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 16;
+	}
+	direct_color
+	{
+		Name = "Color";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	direct_scale
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 1;
+	}
+	indirect_color
+	{
+		Name = "Color";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	indirect_scale
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 1;
+	}
+	useImportanceSampling
+	{
+		Name = "Use importance sampling (test)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useHalfs
+	{
+		Name = "Use half hints";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useJitters
+	{
+		Name = "Use jitters";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	binMaxDif
+	{
+		Name = "Stop binary search when in range of";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 13;
+	}
+	useMIS
+	{
+		Name = "Use MIS (test)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	direct_AOV
+	{
+		Name = "Direct";
+		UIType = "combo";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	indirect_AOV
+	{
+		Name = "Indirect";
+		UIType = "combo";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	Tab "Main"
+	{
+		Group "BRDF"
+		{
+			filename;
+			resolution;
+		}
+		Group "Direct"
+		{
+			direct_color;
+			direct_scale;
+			useMIS;
+		}
+		Group "Indirect"
+		{
+			indirect_color;
+			indirect_scale;
+			useImportanceSampling;
+			samples;
+		}
+		Group "Options"
+		{
+			binMaxDif;
+			useJitters;
+			useHalfs;
+		}
+	}
+	Tab "AOVs"
+	{
+		Row 
+		{
+			direct_AOV, nolabel;
+			Button AddRenderChannel,alignright = "Add...";
+		}
+		Row 
+		{
+			indirect_AOV, nolabel;
+			Button AddRenderChannel,alignright = "Add...";
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+	Group "Direct"
+	{
+		color;
+		scale;
+	}
+	Group "Indirect"
+	{
+		indirect_color;
+		indirect_scale;
+	}	
+}
+
+Language = "VBScript";
+Logic
+{
+
+Sub AddRenderChannel_OnClicked
+		Dim		sName
+
+		sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
+		If sName = "" Then Exit Sub
+
+		On Error Resume Next
+		sName = CreateRenderChannel( sName, siRenderChannelColorType )
+		If Err.Number <> 0 Then
+			LogMessage "Unable to create channel. Does a channel with that name already exist?"
+			Exit Sub
+		End If
+		If sName <> "" Then
+			For Each oInspected In PPG.Inspected
+				oInspected.channel = sName
+			Next
+			OnInit
+		End If
+	End Sub
+
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+
+	Dim oRenderChannels
+	Set oRenderChannels = ActiveProject.ActiveScene.PassContainer.Properties( "Scene Render Options" ).RenderChannels
+		
+	If TypeName(oRenderChannels) = "Nothing" Then
+		LogMessage "Scene Render Options property not found. Can't enumerate render channels.", siError
+		Exit Sub
+	End If
+	If oRenderChannels.Count = 0 Then
+		LogMessage "No render channels defined.", siError
+		Exit Sub
+	End If
+		
+	Dim		idx
+	ReDim oChannelList( oRenderChannels.Count * 2 + 3 )
+
+	idx = 0
+	for each oChannel in oRenderChannels
+		If oChannel.ChannelType = siRenderChannelColorType And oChannel.UserDefined Then
+			oChannelList( idx * 2 + 2 ) = oChannel.Name
+			oChannelList( idx * 2 + 3 ) = oChannel.Name
+			idx = idx + 1
+		End If
+	next 
+		
+	ReDim Preserve oChannelList( idx * 2 + 1 )
+
+	Dim oChannelCombo1
+	Set oChannelCombo1 = PPG.PPGLayout.Item( "direct_AOV" )
+	oChannelCombo1.UIItems = oChannelList
+	Dim oChannelCombo2
+	Set oChannelCombo2 = PPG.PPGLayout.Item( "indirect_AOV" )
+	oChannelCombo2.UIItems = oChannelList
+End sub
+
+}
+

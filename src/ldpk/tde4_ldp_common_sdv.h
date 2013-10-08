@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef tde4_ldp_common_sdv_sdv
@@ -8,7 +8,6 @@
 
 #include <ldpk/ldpk_ldp_builtin.h>
 #include <ldpk/ldpk_generic_distortion_base.h>
-#include <pthread.h>
 
 //! @file tde4_ldp_common_sdv_8.h
 //! @brief Common properties for all 3DE4-built-in models from SDV.
@@ -24,9 +23,6 @@ private:
 	typedef MAT2 mat2_type;
 	typedef ldpk::ldp_builtin<VEC2> base_type;
 
-//! Mutex
-	pthread_mutex_t _mutex;
-
 //! Built-ins use diag-norm coordinates.
 	double _r_fb_cm;
 
@@ -36,6 +32,8 @@ private:
 	virtual ldpk::generic_distortion_base<vec2_type,mat2_type,N>& get_distortion_base() = 0;
 
 protected:
+	pthread_mutex_t _mutex;
+
 	tde4_ldp_common_sdv()
 		{
 		int r = pthread_mutex_init(&_mutex,NULL);
@@ -46,6 +44,8 @@ protected:
 		int r = pthread_mutex_destroy(&_mutex);
 		if(r) std::cerr << "tde4_ldp_common_sdv::pthread_mutex_destroy: " << strerror(r) << std::endl;
 		}
+	double r_fb_cm() const
+		{ return _r_fb_cm; }
 	bool decypher(const char* name,int& i)
 		{
 		typedef base_type bt;
@@ -111,14 +111,14 @@ protected:
 		get_distortion_base().set_coeff(i,v);
 		return true;
 		}
-	bool undistort(double x0,double y0,double &x1,double &y1)
+	virtual bool undistort(double x0,double y0,double &x1,double &y1)
 		{
 		vec2_type q = map_dn_to_unit(get_distortion_base().eval(map_unit_to_dn(vec2_type(x0,y0))));
 		x1 = q[0];
 		y1 = q[1];
 		return true;
 		}
-	bool distort(double x0,double y0,double &x1,double &y1)
+	virtual bool distort(double x0,double y0,double &x1,double &y1)
 		{
 		typedef base_type bt;
 // The distort-method without initial values is not constant by semantics,
@@ -145,7 +145,7 @@ protected:
 		y1 = q[1];
 		return true;
 		}
-	bool distort(double x0,double y0,double x1_start,double y1_start,double &x1,double &y1)
+	virtual bool distort(double x0,double y0,double x1_start,double y1_start,double &x1,double &y1)
 		{
 		vec2_type q = map_dn_to_unit(get_distortion_base().map_inverse(map_unit_to_dn(vec2_type(x0,y0)),map_unit_to_dn(vec2_type(x1_start,y1_start))));
 		x1 = q[0];

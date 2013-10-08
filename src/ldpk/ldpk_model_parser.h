@@ -1,13 +1,13 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_model_parser_sdv
 #define ldpk_model_parser_sdv
 
-#include "ldpk/tde4_ld_plugin.h"
-#include "ldpk/ldpk_error.h"
+#include <ldpk/tde4_ld_plugin.h>
+#include <ldpk/ldpk_error.h>
 #include <iostream>
 #include <string>
 

@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_error_sdv
@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string.h>
 #include <string>
+//Obq #include <pthread.h>
 
 //! @file ldpk_error.h
 //! @brief Exception classes for ldpk.
@@ -102,18 +103,18 @@ namespace ldpk
 			{ return "ldpk::error: no model specified"; }
 		};
 //! An error occurred while loading or linking the plugin
-	//class error_dynamic_link:public error_base
-	//	{
-	//private:
-	//	char _dlmsg[256];
-	//public:
-	//	error_dynamic_link(const char* dlmsg)
-	//		{ strncpy(_dlmsg,dlmsg,256); }
-	//	~error_dynamic_link() throw()
-	//		{ }
-	//	const char* what() const throw()
-	//		{ return "ldpk::error: dynamic load/link"; }
-	//	};
+	class error_dynamic_link:public error_base
+		{
+	private:
+		char _dlmsg[256];
+	public:
+		error_dynamic_link(const char* dlmsg)
+			{ strncpy(_dlmsg,dlmsg,256); }
+		~error_dynamic_link() throw()
+			{ }
+		const char* what() const throw()
+			{ return "ldpk::error: dynamic load/link"; }
+		};
 	}
 
 #endif

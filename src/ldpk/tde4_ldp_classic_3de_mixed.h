@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef tde4_ldp_classic_3de_mixed_sdv
@@ -88,8 +88,18 @@ public:
 			};
 		return true;
 		}
-	bool providesParameterDerivatives()
-		{ return false; }
+//! Tested against difference quotients.
+	bool getJacobianMatrix(double x0,double y0,double& m00,double& m01,double& m10,double& m11)
+		{
+		typedef base_type bt;
+		mat2_type m = _distortion.jacobi(map_unit_to_dn(vec2_type(x0,y0)));
+// to myself: Eigentlich w/2,h/2 bei beiden. Kuerzt sich weg.
+		mat2_type u2d(bt::w_fb_cm() / bt::r_fb_cm(),0.0,0.0,bt::h_fb_cm() / bt::r_fb_cm());
+		mat2_type d2u(bt::r_fb_cm() / bt::w_fb_cm(),0.0,0.0,bt::r_fb_cm() / bt::h_fb_cm());
+		m = d2u * m * u2d;
+		m00 = m[0][0];m01 = m[0][1];m10 = m[1][0];m11 = m[1][1];
+		return true;
+		}
 	};
 
 template <class VEC2,class MAT2>

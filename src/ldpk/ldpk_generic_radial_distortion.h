@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_generic_radial_distortion_sdv
@@ -9,8 +9,8 @@
 //! @file ldpk_generic_radial_distortion.h
 //! @brief A polynomial radially symmetric model of degree N (even)
 
-#include "ldpk/ldpk_generic_distortion_base.h"
-#include "ldpk/ldpk_power_ct.h"
+#include <ldpk/ldpk_generic_distortion_base.h>
+#include <ldpk/ldpk_power_ct.h>
 #include <iostream>
 
 namespace ldpk
@@ -97,17 +97,17 @@ namespace ldpk
 // Unreachable
 			std::cerr << "example_radial_distortion: n_parameters out of range" << std::endl;
 			}
-		std::ostream& out(std::ostream& cout) const
-			{
-			int p = int(cout.precision());
-			cout.precision(5);
-			for(int i = 0;i < N;++i)
-				{
-				cout << "    C(" << 2 * i + 2 << "): " << std::right << std::fixed << _c[i] << "\n";
-				}
-			cout.precision(p);
-			return cout;
-			}
+		//Obq std::ostream& out(std::ostream& cout) const
+		//	{
+		//	int p = cout.precision();
+		//	cout.precision(5);
+		//	for(int i = 0;i < N;++i)
+		//		{
+		//		cout << "    C(" << 2 * i + 2 << "): " << std::right << std::fixed << _c[i] << "\n";
+		//		}
+		//	cout.precision(p);
+		//	return cout;
+		//	}
 		};
 	}
 

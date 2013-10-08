@@ -698,7 +698,7 @@ Logic
 	End Sub
 	
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_StereoLens_v204.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
 		'Setting Expressions
 		SetExpr PPG.dof.Parent & ".dof", "Passes.Arnold_Render_Options.enable_depth_of_field"
 		SetExpr PPG.useCameraInterest.Parent & ".useCameraInterest", "Passes.Arnold_Render_Options.use_interest_distance"

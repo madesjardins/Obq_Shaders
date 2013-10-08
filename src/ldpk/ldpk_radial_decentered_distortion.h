@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_radial_decentered_distortion_sdv
@@ -9,7 +9,7 @@
 //! @file ldpk_radial_decentered_distortion.h
 //! @brief A polynomial radially symmetric model of degree 4 with decentering.
 
-#include "ldpk/ldpk_generic_distortion_base.h"
+#include <ldpk/ldpk_generic_distortion_base.h>
 #include <iostream>
 
 namespace ldpk
@@ -53,7 +53,7 @@ namespace ldpk
 			_c[i] = q;
 			}
 //! Remove distortion. p_dn is a point in diagonally normalized coordinates.
-		inline vec2_type operator()(const vec2_type& p_dn) const
+		vec2_type operator()(const vec2_type& p_dn) const
 			{
 			double x_dn,y_dn;
 			double x = p_dn[0];
@@ -77,7 +77,7 @@ namespace ldpk
 		mat2_type jacobi(const vec2_type& p_dn) const
 			{
 			mat2_type m;
-			//double x_dn,y_dn;
+			//Obq double x_dn,y_dn;
 			double x = p_dn[0];
 			double y = p_dn[1];
 			double x2 = x * x;
@@ -108,10 +108,10 @@ namespace ldpk
 			double u1x = _u1 * x;
 			double v1y = _v1 * y;
 			double c4r2 = _c4 * r2;
-			m[0][0] = 1 + _c2 * (3.0 * x2 + y2) + c4r2 * (5.0 * x2 + y2)
+			m[0][0] = 1.0 + _c2 * (3.0 * x2 + y2) + c4r2 * (5.0 * x2 + y2)
 				+ 6.0 * u1x + _u3 * (8.0 * xy2 + 12.0 * x3)
 				+ 2.0 * v1y + _v3 * (2.0 * y3 + 6.0 * x2y);
-			m[1][1] = 1 + _c2 * (x2 + 3.0 * y2) + c4r2 * (x2 + 5.0 * y2)
+			m[1][1] = 1.0 + _c2 * (x2 + 3.0 * y2) + c4r2 * (x2 + 5.0 * y2)
 				+ 6.0 * v1y + _v3 * (8.0 * x2y + 12.0 * y3)
 				+ 2.0 * u1x + _u3 * (2.0 * x3 + 6.0 * xy2);
 
@@ -167,31 +167,19 @@ namespace ldpk
 // Unreachable
 			std::cerr << "radial_decentered_distortion: n_parameters out of range" << std::endl;
 			}
-		std::ostream& out(std::ostream& cout) const
-			{
-			int p = int(cout.precision());
-			cout.precision(5);
-			cout << "c2: " << _c2 << std::endl;
-			cout << "u1: " << _u1 << std::endl;
-			cout << "v1: " << _v1 << std::endl;
-			cout << "u3: " << _u3 << std::endl;
-			cout << "c4: " << _c4 << std::endl;
-			cout << "v3: " << _v3 << std::endl;
-			cout.precision(p);
-			return cout;
-			}
-
-		/*void update()
-		{
-			_c2, _u1, _v1, _c4, _u3, _v3
-		}*/
-
-		std::string getString(){
-			char buf[200];
-			sprintf(buf,"c2 = %f , u1 = %f , v1 = %f , c4 = %f , u3 = %f , v3 = %f ", _c2, _u1, _v1, _c4, _u3, _v3);
-			
-			return std::string(buf);
-		}
+		//std::ostream& out(std::ostream& cout) const
+		//	{
+		//	int p = cout.precision();
+		//	cout.precision(5);
+		//	cout << "c2: " << _c2 << std::endl;
+		//	cout << "u1: " << _u1 << std::endl;
+		//	cout << "v1: " << _v1 << std::endl;
+		//	cout << "u3: " << _u3 << std::endl;
+		//	cout << "c4: " << _c4 << std::endl;
+		//	cout << "v3: " << _v3 << std::endl;
+		//	cout.precision(p);
+		//	return cout;
+		//	}
 		};
 	}
 

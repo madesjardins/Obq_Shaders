@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_example_radial_distortion_sdv
@@ -9,8 +9,8 @@
 //! @file ldpk_example_radial_distortion.h
 //! @brief A polynomial radially symmetric model of degree N (even)
 
-#include "ldpk/ldpk_generic_distortion_base.h"
-#include "ldpk/ldpk_vec2d.h"
+#include <ldpk/ldpk_generic_distortion_base.h>
+#include <ldpk/ldpk_vec2d.h>
 #include <iostream>
 
 namespace ldpk

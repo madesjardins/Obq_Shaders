@@ -629,7 +629,7 @@ sub thicknessMode_OnChanged()
 End sub
 
 sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Thickness_v204.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Thickness.html"
 	sampleLevel_OnChanged()
 	useSampleCount_OnChanged()
 	dirMode_OnChanged()

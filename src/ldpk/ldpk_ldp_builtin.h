@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldp_builtin_sdv
@@ -22,7 +22,8 @@ namespace ldpk
 		para_filmback_height = 2,
 		para_lens_center_offset_x = 3,
 		para_lens_center_offset_y = 4,
-		para_pixel_aspect = 5
+		para_pixel_aspect = 5,
+		para_custom_focus_distance = 6
 		};
 
 //! @brief This class handles the built-in parameter and the lookup table.
@@ -37,9 +38,9 @@ namespace ldpk
 		typedef VEC2 vec2_type;
 
 //! Names of built-in parameters
-		static const char* _para_builtin[6];
+		static const char* _para_builtin[7];
 //! Values for built-in parameters
-		double _value_builtin[6];
+		double _value_builtin[7];
 
 //! The lookup table
 		ldpk::lookup_table<vec2_type> _lut;
@@ -74,9 +75,9 @@ namespace ldpk
 //@}
 //! @name Built-in parameters
 //@{
-//! There are six built-in parameters
+//! There are seven built-in parameters
 		int get_num_builtin_parameters() const
-			{ return 6; }
+			{ return 7; }
 //! The return values indicates, if 'identifier' refers to a built-in parameter.
 		bool set_builtin_parameter_value(const char* identifier,double v);
 //! @brief The return values indicates, if 'identifier' refers to a built-in parameter.
@@ -103,10 +104,12 @@ namespace ldpk
 			{ return _value_builtin[para_lens_center_offset_x]; }
 		double y_lco_cm() const
 			{ return _value_builtin[para_lens_center_offset_y]; }
-		double f_cm() const
+		double fl_cm() const
 			{ return _value_builtin[para_focal_length]; }
 		double pa() const
 			{ return _value_builtin[para_pixel_aspect]; }
+		double fd_cm() const
+			{ return _value_builtin[para_custom_focus_distance]; }
 //@}
 	public:
 		ldp_builtin():_uptodate_lut(false)
@@ -115,13 +118,14 @@ namespace ldpk
 
 // Built-in parameter names. Do not change.
 	template <class VEC2>
-	const char* ldp_builtin<VEC2>::_para_builtin[6] = {
+	const char* ldp_builtin<VEC2>::_para_builtin[7] = {
 		"tde4_focal_length_cm",
 		"tde4_filmback_width_cm",
 		"tde4_filmback_height_cm",
 		"tde4_lens_center_offset_x_cm",
 		"tde4_lens_center_offset_y_cm",
-		"tde4_pixel_aspect"
+		"tde4_pixel_aspect",
+		"tde4_custom_focus_distance_cm"
 		};
 	template <class VEC2>
 	para_builtin_enum ldp_builtin<VEC2>::find_builtin_parameter_by_name(const char* identifier) const

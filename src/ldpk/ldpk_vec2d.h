@@ -1,12 +1,12 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011 - Science-D-Visions. Current version: 1.1
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
 
 
 #ifndef ldpk_vec2d_sdv
 #define ldpk_vec2d_sdv
 
-#include "ldpk/ldpk_error.h"
+#include <ldpk/ldpk_error.h>
 #include <iostream>
 #include <cmath>
 
@@ -80,6 +80,9 @@ namespace ldpk
 //! Euclidian norm
 		friend double norm2(const vec2d& a)
 			{ return ::sqrt(dotsq(a)); }
+//! Unit vector
+		friend vec2d unit(const vec2d& v)
+			{ return v / norm2(v); }
 //@}
 //! @name I/O functions
 //@{

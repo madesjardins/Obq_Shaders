@@ -572,7 +572,7 @@ Logic
 	End Sub
 
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_SurfaceEnvironment_v204.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SurfaceEnvironment.html"
 		onSurfaceMode_OnChanged()
 		sampleLevel_OnChanged()
 		useSampleCount_OnChanged()

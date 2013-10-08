@@ -129,7 +129,7 @@ sub channel_OnChanged()
 End sub
 
 sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Opacity_v206.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
 	channel_OnChanged()
 End sub
 
