@@ -75,7 +75,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\</OutDir>
-    <TargetName>Obq_Shaders_v210__Lite</TargetName>
+    <TargetName>Obq_Shaders_v210__Lite_NoHair</TargetName>
     <ExtensionsToDeleteOnClean>$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
@@ -168,7 +168,9 @@
     <ClCompile Include="..\src\Obq_ChangeRange.cpp" />
     <ClCompile Include="..\src\Obq_Environment.cpp" />
     <ClCompile Include="..\src\Obq_Fresnel.cpp" />
-    <ClCompile Include="..\src\Obq_Hair.cpp" />
+    <ClCompile Include="..\src\Obq_Hair.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\Obq_IESLightFilter.cpp" />
     <ClCompile Include="..\src\Obq_MeasuredMaterial.cpp" />
     <ClCompile Include="..\src\Obq_Opacity.cpp" />
@@ -229,7 +231,9 @@
     <ClInclude Include="..\src\Obq_Common.h" />
     <ClInclude Include="..\src\Obq_Environment.h" />
     <ClInclude Include="..\src\Obq_Fresnel.h" />
-    <ClInclude Include="..\src\Obq_Hair.h" />
+    <ClInclude Include="..\src\Obq_Hair.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\src\Obq_MeasuredMaterial.h" />
     <ClInclude Include="..\src\Obq_StereoLens.h" />
     <ClInclude Include="..\src\Obq_SurfaceEnvironment.h" />

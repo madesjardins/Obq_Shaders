@@ -131,7 +131,8 @@ shader_evaluate
 					if(cosTheta_i > 0.0f)
 					{
 						AtRay ray;
-						AiMakeRay(&ray,AI_RAY_SHADOW,&(sg->P+AI_EPSILON*sg->Ngf), &sg->Ld,sg->Ldist,sg);
+						AtPoint tmp = sg->P+AI_EPSILON*sg->Ngf;
+						AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld,sg->Ldist,sg);
 						AtScrSample sample;
 						AiTrace(&ray,&sample);
 						
@@ -171,7 +172,8 @@ shader_evaluate
 					{
 						//Trace shadow
 						AtRay ray;
-						AiMakeRay(&ray,AI_RAY_SHADOW, &(sg->P+AI_EPSILON*sg->Ngf), &sg->Ld, sg->Ldist,sg);
+						AtPoint tmp = sg->P+AI_EPSILON*sg->Ngf;
+						AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld, sg->Ldist,sg);
 						AtScrSample sample;
 						AiTrace(&ray,&sample);
 

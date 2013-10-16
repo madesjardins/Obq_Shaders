@@ -92,8 +92,10 @@ shader_evaluate
 	AtVector dir;
 	AiNodeGetMatrix(sg->Lp, "matrix", mat);			// not optimal, but ok for now
 	AiM4Invert(mat,imat);							// Get inverse transform
-	AiM4VectorByMatrixMult(&dir,imat,&(-sg->Ld));	// Dir in object space
 	
+	AtVector tmp = -sg->Ld;
+	AiM4VectorByMatrixMult(&dir,imat,&tmp);
+
 	// Dir -> (phi-theta)°
 	float u, v;
 	dir.y=-dir.y;						// To get lamp pointing in Y direction instead of -Y
