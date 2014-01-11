@@ -1,12 +1,12 @@
 /*
-Obq_UVRemapLensDistortion v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_UVRemapLensDistortion :
 
 Just plug this node into the arnold_uv_remap_persp_camera to generate
 distortion maps on the fly. 3DEqualizer distortion models uses headers
 from the Science-D-Visions LDPK.
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 LDPK : (C) 2011 - Science-D-Visions. Current version: 1.1
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
@@ -31,10 +31,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "ai.h"
-#include <cstring>
-#include <cstdlib>
-#include <cmath>
+#include "Obq_Common.h"
 #include <ldpk/ldpk.h>
 #include <ldpk/ldpk_cylindric_extender.h>
 #include <ldpk/ldpk_rotation_extender.h>

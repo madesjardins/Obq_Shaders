@@ -1,0 +1,443 @@
+# SPDL - Obq_Etching - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{AC4E3C26-A89E-4F1D-8BCF-4185BF694DCA}";
+PropertySet "Obq_Etching_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{AA0F161E-4A62-4ED5-9272-44C7C947FB36}";
+		Type = color;
+	}
+	Parameter "shading_input" input
+	{
+		GUID = "{1C9EA55A-A8EB-4EE7-B5CE-96FC0DF79FEF}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "use_average_rgb" input
+	{
+		GUID = "{C73B0BDB-5C5A-48DF-B2B6-7D37900D2CAB}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "multiply_bright_color" input
+	{
+		GUID = "{EA73D4B6-0334-4336-9568-D1133BE0893D}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "multiply_dark_color" input
+	{
+		GUID = "{9D46BBC1-86C6-40C1-B400-BDD9DB8E576E}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "texture_space_input" input
+	{
+		GUID = "{BA0E63CD-B7B9-498A-B56B-12A1F2445425}";
+		Type = vector;
+		Texturable = on;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "bright_color" input
+	{
+		GUID = "{2A28C103-5124-4D8A-A506-7C4381BE7F50}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "dark_color" input
+	{
+		GUID = "{5269C748-1885-44F7-A782-BA9A96B836DD}";
+		Type = color;
+		Texturable = on;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "frequency" input
+	{
+		GUID = "{34D04D07-44DC-4875-82B9-2F0ECDAD7E22}";
+		Type = scalar;
+		Texturable = on;
+		Value = 50;
+		Value Minimum = 0.0;
+	}
+	Parameter "bright_point" input
+	{
+		GUID = "{208A8734-CE16-4282-8C74-DD03A095513D}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.0;
+	}
+	Parameter "dark_point" input
+	{
+		GUID = "{D176DC79-4EA3-470C-9A70-6E3CAACEF540}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+	}
+	Parameter "offset" input
+	{
+		GUID = "{C2ABCC8F-F7BB-4C42-988E-B88382885C94}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+		Value Minimum = -1.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "feather" input
+	{
+		GUID = "{96913F54-ABE4-4907-AE34-7A75A50D5D13}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "use_linear_signal" input
+	{
+		GUID = "{65CC4286-7337-4696-B6A7-09084B3CD6EA}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "mix" input
+	{
+		GUID = "{947F6F0E-84E5-4B08-95D9-4D6866613788}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "enable_dots" input
+	{
+		GUID = "{7992D153-7A93-40CB-B705-8FE3081A3FBD}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "bright_dots_start" input
+	{
+		GUID = "{095BEE09-CE8B-4F77-A8D4-BBAA0A49BEC8}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.9;
+		Value Minimum = 0.5;
+		Value Maximum = 1.0;
+	}
+	Parameter "dark_dots_start" input
+	{
+		GUID = "{8E83AC83-F35C-44CD-91B0-6918DCAED86B}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.1;
+		Value Minimum = 0.0;
+		Value Maximum = 0.5;
+	}
+	Parameter "progressive_dots" input
+	{
+		GUID = "{E8BB2907-B055-4385-9F5F-999F5F924DD0}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "aov_matte" input
+	{
+		GUID = "{73C31473-2BB9-436F-9407-753D591EF252}";
+		Type = string;
+		Texturable = off;
+		Value = "Obq_Etching_Matte";
+		Animatable = off;
+	}
+	Parameter "aov_input" input
+	{
+		GUID = "{363B07DF-AEAD-4F07-86D3-DBA653589749}";
+		Type = string;
+		Texturable = off;
+		Value = "Obq_Etching_Input";
+		Animatable = off;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_Etching";
+}
+
+phenomenon "Obq_Etching_declare"
+{
+	Name = "Obq_Etching";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	shading_input
+	{
+		Name = "Shading Input";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	use_average_rgb
+	{
+		Name = "Use Average RGB instead of luminance";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	multiply_bright_color
+	{
+		Name = "Multiply by normalized input";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	multiply_dark_color
+	{
+		Name = "Multiply by normalized input";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	texture_space_input
+	{
+		Name = "Texture projection input";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "vector";
+		UIRange = 0.0 to 1.0 by 0.01;
+	}
+	bright_color
+	{
+		Name = "Bright Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	dark_color
+	{
+		Name = "Dark Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	frequency
+	{
+		Name = "Frequency";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 100;
+	}
+	bright_point
+	{
+		Name = "Bright point";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	dark_point
+	{
+		Name = "Dark point";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	offset
+	{
+		Name = "Offset";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	feather
+	{
+		Name = "Feather";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	use_linear_signal
+	{
+		Name = "Use linear wave type";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	mix
+	{
+		Name = "Mix";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	enable_dots
+	{
+		Name = "Enable dots";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	bright_dots_start
+	{
+		Name = "Bright dots start(ratio)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	dark_dots_start
+	{
+		Name = "Dark dots start(ratio)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	progressive_dots
+	{
+		Name = "Dots appear progressively";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_matte
+	{
+		Name = "Matte";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_input
+	{
+		Name = "Shader input";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	Tab "Color"
+	{
+		Group "Bright"
+		{
+			bright_color;
+			bright_point;
+			multiply_bright_color;
+		}
+		Group "Dark"
+		{
+			dark_color;
+			dark_point;
+			multiply_dark_color;
+		}
+	}
+	Tab "Signal"
+	{
+		frequency;		
+		offset;
+		feather;
+		use_linear_signal;
+		Group "Dots"
+		{
+			enable_dots;
+			progressive_dots;
+			bright_dots_start;
+			dark_dots_start;
+		}
+	}
+	Tab "Input"
+	{
+		shading_input;
+		use_average_rgb;
+		mix;
+		#texture_space_input;
+	}
+	Tab "AOVs"
+	{
+		Button createAOVs,aligncenter = "Create AOVs", 140;
+		aov_matte;
+		aov_input;
+	}
+}
+
+Layout "RenderTree"
+{
+	Group "Color"
+	{
+		Group "Bright"
+		{
+			bright_color;
+			bright_point;
+			multiply_bright_color;
+		}
+		Group "Dark"
+		{
+			dark_color;
+			dark_point;
+			multiply_dark_color;
+		}
+	}
+	Group "Signal"
+	{
+		frequency;		
+		offset;
+		feather;
+		use_linear_signal;
+		Group "Dots"
+		{
+			enable_dots;
+			progressive_dots;
+			bright_dots_start;
+			dark_dots_start;
+		}
+	}
+	Group "Input"
+	{
+	
+		shading_input;
+		use_average_rgb;
+		mix;
+		texture_space_input;
+	}
+}
+
+
+Language = "VBScript";
+Logic
+{
+
+Sub AddChannel(aov)
+	Dim      sName
+
+	sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
+	If sName = "" Then Exit Sub
+
+	On Error Resume Next
+	sName = CreateRenderChannel( sName, siRenderChannelColorType )
+	If Err.Number <> 0 Then
+		LogMessage "Unable to create channel. Does a channel with that name already exist?"
+		Exit Sub
+	End If
+	If sName <> "" Then
+		For Each oInspected In PPG.Inspected
+			aov.value = sName
+		Next
+		OnInit
+	End If
+End Sub
+
+Sub createRenderChannels()
+
+	Set oRenderChannels = ActiveProject.ActiveScene.PassContainer.Properties( "Scene Render Options" ).RenderChannels
+	Dim channelArray(2)
+	channelArray(0) = "Obq_Etching_Matte"
+	channelArray(1) = "Obq_Etching_Input"
+	
+	oChannels = oRenderChannels.getAsText()
+	For Each channelName in channelArray
+		If InStr(oChannels,channelName) = 0 Then
+			CreateRenderChannel channelName, siRenderChannelColorType
+		End If
+	Next			
+		
+End Sub
+
+Sub enable_dots_OnChanged()
+	If PPG.enable_dots.Value = True Then
+		PPG.progressive_dots.ReadOnly = False
+		PPG.bright_dots_start.ReadOnly = False
+		PPG.dark_dots_start.ReadOnly = False
+	Else
+		PPG.progressive_dots.ReadOnly = True
+		PPG.bright_dots_start.ReadOnly = True
+		PPG.dark_dots_start.ReadOnly = True
+	End If
+End Sub
+
+sub createAOVs_OnClicked()
+	createRenderChannels()
+End Sub
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html"
+	enable_dots_OnChanged()
+	PPG.aov_matte.ReadOnly = True
+	PPG.aov_input.ReadOnly = True
+End sub
+
+}

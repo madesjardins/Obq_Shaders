@@ -1,3 +1,33 @@
+/*
+ObqISBrdf :
+
+	is a structure to help Obq_MeasuredMaterial
+
+*------------------------------------------------------------------------
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+*------------------------------------------------------------------------
+*/
+
 #include "ObqISBrdf.h"
 
 void ObqISBrdf::initializeBrdf(AtUInt32 resolution){
@@ -36,8 +66,8 @@ void ObqISBrdf::initializeBrdf(AtUInt32 resolution){
 		// top
 		if(j==0)
 		{
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			glm::dvec3 a(0.0,1.0,0.0);
 			glm::dvec3 b(glm::sin(t/2.0),glm::cos(t/2.0),0.0);
 			glm::dvec3 c = rotateVectorAroundY(b,ph/2.0);
@@ -48,10 +78,10 @@ void ObqISBrdf::initializeBrdf(AtUInt32 resolution){
 		else if(j == toRes-1)
 		{
 
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
 			double jt = static_cast<double>(j)*t;
 			double tover2 = t/2.0;
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			double phover2 = ph/2.0;
 			glm::dvec3 a(glm::sin(jt),glm::cos(jt),0.0);
 			glm::dvec3 d = rotateVectorAroundY(a,phover2);
@@ -65,10 +95,10 @@ void ObqISBrdf::initializeBrdf(AtUInt32 resolution){
 		else
 		{
 
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
 			double jt = static_cast<double>(j)*t;
 			double tover2 = t/2.0;
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			double phover2 = ph/2.0;
 			glm::dvec3 a(glm::sin(jt),glm::cos(jt),0.0);
 			glm::dvec3 d = rotateVectorAroundY(a,phover2);
@@ -147,8 +177,8 @@ void ObqISBrdf::initializeIsBrdf(AtUInt32 resolution){
 		// top
 		if(j==0)
 		{
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			glm::dvec3 a(0.0,1.0,0.0);
 			glm::dvec3 b(glm::sin(t/2.0),glm::cos(t/2.0),0.0);
 			glm::dvec3 c = rotateVectorAroundY(b,ph/2.0);
@@ -159,10 +189,10 @@ void ObqISBrdf::initializeIsBrdf(AtUInt32 resolution){
 		else if(j == toRes-1)
 		{
 
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
 			double jt = static_cast<double>(j)*t;
 			double tover2 = t/2.0;
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			double phover2 = ph/2.0;
 			glm::dvec3 a(glm::sin(jt),glm::cos(jt),0.0);
 			glm::dvec3 d = rotateVectorAroundY(a,phover2);
@@ -176,10 +206,10 @@ void ObqISBrdf::initializeIsBrdf(AtUInt32 resolution){
 		else
 		{
 
-			double t = AI_PIOVER2/static_cast<double>(toRes-1);
+			double t = c_PiOver2__d/static_cast<double>(toRes-1);
 			double jt = static_cast<double>(j)*t;
 			double tover2 = t/2.0;
-			double ph = AI_PI/static_cast<double>(dpRes-1);
+			double ph = c_Pi__d/static_cast<double>(dpRes-1);
 			double phover2 = ph/2.0;
 			glm::dvec3 a(glm::sin(jt),glm::cos(jt),0.0);
 			glm::dvec3 d = rotateVectorAroundY(a,phover2);
@@ -274,13 +304,13 @@ bool ObqISBrdf::readRegIso(const char* filename)
 		initializeBrdf(91);
 
     for(AtUInt32 i = 0; i < m_res; i++){
-         double theta_in= static_cast<double>(i)/static_cast<double>(m_res-1)*AI_PIOVER2;
+         double theta_in= static_cast<double>(i)/static_cast<double>(m_res-1)*c_PiOver2__d;
                  double fi_in = 0.0;
         for(AtUInt32 j = 0; j < m_res; j++){
-             double theta_out = static_cast<double>(j)/static_cast<double>(m_res-1)*AI_PIOVER2;
+             double theta_out = static_cast<double>(j)/static_cast<double>(m_res-1)*c_PiOver2__d;
             for(AtUInt32 k = 0; k < m_2xRes; k++)
             {
-                double fi_out = static_cast<double>(k)/static_cast<double>(m_2xRes-1)*AI_PI;
+                double fi_out = static_cast<double>(k)/static_cast<double>(m_2xRes-1)*c_Pi__d;
                 double red_val, green_val, blue_val;
                 lookup_brdf_val(brdf, theta_in, fi_in,theta_out, fi_out,red_val,green_val,blue_val);
                 setDataFromIndices(i,j,k,glm::dvec3(red_val,green_val,blue_val));

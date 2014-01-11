@@ -21,11 +21,8 @@
 #ifndef OBQBRDFREAD_H
 #define OBQBRDFREAD_H
 
-//#include <cstdlib>
-#include <cstdio>
-#include <cmath>
-#include "ai.h"
-#include "glm\glm.hpp"
+#include "Obq_Common.h"
+#include <glm/glm.hpp>
 
 #define BRDF_SAMPLING_RES_THETA_H       90
 #define BRDF_SAMPLING_RES_THETA_D       90
@@ -42,7 +39,7 @@ inline float angleBetween(const glm::dvec2& A,const glm::dvec2& B)
     if(dot>1.0f)
         return 0.0f;
     else if(dot < -1.0f)
-        return static_cast<float>(AI_PI);
+        return c_Pi;
     else
         return std::acos(dot);
 }
@@ -163,14 +160,14 @@ inline void half_diff_coords_to_std_coords(double &theta_in, double &fi_in, doub
     rotate_vector(temp2, bi_normal, theta_half, in);
 
     double out[3];
-    rotate_vector(in,h,AI_PI,out);
+    rotate_vector(in,h,c_Pi__d,out);
 
 
-    theta_in = glm::max(0.0,glm::min(glm::acos(in[2]),AI_PIOVER2));
+    theta_in = glm::max(0.0,glm::min(glm::acos(in[2]),c_PiOver2__d));
     //fi_in = atan2(in[1], in[0]);
     fi_in = 0.0;
 
-    theta_out = glm::max(0.0,glm::min(glm::acos(out[2]),AI_PIOVER2));
+    theta_out = glm::max(0.0,glm::min(glm::acos(out[2]),c_PiOver2__d));
     //fi_out = atan2(out[1], out[0]);
 
     if(glm::abs(in[2])>1.0-AI_EPSILON || glm::abs(out[2])>1.0-AI_EPSILON)
@@ -192,7 +189,7 @@ inline int theta_half_index(double theta_half)
 {
 	if (theta_half <= 0.0)
 		return 0;
-	double theta_half_deg = ((theta_half / (AI_PI/2.0))*BRDF_SAMPLING_RES_THETA_H);
+	double theta_half_deg = ((theta_half / c_PiOver2__d)*BRDF_SAMPLING_RES_THETA_H);
 	double temp = theta_half_deg*BRDF_SAMPLING_RES_THETA_H;
 	temp = sqrt(temp);
 	int ret_val = (int)temp;
@@ -206,7 +203,7 @@ inline int theta_half_index(double theta_half, int brdfSampligResThetaH)
 {
         if (theta_half <= 0.0)
                 return 0;
-        double theta_half_deg = (theta_half / AI_PIOVER2)*brdfSampligResThetaH;
+        double theta_half_deg = (theta_half / c_PiOver2__d)*brdfSampligResThetaH;
         double temp = theta_half_deg*brdfSampligResThetaH;
         temp = sqrt(temp);
 
@@ -222,7 +219,7 @@ inline double index_to_theta_half(int index)
 {		
         index = static_cast<int>(std::pow(static_cast<float>(index),2));
         double theta_half_deg = double(index)/BRDF_SAMPLING_RES_THETA_H;
-        return theta_half_deg/BRDF_SAMPLING_RES_THETA_H*AI_PIOVER2;
+        return theta_half_deg/BRDF_SAMPLING_RES_THETA_H*c_PiOver2__d;
 }
 
 
@@ -231,13 +228,13 @@ inline double index_to_theta_half(int theta_half_index, int brdfSampligResThetaH
 
         double temp = theta_half_index*theta_half_index;
         double theta_half_deg = temp/brdfSampligResThetaH;
-        double theta_half = theta_half_deg/brdfSampligResThetaH*AI_PIOVER2;
+        double theta_half = theta_half_deg/brdfSampligResThetaH*c_PiOver2__d;
 
 
         if(theta_half < 0.0)
                 return 0.0;
-        else if(theta_half > AI_PIOVER2)
-                return AI_PIOVER2;
+        else if(theta_half > c_PiOver2__d)
+                return c_PiOver2__d;
         else
             return theta_half;
 }
@@ -247,7 +244,7 @@ inline double index_to_theta_half(int theta_half_index, int brdfSampligResThetaH
 // Out: [0 .. 89]
 inline int theta_diff_index(double theta_diff)
 {
-	int tmp = int(theta_diff / (AI_PI * 0.5) * BRDF_SAMPLING_RES_THETA_D);
+	int tmp = int(theta_diff / c_PiOver2__d * BRDF_SAMPLING_RES_THETA_D);
 	if (tmp < 0)
 		return 0;
 	else if (tmp < BRDF_SAMPLING_RES_THETA_D - 1)
@@ -258,7 +255,7 @@ inline int theta_diff_index(double theta_diff)
 
 inline int theta_diff_index(double theta_diff, int brdfSamplingResThetaD)
 {
-        int tmp = int(theta_diff / (AI_PIOVER2) * brdfSamplingResThetaD);
+        int tmp = int(theta_diff / c_PiOver2__d * brdfSamplingResThetaD);
         if (tmp < 0)
                 return 0;
         else if (tmp < brdfSamplingResThetaD - 1)
@@ -270,7 +267,7 @@ inline int theta_diff_index(double theta_diff, int brdfSamplingResThetaD)
 
 inline double index_to_theta_diff(int index)
 {
-        return double(index)/BRDF_SAMPLING_RES_THETA_D*AI_PIOVER2;
+        return double(index)/BRDF_SAMPLING_RES_THETA_D*c_PiOver2__d;
 }
 
 
@@ -280,11 +277,11 @@ inline int phi_diff_index(double phi_diff)
 	// Because of reciprocity, the BRDF is unchanged under
 	// phi_diff -> phi_diff + AI_PI
 	if (phi_diff < 0.0)
-                phi_diff += AI_PI;
+                phi_diff += c_Pi__d;
 
 	// In: phi_diff in [0 .. pi]
 	// Out: tmp in [0 .. 179]
-	int tmp = int(phi_diff / AI_PI * BRDF_SAMPLING_RES_PHI_D / 2);
+	int tmp = int(phi_diff / c_Pi__d * BRDF_SAMPLING_RES_PHI_D / 2);
 	if (tmp < 0)	
 		return 0;
 	else if (tmp < BRDF_SAMPLING_RES_PHI_D / 2 - 1)
@@ -299,11 +296,11 @@ inline int phi_diff_index(double phi_diff, int brdfSamplingResPhiD)
         // Because of reciprocity, the BRDF is unchanged under
         // phi_diff -> phi_diff + AI_PI
         if (phi_diff < 0.0)
-                phi_diff += AI_PI;
+                phi_diff += c_Pi__d;
 
         // In: phi_diff in [0 .. pi]
         // Out: tmp in [0 .. 179]
-        int tmp = int(phi_diff / AI_PI * brdfSamplingResPhiD / 2);
+        int tmp = int(phi_diff / c_Pi__d * brdfSamplingResPhiD / 2);
         if (tmp < 0)
                 return 0;
         else if (tmp < brdfSamplingResPhiD / 2 - 1)
@@ -316,7 +313,7 @@ inline int phi_diff_index(double phi_diff, int brdfSamplingResPhiD)
 // Lookup phi_diff index
 inline double index_to_phi_diff(int index)
 {
-        return 2.0*index/BRDF_SAMPLING_RES_PHI_D*AI_PI;
+        return 2.0*index/BRDF_SAMPLING_RES_PHI_D*c_Pi__d;
 }
 
 
@@ -354,7 +351,12 @@ void inline lookup_brdf_val(double* brdf, double theta_in, double fi_in,
 // Read BRDF data
 inline bool read_brdf(const char *filename, double* &brdf,int dims[3])
 {
+#ifdef _WIN32
 	FILE *f = fopen(filename, "rb");
+#else
+	FILE *f = fopen(filename, "rb");
+#endif
+
 	if (!f)
 		return false;
 

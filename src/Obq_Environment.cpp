@@ -1,10 +1,10 @@
 /*
-Obq_Environment.cpp		v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_Environment.cpp :
 
 	Based on sib_environment and sphericalLightFilter by nozon.
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -368,8 +368,12 @@ shader_evaluate
 
 				// For Sampler & environment checking
 				sg->out.RGBA = AI_RGBA_BLACK;
-				
-				double rnd[2];
+#if OBQ_AI_VERSION >= 40100
+				float rndTmp[2];
+#else
+				double rndTmp[2];
+#endif
+				float rnd[2];
 				AtSamplerIterator* iter;
 
 				// Direction
@@ -393,11 +397,14 @@ shader_evaluate
 
 				int iSample = 0, nSamples = useSampleCount?sampleCount:sampleLevel*sampleLevel;
 
-				while(iSample < nSamples && AiSamplerGetSample(iter, rnd)) 
+				while(iSample < nSamples && AiSamplerGetSample(iter, rndTmp)) 
 				{ 
+					rnd[0] = static_cast<float>(rndTmp[0]);
+					rnd[1] = static_cast<float>(rndTmp[1]);
+
 					// Get theta phi
 					float theta, phi;
-					UVToSpherical(float(rnd[0]),float(rnd[1]),maxAngle,cosLobeExponent,&theta, &phi);
+					UVToSpherical(rnd[0],rnd[1],maxAngle,cosLobeExponent,&theta, &phi);
 
 					// Simplified Rodrigues rotations for theta
 					AtVector Vt = V*std::cos(theta) + KcrossV*std::sin(theta);

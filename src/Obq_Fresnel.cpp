@@ -1,10 +1,10 @@
 /*
-Obq_Fresnel v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_Fresnel :
 
 	a dielectric and a complex fresnel term node. It uses pbrt spectrum class.
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -270,7 +270,7 @@ shader_evaluate
 				double mmin_n2 = mmin(colorNs[0],colorNs[1],colorNs[2]);
 				double n2_n1 = mmin_n2/max_n1;
 				//bool doTirCheck = n2_n1 <= 1.0;
-				double theta_c = (n2_n1 <= 1.0)?asin(n2_n1)-AI_EPSILON: AI_PITIMES2+AI_EPSILON;
+				double theta_c = (n2_n1 <= 1.0)?asin(n2_n1)-AI_EPSILON: c_2Pi+AI_EPSILON;
 
 				// TOTAL INTERN REFLECTION (arnold will tir)
 				if(theta>=theta_c)

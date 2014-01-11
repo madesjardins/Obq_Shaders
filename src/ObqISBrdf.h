@@ -1,21 +1,36 @@
+/*
+ObqISBrdf.h :
+
+*------------------------------------------------------------------------
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+*------------------------------------------------------------------------
+*/
 #ifndef OBQISBRDF_H
 #define OBQISBRDF_H
 
-#include "ai.h"
-#include <algorithm>    // std::stable_sort
+#include "Obq_Common.h"
 #include <queue>
 #include "Obq_BrdfRead.h"
-
-static const float c_Pi = static_cast<float>(AI_PI);
-static const float c_2Pi = static_cast<float>(AI_PITIMES2);
-static const float c_4Pi = static_cast<float>(4.0*AI_PI);
-static const float c_1OverPi = static_cast<float>(1.0/AI_PI);
-static const float c_1Over2Pi = static_cast<float>(1.0/AI_PITIMES2);
-static const float c_1Over4Pi = static_cast<float>(1.0/(2.0*AI_PITIMES2));
-static const float c_PiOver2 = static_cast<float>(AI_PIOVER2);
-static const float c_RADIANS = static_cast<float>(AI_DTOR);
-static const float c_DEGREES = static_cast<float>(AI_RTOD);
-
 
 
 //-----------------------------------------------------------
@@ -60,7 +75,7 @@ inline double angle(const glm::dvec3& A,const glm::dvec3& B)
 	if(dot>=1.0)
 		return 0.0;
 	else if(dot <= -1.0)
-		return AI_PI;
+		return c_Pi;
 	else
 		return std::acos(dot);
 }
@@ -141,7 +156,7 @@ inline double getSolidAngleOfTriangle(glm::dvec3 a, glm::dvec3 b,glm::dvec3 c)
 
 	double C = angle(t_cb,t_ca);
 
-	return A+B+C-AI_PI;
+	return A+B+C-c_Pi;
 }
 
 //------------------------------------------------------------------------------------------------------------
@@ -616,7 +631,7 @@ public:
 		double theta_jitter, phi_jitter;
 		if(useJitters)
 		{
-			double resAngle = AI_PIOVER2/static_cast<double>(m_isResM1f); //full resolution
+			double resAngle = c_PiOver2__d/static_cast<double>(m_isResM1f); //full resolution
 			double resSubd = 10000.0;
 
 			double l = t*resSubd;
@@ -632,7 +647,7 @@ public:
 			else if(bin.theta == 0.0f) // top
 			{
 				theta_jitter = m*resAngle/2.0;
-				phi_jitter = n*AI_PITIMES2;
+				phi_jitter = n*c_2Pi__d;
 			}
 			else
 			{

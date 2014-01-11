@@ -25,7 +25,7 @@ PropertySet "Obq_Fresnel_pset"
 		Type = integer;
 		Value = 6;
 		Value Minimum = 0;
-		Value Maximum = 41;
+		Value Maximum = 42;
 	}
 	Parameter "method" input
 	{
@@ -162,6 +162,7 @@ Defaults
 			"Copper (Cu) [Palik]" = 5,
 			"Gold (Au) [Palik]" = 6,
 			"Iridium (Ir) [Palik]" = 7,
+			"Iron (Fe) [Palik]" = 42,
 			"Lithium (Li) [Sopra]" = 8,
 			"Mercury (Hg) [Palik]" = 9,
 			"Nickel (Ni) [Palik]" = 10,
@@ -669,6 +670,11 @@ Sub presets_OnChanged()
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.method.Value = 0
 			method_OnChanged()
+		ElseIf PPG.presets.Value = 42 Then		' Iron: 
+			iorCoeffs = ARRAY(2.305081, 2.066717, 1.835169, 3.195675, 2.898588, 2.605274)			
+			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
+			PPG.method.Value = 1
+			method_OnChanged()
 
 		Else
 			iorCoeffs = ARRAY(1.00,1.0,1.0,0.0,0.0,0.0)			
@@ -681,7 +687,7 @@ End Sub
 
 
 Sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel_v204.html"
 	mode_OnChanged()
 	PPG.iorExpression.ReadOnly = True
 End Sub

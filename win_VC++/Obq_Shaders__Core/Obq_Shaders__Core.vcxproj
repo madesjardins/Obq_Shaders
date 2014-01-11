@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D38EFABA-4782-4B68-B784-CF677DAEBA93}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Obq_Shaders__Core</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\v300\</OutDir>
+    <TargetName>Obq_Shaders__Core__v300</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\Arnold\Arnold-4.1.3.2-windows\include;F:\Softwares\glm;..\..\src;..\..\src\dte;..\..\src\ldpk;..\..\src\pbrt;..\..\src\yafaray;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>F:\Arnold\Arnold-4.1.3.2-windows\lib;..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ai.lib;</AdditionalDependencies>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
+    </Link>
+    <Xdcmake>
+      <OutputFile>$(IntDir)$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <Bscmake>
+      <OutputFile>$(IntDir)$(TargetName).bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>del /F /Q $(IntDir)*.* $(OutDir)*.lib $(OutDir)*.exp</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ObqISBrdf.cpp" />
+    <ClCompile Include="..\..\src\Obq_AngularCamera.cpp" />
+    <ClCompile Include="..\..\src\Obq_Atmosphere.cpp" />
+    <ClCompile Include="..\..\src\Obq_Bend4Stereo.cpp" />
+    <ClCompile Include="..\..\src\Obq_ChangeRange.cpp" />
+    <ClCompile Include="..\..\src\Obq_Environment.cpp" />
+    <ClCompile Include="..\..\src\Obq_Etching.cpp" />
+    <ClCompile Include="..\..\src\Obq_Fresnel.cpp" />
+    <ClCompile Include="..\..\src\Obq_IESLightFilter.cpp" />
+    <ClCompile Include="..\..\src\Obq_MeasuredMaterial.cpp" />
+    <ClCompile Include="..\..\src\Obq_Opacity.cpp" />
+    <ClCompile Include="..\..\src\Obq_RandomColor.cpp" />
+    <ClCompile Include="..\..\src\Obq_RGBComEmit.cpp" />
+    <ClCompile Include="..\..\src\Obq_RGBComLightFilter.cpp" />
+    <ClCompile Include="..\..\src\Obq_Root2Tip.cpp" />
+    <ClCompile Include="..\..\src\Obq_Shaders__Core.cpp" />
+    <ClCompile Include="..\..\src\Obq_Shadow.cpp" />
+    <ClCompile Include="..\..\src\Obq_StereoLens.cpp" />
+    <ClCompile Include="..\..\src\Obq_SurfaceEnvironment.cpp" />
+    <ClCompile Include="..\..\src\Obq_Thickness.cpp" />
+    <ClCompile Include="..\..\src\Obq_TransformUV.cpp" />
+    <ClCompile Include="..\..\src\Obq_UVRemapLensDistortion.cpp" />
+    <ClCompile Include="..\..\src\Obq_VolumeThickness.cpp" />
+    <ClCompile Include="..\..\src\pbrt\spectrum.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\dte\dtengine.h" />
+    <ClInclude Include="..\..\src\dte\misc.h" />
+    <ClInclude Include="..\..\src\dte\tform.h" />
+    <ClInclude Include="..\..\src\dte\vmat.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_classic_3de_mixed_distortion.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_cylindric_extender.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_error.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_example_radial_distortion.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_extender_base.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_generic_anamorphic_distortion.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_generic_distortion_base.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_generic_radial_distortion.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_ldp_builtin.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_linear_extender.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_lookup_table.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_model_parser.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_plugin_loader.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_power_ct.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_radial_decentered_distortion.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_rotation_extender.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_squeeze_extender.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_table_generator.h" />
+    <ClInclude Include="..\..\src\ldpk\ldpk_vec2d.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_anamorphic_deg_6.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_classic_3de_mixed.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_common_sdv.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_example_radial_deg_8.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_decentered_deg_4_cylindric.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_deg_8.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ld_all_builtins.h" />
+    <ClInclude Include="..\..\src\ldpk\tde4_ld_plugin.h" />
+    <ClInclude Include="..\..\src\ObqISBrdf.h" />
+    <ClInclude Include="..\..\src\Obq_Atmosphere.h" />
+    <ClInclude Include="..\..\src\Obq_BrdfRead.h" />
+    <ClInclude Include="..\..\src\Obq_Common.h" />
+    <ClInclude Include="..\..\src\Obq_Environment.h" />
+    <ClInclude Include="..\..\src\Obq_Fresnel.h" />
+    <ClInclude Include="..\..\src\Obq_MeasuredMaterial.h" />
+    <ClInclude Include="..\..\src\Obq_StereoLens.h" />
+    <ClInclude Include="..\..\src\Obq_SurfaceEnvironment.h" />
+    <ClInclude Include="..\..\src\Obq_Thickness.h" />
+    <ClInclude Include="..\..\src\Obq_VolumeThickness.h" />
+    <ClInclude Include="..\..\src\pbrt\spectrum.h" />
+    <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

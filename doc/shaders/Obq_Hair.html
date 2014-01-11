@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Obq_Hair</title>
+
+</head>
+<body>
+<h1 class="rw_page_title"><span id="title-text"><span style="color: rgb(15, 112, 183);">Obq_Hair (beta)</span></span></h1>
+The Obq_Hair shader is a dual scattering hair shader implementation of
+Sadeghi et al. "An artist friendly hair shading system" using Ou et al.
+"ISHair: Importance Sampling for Hair Scattering". We&nbsp;suggest
+to read those papers if you want to learn more about how this shader
+work. The works of Marschner et al. "Light Scattering from Human Hair
+Fibers" and Zinke et al. "Dual Scattering Approximation for Fast
+Multiple Scattering in Hair" are also strongly suggested. <br>
+<br>
+<strong>WARNING: This is a beta shader and help file and it will
+be&nbsp;updated in the near future. Don't assume parameters won't
+change and use at your own risk :)</strong><br>
+<br>
+<h2>Preprocessing</h2>
+Because a lot of preprocessing is required for this shader, two sets of
+parameter for the BCSDF (Bidirectional Curve Scattering Distribution
+Function) are present. The first set is for preprocessing and are not
+texturable. They appear in the first tab of the UI. The second set is
+shown in the render tree layout of the node and is hidden by default in
+the second tab of the UI, but can be displayed by checking the&nbsp;<span style="font-style: italic; font-weight: bold;">Show BCSDF
+texturables</span> check box for debugging purposes. Unless there
+is a node plugged into the texturable version of a parameter, the
+preprocessing one will be used. The preprocessing parameters should
+reflect the general aspect of the hair in order for the scattering to
+look normal. Checking the&nbsp;<span style="font-style: italic;"><span style="font-weight: bold;">Use preprocessing parameters only</span></span>
+check box will allow to change those parameters and see the effect
+without having to unplug anything.<br>
+<h2>Lobes</h2>
+There are 4 different lobes : R (primary highlights), TT (rimlight),
+TRT-g (secondary highlights minus glints) and g (glints). <br>
+<h2>Parameters</h2>
+<span style="font-weight: bold;">Shift</span>
+(alpha):
+Because human hair isn't a perfect cylinder, there is a shift in the
+highlights towards the root beacause. Using the <span style="font-style: italic;"><span style="font-weight: bold;">Other shifts and widths based on
+primary HL</span></span>
+will compute "normal" shifts based on the value you give to the primary
+highlights. Normal values are : alpha_R&nbsp;&nbsp;[-10°, -5°],
+alpha_TT = -alpha_R/2, alpha_TRT = -3*alpha_R/2<br>
+<br>
+<span style="font-weight: bold;">Width</span>
+(beta, gamma): This is the standard deviation of the gaussian
+distribution that controls the roughness of the higlights. The
+gaussians are unit height like a blinn-phong highlight meaning that
+changing the width won't change the brightest at the highest peak,
+which is great for one slider tweaks. Using the <span style="font-style: italic;"><span style="font-weight: bold;">Other shifts and widths based on
+primary HL</span></span>
+will compute "normal" width based on the value you give to the primary
+highlights. Normal values are :
+beta_R&nbsp;&nbsp;[10°,&nbsp;5°],&nbsp;beta_TT
+=&nbsp;beta_R/2,&nbsp;beta_TRT = 2*beta_R<br>
+<br>
+<span style="font-weight: bold;">Scale</span>&nbsp;:
+Like previously mentionned, the gaussians used are unit height and the
+scales must be adjusted to reflect the real scattering of the hair. For
+example, glints lobe are much brighter than the TRT-g&nbsp; in
+"real"
+life yet both are unit height here, meaning the scales have to be
+adjusted to reflect that (more info in Sadeghi et al.). General rule of
+thumb :&nbsp;TRT-g &lt; R &lt; g &lt; TT.<br>
+<br>
+<span style="font-weight: bold;">Color&nbsp;</span>:
+Scattering lobes color are dependant of the 4 lobes, but the
+latter are independent from each other for better control. In terms of
+saturation : R &lt; TT &lt; TRT-g = g.<br>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">Single Scattering Mode</span>
+: You can&nbsp;use this shader in single scattering mode if desired
+by checking <span style="font-style: italic;"><span style="font-weight: bold;"></span></span>this
+option.<br>
+<br>
+<span style="font-weight: bold;">d_b, d_f</span> :
+This is the density of the hair for the scattering, normal human hair
+is around 0.7.<br>
+<br>
+<span style="font-weight: bold;">Direct and Indirect</span>
+: You can adjust the direct and indirect illumination separately with a
+scale and a color parameter, but normally, this should be 1.0 and white.<br>
+<br>
+<span style="font-weight: bold;">Samples </span>:
+The&nbsp;square root of the number of samples that will be used for
+indirect lighting.<em> <strong style="color: rgb(153, 51, 0);">ATM,
+all indirect samples are of type glossy</strong></em><strong>.</strong><br>
+<br>
+<span style="font-weight: bold;">Importance sampling</span>
+: Compared to uniform sampling, importance sampling will reduce
+the&nbsp;noise of the indirect lighting.<br>
+<br>
+<span style="font-weight: bold;">Opacity </span>:
+The opacity of the hair. You can separate the self opacity from the
+general opacity to either fake scattering in single scattering mode or
+affect the scattering intensity in dual scattering mode.<br>
+<br>
+<span style="font-weight: bold;">Intersection modifier</span>
+: This modifies the number of hair intersections during the forward
+scattering&nbsp;computation (num^modifier) to allow light to go
+furter
+into the hair volume.<br>
+<br>
+<span style="font-weight: bold;">Self rays between
+different shaders</span>
+: To check if the rays are self rays during the forward scattering
+computation, we use a pointer to the shader to compare if the source of
+the ray is the same as the receiver. This works when using either a
+single hair object or multiple hair objects with the same material. If
+you want the forward scattering to be calculated among different hair
+object with different materials, you have to check this. This will have
+a small impact on the speed, but will allow this. The only requirement
+is that the hair shader nodes must contain "Obq_Hair". So
+"Red_Obq_Hair" and "Obq_Hair_Blond" will work, but not "Red_Obq_Hair"
+and "Obq_BlondHair".<br>
+<span style="font-weight: bold;">Critical Sections</span>
+: If things start to crash, check this. There is one place where this
+might be necessary, but we never had a crash (yet) because of that. It
+has a somewhat low impact on render times.<br>
+<h2>Importance Sampling and Multiple Importance Sampling</h2>MIS is
+available for direct lighting. Select a "MIS Mode", a "Dual Scattering
+MIS Mode"&nbsp;option and enter the desired number of samples. We use 2
+separate modes because dual scattering don't really need to be MISed
+since it is very diffuse, but the option is there for you to explore.<span style="font-style: italic;"> Note that these sample numbers are the actual number of samples and not the square root of the number of samples.</span><br><big><br>MIS Mode:</big><br><ul><li><span style="text-decoration: underline;">No MIS</span> : Do not use MIS</li><li><span style="text-decoration: underline;">All lobes at once N times</span> : Do MIS multiple times on all lobes at once choising a direction on a random lobe based on an energy equation. Note that this will merge all AOVs into the primary highlight.</li><li><span style="text-decoration: underline;">Randomly select N lobes</span> : This will select N lobes randomly, based on an energy equation, and MIS them separately. This will keep the integrity of the AOVs.</li><li><span style="text-decoration: underline;">Additional lobes according to sampling</span> : This will individually MIS lobes according to the number of samples entered, this way, you can sample only the noisiest lobes.</li></ul><big>Dual Scattering MIS Mode:</big><br><ul><li><span style="text-decoration: underline;">No MIS</span> : Do not use MIS</li><li><span style="text-decoration: underline;">MIS</span> : Use MIS on the dual scattering term. This will merge all 3 DS AOVs into the scatter AOV. When using the "MIS Mode"&gt;" All lobes at once N times", if you choose 0 samples of Dual Scattering, it will merge all AOVs into the primary highlight one.</li></ul><span style="font-style: italic;"></span>IS is available for indirect lighting. Simply check the "Use importance Sampling" and choose a number of samples. <span style="font-style: italic;">Note that this value&nbsp;is the square root of the total number of samples.</span><br>
+<h2>Ray Optimization</h2>
+To
+help things speed up, there is some sort of a ray switch inside the
+shader. The modes of computation depending on the ray types are :
+color, direct single scattering, direct+indirect single scattering and
+like camera ray. The latter is only available for refracted and
+reflected rays.<br>
+<h2>AOVs</h2>
+Fourteen (14) AOVs are available. They
+will be added to the list of available framebuffers the first time you
+add an Obq_Hair node. You have to activate them in the node's <span style="font-weight: bold; font-style: italic;">AOVs</span>
+tab. A few modes are available and are quite self-explanatory.<br>
+<br>
+------------------------------------------------------------------------<br>
+Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX
+(madesjardins@obliquefx.com)<br>
+<br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.<br>
+<br>
+Licensed under the MIT license:
+http://www.opensource.org/licenses/mit-license.php<br>
+------------------------------------------------------------------------<br>
+<br>
+<br>
+</body></html>

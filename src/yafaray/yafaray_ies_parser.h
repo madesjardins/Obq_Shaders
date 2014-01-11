@@ -24,10 +24,7 @@
 #ifndef IESUTILS_H
 #define IESUTILS_H
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <ai.h>
+#include "Obq_Common.h"
 
 #define TYPE_C 1
 #define TYPE_B 2

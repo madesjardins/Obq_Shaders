@@ -1,12 +1,12 @@
 /*
-Obq_StereoLens.h	 v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_StereoLens.h :
 
 Obq_StereoLens is a lens shader that renders both left and right cameras 
 of a stereo rig in the same frame, saving you one scene loading time for
 each pair of stereo frame. This shader is applied on the center camera.
 
 *------------------------------------------------------------------------
-Copyright (c) 2012 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -30,12 +30,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include <ai.h>
-#include <cstring>
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
-#include <string> 
+#include "Obq_Common.h"
 
 // Arnold thingy
 // 
@@ -104,12 +99,12 @@ inline void ConcentricSampleDisk(float u, float v, int nBlades, float bladeCurva
 		if (a > b) // region 1, also |a| > |b|
 		{
 			r = a;
-			phi = (AI_PI/4.0 ) * (b/a);
+			phi = (c_1Over4Pi ) * (b/a);
 		}
 		else // region 2, also |b| > |a|
 		{
 			r = b;
-			phi = (AI_PI/4.0) * (2.0 - (a/b));
+			phi = (c_1Over4Pi) * (2.0 - (a/b));
 		}
 	}
 	else // region 3 or 4
@@ -117,13 +112,13 @@ inline void ConcentricSampleDisk(float u, float v, int nBlades, float bladeCurva
 		if (a < b) // region 3, also |a| >= |b|, a != 0
 		{
 			r = -a;
-			phi = (AI_PI/4.0) * (4.0 + (b/a));
+			phi = (c_1Over4Pi) * (4.0 + (b/a));
 		}
 		else // region 4, |b| >= |a|, but a==0 and b==0 could occur.
 		{
 			r = -b;
 			if (b != 0.0)
-				phi = (AI_PI/4.0) * (6.0 - (a/b));
+				phi = (c_1Over4Pi) * (6.0 - (a/b));
 			else
 				phi = 0.0;
 		}
@@ -134,7 +129,7 @@ inline void ConcentricSampleDisk(float u, float v, int nBlades, float bladeCurva
 	{
 		// what are floor and ceil of the phi
 		rotation = static_cast<float>(AI_DTOR*rotation);
-		float angleArc = static_cast<float>(AI_PITIMES2 / nBlades);
+		float angleArc = c_2Pi / nBlades;
 		float t = static_cast<float>((phi - rotation)/angleArc);
 		float tf = std::floor(t);
 		float tc = std::ceil(t);

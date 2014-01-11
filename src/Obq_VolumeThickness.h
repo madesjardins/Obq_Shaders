@@ -1,9 +1,9 @@
 /*
-Obq_VolumeThickness v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0):
+Obq_VolumeThickness.h :
 
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -29,13 +29,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQVOLUMETHICKNESS_H
 #define OBQVOLUMETHICKNESS_H
 
-#include "ai.h"
-#include <cstring>
-#include <cstdlib>
-#include <cmath>
-#include <algorithm>
-
-const float c_1over4PI = float(1.0/(4.0*AI_PI));
+#include "Obq_Common.h"
 
 // Arnold Thingy
 //
@@ -89,9 +83,9 @@ inline void addAllDirect(AtShaderGlobals *sg, ShaderData* data, bool kdColorNonZ
 			if(AiLightGetAffectDiffuse(sg->Lp))
 			{
 				if(data->useShadowModifier)
-					*out += sg->we*c_1over4PI*(sg->Liu*(1.0f-data->shadowModifier) + data->shadowModifier*sg->Li);
+					*out += sg->we*c_1Over4Pi*(sg->Liu*(1.0f-data->shadowModifier) + data->shadowModifier*sg->Li);
 				else
-					*out += sg->we*c_1over4PI*sg->Li;
+					*out += sg->we*c_1Over4Pi*sg->Li;
 			}
 
 			sg->Nf = nf;

@@ -1,10 +1,10 @@
 /*
-Obq_Atmosphere v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0):
+Obq_Atmosphere :
 
 Earth's atmosphere
 
 *------------------------------------------------------------------------
-Copyright (c) 2012 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -323,7 +323,7 @@ shader_evaluate
 								if(AiLightGetAffectDiffuse(sgMarch->Lp))
 								{
 									float kcostheta = k*AiV3Dot(sgMarch->Rd,sgMarch->Ld);
-									float ph = c_1over4PI*(1.f-k*k)/((1.f-kcostheta)*(1.f-kcostheta));
+									float ph = c_1Over4Pi*(1.f-k*k)/((1.f-kcostheta)*(1.f-kcostheta));
 									c += sgMarch->we*sgMarch->Li*ph*kd;
 								}
 							}

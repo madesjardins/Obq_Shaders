@@ -1,10 +1,10 @@
 /*
-Obq_AngularCamera.cpp	 v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_AngularCamera.cpp :
 
 Obq_AngularCamera is a lens shader that renders angular map.
 
 *------------------------------------------------------------------------
-Copyright (c) 2012 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -28,10 +28,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include <ai.h>
-#include <cstdlib>
-#include <cstring>
-#include <cmath>
+#include "Obq_Common.h"
 
 // Arnold thingy
 // 
@@ -71,7 +68,7 @@ inline AtVector RodriguesRotation(AtVector v, AtVector k, float angle)
 
 node_parameters
 {
-	AiParameterFLT("angle" , float(AI_PI));
+	AiParameterFLT("angle" , c_Pi);
 	AiParameterBOOL("flip" , false);
 }
 
@@ -80,9 +77,9 @@ node_initialize
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 
 	// Initialize
-	data->angle = float(2.0*AI_PI);
+	data->angle = c_2Pi;
 	data->flip = false;
-	data->tanFov = float(std::tan(AI_PI));
+	data->tanFov =std::tan(c_Pi);
 
 	// Set data
 	AiCameraInitialize(node, data);
@@ -90,11 +87,11 @@ node_initialize
 
 node_update
 {
-	AiCameraUpdate(node, FALSE);
+	AiCameraUpdate(node, false);
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
 
 	// get parameters
-	data->angle = float(AI_DTOR*params[p_angle].FLT/2.0);
+	data->angle = c_Radians*params[p_angle].FLT/2.0f;
 	data->flip = params[p_flip].BOOL;
 	data->tanFov = std::tan(data->angle);
 }

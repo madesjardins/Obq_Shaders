@@ -1,9 +1,9 @@
 /*
-Obq_MeasuredMaterial v2.09.0 (SItoA 2.9.0 - Arnold 4.0.15.1) :
+Obq_MeasuredMaterial :
 
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -209,12 +209,18 @@ shader_evaluate
 		{
 
 			AtSamplerIterator* iter = AiSamplerIterator(data->sampler, sg);
-			double rnd[2];
-
+#if OBQ_AI_VERSION >= 40100
+			float rndTmp[2];
+#else
+			double rndTmp[2];
+#endif
+			float rnd[2];
 			int badPdf=0;
 
-			while(AiSamplerGetSample(iter, rnd)) 
+			while(AiSamplerGetSample(iter, rndTmp)) 
 			{
+				rnd[0] = static_cast<float>(rndTmp[0]);
+				rnd[1] = static_cast<float>(rndTmp[1]);
 
 				AtVector dir;
 				float pdf = 1.0f;

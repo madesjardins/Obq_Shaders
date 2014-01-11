@@ -1,4 +1,4 @@
-# SPDL - Obq_Shadow v2.09.0 (SItoA 2.9.0 - Arnold 4.0.15.1)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_Shadow - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{9BBF999D-F3B1-4721-BC8A-1F6DB007D8F5}";
@@ -16,7 +16,30 @@ PropertySet "Obq_Shadow_pset"
 		Texturable = off;
 		Value = 2;
 		Value Minimum = 0;
-		Value Maximum = 5;
+		Value Maximum = 3;
+	}
+	Parameter "traceType" input
+	{
+		GUID = "{63B83627-E444-4021-A4B3-077B44D6E599}";
+		Type = integer;
+		Texturable = off;
+		Value = 2;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "opacity" input
+	{
+		GUID = "{5A7EFF3A-3B30-45E5-983D-E4C8973F1DC9}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "shadowsOnUnlit" input
+	{
+		GUID = "{5A7EFF3A-3B30-45E5-983D-E4C8973F1DC9}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
 	}
 }
 
@@ -44,33 +67,75 @@ Defaults
 			"Diffuse Shadowed" = 0,
 			"Diffuse Unshadowed" = 1,
 			"Shadow Ratio" = 2,
-			"Shadow Difference" = 3,
-			"Shadow Occlusion" = 4,
-			"Shadow Matte" = 5
+			"Shadow Difference" = 3
 		}
+	}
+	traceType
+	{
+		Name = "Trace Type";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Receiver" = 0,
+			"Caster" = 1,
+			"Caster and Receiver" = 2
+		}
+	}
+	opacity
+	{
+		Name = "Opacity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	shadowsOnUnlit
+	{
+		Name = "Shadows on unlit faces";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
 }
 
 
 Layout "Default"
 {
-	Group "Main"
+	Group "Options"
 	{
 		mode;
+		traceType;
+		shadowsOnUnlit;
+	}
+	Group "Opacity"
+	{
+		opacity;
 	}
 }
 
 Layout "RenderTree"
 {
-
+	opacity;
 }
 
 Language = "VBScript";
 Logic
 {
 
+Sub mode_OnChanged()
+	If PPG.mode.Value = 0 Then
+		PPG.traceType.Show(False)
+		PPG.shadowsOnUnlit.Show(False)
+	ElseIf PPG.mode.Value = 1 Then
+		PPG.traceType.Show(False)
+		PPG.shadowsOnUnlit.Show(True)
+	Else
+		PPG.traceType.Show(True)
+		PPG.shadowsOnUnlit.Show(True)
+	End If
+	PPG.Refresh
+End Sub
+
 sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Shadow.html"
+	mode_OnChanged()
 End sub
 
 }

@@ -1,12 +1,12 @@
 /*
-Obq_StereoLens.cpp	 v2.06.0a (win64 - SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_StereoLens.cpp :
 
 Obq_StereoLens is a lens shader that renders both left and right cameras 
 of a stereo rig in the same frame, saving you one scene loading time for
 each pair of stereo frame. This shader is applied on the center camera.
 
 *------------------------------------------------------------------------
-Copyright (c) 2012 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -94,7 +94,7 @@ node_initialize
 
 node_update
 {
-	AiCameraUpdate(node, FALSE);
+	AiCameraUpdate(node, false);
 
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
 

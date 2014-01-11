@@ -1,12 +1,12 @@
 /*
 
-Obq_Simbiont v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_Simbiont :
 
 	a Darktree node in Softimage that reads .dsts files for the Arnold Renderer.
 	DarkTree (C) 1998-2011 Darkling Simulations
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -31,13 +31,9 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 */
 
-#include "ai.h"
+#include "Obq_Common.h"
 #include "dte/dtengine.h"
 #include "dte/vmat.h"
-#include <cstring>
-#include <cmath>
-#include <cstdlib>
-#include <string>
 
 #define NUMBEROFTWEAKS 16
 
@@ -109,9 +105,9 @@ node_parameters
 typedef struct 
 {
 	void*  dte;									// the dark tree texture instance
-	AtBoolean fileLoaded;						// file loaded successfully ?
-	AtBoolean tweakEnabled[NUMBEROFTWEAKS];		// tweak enable array
-	AtBoolean tweakValid[NUMBEROFTWEAKS];		// valid tweak array
+	bool fileLoaded;						// file loaded successfully ?
+	bool tweakEnabled[NUMBEROFTWEAKS];		// tweak enable array
+	bool tweakValid[NUMBEROFTWEAKS];		// valid tweak array
 	unsigned int tweakTags[NUMBEROFTWEAKS];		// tags for tweaks array
 	unsigned int tweakTypes[NUMBEROFTWEAKS];	// types of tweaks array
 	unsigned int dynTweakNum;					// number of valid and active tweaks to build evaluated array
@@ -181,7 +177,6 @@ node_update
 {
 	// Access shader Data
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-
 	AiCritSecEnter(&data->critical_section);
 
 	//load the file
@@ -311,7 +306,7 @@ node_update
 			{
 				if(data->tweakEnabled[i])
 				{
-					AtFloat* f;
+					float* f;
 					AtRGB c;
 					int* j;
 					bool *b;
@@ -330,14 +325,14 @@ node_update
 					case DSdte::DTE_TWEAK_FLOAT:;
 					case DSdte::DTE_TWEAK_PERCENT :;
 					case DSdte::DTE_TWEAK_BUMP :
-						f = (AtFloat*) AiMalloc( sizeof(AtFloat) );
+						f = (float*) AiMalloc( sizeof(float) );
 						*f = AiNodeGetFlt(node,scalar);
 						data->dynTweak[dynTweakIndex].pValue = f;
 						break;
 					case DSdte::DTE_TWEAK_INT :;
 					case DSdte::DTE_TWEAK_MAPPING :;
 					case DSdte::DTE_TWEAK_SAMPLING :
-						j = (AtInt*) AiMalloc( sizeof(int) );
+						j = (int*) AiMalloc( sizeof(int) );
 						*j = int((AiNodeGetFlt(node,scalar)+0.5f));
 						data->dynTweak[dynTweakIndex].pValue = j;
 						break;
@@ -444,7 +439,7 @@ shader_evaluate
 		rs.bumpScale = AiShaderEvalParamFlt(p_bumpScale);
 		rs.frameNumber = AiShaderEvalParamFlt(p_frameNumber);
 		rs.incident = DSdte::Vec3ToStruct(DSmath::Vec3(sg->Rd.x, sg->Rd.y, sg->Rd.z));
-		AtFloat camNear = AiShaderEvalParamFlt(p_cameraNear), camFar =  AiShaderEvalParamFlt(p_cameraFar);
+		float camNear = AiShaderEvalParamFlt(p_cameraNear), camFar =  AiShaderEvalParamFlt(p_cameraFar);
 		// No division by inf
 		if(camFar <= camNear) camFar = camNear+1.0f;
 		rs.cameraDistanceP = (float(sg->Rl)-camNear)/(camFar-camNear);
@@ -470,7 +465,7 @@ shader_evaluate
 			{
 				if(data->tweakEnabled[i])
 				{
-					AtFloat* f;
+					float* f;
 					AtRGB c;
 					int* j;
 					bool *b;
@@ -485,14 +480,14 @@ shader_evaluate
 					case DSdte::DTE_TWEAK_FLOAT:;
 					case DSdte::DTE_TWEAK_PERCENT :;
 					case DSdte::DTE_TWEAK_BUMP :
-						f = (AtFloat*) AiMalloc( sizeof(AtFloat) );
+						f = (float*) AiMalloc( sizeof(float) );
 						*f = AiShaderEvalParamFlt(int(p_tweakEnable0) + i*4 + 3);
 						dynTweak[dynTweakIndex].pValue = f;
 						break;
 					case DSdte::DTE_TWEAK_INT :;
 					case DSdte::DTE_TWEAK_MAPPING :;
 					case DSdte::DTE_TWEAK_SAMPLING :
-						j = (AtInt*) AiMalloc( sizeof(int) );
+						j = (int*) AiMalloc( sizeof(int) );
 						*j = int(AiShaderEvalParamFlt(int(p_tweakEnable0) + i*4 + 3)+0.5f);
 						dynTweak[dynTweakIndex].pValue = j;
 						break;
@@ -587,15 +582,19 @@ shader_evaluate
 	
 }
 
-//node_loader
-//{
-//   if (i > 0)
-//      return FALSE;
-//
-//   node->methods      = ObqSimbiontMethods;
-//   node->output_type  = AI_TYPE_RGBA;
-//   node->name         = "Obq_Simbiont";
-//   node->node_type    = AI_NODE_SHADER;
-//   strcpy(node->version, AI_VERSION);
-//   return TRUE;
-//}
+node_loader
+{
+   if (i > 0)
+      return false;
+
+   node->methods      = ObqSimbiontMethods;
+   node->output_type  = AI_TYPE_RGBA;
+   node->name         = "Obq_Simbiont";
+   node->node_type    = AI_NODE_SHADER;
+#ifdef _WIN32
+   strcpy_s(node->version, AI_VERSION);
+#else
+   strcpy(node->version, AI_VERSION);
+#endif
+   return true;
+}

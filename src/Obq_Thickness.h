@@ -1,11 +1,11 @@
 /*
-Obq_Thickness v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0):
+Obq_Thickness.h :
 
 	is a shader that tells information concerning the thickness of a surface in a certain direction
 	or the number of objects in this direction
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -31,11 +31,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQTHICKNESS_H
 #define OBQTHICKNESS_H
 
-#include "ai.h"
-#include <cstring>
-#include <cstdlib>
-#include <cmath>
-#include <list>
+#include "Obq_Common.h"
 
 // Arnold Thingy
 //
@@ -99,8 +95,8 @@ inline void ObqRGBAScale(AtRGBA& a, float b)
 //
 inline void UVToSpherical(float u, float v, float maxAngle, float n, float* theta, float* phi){
 
-	*theta = std::acos(std::pow(u,1.0f/(n+1.0f))) * maxAngle/float(AI_PIOVER2);
-	*phi = float(v*AI_PITIMES2);
+	*theta = std::acos(std::pow(u,1.0f/(n+1.0f))) * maxAngle/c_PiOver2;
+	*phi = v*c_2Pi;
 }
 
 

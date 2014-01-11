@@ -1,10 +1,10 @@
 /*
-Obq_TransformUV v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0) :
+Obq_TransformUV :
 
 Just plug this between the image node and the clip.
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -28,10 +28,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "ai.h"
-#include <cstring>
-#include <cstdlib>
-#include <cmath>
+#include "Obq_Common.h"
 
 
 // Arnold stuff

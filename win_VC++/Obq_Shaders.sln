@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Obq_Shaders", "Obq_Shaders.vcxproj", "{4B73FB10-8426-4F62-978D-9F7E9D2914BF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Obq_Shaders__Core", "Obq_Shaders__Core\Obq_Shaders__Core.vcxproj", "{D38EFABA-4782-4B68-B784-CF677DAEBA93}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Obq_Simbiont", "Obq_Simbiont\Obq_Simbiont.vcxproj", "{628F193D-141B-47F8-A816-8D51984B83C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +13,22 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Debug|Win32.Build.0 = Debug|Win32
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Debug|x64.ActiveCfg = Debug|x64
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Debug|x64.Build.0 = Debug|x64
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Release|Win32.ActiveCfg = Release|Win32
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Release|Win32.Build.0 = Release|Win32
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Release|x64.ActiveCfg = Release|x64
-		{4B73FB10-8426-4F62-978D-9F7E9D2914BF}.Release|x64.Build.0 = Release|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|Win32.ActiveCfg = Release|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|Win32.Build.0 = Release|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|x64.ActiveCfg = Debug|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|x64.Build.0 = Debug|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release|Win32.ActiveCfg = Release|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release|Win32.Build.0 = Release|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release|x64.ActiveCfg = Release|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release|x64.Build.0 = Release|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|Win32.ActiveCfg = Release|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|Win32.Build.0 = Release|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|x64.ActiveCfg = Debug|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|x64.Build.0 = Debug|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release|Win32.ActiveCfg = Release|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release|Win32.Build.0 = Release|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release|x64.ActiveCfg = Release|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,10 @@
 /*
-Obq_Shadow v2.10.0 (SItoA 2.10.0 - Arnold 4.0.16.2) :
+Obq_Shadow :
 
 	shadow shader
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -36,27 +36,35 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqShadowSimpleMethods);
 
 // enum for parameters
 //
-enum ObqShadowSimpleParams { p_mode};
+enum ObqShadowSimpleParams { p_mode, p_traceType, p_opacity, p_shadowsOnUnlit };
 
 // shader data struct
 //
 typedef struct 
 {
 	int mode;
+	int traceType;
+	bool shadowsOnUnlit;
 }
 ShaderData;
 
-enum ObqShadowModes {MODE_SHADOWED, MODE_UNSHADOWED_SKIP, MODE_RATIO_SKIP, MODE_DIFFERENCE_SKIP, MODE_OCCLUSION, MODE_MATTE};
+enum ObqShadowModes {MODE_SHADOWED, MODE_UNSHADOWED, MODE_RATIO, MODE_DIFFERENCE};
+enum ObqShadowTraceType {TRACE_RECEIVER, TRACE_CASTER, TRACE_BOTH};
 
 node_parameters
 {
 	AiParameterINT("mode",2);
+	AiParameterINT("traceType", TRACE_BOTH);
+	AiParameterRGB("opacity", 1.0f,1.0f,1.0f);
+	AiParameterBOOL("shadowsOnUnlit",false);
 }
 
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->mode = 0;
+	data->mode = MODE_RATIO;
+	data->traceType = TRACE_BOTH;
+	data->shadowsOnUnlit = false;
 	AiNodeSetLocalData(node,data);
 }
 
@@ -64,8 +72,9 @@ node_update
 {
 	// Access shader Data
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	
 	data->mode = params[p_mode].INT;
+	data->traceType = params[p_traceType].INT;
+	data->shadowsOnUnlit = params[p_shadowsOnUnlit].BOOL;
 }
 
 node_finish
@@ -76,16 +85,32 @@ node_finish
 
 shader_evaluate
 {
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+	
+	AtColor Opacity = AiColorClamp(AiShaderEvalParamRGB(p_opacity),0.0f,1.0f);
 
-	if(sg->Rt & AI_RAY_SHADOW) // TODO : manage opacity
+	if(sg->Rt & AI_RAY_SHADOW)
 	{
-		sg->out_opacity = AI_RGB_WHITE;
+		
+		if(data->traceType >= TRACE_CASTER && (data->mode == MODE_RATIO || data->mode == MODE_DIFFERENCE))
+		{
+			// How much light remains
+			AtColor currentT = AI_RGB_WHITE;
+			AiStateGetMsgRGB("OSc", &currentT);
+			AiStateSetMsgRGB("OSc", ((currentT)*(AI_RGB_WHITE - Opacity)));
+			
+			sg->out_opacity = AI_RGB_BLACK; // passthrough
+			sg->out.RGB = AI_RGB_BLACK;
+		}
+		else
+		{
+			sg->out_opacity = Opacity;
+			sg->out.RGB = AI_RGB_WHITE;
+		}
+		return;
 	}
-	else // TODO : manage other rays
+	else
 	{
-
-		ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-
 		switch(data->mode)
 		{
 		case MODE_SHADOWED:
@@ -94,12 +119,15 @@ shader_evaluate
 				while(AiLightsGetSample(sg))
 				{
 					float cosTheta_i = std::min(std::abs(AiV3Dot(sg->Ld,sg->Nf)),1.0f);
-					sg->out.RGB +=	sg->Li*sg->we*cosTheta_i;
+					sg->out.RGB +=	sg->Li*sg->we*cosTheta_i*c_1OverPi;
 				}
 				break;
 			}
-			case MODE_UNSHADOWED_SKIP:
+			case MODE_UNSHADOWED:
 			{
+				if(data->shadowsOnUnlit)
+					sg->fhemi = false;
+
 				sg->skip_shadow = true;
 				AiLightsPrepare(sg);
 				sg->skip_shadow = false;
@@ -110,95 +138,139 @@ shader_evaluate
 					
 					if(cosTheta_i > 0.0f)
 					{
-						sg->out.RGB +=	sg->Liu*sg->we*cosTheta_i;
-
+						sg->out.RGB +=	sg->Liu*sg->we*cosTheta_i*c_1OverPi;
+					}
+					else if(data->shadowsOnUnlit)
+					{
+						sg->out.RGB +=	sg->Liu*sg->we*std::abs(cosTheta_i)*c_1OverPi;
 					}
 				}
 				
+				if(data->shadowsOnUnlit)
+					sg->fhemi = true;
+				
 				break;
 			}
-			case MODE_RATIO_SKIP:
+			case MODE_RATIO:
 			{
-				AtColor loop_color_s = AI_RGB_BLACK, loop_color_u = AI_RGB_BLACK;
-				sg->skip_shadow = true;
-				AiLightsPrepare(sg);
-				sg->skip_shadow = false;
-				while(AiLightsGetSample(sg))
+				if(data->traceType == TRACE_CASTER)
 				{
-					float cosTheta_i = AiV3Dot(sg->Ld,sg->Nf);
-
-					//Trace shadow
-					if(cosTheta_i > 0.0f)
-					{
-						AtRay ray;
-						AtPoint tmp = sg->P+AI_EPSILON*sg->Ngf;
-						AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld,sg->Ldist,sg);
-						AtScrSample sample;
-						AiTrace(&ray,&sample);
-						
-						loop_color_u +=	sg->Liu*sg->we*cosTheta_i;
-						loop_color_s +=	((AI_RGB_WHITE-sample.opacity)*sg->Liu)*sg->we*cosTheta_i;
-					}
-					
+					sg->out.RGB = AI_RGB_WHITE;
 				}
-
-				if(loop_color_u.r > 0.0f) 
-					sg->out.RGB.r = loop_color_s.r/loop_color_u.r;
-				else 
-					sg->out.RGB.r = 1.0f;
-				
-				if(loop_color_u.g > 0.0f) 
-					sg->out.RGB.g = loop_color_s.g/loop_color_u.g;
-				else 
-					sg->out.RGB.g = 1.0f;
-
-				if(loop_color_u.b > 0.0f) 
-					sg->out.RGB.b = loop_color_s.b/loop_color_u.b;
-				else 
-					sg->out.RGB.b = 1.0f;
-				break;
-			}
-			case MODE_DIFFERENCE_SKIP:
-			{
-				sg->skip_shadow = true;
-				AiLightsPrepare(sg);
-				sg->skip_shadow = false;
-				
-				while(AiLightsGetSample(sg))
+				else
 				{
-					float cosTheta_i = AiV3Dot(sg->Ld,sg->Nf);
-					
-					if(cosTheta_i > 0.0f)
+					if(data->shadowsOnUnlit)
+						sg->fhemi = false;
+
+					AtColor loop_color_s = AI_RGB_BLACK, loop_color_u = AI_RGB_BLACK;
+
+					sg->skip_shadow = true;
+					AiLightsPrepare(sg);
+					sg->skip_shadow = false;
+
+					AiStateSetMsgRGB("OSc", AI_RGB_WHITE);
+
+					while(AiLightsGetSample(sg))
 					{
+						float cosTheta_i = AiV3Dot(sg->Ld,sg->Nf);
+
 						//Trace shadow
-						AtRay ray;
-						AtPoint tmp = sg->P+AI_EPSILON*sg->Ngf;
-						AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld, sg->Ldist,sg);
-						AtScrSample sample;
-						AiTrace(&ray,&sample);
+						if(cosTheta_i > 0.0f)
+						{
+							AtRay ray;
+							AtPoint tmp = sg->P;//+AI_EPSILON*sg->Ngf;
+							AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld,sg->Ldist,sg);
+							AtScrSample sample;
+							bool hit = AiTrace(&ray,&sample);
+							AtColor OSc = AI_RGB_WHITE, factor = AI_RGB_WHITE;
 
-						sg->out.RGB +=	(sg->Liu*sample.opacity)*sg->we*cosTheta_i;
+							AiStateGetMsgRGB("OSc", &OSc);
 
+							factor = (AI_RGB_WHITE-(AI_RGB_WHITE-sample.opacity)*(AI_RGB_WHITE-OSc));
+
+							loop_color_u +=	sg->Liu*sg->we*cosTheta_i*c_1OverPi;
+							loop_color_s +=	factor*sg->Liu*sg->we*cosTheta_i*c_1OverPi;
+						}
+						else if(data->shadowsOnUnlit)
+						{
+							loop_color_u +=	sg->Liu*sg->we*std::abs(cosTheta_i)*c_1OverPi;
+							//loop_color_s += 0*c_1OverPi;
+						}
+						AiStateSetMsgRGB("OSc", AI_RGB_WHITE);
 					}
-					
+					if(data->shadowsOnUnlit)
+						sg->fhemi = true;
+
+					if(loop_color_u.r > 0.0f) 
+						sg->out.RGB.r = loop_color_s.r/loop_color_u.r;
+					else 
+						sg->out.RGB.r = 1.0f;
+
+					if(loop_color_u.g > 0.0f) 
+						sg->out.RGB.g = loop_color_s.g/loop_color_u.g;
+					else 
+						sg->out.RGB.g = 1.0f;
+
+					if(loop_color_u.b > 0.0f) 
+						sg->out.RGB.b = loop_color_s.b/loop_color_u.b;
+					else 
+						sg->out.RGB.b = 1.0f;
 				}
 				break;
 			}
-			case MODE_OCCLUSION:
+			default : //case MODE_DIFFERENCE:
 			{
-				AiLightsPrepare(sg);
-				while(AiLightsGetSample(sg))
+				if(data->traceType == TRACE_CASTER)
 				{
-					sg->out.RGB +=	sg->Lo*sg->we;
+					sg->out.RGB = AI_RGB_BLACK;
 				}
-				break;
-			}
-			default: //MODE_MATTE:
-			{
-				sg->out.RGB = AiLightsGetShadowMatte(sg);
+				else
+				{
+					if(data->shadowsOnUnlit)
+						sg->fhemi = false;
+
+					sg->skip_shadow = true;
+					AiLightsPrepare(sg);
+					sg->skip_shadow = false;
+
+					AiStateSetMsgRGB("OSc", AI_RGB_WHITE);
+					while(AiLightsGetSample(sg))
+					{
+						float cosTheta_i = AiV3Dot(sg->Ld,sg->Nf);
+
+						if(cosTheta_i > 0.0f)
+						{
+							//Trace shadow
+							AtRay ray;
+							AtPoint tmp = sg->P;//+AI_EPSILON*sg->Ngf;
+							AiMakeRay(&ray,AI_RAY_SHADOW, &tmp, &sg->Ld, sg->Ldist,sg);
+							AtScrSample sample;
+							bool hit = AiTrace(&ray,&sample);
+
+							AtColor OSc = AI_RGB_WHITE, factor = AI_RGB_WHITE;
+
+							AiStateGetMsgRGB("OSc", &OSc);
+
+							factor = (AI_RGB_WHITE-sample.opacity)*(AI_RGB_WHITE-OSc);
+
+							sg->out.RGB +=	factor*sg->Liu*sg->we*cosTheta_i*c_1OverPi;		
+
+						}
+						else if(data->shadowsOnUnlit)
+						{
+							sg->out.RGB +=	sg->Liu*sg->we*std::abs(cosTheta_i)*c_1OverPi;
+						}
+						AiStateSetMsgRGB("OSc", AI_RGB_WHITE);
+					}
+					if(data->shadowsOnUnlit)
+						sg->fhemi = true;
+				}
 				break;
 			}
 		}
+
+		// Opacity
+		sg->out_opacity = Opacity;
 	}
 }
 

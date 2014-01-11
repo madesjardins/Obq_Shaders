@@ -1,25 +1,81 @@
+/*
+Obq_Common :
+
+	Common header for the Obq_Shaders
+
+*------------------------------------------------------------------------
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+*------------------------------------------------------------------------
+*/
 #ifndef OBQCOMMON_H
 #define OBQCOMMON_H
 
-#include "ai.h"
+#include <ai.h>
+#include <algorithm>
 #include <cstdlib>
 #include <cmath>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <iomanip>
+#include <string>
+
+
+
+#define OBQ_AI_VERSION (AI_VERSION_ARCH_NUM*10000+AI_VERSION_MAJOR_NUM*100+AI_VERSION_MINOR_NUM)
 
 static const int c_ObqHemisphereThetaRes = 32;
 static const float c_ObqHemisphereThetaResM1f = c_ObqHemisphereThetaRes-1.0f;
-static const float c_Pi = static_cast<float>(AI_PI);
-static const float c_2Pi = static_cast<float>(AI_PITIMES2);
-static const float c_4Pi = static_cast<float>(4.0*AI_PI);
-static const float c_1OverPi = static_cast<float>(1.0/AI_PI);
-static const float c_1Over2Pi = static_cast<float>(1.0/AI_PITIMES2);
-static const float c_1Over4Pi = static_cast<float>(1.0/(2.0*AI_PITIMES2));
-static const float c_PiOver2 = static_cast<float>(AI_PIOVER2);
-static const float c_RADIANS = static_cast<float>(AI_DTOR);
-static const float c_DEGREES = static_cast<float>(AI_RTOD);
 
+static const double c_Pi__d = 3.1415926535897931;
+static const double c_2Pi__d = 6.2831853071795862;
+static const double c_4Pi__d = c_Pi__d*4.0;
+static const double c_1OverPi__d = 0.3183098861837906;
+static const double c_1Over2Pi__d = 0.1591549430918953;
+static const double c_1Over4Pi__d = 1.0/c_4Pi__d;
+static const double c_PiOver2__d = 1.5707963267948966;
+static const double c_Radians__d = 0.0174532925199433;
+static const double c_Degrees__d = 57.295779513082323;
+static const double c_E__d = 2.7182818284590452;
+static const double c_Log_2_E__d = 1.4426950408889634; 
+static const double c_Sqrt2__d = 1.4142135623730951;
+static const double c_Sqrt3__d = 1.7320508075688772;
+static const double c_Golden__d = 1.6180339887498948;
+
+static const float c_Pi = static_cast<float>(c_Pi__d);
+static const float c_2Pi = static_cast<float>(c_2Pi__d);
+static const float c_4Pi = static_cast<float>(c_4Pi__d);
+static const float c_1OverPi = static_cast<float>(c_1OverPi__d);
+static const float c_1Over2Pi = static_cast<float>(c_1Over2Pi__d);
+static const float c_1Over4Pi = static_cast<float>(c_1Over4Pi__d);
+static const float c_PiOver2 = static_cast<float>(c_PiOver2__d);
+static const float c_Radians = static_cast<float>(c_Radians__d);
+static const float c_Degrees = static_cast<float>(c_Degrees__d);
+static const float c_E = static_cast<float>(c_E__d);
+static const float c_Log_2_E = static_cast<float>(c_Log_2_E__d);
+static const float c_Sqrt2 = static_cast<float>(c_Sqrt2__d);
+static const float c_Sqrt3 = static_cast<float>(c_Sqrt3__d);
+static const float c_Golden = static_cast<float>(c_Golden__d);
 
 /////////////////////////////////////////////////////////
 // OBQ COMMON FUNCTIONS
@@ -111,7 +167,16 @@ inline AtVector rodriguesRotation(AtVector v,  /*!< [in] : Vector to rotate.*/
 inline void uniformPointSphere(AtVector& V, double uv[])
 {
 	V.z = static_cast<float>(LERP(uv[0],-1.0,1.0));
-	float t = static_cast<float>(LERP(uv[1],0.0,AI_PITIMES2));
+	float t = static_cast<float>(LERP(uv[1],0.0,c_2Pi__d));
+	float r = std::sqrt(1.0f-std::pow(V.z,2));
+	V.x = r*std::cos(t);
+	V.y = r*std::sin(t);
+}
+
+inline void uniformPointSphere(AtVector& V, float uv[])
+{
+	V.z = static_cast<float>(LERP(uv[0],-1.0f,1.0f));
+	float t = static_cast<float>(LERP(uv[1],0.0f,c_2Pi));
 	float r = std::sqrt(1.0f-std::pow(V.z,2));
 	V.x = r*std::cos(t);
 	V.y = r*std::sin(t);
@@ -150,9 +215,14 @@ inline AtColor colorChannelSqrt(const AtColor& color)
 }
 
 
-inline double myRandom()
+inline double myRandom__d()
 {
 	return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
+}
+
+inline float myRandom()
+{
+	return static_cast<float>(static_cast<double>(std::rand())/static_cast<double>(RAND_MAX));
 }
 /////////////////////////////////////////////////////////
 // OBQ CLASSES

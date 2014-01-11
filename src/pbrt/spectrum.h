@@ -25,12 +25,8 @@
 #ifndef SPECTRUM_H
 #define SPECTRUM_H
 
-#include "ai.h"
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
+#include "Obq_Common.h"
 #include <vector>
-#include <algorithm>
 
 template <int nSamples> class CoefficientSpectrum;
 class RGBSpectrum;
