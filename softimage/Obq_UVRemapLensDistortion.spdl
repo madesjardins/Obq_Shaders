@@ -587,8 +587,8 @@ Defaults
 			"3DE4 Anamorphic, Degree 6" = 2,
 			"3DE4 Radial - Fisheye, Degree 8" = 3,
 			"3DE4 Radial - Standard, Degree 4" = 4,
-			"3DE4 Radial - Decentered Cylindric, Degree 4" = 5,
-			"3DE4 Anamorphic Rotate Squeeze, Degree 4" = 6
+			"(BROKEN) 3DE4 Radial - Decentered Cylindric, Degree 4" = 5,
+			"(BROKEN) 3DE4 Anamorphic Rotate Squeeze, Degree 4" = 6
 		}
 	}
 	k1
