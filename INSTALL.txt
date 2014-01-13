@@ -10,16 +10,16 @@ HOW TO INSTALL
 
   + copy the .dll   in "bin\vXXX" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",[Windows]
   + copy the .so    in "bin\vXXX" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
-  + copy the .dylib in "bin\vXXX" into "Addons/SItoA/Application/Plugins/bin/??",		[OSX]
+  + copy the .dylib in "bin\vXXX" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
 
   To use Obq_Simbiont:
   + copy the "bin\dte\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows]
     arbitrary directory (AD). If you chose the AD method, you'll need to append this AD 
     to the PATH environment variable. For example, you can add : 
     "set PATH=%PATH%;\\serverX\dte_folder" in the .bat that launches Softimage (without the quotes).
-    You will also need copy the "\bin\dte_components" folder somewhere and change the path
+    You will also need copy the "\bin\dte\dte_components" folder somewhere and change the path
     on line 30 of the Obq_Simbiont.spdl (the "componentLibsPath" parameters).
-    If you don't posess a copy of DarkTree, you can download some DarkTree files here :
+    If you don't own a copy of DarkTree, you can download some DarkTree files here :
     http://www.darksim.com/html/downloads.html
   
 
@@ -45,7 +45,7 @@ Requirements:
 	Microsoft Visual C++ (Express) 2010 [windows]
 	Windows SDK [windows]
 	Arnold SDK Libraries/Includes [all OS]
-	GLM 0.9.4.3 (or above) [all OS]
+	GLM 0.9.4.3 (or above)  [all OS]
 	GCC 4.1.2 (recommended) [Linux, Mac OSX]
 
 
@@ -58,6 +58,7 @@ Simply change the OBQVERSION, GLMPATH and ARNOLD path before running make.
 
 SItoA ARNOLD VERSION
 ====================
+3.0 = 4.1.3.2
 2.10= 4.0.16.4
 2.9 = 4.0.15.1
 2.8 = 4.0.14.0
