@@ -121,6 +121,7 @@ typedef struct
 {
    const char* aov_matte;
    const char* aov_input;
+   bool autoFilteringOut;
 }
 ShaderData;
 
@@ -151,7 +152,16 @@ enum ObqEtchingSimpleParams {
 	p_dark_dots_start,
 	p_progressive_dots,
 	p_aov_matte,
-	p_aov_input
+	p_aov_input,
+	p_autoFiltering,
+	p_autoFilteringBias,
+	p_autoFilteringGain,
+	p_autoFilteringStart,
+	p_autoFilteringEnd,
+	p_autoFilteringOut,
+	p_autoFilteringU,
+	p_autoFilteringMode,
+	p_autoFilteringAutoRange
 };
 
 enum obqSignals{OBQ_BOX, OBQ_TRIANGLE, OBQ_WAVE};
@@ -178,6 +188,15 @@ node_parameters
 	AiParameterBOOL("progressive_dots",false);
 	AiParameterSTR("aov_matte","Obq_Etching_Matte");
 	AiParameterSTR("aov_input","Obq_Etching_Input");
+	AiParameterBOOL("autoFiltering",false);
+	AiParameterFLT("autoFilteringBias",0.725f);
+	AiParameterFLT("autoFilteringGain",0.125f);
+	AiParameterFLT("autoFilteringStart",0.002f);
+	AiParameterFLT("autoFilteringEnd",0.02f);
+	AiParameterBOOL("autoFilteringOut",false);
+	AiParameterBOOL("autoFilteringU",false);
+	AiParameterINT("autoFilteringMode",0);
+	AiParameterBOOL("autoFilteringAutoRange",true);
 }
 
 node_initialize
@@ -194,6 +213,8 @@ node_update
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 	data->aov_matte = params[p_aov_matte].STR;
 	data->aov_input = params[p_aov_input].STR;
+	data->autoFilteringOut = params[p_autoFilteringOut].BOOL;
+	
 }
 
 node_finish
@@ -205,26 +226,96 @@ node_finish
 
 shader_evaluate
 {
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 
 	// Get parameters
+	float frequency = AiShaderEvalParamFlt(p_frequency);
+	float feather = MAX( 0.0f, MIN(AiShaderEvalParamFlt(p_feather),1.0f));
+	float mix = MAX( 0.0f, MIN( AiShaderEvalParamFlt(p_mix),1.0f));
+
+	bool autoFiltering = AiShaderEvalParamBool(p_autoFiltering);
+
+	// Auto-filtering
+	if(autoFiltering)
+	{
+		//starting at feather, being more aggressive will get you to feather = 1 faster, while less aggressive will keep you closer to actual feather
+		//if(aggressiveness == 1.0f) // more
+		//		tf=1.0f;
+		//	else if(aggressiveness == -1.0f) // more
+		//		tf=0.0f;
+		//	else if(aggressiveness > 0.0f) // more
+		//		tf = std::pow(tf,(1.0f-aggressiveness));
+		//	else if(aggressiveness < 0.0f) // less
+		//		tf = std::pow(tf,1.0f/(1.0f+aggressiveness));
+	
+		bool autoRange = AiShaderEvalParamBool(p_autoFilteringAutoRange);
+		float start = (autoRange?0.1f/frequency:AiShaderEvalParamFlt(p_autoFilteringStart));
+		float end =   (autoRange?1.0f/frequency:MAX(AiShaderEvalParamFlt(p_autoFilteringEnd),start));
+
+		float tf = sqrt(sg->dvdx*sg->dvdx + sg->dvdy*sg->dvdy);
+		
+		// Take U in consideration also ?Q
+		if(AiShaderEvalParamBool(p_autoFilteringU))
+			tf = MAX(tf,static_cast<float>(sqrt(sg->dudx*sg->dudx + sg->dudy*sg->dudy)));
+		
+		// clamp to be sure
+		if(tf>1.0f)	
+			tf = 1.0f;
+		
+		// remap
+		if(tf >= end)
+			tf=1.0f;
+		else if(tf <= start)
+			tf = 0.0f;
+		else
+		{
+
+			tf = (tf-start)/(end-start);
+			
+			// Bias and gain
+			float bias =  AiShaderEvalParamFlt(p_autoFilteringBias);
+			float gain =  AiShaderEvalParamFlt(p_autoFilteringGain);
+
+			if(bias!=0.5)
+				tf = BIAS(tf,bias);
+			if(gain!=0.5)
+				tf = GAIN(tf,1.0f-gain);
+		}
+		
+		// Debug
+		if(data->autoFilteringOut)
+		{
+			sg->out.RGB = tf;
+			return;
+		}
+
+		// Apply to feather and or mix
+		int autoFilteringMode = AiShaderEvalParamBool(p_autoFilteringMode);
+		if(autoFilteringMode > 0 )
+			mix += (1.0f-mix)*tf;
+
+		if(autoFilteringMode < 2)
+			feather += (1.0f-feather)*tf;
+		
+	}
+
+	// Other Parameters
 	AtColor shading_input =  AiShaderEvalParamRGB(p_shading_input);
 	AtVector tex_input =  AiShaderEvalParamVec(p_texture_space_input);
 	AtColor bright_color = AiShaderEvalParamRGB(p_bright_color);
 	AtColor dark_color = AiShaderEvalParamRGB(p_dark_color);
 	bool use_linear_signal = AiShaderEvalParamBool(p_use_linear_signal);
-	float bright_point = AiShaderEvalParamFlt(p_bright_point);
-	float dark_point = AiShaderEvalParamFlt(p_dark_point);
-	float frequency = AiShaderEvalParamFlt(p_frequency);
+	float bright_point = AiShaderEvalParamFlt(p_bright_point)-AI_EPSILON;
+	float dark_point = MIN(AiShaderEvalParamFlt(p_dark_point)+AI_EPSILON,bright_point);
 	float offset = AiShaderEvalParamFlt(p_offset);
-	float feather = MAX( 0.0f, MIN(AiShaderEvalParamFlt(p_feather),1.0f));
 	bool use_average_rgb = AiShaderEvalParamBool(p_use_average_rgb);
 	bool mult_bright = AiShaderEvalParamBool(p_multiply_bright_color);
 	bool mult_dark = AiShaderEvalParamBool(p_multiply_dark_color);
-	float mix = MAX( 0.0f, MIN( AiShaderEvalParamFlt(p_mix),1.0f));
+	
 	bool enable_dots = AiShaderEvalParamBool(p_enable_dots);
 
 	// Compute shading Value
-	float value = (use_average_rgb? (shading_input.r+shading_input.g+shading_input.b)/3.0f : 0.2126f*shading_input.r + 0.7152f*shading_input.g + 0.0722f*shading_input.b);
+	float value =   (use_average_rgb? (shading_input.r+shading_input.g+shading_input.b)/3.0f : 0.2126f*shading_input.r + 0.7152f*shading_input.g + 0.0722f*shading_input.b);
 	float value_n = (value-dark_point)/(bright_point - dark_point);
 
 	// Compute Signal
@@ -438,7 +529,6 @@ shader_evaluate
 	// Write AOVs
 	if(sg->Rt & AI_RAY_CAMERA)
 	{
-		ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 		if(AiAOVEnabled (data->aov_matte, AI_TYPE_RGB))
 			AiAOVSetRGB (sg, data->aov_matte, t*AI_RGB_WHITE);
 		else if(AiAOVEnabled (data->aov_matte, AI_TYPE_FLOAT))

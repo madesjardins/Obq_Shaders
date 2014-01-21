@@ -7,7 +7,8 @@ from the Science-D-Visions LDPK.
 
 *------------------------------------------------------------------------
 Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
-LDPK : (C) 2011 - Science-D-Visions. Current version: 1.1
+LDPK : (C) 2013 - Science-D-Visions. Current version: 1.7
+PFBarrel  : Copyright (C) 2012 The Pixel Farm Ltd.  Current version: 1.3
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -31,14 +32,27 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+/*
+MUST DO with newer ldpk in public : 
+	In tde4_ldp public:
+		bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
+		bool initializeParameters2(){return initializeParameters();}
+		bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
+	ldpk_plugin_loader
+		comment the code but not include
+	Where needed:
+		+ #define M_PI 3.14159265358979
+		+ change cout et cerr pour AiMsgInfo et AiMsgError
+*/
+
+#include "Obq_UVRemapLensDistortion.h"
 #include <ldpk/ldpk.h>
-#include <ldpk/ldpk_cylindric_extender.h>
-#include <ldpk/ldpk_rotation_extender.h>
-#include <ldpk/ldpk_squeeze_extender.h>
-#include <ldpk/ldpk_linear_extender.h>
-// Struct
-//
+#include <ldpk/tde4_ldp_classic_3de_mixed.h>
+#include <ldpk/tde4_ldp_anamorphic_deg_6.h>
+#include <ldpk/tde4_ldp_radial_deg_8.h>
+#include <ldpk/tde4_ldp_radial_decentered_deg_4_cylindric.h>
+#include <ldpk/tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h>
+
 typedef struct 
 {
 	float aspect;
@@ -46,25 +60,18 @@ typedef struct
 	float height;
 	float pixelRatio;
 	AtPoint pixelOffset;
-	ldpk::classic_3de_mixed_distortion<ldpk::vec2d,ldpk::mat2d>* classic3d;
-	ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,6>* anamorphic6;
-	ldpk::generic_radial_distortion<ldpk::vec2d,ldpk::mat2d,8>* fisheye8;
-	ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>* standard4;
-
-	// radial decentered cylindric degree 4 
-	ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>* _radial;
-	ldpk::cylindric_extender_2<ldpk::vec2d,ldpk::mat2d>* _cylindric;
-
-	// anamorphic rotation squeeze 
-	ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,4>* _anamorphic;
-	ldpk::rotation_extender<ldpk::vec2d,ldpk::mat2d>* _rotation;
-	ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>* _squeeze_x;
-	ldpk::squeeze_y_extender<ldpk::vec2d,ldpk::mat2d>* _squeeze_y;
-	ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>* _pa;
-
-//! Concatenating extenders for better performance
-	ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>* _rot_sqx_sqy_pa;
-	ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>* _pa_rot;
+	tde4_ldp_classic_3de_mixed<ldpk::vec2d,ldpk::mat2d>* classic3de;							//classic 3DE
+	tde4_ldp_anamorphic_deg_6<ldpk::vec2d,ldpk::mat2d>* anamorphic6;							//anamorphic 6
+	tde4_ldp_radial_deg_8<ldpk::vec2d,ldpk::mat2d>* fisheye8;									//fisheye 8
+	ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>* standard4;						// Standard 4 old version 
+	tde4_ldp_radial_decentered_deg_4_cylindric<ldpk::vec2d,ldpk::mat2d>* radial4cylindric;		// standard 4 with cylindric
+	tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy< ldpk::vec2d , ldpk::mat2d >* anamorphicDeg4Sq;	// anamorphic_deg_4_rotate
+	
+	glm::dvec2 pf_C3C5;		// PFTrack model
+	glm::dvec2 pf_absCent;
+	double pf_squeeze;
+	double pf_invSqueeze;
+	glm::dvec2 pf_norm;
 }
 ShaderData;
 
@@ -76,11 +83,11 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqUVRemapLensDistortionSimpleMethods);
 
 // Enum for params
 //
-enum ObqUVRemapLensDistortionSimpleParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05, p_raddec4c00, p_raddec4c01, p_raddec4c02, p_raddec4c03, p_raddec4c04, p_raddec4c05, p_raddec4c06, p_raddec4c07, p_ana4c00, p_ana4c01,p_ana4c02,p_ana4c03,p_ana4c04,p_ana4c05,p_ana4c06,p_ana4c07,p_ana4c08,p_ana4c09, p_ana4c10, p_ana4c11,p_ana4c12};
+enum ObqUVRemapLensDistortionSimpleParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05, p_raddec4c00, p_raddec4c01, p_raddec4c02, p_raddec4c03, p_raddec4c04, p_raddec4c05, p_raddec4c06, p_raddec4c07, p_ana4c00, p_ana4c01,p_ana4c02,p_ana4c03,p_ana4c04,p_ana4c05,p_ana4c06,p_ana4c07,p_ana4c08,p_ana4c09, p_ana4c10, p_ana4c11,p_ana4c12, p_focal3DEq, p_focusDistance3DEq,p_pfC3, p_pfC5, p_pfSqueeze, p_pfXp, p_pfYp};
 
 // Enum for distortion model
 //
-enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4,RADIAL_DECENTERED_CYLINDRIC4, ANAMORPHIC4};
+enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4,RADIAL_DECENTERED_CYLINDRIC4, ANAMORPHIC4, PFBARREL};
 
 
 node_parameters
@@ -152,81 +159,13 @@ node_parameters
 	AiParameterFLT("ana4c10" , 0.0f);
 	AiParameterFLT("ana4c11" , 1.0f);
 	AiParameterFLT("ana4c12" , 1.0f);
-}
-
-
-// NUKE Distortion model
-//
-// Use the Nuke distortion model to distort undistorted camera rays
-//
-// @param out			The result will be put here
-// @param x				The x coordinate [-1,1]
-// @param y				The x coordinate [-1/aspectRatio,1/aspectRatio]
-// @param k1			The first distortion coefficient
-// @param k2			The second distortion coefficient
-// @param centerX		The relative center offset in X
-// @param centerY		The relative center offset in Y
-// @param anaSq			The anamorphic squeeze
-// @param asyX			The asymetric distortion coefficient in X
-// @param asyY			The asymetric distortion coefficient in X
-// @param aspectRatio	The aspect ratio of the frame
-//
-void distortNuke(AtPoint* out, double x, double y, 
-	double k1, double k2, 
-	double centerX, double centerY, 
-	double anaSq, double asyX, double asyY, 
-	double aspectRatio)
-{
-
-	// Aspect ratio
-	if(aspectRatio < 1.0)
-	{
-		centerX/=aspectRatio;
-		centerY/=aspectRatio;
-		// Decentering
-		x-=centerX;
-		y-=centerY;
-
-		// Normalization compensation
-		x*=aspectRatio;
-		y*=aspectRatio;
-	}
-	else
-	{
-		x-=centerX;
-		y-=centerY;
-	}
-
-	// Radius
-	const double x2 = x*x;
-	const double y2 = y*y;
-	const double r2 = x2+y2;
-	const double r4 = r2*r2;
-
-	// Quick Test
-	if(anaSq==0.0f) 
-		anaSq = 0.001;
-
-	// Anamorphic squeeze
-	asyX/=anaSq;
-	const double k1x = k1/anaSq;
-	const double k2x = k2/anaSq;
-
-	// Distortion
-	x /= (1.0 + k1x*r2 + asyX*y2 + k2x*r4);
-	y /= (1.0 + k1*r2 + asyY*x2 + k2*r4);
-	
-	// Aspect Ratio
-	if(aspectRatio < 1.0)
-	{
-		x/=aspectRatio;
-		y/=aspectRatio;
-	}
-
-	// Re-center
-	// Out
-	out->x = float(x+centerX);
-	out->y = float(y+centerY);
+	AiParameterFLT("focal3DEq" , 5.0f);
+	AiParameterFLT("focusDistance3DEq" , 100.0f);
+	AiParameterFLT("pfC3" , 0.0f);
+	AiParameterFLT("pfC5" , 0.0f);
+	AiParameterFLT("pfSqueeze" , 1.0f);
+	AiParameterFLT("pfXp" , 0.5f);
+	AiParameterFLT("pfYp" , 0.5f);
 }
 
 node_initialize
@@ -243,23 +182,19 @@ node_initialize
 	data->pixelOffset.y = -0.5f/data->height;
 
 	// Allocate
-	data->classic3d = new ldpk::classic_3de_mixed_distortion<ldpk::vec2d,ldpk::mat2d>;
-	data->anamorphic6 = new ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,6>; // 18 params
-	data->fisheye8 = new ldpk::generic_radial_distortion<ldpk::vec2d,ldpk::mat2d,8>;		// 4 params
+	data->classic3de = new tde4_ldp_classic_3de_mixed<ldpk::vec2d,ldpk::mat2d>; // 5 params
+	data->anamorphic6 = new tde4_ldp_anamorphic_deg_6<ldpk::vec2d,ldpk::mat2d>; // 18 params
+	data->fisheye8 = new tde4_ldp_radial_deg_8<ldpk::vec2d,ldpk::mat2d>; // 4 params
 	data->standard4 = new ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>;		// 6 param
+	data->radial4cylindric = new tde4_ldp_radial_decentered_deg_4_cylindric<ldpk::vec2d,ldpk::mat2d>; //8 params (6 de standard4 + 2 cylindric)
+	data->anamorphicDeg4Sq = new tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy< ldpk::vec2d , ldpk::mat2d>; // 12 params
 
-	data->_radial = new ldpk::radial_decentered_distortion<ldpk::vec2d,ldpk::mat2d>;
-	data->_cylindric = new ldpk::cylindric_extender_2<ldpk::vec2d,ldpk::mat2d>;
+	data->pf_C3C5 = glm::dvec2(0.0,0.0);		// PFTrack model
+	glm::dvec2 pf_absCent = glm::dvec2(0.0,0.0);
+	double pf_squeeze = 1.0;
+	double pf_invSqueeze = 1.0;
+	glm::dvec2 pf_norm = glm::dvec2(1.0,1.0);
 
-
-	data->_anamorphic = new ldpk::generic_anamorphic_distortion<ldpk::vec2d,ldpk::mat2d,4>;
-	data->_rotation = new ldpk::rotation_extender<ldpk::vec2d,ldpk::mat2d>;
-	data->_squeeze_x = new ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>;
-	data->_squeeze_y = new ldpk::squeeze_y_extender<ldpk::vec2d,ldpk::mat2d>;
-	data->_pa = new ldpk::squeeze_x_extender<ldpk::vec2d,ldpk::mat2d>;
-	data->_rot_sqx_sqy_pa = new ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>;
-	data->_pa_rot = new ldpk::linear_extender<ldpk::vec2d,ldpk::mat2d>;
-	
 	// Set data
 	AiNodeSetLocalData(node,data);
 	
@@ -267,8 +202,9 @@ node_initialize
 
 node_update
 {
+	
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-
+	
 	// Update shaderData variables
 	AtNode* options = AiUniverseGetOptions();
 	data->width  = float(AiNodeGetInt(options,"xres"));
@@ -276,52 +212,95 @@ node_update
 	
 	data->pixelRatio = 1.0f/AiNodeGetFlt(options,"aspect_ratio");
 	data->aspect = data->width/(data->height/data->pixelRatio);
+	
 	data->pixelOffset.x = -0.5f/data->width;
 	data->pixelOffset.y = -0.5f/data->height;
 
-	// Conditionnal update because spdl logic changes the hidden parameters
+	//////////////////////////////
+	// Prepare disotortion model
 	switch(params[p_distortionModel].INT)
 	{
+	case PFBARREL:
+		{
+			data->pf_absCent = calcAbsCent(params[p_pfXp].FLT,static_cast<int>(data->width),params[p_pfYp].FLT,static_cast<int>(data->height));
+			data->pf_norm = calcNorm(static_cast<int>(data->width),static_cast<int>(data->height));
+			data->pf_squeeze = params[p_pfSqueeze].FLT;
+			data->pf_invSqueeze = 1.0/data->pf_squeeze;
+			data->pf_C3C5 = glm::dvec2(params[p_pfC3].FLT,params[p_pfC5].FLT);
+			break;
+		}
 	case CLASSIC3DE:
-		data->classic3d->set_coeff(0,params[p_c3dc00].FLT);
-		data->classic3d->set_coeff(1,params[p_c3dc01].FLT);
-		data->classic3d->set_coeff(2,params[p_c3dc02].FLT);
-		data->classic3d->set_coeff(3,params[p_c3dc03].FLT);
-		data->classic3d->set_coeff(4,params[p_c3dc04].FLT);
-		data->classic3d->eval(ldpk::vec2d(0.0,0.0)); // updates
+		{
+		// built-in
+		data->classic3de->setParameterValue2("tde4_focal_length_cm",			params[p_focal3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_filmback_width_cm",			params[p_filmbackX3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_filmback_height_cm",			params[p_filmbackY3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_lens_center_offset_x_cm",	params[p_centerX3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_lens_center_offset_y_cm",	params[p_centerY3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_pixel_aspect",				params[p_pixelRatio3DEq].FLT);
+		data->classic3de->setParameterValue2("tde4_custom_focus_distance_cm",	params[p_focusDistance3DEq].FLT);
+		// model
+		data->classic3de->setParameterValue2("Distortion",			params[p_c3dc00].FLT);
+		data->classic3de->setParameterValue2("Anamorphic Squeeze",	params[p_c3dc01].FLT);
+		data->classic3de->setParameterValue2("Curvature X",			params[p_c3dc02].FLT);
+		data->classic3de->setParameterValue2("Curvature Y",			params[p_c3dc03].FLT);
+		data->classic3de->setParameterValue2("Quartic Distortion",	params[p_c3dc04].FLT);
+		data->classic3de->initializeParameters2();
 		break;
+		}
 	case ANAMORPHIC6:
-		data->anamorphic6->set_coeff(0,params[p_ana6c00].FLT);
-		data->anamorphic6->set_coeff(1,params[p_ana6c01].FLT);
-		data->anamorphic6->set_coeff(2,params[p_ana6c02].FLT);
-		data->anamorphic6->set_coeff(3,params[p_ana6c03].FLT);
-		data->anamorphic6->set_coeff(4,params[p_ana6c04].FLT);
-		data->anamorphic6->set_coeff(5,params[p_ana6c05].FLT);
-		data->anamorphic6->set_coeff(6,params[p_ana6c06].FLT);
-		data->anamorphic6->set_coeff(7,params[p_ana6c07].FLT);
-		data->anamorphic6->set_coeff(8,params[p_ana6c08].FLT);
-		data->anamorphic6->set_coeff(9,params[p_ana6c09].FLT);
-		data->anamorphic6->set_coeff(10,params[p_ana6c10].FLT);
-		data->anamorphic6->set_coeff(11,params[p_ana6c11].FLT);
-		data->anamorphic6->set_coeff(12,params[p_ana6c12].FLT);
-		data->anamorphic6->set_coeff(13,params[p_ana6c13].FLT);
-		data->anamorphic6->set_coeff(14,params[p_ana6c14].FLT);
-		data->anamorphic6->set_coeff(15,params[p_ana6c15].FLT);
-		data->anamorphic6->set_coeff(16,params[p_ana6c16].FLT);
-		data->anamorphic6->set_coeff(17,params[p_ana6c17].FLT);
-		data->anamorphic6->eval(ldpk::vec2d(0.0,0.0));
+		{
+		// built-in
+		data->anamorphic6->setParameterValue2("tde4_focal_length_cm",			params[p_focal3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_filmback_width_cm",			params[p_filmbackX3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_filmback_height_cm",		params[p_filmbackY3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_lens_center_offset_x_cm",	params[p_centerX3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_lens_center_offset_y_cm",	params[p_centerY3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_pixel_aspect",				params[p_pixelRatio3DEq].FLT);
+		data->anamorphic6->setParameterValue2("tde4_custom_focus_distance_cm",	params[p_focusDistance3DEq].FLT);
+
+		data->anamorphic6->setParameterValue2("Cx02 - Degree 2",params[p_ana6c00].FLT);
+		data->anamorphic6->setParameterValue2("Cy02 - Degree 2",params[p_ana6c01].FLT);
+		data->anamorphic6->setParameterValue2("Cx22 - Degree 2",params[p_ana6c02].FLT);
+		data->anamorphic6->setParameterValue2("Cy22 - Degree 2",params[p_ana6c03].FLT);
+		data->anamorphic6->setParameterValue2("Cx04 - Degree 4",params[p_ana6c04].FLT);
+		data->anamorphic6->setParameterValue2("Cy04 - Degree 4",params[p_ana6c05].FLT);
+		data->anamorphic6->setParameterValue2("Cx24 - Degree 4",params[p_ana6c06].FLT);
+		data->anamorphic6->setParameterValue2("Cy24 - Degree 4",params[p_ana6c07].FLT);
+		data->anamorphic6->setParameterValue2("Cx44 - Degree 4",params[p_ana6c08].FLT);
+		data->anamorphic6->setParameterValue2("Cy44 - Degree 4",params[p_ana6c09].FLT);
+		data->anamorphic6->setParameterValue2("Cx06 - Degree 6",params[p_ana6c10].FLT);
+		data->anamorphic6->setParameterValue2("Cy06 - Degree 6",params[p_ana6c11].FLT);
+		data->anamorphic6->setParameterValue2("Cx26 - Degree 6",params[p_ana6c12].FLT);
+		data->anamorphic6->setParameterValue2("Cy26 - Degree 6",params[p_ana6c13].FLT);
+		data->anamorphic6->setParameterValue2("Cx46 - Degree 6",params[p_ana6c14].FLT);
+		data->anamorphic6->setParameterValue2("Cy46 - Degree 6",params[p_ana6c15].FLT);
+		data->anamorphic6->setParameterValue2("Cx66 - Degree 6",params[p_ana6c16].FLT);
+		data->anamorphic6->setParameterValue2("Cy66 - Degree 6",params[p_ana6c17].FLT);
+		
+		data->anamorphic6->initializeParameters2();
+
 		break;
+		}
 	case FISHEYE8:
-		data->fisheye8->set_coeff(0,params[p_fish8c00].FLT);
-		data->fisheye8->set_coeff(1,params[p_fish8c01].FLT);
-		data->fisheye8->set_coeff(2,params[p_fish8c02].FLT);
-		data->fisheye8->set_coeff(3,params[p_fish8c03].FLT);
-		data->fisheye8->set_coeff(4,0.0);
-		data->fisheye8->set_coeff(5,0.0);
-		data->fisheye8->set_coeff(6,0.0);
-		data->fisheye8->set_coeff(7,0.0);
-		data->fisheye8->eval(ldpk::vec2d(0.0,0.0));
+		{
+		// built-in
+		data->fisheye8->setParameterValue2("tde4_focal_length_cm",			params[p_focal3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_filmback_width_cm",		params[p_filmbackX3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_filmback_height_cm",		params[p_filmbackY3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_lens_center_offset_x_cm",	params[p_centerX3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_lens_center_offset_y_cm",	params[p_centerY3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_pixel_aspect",				params[p_pixelRatio3DEq].FLT);
+		data->fisheye8->setParameterValue2("tde4_custom_focus_distance_cm",	params[p_focusDistance3DEq].FLT);
+
+		data->fisheye8->setParameterValue2("Distortion - Degree 2",params[p_fish8c00].FLT);
+		data->fisheye8->setParameterValue2("Quartic Distortion - Degree 4",params[p_fish8c01].FLT);
+		data->fisheye8->setParameterValue2("Degree 6",params[p_fish8c02].FLT);
+		data->fisheye8->setParameterValue2("Degree 8",params[p_fish8c03].FLT);
+
+		data->fisheye8->initializeParameters2();
 		break;
+		}
 	case STANDARD4:
 		data->standard4->set_coeff(0,params[p_stand4c00].FLT);
 		data->standard4->set_coeff(1,params[p_stand4c01].FLT);
@@ -332,62 +311,82 @@ node_update
 		data->standard4->eval(ldpk::vec2d(0.0,0.0));
 		break;
 	case RADIAL_DECENTERED_CYLINDRIC4:
-		data->_radial->set_coeff(0,params[p_raddec4c00].FLT);
-		data->_radial->set_coeff(1,params[p_raddec4c01].FLT);
-		data->_radial->set_coeff(2,params[p_raddec4c02].FLT);
-		data->_radial->set_coeff(3,params[p_raddec4c03].FLT);
-		data->_radial->set_coeff(4,params[p_raddec4c04].FLT);
-		data->_radial->set_coeff(5,params[p_raddec4c05].FLT);
-		data->_cylindric->set_phi(params[p_raddec4c06].FLT);
-		data->_cylindric->set_b(params[p_raddec4c07].FLT);
-		data->_cylindric->eval(data->_radial->eval(ldpk::vec2d(0.0,0.0)));
+		{
+		data->radial4cylindric->setParameterValue2("tde4_focal_length_cm",			params[p_focal3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_filmback_width_cm",		params[p_filmbackX3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_filmback_height_cm",		params[p_filmbackY3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_lens_center_offset_x_cm",	params[p_centerX3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_lens_center_offset_y_cm",	params[p_centerY3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_pixel_aspect",				params[p_pixelRatio3DEq].FLT);
+		data->radial4cylindric->setParameterValue2("tde4_custom_focus_distance_cm",	params[p_focusDistance3DEq].FLT);
+
+		data->radial4cylindric->setParameterValue2("Distortion - Degree 2",params[p_raddec4c00].FLT);
+		data->radial4cylindric->setParameterValue2("U - Degree 2",params[p_raddec4c01].FLT);
+		data->radial4cylindric->setParameterValue2("V - Degree 2",params[p_raddec4c02].FLT);
+		data->radial4cylindric->setParameterValue2("Quartic Distortion - Degree 4",params[p_raddec4c03].FLT);
+		data->radial4cylindric->setParameterValue2("U - Degree 4",params[p_raddec4c04].FLT);
+		data->radial4cylindric->setParameterValue2("V - Degree 4",params[p_raddec4c05].FLT);
+		data->radial4cylindric->setParameterValue2("Phi - Cylindric Direction",params[p_raddec4c06].FLT);
+		data->radial4cylindric->setParameterValue2("B - Cylindric Bending",params[p_raddec4c07].FLT);
+
+		data->radial4cylindric->initializeParameters2();
+		
 		break;
+		}
 	case ANAMORPHIC4:
-		data->_anamorphic->set_coeff(0,params[p_ana4c00].FLT);
-		data->_anamorphic->set_coeff(1,params[p_ana4c01].FLT);
-		data->_anamorphic->set_coeff(2,params[p_ana4c02].FLT);
-		data->_anamorphic->set_coeff(3,params[p_ana4c03].FLT);
-		data->_anamorphic->set_coeff(4,params[p_ana4c04].FLT);
-		data->_anamorphic->set_coeff(5,params[p_ana4c05].FLT);
-		data->_anamorphic->set_coeff(6,params[p_ana4c06].FLT);
-		data->_anamorphic->set_coeff(7,params[p_ana4c07].FLT);
-		data->_anamorphic->set_coeff(8,params[p_ana4c08].FLT);
-		data->_anamorphic->set_coeff(9,params[p_ana4c09].FLT);
-		data->_rotation->set_phi(params[p_ana4c10].FLT*AI_DTOR);
-		data->_squeeze_x->set_sq(params[p_ana4c11].FLT);
-		data->_squeeze_y->set_sq(params[p_ana4c12].FLT);
-		data->_pa->set_sq(data->aspect);
-		data->_rot_sqx_sqy_pa->set(*(data->_rotation), (*data->_squeeze_x), (*data->_squeeze_y), (*data->_pa));
-		data->_pa_rot->set((*data->_pa),(*data->_rotation));
-		data->_anamorphic->prepare();
-		data->_rot_sqx_sqy_pa->eval(data->_anamorphic->eval(data->_pa_rot->eval_inv(ldpk::vec2d(0.0,0.0))));
+		{
+		// built-in
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_focal_length_cm",			params[p_focal3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_filmback_width_cm",		params[p_filmbackX3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_filmback_height_cm",		params[p_filmbackY3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_lens_center_offset_x_cm",	params[p_centerX3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_lens_center_offset_y_cm",	params[p_centerY3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_pixel_aspect",				params[p_pixelRatio3DEq].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("tde4_custom_focus_distance_cm",	params[p_focusDistance3DEq].FLT);
+
+		// anamorphic
+		data->anamorphicDeg4Sq->setParameterValue2("Cx02 - Degree 2",params[p_ana4c00].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cy02 - Degree 2",params[p_ana4c01].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cx22 - Degree 2",params[p_ana4c02].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cy22 - Degree 2",params[p_ana4c03].FLT);
+
+		data->anamorphicDeg4Sq->setParameterValue2("Cx04 - Degree 4",params[p_ana4c04].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cy04 - Degree 4",params[p_ana4c05].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cx24 - Degree 4",params[p_ana4c06].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cy24 - Degree 4",params[p_ana4c07].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cx44 - Degree 4",params[p_ana4c08].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Cy44 - Degree 4",params[p_ana4c09].FLT);
+
+		// this
+		data->anamorphicDeg4Sq->setParameterValue2("Lens Rotation",params[p_ana4c10].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Squeeze-X",params[p_ana4c11].FLT);
+		data->anamorphicDeg4Sq->setParameterValue2("Squeeze-Y",params[p_ana4c12].FLT);
+
+		data->anamorphicDeg4Sq->initializeParameters2();
+		
+		}
 		break;
 	}
-
 }
 
 node_finish
 {
 	// Desallocate shader data memory
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	delete data->classic3d;
+	delete data->classic3de;
 	delete data->anamorphic6;
 	delete data->fisheye8;
 	delete data->standard4;
-	delete data->_radial;
-	delete data->_cylindric;
-	delete data->_anamorphic;
-	delete data->_rotation;
-	delete data->_squeeze_x;
-	delete data->_squeeze_y;
-	delete data->_pa;
-	delete data->_rot_sqx_sqy_pa;
-	delete data->_pa_rot;
+	delete data->radial4cylindric;
+	delete data->anamorphicDeg4Sq;
+	
 	AiFree(data);
 }
 
 shader_evaluate
 {
+
+
 	const AtParamValue* params = AiNodeGetParams(node);
 
 	// AspectRatio
@@ -395,70 +394,64 @@ shader_evaluate
 	float aspect = data->aspect;
 
 	// Distorted point
-	AtPoint dp;
 	int model = params[p_distortionModel].INT;
 
-	// Remap with fix
-	double x =  (sg->u + data->pixelOffset.x - 0.5f)*2.0f;
-	double y = ((sg->v + data->pixelOffset.y - 0.5f)*2.0f)/aspect;
+	// Distorted and Undistorted points
+	double x = sg->u + data->pixelOffset.x, y = sg->v + data->pixelOffset.y;
+	double xu=x, yu=y;
 
 	// Model
-	if(model == NUKE)
+	switch(model)
 	{
-		distortNuke(&dp,x,y,params[p_k1].FLT, params[p_k2].FLT, params[p_centerX].FLT, params[p_centerY].FLT, params[p_anamorphicSqueeze].FLT, params[p_asymmetricDistortionX].FLT,params[p_asymmetricDistortionY].FLT,	aspect);
+	case PFBARREL:
+	{
+		glm::dvec2 xyu = solveDistort(data->pf_C3C5,data->pf_absCent,data->pf_squeeze,data->pf_invSqueeze,data->pf_norm,glm::dvec2(data->width*(x),data->height*(y)));
+		xu = xyu.x/data->width;
+		yu = xyu.y/data->height;
+		break;
 	}
-	else
+	case NUKE:
 	{
+		AtPoint dp;
 
-		// Offset Center
-		double centerX = 2.0*params[p_centerX3DEq].FLT/params[p_filmbackX3DEq].FLT;
-		double centerY = 2.0*params[p_centerY3DEq].FLT/params[p_filmbackY3DEq].FLT/aspect;
+		// Remap with fix
+		x =  (x - 0.5f)*2.0f;
+		y = ((y - 0.5f)*2.0f)/aspect;
 
-		// Pixel Ratio doesn't change anything because the offset and the filmback uses the same pixel ratio
-		// double pixelRatio = params[p_pixelRatio3DEq].FLT;
+		distortNuke(&dp,x,y,params[p_k1].FLT, params[p_k2].FLT, params[p_centerX].FLT, params[p_centerY].FLT, params[p_anamorphicSqueeze].FLT, params[p_asymmetricDistortionX].FLT,params[p_asymmetricDistortionY].FLT,	aspect);
 
-		// Offset center
-		x-=centerX;
-		y-=centerY;
-
-		// Diagonally normalized
-		const double norm = sqrt(1.0+(1.0/(aspect*aspect)));
-		x/=norm;
-		y/=norm;
-
-		ldpk::vec2d p; // Distorted point
-
-		switch(model)
+		// Compute exit coordinates
+		xu = (dp.x+1.0)/2.0;
+		yu = (dp.y*aspect+1.0)/2.0;
+		break;
+	}
+	case CLASSIC3DE: // 3DEq model
+		data->classic3de->undistort2(x, y, xu, yu);
+		break;
+	case ANAMORPHIC6: // 3DEq model
+		data->anamorphic6->undistort2(x, y, xu, yu);
+		break;
+	case FISHEYE8: // 3DEq model
+		data->fisheye8->undistort2(x, y, xu, yu);
+		break;
+	case STANDARD4: // Old 3DEq model replaced by next, leave until next release
 		{
-		case CLASSIC3DE: // 3DEq model
-			p = (data->classic3d->eval(ldpk::vec2d(x,y)));
-			break;
-		case ANAMORPHIC6: // 3DEq model
-			p = (data->anamorphic6->eval(ldpk::vec2d(x,y)));
-			break;
-		case FISHEYE8: // 3DEq model
-			p = (data->fisheye8->eval(ldpk::vec2d(x,y)));
-			break;
-		case STANDARD4: // 3DEq model
-			p = (data->standard4->eval(ldpk::vec2d(x,y)));
-			break;
-		case RADIAL_DECENTERED_CYLINDRIC4:
-			p = (data->_cylindric->eval(data->_radial->eval(ldpk::vec2d(x,y))));
-			break;
-		case ANAMORPHIC4:
-			p = data->_rot_sqx_sqy_pa->eval(data->_anamorphic->eval(data->_pa_rot->eval_inv(ldpk::vec2d(x,y))));
+			ldpk::vec2d p = (data->standard4->eval(ldpk::vec2d(x,y)));
+			xu = p[0];
+			yu = p[1];
 			break;
 		}
-
-		// Renorm and recenter
-		dp.x = float(p[0]*norm+centerX);
-		dp.y = float(p[1]*norm+centerY);
-
+	case RADIAL_DECENTERED_CYLINDRIC4: // 3DEq model
+		data->radial4cylindric->undistort2(x, y, xu, yu);
+		break;
+	case ANAMORPHIC4:// 3DEq model
+		data->anamorphicDeg4Sq->undistort2(x, y, xu, yu);
+		break;
 	}
 
-	// Compute exit coordinates
-	sg->out.RGB.r = (dp.x+1.0f)/2.0f;
-	sg->out.RGB.g = (dp.y*aspect+1.0f)/2.0f;
+	// send undistorted coord
+	sg->out.RGB.r = static_cast<float>(xu);
+	sg->out.RGB.g = static_cast<float>(yu);
 	sg->out.RGB.b = 0.0f;
 
 	// Test if color is corrupted and warn about it

@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_vec2d_sdv
@@ -188,6 +188,62 @@ namespace ldpk
 	inline mat2d tensq(const vec2d& a)
 		{ return mat2d(a[0] * a[0],a[0] * a[1],a[1] * a[0],a[1] * a[1]); }
 //@}
+//! @brief A simple box class for double precision points in 2d.
+//! We will extend this as needed.
+	template <class VEC2>
+	class box
+		{
+	public:
+		typedef VEC2 vec2_type;
+		typedef box<VEC2> this_type;
+	private:
+		vec2_type _a,_b;
+	public:
+		box():_a(HUGE_VAL,HUGE_VAL),_b(-HUGE_VAL,-HUGE_VAL)
+			{ }
+		void reset()
+			{
+			_a = vec2_type(HUGE_VAL,HUGE_VAL);
+			_b = vec2_type(-HUGE_VAL,-HUGE_VAL);
+			}
+		const vec2_type& a() const
+			{ return _a; }
+		const vec2_type& b() const
+			{ return _b; }
+		bool is_empty() const
+			{ return (_b[0] < _a[0]) || (_b[1] < _a[1]); }
+		void extend_x(double x)
+			{
+			if(x < _a[0]) _a[0] = x;
+			if(x > _b[0]) _b[0] = x;
+			}
+		void extend_y(double y)
+			{
+			if(y < _a[1]) _a[1] = y;
+			if(y > _b[1]) _b[1] = y;
+			}
+		void extend(int i,double q)
+			{
+			if(i == 0) extend_x(q);
+			if(i == 1) extend_y(q);
+			}
+		void extend(const vec2_type& p)
+			{
+			extend_x(p[0]);
+			extend_y(p[1]);
+			}
+		this_type& merge(const this_type& q)
+			{
+			extend(q.a());
+			extend(q.b());
+			return *this;
+			}
+		friend this_type merge(const this_type& q,const this_type& r)
+			{
+			this_type s(q);
+			return s.merge(r);
+			}
+		};
 	}
 
 #endif

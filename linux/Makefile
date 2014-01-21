@@ -201,6 +201,7 @@ $(SRCPATH)/Obq_Common.h
 
 Obq_UVRemapLensDistortion.o: \
 $(SRCPATH)/Obq_UVRemapLensDistortion.cpp \
+$(SRCPATH)/Obq_UVRemapLensDistortion.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_UVRemapLensDistortion.cpp
 
@@ -266,4 +267,13 @@ $(SHARED) \
 Obq_Shaders__Core.o \
 $(LINKING)
 
+# Obq_Hair
 
+Obq_Hair.o: \
+$(SRCPATH)/Obq_Hair.cpp \
+$(SRCPATH)/Obq_Hair.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Hair.cpp
+
+hair: Obq_Hair.o
+	$(CPP) -o $(BINPATH)/Obq_Hair__$(OBQVERSION).$(EXT) $(LINKFLAGS) Obq_Hair.o $(LINKING)

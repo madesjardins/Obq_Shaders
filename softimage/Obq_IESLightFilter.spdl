@@ -1,4 +1,4 @@
-# SPDL - Obq_IESLightFilter v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_IESLightFilter - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{5170A012-1639-0000-0000-1999DA2873C1}";
@@ -57,4 +57,12 @@ Layout "RenderTree"
 }
 
 
+Language = "VBScript";
+Logic
+{
 
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_IESLightFilter.html"
+End sub
+
+}

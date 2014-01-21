@@ -162,6 +162,89 @@ PropertySet "Obq_Etching_pset"
 		Value = "Obq_Etching_Input";
 		Animatable = off;
 	}
+	Parameter "autoFiltering" input
+	{
+		GUID = "{6697826F-0813-4CC0-973A-AE9E4553F959}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "autoFilteringBias" input
+	{
+		GUID = "{6C65D98A-1E1D-4BF9-B83F-EA2E3F2C258E}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.725;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "autoFilteringGain" input
+	{
+		GUID = "{E16F4E49-8A8B-4C42-86DF-03245A68182A}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.125;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "autoFilteringStart" input
+	{
+		GUID = "{E92EA26E-4EC9-46F6-9296-B6D434908679}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.002;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "autoFilteringEnd" input
+	{
+		GUID = "{B7FD84C9-CDAB-4C52-914F-0CB6FAABABB4}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.02;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "autoFilteringOut" input
+	{
+		GUID = "{087779CD-4DE8-4900-A557-3A94CFA259D5}";
+		Type = boolean;
+		Texturable = off;
+		Animatable = off;
+		Value = off;
+	}
+	Parameter "autoFilteringU" input
+	{
+		GUID = "{55F193BF-42EE-40AF-B3D8-41F21E0FE2D7}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "autoFilteringMode" input
+	{
+		GUID = "{B37046FE-AC57-4817-826B-5B9E0F956E53}";
+		Type = integer;
+		Texturable = on;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "autoFilteringAdvanced" input
+	{
+		GUID = "{2D83DCC2-E697-4B80-900E-750FF2AED941}";
+		Type = boolean;
+		Texturable = off;
+		Animatable = off;
+		Value = off;
+	}
+	Parameter "autoFilteringAutoRange" input
+	{
+		GUID = "{9D20BA1D-CB26-40A8-A153-7B7504F24D46}";
+		Type = boolean;
+		Texturable = on;
+		Animatable = on;
+		Value = on;
+	}
 }
 
 Plugin = Shader
@@ -286,6 +369,63 @@ Defaults
 		Name = "Shader input";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
+	autoFiltering
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringBias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringGain
+	{
+		Name = "Gain";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringStart
+	{
+		Name = "Start";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringEnd
+	{
+		Name = "End";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringOut
+	{
+		Name = "Show auto filter level";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringMode
+	{
+		Name = "Apply to";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Feather" = 0,
+			"Feather and Mix" = 1,
+			"Mix" = 2
+		}
+	}
+	autoFilteringU
+	{
+		Name = "Also affected by u";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringAdvanced
+	{
+		Name = "Show advanced options";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	autoFilteringAutoRange
+	{
+		Name = "Range based on Frequency";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
 }
 
 
@@ -308,10 +448,29 @@ Layout "Default"
 	}
 	Tab "Signal"
 	{
-		frequency;		
-		offset;
-		feather;
-		use_linear_signal;
+		Group "Parameters"
+		{
+			frequency;		
+			offset;
+			feather;
+			use_linear_signal;
+		}
+		Group "Auto Filtering"
+		{
+			autoFiltering;
+			Group "Advanced"
+			{
+				autoFilteringAdvanced;
+				autoFilteringOut;
+				autoFilteringMode;
+				autoFilteringU;
+				autoFilteringBias;
+				autoFilteringGain;
+				autoFilteringAutoRange;
+				autoFilteringStart;
+				autoFilteringEnd;
+			}
+		}
 		Group "Dots"
 		{
 			enable_dots;
@@ -354,10 +513,28 @@ Layout "RenderTree"
 	}
 	Group "Signal"
 	{
-		frequency;		
-		offset;
-		feather;
-		use_linear_signal;
+		Group "Params"
+		{
+			frequency;		
+			offset;
+			feather;
+			use_linear_signal;
+		}
+		Group "Auto Filtering"
+		{
+			autoFiltering;
+			Group "Advanced"
+			{
+				autoFilteringOut;
+				autoFilteringMode;
+				autoFilteringU;
+				autoFilteringBias;
+				autoFilteringGain;
+				autoFilteringAutoRange;
+				autoFilteringStart;
+				autoFilteringEnd;
+			}
+		}
 		Group "Dots"
 		{
 			enable_dots;
@@ -433,11 +610,54 @@ sub createAOVs_OnClicked()
 	createRenderChannels()
 End Sub
 
+
+Sub autoFilteringAutoRange_OnChanged()
+	If PPG.autoFilteringAutoRange.Value = True Then
+		PPG.autoFilteringStart.Show(False)
+		PPG.autoFilteringEnd.Show(False)
+	ElseIf PPG.autoFiltering.Value = True AND PPG.autoFilteringAdvanced.Value = True Then 
+		PPG.autoFilteringStart.Show(True)
+		PPG.autoFilteringEnd.Show(True)
+	End If
+	PPG.Refresh()
+End Sub
+
+Sub autoFilteringAdvanced_OnChanged()
+	If PPG.autoFiltering.Value = True AND PPG.autoFilteringAdvanced.Value = True Then
+		PPG.autoFilteringMode.Show(True)
+		PPG.autoFilteringU.Show(True)
+		PPG.autoFilteringBias.Show(True)
+		PPG.autoFilteringGain.Show(True)
+		PPG.autoFilteringOut.Show(True)
+		PPG.autoFilteringAutoRange.Show(True)
+	Else
+		PPG.autoFilteringMode.Show(False)
+		PPG.autoFilteringU.Show(False)
+		PPG.autoFilteringBias.Show(False)
+		PPG.autoFilteringGain.Show(False)
+		PPG.autoFilteringOut.Show(False)
+		PPG.autoFilteringAutoRange.Show(False)
+		PPG.autoFilteringStart.Show(False)
+		PPG.autoFilteringEnd.Show(False)
+	End If
+	autoFilteringAutoRange_OnChanged()
+End sub
+
+Sub autoFiltering_OnChanged()
+	If PPG.autoFiltering.Value = True Then 
+		PPG.autoFilteringAdvanced.Show(True)
+	Else
+		PPG.autoFilteringAdvanced.Show(False)
+	End If
+	autoFilteringAdvanced_OnChanged()
+end sub
+
 sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html"
 	enable_dots_OnChanged()
 	PPG.aov_matte.ReadOnly = True
 	PPG.aov_input.ReadOnly = True
+	autoFiltering_OnChanged()
 End sub
 
 }

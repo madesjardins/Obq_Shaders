@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_power_ct_sdv
@@ -15,7 +15,7 @@ namespace ldpk
 	template <int N> class highest_bit_ct
 		{
 	public:
-		const static int r = highest_bit_ct<(N >> 1)>::r + 1;
+		const static int r = highest_bit_ct< (N >> 1) >::r + 1;
 		};
 // Das ist der niedrigste Wert, fuer den die Operation definiert ist.
 // Was wir bei Null machen, entscheiden wir spaeter.

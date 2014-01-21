@@ -1,4 +1,4 @@
-# SPDL - Obq_Fresnel v2.06.0a (SItoA 2.6.0 - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_Fresnel - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{C8DBDAB0-D0AE-4762-8183-C7EFE8803380}";
@@ -687,7 +687,7 @@ End Sub
 
 
 Sub OnInit()
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel_v204.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
 	mode_OnChanged()
 	PPG.iorExpression.ReadOnly = True
 End Sub

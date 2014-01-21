@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_generic_anamorphic_distortion_sdv
@@ -68,8 +68,7 @@ namespace ldpk
 				}
 			if(k != base_type::get_num_parameters())
 				{
-				std::cerr << "generic_anamorphic_distortion: bad implementation for N = " << N;
-				std::cerr << ". This needs to be fixed." << std::endl;
+				AiMsgError("generic_anamorphic_distortion: bad implementation for N = %i. This needs to be fixed.",N);
 				}
 			}
 //! Get coefficient as demanded by base class
@@ -215,7 +214,7 @@ namespace ldpk
 		};
 
 //! @brief Specialization for degree-4 for better performance. Also, this allows
-//! us to implement the Jacobian quite easy.
+//! us to implement the Jacobian quite easy. We need this in ld model "Anamorphic - Standard, Degree4".
 	template <class VEC2,class MAT2>
 	class generic_anamorphic_distortion<VEC2,MAT2,4>:public ldpk::generic_distortion_base<VEC2,MAT2,(4 + 2) * (4 + 4) / 4 - 2>
 		{
@@ -242,6 +241,8 @@ namespace ldpk
 			_c[4] = &_cx04;_c[5] = &_cy04;
 			_c[6] = &_cx24;_c[7] = &_cy24;
 			_c[8] = &_cx44;_c[9] = &_cy44;
+			for(int i = 0;i < 10;++i)
+				{ *_c[i] = 0; }
 			}
 //! Get coefficient as demanded by base class
 		double get_coeff(int i) const
@@ -288,7 +289,7 @@ namespace ldpk
 			return vec2_type(xq,yq);
 			}
 //! Jacobi-Matrix
-		mat2_type jacobi_test(const vec2_type& p_dn) const
+		mat2_type jacobi(const vec2_type& p_dn) const
 			{
 			double x = p_dn[0],x2 = x * x,x3 = x2 * x,x4 = x2 * x2;
 			double y = p_dn[1],y2 = y * y,y3 = y2 * y,y4 = y2 * y2;
@@ -302,6 +303,17 @@ namespace ldpk
 			m[1][0] = x * y * 2.0 * _cy_for_x2
 				+ x3 * y * 4.0 * _cy_for_x4 + x * y3 * 2.0 * _cy_for_x2_y2;
 			return m;
+			}
+		vec2_type twist(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x3 = x2 * x;
+			double y = p_dn[1],y2 = y * y,y3 = y2 * y;
+			vec2_type t;
+			t[0] = y       * 2.0 * _cx_for_y2
+			     + x2 * y  * 6.0 * _cx_for_x2_y2 + y3 * 4.0 * _cx_for_y4;
+			t[1] = x       * 2.0 * _cy_for_x2
+			     + x  * y2 * 6.0 * _cy_for_x2_y2 + x3 * 4.0 * _cy_for_x4;
+			return t;
 			}
 		};
 //! @brief Specialization for degree-6 for better performance. Also, this allows
@@ -336,6 +348,8 @@ namespace ldpk
 			_c[12] = &_cx26;_c[13] = &_cy26;
 			_c[14] = &_cx46;_c[15] = &_cy46;
 			_c[16] = &_cx66;_c[17] = &_cy66;
+			for(int i = 0;i < 18;++i)
+				{ *_c[i] = 0; }
 			}
 //! Get coefficient as demanded by base class
 		double get_coeff(int i) const
@@ -415,6 +429,19 @@ namespace ldpk
 				+ x3 * y * 4.0 * _cy_for_x4 + x * y3 * 2.0 * _cy_for_x2_y2
 				+ x5 * y * 6.0 * _cy_for_x6 + x3 * y3 * 4.0 * _cy_for_x4_y2 + x * y5 * 2.0 * _cy_for_x2_y4;
 			return m;
+			}
+		vec2_type twist(const vec2_type& p_dn) const
+			{
+			double x = p_dn[0],x2 = x * x,x3 = x2 * x,x4 = x2 * x2,x5 = x3 * x2;
+			double y = p_dn[1],y2 = y * y,y3 = y2 * y,y4 = y2 * y2,y5 = y3 * y2;
+			vec2_type t;
+			t[0] =         y  * 2.0  * _cx_for_y2
+				+ x2 * y  * 6.0  * _cx_for_x2_y2 +      y3 * 4.0  * _cx_for_y4
+				+ x4 * y  * 10.0 * _cx_for_x4_y2 + x2 * y3 * 12.0 * _cx_for_x2_y4 +     y5 * 6.0  * _cx_for_y6;
+			t[1] =    x       * 2.0  * _cy_for_x2
+				+ x  * y2 * 6.0  * _cy_for_x2_y2 + x3      * 4.0  * _cy_for_x4
+				+ x5      * 6.0  * _cy_for_x6    + x3 * y2 * 12.0 * _cy_for_x4_y2 + x * y4 * 10.0 * _cy_for_x2_y4;
+			return t;
 			}
 		};
 	}

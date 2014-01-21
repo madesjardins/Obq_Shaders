@@ -146,6 +146,21 @@
     <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h">
       <Filter>Header Files\yafaray</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\dte\dtengine.h">
+      <Filter>Header Files\dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\misc.h">
+      <Filter>Header Files\dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\tform.h">
+      <Filter>Header Files\dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\vmat.h">
+      <Filter>Header Files\dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pbrt\spectrum.h">
+      <Filter>Header Files\pbrt</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\ldpk\ldpk.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
@@ -156,9 +171,6 @@
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\ldpk_error.h">
-      <Filter>Header Files\lpdk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\ldpk\ldpk_example_radial_distortion.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\ldpk_extender_base.h">
@@ -206,10 +218,16 @@
     <ClInclude Include="..\..\src\ldpk\ldpk_vec2d.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\ldpk\nuke_ld_3de4_base.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ld_all_builtins.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ld_plugin.h">
+      <Filter>Header Files\lpdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ldpk\tde4_ldp_all_par_types.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h">
@@ -221,32 +239,14 @@
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_classic_3de_mixed.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ldpk\tde4_ldp_common_sdv.h">
-      <Filter>Header Files\lpdk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\ldpk\tde4_ldp_example_radial_deg_8.h">
-      <Filter>Header Files\lpdk</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_decentered_deg_4_cylindric.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_deg_8.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\dte\dtengine.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\misc.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\tform.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\vmat.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\pbrt\spectrum.h">
-      <Filter>Header Files\pbrt</Filter>
+    <ClInclude Include="..\..\src\Obq_UVRemapLensDistortion.h">
+      <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

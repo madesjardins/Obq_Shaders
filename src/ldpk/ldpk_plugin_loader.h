@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_plugin_loader_sdv
@@ -8,8 +8,8 @@
 
 #include <ldpk/tde4_ld_plugin.h>
 #include <string>
-
-//Obq #ifdef _WIN32
+//
+//#ifdef _WIN32
 //// http://code.google.com/p/dlfcn-win32/downloads/list
 //#else
 //#include <dlfcn.h>
@@ -31,7 +31,7 @@
 //		int _mode;
 //		bool _verbose;
 //	public:
-//		plugin_loader(bool verbose = true):_verbose(verbose),_mode(RTLD_LAZY)
+//		plugin_loader(bool verbose = true):_create_plugin(0),_destroy_plugin(0),_model(0),_verbose(verbose),_mode(0/*RTLD_LAZY*/)
 //			{ }
 //		~plugin_loader()
 //			{ close_plugin(); }
@@ -54,5 +54,5 @@
 //			{ return _destroy_plugin; }
 //		};
 //	};
-
+//
 #endif

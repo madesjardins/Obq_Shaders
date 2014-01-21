@@ -1,4 +1,4 @@
-# SPDL - Obq_RGBComEmit v2.06.0b (SItoA 2.6.0b - Arnold 4.0.11.0)- Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_RGBComEmit - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{43B0D4FE-E6E3-4373-89D6-ED90EA0129DC}";
@@ -48,3 +48,12 @@ Layout "RenderTree"
    passthrough;
 }
 
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComEmit.html"
+End sub
+
+}

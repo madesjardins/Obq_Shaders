@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_classic_3de_mixed_distortion_sdv
@@ -10,6 +10,8 @@
 //! @brief Degree-2 anamorphic and degree-4 radial mixed model.
 
 #include <ldpk/ldpk_generic_distortion_base.h>
+#include <string>
+#include <sstream>
 
 namespace ldpk
 	{
@@ -79,25 +81,25 @@ namespace ldpk
 			double y = p_dn[1],y2 = y * y,y3 = y2 * y,y4 = y2 * y2;
 			mat2_type m;
 			m[0][0] = 1.0 + x2 * 3.0 * _cxx + y2 * _cxy
-				+ x4 * 5.0 * _cxx + x2 * y2 * 3.0 * _cxxy + y4 * _cxyy;
+				+ x4 * 5.0 * _cxxx + x2 * y2 * 3.0 * _cxxy + y4 * _cxyy;
 			m[1][1] = 1.0 + x2 * _cyx + y2 * 3.0 * _cyy
 				+ x4 * _cyxx + x2 * y2 * 3.0 * _cyyx + y4 * 5.0 * _cyyy;
 			m[0][1] = x * y * 2.0 * _cxy + x3 * y * 2.0 * _cxxy + x * y3 * 4.0 * _cxyy;
-			m[1][0] = x * y * 2.0 * _cyx + x3 * y * 4.0 * _cyxx * x * y3 * 2.0 * _cyyx;
+			m[1][0] = x * y * 2.0 * _cyx + x3 * y * 4.0 * _cyxx + x * y3 * 2.0 * _cyyx;
 			return m;
 			}
-		//Obq std::ostream& out(std::ostream& cout) const
-		//	{
-		//	int p = cout.precision();
-		//	cout.precision(5);
-		//	cout << "        Distortion: " << std::right << std::fixed << _ld << "\n";
-		//	cout << "Anamorphic Squeeze: " << std::right << std::fixed << _sq << "\n";
-		//	cout << "       Curvature X: " << std::right << std::fixed << _cx << "\n";
-		//	cout << "       Curvature Y: " << std::right << std::fixed << _cy << "\n";
-		//	cout << "Quartic Distortion: " << std::right << std::fixed << _qu << "\n";
-		//	cout.precision(p);
-		//	return cout;
-		//	}
+		std::ostream& out(std::ostream& cout) const
+			{
+			int p = int(cout.precision());
+			cout.precision(5);
+			cout << "        Distortion: " << std::right << std::fixed << _ld << "\n";
+			cout << "Anamorphic Squeeze: " << std::right << std::fixed << _sq << "\n";
+			cout << "       Curvature X: " << std::right << std::fixed << _cx << "\n";
+			cout << "       Curvature Y: " << std::right << std::fixed << _cy << "\n";
+			cout << "Quartic Distortion: " << std::right << std::fixed << _qu << "\n";
+			cout.precision(p);
+			return cout;
+			}
 		};
 	}
 

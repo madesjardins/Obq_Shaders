@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_radial_decentered_distortion_sdv
@@ -77,7 +77,6 @@ namespace ldpk
 		mat2_type jacobi(const vec2_type& p_dn) const
 			{
 			mat2_type m;
-			//Obq double x_dn,y_dn;
 			double x = p_dn[0];
 			double y = p_dn[1];
 			double x2 = x * x;
@@ -88,7 +87,6 @@ namespace ldpk
 			double x2y = xy * x;
 			double xy2 = xy * y;
 			double r2 = x2 + y2;
-			double r4 = r2 * r2;
 
 // original implementation as in the document.
 //			m[0][0] = 1 + _c2 * (3.0 * x2 + y2) + _c4 * (5.0 * x2 + y2) * r2
@@ -165,21 +163,21 @@ namespace ldpk
 			dg[k++] = r2 * (r2 + 2.0 * y2);
 			if(k == size) return;
 // Unreachable
-			std::cerr << "radial_decentered_distortion: n_parameters out of range" << std::endl;
+			AiMsgError("radial_decentered_distortion: n_parameters out of range");
 			}
-		//std::ostream& out(std::ostream& cout) const
-		//	{
-		//	int p = cout.precision();
-		//	cout.precision(5);
-		//	cout << "c2: " << _c2 << std::endl;
-		//	cout << "u1: " << _u1 << std::endl;
-		//	cout << "v1: " << _v1 << std::endl;
-		//	cout << "u3: " << _u3 << std::endl;
-		//	cout << "c4: " << _c4 << std::endl;
-		//	cout << "v3: " << _v3 << std::endl;
-		//	cout.precision(p);
-		//	return cout;
-		//	}
+		std::ostream& out(std::ostream& cout) const
+			{
+			int p = int(cout.precision());
+			cout.precision(5);
+			cout << "c2: " << _c2 << std::endl;
+			cout << "u1: " << _u1 << std::endl;
+			cout << "v1: " << _v1 << std::endl;
+			cout << "u3: " << _u3 << std::endl;
+			cout << "c4: " << _c4 << std::endl;
+			cout << "v3: " << _v3 << std::endl;
+			cout.precision(p);
+			return cout;
+			}
 		};
 	}
 

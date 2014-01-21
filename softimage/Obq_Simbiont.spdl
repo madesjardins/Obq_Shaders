@@ -1,4 +1,4 @@
-# SPDL - Obq_Simbiont v2.06.0b (win64 - SItoA 2.6.0)-  Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+# SPDL - Obq_Simbiont -  Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 SPDL
 Version = "2.0.0.0";
 Reference = "{FED7E461-B12B-423A-A8CD-EA1AC5DD4A0D}";
@@ -2884,7 +2884,7 @@ def loadTweaks_OnClicked():
 			Application.LogMessage("Load canceled.")
 
 def OnInit():
-	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont_v204.html");
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html");
 	PPG.componentLibsPath.ReadOnly = True
 	coordinateSystem_OnChanged()
 	tweakEnable0_OnChanged()

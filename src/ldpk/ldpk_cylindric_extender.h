@@ -1,10 +1,12 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef ldpk_cylindric_extender_sdv
 #define ldpk_cylindric_extender_sdv
+
+#define M_PI 3.14159265358979
 
 #include <ldpk/ldpk_extender_base.h>
 
@@ -22,7 +24,7 @@ namespace ldpk
 
 		void calc_m()
 			{
-			mat2_type para = tensq(vec2_type(cos(_phi * /*M_PI*/AI_PI / 180.0),sin(_phi * /*M_PI*/AI_PI / 180.0)));
+			mat2_type para = tensq(vec2_type(cos(_phi * M_PI / 180.0),sin(_phi * M_PI / 180.0)));
 			_m = _b * para + mat2_type(1.0);
 			_inv_m = invert(_m);
 			}
@@ -78,7 +80,7 @@ namespace ldpk
 
 		void calc_m()
 			{
-			double q = sqrt(1.0 + _b),c = cos(_phi * /*M_PI*/AI_PI / 180.0),s = sin(_phi * /*M_PI*/AI_PI / 180.0);
+			double q = sqrt(1.0 + _b),c = cos(_phi * M_PI / 180.0),s = sin(_phi * M_PI / 180.0);
 			_m = mat2_type(c*c*q + s*s/q,(q - 1.0/q)*c*s,(q - 1.0/q)*c*s,c*c/q + s*s*q);
 			_inv_m = invert(_m);
 			}

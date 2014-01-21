@@ -1,0 +1,1940 @@
+# SPDL - Obq_Hair - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{88913B98-916B-420B-9A9F-0C3ECB293D3B}";
+PropertySet "Obq_Hair_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{CCD73BE3-CBE6-4992-96B7-E3CED60162F1}";
+		Type = color;
+	}
+	Parameter "opacity" input
+	{
+		GUID = "{F6A3B2EF-770A-451A-BB88-B78D0E54B663}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "alpha_R" input
+	{
+		GUID = "{FAA38BF4-3EBC-4781-B015-D35B26D3A9F2}";
+		Texturable = on;
+		Type = scalar;
+		Value = -7.5;
+	}
+	Parameter "alpha_R__pre" input
+	{
+		GUID = "{7892EEE1-BC67-4D00-8214-94EEB2F0CA21}";
+		Texturable = off;
+		Type = scalar;
+		Value = -7.5;
+	}
+	Parameter "alpha_TT" input
+	{
+		GUID = "{4D27AAF6-34C5-460C-A60B-9E4F92FCC9FB}";
+		Texturable = on;
+		Type = scalar;
+		Value = 3.75;
+	}
+	Parameter "alpha_TT__pre" input
+	{
+		GUID = "{C278280C-E692-4D12-86D4-83658B7284EF}";
+		Texturable = off;
+		Type = scalar;
+		Value = 3.75;
+	}
+	Parameter "alpha_TRT" input
+	{
+		GUID = "{EDF298E4-AB8C-4F55-9668-24D0044A9A6E}";
+		Texturable = on;
+		Type = scalar;
+		Value = 11.25;
+	}
+	Parameter "alpha_TRT__pre" input
+	{
+		GUID = "{A4D75BE9-BD76-4C9A-B937-F6677F125501}";
+		Texturable = off;
+		Type = scalar;
+		Value = 11.25;
+	}
+	Parameter "beta_R" input
+	{
+		GUID = "{B014B0BE-B8AD-48CC-92A8-DF100031F2D9}";
+		Texturable = on;
+		Type = scalar;
+		Value = 7.5;
+		
+	}
+	Parameter "beta_R__pre" input
+	{
+		GUID = "{19B1B0DD-8551-4BDF-828E-5EC7A269E03E}";
+		Texturable = off;
+		Type = scalar;
+		Value = 7.5;
+		Value Minimum = 0.0001;
+	}
+	Parameter "beta_TT" input
+	{
+		GUID = "{E588B666-191A-475D-99C1-7A75D29C104B}";
+		Texturable = on;
+		Type = scalar;
+		Value = 3.75;
+	}
+	Parameter "beta_TT__pre" input
+	{
+		GUID = "{99197541-CD05-41DD-8270-90933D2970B3}";
+		Texturable = off;
+		Type = scalar;
+		Value = 3.75;
+		Value Minimum = 0.0001;
+	}
+	Parameter "beta_TRT" input
+	{
+		GUID = "{EEC4280C-9777-461E-B0E3-7C5097244C15}";
+		Texturable = on;
+		Type = scalar;
+		Value = 15;
+	}
+	Parameter "beta_TRT__pre" input
+	{
+		GUID = "{B0AB804A-D837-446B-A5FB-6C1C7FE799E6}";
+		Texturable = off;
+		Type = scalar;
+		Value = 15;
+		Value Minimum = 0.0001;
+	}
+	Parameter "color_R" input
+	{
+		GUID = "{4F7EBB0B-A531-4084-BA6B-5D5EBD80BDBA}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_R__pre" input
+	{
+		GUID = "{08C4563F-A6CF-4C9C-A645-A4781BCF9F62}";
+		Texturable = off;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_TT" input
+	{
+		GUID = "{E14DE5E9-4790-4F69-8B9E-B41D36AA2BAB}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_TT__pre" input
+	{
+		GUID = "{8B62F36D-7825-4BB6-BD31-14518A85807F}";
+		Texturable = off;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_TRT" input
+	{
+		GUID = "{592E0F7F-49F4-4E76-B1FE-C1A382DC6711}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_TRT__pre" input
+	{
+		GUID = "{AFD5CD66-8411-481E-BCC5-470EFF848FF6}";
+		Texturable = off;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_g" input
+	{
+		GUID = "{7EFD36FD-CD69-4F6B-99E4-8E8C91246E78}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "color_g__pre" input
+	{
+		GUID = "{7CC8ED37-F9AD-45C6-9045-3D431DD09633}";
+		Texturable = off;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "gamma_TT" input
+	{
+		GUID = "{3EAD7600-705E-4636-AABF-6CB7CFF6A271}";
+		Texturable = on;
+		Type = scalar;
+		Value = 7.5;
+	}
+	Parameter "gamma_TT__pre" input
+	{
+		GUID = "{CB53046B-D9F6-4745-A117-C2F191E51BD2}";
+		Texturable = off;
+		Type = scalar;
+		Value = 7.5;
+		Value Minimum = 0.0001;
+	}
+	Parameter "gamma_g" input
+	{
+		GUID = "{571329C0-4E0C-46D8-B271-D54D95AD54FD}";
+		Texturable = on;
+		Type = scalar;
+		Value = 17.5;
+	}
+	Parameter "gamma_g__pre" input
+	{
+		GUID = "{7B1A47A4-88A1-4284-98FA-3BB6D25D0583}";
+		Texturable = off;
+		Type = scalar;
+		Value = 17.5;
+		Value Minimum = 0.0001;
+	}
+	Parameter "phi_g" input
+	{
+		GUID = "{60152C65-CF03-4918-868A-F66FAA14A531}";
+		Texturable = on;
+		Type = scalar;
+		Value = 22.5;
+	}
+	Parameter "phi_g__pre" input
+	{
+		GUID = "{6A76CACD-A978-4448-A388-695C47C330DA}";
+		Texturable = off;
+		Type = scalar;
+		Value = 22.5;
+	}
+	Parameter "scale_R" input
+	{
+		GUID = "{5A511AF9-0648-4465-B96E-B22A34B43678}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_R__pre" input
+	{
+		GUID = "{82DDD9EC-C8F4-4919-ACA7-0AD020D8FC92}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_TT" input
+	{
+		GUID = "{774CE23E-E224-41DA-B07D-5A3CD7B03D78}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_TT__pre" input
+	{
+		GUID = "{22E013F3-749D-4724-9800-041B51C9E9D0}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_TRT" input
+	{
+		GUID = "{BAB0D5A4-800D-4517-B8A7-6F477DDDA9B8}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_TRT__pre" input
+	{
+		GUID = "{390CC27B-7315-4A88-8C8B-F0FD0EB33ED0}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_g" input
+	{
+		GUID = "{A77B81C0-4749-46D5-B5D3-D1DA5CB1610F}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "scale_g__pre" input
+	{
+		GUID = "{C89904CC-C777-46AA-98B1-B66EF230443D}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.25;
+		Value Minimum = 0.0;
+	}
+	Parameter "samples" input
+	{
+		guid = "{AB239E32-A58B-4F2B-9A2F-054D99BE3BE2}";
+		texturable = off;
+		type = integer;
+		value = 4;
+		Value Minimum = 0;
+	}
+	Parameter "scale_direct" input
+	{
+		GUID = "{C965D94B-978D-4AE4-9E99-5773EB3E5D10}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "color_direct" input
+	{
+		GUID = "{DFD27918-FC4B-4C7D-BF61-22A86BFB811F}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "scale_indirect" input
+	{
+		GUID = "{3E04D0A9-0D61-4B93-B2A5-07CC2A879021}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "color_indirect" input
+	{
+		GUID = "{3652ADFF-81C8-476A-A61E-21215F33AFFD}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "alpha_back" input
+	{
+		GUID = "{AF35153E-FDDB-4044-8566-30E37DEB9982}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.0;
+	}
+	Parameter "beta_back" input
+	{
+		GUID = "{FED77FE6-227B-47A8-B402-9862E0839F6B}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.0;
+	}
+	Parameter "scale_back" input
+	{
+		GUID = "{498AFC82-A6B0-4D36-AAC2-EC055DF1AB32}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "color_back" input
+	{
+		GUID = "{F8B5C2AB-1248-4267-BF90-CE42390494B1}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "scale_forward" input
+	{
+		GUID = "{2A2D0782-C375-4B82-AD24-4CF055C39C6A}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "color_forward" input
+	{
+		GUID = "{D8F8EE0F-7C5B-4A6C-8D68-8F8CB523F8EA}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "use_pre_only" input
+	{
+		GUID = "{451D7771-FE4A-44F5-BDF1-B537A26784DE}";
+		Texturable = off;
+		Type = boolean;
+		Value = on;
+	}
+	Parameter "shadow_opacity" input
+	{
+		GUID = "{60635077-236E-43D8-8459-887D2B69A90C}";
+		Texturable = off;
+		Type = color;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "numGMS_modifier" input
+	{
+		GUID = "{F9B8D8A5-761B-4E92-BB99-EAE01B885130}";
+		Texturable = off;
+		Type = scalar;
+		Value = 1.0;
+	}
+	Parameter "normal_shifts_widths" input
+	{
+		GUID = "{B6969142-D9D3-452C-B322-48085B677A1F}";
+		Texturable = off;
+		Type = boolean;
+		Value = on;
+	}
+	Parameter "color_ray_glossy" input
+	{
+		GUID = "{3519D53C-EF21-409A-80E5-91EB27B0E6A2}";
+		Texturable = on;
+		Type = color;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "mode_ray_glossy" input
+	{
+		GUID = "{0E1AD299-F062-4931-A459-55E17FE4F2C8}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "color_ray_diffuse" input
+	{
+		GUID = "{D801DB74-D11B-4C0E-9920-7EA6D0B0A8B6}";
+		Texturable = on;
+		Type = color;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "mode_ray_diffuse" input
+	{
+		GUID = "{8630D8A7-5C7B-4D0D-A980-EEE0CD29DB96}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "d_f" input
+	{
+		GUID = "{4EEBB6B3-1329-435E-A9A3-42463D7A6821}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.7;
+		Value Minimum = 0.0;
+	}
+	Parameter "d_f__pre" input
+	{
+		GUID = "{49779255-1C49-4BB2-B876-DB39D50599CE}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.7;
+		Value Minimum = 0.0;
+	}
+	Parameter "d_b" input
+	{
+		GUID = "{AB68E84C-4B75-4F55-B23C-CFD93D40AF64}";
+		Texturable = on;
+		Type = scalar;
+		Value = 0.7;
+		Value Minimum = 0.0;
+	}
+	Parameter "d_b__pre" input
+	{
+		GUID = "{A1BA6EAB-F9B4-4613-9BE2-2266B8A251C3}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.7;
+		Value Minimum = 0.0;
+	}
+	Parameter "show_texturable" input
+	{
+		GUID = "{9C95B018-3087-4BCC-9E35-8063A41E3818}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "aov_mode" input
+	{
+		GUID = "{954BC756-F1C1-49B9-A241-652B08EAAF70}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 8;
+	}
+	Parameter "aov_dir_R" input
+	{
+		GUID = "{0D0D0FB7-1181-4AC3-91CA-97046D162ACD}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_dir_TT" input
+	{
+		GUID = "{D819631E-36BF-4F2B-9524-E144892978CA}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_dir_TRT" input
+	{
+		GUID = "{F30354C9-ACC6-4BFB-B544-D7B3B05492EE}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_dir_g" input
+	{
+		GUID = "{7C54C09C-68EF-4E3F-B947-8833515DFE14}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_R" input
+	{
+		GUID = "{C645CC5C-680C-4877-8960-E58B0741AE0D}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_TT" input
+	{
+		GUID = "{29892DFD-A426-4629-A7EC-C3AA46F2101F}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_TRT" input
+	{
+		GUID = "{F2FDE461-4266-4EB2-8A4B-BBC0B8B10900}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_g" input
+	{
+		GUID = "{7579D75D-0C09-4510-B939-EDB7203CDC65}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_dir_back" input
+	{
+		GUID = "{EDF5A9AE-C5BE-41ED-85E1-FF58626FF345}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_dir_scatter" input
+	{
+		GUID = "{FB96B0AC-1DE4-4A57-8DF1-03F53258811B}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+		Parameter "aov_dir_scatter_back" input
+	{
+		GUID = "{9B909428-D333-4989-A279-24395A54210B}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_back" input
+	{
+		GUID = "{CA27540B-65EA-42E1-B226-F5EFD4F4F441}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_scatter" input
+	{
+		GUID = "{863B82D2-698F-4A17-B3E5-A9BCA7E8D99B}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "aov_indir_scatter_back" input
+	{
+		GUID = "{D7110BEB-2D5C-4040-AC27-2164197A946A}";
+		Texturable = off;
+		Type = string;
+		Value = "";
+	}
+	Parameter "singleScatteringMode" input
+	{
+		GUID = "{7EFA1BBF-0BC0-4757-8D50-4438A7F4845C}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "useImportanceSampling" input
+	{
+		GUID = "{C2410FF1-CC2E-48E6-831A-05C265359147}";
+		Texturable = off;
+		Type = boolean;
+		Value = on;
+	}
+	Parameter "unlinkOpacity" input
+	{
+		GUID = "{208928C3-29E7-4D65-8B5C-115D78C7883A}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "color_ray_refracted" input
+	{
+		GUID = "{54A26EF9-B31B-4D12-8052-C1B7EC47D8E7}";
+		Texturable = on;
+		Type = color;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "mode_ray_refracted" input
+	{
+		GUID = "{3E91C8E6-E68A-4C76-B801-B811B5A2A755}";
+		Texturable = off;
+		Type = integer;
+		Value = 3;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "color_ray_reflected" input
+	{
+		GUID = "{167916BA-C738-404A-9143-DB7BF6BC65E0}";
+		Texturable = on;
+		Type = color;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "mode_ray_reflected" input
+	{
+		GUID = "{F34E4A71-8F72-4BAE-AA2C-0E131603C6AC}";
+		Texturable = off;
+		Type = integer;
+		Value = 3;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "checkShaderNameToo" input
+	{
+		GUID = "{AB9801C9-078E-4674-BC2E-04E02C36221F}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "useCritical" input
+	{
+		GUID = "{1ABE1627-BE8B-4F4F-9EBC-045796AF9444}";
+		Texturable = off;
+		Type = boolean;
+		Value = off;
+	}
+	Parameter "modeMIS" input
+	{
+		GUID = "{D04CBDE5-A26C-4CE3-B612-744F351877E8}";
+		Texturable = off;
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "MISrandomLobeSamples" input
+	{
+		GUID = "{FABB6F31-F24C-4204-A58D-2DB894C924D4}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 1;
+	}
+	Parameter "samples_R" input
+	{
+		GUID = "{378F7EFD-0EF3-4732-8C76-EF331C5DC2AD}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "samples_TT" input
+	{
+		GUID = "{C7A400D2-7F03-4909-B7A2-12473940DEE6}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "samples_TRT" input
+	{
+		GUID = "{87BE85F2-976B-470B-8D9B-459783068A68}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "samples_G" input
+	{
+		GUID = "{0A57B2F8-BC41-4ADF-9D67-2C43D7E3688E}";
+		Texturable = off;
+		Type = integer;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "samples_DS" input
+	{
+		GUID = "{21BA2E02-0895-444E-B63E-9B91901DE415}";
+		Texturable = off;
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+	}
+	Parameter "modeMIS_DS" input
+	{
+		GUID = "{BB8193D9-B874-4296-8C57-D194549CBA35}";
+		Texturable = off;
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_Hair";
+}
+
+phenomenon "Obq_Hair_declare"
+{
+	Name = "Obq_Hair";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	opacity
+	{
+		Name = "Opacity";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	alpha_R
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -10 to -5;
+	}
+	alpha_R__pre
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -10 to -5;
+	}
+	alpha_TT
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 2.5 to 5;
+	}
+	alpha_TT__pre
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 2.5 to 5;
+	}
+	alpha_TRT
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 7.5 to 15;
+	}
+	alpha_TRT__pre
+	{
+		Name = "Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 7.5 to 15;
+	}
+	beta_R
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 5 to 10;
+	}
+	beta_R__pre
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 5 to 10;
+	}
+	beta_TT
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 2.5 to 5;
+	}
+	beta_TT__pre
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 2.5 to 5;
+	}
+	beta_TRT
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 20;
+	}
+	beta_TRT__pre
+	{
+		Name = "Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 20;
+	}
+	color_R
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_R__pre
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_TT
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_TT__pre
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_TRT
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_TRT__pre
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_g
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	color_g__pre
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	gamma_TT
+	{
+		Name = "Azimuthal width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 20;
+	}
+	gamma_TT__pre
+	{
+		Name = "Azimuthal width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 20;
+	}
+	gamma_g
+	{
+		Name = "Azimuthal width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 25;
+	}
+	gamma_g__pre
+	{
+		Name = "Azimuthal width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 10 to 25;
+	}
+	phi_g
+	{
+		Name = "Half angle between peeks (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 15 to 30;
+	}
+	phi_g__pre
+	{
+		Name = "Half angle between peeks (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 15 to 30;
+	}
+	scale_R
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	scale_R__pre
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	scale_TT
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	scale_TT__pre
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	scale_TRT
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	scale_TRT__pre
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	scale_g
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	scale_g__pre
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	samples
+	{
+		Name = "Samples";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 32;
+	}
+	scale_direct
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	color_direct
+	{
+		Name = "Color mult";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	scale_indirect
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	color_indirect
+	{
+		Name = "Color mult";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	alpha_back
+	{
+		Name = "+ Shift (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -10 to 10;
+	}
+	beta_back
+	{
+		Name = "+ Width (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -30 to 30;
+	}
+	scale_back
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 1;
+	}
+	color_back
+	{
+		Name = "Color Mult";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	scale_forward
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 1;
+	}
+	color_forward
+	{
+		Name = "Color Mult";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	use_pre_only
+	{
+		Name = "Use preprocessing parameters only";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	shadow_opacity
+	{
+		Name = "Self opacity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	numGMS_modifier
+	{
+		Name = "Intersection modifier (^)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	normal_shifts_widths
+	{
+		Name = "Other shifts and widths based on primary HL";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	color_ray_glossy
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	mode_ray_glossy
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Color" = 0,
+			"Direct No Dual Scat" = 1,
+			"Direct+Indirect No Dual Scat" = 2,
+		}
+	}
+	color_ray_diffuse
+	{
+		Name = "Diffuse Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	mode_ray_diffuse
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Color" = 0,
+			"Direct (No Dual Scat)" = 1,
+			"Direct+Indirect (No Dual Scat)" = 2,
+		}
+	}
+	d_f
+	{
+		Name = "Forward scattering density";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.6 to 0.8;
+	}
+	d_f__pre
+	{
+		Name = "Forward scattering density";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.6 to 0.8;
+	}
+	d_b
+	{
+		Name = "Back scattering density";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.6 to 0.8;
+	}
+	d_b__pre
+	{
+		Name = "Back scattering density";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.6 to 0.8;
+	}
+	show_texturable
+	{
+		Name = "Show BCSDF texturables";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"None" = 0,
+			"All" = 1,
+			"Merge direct and indirect" = 2,
+			"Merge lobes" = 3,
+			"Merge scattering" = 7,
+			"Merge lobes and dir/indir" = 4,
+			"Merge scattering and dir/indir" = 8,
+			"Merge lobes and scattering" = 5,
+			"Merge lobes, scattering and dir/indir" = 6
+		}
+	}
+	aov_dir_R
+	{
+		Name = "Primary Highlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_TT
+	{
+		Name = "Rimlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_TRT
+	{
+		Name = "Secondary Highlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_g
+	{
+		Name = "Glints";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_R
+	{
+		Name = "Primary Highlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_TT
+	{
+		Name = "Rimlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_TRT
+	{
+		Name = "Secondary Highlight";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_g
+	{
+		Name = "Glints";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_back
+	{
+		Name = "Back Scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_scatter
+	{
+		Name = "Forward scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_dir_scatter_back
+	{
+		Name = "Forward back scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_back
+	{
+		Name = "Back Scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_scatter
+	{
+		Name = "Forward scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	aov_indir_scatter_back
+	{
+		Name = "Forward back scattering";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	singleScatteringMode
+	{
+		Name = "Single Scattering Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useImportanceSampling
+	{
+		Name = "Use importance Sampling";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	unlinkOpacity
+	{
+		Name = "Unlink Self Opacity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	color_ray_refracted
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	mode_ray_refracted
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Color" = 0,
+			"Direct No Dual Scat" = 1,
+			"Direct+Indirect No Dual Scat" = 2,
+			"Same as Camera Ray" = 3
+		}
+	}
+	color_ray_reflected
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	mode_ray_reflected
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Color" = 0,
+			"Direct No Dual Scat" = 1,
+			"Direct+Indirect No Dual Scat" = 2,
+			"Same as Camera Ray" = 3
+		}
+	}
+	checkShaderNameToo
+	{
+		Name = "Self rays between different shaders";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useCritical
+	{
+		Name = "Use critical sections";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	modeMIS
+	{
+		Name = "MIS Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"No MIS" = 0,
+			"All lobes at once N times (Merges AOVs)" = 1,
+			"Randomly select N lobes" = 2,
+			"Additional lobes according to sampling" = 3
+		}
+	}
+	MISrandomLobeSamples
+	{
+		Name = "N Samples";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 8;
+	}
+	samples_R
+	{
+		Name = "Prim. HL";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 4;
+	}
+	samples_TT
+	{
+		Name = "Rim light";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 4;
+	}
+	samples_TRT
+	{
+		Name = "Sec. HL";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 4;
+	}
+	samples_G
+	{
+		Name = "Glints";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 4;
+	}
+	samples_DS
+	{
+		Name = "Dual Scat.";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0 to 4;
+	}
+	modeMIS_DS
+	{
+		Name = "Dual Scattering MIS Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"No MIS" = 0,
+			"MIS (Merge D.S. AOVs)" = 1
+		}
+	}
+}
+
+
+Layout "Default"
+{
+	Tab "BCSDF"
+	{
+		Group "Preprocessing"
+		{
+			use_pre_only;
+		}
+		Group "Primary Highlight (R)"
+		{
+			color_R__pre;
+			scale_R__pre;
+			alpha_R__pre;
+			beta_R__pre;
+			normal_shifts_widths;
+		}
+		Group "Secondary Highlight (TRT)"
+		{
+			color_TRT__pre;
+			scale_TRT__pre;
+			alpha_TRT__pre;
+			beta_TRT__pre;
+			Group "Glints (g)"
+			{
+				color_g__pre;
+				scale_g__pre;
+				gamma_g__pre;
+				phi_g__pre;
+			}
+		}
+		Group "Rim light (TT)"
+		{
+			color_TT__pre;
+			scale_TT__pre;
+			alpha_TT__pre;
+			beta_TT__pre;
+			gamma_TT__pre;
+		}
+	}
+	Tab "BCSDF texturables"
+	{
+		Group "Show"
+		{
+			show_texturable;
+		}
+		Group "Primary Highlight (R)"
+		{
+			color_R;
+			scale_R;
+			alpha_R;
+			beta_R;
+		}
+		Group "Secondary Highlight (TRT)"
+		{
+			color_TRT;
+			scale_TRT;
+			alpha_TRT;
+			beta_TRT;
+		}
+		Group "Glints (g)"
+		{
+			color_g;
+			scale_g;
+			gamma_g;
+			phi_g;
+		}
+		Group "Rim light (TT)"
+		{
+			color_TT;
+			scale_TT;
+			alpha_TT;
+			beta_TT;
+			gamma_TT;
+		}
+	}
+	Tab "Dual Scattering"
+	{
+		Group "Single Scattering"
+		{
+			singleScatteringMode;
+		}
+		Group "Back Scattering"
+		{
+				alpha_back;
+				beta_back;
+				color_back;
+				scale_back;
+				d_b__pre;
+		}
+		Group "Forward Scattering"
+		{
+				color_forward;
+				scale_forward;
+				d_f__pre;
+		}
+	}
+	Tab "Global settings"
+	{
+		Group "Direct Illumination"
+		{
+			scale_direct;
+			color_direct;
+			Group "Multiple Importance Sampling"
+			{
+				modeMIS;
+				modeMIS_DS;
+				Group "Sampling"
+				{
+					MISrandomLobeSamples;
+					samples_R;
+					samples_TT;
+					samples_TRT;
+					samples_G;
+					samples_DS;
+				}
+			}
+		}
+		Group "Indirect Illumination"
+		{
+			samples;
+			useImportanceSampling;
+			scale_indirect;
+			color_indirect;
+		}
+		Group "Opacity"
+		{
+			opacity;
+			unlinkOpacity;
+			shadow_opacity;
+			numGMS_modifier;
+		}
+		Group "Additional Options"
+		{
+			checkShaderNameToo;
+			useCritical;
+		}
+	}
+	Tab "RayType Optimization"
+	{
+		Group "Diffuse Rays"
+		{
+			color_ray_diffuse;
+			mode_ray_diffuse;
+		}
+		Group "Reflected Rays"
+		{
+			color_ray_reflected;
+			mode_ray_reflected;
+		}
+		Group "Refracted Rays"
+		{
+			color_ray_refracted;
+			mode_ray_refracted;
+		}
+		Group "Glossy Rays"
+		{
+			color_ray_glossy;
+			mode_ray_glossy;
+		}
+	}
+	Tab "AOVs"
+	{
+		aov_mode;
+		Group "Channels"
+		{
+			Group "Direct Illumination"
+			{
+				Group "Lobes"
+				{
+					aov_dir_R;
+					aov_dir_TRT;
+					aov_dir_g;
+					aov_dir_TT;
+				}
+				Group "Scattering"
+				{
+					aov_dir_back;
+					aov_dir_scatter;
+					aov_dir_scatter_back;
+				}
+			}
+			Group "Indirect Illumination"
+			{
+				Group "Lobes"
+				{
+					aov_indir_R;
+					aov_indir_TRT;
+					aov_indir_g;
+					aov_indir_TT;
+				}
+				Group "Scattering"
+				{
+					aov_indir_back;
+					aov_indir_scatter;
+					aov_indir_scatter_back;
+				}
+			}
+		}
+	}
+	Tab "Presets"
+	{
+#		Button presetDefault,aligncenter = "Default", 140;
+		Button presetNormalize,aligncenter = "Normalize scales to 1", 140;
+	}
+
+}
+
+Layout "RenderTree"
+{
+		Group "Primary Highlight (R)"
+		{
+			color_R;
+			scale_R;
+			alpha_R;
+			beta_R;
+		}
+		Group "Secondary Highlight (TRT)"
+		{
+			color_TRT;
+			scale_TRT;
+			alpha_TRT;
+			beta_TRT;
+		}
+		Group "Glints (g)"
+		{
+			color_g;
+			scale_g;
+			gamma_g;
+			phi_g;
+		}
+		Group "Rim light (TT)"
+		{
+			color_TT;
+			scale_TT;
+			alpha_TT;
+			beta_TT;
+			gamma_TT;
+		}
+		Group "DualScattering"
+		{
+			alpha_back;
+			beta_back;
+			scale_back;
+			color_back;
+			d_b;
+			scale_forward;
+			color_forward;
+			d_f;
+		}
+		Group "Global Settings"
+		{
+			opacity;
+			shadow_opacity;
+			scale_direct;
+			color_direct;
+			scale_indirect;
+			color_indirect;
+		}
+		Group "RayType Optimization"
+		{
+			color_ray_diffuse;
+			color_ray_reflected;
+			color_ray_refracted;
+			color_ray_glossy;
+		}
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub normal_shifts_widths_OnChanged()
+	IF PPG.normal_shifts_widths.Value = True Then
+		PPG.alpha_TT__pre.Show(False)
+		PPG.alpha_TRT__pre.Show(False)
+		PPG.beta_TT__pre.Show(False)
+		PPG.beta_TRT__pre.Show(False)
+		PPG.alpha_TT.Show(False)
+		PPG.alpha_TRT.Show(False)
+		PPG.beta_TT.Show(False)
+		PPG.beta_TRT.Show(False)
+	Else
+		PPG.alpha_TT__pre.Show(True)
+		PPG.alpha_TRT__pre.Show(True)
+		PPG.beta_TT__pre.Show(True)
+		PPG.beta_TRT__pre.Show(True)
+		IF PPG.show_texturable.Value = True Then
+			PPG.alpha_TT.Show(True)
+			PPG.alpha_TRT.Show(True)
+			PPG.beta_TT.Show(True)
+			PPG.beta_TRT.Show(True)
+		Else
+			PPG.alpha_TT.Show(False)
+			PPG.alpha_TRT.Show(False)
+			PPG.beta_TT.Show(False)
+			PPG.beta_TRT.Show(False)
+		End If
+	End IF
+	PPG.Refresh
+End sub
+
+sub unlinkOpacity_OnChanged()
+	If PPG.unlinkOpacity.Value = 0 Then
+		PPG.shadow_opacity.Show(False)
+	Else
+		PPG.shadow_opacity.Show(True)
+	End If
+End sub
+
+sub modeMIS_DS_OnChanged()
+	modeMIS_OnChanged()
+End sub
+
+sub modeMIS_OnChanged()
+	If PPG.modeMIS.Value = 0 Then
+		PPG.modeMIS_DS.Show(false)
+		PPG.MISrandomLobeSamples.Show(false)
+		PPG.samples_R.Show(false)
+		PPG.samples_TT.Show(false)
+		PPG.samples_TRT.Show(false)
+		PPG.samples_G.Show(false)
+		PPG.samples_DS.Show(false)
+	ElseIf PPG.modeMIS.Value = 1 Then
+		PPG.modeMIS_DS.Show(true)
+		PPG.MISrandomLobeSamples.Show(true)
+		PPG.samples_R.Show(false)
+		PPG.samples_TT.Show(false)
+		PPG.samples_TRT.Show(false)
+		PPG.samples_G.Show(false)
+		If PPG.modeMIS_DS.Value = 0 Then
+			PPG.samples_DS.Show(false)
+		Else
+			PPG.samples_DS.Show(true)
+		End If
+	ElseIf PPG.modeMIS.Value = 2 Then
+		PPG.modeMIS_DS.Show(true)
+		PPG.MISrandomLobeSamples.Show(true)
+		PPG.samples_R.Show(false)
+		PPG.samples_TT.Show(false)
+		PPG.samples_TRT.Show(false)
+		PPG.samples_G.Show(false)
+		If PPG.modeMIS_DS.Value = 0 Then
+			PPG.samples_DS.Show(false)
+		Else
+			PPG.samples_DS.Show(true)
+		End If
+	Else
+		PPG.modeMIS_DS.Show(true)
+		PPG.MISrandomLobeSamples.Show(false)
+		PPG.samples_R.Show(true)
+		PPG.samples_TT.Show(true)
+		PPG.samples_TRT.Show(true)
+		PPG.samples_G.Show(true)
+		If PPG.modeMIS_DS.Value = 0 Then
+			PPG.samples_DS.Show(false)
+		Else
+			PPG.samples_DS.Show(true)
+		End If
+	End If
+	PPG.Refresh
+End sub
+
+sub aov_mode_OnChanged()
+	If PPG.aov_mode.Value = 0 Then
+		PPG.aov_dir_R.Value = ""
+		PPG.aov_dir_TRT.Value = ""
+		PPG.aov_dir_g.Value = ""
+		PPG.aov_dir_TT.Value = ""
+		PPG.aov_dir_back.Value = ""
+		PPG.aov_dir_scatter.Value = ""
+		PPG.aov_dir_scatter_back.Value = ""
+		PPG.aov_indir_R.Value = ""
+		PPG.aov_indir_TRT.Value = ""
+		PPG.aov_indir_g.Value = ""
+		PPG.aov_indir_TT.Value = ""
+		PPG.aov_indir_back.Value = ""
+		PPG.aov_indir_scatter.Value = ""
+		PPG.aov_indir_scatter_back.Value = ""
+	ElseIf PPG.aov_mode.Value = 1 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+		PPG.aov_indir_R.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Indirect_Secondary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Indirect_Glints"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Indirect_RimLight"
+		PPG.aov_indir_back.Value = "Obq_Hair_Indirect_Back"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Indirect_ScatterBack"
+	ElseIf PPG.aov_mode.Value = 2 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+		PPG.aov_indir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_indir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+	ElseIf PPG.aov_mode.Value = 3 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+		PPG.aov_indir_R.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_back.Value = "Obq_Hair_Indirect_Back"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Indirect_ScatterBack"
+	ElseIf PPG.aov_mode.Value = 4 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+		PPG.aov_indir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_back.Value = "Obq_Hair_Direct_Back"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Direct_ScatterBack"
+	ElseIf PPG.aov_mode.Value = 5 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_R.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_back.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Indirect_Scatter"
+	ElseIf PPG.aov_mode.Value = 6 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+	ElseIf PPG.aov_mode.Value = 7 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_R.Value = "Obq_Hair_Indirect_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Indirect_Secondary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Indirect_Glints"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Indirect_RimLight"
+		PPG.aov_indir_back.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Indirect_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Indirect_Scatter"
+	ElseIf PPG.aov_mode.Value = 8 Then
+		PPG.aov_dir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_dir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_dir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_dir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_dir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_dir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_R.Value = "Obq_Hair_Direct_Primary"
+		PPG.aov_indir_TRT.Value = "Obq_Hair_Direct_Secondary"
+		PPG.aov_indir_g.Value = "Obq_Hair_Direct_Glints"
+		PPG.aov_indir_TT.Value = "Obq_Hair_Direct_RimLight"
+		PPG.aov_indir_back.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter.Value = "Obq_Hair_Direct_Scatter"
+		PPG.aov_indir_scatter_back.Value = "Obq_Hair_Direct_Scatter"
+	End If
+End Sub
+
+'sub presetDefault_OnClicked()
+'	values = ARRAY(1.0,1.0,1.0,0.25,-7.5,7.5)		
+'	SetValue PPG.I_R.Parent & ".I_R.red," & PPG.I_R.Parent & ".I_R.green," & PPG.I_R.Parent & ".I_R.blue,"& PPG.scale_R.Parent & ".scale_R," & PPG.alpha_R.Parent & ".alpha_R," & PPG.beta_R.Parent & ".beta_R", values
+'End  sub
+
+sub presetNormalize_OnClicked()
+	sum = PPG.scale_R__pre.Value + PPG.scale_TT__pre.Value + PPG.scale_TRT__pre.Value + PPG.scale_g__pre.Value
+	PPG.scale_R__pre.Value = PPG.scale_R__pre.Value/sum
+	PPG.scale_TT__pre.Value = PPG.scale_TT__pre.Value/sum
+	PPG.scale_TRT__pre.Value = PPG.scale_TRT__pre.Value/sum
+	PPG.scale_g__pre.Value = PPG.scale_g__pre.Value/sum
+End Sub
+
+Sub AddChannel(aov)
+	Dim      sName
+
+	sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
+	If sName = "" Then Exit Sub
+
+	On Error Resume Next
+	sName = CreateRenderChannel( sName, siRenderChannelColorType )
+	If Err.Number <> 0 Then
+		LogMessage "Unable to create channel. Does a channel with that name already exist?"
+		Exit Sub
+	End If
+	If sName <> "" Then
+		For Each oInspected In PPG.Inspected
+			aov.value = sName
+		Next
+		OnInit
+	End If
+End Sub
+
+Sub createRenderChannels()
+
+	Set oRenderChannels = ActiveProject.ActiveScene.PassContainer.Properties( "Scene Render Options" ).RenderChannels
+	Dim channelArray(14)
+	channelArray(0) = "Obq_Hair_Direct_Primary"
+	channelArray(1) = "Obq_Hair_Direct_RimLight"
+	channelArray(2) = "Obq_Hair_Direct_Secondary"
+	channelArray(3) = "Obq_Hair_Direct_Glints"
+	channelArray(4) = "Obq_Hair_Direct_Back"
+	channelArray(5) = "Obq_Hair_Direct_Scatter"
+	channelArray(6) = "Obq_Hair_Direct_ScatterBack"
+	channelArray(7) = "Obq_Hair_Indirect_Primary"
+	channelArray(8) = "Obq_Hair_Indirect_RimLight"
+	channelArray(9) = "Obq_Hair_Indirect_Secondary"
+	channelArray(10) = "Obq_Hair_Indirect_Glints"
+	channelArray(11) = "Obq_Hair_Indirect_Back"
+	channelArray(12) = "Obq_Hair_Indirect_Scatter"
+	channelArray(13) = "Obq_Hair_Indirect_ScatterBack"
+	
+	oChannels = oRenderChannels.getAsText()
+	For Each channelName in channelArray
+		If InStr(oChannels,channelName) = 0 Then
+			CreateRenderChannel channelName, siRenderChannelColorType
+		End If
+	Next			
+		
+End Sub
+
+Sub aov_readOnly()
+	PPG.aov_dir_R.ReadOnly = True
+	PPG.aov_dir_TRT.ReadOnly = True
+	PPG.aov_dir_g.ReadOnly = True
+	PPG.aov_dir_TT.ReadOnly = True
+	PPG.aov_dir_back.ReadOnly = True
+	PPG.aov_dir_scatter.ReadOnly = True
+	PPG.aov_dir_scatter_back.ReadOnly = True
+	PPG.aov_indir_R.ReadOnly = True
+	PPG.aov_indir_TRT.ReadOnly = True
+	PPG.aov_indir_g.ReadOnly = True
+	PPG.aov_indir_TT.ReadOnly = True
+	PPG.aov_indir_back.ReadOnly = True
+	PPG.aov_indir_scatter.ReadOnly = True
+	PPG.aov_indir_scatter_back.ReadOnly = True
+End Sub
+
+
+sub show_texturable_OnChanged()
+	If PPG.show_texturable.Value = True Then
+		PPG.color_R.Show(True)
+		PPG.scale_R.Show(True)
+		PPG.alpha_R.Show(True)
+		PPG.beta_R.Show(True)
+		PPG.color_TRT.Show(True)
+		PPG.scale_TRT.Show(True)
+		PPG.alpha_TRT.Show(True)
+		PPG.beta_TRT.Show(True)
+		PPG.color_g.Show(True)
+		PPG.scale_g.Show(True)
+		PPG.gamma_g.Show(True)
+		PPG.phi_g.Show(True)
+		PPG.color_TT.Show(True)
+		PPG.scale_TT.Show(True)
+		PPG.alpha_TT.Show(True)
+		PPG.beta_TT.Show(True)
+		PPG.gamma_TT.Show(True)
+	Else
+		PPG.color_R.Show(False)
+		PPG.scale_R.Show(False)
+		PPG.alpha_R.Show(False)
+		PPG.beta_R.Show(False)
+		PPG.color_TRT.Show(False)
+		PPG.scale_TRT.Show(False)
+		PPG.alpha_TRT.Show(False)
+		PPG.beta_TRT.Show(False)
+		PPG.color_g.Show(False)
+		PPG.scale_g.Show(False)
+		PPG.gamma_g.Show(False)
+		PPG.phi_g.Show(False)
+		PPG.color_TT.Show(False)
+		PPG.scale_TT.Show(False)
+		PPG.alpha_TT.Show(False)
+		PPG.beta_TT.Show(False)
+		PPG.gamma_TT.Show(False)
+	End If
+	normal_shifts_widths_OnChanged()
+End sub
+
+Sub singleScatteringMode_OnChanged()
+
+	If PPG.singleScatteringMode.Value = True Then
+		PPG.alpha_back.Show(False)
+		PPG.beta_back.Show(False)
+		PPG.scale_back.Show(False)
+		PPG.color_back.Show(False)
+		PPG.d_b__pre.Show(False)
+		PPG.scale_forward.Show(False)
+		PPG.color_forward.Show(False)
+		PPG.d_f__pre.Show(False)
+	Else
+		PPG.alpha_back.Show(True)
+		PPG.beta_back.Show(True)
+		PPG.scale_back.Show(True)
+		PPG.color_back.Show(True)
+		PPG.d_b__pre.Show(True)
+		PPG.scale_forward.Show(True)
+		PPG.color_forward.Show(True)
+		PPG.d_f__pre.Show(True)
+	End If
+	PPG.Refresh
+End Sub
+
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Hair.html"
+	normal_shifts_widths_OnChanged()	
+	show_texturable_OnChanged()	
+	createRenderChannels()
+	aov_readOnly()
+	aov_mode_OnChanged()
+	singleScatteringMode_OnChanged()
+	unlinkOpacity_OnChanged()
+	modeMIS_OnChanged()
+End sub
+
+}
+

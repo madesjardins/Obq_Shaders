@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.4
+// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
 
 
 #ifndef tde4_ldp_anamorphic_deg_6_sdv
@@ -16,58 +16,34 @@
 //! Does not compensate for decentering.
 //! Parameters can be calculated by 3DE's Matrix Tool.
 template <class VEC2,class MAT2>
-class tde4_ldp_anamorphic_deg_6:public ldpk::ldp_builtin<VEC2>
+class tde4_ldp_anamorphic_deg_6:public ldpk::ldp_builtin<VEC2,MAT2>
 	{
 private:
 	typedef VEC2 vec2_type;
 	typedef MAT2 mat2_type;
-	typedef ldpk::ldp_builtin<VEC2> base_type;
-
-//! Built-ins use diag-norm coordinates.
-	double _r_fb_cm;
+	typedef ldpk::ldp_builtin<VEC2,MAT2> base_type;
 
 // Anamorphic distortion of degree 6.
 	ldpk::generic_anamorphic_distortion<vec2_type,mat2_type,6> _anamorphic;
 
 	static const char* _para[18];
 
-	const char** get_para_names() const
-		{ return _para; }
-
-	pthread_mutex_t _mutex;
-
-	double r_fb_cm() const
-		{ return _r_fb_cm; }
 	bool decypher(const char* name,int& i)
 		{
 		typedef base_type bt;
 		int n;
 		getNumParameters(n);
-		const char** para = get_para_names();
 		for(i = 0;i < n;++i)
 			{
-			if(0 == strcmp(name,para[i]))
+			if(0 == strcmp(name,_para[i]))
 				{ return true; }
 			}
 		return false;
 		}
-	vec2_type map_unit_to_dn(const vec2_type& p_unit) const
-		{
-		typedef base_type bt;
-		vec2_type p_cm((p_unit[0] - 1.0/2.0) * bt::w_fb_cm() - bt::x_lco_cm(),(p_unit[1] - 1.0/2.0) * bt::h_fb_cm() - bt::y_lco_cm());
-		return p_cm / _r_fb_cm;
-		}
-	vec2_type map_dn_to_unit(const vec2_type& p_dn) const
-		{
-		typedef base_type bt;
-		vec2_type p_cm(p_dn * _r_fb_cm);
-		p_cm += vec2_type(bt::w_fb_cm() / 2 + bt::x_lco_cm(),bt::h_fb_cm() / 2 + bt::y_lco_cm());
-		return vec2_type(p_cm[0] / bt::w_fb_cm(),p_cm[1] / bt::h_fb_cm());
-		}
 	bool initializeParameters()
 		{
 		typedef base_type bt;
-		_r_fb_cm = sqrt(bt::w_fb_cm() * bt::w_fb_cm() + bt::h_fb_cm() * bt::h_fb_cm()) / 2.0;
+		bt::check_builtin_parameters();
 // This method is the last one invoked, before the object can be used.
 		_anamorphic.prepare();
 		return true;
@@ -79,8 +55,7 @@ private:
 		}
 	bool getParameterName(int i,char* identifier)
 		{
-		const char** para = get_para_names();
-		strcpy(identifier,para[i]);
+		strcpy(identifier,_para[i]);
 		return true;
 		}
 	bool setParameterValue(const char *identifier,double v)
@@ -107,9 +82,10 @@ private:
 // slightly faster version
 	virtual bool undistort(double x0,double y0,double &x1,double &y1)
 		{
-		vec2_type q =	map_dn_to_unit(
+		typedef base_type bt;
+		vec2_type q =	bt::map_dn_to_unit(
 					_anamorphic.eval(
-						map_unit_to_dn(vec2_type(x0,y0))));
+						bt::map_unit_to_dn(vec2_type(x0,y0))));
 		x1 = q[0];
 		y1 = q[1];
 		return true;
@@ -125,47 +101,43 @@ private:
 // prevent threads from updating without need.
 		if(!bt::is_uptodate_lut())
 			{
-			pthread_mutex_lock(&_mutex);
+			bt::lock();
 			if(!bt::is_uptodate_lut())
 				{
 				bt::update_lut();
 				}
-			pthread_mutex_unlock(&_mutex);
+			bt::unlock();
 			}
 
 // Get initial value from lookup-table
 		vec2_type qs = bt::get_lut().get_initial_value(vec2_type(x0,y0));
 //		vec2_type qs(x0,y0);
 // Call version of distort with initial value.
-		vec2_type q =	map_dn_to_unit(
+		vec2_type q =	bt::map_dn_to_unit(
 					_anamorphic.map_inverse(
-						map_unit_to_dn(vec2_type(x0,y0)),
-						map_unit_to_dn(qs)));
+						bt::map_unit_to_dn(vec2_type(x0,y0)),
+						bt::map_unit_to_dn(qs)));
 		x1 = q[0];
 		y1 = q[1];
 		return true;
 		}
 	virtual bool distort(double x0,double y0,double x1_start,double y1_start,double &x1,double &y1)
 		{
-		vec2_type q =	map_dn_to_unit(
+		typedef base_type bt;
+		vec2_type q =	bt::map_dn_to_unit(
 					_anamorphic.map_inverse(
-						map_unit_to_dn(vec2_type(x0,y0)),
-						map_unit_to_dn(vec2_type(x1_start,y1_start))));
+						bt::map_unit_to_dn(vec2_type(x0,y0)),
+						bt::map_unit_to_dn(vec2_type(x1_start,y1_start))));
 		x1 = q[0];
 		y1 = q[1];
 		return true;
 		}
 public:
+// Mutex initialized and destroyed in baseclass.
 	tde4_ldp_anamorphic_deg_6()
-		{
-		int r = pthread_mutex_init(&_mutex,NULL);
-		if(r) std::cerr << "tde4_ldp_anamorphic_deg_6::pthread_mutex_init: " << strerror(r) << std::endl;
-		}
+		{ }
 	~tde4_ldp_anamorphic_deg_6()
-		{
-		int r = pthread_mutex_destroy(&_mutex);
-		if(r) std::cerr << "tde4_ldp_anamorphic_deg_6::pthread_mutex_destroy: " << strerror(r) << std::endl;
-		}
+		{ }
 	bool getModelName(char *name)
 		{
 #ifdef LDPK_COMPILE_AS_PLUGIN_SDV
@@ -205,14 +177,38 @@ public:
 	bool getJacobianMatrix(double x0,double y0,double& m00,double& m01,double& m10,double& m11)
 		{
 		typedef base_type bt;
-		mat2_type m = _anamorphic.jacobi(map_unit_to_dn(vec2_type(x0,y0)));
+		mat2_type m = _anamorphic.jacobi(bt::map_unit_to_dn(vec2_type(x0,y0)));
 // to myself: Eigentlich w/2,h/2 bei beiden. Kuerzt sich weg.
-		mat2_type u2d(bt::w_fb_cm() / r_fb_cm(),0.0,0.0,bt::h_fb_cm() / r_fb_cm());
-		mat2_type d2u(r_fb_cm() / bt::w_fb_cm(),0.0,0.0,r_fb_cm() / bt::h_fb_cm());
+		mat2_type u2d(bt::w_fb_cm() / bt::r_fb_cm(),0.0,0.0,bt::h_fb_cm() / bt::r_fb_cm());
+		mat2_type d2u(bt::r_fb_cm() / bt::w_fb_cm(),0.0,0.0,bt::r_fb_cm() / bt::h_fb_cm());
 		m = d2u * m * u2d;
 		m00 = m[0][0];m01 = m[0][1];m10 = m[1][0];m11 = m[1][1];
 		return true;
 		}
+	bool getTwistVector(double x0,double y0,double& t0,double& t1)
+		{
+		typedef base_type bt;
+		vec2_type t = _anamorphic.twist(bt::map_unit_to_dn(vec2_type(x0,y0)));
+		t0 = t[0] * (bt::h_fb_cm() / (bt::r_fb_cm()));t1 = t[1] * (bt::w_fb_cm() / (bt::r_fb_cm()));
+		return true;
+		}
+
+	///////////// OBQ_ADD ////////////////
+	bool setParameterValue2(const char *identifier,double v)
+	{
+		return setParameterValue(identifier, v);
+	}
+
+	bool initializeParameters2()
+	{
+		return initializeParameters();
+	}
+
+	bool undistort2(double x0,double y0,double &x1,double &y1)
+	{
+		return undistort(x0,y0,x1,y1);
+	}
+
 	};
 
 template <class VEC2,class MAT2>
