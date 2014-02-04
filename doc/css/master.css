@@ -1,0 +1,233 @@
+/* Created by Marc-Antoine Desjardins using Steve Denis' CSS tutorial : http://www.subcide.com/articles/creating-a-css-layout-from-scratch/P5/*/
+
+html, body {
+	margin: 4;
+	padding:0;
+}
+body {
+	font-family : Arial, Helvetica, Verdana, Sans-serif;
+	font-size : 14px;
+	font-weight: normal;
+	color: #505050;
+	background: #ffffff;
+}
+
+#page-container {
+	width: 1000px;	
+}
+
+#banner {
+	height: 50px;
+}
+
+#topMenu {
+}
+
+#topMenu-left {
+	float: left;
+	width: 200px;
+}
+
+#topMenu-right {
+	padding-left: 260px;
+}
+
+#content {
+	clear: both;
+	padding: 10px;
+}
+
+#content-sidebar {
+	float: left;
+	width: 200px;
+	margin-top: 18px;
+}
+
+#content-sidebar p{
+	text-align : left;
+	font-size : 14px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #707070;
+	font-weight: bold;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+#content-sidebar table{
+	text-align : left;
+	font-size : 12px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #909090;
+}
+
+#content-sidebar a{
+	font-size : 12px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	text-decoration: none;
+	color : #909090;
+}
+
+#content-help {
+	margin-left: 240px;
+}
+
+#content-help a{
+	text-decoration: underline;
+}
+
+#content-help img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content-help p {
+	font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+table.install{
+	margin-left : 11px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	font-size : 14px;
+	font-weight: normal;
+	color: #505050;
+	background: #ffffff;
+}
+
+#footer {
+	clear: both;
+	text-align: center;
+	font-size: 10px;
+	padding: 20px;
+	margin-left: 240px;
+}
+
+.hidden {
+	display: none;
+}
+
+/* TITLE */
+h1 {
+	font-size : 36px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #303030;
+}
+
+/*Shader Name*/
+h2 {
+	font-size : 28px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #383838;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*Tab*/
+h3 {
+	font-size : 20px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #404040;
+}
+
+/*Group*/
+h4 {
+	font-size : 18px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #484848;
+}
+
+/*Parameter*/
+h5 {
+	font-size : 18px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #585858;
+	margin-top: 4px;
+	margin-bottom: 2px;
+}
+
+/*Figure*/
+h6 {
+	font-size : 12px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #585858;
+	text-align: center;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	
+}
+
+.alignLeft{
+	text-align = left;
+}
+
+/*The rest*/
+p {
+	font-family: 'Noto Sans', calibri, sans-serif;
+}
+
+p.idesc{
+	font-size : 11px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	color : #989898;
+	text-align: center;
+	margin-top: 4px;
+	margin-bottom: 20px;
+}
+
+p.note{
+	font-style:italic;
+	color:darkblue;
+	font-size:13px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+p.warning{
+	font-style:italic;
+	color:darkred;
+	font-size:13px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+p.install{
+	margin-left: 15px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	font-size : 14px;
+	font-weight: normal;
+	color: #505050;
+	background: #ffffff;
+}
+
+ul.install{
+	margin-left: 15px;
+	font-family: 'Noto Sans', calibri, sans-serif;
+	font-size : 14px;
+	font-weight: normal;
+	color: #505050;
+	background: #ffffff;
+}
+
+#topMenu .link {
+	font-family: 'Noto Sans', calibri, sans-serif;
+	font-size : 16px;
+	color : #606060;
+}
+
+body a{
+	text-decoration: none;
+	color: #606060;
+}
+
+#topMenu table{
+	text-align: center;
+	height: 20px;
+	width: 600px;
+}
+
+
+
+
+

@@ -1,0 +1,26 @@
+﻿v206 - win,linux - 	SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+v207 - win,linux - 	SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208 - win,linux - 	SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+v209 - win,linux - 	SITOA 2.9.0 - Arnold 4.0.15.1 by Marc-Antoine Desjardins
+v210 - win,linux - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v300 - win,linux - 	SITOA 3.0.0 - Arnold 4.1.3.3  by Marc-Antoine Desjardins
+
+FIXES:
+	+ Obq_AngularCamera : Automatically compensate for U-flipped angular map in Arnold 4.1., proper opposite view forward<->backward flip and automatic compensation for filter width.
+
+ADDITIONS:
+	+ Obq_AngularCamera : "Over Render" parameter allows you to render the whole image, i.e. more than the necessary pixels.
+	+ New documentation system for some Obq shaders.
+
+CHANGES:
+
+NEW SHADERS:
+
+REMOVED SHADERS:
+
+COMING SOON :
+	+ New documentation system for all obq shaders
+	+ Obq_CustomToon : Like the toon shader of MentalRay, but packed with a lot more options like gradient and image control of the shading.
+	+ Obq_MeasuredMaterial : Importance sampling
+	+ Obq_Material : A physically based all purpose shader
+	

@@ -36,7 +36,7 @@ AI_CAMERA_NODE_EXPORT_METHODS(Obq_AngularCameraMethods);
 
 // Param enum for fast direct access
 //
-enum Obq_AngularCameraParams { p_angle, p_flip};
+enum Obq_AngularCameraParams { p_angle, p_flip, p_overRender};
 
 const AtVector c_ZAxis = {0.0f,0.0f, 1.0f};
 const AtVector c_nZAxis = {0.0f,0.0f,-1.0f};
@@ -45,9 +45,12 @@ const AtVector c_nZAxis = {0.0f,0.0f,-1.0f};
 //
 typedef struct 
 {
-	float angle;
+	float angle;	
 	float tanFov;
-	bool flip;
+	bool flip;		
+	bool faceFront;	
+	bool overRender;
+	float lenMax;	// normal over render
 }
 ShaderData;
 
@@ -68,8 +71,9 @@ inline AtVector RodriguesRotation(AtVector v, AtVector k, float angle)
 
 node_parameters
 {
-	AiParameterFLT("angle" , c_Pi);
-	AiParameterBOOL("flip" , false);
+	AiParameterFLT("angle" , 360);			// spread in degrees (360 = whole sphere)
+	AiParameterBOOL("flip" , false);		// forward<->backward flip (opposite view)
+	AiParameterBOOL("overRender" , false);	// render full image instead of usefull circle
 }
 
 node_initialize
@@ -77,8 +81,9 @@ node_initialize
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 
 	// Initialize
-	data->angle = c_2Pi;
+	data->angle = 360;
 	data->flip = false;
+	data->overRender = false;
 	data->tanFov =std::tan(c_Pi);
 
 	// Set data
@@ -93,7 +98,20 @@ node_update
 	// get parameters
 	data->angle = c_Radians*params[p_angle].FLT/2.0f;
 	data->flip = params[p_flip].BOOL;
+	data->overRender = params[p_overRender].BOOL;
 	data->tanFov = std::tan(data->angle);
+	
+	// Update shaderData variables
+	AtNode* options = AiUniverseGetOptions();
+	
+	// get Filter width to adjust rendered area
+	float filterWidth = 8.0f;
+	AtNode* output_filter = AiNodeLookUpByName("sitoa_output_filter");
+	if(AiNodeEntryLookUpParameter(AiNodeGetNodeEntry(output_filter),"width"))
+		filterWidth = AiNodeGetFlt(output_filter,"width");
+
+	data->lenMax = 1.0f +  filterWidth/(static_cast<float>(AiNodeGetInt(options,"xres"))/2.0f) + AI_EPSILON;
+
 }
 
 node_finish
@@ -105,13 +123,14 @@ node_finish
 
 camera_create_ray 
 {
+
 	// AspectRatio
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
 
 	float len2 = input->sx*input->sx + input->sy*input->sy;
 
 	// trivial reject
-	if(len2 > 1.0f)
+	if(!data->overRender && len2 > data->lenMax)
 	{
 		output->weight = 0.0f;	// this will prevent evaluation
 		output->dir = c_nZAxis; // forward
@@ -135,9 +154,16 @@ camera_create_ray
 			output->dir = RodriguesRotation(c_ZAxis,k,data->angle*len);
 		}
 
-		//flip
+#if OBQ_AI_VERSION >= 40100
+		output->dir.x = -output->dir.x;
+#endif
+
+		// flip forward<->backward looking camera
 		if(data->flip)
+		{
+			output->dir.x = -output->dir.x;
 			output->dir.z = -output->dir.z;
+		}
 
 		///////////////////////////////////
 		// Derivatives thanks to Alan King ( I don't think it's valid for this type of camera)

@@ -18,7 +18,7 @@ PropertySet "Obq_AngularCamera"
 		Value Minimum = 0;
 		Value Maximum = 360;
 		Texturable = Off;
-		Animatable = Off;
+		Animatable = On;
 	}
 	Parameter "flip" input
 	{
@@ -26,7 +26,15 @@ PropertySet "Obq_AngularCamera"
 		Type = boolean;
 		Value = off;
 		Texturable = Off;
-		Animatable = Off;
+		Animatable = On;
+	}
+	Parameter "overRender" input
+	{
+		GUID = "{CF59FB3D-C614-48D3-B843-8375B866A3A5}";
+		Type = boolean;
+		Value = off;
+		Texturable = Off;
+		Animatable = On;
 	}
 }
 
@@ -50,15 +58,22 @@ Defaults
 	}
 	flip
 	{
-		Name = "Flip front<->back";
+		Name = "Opposite view";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
+	overRender
+	{
+		Name = "Over Render";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+
 }
 
 Layout "Default"
 {
 		angle;
 		flip;
+		overRender;
 }
 
 Layout "RenderTree"

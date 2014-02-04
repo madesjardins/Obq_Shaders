@@ -1,0 +1,28 @@
+v206 - win,linux - 	SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+v207 - win,linux - 	SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208 - win,linux - 	SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+v209 - win,linux - 	SITOA 2.9.0 - Arnold 4.0.15.1 by Marc-Antoine Desjardins
+v210 - win,linux - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v300 - win,linux - 	SITOA 3.0.0 - Arnold 4.1.3.2  by Marc-Antoine Desjardins
+
+FIXES:
+
+ADDITIONS:
+	+ Obq_Shadow : now with caster/receiver mode to be more useful
+	+ Obq_Fresnel : Iron (Fe) preset
+	
+CHANGES:
+	+ Split libraries into Obq_Shaders__Core, and other non core (Obq_Simbiont for instance)
+	+ win_VC++ structures (Obq_Shaders solution contains Core and non Core projects)
+	+ Obq_Shadow : removed MatteOpacity and Arnold style matte mode.
+	
+NEW SHADERS:
+	+ Obq_Etching : Artistic etching look
+	
+REMOVED SHADERS:
+
+COMING SOON :
+	+ New documentation system for all obq shaders
+	+ Obq_UVRemapLensDistorsion ldpk update and fix for new distortion models
+
+
