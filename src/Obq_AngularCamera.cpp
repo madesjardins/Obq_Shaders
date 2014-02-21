@@ -32,7 +32,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 // Arnold thingy
 // 
-AI_CAMERA_NODE_EXPORT_METHODS(Obq_AngularCameraMethods);
+AI_CAMERA_NODE_EXPORT_METHODS(ObqAngularCameraMethods);
 
 // Param enum for fast direct access
 //
@@ -191,7 +191,7 @@ camera_create_ray
 //{
 //	if (i != 0)
 //		return FALSE;
-//	node->methods     = Obq_AngularCameraMethods;
+//	node->methods     = ObqAngularCameraMethods;
 //	node->output_type = AI_TYPE_UNDEFINED;
 //	node->name        = "Obq_AngularCamera";
 //	node->node_type   = AI_NODE_CAMERA;

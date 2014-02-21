@@ -224,6 +224,103 @@ inline float myRandom()
 {
 	return static_cast<float>(static_cast<double>(std::rand())/static_cast<double>(RAND_MAX));
 }
+
+
+// From http://www.cs.rit.edu/~ncs/color/t_convert.html
+// r,g,b values are from 0 to 1
+// h = [0,360], s = [0,1], v = [0,1]
+//		if s == 0, then h = -1 (undefined)
+inline void RGBtoHSV(const AtColor& rgb, AtColor& hsv)
+{
+	float min, max, delta;
+
+	min = MIN( MIN( rgb.r, rgb.g), rgb.b );
+	max = MAX( MAX( rgb.r, rgb.g), rgb.b );
+	hsv.b = max;				// v
+
+	delta = max - min;
+
+	if( max != 0 )
+		hsv.g = delta / max;		// s
+	else {
+		// r = g = b = 0		// s = 0, v is undefined
+
+		hsv.g = 1.0f;
+		hsv.r = 1.0f;
+		return;
+	}
+
+	if( rgb.r == max )
+		hsv.r = ( rgb.g - rgb.b ) / delta;		// between yellow & magenta
+	else if( rgb.g == max )
+		hsv.r = 2.0f + ( rgb.b - rgb.r ) / delta;	// between cyan & yellow
+	else
+		hsv.r = 4.0f + ( rgb.r - rgb.g ) / delta;	// between magenta & cyan
+
+	hsv.r *= 60;				// degrees
+	if( hsv.r < 0 )
+		hsv.r += 360;
+}
+
+inline void HSVtoRGB( const AtColor& hsv, AtColor& rgb)
+{
+	int i;
+	float f, p, q, t;
+
+	if( hsv.g == 0 ) {
+		// achromatic (grey)
+		rgb.r = rgb.g = rgb.b = hsv.b;
+		return;
+	}
+	float h = hsv.r;
+	h /= 60;			// sector 0 to 5
+	i = static_cast<int>(std::floor( h ));
+	f = h - i;			// factorial part of h
+	p = hsv.b * ( 1.0f- hsv.g );
+	q = hsv.b * ( 1.0f - hsv.g * f );
+	t = hsv.b * ( 1.0f - hsv.g * ( 1.0f - f ) );
+
+	switch( i ) {
+	case 0:
+		rgb.r = hsv.b;
+		rgb.g = t;
+		rgb.b = p;
+		break;
+	case 1:
+		rgb.r = q;
+		rgb.g = hsv.b;
+		rgb.b = p;
+		break;
+	case 2:
+		rgb.r = p;
+		rgb.g = hsv.b;
+		rgb.b = t;
+		break;
+	case 3:
+		rgb.r = p;
+		rgb.g = q;
+		rgb.b = hsv.b;
+		break;
+	case 4:
+		rgb.r = t;
+		rgb.g = p;
+		rgb.b = hsv.b;
+		break;
+	default:		// case 5:
+		rgb.r = hsv.b;
+		rgb.g = p;
+		rgb.b = q;
+		break;
+	}
+
+}
+
+inline float getLuminance(AtColor& rgb)
+{
+	return 0.2126f*rgb.r + 0.7152f*rgb.g + 0.0722f*rgb.b;
+}
+
+
 /////////////////////////////////////////////////////////
 // OBQ CLASSES
 /////////////////////////////////////////////////////////

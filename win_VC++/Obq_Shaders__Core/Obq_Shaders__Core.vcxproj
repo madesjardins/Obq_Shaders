@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\src\Obq_Fresnel.cpp" />
     <ClCompile Include="..\..\src\Obq_IESLightFilter.cpp" />
     <ClCompile Include="..\..\src\Obq_MeasuredMaterial.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageFlt.cpp" />
     <ClCompile Include="..\..\src\Obq_Opacity.cpp" />
     <ClCompile Include="..\..\src\Obq_RandomColor.cpp" />
     <ClCompile Include="..\..\src\Obq_RGBComEmit.cpp" />
@@ -173,6 +174,8 @@
     <ClCompile Include="..\..\src\Obq_StereoLens.cpp" />
     <ClCompile Include="..\..\src\Obq_SurfaceEnvironment.cpp" />
     <ClCompile Include="..\..\src\Obq_Thickness.cpp" />
+    <ClCompile Include="..\..\src\Obq_Toon.cpp" />
+    <ClCompile Include="..\..\src\Obq_ToonSimple.cpp" />
     <ClCompile Include="..\..\src\Obq_TransformUV.cpp" />
     <ClCompile Include="..\..\src\Obq_UVRemapLensDistortion.cpp" />
     <ClCompile Include="..\..\src\Obq_VolumeThickness.cpp" />
@@ -221,6 +224,8 @@
     <ClInclude Include="..\..\src\Obq_StereoLens.h" />
     <ClInclude Include="..\..\src\Obq_SurfaceEnvironment.h" />
     <ClInclude Include="..\..\src\Obq_Thickness.h" />
+    <ClInclude Include="..\..\src\Obq_Toon.h" />
+    <ClInclude Include="..\..\src\Obq_ToonSimple.h" />
     <ClInclude Include="..\..\src\Obq_UVRemapLensDistortion.h" />
     <ClInclude Include="..\..\src\Obq_VolumeThickness.h" />
     <ClInclude Include="..\..\src\pbrt\spectrum.h" />

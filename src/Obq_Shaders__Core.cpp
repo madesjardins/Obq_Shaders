@@ -31,7 +31,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include "Obq_Common.h"
 
 extern AtNodeMethods* ObqAtmosphereSimpleMethods;
-extern AtNodeMethods* Obq_AngularCameraMethods;
+extern AtNodeMethods* ObqAngularCameraMethods;
 extern AtNodeMethods* ObqBend4StereoSimpleMethods;
 extern AtNodeMethods* ObqChangeRangeSimpleMethods;
 extern AtNodeMethods* ObqEnvironmentSimpleMethods;
@@ -39,15 +39,18 @@ extern AtNodeMethods* ObqEtchingSimpleMethods;
 extern AtNodeMethods* ObqFresnelSimpleMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
 extern AtNodeMethods* ObqMeasuredMaterialSimpleMethods;
+extern AtNodeMethods* ObqMessageFltSimpleMethods;
 extern AtNodeMethods* ObqOpacitySimpleMethods;
 extern AtNodeMethods* ObqRandomColorSimpleMethods;
 extern AtNodeMethods* ObqRGBComEmitSimpleMethods;
 extern AtNodeMethods* ObqRGBComLightFilterMethod;
 extern AtNodeMethods* ObqRoot2TipSimpleMethods;
 extern AtNodeMethods* ObqShadowSimpleMethods;
-extern AtNodeMethods* Obq_StereoLensMethods;
+extern AtNodeMethods* ObqStereoLensMethods;
 extern AtNodeMethods* ObqSurfaceEnvironmentSimpleMethods;
 extern AtNodeMethods* ObqThicknessSimpleMethods;
+extern AtNodeMethods* ObqToonSimpleMethods;
+extern AtNodeMethods* ObqToonSimpleSimpleMethods;
 extern AtNodeMethods* ObqTransformUVSimpleMethods;
 extern AtNodeMethods* ObqUVRemapLensDistortionSimpleMethods;
 extern AtNodeMethods* ObqVolumeThicknessSimpleMethods;
@@ -64,6 +67,7 @@ enum SHADERS
    OBQ_FRESNEL,
    OBQ_IESLIGHTFILTER,
    OBQ_MEASUREDMATERIAL,
+   OBQ_MESSAGEFLT,
    OBQ_OPACITY,
    OBQ_RANDOMCOLOR,
    OBQ_RGBCOMEMIT,
@@ -73,6 +77,8 @@ enum SHADERS
    OBQ_STEREOLENS,
    OBQ_SURFACEENVIRONMENT,
    OBQ_THICKNESS,
+   OBQ_TOON,
+   OBQ_TOONSIMPLE,
    OBQ_TRANSFORMUV,
    OBQ_UVREMAPLENSDISTORTION,
    OBQ_VOLUMETHICKNESS
@@ -83,7 +89,7 @@ node_loader
 	switch (i) 
 	{     
 	case OBQ_ANGULARCAMERA:
-		node->methods     = Obq_AngularCameraMethods;
+		node->methods     = ObqAngularCameraMethods;
 		node->output_type = AI_TYPE_UNDEFINED;
 		node->name        = "Obq_AngularCamera";
 		node->node_type   = AI_NODE_CAMERA;
@@ -136,6 +142,12 @@ node_loader
 		node->name         = "Obq_MeasuredMaterial";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_MESSAGEFLT:
+		node->methods      = ObqMessageFltSimpleMethods;
+		node->output_type  = AI_TYPE_FLOAT;
+		node->name         = "Obq_MessageFlt";
+		node->node_type    = AI_NODE_SHADER;
+		break;
 	case OBQ_OPACITY:
 		node->methods      = ObqOpacitySimpleMethods;
 		node->output_type  = AI_TYPE_RGBA;
@@ -173,7 +185,7 @@ node_loader
 	   node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_STEREOLENS:
-		node->methods     = Obq_StereoLensMethods;
+		node->methods     = ObqStereoLensMethods;
 		node->output_type = AI_TYPE_UNDEFINED;
 		node->name        = "Obq_StereoLens";
 		node->node_type   = AI_NODE_CAMERA;
@@ -188,6 +200,18 @@ node_loader
 		node->methods      = ObqThicknessSimpleMethods;
 		node->output_type  = AI_TYPE_FLOAT;
 		node->name         = "Obq_Thickness";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_TOON:
+		node->methods      = ObqToonSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Toon";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_TOONSIMPLE:
+		node->methods      = ObqToonSimpleSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_ToonSimple";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_TRANSFORMUV:

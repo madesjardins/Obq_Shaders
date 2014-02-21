@@ -34,7 +34,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 // Arnold thingy
 // 
-AI_CAMERA_NODE_EXPORT_METHODS(Obq_StereoLensMethods);
+AI_CAMERA_NODE_EXPORT_METHODS(ObqStereoLensMethods);
 
 // Param enum for fast direct access
 //

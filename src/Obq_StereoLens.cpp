@@ -574,7 +574,7 @@ camera_create_ray
 //{
 //	if (i != 0)
 //		return FALSE;
-//	node->methods     = Obq_StereoLensMethods;
+//	node->methods     = ObqStereoLensMethods;
 //	node->output_type = AI_TYPE_UNDEFINED;
 //	node->name        = "Obq_StereoLens";
 //	node->node_type   = AI_NODE_CAMERA;

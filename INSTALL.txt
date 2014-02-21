@@ -4,7 +4,7 @@ HOW TO INSTALL
   Windows requirements : 
 	Microsoft Visual C++ 2010 redistributable package (x64)
 
-  + copy the content of the "softimage\spdl" folder into "Addons\SItoA\Application\spdl",
+  + copy the content of the "softimage" folder into "Addons\SItoA\Application\spdl",
 
   + copy the content of "Fresnel2Standard_Compounds" into "Addons\SItoA\Data\RTcompounds",
 

@@ -5,7 +5,7 @@ html, body {
 	padding:0;
 }
 body {
-	font-family : Arial, Helvetica, Verdana, Sans-serif;
+	font-family : 'Noto Sans', calibri, sans-serif;
 	font-size : 14px;
 	font-weight: normal;
 	color: #505050;
@@ -133,9 +133,11 @@ h3 {
 
 /*Group*/
 h4 {
-	font-size : 18px;
+	font-size : 20px;
 	font-family: 'Noto Sans', calibri, sans-serif;
-	color : #484848;
+	color : #008800;
+	margin-top: 4px;
+	margin-bottom: 2px;
 }
 
 /*Parameter*/
@@ -208,6 +210,11 @@ ul.install{
 	font-weight: normal;
 	color: #505050;
 	background: #ffffff;
+}
+
+span.enumElem{
+	font-weight:bold;
+	color:purple;
 }
 
 #topMenu .link {
