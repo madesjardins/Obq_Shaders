@@ -275,7 +275,7 @@ PropertySet "Obq_ToonSimple_pset"
 MetaShader "Obq_ToonSimple_params_meta"
 {
 	Name = "Obq_ToonSimple";
-	Type = texture;
+	Type = Material;
 	
 	Renderer "Arnold Render"
 	{

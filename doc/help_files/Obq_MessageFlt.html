@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-<title>Obq Arnold Shaders-Obq_AngularCamera</title>
+<title>Obq Arnold Shaders-Obq_MessageFlt</title>
 <meta http-equiv="Content-Language" content="en-us" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
@@ -65,48 +65,41 @@
 </table>
 </div>
 <div id="content-help"><br>
-<h2>Obq_AngularCamera</h2>
+<h2>Obq_MessageFlt</h2>
 <br>
 <h5>Class</h5>
-<p>Lens</p>
+<p>Texture</p>
+<br>
+<h5>Output</h5>
+<p>Scalar</p>
 <br>
 <h5>Synopsis</h5>
-<p>A camera shader that allows you to create angular maps of 3D scenes.</p>
+<p>Outputs the scalar value attached to a message in the message bank.</p>
 <br>
-<img src="images/Obq_AngularCamera_01.jpg" alt="Synopsis image" width=384 >
-<p class="idesc">Example of spherical map.</p>
-<p class="note" >Note : The shader compensate for the filter width when rendering in order to give the useful pixels an alpha of 1.</p>
-<p class="warning">Warning : The shader automatically flips the U when used in Arnold 4.1 and above (SItoA 3.0 and up) in order to stay consistent when used in a skydome or sta_environment.</p>
+<img src="images/Obq_Toon_02.jpg" alt="Usage" width=512 >
+<p class="idesc">Obq_Toon writes the scalar input value the gradient should have into the message "OToon" and Obq_MessageFlt gets it.</p>
+<p class="note" >Note : At the moment, only the Obq_Toon with the gradient workflow needs this shader. For a more complete set of such functions, take a look at Stephano's ssj_radio collection shaders.</p>
 <br>
 <h5>Usage</h5>
-<p>Simply translate the camera where you want to capture the angular map and render.</p>
-<br>
-<img src="images/Obq_AngularCamera_02.jpg" alt="Usage" height=256 >
-<p class="idesc">Since an angular map looks a bit like a mirrored ball, the center of the image will be the back of the camera.</p>
-<p class="note" >Note : If the camera is looking along the -Z axis, you won't need to rotate the skydome using it, otherwise, apply the same rotation.</p>
+<p>Simply connect this into a scalar port and type the message's name or choose a preset to fetch the associated scalar value in that ShaderGlobals. If the message doesn't exist, the <em>Default Value</em> will be returned</p>
 <br>
 <hr/>
 <br>
 <br>
-<h5>Angle [angle]</h5>
-<p>The span in degrees of the angular map.</p>
+<h5>Default Value <em>[defaultValue]</em></h5>
+<p>If a message doesn't exist, this value will be output.</p>
 <br>
-<img src="images/Obq_AngularCamera_03.jpg" alt="angle" height=192 >
-<p class="idesc">From higher to lower values [360, 180, 90].</p>
-<p class="note" >Note : Normally, this is set to 360.</p>
+<h5>Mode <em>[mode]</em></h5>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="40"><span class="enumElem">Custom</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">use a custom message name.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="40"><span class="enumElem">Preset</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">use a predefined message name from a list of presets.</td></tr>
+</table>
 <br>
-<h5>Opposite view [flip]</h5>
-<p>Let's you render an angular map in the opposite direction.</p>
+<h5>Preset <em>[preset]</em></h5>
+<p>Available when you choose <em>Preset</em> mode, this is a list of predefined messages.</p>
 <br>
-<img src="images/Obq_AngularCamera_04.jpg" alt="flip" width=256 >
-<p class="idesc">Angular map taken with the rear camera view.</p>
-<br>
-<h5>Over Render [overRender]</h5>
-<p>This allows you to render the whole image instead of only the necessary pixels, which sort of wraps around.</p>
-<br>
-<img src="images/Obq_AngularCamera_05.jpg" alt="flip" width=256 >
-<p class="idesc">An over rendered angular map.</p>
-<p class="note" >Note : Unless you want to for an aesthetic reason, don't check this, it will take more time to render (approximately 4/pi times).</p>
+<h5>Message <em>[message]</em></h5>
+<p>The name of the message to fetch.</p>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

@@ -125,6 +125,13 @@ $(SRCPATH)/Obq_BrdfRead.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/ObqISBrdf.cpp
 
+# Obq_MessageFlt
+
+Obq_MessageFlt.o: \
+$(SRCPATH)/Obq_MessageFlt.cpp
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageFlt.cpp
+
+	
 # Obq_Opacity
 
 Obq_Opacity.o: \
@@ -190,6 +197,22 @@ $(SRCPATH)/Obq_Thickness.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Thickness.cpp
 
+# Obq_Toon
+
+Obq_Toon.o: \
+$(SRCPATH)/Obq_Toon.cpp \
+$(SRCPATH)/Obq_Toon.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Toon.cpp
+
+# Obq_ToonSimple
+
+Obq_ToonSimple.o: \
+$(SRCPATH)/Obq_ToonSimple.cpp \
+$(SRCPATH)/Obq_ToonSimple.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ToonSimple.cpp
+
 # Obq_TransformUV
 
 Obq_TransformUV.o: \
@@ -226,6 +249,7 @@ Obq_Fresnel.o \
 Obq_IESLightFilter.o \
 ObqISBrdf.o \
 Obq_MeasuredMaterial.o \
+Obq_MessageFlt.o \
 Obq_Opacity.o \
 Obq_RandomColor.o \
 Obq_RGBComEmit.o \
@@ -235,6 +259,8 @@ Obq_Shadow.o \
 Obq_StereoLens.o \
 Obq_SurfaceEnvironment.o \
 Obq_Thickness.o \
+Obq_Toon.o \
+Obq_ToonSimple.o \
 Obq_TransformUV.o \
 Obq_UVRemapLensDistortion.o \
 Obq_VolumeThickness.o \
@@ -251,6 +277,7 @@ Obq_Fresnel.o \
 Obq_IESLightFilter.o \
 ObqISBrdf.o \
 Obq_MeasuredMaterial.o \
+Obq_MessageFlt.o \
 Obq_Opacity.o \
 Obq_RandomColor.o \
 Obq_RGBComEmit.o \
@@ -260,6 +287,8 @@ Obq_Shadow.o \
 Obq_StereoLens.o \
 Obq_SurfaceEnvironment.o \
 Obq_Thickness.o \
+Obq_Toon.o \
+Obq_ToonSimple.o \
 Obq_TransformUV.o \
 Obq_UVRemapLensDistortion.o \
 Obq_VolumeThickness.o \

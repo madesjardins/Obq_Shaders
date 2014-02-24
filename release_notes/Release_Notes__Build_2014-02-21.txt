@@ -6,12 +6,15 @@ v210 - win,linux - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
 v300 - win,linux - 	SITOA 3.0.0 - Arnold 4.1.3.3  by Marc-Antoine Desjardins
 
 FIXES:
+
 ADDITIONS:
+
 CHANGES:
 
 NEW SHADERS:
 	+ Obq_Toon : A complex toon and remap shader.
 	+ Obq_ToonSimple : A simple toon shader.
+	+ Obq_MessageFlt : Fetch a scalar message (used with Obq_Toon).
 
 REMOVED SHADERS:
 

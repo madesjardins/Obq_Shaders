@@ -595,7 +595,7 @@ PropertySet "Obq_Toon_pset"
 MetaShader "Obq_Toon_params_meta"
 {
 	Name = "Obq_Toon";
-	Type = texture;
+	Type = Material;
 	
 	Renderer "Arnold Render"
 	{
