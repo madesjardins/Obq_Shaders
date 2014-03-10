@@ -1,0 +1,131 @@
+
+[node Obq_AngularCamera]
+	maya.name STRING "Obq_AngularCamera"
+	maya.id INT 0x0011CD40
+	maya.classification STRING "shader/surface"
+
+[node Obq_Atmosphere]
+	maya.name STRING "Obq_Atmosphere"
+	maya.id INT 0x0011CD41
+	maya.classification STRING "shader/surface"
+
+[node Obq_Bend4Stereo]
+	maya.name STRING "Obq_Bend4Stereo"
+	maya.id INT 0x0011CD42
+	maya.classification STRING "shader/surface"
+
+[node Obq_ChangeRange]
+	maya.name STRING "Obq_ChangeRange"
+	maya.id INT 0x0011CD43
+	maya.classification STRING "shader/surface"
+
+[node Obq_Environment]
+	maya.name STRING "Obq_Environment"
+	maya.id INT 0x0011CD44
+	maya.classification STRING "shader/surface"
+
+[node Obq_Etching]
+	maya.name STRING "Obq_Etching"
+	maya.id INT 0x0011CD45
+	maya.classification STRING "shader/surface"
+
+[node Obq_Fresnel]
+	maya.name STRING "Obq_Fresnel"
+	maya.id INT 0x0011CD46
+	maya.classification STRING "shader/surface"
+
+[node Obq_Hair]
+	maya.name STRING "Obq_Hair"
+	maya.id INT 0x0011CD47
+	maya.classification STRING "shader/surface"
+
+[node Obq_IESLightFilter]
+	maya.name STRING "Obq_IESLightFilter"
+	maya.id INT 0x0011CD48
+	maya.classification STRING "shader/surface"
+
+[node Obq_MeasuredMaterial]
+	maya.name STRING "Obq_MeasuredMaterial"
+	maya.id INT 0x0011CD49
+	maya.classification STRING "shader/surface"
+
+[node Obq_MessageFlt]
+	maya.name STRING "Obq_MessageFlt"
+	maya.id INT 0x0011CD4A
+	maya.classification STRING "shader/surface"
+
+[node Obq_Opacity]
+	maya.name STRING "Obq_Opacity"
+	maya.id INT 0x0011CD4B
+	maya.classification STRING "shader/surface"
+
+[node Obq_RandomColor]
+	maya.name STRING "Obq_RandomColor"
+	maya.id INT 0x0011CD4C
+	maya.classification STRING "shader/surface"
+
+[node Obq_RGBComEmit]
+	maya.name STRING "Obq_RGBComEmit"
+	maya.id INT 0x0011CD4D
+	maya.classification STRING "shader/surface"
+
+[node Obq_RGBComLightFilter]
+	maya.name STRING "Obq_RGBComLightFilter"
+	maya.id INT 0x0011CD4E
+	maya.classification STRING "shader/surface"
+
+[node Obq_Root2Tip]
+	maya.name STRING "Obq_Root2Tip"
+	maya.id INT 0x0011CD4F
+	maya.classification STRING "shader/surface"
+
+[node Obq_Shadow]
+	maya.name STRING "Obq_Shadow"
+	maya.id INT 0x0011CD50
+	maya.classification STRING "shader/surface"
+
+[node Obq_Simbiont]
+	maya.name STRING "Obq_Simbiont"
+	maya.id INT 0x0011CD51
+	maya.classification STRING "shader/surface"
+
+[node Obq_StereoLens]
+	maya.name STRING "Obq_StereoLens"
+	maya.id INT 0x0011CD52
+	maya.classification STRING "shader/surface"
+
+[node Obq_SurfaceEnvironment]
+	maya.name STRING "Obq_SurfaceEnvironment"
+	maya.id INT 0x0011CD53
+	maya.classification STRING "shader/surface"
+
+[node Obq_Thickness]
+	maya.name STRING "Obq_Thickness"
+	maya.id INT 0x0011CD54
+	maya.classification STRING "shader/surface"
+
+[node Obq_Toon]
+	maya.name STRING "Obq_Toon"
+	maya.id INT 0x0011CD55
+	maya.classification STRING "shader/surface"
+
+[node Obq_ToonSimple]
+	maya.name STRING "Obq_ToonSimple"
+	maya.id INT 0x0011CD56
+	maya.classification STRING "shader/surface"
+
+[node Obq_TransformUV]
+	maya.name STRING "Obq_TransformUV"
+	maya.id INT 0x0011CD57
+	maya.classification STRING "shader/surface"
+
+[node Obq_UVRemapLensDistortion]
+	maya.name STRING "Obq_UVRemapLensDistortion
+	maya.id INT 0x0011CD58
+	maya.classification STRING "shader/surface"
+
+[node Obq_VolumeThickness]
+	maya.name STRING "Obq_VolumeThickness"
+	maya.id INT 0x0011CD59
+	maya.classification STRING "shader/surface"
+    
