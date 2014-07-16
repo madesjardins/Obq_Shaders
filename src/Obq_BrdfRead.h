@@ -22,7 +22,7 @@
 #define OBQBRDFREAD_H
 
 #include "Obq_Common.h"
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
 
 #define BRDF_SAMPLING_RES_THETA_H       90
 #define BRDF_SAMPLING_RES_THETA_D       90

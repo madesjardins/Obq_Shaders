@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_Fresnel2Standards</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
+</head>
+<body>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
+</table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_Fresnel2Standards</h2>
+<br>
+<h5>Class</h5>
+<p>Shader Compound</p>
+<br>
+<h5>Output</h5>
+<p>Multiple</p>
+<br>
+<h5>Synopsis</h5>
+<p>This compound is used along 1 or 2 <a href="Obq_Fresnel.html">Obq_Fresnel</a> shaders and 1 or 2 Arnold Standard Shaders in order to create an energy conserving layered metallic or non-metallic material.</p>
+<p class="note" >Note : If the surface underneath the coating only uses diffuse parameters, you can use a single standard shader with the coating connected to the specular parameters and the surface connected to the diffuse parameters. You have to set the Ks scale of the surface in the compounds to 0 even it's not connected to the standard though.</p>
+<p class="warning">Warning : Because there might be some problems with total internal reflections, all dielectric related compounds were removed.</p>
+<br>
+<h5>Usage</h5>
+<p>Before use, make sure all scale values of the Standard shaders are set to 0 and that all Fresnel features are turned off. If you're using 2 standards, you have to add them together and you need to change the names of the AOVs of one of the standard if you want to use AOVs.</p>
+<br>
+<img src="images/Obq_Fresnel2Standards_01.jpg" alt="Coated Metal" width=768 >
+<p class="idesc">Fig.1 : An example of coated metal render tree.</p>
+<br>
+<img src="images/Obq_Fresnel2Standards_02.jpg" alt="Coated diffuse material" width=768 >
+<p class="idesc">Fig.2 : An example of coated diffuse only material render tree with only standard.</p>
+<p>The priority of energy consumption of parameters is in a top to bottom order in the compound gui. In other words, if visually the Ks is above the Kd, only what is not consumed by the specular scale will be passed down to the diffuse scale. The scales in the compounds does not represent absolute values like the ones in the Standard, they represent the ratio of the available energy.</p>
+<p>Simply connect the outputs of the compound to the coresponding port of the standards.</p>
+<p class="note" >Note : Because SSS scale doesn't depend on the Fresnel term at the shading point, I would suggest to lower the scale of the surface's Kd to account for scattered light.</p>
+<br>
+<hr/>
+<h4>Coating</h4>
+<br>
+<h5>Fresnel <em>[Fresnel_In__Coating]</em></h5>
+<p>The Fresnel term of the dielectric coating.</p>
+<br>
+<h5>Ks_color <em>[Ks_color_In__Coating]</em></h5>
+<p>The specular color of the coating (normally white).</p>
+<br>
+<h5>Ks <em>[Ks_In__Coating]</em></h5>
+<p>The specular scale of the coating (normally 1).</p>
+<br>
+<h5>Kt_color <em>[Kt_color_In__Coating]</em></h5>
+<p>The transmission color of the coating.</p>
+<br>
+<hr/>
+<h4>Surface</h4>
+<br>
+<h5>Fresnel <em>[Fresnel_In__Surface]</em></h5>
+<p>If the surface is a metal, this is the Fresnel term. If you have a non-metal surface, leave this parameter white.</p>
+<br>
+<h5>Ks_color <em>[Ks_color_In__Surface]</em></h5>
+<p>This parameter modifies the Fresnel color.</p>
+<br>
+<h5>Ks <em>[Ks_In__Surface]</em></h5>
+<p>The specular scale of the surface.</p>
+<p class="note" >Note : In single standard usage, don't forget to set this to 0.</p>
+<br>
+<h5>Kd_color <em>[Kd_color_In__Surface]</em></h5>
+<p>The diffuse color of the surface.</p>
+<br>
+<h5>Kd <em>[Kd_In__Surface]</em></h5>
+<p>The diffuse scale of the surface.</p>
+<p class="note" >Note : Because this scale is at the bottom, you should leave this to 1 to ensure energy conservation, unless you have SSS (read the note in the usage section).</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

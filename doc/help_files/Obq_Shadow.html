@@ -39,10 +39,13 @@
 <tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
@@ -65,6 +68,56 @@
 </table>
 </div>
 <div id="content-help"><br>
+<h2>Obq_Shadow</h2>
+<br>
+<h5>Class</h5>
+<p>Material</p>
+<br>
+<h5>Output</h5>
+<p>Color RGB</p>
+<br>
+<h5>Synopsis</h5>
+<p>A shadow catcher shader capable of generating the colored shadows of image based lighting. Ideal for CG integration in live action, a few options are there to specify which objects were already casting shadows in the plate.</p>
+<br>
+<img src="images/Obq_Shadow_01.jpg" alt="Synopsis image" width=732 >
+<p class="idesc">Fig.1 : In this example, a CG T-Rex is added to a live action scene in which a perforated box was resting a table. Additionnal shadows of the T-Rex are needed on both the box and the table, but one must be careful not the add shadows of the T-Rex where the box stops the light from hitting the T-Rex. From left to right : the scene, shadows of the T-Rex when lit with a downward distant light in ratio mode, shadows of the T-Rex when lit with an HDR plugged into a skydome in "Shadow Ratio" mode and then in "Shadow Difference" mode.</p>
+<br>
+<h5>Usage</h5>
+<p>A new pass should be created for this:</p>
+<ul>
+<li>First, create a partition with all the CG objects (T-Rex) and another one with all the objects that were in the plate ( box and table in this example).</li>
+<li>On both partitions, add an Arnold_Parameters property (and/or override) and <b>uncheck the opaque parameter</b>.</li>
+<li>Then, on the CG partition, use an override to disable "Primary Ray Visibility".</li>
+<li>On both partitions, you need to override the surface port of the materials with Obq_Shadow nodes. The one on the CG partition must have its "Trace Type" set to "Caster" and the one on the plate objects must be set to "Receiver". Use either the "Shadow Ratio" mode to multiply the plate or the "Shadow Difference" mode as mask in a grade node in Nuke.</li>
+</ul>
+<br>
+<img src="images/Obq_Shadow_02.jpg" alt="Synopsis image"  >
+<br>
+<hr/>
+<br>
+<br>
+<h5>Mode <em>[mode]</em></h5>
+<p>The different modes for the shader output.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Diffuse Shadowed</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Objects are shaded with a simple diffuse shader with shadows.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Diffuse Unshadowed</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Objects are shaded with a simple diffuse shader without shadows.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Shadow Ratio</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">The ratio between the shadowed and unshadowed shading. Multiply your plate with the result.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Shadow Difference</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">The difference between the shadowed and unshadowed shading. Use as mask in a grade node and offset negatively.</td></tr>
+</table>
+<br>
+<h5>Trace Type <em>[traceType]</em></h5>
+<p>Determine whether the object should receive and/or cast shadows.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Receiver</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">This object only receives shadows. Settings for objects in the plate.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Caster</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">This object only casts shadows. Settings for CG objects not in the plate. Usually, you want to have this object invisible to camera rays.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="130"><span class="enumElem">Caster and Receiver</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">This object casts and receives shadows. Not very useful, but who knows...</td></tr>
+</table>
+<br>
+<h5>Opacity <em>[opacity]</em></h5>
+<p>Additionnal settings for opacity.</p>
+<br>
+<h5>Shadows on unlit faces <em>[shadowsOnUnlit]</em></h5>
+<p>Treats unlit polygons as shadowed. For example, the lower hemisphere of a sphere lit from above will be considered as shadowed.</p>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

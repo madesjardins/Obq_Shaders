@@ -39,10 +39,13 @@
 <tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
@@ -74,7 +77,7 @@
 <p>A camera shader that allows you to create angular maps of 3D scenes.</p>
 <br>
 <img src="images/Obq_AngularCamera_01.jpg" alt="Synopsis image" width=384 >
-<p class="idesc">Example of spherical map.</p>
+<p class="idesc">Fig.1 : Example of spherical map.</p>
 <p class="note" >Note : The shader compensate for the filter width when rendering in order to give the useful pixels an alpha of 1.</p>
 <p class="warning">Warning : The shader automatically flips the U when used in Arnold 4.1 and above (SItoA 3.0 and up) in order to stay consistent when used in a skydome or sta_environment.</p>
 <br>
@@ -82,7 +85,7 @@
 <p>Simply translate the camera where you want to capture the angular map and render.</p>
 <br>
 <img src="images/Obq_AngularCamera_02.jpg" alt="Usage" height=256 >
-<p class="idesc">Since an angular map looks a bit like a mirrored ball, the center of the image will be the back of the camera.</p>
+<p class="idesc">Fig.2 : Since an angular map looks a bit like a mirrored ball, the center of the image will be the back of the camera.</p>
 <p class="note" >Note : If the camera is looking along the -Z axis, you won't need to rotate the skydome using it, otherwise, apply the same rotation.</p>
 <br>
 <hr/>
@@ -92,20 +95,20 @@
 <p>The span in degrees of the angular map.</p>
 <br>
 <img src="images/Obq_AngularCamera_03.jpg" alt="angle" height=192 >
-<p class="idesc">From higher to lower values [360, 180, 90].</p>
+<p class="idesc">Fig.3 : From higher to lower values [360, 180, 90].</p>
 <p class="note" >Note : Normally, this is set to 360.</p>
 <br>
 <h5>Opposite view [flip]</h5>
 <p>Let's you render an angular map in the opposite direction.</p>
 <br>
 <img src="images/Obq_AngularCamera_04.jpg" alt="flip" width=256 >
-<p class="idesc">Angular map taken with the rear camera view.</p>
+<p class="idesc">Fig.4 : Angular map taken with the rear camera view.</p>
 <br>
 <h5>Over Render [overRender]</h5>
 <p>This allows you to render the whole image instead of only the necessary pixels, which sort of wraps around.</p>
 <br>
 <img src="images/Obq_AngularCamera_05.jpg" alt="flip" width=256 >
-<p class="idesc">An over rendered angular map.</p>
+<p class="idesc">Fig.5 : An over rendered angular map.</p>
 <p class="note" >Note : Unless you want to for an aesthetic reason, don't check this, it will take more time to render (approximately 4/pi times).</p>
 </div>
 </div>

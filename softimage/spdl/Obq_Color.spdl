@@ -1,0 +1,66 @@
+# SPDL - Obq_Color - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{A95F3E3B-51D0-40E7-A7C4-3AC7699DE87B}";
+PropertySet "Obq_Color_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{BE2A000E-D0C9-4AE9-870D-0C0CBFC3B8E2}";
+		Type = color;
+	}
+	Parameter "color" input
+	{
+		GUID = "{3EBDB958-24C6-45FF-8DEF-5B1A4A8A6E10}";
+		Type = color;
+		Texturable = off;
+		Value = 1.0 1.0 1.0;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_Color";
+}
+
+phenomenon "Obq_Color_declare"
+{
+	Name = "Obq_Color";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	color
+	{
+		Name = "Color";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Color"
+	{
+		color;
+	}
+}
+
+Layout "RenderTree"
+{
+	
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Color.html"
+End sub
+
+}
+

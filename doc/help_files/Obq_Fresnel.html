@@ -1,548 +1,184 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_Fresnel v2.04.1 (win64 - SItoA 2.4.0 - Arnold
-4.0.7.1)</title>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_Fresnel</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
 </head>
 <body>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
-<tbody>
-<tr>
-<td style="background-color: black; width: 20px;"></td>
-<td style="background-color: black;"><big><big><br>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
+</table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_Fresnel</h2>
 <br>
-</big></big></td>
-<td style="width: 20px; background-color: black;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(97, 97, 97);"></td>
-<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Fresnel</font>
-</big></big></td>
-<td style="background-color: rgb(97, 97, 97);"></td>
-</tr>
-<tr>
-<td></td>
-<td style="background-color: white;">
-<p><font color="Blue">| &nbsp;<a href="#Darktree">Description</a>
-&nbsp;| &nbsp;<a href="#Installation">Installation</a>
-&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
-&nbsp;| <a href="#Presets">Adding new presets</a></font><font color="Blue">
-|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
-&nbsp;|</font></p>
-<p><span style="font-weight: bold;">Category:</span>
-Texture </p>
-<p><span style="font-weight: bold;">Shader
-Family:</span> Texture</p>
-<p><span style="font-weight: bold;">Output:</span>
-Color</p>
-<p>Obq_Fresnel is a texture node that
-outputs&nbsp;proportion of light reflected/refracted from a surface
-based on the&nbsp;refractive indices and the extinction
-coefficients.
-</p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Darktree"></a>Settings</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Class</h5>
+<p>Texture</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Fresnel Mode</span></td>
-<td style="background-color: rgb(231, 231, 231);">Different
-value input mode : <br>
-<ul>
-<li><span style="font-style: italic; font-weight: bold;">Custom </span>:
-let's you enter arbitrary values.</li>
-<li> <span style="font-weight: bold; font-style: italic;">Preset </span>:
-let's you choose predefined materials.</li>
-<li><span style="font-weight: bold; font-style: italic;">File</span>
-: let's you load a file containing wavelengths and their respective
-refractive indices and extinction coefficients, respectively&nbsp;n
-[eta] and&nbsp;k. You can load comma-separated values (.csv),
-tab-separated values (.txt) and pbrt's .spd.</li>
-</ul>
-<span style="font-style: italic;">You can get
-files from websites like : http://refractiveindex.info and
-http://www.filmetrics.com/refractive-index-database</span><span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Presets</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Material
-presets with their&nbsp;values.<br>
+<h5>Output</h5>
+<p>Color RGB</p>
 <br>
-<span style="font-style: italic;">If you want
-to add a preset, go to the "Adding a preset" section.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<h5>Synopsis</h5>
+<p>Obq_Fresnel is a texture node that outputs colored proportion of light reflected/refracted from a surface based on the refractive indices and the extinction coefficients. Note that this shader is particularly useful for getting the right metal reflection color by driving the <em>ks_color</em> port of a standard shader. A lot of presets are available, but you can also import wavelength dependent complex IORs. Creation of an energy conserving 2-layers material can also be done by using the <a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards compound</a>.</p>
+<p class="warning">Warning : You should not use the Obq_Fresnel for dielectrics (material with refraction), the <em>Use IOR for Fresnel</em> parameter of the standard shader should be used instead. However, you can use the <em>Material Type : Refractive</em> for coatings.</p>
+<br>
+<img src="images/Obq_Fresnel_01.jpg" alt="Synopsis image" width=768 >
+<p class="idesc">Fig.1 : In this example, the Stanford dragon is shaded using an Obq_Fresnel with an iron preset plugged into the <em>specular color</em> port of the standard shader. Note that the Fresnel parameters of the standard must not be enabled.</p>
+<br>
+<h5>Usage</h5>
+<p>The simplest way is to use Obq_Fresnel is to plug the output in the <em>specular color</em> port of the standard shader like shown above. Using the Obq_Fresnel2standards compounds, you can also achieve multi-layered materials and respect energy conservation.</p>
+<br>
+<img src="images/Obq_Fresnel_02.jpg" alt="Usage image" width=768 >
+<p class="idesc">Fig.2 : Statues of Ajax from left to right : smooth gold, rough copper, rough osmium with silver flakes underneath a smooth acrylic layer, smooth ice and a vegetable oil covered rosewood. The gold and copper Ajax have been created with their respective preset and simply connected to the <em>specular color</em> port of the standard shader. The third and fifth Ajax are using the compounds shown below the render.</p>
+<br>
+<hr/>
+<h4>Settings</h4>
+<br>
+<h5>Fresnel Mode <em>[mode]</em></h5>
+<p>Different value input mode.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">Custom</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">enter arbitrary values.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">Preset</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">choose predefined materials.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">File</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">load a file containing wavelengths and their respective refractive indices and extinction coefficients, respectively n [eta] and k. You can load comma-separated values (.csv), tab-separated values (.txt) and pbrt's .spd.</td></tr>
+</table>
+<p class="note" >Note : You can get files from websites like : <a href="http://refractiveindex.info" target="blank">http://refractiveindex.info</a> and <a href="http://www.filmetrics.com/refractive-index-database" target="blank">http://www.filmetrics.com/refractive-index-database</a>. Change verbosity level to "warning+info", open the script editor and render to see the RGB values for n and k. You can also add this value as a preset by modifying the spdl.</p>
+<br>
+<h5>Presets <em>[presets]</em></h5>
+<p>Material presets with their values.</p>
+<br>
+<hr/>
+<h4>File</h4>
+<br>
+<h5>Filename <em>[iorFilename]</em></h5>
+<p>You can browse for a ior files. While .csv and .txt contains both n and k or only n, spds only contains one of them at a time. Gold, for example, would have a file "Au.eta.spd" for n and a "Au.k.spd" for k. Loading one of them will automatically load the other if it exists.</p>
+<br>
+<h5>Wavelenghts Units <em>[lambdaUnits]</em></h5>
+<p>Depending on the origin of the file, wavelenghts units will usually be :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="80"><span class="enumElem">nanometers</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">[ 360nm-830nm ].</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="80"><span class="enumElem">micrometers</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">[ 0.360um-0.830um ].</td></tr>
+</table>
+<p>You have to select the appropriate one.</p>
+<p class="note" >Note : A warning might be issued if the shader thinks you selected the wrong units.</p>
+<br>
+<hr/>
+<h4>Refractive Indices</h4>
+<br>
+<h5>n (eta) <em>[iorRGB]</em></h5>
+<p>RGB n [eta] are the real parts of the refractive indices. There is no single specific wavelenght for red, green or blue. It's rather a sum of weighted values. The best way to choose values for them is to actually load the file corresponding to that material, select "warning+info" verbose level in the diagnostic tab of the Arnold render options and look at the log for the actual RGB values.</p>
+<br>
+<hr/>
+<h4>Extinction Coefficients</h4>
+<br>
+<h5>k <em>[kRGB]</em></h5>
+<p>RGB k (extinction coefficients) are the complex part of the refractive indices. Metals absorb and reflect light, that's what gives the color. They are approximately equal to 0 for non metals. Values can be found the same way as for n.</p>
+<br>
+<hr/>
+<h4>Equations</h4>
+<br>
+<h5>Materiel Type <em>[method]</em></h5>
+<p>The fresnel implementation used for evaluation :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="70"><span class="enumElem">Refractive</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">uses equations for dielectrics. Choose this mode if the material reflects and/or refract lights. If you want to simulate a varnished piece of wood, for example, choose this mode and use values of the varnish. Instead of driving the refraction scale or color with the transmitted value, drive the diffuse scale of the shader or premultiply the texture color with it. These equations ignore k.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="70"><span class="enumElem">Metals</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">uses equations for metals. Choose this mode if you want to drive the reflection or specular color of a material.</td></tr>
 </table>
 <br>
+<hr/>
+<h4>Options</h4>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">File</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Ratio of polarized Fs/Fp <em>[ratioFsFp]</em></h5>
+<p>Ratio of s- and p-polarisations.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Filename</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>You
-can browse for a ior files. While .csv and .txt contains both n and k
-or only n, spds only contains one of them at a time. Gold, for example,
-would have a file "Au.eta.spd" for n and a "Au.k.spd" for k. Loading
-one of them will automatically load the other if it exists.<br>
-</span>
-<ul>
-</ul>
-<span></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Wavelenghts Units</span></td>
-<td style="background-color: rgb(231, 231, 231);">Depending
-on the origin of the file, wavelenghts units will usually be nanometers
-[ 360nm-830nm ] or micrometers [ 0.360um-0.830um ]. Select the
-appropriate one.<br>
-<br>
-<span style="font-style: italic;">A warning
-might be usued if the shader thinks you selected the wrong units.</span></td>
-<td></td>
-</tr>
-</tbody>
+<h5>Backface <em>[backfaceMode]</em></h5>
+<p>This allows you to control what happens when a backface of a polygon is intersected by a ray. This is only used when "Refractive" type is chosen and you want to use on a dielectric even though you're not supposed to ;)</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="110"><span class="enumElem">Same as Frontface</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">This treats backfaced polygon as frontface.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="110"><span class="enumElem">Swap IORs</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Use this when the refracting material is a closed volume. It swaps the ior and the media in ior. Because it is important to know in which media you are in when calculating these values, being in water and going into glass will not give the same values as being in glass and going into water.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="110"><span class="enumElem">Always White</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Returns white.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="110"><span class="enumElem">Always Black</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Returns black.</td></tr>
 </table>
 <br>
+<hr/>
+<h4>Output</h4>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">N</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Output Refraction Color <em>[transmittance]</em></h5>
+<p>By default, this shader returns the reflected portion of light. If this is check, it will return the refracted portion of light. It's essentially equals to 1-R except for metals (0).</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Red, Green, Blue</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>RGB
-</span><span>n [eta] are the real parts of the
-refractive indices. There is no single specific wavelenght for red,
-green or blue. It's rather a sum of weighted values. The best way to
-choose values for them is to actually load the file corresponding to
-that material, select "Info" verbose level in the diagnostic tab of the
-Arnold render options and look at the log for the actual RGB values.
-Don't forget to set the IOR of the shader too ( generally to the green
-value ).</span><span></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<h5>DeGamma metals for linear workflow <em>[degamma]</em></h5>
+<p>This options should be checked for metals when using a linear gamma, otherwise, colors might seem washed out.</p>
 <br>
+<hr/>
+<h4>Standard IOR</h4>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">K</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Expression for standard IOR <em>-</em></h5>
+<p>You should set this expression on <em>IOR</em> parameter of the standard if you do dielectrics, but don't.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Red, Green, Blue</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>RGB
-k (extinction
-coefficients) are the complex part of the refractive indices. Metals
-reflect light and absorb light, that's what gives the color. They are
-approximately equal to 0 for non metals. Values can be found the same
-way as for n.</span><span></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<hr/>
+<h4>Media In</h4>
 <br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Equations</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Material type</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>The
-fresnel implementation used for evaluation :<br>
-</span>
-<ul>
-<li><span style="font-weight: bold; font-style: italic;">Refractive </span>:
-uses equations for dielectrics. Choose this mode if the material
-reflects and/or refract lights. If you want to simulate a varnished
-piece of wood, for example, choose this mode and use values of the
-varnish. Instead of driving the refraction &nbsp;scale or
-color&nbsp;with the transmitted value, drive the diffuse scale of
-the shader or premultiply the texture color with it. These equations
-ignore k.</li>
-<li><span style="font-weight: bold;">Metals</span>
-: uses equations for metals. Choose this mode if you want to drive the
-reflection or specular color of a material.</li>
-</ul>
-<span></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Options</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Ratio of polarized Fs/Fp</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span></span><span></span>Ratio
-of&nbsp;<i>s</i>- and <i>p</i>-polarisations.</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Backface<br>
-</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-allows you to control what happens when a backface of a polygon is
-intersected by a ray. This is only used when "Refractive" type is
-chosen:<br>
-<ul>
-<li><span style="font-weight: bold; font-style: italic;">Same as
-Frontface</span> : This treats backfaced polygon as frontface.</li>
-<li><span style="font-weight: bold; font-style: italic;">Swap IORs</span>
-: Use this when the refracting
-material is a closed volume. It swaps the ior and the media in ior.
-Because it is important to know in which media you are in when
-calculating these values, being in water and going into glass will not
-give the same values as being in glass and going into water.</li>
-<li><span style="font-weight: bold; font-style: italic;">Always White</span>
-: Returns white.</li>
-<li><span style="font-weight: bold; font-style: italic;">Always Black </span>:
-Returns black.</li>
-</ul>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Options</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Output Refraction Color</span></td>
-<td style="background-color: rgb(231, 231, 231);">By
-default, this shader returns the reflected portion of light. If this is
-check, it will return the refracted portion of light. It's essentially
-equals to 1-R except for metals (0).<br>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231); font-weight: bold;">DeGamma
-metals for linear workflow</td>
-<td style="background-color: rgb(231, 231, 231);">This
-options should be checked for&nbsp;metals when using a linear
-workflow, otherwise, colors might seem washed out.<br>
-&nbsp;<br>
-<span style="font-style: italic;">Note : This
-option should be on by default, but because it is new, we didn't want
-to change the look of old render tree. The user should change the
-default value if aware of this on line 105 of the Obq_Fresnel.spdl.</span></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Media In</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Refractive Indices - n</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span></span><span></span>Same
-as previous n, but this is the media in which your object lies.
-Generally equals to 1, but if you're in water, for example, it would be
-1.33. Ideally, this would exist and would be equal the the ray current
-IOR.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Copy the <strong><em>Obq_Fresnel.dll</em></strong>
-in the proper
-"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
-folder and the <strong><em>Obq_Fresnel.spdl</em></strong>
-in
-the proper "<strong><em>SItoA\Application\spdl</em></strong>"
-folder.</li>
-<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
-Visual C++ 2010 redistributable package (x64)</a> if not already
-done.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Presets"></a>Adding
-New Presets</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Get the csv of txt file from&nbsp;the web
-or&nbsp;spd files from pbrt (<a href="http://www.pbrt.org">http://www.pbrt.org</a>).<br>
-<br>
-&nbsp;&nbsp; &nbsp;<a target="_blank" href="http://www.filmetrics.com/refractive-index-database">http://www.filmetrics.com/refractive-index-database</a><br>
-&nbsp;&nbsp; &nbsp;or <a target="_blank" href="http://refractiveindex.info/">http://refractiveindex.info/</a><br>
-Load it in the shader, change verbosity from warning to info, open the
-log/script window and render. The RGB values for n and k will be shown.<br>
-<br>
-</li>
-<li>On line 134 of the Obq_Fresnel.spdl, you have
-the
-items of the combo box of presets. Add your preset in the proper
-section or in a new section and put as index the highest index + 1.
-Remember this number and increment accordingly the "Value Maximum" of
-the presets parameter on line 28.<br>
-</li>
-<li>On line 401 of the Obq_Fresnel.spdl, you have
-to add the&nbsp;case with your new preset index before the last
-"Else" on line 630. Copy-paste the last "ElseIf" bloc, change the index
-and the iorCoeffs array values with the ones from the log/script window.<br>
-</li>
-<li>Save your spdl and voilà.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
-Tree Usage</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Statues of Ajax : smooth gold, rough copper,
-rough osmium with
-silver flakes underneath a smooth acrylic layer, smooth ice and a
-vegetable oil covered rosewood. The compounds are also available for
-download and ease the linking process from the Obq_Fresnel to the
-Standard shader.<br>
-<br>
-<br>
-<img style="width: 100%;" onclick="window.open('fresnelAjax.jpg')" alt="Fresnel example" src="fresnelAjax.jpg"></td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Copyright (c) 2012 Marc-Antoine Desjardins,
-ObliqueFX <small><big>(madesjardins@obliquefx.com)</big></small><br>
-<br>
-Permission is hereby granted, free of charge, to any person obtaining a
-copy <br>
-of this software and associated documentation files (the "Software"),
-to deal <br>
-in the Software without restriction, including without limitation the
-rights <br>
-to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell <br>
-copies of the Software, and to permit persons to whom the Software is <br>
-furnished to do so, subject to the following conditions:<br>
-<br>
-The above copyright notice and this permission notice shall be included
-in all <br>
-copies or substantial portions of the Software.<br>
-<br>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR <br>
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, <br>
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-<br>
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER <br>
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, <br>
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE <br>
-SOFTWARE.<br>
-<br>
-Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a><big>
-</big></td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<hr style="width: 100%; height: 2px;"></td>
-<td style="background-color: white;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</body></html>
+<h5>Refractive Indices - n <em>[iorInRGB]</em></h5>
+<p>Same as previous n, but this is the media in which your object lies. Generally equals to 1, but if you're in water, for example, it would be 1.33. Ideally, this would exist and would be equal the the ray current IOR.</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

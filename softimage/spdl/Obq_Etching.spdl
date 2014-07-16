@@ -37,7 +37,14 @@ PropertySet "Obq_Etching_pset"
 		Texturable = on;
 		Value = off;
 	}
-	Parameter "texture_space_input" input
+	Parameter "normalized_black_color" input
+	{
+		GUID = "{36E12674-FC06-4144-9213-47A1B1C8FD8C}";
+		Type = color;
+		Texturable = on;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "coordinates_input" input
 	{
 		GUID = "{BA0E63CD-B7B9-498A-B56B-12A1F2445425}";
 		Type = vector;
@@ -256,7 +263,7 @@ phenomenon "Obq_Etching_declare"
 {
 	Name = "Obq_Etching";
 	Version = 1;
-	Use = texture;
+	Use = Material;
 }
 
 Defaults
@@ -282,9 +289,15 @@ Defaults
 		Name = "Multiply by normalized input";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
-	texture_space_input
+	normalized_black_color
 	{
-		Name = "Texture projection input";
+		Name = "Normalized Black Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	coordinates_input
+	{
+		Name = "Coordinates input";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 		UIType = "vector";
 		UIRange = 0.0 to 1.0 by 0.01;
@@ -396,7 +409,7 @@ Defaults
 	}
 	autoFilteringOut
 	{
-		Name = "Show auto filter level";
+		Name = "Show auto-filter level";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
 	autoFilteringMode
@@ -413,7 +426,7 @@ Defaults
 	}
 	autoFilteringU
 	{
-		Name = "Also affected by u";
+		Name = "Also affected by U";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
 	autoFilteringAdvanced
@@ -444,6 +457,7 @@ Layout "Default"
 			dark_color;
 			dark_point;
 			multiply_dark_color;
+			normalized_black_color;
 		}
 	}
 	Tab "Signal"
@@ -455,7 +469,7 @@ Layout "Default"
 			feather;
 			use_linear_signal;
 		}
-		Group "Auto Filtering"
+		Group "Auto-Filtering"
 		{
 			autoFiltering;
 			Group "Advanced"
@@ -481,10 +495,16 @@ Layout "Default"
 	}
 	Tab "Input"
 	{
-		shading_input;
-		use_average_rgb;
-		mix;
-		#texture_space_input;
+		Group "Input"
+		{
+			shading_input;
+			coordinates_input;
+		}
+		Group "Options"
+		{
+			use_average_rgb;
+			mix;
+		}
 	}
 	Tab "AOVs"
 	{
@@ -509,6 +529,7 @@ Layout "RenderTree"
 			dark_color;
 			dark_point;
 			multiply_dark_color;
+			normalized_black_color;
 		}
 	}
 	Group "Signal"
@@ -520,7 +541,7 @@ Layout "RenderTree"
 			feather;
 			use_linear_signal;
 		}
-		Group "Auto Filtering"
+		Group "Auto-Filtering"
 		{
 			autoFiltering;
 			Group "Advanced"
@@ -547,9 +568,12 @@ Layout "RenderTree"
 	{
 	
 		shading_input;
-		use_average_rgb;
-		mix;
-		texture_space_input;
+		coordinates_input;
+		Group "Options"
+		{
+			use_average_rgb;
+			mix;
+		}
 	}
 }
 
@@ -610,6 +634,14 @@ sub createAOVs_OnClicked()
 	createRenderChannels()
 End Sub
 
+Sub multiply_dark_color_OnChanged()
+	If PPG.multiply_dark_color.Value = True Then
+		PPG.normalized_black_color.Show(True)
+	Else
+		PPG.normalized_black_color.Show(False)
+	End If
+	PPG.Refresh()
+End Sub
 
 Sub autoFilteringAutoRange_OnChanged()
 	If PPG.autoFilteringAutoRange.Value = True Then
@@ -658,6 +690,7 @@ sub OnInit()
 	PPG.aov_matte.ReadOnly = True
 	PPG.aov_input.ReadOnly = True
 	autoFiltering_OnChanged()
+	multiply_dark_color_OnChanged()
 End sub
 
 }

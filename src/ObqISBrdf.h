@@ -33,174 +33,172 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include "Obq_BrdfRead.h"
 
 
-//-----------------------------------------------------------
-/*! Rotates a vector V around the X axis with angle theta. */
-//-----------------------------------------------------------
-inline glm::dvec3 rotateVectorAroundX(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
-	double theta  /*!< [in] : The angle of rotation.*/)
-{
-	double cosTheta = glm::cos(theta);
-	double sinTheta = glm::sin(theta);
+////-----------------------------------------------------------
+///*! Rotates a vector V around the X axis with angle theta. */
+////-----------------------------------------------------------
+//inline glm::dvec3 rotateVectorAroundX(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
+//	double theta  /*!< [in] : The angle of rotation.*/)
+//{
+//	double cosTheta = glm::cos(theta);
+//	double sinTheta = glm::sin(theta);
+//
+//	return glm::dvec3(V.x,cosTheta*V.y-sinTheta*V.z,sinTheta*V.y+cosTheta*V.z);
+//}
+//
+////-----------------------------------------------------------
+///*! Rotates a vector V around the Y axis with angle theta. */
+////-----------------------------------------------------------
+//inline glm::dvec3 rotateVectorAroundY(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
+//	double theta  /*!< [in] : The angle of rotation.*/)
+//{
+//	double cosTheta = glm::cos(theta);
+//	double sinTheta = glm::sin(theta);
+//
+//	return glm::dvec3(V.x*cosTheta+V.z*sinTheta,V.y,V.z*cosTheta - V.x*sinTheta);
+//}
+//
+////-----------------------------------------------------------
+///*! Rotates a vector V around the Z axis with angle theta. */
+////-----------------------------------------------------------
+//inline glm::dvec3 rotateVectorAroundZ(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
+//	double theta  /*!< [in] : The angle of rotation.*/)
+//{
+//	double cosTheta = glm::cos(theta);
+//	double sinTheta = glm::sin(theta);
+//
+//	return glm::dvec3(cosTheta*V.x - sinTheta*V.y,sinTheta*V.x+cosTheta*V.y,V.z);
+//}
 
-	return glm::dvec3(V.x,cosTheta*V.y-sinTheta*V.z,sinTheta*V.y+cosTheta*V.z);
-}
+//inline double angle(const glm::dvec3& A,const glm::dvec3& B)
+//{
+//	double dot = glm::dot(A,B);
+//	if(dot>=1.0)
+//		return 0.0;
+//	else if(dot <= -1.0)
+//		return c_Pi;
+//	else
+//		return std::acos(dot);
+//}
+//
+//inline float angle(const glm::vec3& A,const glm::vec3& B)
+//{
+//	float dot = glm::dot(A,B);
+//	if(dot>1.0f)
+//		return 0.0f;
+//	else if(dot < -1.0f)
+//		return c_Pi;
+//	else
+//		return std::acos(dot);
+//}
+//
+//inline float angle(const AtVector& A,const AtVector& B)
+//{
+//	float dot = AiV3Dot(A,B);
+//	if(dot>1.0f)
+//		return 0.0f;
+//	else if(dot < -1.0f)
+//		return c_Pi;
+//	else
+//		return std::acos(dot);
+//}
+//
+//inline float angle(const AtVector2& A,const AtVector2& B)
+//{
+//	float dot = AiV2Dot(A,B);
+//	if(dot>1.0f)
+//		return 0.0f;
+//	else if(dot < -1.0f)
+//		return c_Pi;
+//	else
+//		return std::acos(dot);
+//}
+//
+//inline float angle(const glm::vec2& A,const glm::vec2& B)
+//{
+//	float dot = glm::dot(A,B);
+//	if(dot>1.0f)
+//		return 0.0f;
+//	else if(dot < -1.0f)
+//		return c_Pi;
+//	else
+//		return std::acos(dot);
+//}
 
-//-----------------------------------------------------------
-/*! Rotates a vector V around the Y axis with angle theta. */
-//-----------------------------------------------------------
-inline glm::dvec3 rotateVectorAroundY(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
-	double theta  /*!< [in] : The angle of rotation.*/)
-{
-	double cosTheta = glm::cos(theta);
-	double sinTheta = glm::sin(theta);
-
-	return glm::dvec3(V.x*cosTheta+V.z*sinTheta,V.y,V.z*cosTheta - V.x*sinTheta);
-}
-
-//-----------------------------------------------------------
-/*! Rotates a vector V around the Z axis with angle theta. */
-//-----------------------------------------------------------
-inline glm::dvec3 rotateVectorAroundZ(const glm::dvec3& V, /*!< [in] : Vector to rotate.*/
-	double theta  /*!< [in] : The angle of rotation.*/)
-{
-	double cosTheta = glm::cos(theta);
-	double sinTheta = glm::sin(theta);
-
-	return glm::dvec3(cosTheta*V.x - sinTheta*V.y,sinTheta*V.x+cosTheta*V.y,V.z);
-}
-
-inline double angle(const glm::dvec3& A,const glm::dvec3& B)
-{
-	double dot = glm::dot(A,B);
-	if(dot>=1.0)
-		return 0.0;
-	else if(dot <= -1.0)
-		return c_Pi;
-	else
-		return std::acos(dot);
-}
-
-inline float angle(const glm::vec3& A,const glm::vec3& B)
-{
-	float dot = glm::dot(A,B);
-	if(dot>1.0f)
-		return 0.0f;
-	else if(dot < -1.0f)
-		return c_Pi;
-	else
-		return std::acos(dot);
-}
-
-inline float angle(const AtVector& A,const AtVector& B)
-{
-	float dot = AiV3Dot(A,B);
-	if(dot>1.0f)
-		return 0.0f;
-	else if(dot < -1.0f)
-		return c_Pi;
-	else
-		return std::acos(dot);
-}
-
-inline float angle(const AtVector2& A,const AtVector2& B)
-{
-	float dot = AiV2Dot(A,B);
-	if(dot>1.0f)
-		return 0.0f;
-	else if(dot < -1.0f)
-		return c_Pi;
-	else
-		return std::acos(dot);
-}
-
-inline float angle(const glm::vec2& A,const glm::vec2& B)
-{
-	float dot = glm::dot(A,B);
-	if(dot>1.0f)
-		return 0.0f;
-	else if(dot < -1.0f)
-		return c_Pi;
-	else
-		return std::acos(dot);
-}
-
-
-
-//----------------------------------------------------------------------
-/*! \brief Calculates solid angle of triangle abc (3d points) using the Girard formula. */
-//-----------------------------------------------------------------------
-inline double getSolidAngleOfTriangle(glm::dvec3 a, glm::dvec3 b,glm::dvec3 c)
-{
-	// calculate angle A between projection of b and c on tangent plane to a
-	glm::dvec3 n_a = -a;
-	glm::dvec3 v_ab = glm::normalize(b-a);
-	glm::dvec3 v_ac = glm::normalize(c-a);
-	glm::dvec3 t_ab = glm::normalize(v_ab - glm::dot(n_a,v_ab) * (n_a));
-	glm::dvec3 t_ac = glm::normalize(v_ac - glm::dot(n_a,v_ac) * (n_a));
-
-	double A = angle(t_ab,t_ac);
-
-	glm::dvec3 n_b = -b;
-	glm::dvec3 v_ba = glm::normalize(a-b);
-	glm::dvec3 v_bc = glm::normalize(c-b);
-	glm::dvec3 t_ba = glm::normalize(v_ba - glm::dot(n_b,v_ba) * (n_b));
-	glm::dvec3 t_bc = glm::normalize(v_bc - glm::dot(n_b,v_bc) * (n_b));
-
-	double B = angle(t_ba,t_bc);
-
-	glm::dvec3 n_c = -c;
-	glm::dvec3 v_cb = glm::normalize(b-c);
-	glm::dvec3 v_ca = glm::normalize(a-c);
-	glm::dvec3 t_cb = glm::normalize(v_cb - glm::dot(n_c,v_cb) * (n_c));
-	glm::dvec3 t_ca = glm::normalize(v_ca - glm::dot(n_c,v_ca) * (n_c));
-
-	double C = angle(t_cb,t_ca);
-
-	return A+B+C-c_Pi;
-}
-
-//------------------------------------------------------------------------------------------------------------
-/*! \brief Calculate the delta phi.
-*   Calculate the angle between the projected view direction and light direction vectors onto the surface. */
-//------------------------------------------------------------------------------------------------------------
-inline float calculateDeltaPhi(AtVector L, AtVector V, AtVector N, float ndotl, float ndotv){
-
-	// test pour cas spéciaux triviaux
-	if(ndotv >= 1.0-AI_EPSILON || ndotl >= 1.0-AI_EPSILON)
-		return 0.0;
-
-	//http://www.gamedev.net/topic/345149-projecting-a-vector-on-a-plane/
-	AtVector Lp = AiV3Normalize(L - ndotl * N);
-	AtVector Vp = AiV3Normalize(V - ndotv * N);
-
-	return angle(Vp, Lp);
-}
-
-//------------------------------------------------------------------------------------------------------------
-/*! \brief Calculate the delta phi.
-*   Calculate the angle between the projected view direction and light direction vectors onto the surface. */
-//------------------------------------------------------------------------------------------------------------
-inline float calculateDeltaPhi(const AtVector& L, const AtVector& V, const AtVector& N){
-
-	float ndotl = CLAMP(AiV3Dot(L,N),-1.0f,1.0f), ndotv = CLAMP(AiV3Dot(V,N),-1.0f,1.0f);
-
-	// test pour cas spéciaux triviaux
-	if(ndotv >= 1.0f-AI_EPSILON || ndotl >= 1.0f-AI_EPSILON)
-		return 0.0f;
-
-	//http://www.gamedev.net/topic/345149-projecting-a-vector-on-a-plane/
-	AtVector Lp = AiV3Normalize(L - ndotl * N);
-	AtVector Vp = AiV3Normalize(V - ndotv * N);
-
-	return angle(Vp, Lp);
-}
-
-inline void cartesians2sphericalDeltaCoords(AtVector& coords, const AtVector& L, const AtVector& V, const AtVector& N)
-{
-    coords[0] = angle(L,N);
-	coords[1] = angle(V,N);
-    coords[2] = calculateDeltaPhi(L,V,N);
-}
+////----------------------------------------------------------------------
+///*! \brief Calculates solid angle of triangle abc (3d points) using the Girard formula. */
+////-----------------------------------------------------------------------
+//inline double getSolidAngleOfTriangle(glm::dvec3 a, glm::dvec3 b,glm::dvec3 c)
+//{
+//	// calculate angle A between projection of b and c on tangent plane to a
+//	glm::dvec3 n_a = -a;
+//	glm::dvec3 v_ab = glm::normalize(b-a);
+//	glm::dvec3 v_ac = glm::normalize(c-a);
+//	glm::dvec3 t_ab = glm::normalize(v_ab - glm::dot(n_a,v_ab) * (n_a));
+//	glm::dvec3 t_ac = glm::normalize(v_ac - glm::dot(n_a,v_ac) * (n_a));
+//
+//	double A = angle(t_ab,t_ac);
+//
+//	glm::dvec3 n_b = -b;
+//	glm::dvec3 v_ba = glm::normalize(a-b);
+//	glm::dvec3 v_bc = glm::normalize(c-b);
+//	glm::dvec3 t_ba = glm::normalize(v_ba - glm::dot(n_b,v_ba) * (n_b));
+//	glm::dvec3 t_bc = glm::normalize(v_bc - glm::dot(n_b,v_bc) * (n_b));
+//
+//	double B = angle(t_ba,t_bc);
+//
+//	glm::dvec3 n_c = -c;
+//	glm::dvec3 v_cb = glm::normalize(b-c);
+//	glm::dvec3 v_ca = glm::normalize(a-c);
+//	glm::dvec3 t_cb = glm::normalize(v_cb - glm::dot(n_c,v_cb) * (n_c));
+//	glm::dvec3 t_ca = glm::normalize(v_ca - glm::dot(n_c,v_ca) * (n_c));
+//
+//	double C = angle(t_cb,t_ca);
+//
+//	return A+B+C-c_Pi;
+//}
+//
+////------------------------------------------------------------------------------------------------------------
+///*! \brief Calculate the delta phi.
+//*   Calculate the angle between the projected view direction and light direction vectors onto the surface. */
+////------------------------------------------------------------------------------------------------------------
+//inline float calculateDeltaPhi(AtVector L, AtVector V, AtVector N, float ndotl, float ndotv){
+//
+//	// test pour cas spéciaux triviaux
+//	if(ndotv >= 1.0-AI_EPSILON || ndotl >= 1.0-AI_EPSILON)
+//		return 0.0;
+//
+//	//http://www.gamedev.net/topic/345149-projecting-a-vector-on-a-plane/
+//	AtVector Lp = AiV3Normalize(L - ndotl * N);
+//	AtVector Vp = AiV3Normalize(V - ndotv * N);
+//
+//	return angle(Vp, Lp);
+//}
+//
+////------------------------------------------------------------------------------------------------------------
+///*! \brief Calculate the delta phi.
+//*   Calculate the angle between the projected view direction and light direction vectors onto the surface. */
+////------------------------------------------------------------------------------------------------------------
+//inline float calculateDeltaPhi(const AtVector& L, const AtVector& V, const AtVector& N){
+//
+//	float ndotl = CLAMP(AiV3Dot(L,N),-1.0f,1.0f), ndotv = CLAMP(AiV3Dot(V,N),-1.0f,1.0f);
+//
+//	// test pour cas spéciaux triviaux
+//	if(ndotv >= 1.0f-AI_EPSILON || ndotl >= 1.0f-AI_EPSILON)
+//		return 0.0f;
+//
+//	//http://www.gamedev.net/topic/345149-projecting-a-vector-on-a-plane/
+//	AtVector Lp = AiV3Normalize(L - ndotl * N);
+//	AtVector Vp = AiV3Normalize(V - ndotv * N);
+//
+//	return angle(Vp, Lp);
+//}
+//
+//inline void cartesians2sphericalDeltaCoords(AtVector& coords, const AtVector& L, const AtVector& V, const AtVector& N)
+//{
+//    coords[0] = angle(L,N);
+//	coords[1] = angle(V,N);
+//    coords[2] = calculateDeltaPhi(L,V,N);
+//}
 
 ///////////////////////////
 //

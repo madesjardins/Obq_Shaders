@@ -39,10 +39,13 @@
 <tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
@@ -77,7 +80,7 @@
 <p>A simple toon shader based on Obq_Toon. A dot product for each component (diffuse = NdotL, highlight = NdotH and rimlight = NdotV) is calculated to determine the shading and then remapped according to some rules.</p>
 <br>
 <img src="images/Obq_Toon_01.jpg" alt="Synopsis image" width=512 >
-<p class="idesc">A simple toon example.</p>
+<p class="idesc">Fig.1 : A simple toon example.</p>
 <br>
 <h5>Usage</h5>
 <p>For a classic toon look, use it exactly like the Mental Ray toon shader with the coverage and softness parameters.</p>
@@ -102,7 +105,7 @@
 <p class="note" >Note : Use the <em>No Internal</em> component parameters to activate or deactivate contribution of back-facing polygons.</p>
 <br>
 <img src="images/Obq_Toon_07.jpg" alt="Opacity and no internal" width=512 >
-<p class="idesc">Left is an opaque sphere, in the middle a semi-opaque sphere and right, semi-opaque sphere with all <em>_noInternal</em> checked.</p>
+<p class="idesc">Fig.2 : Left is an opaque sphere, in the middle a semi-opaque sphere and right, semi-opaque sphere with all <em>_noInternal</em> checked.</p>
 <br>
 <h5>Compositing <em>[global_compMode]</em></h5>
 <p>This tells the shader how to composite ambient, diffuse, highlight and rimlight results together in that order.</p>
@@ -114,7 +117,7 @@
 </table>
 <br>
 <img src="images/Obq_Toon_05.jpg" alt="global_compMode" width=512 >
-<p class="idesc">A sphere with grey diffuse, reddish highlight and bluish rimlight. From left to right: <em>Add</em>, <em>Over</em>, <em>Max</em> and <em>Screen</em> mode. There is no apparent highlight on the third sphere because the red channel of the diffuse is higher than the red channel of the highlight.</p>
+<p class="idesc">Fig.3 : A sphere with grey diffuse, reddish highlight and bluish rimlight. From left to right: <em>Add</em>, <em>Over</em>, <em>Max</em> and <em>Screen</em> mode. There is no apparent highlight on the third sphere because the red channel of the diffuse is higher than the red channel of the highlight.</p>
 <br>
 <h5>Multiply by Light Color <em>[global_multByLightColor]</em></h5>
 <p>When checked, this multiplies all light samples by the light color.</p>
@@ -141,14 +144,14 @@
 <p>This will somewhat scale down the span of the lit portion of the object.</p>
 <br>
 <img src="images/Obq_Toon_03.jpg" alt="Coverage" width=512 >
-<p class="idesc">Different values of <em>Coverage</em> = {1.0, 0.5, 0.25, 0.0}.</p>
+<p class="idesc">Fig.4 : Different values of <em>Coverage</em> = {1.0, 0.5, 0.25, 0.0}.</p>
 <p class="note" >Note : dot = 1-(1-dot)/coverage</p>
 <br>
 <h5>Softness <em>[_softness]</em></h5>
 <p>This will somewhat push highest values down. Use a value of 0 for a classic toon look.</p>
 <br>
 <img src="images/Obq_Toon_04.jpg" alt="Softness" width=512 >
-<p class="idesc">Different values of <em>Softness</em> = {1.0, 0.5, 0.25, 0.0}.</p>
+<p class="idesc">Fig.5 : Different values of <em>Softness</em> = {1.0, 0.5, 0.25, 0.0}.</p>
 <p class="note" >Note : dot = dot/softness. When used for highlight, if you put 0 here you should use a <em>Coverage of less than 1,</em></p>
 <br>
 <h5>No Internal <em>[_noInternal]</em></h5>

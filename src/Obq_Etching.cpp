@@ -47,7 +47,7 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqEtchingSimpleMethods);
 //
 enum ObqEtchingSimpleParams { 
 	p_shading_input, 
-	p_texture_space_input, 
+	p_coordinates_input, 
 	p_use_linear_signal, 
 	p_bright_color,
 	p_bright_point,
@@ -59,6 +59,7 @@ enum ObqEtchingSimpleParams {
 	p_use_average_rgb,
 	p_multiply_bright_color, 
 	p_multiply_dark_color,
+	p_normalized_black_color,
 	p_mix,
 	p_enable_dots,
 	p_bright_dots_start,
@@ -82,7 +83,7 @@ enum obqSignals{OBQ_BOX, OBQ_TRIANGLE, OBQ_WAVE};
 node_parameters
 {
 	AiParameterRGB("shading_input", 1.0f,1.0f,1.0f);
-	AiParameterVEC("texture_space_input", 0.0f,0.0f,0.0f);
+	AiParameterVEC("coordinates_input", 0.0f,0.0f,0.0f);
 	AiParameterBOOL("use_linear_signal",false);
 	AiParameterRGB("bright_color", 1.0f,1.0f,1.0f);
 	AiParameterFLT("bright_point",1.0f);
@@ -94,6 +95,7 @@ node_parameters
 	AiParameterBOOL("use_average_rgb",false);
 	AiParameterBOOL("multiply_bright_color",false);	
 	AiParameterBOOL("multiply_dark_color",false);
+	AiParameterRGB("normalized_black_color", 0.0f,0.0f,0.0f);
 	AiParameterFLT("mix",0.0f);
 	AiParameterBOOL("enable_dots",false);
 	AiParameterFLT("bright_dots_start",0.9f);
@@ -214,7 +216,7 @@ shader_evaluate
 
 	// Other Parameters
 	AtColor shading_input =  AiShaderEvalParamRGB(p_shading_input);
-	AtVector tex_input =  AiShaderEvalParamVec(p_texture_space_input);
+	AtVector tex_input =  AiShaderEvalParamVec(p_coordinates_input);
 	AtColor bright_color = AiShaderEvalParamRGB(p_bright_color);
 	AtColor dark_color = AiShaderEvalParamRGB(p_dark_color);
 	bool use_linear_signal = AiShaderEvalParamBool(p_use_linear_signal);
@@ -458,7 +460,12 @@ shader_evaluate
 		RGBtoHSV(shading_input,hsv);
 		hsv.b = 1.0;
 		AtColor rgb;
-		HSVtoRGB(hsv,rgb);
+
+		if(shading_input.r > 0.0f || shading_input.g > 0.0f || shading_input.b > 0.0f)
+			HSVtoRGB(hsv,rgb);
+		else
+			rgb = AiShaderEvalParamRGB(p_normalized_black_color); // use default unlit normalized color
+
 		if(mult_bright)
 			bright_color*= rgb;
 

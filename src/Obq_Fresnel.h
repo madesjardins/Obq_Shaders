@@ -34,6 +34,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #define MIN_LAMBDA 360.f
 #define MAX_LAMBDA 830.f
+#define LUT_RES 513
 
 // Arnold stuff
 //
@@ -70,6 +71,7 @@ typedef struct
 	int method;
 	float eta[3];
 	float k[3];
+	AtColor* LUT;
 }
 ShaderData;
 

@@ -108,13 +108,19 @@
     <ClCompile Include="..\..\src\ObqISBrdf.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Obq_ToonSimple.cpp">
+    <ClCompile Include="..\..\src\Obq_MessageFlt.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_Toon.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Obq_MessageFlt.cpp">
+    <ClCompile Include="..\..\src\Obq_ToonSimple.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_Hair.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_Color.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
   </ItemGroup>
@@ -261,6 +267,12 @@
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_ToonSimple.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_Hair.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_Color.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>

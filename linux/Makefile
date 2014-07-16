@@ -1,10 +1,10 @@
 EXT = so
-OBQVERSION = v300
+OBQVERSION = v301
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.1.3.3-linux
+ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.0.6-linux
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH)
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++-4.1
@@ -41,18 +41,27 @@ $(SRCPATH)/pbrt/spectrum.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/pbrt/spectrum.cpp -o spectrum.o
 
+ObqISBrdf.o: \
+$(SRCPATH)/ObqISBrdf.cpp \
+$(SRCPATH)/ObqISBrdf.h \
+$(SRCPATH)/Obq_BrdfRead.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/ObqISBrdf.cpp -o ObqISBrdf.o
+
 shared: \
-spectrum.o
+spectrum.o \
+ObqISBrdf.o
 
 SHARED = \
-spectrum.o
+spectrum.o \
+ObqISBrdf.o
 
 # Obq_AngularCamera
 
 Obq_AngularCamera.o: \
 $(SRCPATH)/Obq_AngularCamera.cpp \
 $(SRCPATH)/Obq_Common.h
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_AngularCamera.cpp
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_AngularCamera.cpp 
 
 # Obq_Atmosphere
 
@@ -75,6 +84,14 @@ Obq_ChangeRange.o: \
 $(SRCPATH)/Obq_ChangeRange.cpp \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ChangeRange.cpp
+
+# Obq_Color
+
+Obq_Color.o: \
+$(SRCPATH)/Obq_Color.cpp \
+$(SRCPATH)/Obq_Color.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Color.cpp
 
 # Obq_Environment
 
@@ -101,6 +118,14 @@ $(SRCPATH)/pbrt/spectrum.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Fresnel.cpp
 
+# Obq_Hair
+
+Obq_Hair.o: \
+$(SRCPATH)/Obq_Hair.cpp \
+$(SRCPATH)/Obq_Hair.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Hair.cpp
+
 # Obq_IESLightFilter
 
 Obq_IESLightFilter.o: \
@@ -117,13 +142,6 @@ $(SRCPATH)/Obq_MeasuredMaterial.h \
 $(SRCPATH)/ObqISBrdf.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MeasuredMaterial.cpp
-
-ObqISBrdf.o: \
-$(SRCPATH)/ObqISBrdf.cpp \
-$(SRCPATH)/ObqISBrdf.h \
-$(SRCPATH)/Obq_BrdfRead.h \
-$(SRCPATH)/Obq_Common.h
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/ObqISBrdf.cpp
 
 # Obq_MessageFlt
 
@@ -243,11 +261,12 @@ Obq_AngularCamera.o \
 Obq_Atmosphere.o \
 Obq_Bend4Stereo.o \
 Obq_ChangeRange.o \
+Obq_Color.o \
 Obq_Environment.o \
 Obq_Etching.o \
 Obq_Fresnel.o \
+Obq_Hair.o \
 Obq_IESLightFilter.o \
-ObqISBrdf.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageFlt.o \
 Obq_Opacity.o \
@@ -271,11 +290,12 @@ Obq_AngularCamera.o \
 Obq_Atmosphere.o \
 Obq_Bend4Stereo.o \
 Obq_ChangeRange.o \
+Obq_Color.o \
 Obq_Environment.o \
 Obq_Etching.o \
 Obq_Fresnel.o \
+Obq_Hair.o \
 Obq_IESLightFilter.o \
-ObqISBrdf.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageFlt.o \
 Obq_Opacity.o \
@@ -296,13 +316,3 @@ $(SHARED) \
 Obq_Shaders__Core.o \
 $(LINKING)
 
-# Obq_Hair
-
-Obq_Hair.o: \
-$(SRCPATH)/Obq_Hair.cpp \
-$(SRCPATH)/Obq_Hair.h \
-$(SRCPATH)/Obq_Common.h
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Hair.cpp
-
-hair: Obq_Hair.o
-	$(CPP) -o $(BINPATH)/Obq_Hair__$(OBQVERSION).$(EXT) $(LINKFLAGS) Obq_Hair.o $(LINKING)

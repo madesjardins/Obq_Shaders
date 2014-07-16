@@ -34,9 +34,11 @@ extern AtNodeMethods* ObqAtmosphereSimpleMethods;
 extern AtNodeMethods* ObqAngularCameraMethods;
 extern AtNodeMethods* ObqBend4StereoSimpleMethods;
 extern AtNodeMethods* ObqChangeRangeSimpleMethods;
+extern AtNodeMethods* ObqColorSimpleMethods;
 extern AtNodeMethods* ObqEnvironmentSimpleMethods;
 extern AtNodeMethods* ObqEtchingSimpleMethods;
 extern AtNodeMethods* ObqFresnelSimpleMethods;
+extern AtNodeMethods* ObqHairSimpleMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
 extern AtNodeMethods* ObqMeasuredMaterialSimpleMethods;
 extern AtNodeMethods* ObqMessageFltSimpleMethods;
@@ -58,30 +60,32 @@ extern AtNodeMethods* ObqVolumeThicknessSimpleMethods;
 
 enum SHADERS
 {
-   OBQ_ANGULARCAMERA,
-   OBQ_ATMOSPHERE,
-   OBQ_BEND4STEREO,
-   OBQ_CHANGERANGE,
-   OBQ_ENVIRONMENT,
-   OBQ_ETCHING,
-   OBQ_FRESNEL,
-   OBQ_IESLIGHTFILTER,
-   OBQ_MEASUREDMATERIAL,
-   OBQ_MESSAGEFLT,
-   OBQ_OPACITY,
-   OBQ_RANDOMCOLOR,
-   OBQ_RGBCOMEMIT,
-   OBQ_RGBCOMLIGHTFILTER,
-   OBQ_ROOT2TIP,
-   OBQ_SHADOW,
-   OBQ_STEREOLENS,
-   OBQ_SURFACEENVIRONMENT,
-   OBQ_THICKNESS,
-   OBQ_TOON,
-   OBQ_TOONSIMPLE,
-   OBQ_TRANSFORMUV,
-   OBQ_UVREMAPLENSDISTORTION,
-   OBQ_VOLUMETHICKNESS
+	OBQ_ANGULARCAMERA,
+	OBQ_ATMOSPHERE,
+	OBQ_BEND4STEREO,
+	OBQ_CHANGERANGE,
+	OBQ_COLOR,
+	OBQ_ENVIRONMENT,
+	OBQ_ETCHING,
+	OBQ_FRESNEL,
+	OBQ_HAIR,
+	OBQ_IESLIGHTFILTER,
+	OBQ_MEASUREDMATERIAL,
+	OBQ_MESSAGEFLT,
+	OBQ_OPACITY,
+	OBQ_RANDOMCOLOR,
+	OBQ_RGBCOMEMIT,
+	OBQ_RGBCOMLIGHTFILTER,
+	OBQ_ROOT2TIP,
+	OBQ_SHADOW,
+	OBQ_STEREOLENS,
+	OBQ_SURFACEENVIRONMENT,
+	OBQ_THICKNESS,
+	OBQ_TOON,
+	OBQ_TOONSIMPLE,
+	OBQ_TRANSFORMUV,
+	OBQ_UVREMAPLENSDISTORTION,
+	OBQ_VOLUMETHICKNESS
 };
 
 node_loader
@@ -112,6 +116,12 @@ node_loader
 		node->name         = "Obq_ChangeRange";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_COLOR:
+		node->methods      = ObqColorSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Color";
+		node->node_type    = AI_NODE_SHADER;
+		break;
 	case OBQ_ENVIRONMENT:
 		node->methods      = ObqEnvironmentSimpleMethods;
 		node->output_type  = AI_TYPE_RGBA;
@@ -128,6 +138,12 @@ node_loader
 		node->methods      = ObqFresnelSimpleMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Fresnel";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_HAIR:
+		node->methods      = ObqHairSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Hair";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_IESLIGHTFILTER:
@@ -179,10 +195,10 @@ node_loader
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_SHADOW:
-	   node->methods      = ObqShadowSimpleMethods;
-	   node->output_type  = AI_TYPE_RGB;
-	   node->name         = "Obq_Shadow";
-	   node->node_type    = AI_NODE_SHADER;
+		node->methods      = ObqShadowSimpleMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_Shadow";
+		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_STEREOLENS:
 		node->methods     = ObqStereoLensMethods;
@@ -240,6 +256,6 @@ node_loader
 #else
 	sprintf(node->version, AI_VERSION);
 #endif
-   
-   return true;
+
+	return true;
 }
