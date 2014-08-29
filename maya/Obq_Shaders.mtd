@@ -120,7 +120,7 @@
 	maya.classification STRING "shader/surface"
 
 [node Obq_UVRemapLensDistortion]
-	maya.name STRING "Obq_UVRemapLensDistortion
+	maya.name STRING "Obq_UVRemapLensDistortion"
 	maya.id INT 0x0011CD58
 	maya.classification STRING "shader/surface"
 
