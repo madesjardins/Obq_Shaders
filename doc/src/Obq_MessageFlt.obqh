@@ -1,0 +1,36 @@
+%shadername :: Obq_MessageFlt
+
+%class :: Texture
+
+%output :: Scalar
+
+%synopsisStart
+
+%pp :: Outputs the scalar value attached to a message in the message bank.
+%image :: src/images/Obq_Toon_02.jpg :: Usage :: 512
+%idesc :: Obq_Toon writes the scalar input value the gradient should have into the message "OToon" and Obq_MessageFlt gets it.
+%note :: At the moment, only the Obq_Toon with the gradient workflow needs this shader. For a more complete set of such functions, take a look at Stephano's ssj_radio collection shaders.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply connect this into a scalar port and type the message's name or choose a preset to fetch the associated scalar value in that ShaderGlobals. If the message doesn't exist, the <em>Default Value</em> will be returned
+
+%usageEnd
+
+%param :: Default Value <em>[defaultValue]</em>
+%pp :: If a message doesn't exist, this value will be output.
+
+%param :: Mode <em>[mode]</em>
+%tableStart
+%tableItem :: 40 :: Custom :: use a custom message name.
+%tableItem :: 40 :: Preset :: use a predefined message name from a list of presets.
+%tableEnd
+
+%param :: Preset <em>[preset]</em>
+%pp :: Available when you choose <em>Preset</em> mode, this is a list of predefined messages.
+
+
+%param :: Message <em>[message]</em>
+%pp :: The name of the message to fetch.

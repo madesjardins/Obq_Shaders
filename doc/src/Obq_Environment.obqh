@@ -1,0 +1,482 @@
+# SPDL Obq_Environment - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{B9D5464B-EECE-42EC-B483-2E124E7DF84D}";
+PropertySet "Obq_Environment_params"
+{
+	Parameter "out" output
+	{
+		GUID = "{4C4BE093-1D0F-4FCF-BEDE-D88D0171C97C}";
+		Type = color;
+	}
+	Parameter "tex" input
+	{
+		GUID = "{2DDE754C-5FA4-4A50-BFB0-3D42B1A894BA}";
+		Type = texture;
+		Texturable = on;
+	}
+	Parameter "considerAlpha" input
+	{
+		GUID = "{BC3F1BFD-24EA-4289-8494-19BD5220A587}";
+		Type = boolean;
+		Value = Off;
+		Texturable = On;
+	}
+	Parameter "mapMode" input
+	{
+		GUID = "{FB0D7035-B626-4719-8FCB-A42046900608}";
+		Type = integer;
+		Texturable = Off;
+		Value = 2;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "sampleLevel" input
+	{
+		GUID = "{A0199DF6-E38E-43E2-97DD-7BEC5C5DA7FB}";
+		Type = integer;
+		Texturable = off;
+		Value = 1;
+		Value Minimum = 1;
+	}
+	Parameter "coneAngle" input
+	{
+		GUID = "{4065301F-AAEC-4D65-AD6B-E261E4006B46}";
+		Type = scalar;
+		Texturable = On;
+		Value = 12.0;
+		Value Minimum = 0.0;
+		Value Maximum = 180.0;
+	}
+	Parameter "cosLobeGloss" input
+	{
+		GUID = "{8376BD40-5199-4D0D-BB68-41391BD90CDE}";
+		Type = scalar;
+		Texturable = On;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "useSampleCount" input
+	{
+		GUID = "{82749AED-99D3-4A8C-9F62-B52616E27D16}";
+		Type = boolean;
+		Value = Off;
+		Texturable = On;
+	}
+	Parameter "sampleCount" input
+	{
+		GUID = "{21C8E1B0-1B8E-4F24-8C52-F17B08E75C57}";
+		Type = scalar;
+		Texturable = On;
+		Value = 10.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "sampleCountMultiplier" input
+	{
+		GUID = "{3FF7C59E-6C62-4143-A30E-BA49603AF982}";
+		Type = scalar;
+		Texturable = On;
+		Value = 1.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "onSurfaceMode" input
+	{
+		GUID = "{634E9F67-5859-4B41-8891-B7D1EE8C81BF}";
+		Type = integer;
+		Texturable = On;
+		Value = 8;
+		Value Minimum = 0;
+		Value Maximum = 13;
+	}
+	Parameter "ior" input
+	{
+		GUID = "{6E4AB8C1-411C-4ED8-BC9C-449CF763A182}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "customDirection" input
+	{
+		GUID = "{B3B4F86F-EB6F-4DE2-A360-6B89FA0D66A4}";
+		Type = vector;
+		Texturable = on;
+		Value = 0.0 1.0 0.0;
+	}
+	Parameter "intensityCam" input
+	{
+		GUID = "{EF9D1D61-8427-44C4-9337-B374CA0ED618}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+		Parameter "intensityDifGI" input
+	{
+		GUID = "{E9F22257-D225-4DC0-909B-EC1D6B92A44C}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+		Parameter "intensityRfl" input
+	{
+		GUID = "{E89ADC4E-4147-478C-BFA5-0D1F74331576}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+		Parameter "intensityGlossy" input
+	{
+		GUID = "{21995C92-48C4-40C7-982C-F7E61762F95F}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+		Parameter "intensityRfr" input
+	{
+		GUID = "{47AFF816-BEEE-4D74-A5AC-ED7615AEEF60}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+	}
+	Parameter "globalRotation" input
+	{
+		GUID = "{60E7A797-3BE7-4EBD-B795-02A059BB65E1}";
+		Type = boolean;
+		Value = on;
+		Texturable = Off;
+	}
+	Parameter "rotation" input
+	{
+		GUID = "{7CD3F783-EF59-4EE8-8B21-867DA091710E}";
+		Type = vector;
+		Value = 0.0 0.0 0.0;
+		Texturable = On;
+	}
+	Parameter "flipU" input
+	{
+		GUID = "{5C9A3651-9495-4725-B8C9-19C6FC2086E6}";
+		Type = boolean;
+		Value = off;
+		Texturable = On;
+	}
+	Parameter "flipV" input
+	{
+		GUID = "{4B416FDE-416E-4BEC-A0C7-F8D65D936855}";
+		Type = boolean;
+		Value = off;
+		Texturable = On;
+	}
+	Parameter "opaque" input
+	{
+		GUID = "{98E7A35A-2556-49A1-92AA-71DC67B3AC43}";
+		Type = boolean;
+		Value = On;
+		Texturable = On;
+	}
+}
+
+phenomenon "Obq_Environment_declare"
+{
+	Name = "Obq_Environment";
+	Version = 1;
+	Use = environment;
+}
+
+Defaults
+{
+	tex
+	{
+		Name = "Image";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "ImageBrowserItem.ImageBrowserItem.1";
+	}
+	considerAlpha
+	{
+		Name = "Use Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	mapMode
+	{
+		Name = "Mapping Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Mirrored Ball" = 0,
+			"Angular Map" = 1,
+			"Latitude-Longitude" = 2,
+			"Vertical Cross" = 3,
+		}
+	}
+	sampleLevel
+	{
+		Name = "Sample Level";
+		UIRange = 1 To 10;
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	coneAngle
+	{
+		Name = "Cone Angle";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	cosLobeGloss
+	{
+		Name = "Cos Lobe Gloss";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useSampleCount
+	{
+		Name = "Clamp Sample Count";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	sampleCount
+	{
+		Name = "Max Sample Count";
+		UIRange = 1 To 10;
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	sampleCountMultiplier
+	{
+		Name = "Max Sample Count Multiplier";
+		UIRange = 1 To 256;
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	onSurfaceMode
+	{
+		Name = "Direction";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"View Direction" = 0,
+			"View Direction (Inverted)"= 1,
+			"Surface Normal Direction" = 2,
+			"Surface Normal Direction (no bump)" = 3,
+			"Surface Normal Direction (Inverted)" = 4,
+			"Surface Normal Direction (no bump, Inverted)" = 5,
+			"Surface Normal Direction (Front-Facing)" = 6,
+			"Surface Normal Direction (Back-Facing)" = 7,
+			"Reflection Direction" = 8,
+			"Reflection Direction (no bump)" = 9,
+			"Refraction Direction" = 10,
+			"Refraction Direction (no bump)" = 11,
+			"Custom Direction" = 12,
+		}
+	}
+	ior
+	{
+		Name = "IOR";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 5;
+	}
+	customDirection
+	{
+		Name = "Custom Direction";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -1 To 1;
+	}
+	intensityCam
+	{
+		Name = "Camera\n(Object Render Tree)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
+	intensityDifGI
+	{
+		Name = "Diffuse GI";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
+	intensityRfl
+	{
+		Name = "Reflection";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
+	intensityGlossy
+	{
+		Name = "Glossy";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
+	intensityRfr
+	{
+		Name = "Refraction";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0 To 2;
+	}
+	globalRotation
+	{
+		Name = "Use rotation at a global scope";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rotation
+	{
+		Name = "Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -180.0 to 180.0;
+	}
+	flipU
+	{
+		Name = "Flip U";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	flipV
+	{
+		Name = "Flip V";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	opaque
+	{
+		Name = "Opaque background";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+}
+
+Layout "Default"
+{
+	Tab "Texture"
+	{
+		Group "Image"
+		{
+			tex;
+			considerAlpha;
+			opaque;
+			mapMode;
+			flipU;
+			flipV;
+		}
+		Group "Ray Options in Object Render Tree"
+		{
+			onSurfaceMode;
+			ior;
+#			customDirection;
+		}
+		Group "Intensities"
+		{
+			intensityCam;
+			intensityDifGI;
+			intensityRfl;
+			intensityGlossy;
+			intensityRfr;
+		}
+	}
+	Tab "Roughness"
+	{
+		Group "Multiple Ray Cast"
+		{
+			sampleLevel;
+			coneAngle;
+			cosLobeGloss;
+			useSampleCount;
+			sampleCount;
+			sampleCountMultiplier;
+		}
+	}
+	Tab "Transformations"
+	{
+		Group "Transformations"
+		{
+			globalRotation;
+			rotation;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+	Group "Image"
+	{
+		tex;
+		considerAlpha;
+		opaque;
+		mapMode;
+		flipU;
+		flipV;
+	}
+	Group "Ray Options"
+	{
+		onSurfaceMode;
+		ior;
+		customDirection;
+	}
+	Group "Intensities"
+	{
+		intensityCam;
+		intensityDifGI;
+		intensityRfl;
+		intensityGlossy;
+		intensityRfr;
+	}
+
+	Group "Multiple Ray Cast"
+	{
+		sampleLevel;
+		coneAngle;
+		cosLobeGloss;
+		useSampleCount;
+		sampleCount;
+		sampleCountMultiplier;
+	}
+
+	Group "Transformations"
+	{
+		globalRotation;
+		rotation;
+	}
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub sampleLevel_OnChanged()
+	IF PPG.sampleLevel.Value = 1 Then
+		PPG.coneAngle.Enable(False)
+		PPG.cosLobeGloss.Enable(False)
+		PPG.useSampleCount.Enable(False)
+		PPG.sampleCount.Enable(False)
+		PPG.sampleCountMultiplier.Enable(False)
+	Else
+		PPG.coneAngle.Enable(True)
+		PPG.cosLobeGloss.Enable(True)
+		PPG.useSampleCount.Enable(True)
+		PPG.sampleCount.Enable(True)
+		PPG.sampleCountMultiplier.Enable(True)
+		useSampleCount_OnChanged()
+	End If
+End sub
+
+sub onSurfaceMode_OnChanged()
+	If PPG.onSurfaceMode.Value = 10 Or PPG.onSurfaceMode.Value = 11 Then
+		PPG.ior.Show(True)
+	Else
+		PPG.ior.Show(False)
+	End If
+End sub
+
+
+sub useSampleCount_OnChanged()
+	If PPG.useSampleCount.Value = True Then
+		PPG.sampleCount.Enable(True)
+		PPG.sampleCountMultiplier.Enable(True)
+	Else
+		PPG.sampleCount.Enable(False)
+		PPG.sampleCountMultiplier.Enable(False)
+	End If
+End sub
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Environment.html"
+	onSurfaceMode_OnChanged()
+	sampleLevel_OnChanged()
+	useSampleCount_OnChanged()
+End sub
+
+}

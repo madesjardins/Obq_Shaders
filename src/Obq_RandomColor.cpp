@@ -1,8 +1,7 @@
 /*
 Obq_RandomColor :
 
-is a shader that tells information concerning the thickness of a surface in a certain direction
-or the number of objects in this direction
+random color switch based on object name.
 
 *------------------------------------------------------------------------
 Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
@@ -39,9 +38,7 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRandomColorSimpleMethods);
 
 // enum of parameters
 //
-enum ObqRandomColorSimpleParams {p_randMax, p_seed, p_color01, p_color02, p_color03, p_color04, p_color05, p_color06, p_color07, p_color08, p_color09, p_color10, p_color11, p_color12, p_color13, p_color14, p_color15, p_color16, p_stripModelName, p_stripFrameNumber};
-
-
+enum ObqRandomColorSimpleParams {p_randMax, p_seed, p_color01, p_color02, p_color03, p_color04, p_color05, p_color06, p_color07, p_color08, p_color09, p_color10, p_color11, p_color12, p_color13, p_color14, p_color15, p_color16, p_stripModelName, p_stripFrameNumber, p_stripInstanceFrameNumber, p_stripInstanceID,p_stripInstanceShape};
 
 // parameters
 //
@@ -67,6 +64,9 @@ node_parameters
 	AiParameterRGBA("color16", 1.0f, 0.0f,0.0f,0.0f);
 	AiParameterBOOL("stripModelName", true);
 	AiParameterBOOL("stripFrameNumber", true);
+	AiParameterBOOL("stripInstanceFrameNumber", true);
+	AiParameterBOOL("stripInstanceID", false);
+	AiParameterBOOL("stripInstanceShape", false);
 }
 
 node_initialize
@@ -87,14 +87,15 @@ node_finish
 
 shader_evaluate
 {
-
+	// GET NAME (This is far from optimal)
 	std::string name(AiNodeGetName(sg->Op));
-
-	// stripping
-	std::size_t len = name.length();
-	std::size_t endNameIndex = name.rfind(".SItoA.");
-	std::size_t startNameIndex = 0;
 	
+	// TEST .SItoA.
+	std::size_t len = name.length();
+	std::size_t lastSItoA = name.rfind(".SItoA.");
+	std::size_t startNameIndex = 0;
+	std::size_t endNameIndex = lastSItoA;
+
 	if(endNameIndex==std::string::npos)
 	{
 		AiMsgError("[Obq_RandomColor] : Couldn't find the frame number separator. Name is : %s and separator is .SItoA.",name.c_str());
@@ -102,19 +103,52 @@ shader_evaluate
 		return; 
 	}
 
-	// Strip model name if any
+	// INSTANCE TEST
+	std::size_t firstSItoA = name.find(".SItoA.");
+
+	// STRIP MODEL
 	if(AiShaderEvalParamBool(p_stripModelName))
 	{
-		startNameIndex = name.find('.');
-		if(startNameIndex >= endNameIndex)
-			startNameIndex = 0;
-		else
-			++startNameIndex;
+		
+		std::size_t startDotModel = name.find('.');
+		if(startDotModel < firstSItoA)
+			startNameIndex = startDotModel+1;
 	}
 
-	// Don't strip the frame #
+	// NOT STRIP FRAME#
 	if(!AiShaderEvalParamBool(p_stripFrameNumber) || endNameIndex >= len)
 		endNameIndex = len;
+
+	// INSTANCE
+	bool stripInstanceFrameNumber = AiShaderEvalParamBool(p_stripInstanceFrameNumber);
+	bool stripInstanceID = AiShaderEvalParamBool(p_stripInstanceID);
+	bool stripInstanceShape = AiShaderEvalParamBool(p_stripInstanceShape);
+
+	if(stripInstanceFrameNumber || stripInstanceID || stripInstanceShape)
+	{
+		std::size_t startInstanceSItoA = name.find(".SItoA.Instance",firstSItoA);
+		if(startInstanceSItoA != std::string::npos)
+		{
+			// strip the SItoA.Instance
+			std::size_t startInstanceFrameNumber = startInstanceSItoA + 15;
+			std::size_t startInstanceID = name.find(".",startInstanceFrameNumber+1);
+			std::size_t startInstanceShape = name.find(" ",startInstanceID);
+
+			std::string instanceName("");
+
+			if(!stripInstanceFrameNumber)
+				instanceName += name.substr(startInstanceFrameNumber,startInstanceID-startInstanceFrameNumber);
+
+			if(!stripInstanceID)
+				instanceName += name.substr(startInstanceID,startInstanceShape-startInstanceID);
+
+			if(!stripInstanceShape)
+				instanceName += name.substr(startInstanceShape,lastSItoA-startInstanceShape);
+
+			name = name.substr(0,startInstanceSItoA) + instanceName + name.substr(lastSItoA);
+			endNameIndex -= ((lastSItoA-startInstanceSItoA) - instanceName.length());
+		}
+	}
 
 	// Add character
 	unsigned int a = AiShaderEvalParamInt(p_seed);
@@ -130,7 +164,7 @@ shader_evaluate
     a = a ^ (a >> 4);
     a = a * 0x27d4eb2d;
     a = a ^ (a >> 15);
-    unsigned int value = (a%AiShaderEvalParamInt(p_randMax))+1;
+    unsigned int value = (a%AiShaderEvalParamInt(p_randMax))+1; // +1 for 1-16
 
 	AtRGBA color;
 	switch(value)

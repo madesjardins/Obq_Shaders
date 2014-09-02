@@ -1,0 +1,145 @@
+%shadername :: Obq_Etching
+
+%class :: Material
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: A shader that somewhat creates an etching look. The orientation of the lines are define by UVs or any vectorial coordinates (the first 2 coordinates of any vector will be used). The number of lines are defined by a frequency and the thickness of the lines are defined by the <em>shading input</em>, normally a shader like the standard or Obq_Toon.
+%image :: src/images/Obq_Etching_01.jpg :: Synopsis image :: 768
+%idesc :: In this example, the Stanford Buddha and the background had a standard plugged into the shading input of Obq_Etching. UVs were used as coordinates for the Buddha, while a camera projection coordinates was used for the background (see the <em>Usage</em> section). Left is the shading input and right is the output. 
+%pp :: To better illustrate what this shader does, take a look at the following images.
+%image :: src/images/Obq_Etching_03.jpg :: Synopsis image :: 768
+%idesc :: A)Texture coordinates. B) Shading input (a simple gradient in this case) . C) A remapped sine wave is used along the V axis of the object, thus making lines along the U axis. The intensity of the shading corresponds to the position of a virtual plane intersecting the wave. If the intensity of the shading is greater than the value of the sine at that V coordinate, then the bright color is used, else it's the dark color. D) The final output.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: To work properly, Obq_Etching needs 2 external nodes for shading input and coordinates input. You should use a ray_switch in order to have Obq_Etching only evaluated by camera rays.
+%image :: src/images/Obq_Etching_02.jpg :: Usage image :: 0
+%idesc :: Typical render tree for Obq_Etching.
+
+
+#%usageEnd
+
+%section :: Bright
+
+%image :: src/images/Obq_Etching_04.jpg :: Bright section :: 512
+%idesc :: A sphere with a spherical projection as coordinates. Top row images are the input shading left and Obq_Etching result right ( using white as <em>bright color</em>, 1.0 as <em>bright point</em>, black as <em>dark color</em> and 0.0 as <em>black point</em>. The lower row, from left to right : using an orange <em>bright color</em>, using a <em>bright point</em> of 0.5, enabling <em>multiply by normalized input</em> color.
+
+%param :: Bright Color <em>[bright_color]</em>
+%pp :: This is the color used when the value of the shading input is over the sine wave.
+
+%param :: Bright Point <em>[bright_point]</em>
+%pp :: This corresponds to the maximum value of the sine wave, meaning that when the shading input color reaches this value or higher, the <em>bright color</em> will be used no matter where you are in the period.
+
+%param :: Multiply by normalized input <em>[multiply_bright_color]</em>
+%pp :: If enabled, the <em>bright color</em> is multiplied by the shading input's normalized color. 
+%note :: To determine the shading input's normalized color, an RGB to HSV conversion is done, the V value is then set to 1.0 and an HSV to RGB conversion is done.
+
+%section :: Dark
+
+%image :: src/images/Obq_Etching_05.jpg :: Dark section :: 512
+%idesc :: A sphere with a spherical projection as coordinates. Using the same input shading as figure 4, these images correspond, from left to right and top to bottom : grey <em>dark color</em>, grey <em>dark color</em> and 0.25 as <em>dark point</em>, enabling </em>multiply by normalized input</em> color, same as previous but using a white <em>normalized black color</em> instead of black.
+
+%param :: Dark Color <em>[dark_color]</em>
+%pp :: This is the color used when the value of the shading input is over the sine wave.
+
+%param :: Dark Point <em>[dark_point]</em>
+%pp :: This corresponds to the minimum value of the sine wave, meaning that when the shading input color reaches this value or lower, the dark color will be used no matter where you are in the period.
+
+%param :: Multiply by normalized input <em>[multiply_dark_color]</em>
+%pp :: If enabled, the <em>dark color</em> is multiplied by the shading input's normalized color.
+
+%param :: Normalized black color <em>[normalized_black_color]</em>
+%pp :: Because a pure black color can't be properly normalized using the previously explained workflow, another parameter must be used to set what color should be used in this case.
+
+%section :: Signal
+
+%param :: Frequency <em>[frequency]</em>
+%pp :: This is the number of period in the [0,1[ interval of UV.v values. A higher frequency means more lines and lower means less.
+%image :: src/images/Obq_Etching_06.jpg :: Frequency :: 768
+%idesc :: Three (3) different frequency values, from left to right : 10, 50 and 100.
+
+%param :: Offset <em>[offset]</em>
+%pp :: This parameter offsets the period of the sine wave, which results in a translation of the lines.
+%image :: src/images/Obq_Etching_07.jpg :: Offset :: 256
+%idesc :: A fractal is plugged into the <em>offset</em> port in order to bend the lines.
+
+%param :: Feather <em>[feather]</em>
+%pp :: This parameter somewhat blurs the edges.
+%image :: src/images/Obq_Etching_08.jpg :: Feather :: 768
+%idesc :: Three (3) different feather values, from left to right : 0, 0.5 and 1.
+
+%param :: Use linear wave type <em>[use_linear_signal]</em>
+%pp :: Instead of using a sine wave, this allows the use of triangle wave.
+
+%section :: Auto Filtering
+
+%param :: Enable <em>[autoFiltering]</em>
+%pp :: High frequency patterns tend to create moir&eacute;s and other aliasing artefacts. Because of this, an auto-filtering option based on the UV screen space derivatives was implemented.
+%image :: src/images/Obq_Etching_09.jpg :: Auto-Filtering :: 768
+%idesc :: From left to right : no auto-filtering, auto-filtering enable, auto-filtering level.
+
+%param :: Show advanced options <em>[autoFilteringAdvanced]</em>
+%pp :: Because the settings were set empirically, checking this will open the options for manual tweaking.
+
+%param :: Show auto-filter level <em>[autoFilteringOut]</em>
+%pp :: This debug mode will enable you to see how much filtering is done (see figure 9).
+
+%param :: Apply to <em>[autoFilteringMode]</em>
+%pp :: This paramters allows you to choose what auto-filtering drives.
+%tableStart
+%tableItem :: 100 :: Feather :: the auto-filtering affects <em>feather</em> value.
+%tableItem :: 100 :: Feather and Mix :: the auto-filtering affects <em>feather</em> and <em>mix</em> values.
+%tableItem :: 100 :: Mix :: the auto-filtering affects <em>mix</em> value.
+%tableEnd
+
+%param :: Also affected by U <em>[autoFilteringU]</em>
+%pp :: Because the lines are stacked up in the V axis, filtering based on V derivatives is more important. Enabling this will also use the U derivatives to control the level of auto-filtering.
+
+%param :: Bias <em>[autoFilteringBias]</em>
+%pp :: Bias control of level of auto-filtering.
+
+%param :: Gain <em>[autoFilteringGain]</em>
+%pp :: Gain control of level of auto-filtering.
+
+%param :: Range based on Frequency <em>[autoFilteringAutoRange]</em>
+%pp :: This allows the auto-filtering level to adapt to the <em>frequency</em>. For the same values of derivatives, a low frequency won't need as much filtering as a high frequency.
+
+%section :: Dots
+
+%param :: Enable <em>[enable_dots]</em>
+%pp :: This option enables the use of dots in bright and dark values instead of lines.
+%image :: src/images/Obq_Etching_10.jpg :: Dots :: 512
+%idesc :: Top row from left to right : without dots, with dots enable. Bottom row from left to right : progressive dots bright = 0.9 and dark = 0.1, progressive dots bright = 0.75 and dark = 0.25.
+
+%param :: Dots appear progressively <em>[progressive_dots]</em>
+%pp :: Enables the bright dots to appear progressively in the dark lines and vice-versa. 
+
+%param :: Bright dots start (ratio) <em>[bright_dots_start]</em>
+%pp :: From this intensity and up, bright dots start to appear in dark lines. The ratio means that we consider 0 the <em>dark point</em> and 1, the <em>bright point</em>.
+
+%param :: Dark dots start (ratio) <em>[dark_dots_start]</em>
+%pp :: From this intensity and down, dark dots start to appear in bright lines. The ratio means that we consider 0 the <em>dark point</em> and 1, the <em>bright point</em>.
+
+%section :: Input
+
+%param :: Shading Input <em>[shading_input]</em>
+%pp :: This is the value that drives the thickness of the lines (ratio bright vs dark).
+
+%param :: Coordinates Input <em>[coordinates_input]</em>
+%pp :: This is the coordinates that drives the orientation of the lines. The lines are perpendicular to V axis in UV space (Y axis in XYZ).
+%note :: Only the first 2 coordinates (XY) of the vector will be used. If the dots are not enabled, than only Y is used.
+
+%param :: Use average RGB instead of luminance <em>[use_average_rgb]</em>
+%pp :: Normally, the shading input's luminance is used in order to make a scalar value out of the RGB. You can use the average intensities intead by enabling this.
+
+%param :: Mix <em>[mix]</em>
+%pp :: A linear interpolation mix between the etching result (0.0) and the shading input (1.0).
+
+%section :: AOVs
+
+%pp :: Two (2) AOVs are also available : a grayscale matte of the bright component and the <em>shading input</em>.

@@ -1,0 +1,219 @@
+# SPDL - Obq_RandomID - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{054EAB15-0C12-4748-B76F-466B80873F12}";
+
+PropertySet "Obq_RandomID_params"
+{
+   Parameter "out" output
+   {
+      title = "random color output parameter";
+      guid = "{B27E8B5D-02A6-436C-918A-1BC1FF90EA46}";
+      type = integer;
+      flags = 1;
+   }
+   Parameter "randMax" input
+   {
+      title = "Number of values";
+      guid = "{47C70B07-09B4-484E-8433-843F3E948748}";
+      type = integer;
+      flags = 1;
+      texturable = on;
+      value = 8;
+      value minimum = 1;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "seed" input
+   {
+      title = "Seed";
+      guid = "{AB3BB672-58A3-40FE-849D-EA57097105C7}";
+      type = integer;
+      flags = 1;
+      texturable = on;
+      value = 13;
+	  value minimum = 1;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "stripModelName" input
+   {
+      title = "Strip Model Name";
+      guid = "{16B28442-6CB6-43E6-A582-9DE94052156D}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "stripFrameNumber" input
+   {
+      title = "Strip Frame Number";
+      guid = "{9AA75F24-A65A-4873-94AF-4C5F6FBE9E26}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "stripInstanceFrameNumber" input
+   {
+	  title = "Strip Instance Frame Number";
+      guid = "{9BCA5EBD-5690-431A-97B2-67A6FFFFA038}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+     Parameter "stripInstanceID" input
+   {
+	  title = "Strip Instance ID";
+      guid = "{3EB6ECDA-690A-43C4-B642-3F793069AB7C}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = off;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "stripInstanceShape" input
+   {
+	  title = "Strip Instance Shape";
+      guid = "{FABD2545-F3B7-4C65-8FB5-79EF5CB67E73}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = off;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+}
+
+phenomenon "Obq_RandomID_declare"
+{
+   Name = "Obq_RandomID";
+   Version = 1;
+   Use = texture;
+}
+
+Defaults
+{
+   randMax
+   {
+      Name = "Number of values";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIRange = 1 to 255;
+   }
+   seed
+   {
+      Name = "Seed";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIRange = 0 to 1000;
+   }
+   stripModelName
+   {
+      Name = "Model";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripFrameNumber
+   {
+      Name = "Frame";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripInstanceFrameNumber
+   {
+      Name = "Frame";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripInstanceID
+   {
+      Name = "ID";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripInstanceShape
+   {
+      Name = "Shape";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+}
+
+Layout "Default"
+{
+	Group "Options"
+	{
+		randMax;
+		seed;
+	}
+	Group "Strip"
+	{
+		Row
+			{
+				stripModelName;
+				stripFrameNumber;
+				
+			}
+		Group "Instances"
+		{
+			Row
+			{
+				stripInstanceFrameNumber;
+				stripInstanceID;
+				stripInstanceShape;
+			}
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+   Group "Options"
+   {
+      randMax;
+	  seed;
+   }
+   Group "Strip"
+   {
+		stripModelName;
+		stripFrameNumber; 
+		stripInstanceFrameNumber;
+		stripInstanceID;
+		stripInstanceShape;
+   }
+}
+
+
+Language = "VBScript";
+Logic
+{
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomID.html"
+	randMax_OnChanged()
+End Sub
+}
+

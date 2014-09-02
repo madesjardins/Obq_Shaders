@@ -1,0 +1,52 @@
+%shadername :: Obq_Shadow
+
+%class :: Material
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: A shadow catcher shader capable of generating the colored shadows of image based lighting. Ideal for CG integration in live action, a few options are there to specify which objects were already casting shadows in the plate.
+%image :: src/images/Obq_Shadow_01.jpg :: Synopsis image :: 732
+%idesc :: In this example, a CG T-Rex is added to a live action scene in which a perforated box was resting a table. Additionnal shadows of the T-Rex are needed on both the box and the table, but one must be careful not the add shadows of the T-Rex where the box stops the light from hitting the T-Rex. From left to right : the scene, shadows of the T-Rex when lit with a downward distant light in ratio mode, shadows of the T-Rex when lit with an HDR plugged into a skydome in "Shadow Ratio" mode and then in "Shadow Difference" mode.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: A new pass should be created for this:   
+%enumStart
+%enumItem :: First, create a partition with all the CG objects (T-Rex) and another one with all the objects that were in the plate ( box and table in this example).
+%enumItem :: On both partitions, add an Arnold_Parameters property (and/or override) and <b>uncheck the opaque parameter</b>.
+%enumItem :: Then, on the CG partition, use an override to disable "Primary Ray Visibility".
+%enumItem :: On both partitions, you need to override the surface port of the materials with Obq_Shadow nodes. The one on the CG partition must have its "Trace Type" set to "Caster" and the one on the plate objects must be set to "Receiver". Use either the "Shadow Ratio" mode to multiply the plate or the "Shadow Difference" mode as mask in a grade node in Nuke.
+%enumEnd
+%image :: src/images/Obq_Shadow_02.jpg :: Synopsis image :: 0
+
+
+%usageEnd
+
+%param :: Mode <em>[mode]</em>
+%pp :: The different modes for the shader output.
+%tableStart
+%tableItem :: 130 :: Diffuse Shadowed :: Objects are shaded with a simple diffuse shader with shadows.
+%tableItem :: 130 :: Diffuse Unshadowed :: Objects are shaded with a simple diffuse shader without shadows.
+%tableItem :: 130 :: Shadow Ratio :: The ratio between the shadowed and unshadowed shading. Multiply your plate with the result.
+%tableItem :: 130 :: Shadow Difference :: The difference between the shadowed and unshadowed shading. Use as mask in a grade node and offset negatively.
+%tableEnd
+
+%param :: Trace Type <em>[traceType]</em>
+%pp :: Determine whether the object should receive and/or cast shadows.
+%tableStart
+%tableItem :: 130 :: Receiver :: This object only receives shadows. Settings for objects in the plate.
+%tableItem :: 130 :: Caster :: This object only casts shadows. Settings for CG objects not in the plate. Usually, you want to have this object invisible to camera rays.
+%tableItem :: 130 :: Caster and Receiver :: This object casts and receives shadows. Not very useful, but who knows...
+%tableEnd
+
+%param :: Opacity <em>[opacity]</em>
+%pp :: Additionnal settings for opacity.
+
+%param :: Shadows on unlit faces <em>[shadowsOnUnlit]</em>
+%pp :: Treats unlit polygons as shadowed. For example, the lower hemisphere of a sphere lit from above will be considered as shadowed.
+
+

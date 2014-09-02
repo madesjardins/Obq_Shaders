@@ -1,0 +1,77 @@
+# SPDL - Obq_RayDepth - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{45EF1A80-2B24-4248-A721-AE7202D2B67F}";
+PropertySet "Obq_RayDepth_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{2056C612-0549-4AB4-926A-D3564515C910}";
+		Type = integer;
+	}
+	Parameter "type" input
+	{
+		GUID = "{8CB9B80A-2EE1-434A-8924-0A9C65AACA45}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 4;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_RayDepth";
+}
+
+phenomenon "Obq_RayDepth_declare"
+{
+	Name = "Obq_RayDepth";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	type
+	{
+		Name = "Ray Type";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"All" = 0,
+			"Reflection" = 1,
+			"Refraction" = 2,
+			"Diffuse" = 3,
+			"Glossy" = 4
+		}
+		
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Ray Type"
+	{
+		type;
+	}
+}
+
+Layout "RenderTree"
+{
+	
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RayDepth.html"
+End sub
+
+}
+

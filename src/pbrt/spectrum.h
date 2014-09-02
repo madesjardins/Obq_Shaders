@@ -69,6 +69,12 @@ extern void SortSpectrumSamples(float *lambda, float *vals, int n);
     rgb[2] =  0.0052982f*xyz[0] - 0.0146949f*xyz[1] + 1.0093968f*xyz[2];
 }
 
+//inline void XYZToSRGBD65(const float xyz[3], float rgb[3]) {
+//    rgb[0] =  3.240479f*xyz[0] - 1.537150f*xyz[1] - 0.498535f*xyz[2];
+//    rgb[1] = -0.969256f*xyz[0] + 1.875991f*xyz[1] + 0.041556f*xyz[2];
+//    rgb[2] =  0.055648f*xyz[0] - 0.204043f*xyz[1] + 1.057311f*xyz[2];
+//}
+
 // inverse CIE RGB
 //
 inline void RGBToXYZ(const float rgb[3], float xyz[3]) {
@@ -76,7 +82,6 @@ inline void RGBToXYZ(const float rgb[3], float xyz[3]) {
     xyz[1] = 0.1762044f*rgb[0] + 0.8129847f*rgb[1] + 0.0108109f*rgb[2];
     xyz[2] = 0.0000000f*rgb[0] + 0.0102048f*rgb[1] + 0.9897952f*rgb[2];
 }
-
 
 enum SpectrumType { SPECTRUM_REFLECTANCE, SPECTRUM_ILLUMINANT };
 extern float InterpolateSpectrumSamples(const float *lambda, const float *vals, int n, float l);
@@ -180,10 +185,9 @@ public:
     void ToXYZ(float xyz[3]) const {
         RGBToXYZ(c, xyz);
     }
-    static RGBSpectrum FromXYZ(const float xyz[3],
-            SpectrumType type = SPECTRUM_REFLECTANCE) {
+    static RGBSpectrum FromXYZ(const float xyz[3], SpectrumType type = SPECTRUM_REFLECTANCE) {
         RGBSpectrum r;
-        XYZToRGB(xyz, r.c);
+		XYZToRGB(xyz, r.c);
         return r;
     }
     float y() const {

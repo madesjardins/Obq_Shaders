@@ -1,0 +1,526 @@
+%shadername :: Obq_Atmosphere
+
+%class :: Shader
+
+%output :: RGBA
+
+%synopsisStart
+
+%pp :: A shader made for planetary atmosphere, but can also be used as a simple ray marcher.
+%image :: src/images/Obq_Atmosphere_01.jpg :: Synopsis image :: 384
+%idesc :: Example of spherical map.
+%note :: This shader was created before Arnold went volume, so I suggest you go with the volume_collectorQ.
+%warning :: The shader automatically flips the U when used in Arnold 4.1 and above (SItoA 3.0 and up) in order to stay consistent when used in a skydome or sta_environment.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply translate the camera where you want to capture the angular map and render.
+%image :: src/images/Obq_AngularCamera_02.jpg :: Usage :: -256
+%idesc :: Since an angular map looks a bit like a mirrored ball, the center of the image will be the back of the camera.
+%note :: If the camera is looking along the -Z axis, you won't need to rotate the skydome using it, otherwise, apply the same rotation.
+%usageEnd
+
+
+## SPDL - Obq_Atmosphere - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{384FBE54-5E07-44B8-978F-CB3D9A82238E}";
+PropertySet "Obq_Atmosphere_pset" 
+{
+	Parameter "out" output
+	{
+		GUID = "{D6FFD392-B8DF-43DE-8A7F-D6816777C4E5}";
+		Type = color;
+	}
+	Parameter "colorKd" input
+	{
+		GUID = "{A933DFB5-8BA3-4B43-B37C-D0DFB68CD41C}";
+		Type = color;
+		Texturable = on;
+		Value = 0.25 1.75 5.0;
+	}
+	Parameter "use3dKd" input
+	{
+		GUID = "{AF7B49BD-45C8-4A4A-AFE2-B2D42EF3DAF2}";
+		Type = boolean;
+		Texturable = off;
+		Value = off;
+	}
+	Parameter "absorption" input
+	{
+		GUID = "{115EF499-CB77-4398-94B1-0BEDF01C9B32}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.1;
+		Value Minimum = 0.0;
+	}
+	Parameter "use3dAbsorption" input
+	{
+		GUID = "{BD7BBE2F-DFD4-4E59-A50D-69D180AAE34E}";
+		Type = boolean;
+		Texturable = off;
+		Value = off;
+	}
+	Parameter "asymmetry" input
+	{
+		GUID = "{80BA6EA7-F4BD-4683-814D-B62D5FB3C636}";
+		Type = scalar;
+		Texturable = on;
+		Value = -0.5;
+		Value Minimum = -1;
+		Value Maximum = 1;
+	}
+	Parameter "stepSize" input
+	{
+		GUID = "{43381938-91DB-4833-8BEF-11E7B0F410B3}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.1;
+		Value Minimum = 0.001;
+	}
+	Parameter "stepJitter" input
+	{
+		GUID = "{08153C1E-6A52-4953-A2FC-8FDC3EAF6F7C}";
+		Type = scalar;
+		Texturable = off;
+		Value = 0.2;
+		Value Minimum = 0.0;
+		Value Maximum = 0.999;
+	}
+	Parameter "useBiasGain" input
+	{
+		GUID = "{4FE0F1FF-803A-4058-B8DA-1C885BC1BDDF}";
+		Type = boolean;
+		Texturable = On;
+		Value = off;
+	}
+	Parameter "bias" input
+	{
+		GUID = "{34CC10E4-9EF5-4643-B438-B2BA4CA909DE}";
+		Type = scalar;
+		Texturable = On;
+		Value = 0.5;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "gain" input
+	{
+		GUID = "{C7350502-8A48-422F-AF58-B8037FF2CD77}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.5;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+		Parameter "useBiasGainDot" input
+	{
+		GUID = "{2E5678AE-8E16-4E82-BDB0-B00E720ED2EE}";
+		Type = boolean;
+		Texturable = on;
+		Value = off;
+	}
+	Parameter "biasDot" input
+	{
+		GUID = "{79B67F63-EB08-42F5-B347-04957555B089}";
+		Type = scalar;
+		Texturable = On;
+		Value = 0.7;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "gainDot" input
+	{
+		GUID = "{95441855-8C8F-4AE2-BBAF-1F8E7532C793}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.9;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "radiusFalloffMode" input
+	{
+		GUID = "{7A42FB23-6177-445C-A4CA-13977313CAE2}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "falloffStart" input
+	{
+		GUID = "{6594E2BA-C590-4DDF-A31A-E4DE6E75BD76}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.95;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "falloffExponent" input
+	{
+		GUID = "{01E08F7E-65DC-43AD-8375-9CE279A6A567}";
+		Type = scalar;
+		Texturable = on;
+		Value = 5.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "objectCenter" input
+	{
+		GUID = "{046828D3-52BD-45B5-A98C-B0676A9193E4}";
+		Type = vector;
+		Texturable = on;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "compensateForCloudOpacity" input
+	{
+		GUID = "{26B92398-012E-4040-9611-198168066AE5}";
+		Type = integer;
+		Texturable = on;
+		Value = 2;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "divideColorByOpacity" input
+	{
+		GUID = "{F9F3D6F0-6A95-4BF9-86D6-75825C630057}";
+		Type = integer;
+		Texturable = on;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "useMaximumRayLength" input
+	{
+		GUID = "{07D04A21-EAEB-4A4D-8720-21D25D15B474}";
+		Type = boolean;
+		Texturable = on;
+		Value = false;
+	}
+	Parameter "maximumRayLength" input
+	{
+		GUID = "{22352A31-3026-4EBA-B611-5FBF76190D08}";
+		Type = scalar;
+		Texturable = on;
+		Value = 10.0;
+		Value Minimum = 0.0;
+	}
+	Parameter "secondaryTypesToo" input
+	{
+		GUID = "{0BBC7DD4-05FA-418C-A09E-B6C4E1C7479A}";
+		Type = boolean;
+		Texturable = off;
+		Value = false;
+	}
+}
+
+
+phenomenon "Obq_Atmosphere_declare"
+{
+	Name = "Obq_Atmosphere";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	colorKd
+	{
+		Name = "Diffuse Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgb";
+	}
+	use3dKd
+	{
+		Name = "Enable 3D color texture";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	absorption
+	{
+		Name = "Absorption Coefficient";
+		UIRange = 0.0 To 5.0;
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	use3dAbsorption
+	{
+		Name = "Enable 3D absorption function";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	asymmetry
+	{
+		Name = "Asymmetry";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	stepSize
+	{
+		Name = "Size";
+		UIRange = 0.001 To 5.0;
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	stepJitter
+	{
+		Name = "Jitter ratio";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useBiasGain
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	bias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	gain
+	{
+		Name = "Gain";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useBiasGainDot
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	biasDot
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	gainDot
+	{
+		Name = "Gain";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	radiusFalloffMode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Don't Use Radius Falloff" = 0,
+			"Get Center From Object Matrix" = 1,
+			"Get Center From Object Center Vector" = 2
+		}
+	}
+	falloffStart
+	{
+		Name = "Start";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	falloffExponent
+	{
+		Name = "Speed";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 To 5.0;
+	}
+	objectCenter
+	{
+		Name = "Object Center";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	compensateForCloudOpacity
+	{
+		Name = "Compensate";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Never" = 0,
+			"By dropping max opacity" = 1,
+			"By raising total opacity" = 2
+		}
+	}
+	divideColorByOpacity
+	{
+		Name = "Divide";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Never" = 0,
+			"Before Bias-Gain" = 1,
+			"After Bias-Gain" = 2
+		}
+	}
+	useMaximumRayLength
+	{
+		Name = "Enable maximum ray length";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	maximumRayLength
+	{
+		Name = "Maximum ray length";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 To 100.0;
+	}
+	secondaryTypesToo
+	{
+		Name = "Enable for reflection and refraction rays";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+
+}
+
+
+Layout "Default"
+{
+	Tab "Main"
+	{
+		Group "Volume"
+		{
+			colorKd;
+			use3dKd;
+			absorption;
+			use3dAbsorption;
+			asymmetry;
+		}
+		Group "Radius Falloff"
+		{
+			radiusFalloffMode;
+			falloffStart;
+			falloffExponent;
+		}
+		Group "Silhouette Falloff" 
+		{
+			useBiasGainDot;
+			biasDot;
+			gainDot;
+		}
+	}
+	Tab "Geo"
+	{
+		Group "Geometric Information"
+		{
+			objectCenter;
+		}
+	}
+	Tab "Ray Marching"
+	{
+		Group "Steps" 
+		{
+			stepSize;
+			stepJitter;
+		}
+		Group "Ray length" 
+		{
+			useMaximumRayLength;
+			maximumRayLength;
+		}
+	}
+	Tab "Bias-Gain"
+	{
+		Group "Final Opacity Modification" 
+		{
+			useBiasGain;
+			bias;
+			gain;
+		}
+	}
+	Tab "Advanced Options"
+	{
+		Group "Non-opaque hit compensation"
+		{
+			compensateForCloudOpacity;
+		}
+		Group "Color/Opacity compensation"
+		{
+			divideColorByOpacity;
+		}
+		Group "Ray Options"
+		{
+			secondaryTypesToo;
+		}
+		
+	}
+}
+
+Layout "RenderTree"
+{
+		Tab "Main"
+	{
+		Group "Volume"
+		{
+			colorKd;
+			use3dKd;
+			absorption;
+			use3dAbsorption;
+			asymmetry;
+		}
+		Group "Radius Falloff"
+		{
+			radiusFalloffMode;
+			falloffStart;
+			falloffExponent;
+		}
+		Group "Silhouette Falloff" 
+		{
+			useBiasGainDot;
+			biasDot;
+			gainDot;
+		}
+	}
+	Tab "Geo"
+	{
+		Group "Geometric Information"
+		{
+			objectCenter;
+		}
+	}
+	Tab "Ray Marching"
+	{
+		Group "Steps" 
+		{
+			stepSize;
+			stepJitter;
+		}
+		Group "Ray length" 
+		{
+			useMaximumRayLength;
+			maximumRayLength;
+			
+		}
+	}
+	Tab "Bias-Gain"
+	{
+		Group "Final Opacity Modification" 
+		{
+			useBiasGain;
+			bias;
+			gain;
+		}
+	}
+	Tab "Advanced Options"
+	{
+		Group "Non-opaque hit compensation"
+		{
+			compensateForCloudOpacity;
+		}
+		Group "Color/Opacity compensation"
+		{
+			divideColorByOpacity;
+		}
+		Group "Ray Options"
+		{
+			secondaryTypesToo;
+		}
+	}
+}
+
+
+Plugin = Shader
+{
+	FileName = "Obq_Atmosphere";
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Atmosphere.html"
+End sub
+
+}
+

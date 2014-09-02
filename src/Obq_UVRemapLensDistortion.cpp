@@ -45,13 +45,7 @@ MUST DO with newer ldpk in public :
 		+ change cout et cerr pour AiMsgInfo et AiMsgError
 */
 
-#include "Obq_UVRemapLensDistortion.h"
-#include <ldpk/ldpk.h>
-#include <ldpk/tde4_ldp_classic_3de_mixed.h>
-#include <ldpk/tde4_ldp_anamorphic_deg_6.h>
-#include <ldpk/tde4_ldp_radial_deg_8.h>
-#include <ldpk/tde4_ldp_radial_decentered_deg_4_cylindric.h>
-#include <ldpk/tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h>
+#include "Obq_LensDistortion.h"
 
 typedef struct 
 {
@@ -59,6 +53,8 @@ typedef struct
 	float width;
 	float height;
 	float pixelRatio;
+	int distortionModel;
+
 	AtPoint pixelOffset;
 	tde4_ldp_classic_3de_mixed<ldpk::vec2d,ldpk::mat2d>* classic3de;							//classic 3DE
 	tde4_ldp_anamorphic_deg_6<ldpk::vec2d,ldpk::mat2d>* anamorphic6;							//anamorphic 6
@@ -72,6 +68,15 @@ typedef struct
 	double pf_squeeze;
 	double pf_invSqueeze;
 	glm::dvec2 pf_norm;
+
+	//Nuke
+	float n_k1;
+	float n_k2;
+	float n_centerX;
+	float n_centerY;
+	float n_anamorphicSqueeze;
+	float n_asymmetricDistortionX;
+	float n_asymmetricDistortionY;
 }
 ShaderData;
 
@@ -85,9 +90,6 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqUVRemapLensDistortionSimpleMethods);
 //
 enum ObqUVRemapLensDistortionSimpleParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05, p_raddec4c00, p_raddec4c01, p_raddec4c02, p_raddec4c03, p_raddec4c04, p_raddec4c05, p_raddec4c06, p_raddec4c07, p_ana4c00, p_ana4c01,p_ana4c02,p_ana4c03,p_ana4c04,p_ana4c05,p_ana4c06,p_ana4c07,p_ana4c08,p_ana4c09, p_ana4c10, p_ana4c11,p_ana4c12, p_focal3DEq, p_focusDistance3DEq,p_pfC3, p_pfC5, p_pfSqueeze, p_pfXp, p_pfYp};
 
-// Enum for distortion model
-//
-enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4,RADIAL_DECENTERED_CYLINDRIC4, ANAMORPHIC4, PFBARREL};
 
 
 node_parameters
@@ -180,6 +182,7 @@ node_initialize
 	data->pixelRatio = 1.0f;
 	data->pixelOffset.x = -0.5f/data->width;
 	data->pixelOffset.y = -0.5f/data->height;
+	data->distortionModel = NONE;
 
 	// Allocate
 	data->classic3de = new tde4_ldp_classic_3de_mixed<ldpk::vec2d,ldpk::mat2d>; // 5 params
@@ -194,6 +197,15 @@ node_initialize
 	double pf_squeeze = 1.0;
 	double pf_invSqueeze = 1.0;
 	glm::dvec2 pf_norm = glm::dvec2(1.0,1.0);
+
+	// nuke
+	data->n_k1 = 0.0f;
+	data->n_k2 = 0.0f;
+	data->n_centerX = 0.0f;
+	data->n_centerY = 0.0f;
+	data->n_anamorphicSqueeze = 1.0f;
+	data->n_asymmetricDistortionX = 0.0f;
+	data->n_asymmetricDistortionY = 0.0f;
 
 	// Set data
 	AiNodeSetLocalData(node,data);
@@ -217,9 +229,21 @@ node_update
 	data->pixelOffset.y = -0.5f/data->height;
 
 	//////////////////////////////
-	// Prepare disotortion model
-	switch(params[p_distortionModel].INT)
+	// Prepare distortion model
+	data->distortionModel = params[p_distortionModel].INT;
+	switch(data->distortionModel)
 	{
+	case NUKE:
+		{
+			data->n_k1 = params[p_k1].FLT;
+			data->n_k2 = params[p_k2].FLT;
+			data->n_centerX = params[p_centerX].FLT;
+			data->n_centerY = params[p_centerY].FLT;
+			data->n_anamorphicSqueeze = params[p_anamorphicSqueeze].FLT;
+			data->n_asymmetricDistortionX = params[p_asymmetricDistortionX].FLT;
+			data->n_asymmetricDistortionY = params[p_asymmetricDistortionY].FLT;
+			break;
+		}
 	case PFBARREL:
 		{
 			data->pf_absCent = calcAbsCent(params[p_pfXp].FLT,static_cast<int>(data->width),params[p_pfYp].FLT,static_cast<int>(data->height));
@@ -386,22 +410,16 @@ node_finish
 shader_evaluate
 {
 
-
-	const AtParamValue* params = AiNodeGetParams(node);
-
 	// AspectRatio
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	float aspect = data->aspect;
 
 	// Distorted point
-	int model = params[p_distortionModel].INT;
-
 	// Distorted and Undistorted points
 	double x = sg->u + data->pixelOffset.x, y = sg->v + data->pixelOffset.y;
 	double xu=x, yu=y;
 
 	// Model
-	switch(model)
+	switch(data->distortionModel)
 	{
 	case PFBARREL:
 	{
@@ -416,13 +434,12 @@ shader_evaluate
 
 		// Remap with fix
 		x =  (x - 0.5f)*2.0f;
-		y = ((y - 0.5f)*2.0f)/aspect;
+		y = ((y - 0.5f)*2.0f)/data->aspect;
 
-		distortNuke(&dp,x,y,params[p_k1].FLT, params[p_k2].FLT, params[p_centerX].FLT, params[p_centerY].FLT, params[p_anamorphicSqueeze].FLT, params[p_asymmetricDistortionX].FLT,params[p_asymmetricDistortionY].FLT,	aspect);
-
+		distortNuke(&dp,x,y,data->n_k1, data->n_k2, data->n_centerX, data->n_centerY, data->n_anamorphicSqueeze, data->n_asymmetricDistortionX,data->n_asymmetricDistortionY,	data->aspect);
 		// Compute exit coordinates
 		xu = (dp.x+1.0)/2.0;
-		yu = (dp.y*aspect+1.0)/2.0;
+		yu = (dp.y*data->aspect+1.0)/2.0;
 		break;
 	}
 	case CLASSIC3DE: // 3DEq model

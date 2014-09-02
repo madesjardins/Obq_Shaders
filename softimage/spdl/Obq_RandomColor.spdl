@@ -294,7 +294,49 @@ PropertySet "Obq_RandomColor_params"
       persistable = on;
       readable = on;
       inspectable = on;
-   } 
+   }
+   Parameter "stripInstanceFrameNumber" input
+   {
+	  title = "Strip Instance Frame Number";
+      guid = "{85D27845-5212-422D-BB33-696DFAE6BFBF}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+     Parameter "stripInstanceID" input
+   {
+	  title = "Strip Instance ID";
+      guid = "{AC171264-043B-47B5-AC2C-86A5B0AF4DE9}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = off;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "stripInstanceShape" input
+   {
+	  title = "Strip Instance Shape";
+      guid = "{3A04C06F-015D-4E5E-9760-A078BB149E70}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = off;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
 }
 
 phenomenon "Obq_RandomColor_declare"
@@ -423,6 +465,21 @@ Defaults
       Name = "Frame";
       Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
    }
+   stripInstanceFrameNumber
+   {
+      Name = "Frame";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripInstanceID
+   {
+      Name = "ID";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripInstanceShape
+   {
+      Name = "Shape";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
 }
 
 Layout "Default"
@@ -434,10 +491,20 @@ Layout "Default"
 	}
 	Group "Strip"
 	{
-	Row
+		Row
+			{
+				stripModelName;
+				stripFrameNumber;
+				
+			}
+		Group "Instances"
 		{
-		    stripModelName;
-			stripFrameNumber;
+			Row
+			{
+				stripInstanceFrameNumber;
+				stripInstanceID;
+				stripInstanceShape;
+			}
 		}
 	}
 	Group "Inputs"
@@ -472,6 +539,9 @@ Layout "RenderTree"
    {
 		stripModelName;
 		stripFrameNumber; 
+		stripInstanceFrameNumber;
+		stripInstanceID;
+		stripInstanceShape;
    }
    Group "Inputs"
 	{

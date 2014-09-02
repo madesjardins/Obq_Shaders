@@ -67,82 +67,12 @@ PropertySet "Obq_StereoLens"
 		flags = 1;
 		Value = 0.0;
 	}
-	Parameter "dof" input
-	{
-		GUID = "{A546CFFB-E822-42B4-A363-6626F7D2BD26}";
-		Type = boolean;
-		flags = 1;
-		Value = off;
-	}
-	Parameter "useRigDof" input
-	{
-		GUID = "{16FBDEE9-1025-4B03-B7A3-D2573745FF4F}";
-		Type = boolean;
-		flags = 1;
-		Value = off;
-	}
-	Parameter "rigDepth" input
-	{
-		GUID = "{B065728D-75DC-4667-9D27-D4BCF6FEFF4A}";
-		Type = scalar;
-		flags = 1;
-		Value = 100.0;
-	}
-	Parameter "useCameraInterest" input
-	{
-		GUID = "{0C0553B2-49BA-417D-9D05-9D5502D5C771}";
-		Type = boolean;
-		flags = 1;
-		Value = off;
-	}
-	Parameter "cameraInterest" input
-	{
-		GUID = "{A990AC0C-25E6-4EEA-BBDF-20297585B5F3}";
-		Type = string;
-		flags = 1;
-		Value = "StereoCamera_Interest";
-	}
-	Parameter "cameraInterestStatus" input
-	{
-		GUID = "{467D53CC-F0F7-4970-8394-53FDEFD8AAB3}";
-		Type = string;
-		flags = 1;
-		Value = "No interest Associated";
-	}
-	Parameter "interestX" input
-	{
-		GUID = "{85462FF9-3748-4482-90CD-5AC7A11AED97}";
-		Type = scalar;
-		flags = 1;
-		Value = 0.0;
-	}
-	Parameter "interestY" input
-	{
-		GUID = "{32BD524D-371E-4D90-9A02-CE295B942D8B}";
-		Type = scalar;
-		flags = 1;
-		Value = 0.0;
-	}
-	Parameter "interestZ" input
-	{
-		GUID = "{8687A769-32A6-4E56-8953-FDAF5730CD22}";
-		Type = scalar;
-		flags = 1;
-		Value = 0.0;
-	}
 	Parameter "recalculateDistanceForSideCameras" input
 	{
 		GUID = "{D3DD6193-ABE0-47A8-988C-8AE95C731003}";
 		Type = boolean;
 		flags = 1;
 		Value = off;
-	}
-	Parameter "focalPlaneIsPlane" input
-	{
-		GUID = "{2FCB762E-CFE3-41A9-A3B0-E8B1EE54C969}";
-		Type = boolean;
-		flags = 1;
-		Value = on;
 	}
 	Parameter "targetResolutionX" input
 	{
@@ -237,6 +167,72 @@ PropertySet "Obq_StereoLens"
 		Texturable = Off;
 		Animatable = Off;
 	}
+	Parameter "useDof" input
+	{
+		GUID = "{C112971E-7A98-4F40-9C50-C11BA35E2C7F}";
+		Type = boolean;
+		Texturable = Off;
+		Value = off;
+	}
+	Parameter "focusDistance" input
+	{
+		GUID = "{621AEFB5-2B5C-4A94-B4CD-121508068862}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 100.0;
+	}
+	Parameter "apertureSize" input
+	{
+		GUID = "{B9BE13B8-5FC6-40DD-BEC3-0D5E2AAB4B78}";
+		Type = scalar;
+		Value = 0.1;
+		Texturable = Off;
+		Value Minimum = 0;
+	}
+	Parameter "apertureAspectRatio" input
+	{
+		GUID = "{4EFD147C-6D19-4B44-8071-1E23D7999BA5}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+	}
+	Parameter "usePolygonalAperture" input
+	{
+		GUID = "{DCC38CA0-7FF9-4AE1-8127-8640BCB1E30D}";
+		Type = boolean;
+		Texturable = Off;
+		Value = On;
+	}
+	Parameter "apertureBlades" input
+	{
+		GUID = "{5196833A-781E-4A09-AF9F-46077F4018C6}";
+		Type = integer;
+		Value = 5;
+		Texturable = Off;
+		Value Minimum = 3;
+	}
+	Parameter "apertureBladeCurvature" input
+	{
+		GUID = "{1E3C84B7-057E-4643-9A20-F53E7660B494}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "apertureRotation" input
+	{
+		GUID = "{CAB88400-87A3-4B4F-8B69-B02430E18824}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "focusPlaneIsPlane" input
+	{
+		GUID = "{3173F8C7-BABA-4906-B8A4-3F4AB3EE444A}";
+		Type = boolean;
+		Texturable = Off;
+		Value = On;
+	}
 }
 
 MetaShader "Obq_StereoLens_params_meta"
@@ -296,59 +292,9 @@ Defaults
 		Name = "Status";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
-	dof
-	{
-		Name = "Enable DoF";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	useRigDof
-	{
-		Name = "Use a custom/rig focus distance";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	rigDepth
-	{
-		Name = "Focus distance";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	useCameraInterest
-	{
-		Name = "Use camera interest as focus point";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	cameraInterest
-	{
-		Name = "Camera Interest";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	cameraInterestStatus
-	{
-		Name = "Status";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	interestX
-	{
-		Name = "interest X";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	interestY
-	{
-		Name = "interest Y";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	interestZ
-	{
-		Name = "interest Z";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
 	recalculateDistanceForSideCameras
 	{
 		Name = "Recalculate focus distance for left and right cameras";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	focalPlaneIsPlane
-	{
-		Name = "Focal plane is a plane";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	useOverscan
@@ -372,6 +318,7 @@ Defaults
 	{
 		Name = "Filter size";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 5.0;
 	}
 	renderResolutionX
 	{
@@ -403,6 +350,56 @@ Defaults
 		Name = "Automatic update of pass output resolution";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
+	useDof
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	focusDistance
+	{
+		Name = "Distance";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	apertureSize
+	{
+		Name = "Size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	apertureAspectRatio
+	{
+		Name = "Aspect Ratio";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	usePolygonalAperture
+	{
+		Name = "Polygon Aperture";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	apertureBlades
+	{
+		Name = "Blades";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 3 to 20;
+	}
+	apertureBladeCurvature
+	{
+		Name = "Blade Curvature";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -5.0 to 1.0;
+	}
+	apertureRotation
+	{
+		Name = "Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	focusPlaneIsPlane
+	{
+		Name = "Focus plane is a plane";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
 }
 
 Layout "Default"
@@ -420,21 +417,10 @@ Layout "Default"
 			rightCamera;
 			cameraStatus;
 		}
-		Group "Camera Interest"
-		{
-			cameraInterest;
-			cameraInterestStatus;
-		}
-		Group "DoF Advanced Options"
-		{
-			recalculateDistanceForSideCameras;
-			focalPlaneIsPlane;
-			useRigDof;
-			rigDepth;
-		}
 		Group "Automatic Overscan"
 		{
-		useOverscan;
+			useOverscan;
+			filterSize;
 		}
 		Group "Target Resolution"
 		{
@@ -444,7 +430,6 @@ Layout "Default"
 				targetResolutionY;
 			}
 		}
-		
 		Group "Render Resolution"
 		{
 			Row
@@ -460,11 +445,32 @@ Layout "Default"
 			rightCropInfo;
 		}
 	}
+
+	Tab "Depth of Field"
+	{
+		Group "Depth of Field"
+		{
+			useDof;
+			Group "Focus Distance"
+			{
+				Button linkObjectToDistance, aligncenter = "Link focus distance with...",180;
+				focusDistance;
+				focusPlaneIsPlane;
+				recalculateDistanceForSideCameras;
+			}
+			Group "Aperture"
+			{
+				apertureSize;
+				apertureAspectRatio;
+				usePolygonalAperture;
+				apertureBlades;
+				apertureBladeCurvature;
+				apertureRotation;
+			}
+		}
+	}
 #	Tab "Debug"
 #	{
-#		dof;
-#		useCameraInterest;
-#		filterSize;
 #		filmbackX;
 #		leftCenterOffset;
 #		rightCenterOffset;
@@ -504,61 +510,6 @@ Logic
 		SetExpr PPG.rightCenterOffset.Parent & ".rightCenterOffset", PPG.rightCamera.Value & ".camera.projplaneoffx"
 		checkCameras()
 	End Sub
-
-	Sub checkCameraInterest()
-		Set oInterest = Dictionary.GetObject(PPG.cameraInterest.Value & "",false)
-		If TypeName( oInterest ) = "Nothing" Then
-			PPG.cameraInterestStatus.Value = "!! Interest is NOT valid !!"
-			Application.RemoveAnimation PPG.interestX.Parent & ".interestX", 1, "", "", "", ""
-			Application.RemoveAnimation PPG.interestY.Parent & ".interestY", 1, "", "", "", ""
-			Application.RemoveAnimation PPG.interestZ.Parent & ".interestZ", 1, "", "", "", ""
-		Else
-			PPG.cameraInterestStatus.Value = "Interest is valid."
-			SetExpr PPG.interestX.Parent & ".interestX", PPG.cameraInterest.Value & ".kine.global.posx"
-			SetExpr PPG.interestY.Parent & ".interestY", PPG.cameraInterest.Value & ".kine.global.posy"
-			SetExpr PPG.interestZ.Parent & ".interestZ", PPG.cameraInterest.Value & ".kine.global.posz"
-		End If
-	End Sub
-
-	Sub useCameraInterest_OnChanged()
-		IF PPG.useCameraInterest.Value = true AND PPG.dof.Value = true AND PPG.useRigDof = false Then
-			PPG.cameraInterest.Show(True)
-			PPG.cameraInterestStatus.Show(True)
-			checkCameraInterest()
-		Else
-			PPG.cameraInterest.Show(False)
-			PPG.cameraInterestStatus.Show(False)
-		End If
-	End Sub
-	
-	Sub useRigDof_OnChanged()
-		useCameraInterest_OnChanged()		
-	End Sub
-	
-	Sub dof_OnChanged()
-		IF PPG.useCameraInterest.Value = true AND PPG.dof.Value = true Then
-			PPG.cameraInterest.Show(True)
-			PPG.cameraInterestStatus.Show(True)
-			checkCameraInterest()
-		Else
-			PPG.cameraInterest.Show(False)
-			PPG.cameraInterestStatus.Show(False)
-		End If
-	End Sub
-
-	Sub cameraInterest_OnChanged()
-		checkCameraInterest()
-	End Sub
-
-	Sub useRigDof_OnChanged()
-		IF PPG.useRigDof.Value = true Then
-			PPG.rigDepth.Show(True)
-		Else
-			PPG.rigDepth.Show(False)
-		End If
-		PPG.Refresh
-	End Sub
-
 
 	function Ceil( Number )
 		Ceil = Int( Number )
@@ -674,48 +625,74 @@ Logic
 		myReplace=Replace(str1,str2,str3)
 	End Function 	
 	
-'	Sub guessCameras_OnClicked()	
-'		dim leftC, rightC
-'		str1 = PPG.dof.Parent
-'		str2 = ".camera." & PPG.Name
-'		str3 = myReplace(str1,str2,"")
-'		strL = myReplace(str3,"Center","Left")
-'		strR = myReplace(str3,"Center","Right")
-'		PPG.leftCamera.Value = strL
-'		PPG.rightCamera.Value = strR
-'	End Sub
 	
 	Sub triggerfishInit()
 		'TriggerFish rig
 		PPG.leftCamera.Value = "Stereo_Camera.LeftCamera"
 		PPG.rightCamera.Value = "Stereo_Camera.RightCamera"
-		PPG.cameraInterest.Value = "Stereo_Camera.Camera_Interest"
-		SetExpr PPG.useRigDof.Parent & ".useRigDof", PPG.useRigDof.Model & ".Camera_info.DOF"
-		SetExpr PPG.rigDepth.Parent & ".rigDepth", PPG.rigDepth.Model & ".dof_anim.DisplayInfo_DOF.depth"
+		SetExpr PPG.useDof.Parent & ".useDof", PPG.useDof.Model & ".Camera_info.DOF"
+		SetExpr PPG.focusDistance.Parent & ".focusDistance", PPG.focusDistance.Model & ".dof_anim.DisplayInfo_DOF.depth"	
 		leftCamera_onChanged()
 		rightCamera_OnChanged()
-		cameraInterest_OnChanged()
 	End Sub
 	
+
+	Sub linkObjectToDistance_OnClicked()	
+		dim linkedPrim, button
+		DeselectAll
+		PickObject "Select a primitive", "Select a primitive", linkedPrim, button
+		If button <> 0 then
+			SetExpr PPG.focusDistance, "ctr_dist( " & PPG.focusDistance.Parent.Parent.Parent.FullName & ". , " & linkedPrim.FullName & ". )"
+		End If
+	End Sub
+
+	Sub usePolygonalAperture_OnChanged()
+		useDof_OnChanged()
+	End Sub
+
+	Sub useDof_OnChanged()
+		IF PPG.useDof.Value = True Then
+			PPG.focusDistance.ReadOnly = False
+			PPG.focusPlaneIsPlane.ReadOnly = False
+			PPG.apertureSize.ReadOnly = False
+			PPG.apertureAspectRatio.ReadOnly = False
+			PPG.usePolygonalAperture.ReadOnly = False
+			IF PPG.usePolygonalAperture.Value = True Then
+				PPG.apertureBlades.ReadOnly = False
+				PPG.apertureBladeCurvature.ReadOnly = False
+				PPG.apertureRotation.ReadOnly = False
+			Else
+				PPG.apertureBlades.ReadOnly = True
+				PPG.apertureBladeCurvature.ReadOnly = True
+				PPG.apertureRotation.ReadOnly = True
+			End If
+		Else
+			PPG.focusDistance.ReadOnly = True
+			PPG.focusPlaneIsPlane.ReadOnly = True
+			PPG.apertureSize.ReadOnly = True
+			PPG.apertureAspectRatio.ReadOnly = True
+			PPG.usePolygonalAperture.ReadOnly = True
+			PPG.apertureBlades.ReadOnly = True
+			PPG.apertureBladeCurvature.ReadOnly = True
+			PPG.apertureRotation.ReadOnly = True
+		End If
+	End Sub
+
+
 	Sub OnInit
 		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
 		'Setting Expressions
-		SetExpr PPG.dof.Parent & ".dof", "Passes.Arnold_Render_Options.enable_depth_of_field"
-		SetExpr PPG.useCameraInterest.Parent & ".useCameraInterest", "Passes.Arnold_Render_Options.use_interest_distance"
-		SetExpr PPG.filterSize.Parent & ".filterSize", "Passes.Arnold_Render_Options.output_filter_width"		
+		SetExpr PPG.filterSize.Parent & ".filterSize", "Passes.Arnold_Render_Options.output_filter_width"
 		leftCamera_onChanged()
 		rightCamera_OnChanged()
-		cameraInterest_OnChanged()
-		useCameraInterest_OnChanged()
-		useRigDof_OnChanged()
 		useOverscan_OnChanged()
 		viewMode_OnChanged()
 		PPG.cameraStatus.ReadOnly = True
-		PPG.cameraInterestStatus.ReadOnly = True
 		PPG.renderResolutionX.ReadOnly = True
 		PPG.renderResolutionY.ReadOnly = True
 		PPG.totalOverscanPixels.ReadOnly = True
 		'triggerfishInit()
+		useDof_OnChanged()
 		PPG.Refresh
 	End Sub
 }

@@ -105,6 +105,16 @@
 <p>Material presets with their values.</p>
 <br>
 <hr/>
+<h4>LookUp Table</h4>
+<br>
+<h5>Enable precalculated LUT <em>[useLUT]</em></h5>
+<p>Precalculate the fresnel term for every <em>sample size &deg;</em> during the proprocessing phase.</p>
+<p class="note" >Note : This translate into an acceleration of approximately 7%.</p>
+<br>
+<h5>Sample size (&deg;) <em>[LUTSampleSize]</em></h5>
+<p>The distance in degrees between 2 samples in the LUT. This will produce a LUT with 90/LUTSampleSize + 1 entries.</p>
+<br>
+<hr/>
 <h4>File</h4>
 <br>
 <h5>Filename <em>[iorFilename]</em></h5>
@@ -118,6 +128,11 @@
 </table>
 <p>You have to select the appropriate one.</p>
 <p class="note" >Note : A warning might be issued if the shader thinks you selected the wrong units.</p>
+<br>
+<h5>Use full spectrum data in equations (metal) <em>[useFullSpectrum]</em></h5>
+<p>Normally, the complex IOR spectral data is transformed into 2 CIE XYZ coordinates and then converted into 2 RGB values representing a complex index of refraction, not a color. These RGB values (eta and k) are then used in the complex fresnel equations. When you enable this option, the fresnel term for every spectral entries is calculated and the result is transformed into a CIE XYZ coordinate and then converted into a RGB value representing a color. This should give very slightly better results.</p>
+<p class="note" >Note : This option is only available in file mode for metals.</p>
+<p class="warning">Warning : This is longer to process and should always be used with a LUT.</p>
 <br>
 <hr/>
 <h4>Refractive Indices</h4>
@@ -166,7 +181,7 @@
 <p>This options should be checked for metals when using a linear gamma, otherwise, colors might seem washed out.</p>
 <br>
 <hr/>
-<h4>Standard IOR</h4>
+<h4>Standard IOR <em>(DEPRICATED)</em></h4>
 <br>
 <h5>Expression for standard IOR <em>-</em></h5>
 <p>You should set this expression on <em>IOR</em> parameter of the standard if you do dielectrics, but don't.</p>

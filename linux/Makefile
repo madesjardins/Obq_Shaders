@@ -78,6 +78,12 @@ $(SRCPATH)/Obq_Bend4Stereo.cpp \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Bend4Stereo.cpp
 
+# Obq_CameraProjectionSpace
+
+Obq_CameraProjectionSpace.o: \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_CameraProjectionSpace.cpp
+
 # Obq_ChangeRange
 
 Obq_ChangeRange.o: \
@@ -134,6 +140,14 @@ $(SRCPATH)/yafaray/yafaray_ies_parser.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_IESLightFilter.cpp
 
+# Obq_LensDistortion
+
+Obq_LensDistortion.o: \
+$(SRCPATH)/Obq_LensDistortion.cpp \
+$(SRCPATH)/Obq_LensDistortion.h \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LensDistortion.cpp
+
 # Obq_MeasuredMaterial
 
 Obq_MeasuredMaterial.o: \
@@ -163,6 +177,20 @@ Obq_RandomColor.o: \
 $(SRCPATH)/Obq_RandomColor.cpp \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomColor.cpp
+
+# Obq_RandomID
+
+Obq_RandomID.o: \
+$(SRCPATH)/Obq_RandomID.cpp \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomID.cpp
+
+# Obq_RayDepth
+
+Obq_RayDepth.o: \
+$(SRCPATH)/Obq_RayDepth.cpp \
+$(SRCPATH)/Obq_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RayDepth.cpp
 
 # Obq_RGBComEmit
 
@@ -242,7 +270,7 @@ $(SRCPATH)/Obq_Common.h
 
 Obq_UVRemapLensDistortion.o: \
 $(SRCPATH)/Obq_UVRemapLensDistortion.cpp \
-$(SRCPATH)/Obq_UVRemapLensDistortion.h \
+$(SRCPATH)/Obq_LensDistortion.h \
 $(SRCPATH)/Obq_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_UVRemapLensDistortion.cpp
 
@@ -260,6 +288,7 @@ $(BINPATH)/$(TARGETNAME).$(EXT): \
 Obq_AngularCamera.o \
 Obq_Atmosphere.o \
 Obq_Bend4Stereo.o \
+Obq_CameraProjectionSpace.o \
 Obq_ChangeRange.o \
 Obq_Color.o \
 Obq_Environment.o \
@@ -267,10 +296,13 @@ Obq_Etching.o \
 Obq_Fresnel.o \
 Obq_Hair.o \
 Obq_IESLightFilter.o \
+Obq_LensDistortion.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageFlt.o \
 Obq_Opacity.o \
 Obq_RandomColor.o \
+Obq_RandomID.o \
+Obq_RayDepth.o \
 Obq_RGBComEmit.o \
 Obq_RGBComLightFilter.o \
 Obq_Root2Tip.o \
@@ -289,6 +321,7 @@ Obq_Shaders__Core.o
 Obq_AngularCamera.o \
 Obq_Atmosphere.o \
 Obq_Bend4Stereo.o \
+Obq_CameraProjectionSpace.o \
 Obq_ChangeRange.o \
 Obq_Color.o \
 Obq_Environment.o \
@@ -296,10 +329,13 @@ Obq_Etching.o \
 Obq_Fresnel.o \
 Obq_Hair.o \
 Obq_IESLightFilter.o \
+Obq_LensDistortion.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageFlt.o \
 Obq_Opacity.o \
 Obq_RandomColor.o \
+Obq_RandomID.o \
+Obq_RayDepth.o \
 Obq_RGBComEmit.o \
 Obq_RGBComLightFilter.o \
 Obq_Root2Tip.o \

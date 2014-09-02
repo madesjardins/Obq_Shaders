@@ -33,6 +33,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 extern AtNodeMethods* ObqAtmosphereSimpleMethods;
 extern AtNodeMethods* ObqAngularCameraMethods;
 extern AtNodeMethods* ObqBend4StereoSimpleMethods;
+extern AtNodeMethods* ObqCameraProjectionSpaceMethods;
 extern AtNodeMethods* ObqChangeRangeSimpleMethods;
 extern AtNodeMethods* ObqColorSimpleMethods;
 extern AtNodeMethods* ObqEnvironmentSimpleMethods;
@@ -40,10 +41,13 @@ extern AtNodeMethods* ObqEtchingSimpleMethods;
 extern AtNodeMethods* ObqFresnelSimpleMethods;
 extern AtNodeMethods* ObqHairSimpleMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
+extern AtNodeMethods* ObqLensDistortionMethods;
 extern AtNodeMethods* ObqMeasuredMaterialSimpleMethods;
 extern AtNodeMethods* ObqMessageFltSimpleMethods;
 extern AtNodeMethods* ObqOpacitySimpleMethods;
 extern AtNodeMethods* ObqRandomColorSimpleMethods;
+extern AtNodeMethods* ObqRandomIDSimpleMethods;
+extern AtNodeMethods* ObqRayDepthSimpleMethods;
 extern AtNodeMethods* ObqRGBComEmitSimpleMethods;
 extern AtNodeMethods* ObqRGBComLightFilterMethod;
 extern AtNodeMethods* ObqRoot2TipSimpleMethods;
@@ -63,6 +67,7 @@ enum SHADERS
 	OBQ_ANGULARCAMERA,
 	OBQ_ATMOSPHERE,
 	OBQ_BEND4STEREO,
+	OBQ_CAMERAPROJECTIONSPACE,
 	OBQ_CHANGERANGE,
 	OBQ_COLOR,
 	OBQ_ENVIRONMENT,
@@ -70,10 +75,13 @@ enum SHADERS
 	OBQ_FRESNEL,
 	OBQ_HAIR,
 	OBQ_IESLIGHTFILTER,
+	OBQ_LENSDISTORTION,
 	OBQ_MEASUREDMATERIAL,
 	OBQ_MESSAGEFLT,
 	OBQ_OPACITY,
 	OBQ_RANDOMCOLOR,
+	OBQ_RANDOMID,
+	OBQ_RAYDEPTH,
 	OBQ_RGBCOMEMIT,
 	OBQ_RGBCOMLIGHTFILTER,
 	OBQ_ROOT2TIP,
@@ -108,6 +116,12 @@ node_loader
 		node->methods      = ObqBend4StereoSimpleMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Bend4Stereo";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_CAMERAPROJECTIONSPACE:
+		node->methods      = ObqCameraProjectionSpaceMethods;
+		node->output_type  = AI_TYPE_VECTOR;
+		node->name         = "Obq_CameraProjectionSpace";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_CHANGERANGE:
@@ -152,6 +166,12 @@ node_loader
 		node->name         = "Obq_IESLightFilter";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_LENSDISTORTION:
+		node->methods     = ObqLensDistortionMethods;
+		node->output_type = AI_TYPE_UNDEFINED;
+		node->name        = "Obq_LensDistortion";
+		node->node_type   = AI_NODE_CAMERA;
+		break;
 	case OBQ_MEASUREDMATERIAL:
 		node->methods      = ObqMeasuredMaterialSimpleMethods;
 		node->output_type  = AI_TYPE_RGB;
@@ -174,6 +194,18 @@ node_loader
 		node->methods      = ObqRandomColorSimpleMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_RandomColor";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_RANDOMID:
+		node->methods      = ObqRandomIDSimpleMethods;
+		node->output_type  = AI_TYPE_INT;
+		node->name         = "Obq_RandomID";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_RAYDEPTH:
+		node->methods      = ObqRayDepthSimpleMethods;
+		node->output_type  = AI_TYPE_INT;
+		node->name         = "Obq_RayDepth";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_RGBCOMEMIT:

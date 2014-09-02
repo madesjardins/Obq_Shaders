@@ -1,13 +1,14 @@
-﻿Build started 16/07/2014 3:54:00 PM.
+﻿Build started 02/09/2014 2:38:59 PM.
      1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.0.6-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\ObqISBrdf.cpp ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.0.11.0-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\ObqISBrdf.cpp ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
          ObqISBrdf.cpp
          Obq_AngularCamera.cpp
          Obq_Atmosphere.cpp
          Obq_Bend4Stereo.cpp
+         Obq_CameraProjectionSpace.cpp
          Obq_ChangeRange.cpp
          Obq_Color.cpp
          Obq_Environment.cpp
@@ -16,16 +17,19 @@
          Obq_Hair.cpp
      1>..\..\src\Obq_Hair.cpp(176): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
          Obq_IESLightFilter.cpp
+         Obq_LensDistortion.cpp
          Obq_MeasuredMaterial.cpp
          Obq_MessageFlt.cpp
          Obq_Opacity.cpp
          Obq_RandomColor.cpp
+         Obq_RandomID.cpp
+         Obq_RayDepth.cpp
          Obq_RGBComEmit.cpp
+         Compiling...
          Obq_RGBComLightFilter.cpp
          Obq_Root2Tip.cpp
          Obq_Shaders__Core.cpp
          Obq_Shadow.cpp
-         Compiling...
          Obq_StereoLens.cpp
          Obq_SurfaceEnvironment.cpp
          Obq_Thickness.cpp
@@ -36,10 +40,11 @@
          Obq_VolumeThickness.cpp
          spectrum.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v301\Obq_Shaders__Core__v301.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.0.6-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v301.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v301.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v301\Obq_Shaders__Core__v301.lib" /MACHINE:X64 /DLL x64\Release\ObqISBrdf.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v206\Obq_Shaders__Core__v206.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.0.11.0-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v206.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v206.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v206\Obq_Shaders__Core__v206.lib" /MACHINE:X64 /DLL x64\Release\ObqISBrdf.obj
          x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Atmosphere.obj
          x64\Release\Obq_Bend4Stereo.obj
+         x64\Release\Obq_CameraProjectionSpace.obj
          x64\Release\Obq_ChangeRange.obj
          x64\Release\Obq_Color.obj
          x64\Release\Obq_Environment.obj
@@ -47,10 +52,13 @@
          x64\Release\Obq_Fresnel.obj
          x64\Release\Obq_Hair.obj
          x64\Release\Obq_IESLightFilter.obj
+         x64\Release\Obq_LensDistortion.obj
          x64\Release\Obq_MeasuredMaterial.obj
          x64\Release\Obq_MessageFlt.obj
          x64\Release\Obq_Opacity.obj
          x64\Release\Obq_RandomColor.obj
+         x64\Release\Obq_RandomID.obj
+         x64\Release\Obq_RayDepth.obj
          x64\Release\Obq_RGBComEmit.obj
          x64\Release\Obq_RGBComLightFilter.obj
          x64\Release\Obq_Root2Tip.obj
@@ -65,14 +73,14 @@
          x64\Release\Obq_UVRemapLensDistortion.obj
          x64\Release\Obq_VolumeThickness.obj
          x64\Release\spectrum.obj
-            Creating library ..\..\bin\v301\Obq_Shaders__Core__v301.lib and object ..\..\bin\v301\Obq_Shaders__Core__v301.exp
+            Creating library ..\..\bin\v206\Obq_Shaders__Core__v206.lib and object ..\..\bin\v206\Obq_Shaders__Core__v206.exp
          Generating code
          Finished generating code
-         Obq_Shaders__Core.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\..\..\bin\v301\Obq_Shaders__Core__v301.dll
+         Obq_Shaders__Core.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\..\..\bin\v206\Obq_Shaders__Core__v206.dll
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v301\Obq_Shaders__Core__v301.dll;#2" /manifest x64\Release\Obq_Shaders__Core__v301.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v206\Obq_Shaders__Core__v206.dll;#2" /manifest x64\Release\Obq_Shaders__Core__v206.dll.intermediate.manifest
        PostBuildEvent:
-         del /F /Q x64\Release\*.* ..\..\bin\v301\*.lib ..\..\bin\v301\*.exp
+         del /F /Q x64\Release\*.* ..\..\bin\v206\*.lib ..\..\bin\v206\*.exp
          :VCEnd
          F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\x64\Release\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
@@ -80,4 +88,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:17.98
+Time Elapsed 00:00:20.75

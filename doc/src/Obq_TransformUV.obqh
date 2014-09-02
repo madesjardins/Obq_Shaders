@@ -1,0 +1,234 @@
+# SPDL - Obq_TransformUV - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{F5A4AA2C-4FE1-4217-BAEF-318264DEAF57}";
+PropertySet "Obq_TransformUV_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{CEBF4988-B61F-487A-A4D2-228F1C5DAF01}";
+		Type = color;
+	}
+	Parameter "tex" input
+	{
+		GUID = "{31B5F813-5489-434A-99F1-55BAE5ABAE3D}";
+		Type = texture;
+		Texturable = on;
+	}
+	Parameter "rotate" input
+	{
+		GUID = "{75CF36BE-0E85-4907-9B1A-743DB9C6D1D0}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+	}
+	Parameter "pivotX" input
+	{
+		GUID = "{DAE8C93F-284C-4A17-8C7E-225E0CFF13EA}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.5;
+	}
+	Parameter "pivotY" input
+	{
+		GUID = "{F6CF36F9-D023-47F0-8306-EE11FC56B1A9}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.5;
+	}
+	Parameter "scaleX" input
+	{
+		GUID = "{53A1CC32-1AEB-4F82-91F9-A8141E98EEC6}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.0;
+	}
+	Parameter "scaleY" input
+	{
+		GUID = "{205EDE0C-1A34-4D6E-9010-B9203CE06073}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.0;
+	}
+	Parameter "translateX" input
+	{
+		GUID = "{65B97C09-FB14-4220-A6CC-29FEF60A3965}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+	}
+	Parameter "translateY" input
+	{
+		GUID = "{26688925-079E-419F-A1CE-7D9F15EF37F9}";
+		Type = scalar;
+		Texturable = on;
+		Value = 0.0;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{310CA2B8-875E-4EFB-B488-5EEC37D59B7B}";
+		Type = integer;
+		Texturable = on;
+		Value = 3;
+		Value Minimum = 0;
+		Value Maximum = 5;
+	}
+}
+
+phenomenon "Obq_TransformUV_declare"
+{
+	Name = "Obq_TransformUV";
+	Version = 1;
+	Use = texture;
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_TransformUV";
+}
+
+Defaults
+{
+	tex
+	{
+		Name = "Image Clip";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	rotate
+	{
+		Name = "Angle °";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -180.0 to 180.0;
+	}
+	pivotX
+	{
+		Name = "X";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	pivotY
+	{
+		Name = "Y";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	scaleX
+	{
+		Name = "X";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -5.0 to 5.0;
+	}
+	scaleY
+	{
+		Name = "Y";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -5.0 to 5.0;
+	}
+	translateX
+	{
+		Name = "X";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	translateY
+	{
+		Name = "Y";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	mode
+	{
+		Name = "Transform order";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"SRT" = 0,
+			"STR" = 1,
+			"RST" = 2,
+			"RTS" = 3,
+			"TSR" = 4,
+			"TRS" = 5
+		}
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Mode"
+	{
+		mode;
+	}
+
+	Group "Scale"
+	{
+		Row
+		{
+			scaleX;
+			scaleY;
+		}
+	}
+	Group "Rotate"
+	{
+		Row
+		{
+			rotate;
+		}
+	}
+	Group "Translate"
+	{
+		Row
+		{
+			translateX;
+			translateY;
+		}
+	}
+	Group "Center"
+	{
+		Row
+		{
+			pivotX;
+			pivotY;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+	tex;
+	Group "Mode"
+	{
+		mode;
+	}
+
+	Group "Scale"
+	{
+			scaleX;
+			scaleY;
+	}
+	Group "Rotate"
+	{
+			rotate;
+	}
+	Group "Translate"
+	{
+			translateX;
+			translateY;
+	}
+	Group "Center"
+	{
+			pivotX;
+			pivotY;
+	}
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformUV.html"
+End sub
+
+}

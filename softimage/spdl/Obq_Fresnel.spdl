@@ -21,7 +21,7 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "presets" input
 	{
 		GUID = "{9CD76B1A-E7BE-4807-8F9F-E926A6A06FE9}";
-		Texturable = on;
+		Texturable = off;
 		Type = integer;
 		Value = 6;
 		Value Minimum = 0;
@@ -31,7 +31,7 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		GUID = "{FFABEE5D-A339-4FD4-BE02-566B4E83A59C}";
 		Type = integer;
-		Texturable = on;
+		Texturable = off;
 		Value = 1;
 		Value Maximum = 2;
 	}
@@ -48,7 +48,7 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		GUID = "{59823AD4-A10A-4F91-9FCA-9F548F3CAF89}";
 		Type = boolean;
-		Texturable = on;
+		Texturable = off;
 		Value = off;
 	}
 	Parameter "iorFilename" input
@@ -92,7 +92,7 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		GUID = "{0136C375-8B95-43B3-8E84-007742B166F5}";
 		Type = Integer;
-		Texturable = on;
+		Texturable = Off;
 		Value = 1;
 		Value Minimum = 0;
 		Value Maximum = 3;
@@ -101,7 +101,7 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		GUID = "{E329FEF5-3EA1-4F37-9153-380A53C75E68}";
 		Type = Boolean;
-		Texturable = on;
+		Texturable = Off;
 		Value = On;
 	}
 	Parameter "iorExpression" input
@@ -118,6 +118,29 @@ PropertySet "Obq_Fresnel_pset"
 		Type = Scalar;
 		Texturable = Off;
 		Value = 1.0;
+	}
+	Parameter "useLUT" input
+	{
+		GUID = "{2310B8A3-88CE-480B-8418-0714402B1245}";
+		Type = Boolean;
+		Texturable = Off;
+		Value = On;
+	}
+	Parameter "LUTSampleSize" input
+	{
+		GUID = "{0B42F81F-61F4-429C-A7A5-27092B70B48A}";
+		Type = Scalar;
+		Texturable = Off;
+		Value = 0.5;
+		Value Minimum = 0.001;
+		Value Maximum = 90;
+	}
+	Parameter "useFullSpectrum" input
+	{
+		GUID = "{7832C563-F008-487A-AB4A-2044DA50DF43}";
+		Type = Boolean;
+		Texturable = Off;
+		Value = On;
 	}
 }
 
@@ -282,6 +305,21 @@ Defaults
 		Name = "Expression for \nstandard IOR";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
 	}
+	useLUT
+	{
+		Name = "Enable precalculated LUT";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	LUTSampleSize
+	{
+		Name = "Sample size (°)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useFullSpectrum
+	{
+		Name = "Use full spectrum data in equations (metal)";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
 }
 
 
@@ -294,10 +332,16 @@ Layout "Default"
 		mode;
 		presets;
 	}
+	Group "LookUp Table"
+	{
+		useLUT;
+		LUTSampleSize;
+	}
 	Group "File (*.csv, *.txt, *.spd)"
 	{		
 		iorFilename;
 		lambdaUnits;
+		useFullSpectrum;
 	}
 	Group "Refractive Indices" 
 	{
@@ -321,10 +365,10 @@ Layout "Default"
 		transmittance;
 		degamma;
 	}
-	Group "Standard IOR"
-	{
-		iorExpression;
-	}
+	#Group "Standard IOR"
+	#{
+	#	iorExpression;
+	#}
 	}
 	Tab "Media In"
 	{
@@ -337,10 +381,10 @@ Layout "Default"
 
 Layout "RenderTree"
 {
-	Group "Settings"
-	{
-		presets;
-	}
+	#Group "Settings"
+	#{
+		#presets;
+	#}
 	Group "Refractive Indices" 
 	{
 		iorRGB;
@@ -349,10 +393,10 @@ Layout "RenderTree"
 	{
 		kRGB;
 	}
-	Group "Equations"
-	{
-		method;
-	}
+	#Group "Equations"
+	#{
+		#method;
+	#}
 	Group "Media In IOR"
 	{
 		iorInRGB;
@@ -360,12 +404,12 @@ Layout "RenderTree"
 	Group "Options"
 	{
 		ratioFsFp;
-		backfaceMode;
+		#backfaceMode;
 	}
 	Group "Output"
 	{
 		transmittance;
-		degamma;
+		#degamma;
 	}
 }
 
@@ -397,22 +441,29 @@ Sub visibility()
 		PPG.lambdaUnits.Show(False)
 		PPG.iorRGB.Show(True)
 		PPG.kRGB.Show(True)
-
+		PPG.useFullSpectrum.Show(False)
 	ElseIf PPG.mode.Value = 1 Then
 		PPG.presets.Show(True)
 		PPG.iorFilename.Show(False)
 		PPG.lambdaUnits.Show(False)
 		PPG.iorRGB.Show(True)
 		PPG.kRGB.Show(True)
-
+		PPG.useFullSpectrum.Show(False)
 	Else
 		PPG.presets.Show(False)
 		PPG.iorFilename.Show(True)
 		PPG.lambdaUnits.Show(True)
 		PPG.iorRGB.Show(False)
 		PPG.kRGB.Show(False)
+		PPG.useFullSpectrum.Show(True)
+		If PPG.method.Value = 0 Then
+			PPG.useFullSpectrum.ReadOnly = True
+		Else
+			PPG.useFullSpectrum.ReadOnly = False
+		End If
 	End If
 	iorExpression()
+	PPG.Refresh()
 End Sub
 
 ' fresnel modes
@@ -427,9 +478,11 @@ Sub method_OnChanged()
 	If PPG.method.Value = 0 Then
 		PPG.backfaceMode.ReadOnly = False
 		PPG.degamma.ReadOnly = True
+		PPG.useFullSpectrum.ReadOnly = True
 	Else
 		PPG.backfaceMode.ReadOnly = True
 		PPG.degamma.ReadOnly = False
+		PPG.useFullSpectrum.ReadOnly = False
 	End If
 	visibility()
 End Sub
@@ -689,6 +742,7 @@ End Sub
 Sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
 	mode_OnChanged()
+	method_OnChanged()
 	PPG.iorExpression.ReadOnly = True
 End Sub
 }

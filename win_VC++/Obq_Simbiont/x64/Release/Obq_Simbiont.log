@@ -1,5 +1,5 @@
-﻿Build started 16/07/2014 3:54:00 PM.
-     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 3 (build target(s)).
+﻿Build started 02/09/2014 2:31:12 PM.
+     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--private-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Simbiont.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -22,4 +22,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.13
+Time Elapsed 00:00:00.82

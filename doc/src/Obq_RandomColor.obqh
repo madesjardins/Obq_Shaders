@@ -1,0 +1,767 @@
+# SPDL - Obq_RandomColor - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{229A1AF6-2238-4428-83E5-1259BC711222}";
+
+PropertySet "Obq_RandomColor_params"
+{
+   Parameter "out" output
+   {
+      title = "random color output parameter";
+      guid = "{0AB236D5-E6BD-4360-B694-885B6F74953A}";
+      type = color;
+      flags = 1;
+   }
+   Parameter "randMax" input
+   {
+      title = "Number of values";
+      guid = "{412F80C4-C3B9-439E-A506-F6D8C07051B4}";
+      type = integer;
+      flags = 1;
+      texturable = on;
+      value = 8;
+      value minimum = 1;
+	  value maximum = 16;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "seed" input
+   {
+      title = "Seed";
+      guid = "{02B9565F-590E-4489-9786-F41B6F6CB0E9}";
+      type = integer;
+      flags = 1;
+      texturable = on;
+      value = 13;
+	  value minimum = 1;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+	Parameter "color01" input
+   {
+      title = "Color Input 01";
+      guid = "{E1CCF7FB-D64D-4F24-941D-EA57587B7B7D}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 0.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   	Parameter "color02" input
+   {
+      title = "Color Input 02";
+      guid = "{19F2113A-4F27-46B7-8492-0D9DACC3358E}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   }
+   Parameter "color03" input
+   {
+      title = "Color Input 03";
+      guid = "{938753FE-D63F-418F-9CD0-78B530AB7D6A}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 0.0 1.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color04" input
+   {
+      title = "Color Input 04";
+      guid = "{B1E235D3-A18E-4C78-9C46-0E1D03CB8B3B}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 0.0 0.0 1.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color05" input
+   {
+      title = "Color Input 05";
+      guid = "{E0F9DECE-8C3B-41B7-84D6-C478B77C3E3B}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 1.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color06" input
+   {
+      title = "Color Input 06";
+      guid = "{60AA7523-B784-477F-AF18-F21FD5AC277F}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 1.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color07" input
+   {
+      title = "Color Input 07";
+      guid = "{4544235D-C8E0-40F4-8E8F-A2C53CC39721}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 0.0 1.0 1.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color08" input
+   {
+      title = "Color Input 08";
+      guid = "{FBF05CB4-4406-4D44-AFCC-97876A6E84E5}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color09" input
+   {
+      title = "Color Input 09";
+      guid = "{22F7978E-98D5-4997-8CC0-597043E8302D}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color10" input
+   {
+      title = "Color Input 10";
+      guid = "{237B8BA9-5233-414C-8379-43995BBF2CB3}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color11" input
+   {
+      title = "Color Input 11";
+      guid = "{B03D8A6B-D6D8-4F96-9D90-25DD7031F60D}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color12" input
+   {
+      title = "Color Input 12";
+      guid = "{C88C5877-D54A-4235-AE7D-37DDF1D4EF6F}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color13" input
+   {
+      title = "Color Input 13";
+      guid = "{A135BED5-04CB-453F-938C-9DC7E229702B}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color14" input
+   {
+      title = "Color Input 14";
+      guid = "{53D9555C-211F-4450-A6AA-25A0AF981BCA}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color15" input
+   {
+      title = "Color Input 15";
+      guid = "{4E2AAA64-3DF6-46FA-BC09-BCEA05F66A71}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "color16" input
+   {
+      title = "Color Input 16";
+      guid = "{35267392-647D-44DF-9863-E5C4F119B690}";
+      type = color;
+      flags = 1;
+      texturable = on;
+      value = 1.0 0.0 0.0 0.0;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "stripModelName" input
+   {
+      title = "Strip Model Name";
+      guid = "{B36F01B1-43DB-4E1D-A7FC-9EDB8F413C24}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+   Parameter "stripFrameNumber" input
+   {
+      title = "Strip Frame Number";
+      guid = "{BC717589-200A-4FD5-B86D-88C05F4CFB88}";
+      type = boolean;
+      flags = 1;
+      texturable = on;
+      value = on;
+      writable = on;
+      animatable = on;
+      persistable = on;
+      readable = on;
+      inspectable = on;
+   } 
+}
+
+phenomenon "Obq_RandomColor_declare"
+{
+   Name = "Obq_RandomColor";
+   Version = 1;
+   Use = texture;
+}
+
+Defaults
+{
+   randMax
+   {
+      Name = "Number of values";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   seed
+   {
+      Name = "Seed";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIRange = 0 to 1000;
+   }
+   color01
+   {
+      Name = "Color 01";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+   color02
+   {
+      Name = "Color 02";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color03
+   {
+      Name = "Color 03";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color04
+   {
+      Name = "Color 04";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color05
+   {
+      Name = "Color 05";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color06
+   {
+      Name = "Color 06";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color07
+   {
+      Name = "Color 07";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color08
+   {
+      Name = "Color 08";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color09
+   {
+      Name = "Color 09";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color10
+   {
+      Name = "Color 10";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color11
+   {
+      Name = "Color 11";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color12
+   {
+      Name = "Color 12";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color13
+   {
+      Name = "Color 13";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color14
+   {
+      Name = "Color 14";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color15
+   {
+      Name = "Color 15";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+      color16
+   {
+      Name = "Color 16";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "rgba",4;
+   }
+   stripModelName
+   {
+      Name = "Model";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+   stripFrameNumber
+   {
+      Name = "Frame";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+   }
+}
+
+Layout "Default"
+{
+	Group "Options"
+	{
+		randMax;
+		seed;
+	}
+	Group "Strip"
+	{
+	Row
+		{
+		    stripModelName;
+			stripFrameNumber;
+		}
+	}
+	Group "Inputs"
+	{
+		color01;
+		color02;
+		color03;
+		color04;
+		color05;
+		color06;
+		color07;
+		color08;
+		color09;
+		color10;
+		color11;
+		color12;
+		color13;
+		color14;
+		color15;
+		color16;
+	}
+}
+
+Layout "RenderTree"
+{
+   Group "Options"
+   {
+      randMax;
+	  seed;
+   }
+   Group "Strip"
+   {
+		stripModelName;
+		stripFrameNumber; 
+   }
+   Group "Inputs"
+	{
+		color01;
+		color02;
+		color03;
+		color04;
+		color05;
+		color06;
+		color07;
+		color08;
+		color09;
+		color10;
+		color11;
+		color12;
+		color13;
+		color14;
+		color15;
+		color16;
+	}
+}
+
+
+Language = "VBScript";
+Logic
+{
+Sub randMax_OnChanged()
+	If PPG.randMax.Value = 1 Then
+		PPG.color02.Show(False)
+		PPG.color03.Show(False)
+		PPG.color04.Show(False)
+		PPG.color05.Show(False)
+		PPG.color06.Show(False)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 2 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(False)
+		PPG.color04.Show(False)
+		PPG.color05.Show(False)
+		PPG.color06.Show(False)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 3 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(False)
+		PPG.color05.Show(False)
+		PPG.color06.Show(False)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 4 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(False)
+		PPG.color06.Show(False)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 5 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(False)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 6 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(False)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 7 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(False)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 8 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(False)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 9 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(False)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 10 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(False)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 11 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(False)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 12 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(True)
+		PPG.color13.Show(False)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 13 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(True)
+		PPG.color13.Show(True)
+		PPG.color14.Show(False)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 14 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(True)
+		PPG.color13.Show(True)
+		PPG.color14.Show(True)
+		PPG.color15.Show(False)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 15 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(True)
+		PPG.color13.Show(True)
+		PPG.color14.Show(True)
+		PPG.color15.Show(True)
+		PPG.color16.Show(False)
+	ElseIf PPG.randMax.Value = 16 Then
+		PPG.color02.Show(True)
+		PPG.color03.Show(True)
+		PPG.color04.Show(True)
+		PPG.color05.Show(True)
+		PPG.color06.Show(True)
+		PPG.color07.Show(True)
+		PPG.color08.Show(True)
+		PPG.color09.Show(True)
+		PPG.color10.Show(True)
+		PPG.color11.Show(True)
+		PPG.color12.Show(True)
+		PPG.color13.Show(True)
+		PPG.color14.Show(True)
+		PPG.color15.Show(True)
+		PPG.color16.Show(True)
+	End If
+	'PPG.Refresh
+End Sub
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomColor.html"
+	randMax_OnChanged()
+End Sub
+}
+

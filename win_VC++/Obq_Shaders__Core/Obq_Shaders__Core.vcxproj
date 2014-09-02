@@ -157,6 +157,7 @@
     <ClCompile Include="..\..\src\Obq_AngularCamera.cpp" />
     <ClCompile Include="..\..\src\Obq_Atmosphere.cpp" />
     <ClCompile Include="..\..\src\Obq_Bend4Stereo.cpp" />
+    <ClCompile Include="..\..\src\Obq_CameraProjectionSpace.cpp" />
     <ClCompile Include="..\..\src\Obq_ChangeRange.cpp" />
     <ClCompile Include="..\..\src\Obq_Color.cpp" />
     <ClCompile Include="..\..\src\Obq_Environment.cpp" />
@@ -164,10 +165,13 @@
     <ClCompile Include="..\..\src\Obq_Fresnel.cpp" />
     <ClCompile Include="..\..\src\Obq_Hair.cpp" />
     <ClCompile Include="..\..\src\Obq_IESLightFilter.cpp" />
+    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp" />
     <ClCompile Include="..\..\src\Obq_MeasuredMaterial.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageFlt.cpp" />
     <ClCompile Include="..\..\src\Obq_Opacity.cpp" />
     <ClCompile Include="..\..\src\Obq_RandomColor.cpp" />
+    <ClCompile Include="..\..\src\Obq_RandomID.cpp" />
+    <ClCompile Include="..\..\src\Obq_RayDepth.cpp" />
     <ClCompile Include="..\..\src\Obq_RGBComEmit.cpp" />
     <ClCompile Include="..\..\src\Obq_RGBComLightFilter.cpp" />
     <ClCompile Include="..\..\src\Obq_Root2Tip.cpp" />
@@ -230,7 +234,7 @@
     <ClInclude Include="..\..\src\Obq_Thickness.h" />
     <ClInclude Include="..\..\src\Obq_Toon.h" />
     <ClInclude Include="..\..\src\Obq_ToonSimple.h" />
-    <ClInclude Include="..\..\src\Obq_UVRemapLensDistortion.h" />
+    <ClInclude Include="..\..\src\Obq_LensDistortion.h" />
     <ClInclude Include="..\..\src\Obq_VolumeThickness.h" />
     <ClInclude Include="..\..\src\pbrt\spectrum.h" />
     <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h" />

@@ -1,0 +1,2428 @@
+# SPDL Obq_LensDistortion - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{0389164E-55AC-421F-8DBB-23452E3B0C0E}";
+PropertySet "Obq_LensDistortion"
+{
+	Parameter "out" output
+	{
+		GUID = "{462B4430-6466-4F81-A442-55046B04D79C}";
+		Type = color;
+		flags = 1;
+	}
+	Parameter "useDof" input
+	{
+		GUID = "{DBE2F144-6E8B-40DF-B127-025D90E4155E}";
+		Type = boolean;
+		Texturable = Off;
+		Value = off;
+	}
+	Parameter "focusDistance" input
+	{
+		GUID = "{A0D439DD-EAED-41A8-B77B-B4CB80121C03}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 100.0;
+	}
+	Parameter "apertureSize" input
+	{
+		GUID = "{663924CF-3EED-4025-BA99-25E34AAA97A6}";
+		Type = scalar;
+		Value = 0.1;
+		Texturable = Off;
+		Value Minimum = 0;
+	}
+	Parameter "apertureAspectRatio" input
+	{
+		GUID = "{AE1857F2-559E-49B0-8691-F0156FBC8A5A}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+	}
+	Parameter "usePolygonalAperture" input
+	{
+		GUID = "{17742855-AF63-4FB5-AD8B-DBA5F9E21D83}";
+		Type = boolean;
+		Texturable = Off;
+		Value = On;
+	}
+	Parameter "apertureBlades" input
+	{
+		GUID = "{65A67F86-4DCD-4D4D-BBD0-A183F70FF3CE}";
+		Type = integer;
+		Value = 5;
+		Texturable = Off;
+		Value Minimum = 3;
+	}
+	Parameter "apertureBladeCurvature" input
+	{
+		GUID = "{7D289BF1-4D28-4584-BF8B-2327C666C956}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "apertureRotation" input
+	{
+		GUID = "{CA41A4FD-9CFA-467A-A2E1-7CE258EAFBC1}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "focusPlaneIsPlane" input
+	{
+		GUID = "{B9396C37-5319-4262-A040-8D5E219FD340}";
+		Type = boolean;
+		Texturable = Off;
+		Value = On;
+	}
+	Parameter "distortionModel" input
+	{
+		GUID = "{1BAB0957-C1F7-4443-B2F3-B48FF1FCAF6B}";
+		Type = integer;
+		flags = 1;
+		Value = 7;
+		Value Minimum = 0;
+		Value Maximum = 8;
+		Texturable = Off;
+	}
+	Parameter "k1" input
+	{
+		GUID = "{93C281AA-D239-4D36-B940-B7329553EE91}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "k2" input
+	{
+		GUID = "{1CA481C5-A4C3-4C3A-9987-3C5BD25A9816}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "centerX" input
+	{
+		GUID = "{1EC6A14C-D6E5-4258-9ABD-8594DB9E18DC}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Value Minimum = -0.5;
+		Value Maximum = 0.5;
+		Texturable = Off;
+	}
+	Parameter "centerY" input
+	{
+		GUID = "{06C9AECE-4371-40C4-98DC-D75AC0B57A05}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Value Minimum = -0.5;
+		Value Maximum = 0.5;
+		Texturable = Off;
+	}
+	Parameter "anamorphicSqueeze" input
+	{
+		GUID = "{7CDD476C-4BE2-4C6B-A1EB-ED68F6D7C9E2}";
+		Type = scalar;
+		flags = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "asymmetricDistortionX" input
+	{
+		GUID = "{24E5AD44-9678-4B26-A1A1-73BC5BAC561D}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+		Value Minimum = -0.5;
+		Value Maximum = 0.5;
+		Texturable = Off;
+	}
+	Parameter "asymmetricDistortionY" input
+	{
+		GUID = "{937B2E72-5C1E-4BC3-B8C3-ABDC6EC238D7}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+		Value Minimum = -0.5;
+		Value Maximum = 0.5;
+		Texturable = Off;
+	}
+	Parameter "centerX3DEq" input
+	{
+		GUID = "{E38D08E7-E7C0-4EF2-A578-DC2B6078D443}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+    Parameter "centerY3DEq" input
+	{
+		GUID = "{6A650E91-8F2F-45C1-AD51-7DBFCDF8D822}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+    Parameter "filmbackX3DEq" input
+	{
+		GUID = "{4D09B7BB-07EE-416B-835A-B12814A6D16E}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.3465;
+        Value Minimum = 0;
+		Texturable = Off;
+	}
+    Parameter "filmbackY3DEq" input
+	{
+		GUID = "{55BBFB94-CB29-4CDA-9179-B1A201421D2F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.1949;
+        Value Minimum = 0;
+		Texturable = Off;
+	}
+    Parameter "pixelRatio3DEq" input
+	{
+		GUID = "{EB7C9318-FDA9-4A4C-86B3-A6D111C17DF0}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1;
+        Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "c3dc00" input
+	{
+		GUID = "{D0B41984-EA9E-4770-A537-FF537EFD4465}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "c3dc01" input
+	{
+		GUID = "{91C799BB-2B11-4A5E-9423-CD4A77C6FD59}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+	}	
+	Parameter "c3dc02" input
+	{
+		GUID = "{0C325017-2048-4128-9F19-BEE0FBF51685}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "c3dc03" input
+	{
+		GUID = "{D75BF950-DE16-4F83-9528-67AA7CC3FD55}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "c3dc04" input
+	{
+		GUID = "{D4AD89AB-B5C6-4BBC-90C2-E6E8FEB4A67A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c00" input
+	{
+		GUID = "{15F872AC-80CB-4576-B0B8-3E204F78F488}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c01" input
+	{
+		GUID = "{45746E07-AFAB-40BE-A7B8-287275E3C3BA}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c02" input
+	{
+		GUID = "{D215C4AE-0A5F-4672-BFE5-500C776519AE}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c03" input
+	{
+		GUID = "{59CDDB10-AAA5-442B-87A9-A9E13F340F10}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c04" input
+	{
+		GUID = "{2CC2407F-7071-4851-93A4-FDA50098BADB}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c05" input
+	{
+		GUID = "{221A8C12-B8B4-4594-9DA5-6CF4799B480A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c06" input
+	{
+		GUID = "{BC47A847-3E79-424F-B30B-7F83B043FF9F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c07" input
+	{
+		GUID = "{E7DF83A8-23DC-4188-9D42-AD5B2E1E6FAA}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c08" input
+	{
+		GUID = "{605F73F0-C1C9-4923-AED3-57C3BBB42213}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c09" input
+	{
+		GUID = "{9E852E6B-08E3-43BE-A823-2C6F068244BE}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c10" input
+	{
+		GUID = "{D61E8ABA-CB0D-4859-8CB9-72ECF2D905CF}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c11" input
+	{
+		GUID = "{7BE77C59-C79D-4D3E-BE91-3BFAD0FAD413}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c12" input
+	{
+		GUID = "{D2B7FA39-86E5-493C-BBAB-C1512CC7B9C0}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c13" input
+	{
+		GUID = "{C337D4A5-2F22-4031-AC55-318AA62DBB89}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c14" input
+	{
+		GUID = "{83074B71-528F-4003-A76C-20E0C6D944BD}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c15" input
+	{
+		GUID = "{D31AB9D8-5DC9-4AA0-988E-C71EB2AC3015}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c16" input
+	{
+		GUID = "{471E2B2B-C17E-4861-B373-4254DB867BAC}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana6c17" input
+	{
+		GUID = "{48B6903D-AFB5-40AE-A1E8-CB1A5A820275}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "fish8c00" input
+	{
+		GUID = "{541038B4-9952-4503-A312-84543FA776F6}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "fish8c01" input
+	{
+		GUID = "{C24569FA-4B27-4D9C-AD34-1696EEBF07C3}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "fish8c02" input
+	{
+		GUID = "{4D841BF9-71B4-4C54-8833-DD4C10F04A29}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "fish8c03" input
+	{
+		GUID = "{81A689D8-765F-4BB0-8AF3-27F272B8B5AB}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "stand4c00" input
+	{
+		GUID = "{123261AE-AA99-457D-9F62-31A153B54C7F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "stand4c01" input
+	{
+		GUID = "{334B23F2-5A2F-441C-9F1A-903CBD5651E0}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "stand4c02" input
+	{
+		GUID = "{779DFB71-3F88-455B-8297-5864254E92FA}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "stand4c03" input
+	{
+		GUID = "{0233A54C-401F-4F05-9076-612853B8F7F2}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "stand4c04" input
+	{
+		GUID = "{F3BFF780-F073-42F9-9B25-412B0D2FD9E5}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "stand4c05" input
+	{
+		GUID = "{7C91082C-777D-417E-B098-A710DB614C50}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "raddec4c00" input
+	{
+		GUID = "{20C5FE23-C036-4D72-9ABB-7A516FB2C31D}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c01" input
+	{
+		GUID = "{6EC7F623-157E-41E2-9A80-6D9781520030}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c02" input
+	{
+		GUID = "{B9101CC0-1DE0-449F-85D9-937A9966A309}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c03" input
+	{
+		GUID = "{33FBB834-2649-4E13-9E70-B1665D30F251}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c04" input
+	{
+		GUID = "{C708A007-E374-4E08-88A0-C7336FA58E10}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c05" input
+	{
+		GUID = "{60511D29-5A5E-43A1-93F4-FB1FFC882999}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "raddec4c06" input
+	{
+		GUID = "{39899256-D4B2-4454-B1F4-FD93C09D40B3}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "raddec4c07" input
+	{
+		GUID = "{7A509DF0-3EA6-409D-8904-6BDD855161A3}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "ana4c00" input
+	{
+		GUID = "{4C8DB8A5-CBC1-40CC-8E4F-E40DF424C1EB}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c01" input
+	{
+		GUID = "{EBE3B2DD-CB71-4BF1-AFF8-729AA6C2B01F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c02" input
+	{
+		GUID = "{A7AB66CF-5D05-44CD-98DD-B6FA70B9725A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c03" input
+	{
+		GUID = "{23135A2D-2748-4FC0-B0F3-5936C6750FDA}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c04" input
+	{
+		GUID = "{AE6FF849-0E6A-4088-B69E-5C80938A8B7E}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c05" input
+	{
+		GUID = "{1935CAFE-0402-494B-A249-4F1F94ED6EA8}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c06" input
+	{
+		GUID = "{A68CD1C8-94BB-4FA4-BE2C-C4F5F4307ACB}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c07" input
+	{
+		GUID = "{E8233BDA-0F44-4A52-B929-D87F13680CA6}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c08" input
+	{
+		GUID = "{F11AB271-FDED-43ED-B273-5E60CA7ACB30}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c09" input
+	{
+		GUID = "{53C49C29-DF38-4466-AE2E-E91D9DC41AC2}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c10" input
+	{
+		GUID = "{6C806622-96A3-4CFE-B747-298497010842}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}	
+	Parameter "ana4c11" input
+	{
+		GUID = "{BEA0905C-1A6F-4B2E-BCCE-B468CAD83B1A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}	
+	Parameter "ana4c12" input
+	{
+		GUID = "{E3A545E3-6A30-4C8A-B610-41B1F4A94261}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "focal3DEq" input
+	{
+		GUID = "{F8F760D0-7BEE-4B67-8993-DDC4FB46CB6F}";
+		Type = scalar;
+		flags  = 1;
+		Value = 5.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "focusDistance3DEq" input
+	{
+		GUID = "{A09F0B05-4C07-41C1-B4DA-ABF3455F4090}";
+		Type = scalar;
+		flags  = 1;
+		Value = 100.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "pfC3" input
+	{
+		GUID = "{C93348D4-494E-4F1B-A5C4-997304C585E5}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "pfC5" input
+	{
+		GUID = "{901921D2-ED09-4504-B6F0-1DCF762B2C75}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.0;
+		Texturable = Off;
+	}
+	Parameter "pfSqueeze" input
+	{
+		GUID = "{391B030B-448C-41BD-9D61-3E40766EB41C}";
+		Type = scalar;
+		flags  = 1;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+		Texturable = Off;
+	}
+	Parameter "pfXp" input
+	{
+		GUID = "{E0160E4A-0BC8-44DC-A9D5-1EBD15DF54D4}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.5;
+		Texturable = Off;
+	}
+	Parameter "pfYp" input
+	{
+		GUID = "{2236E6CA-20C8-48DC-AFED-08FC7E45D65A}";
+		Type = scalar;
+		flags  = 1;
+		Value = 0.5;
+		Texturable = Off;
+	}
+	Parameter "pfbFile" input
+	{
+		title = "PFBarrel File";
+		guid = "{399A5AE3-7355-4836-975B-97B1A0AE042C}";
+		type = string;
+		texturable = off;
+		animatable = off;	
+	}
+}
+
+MetaShader "Obq_LensDistortion_params_meta"
+{
+	Name = "Obq_LensDistortion";
+	Type = lens;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_LensDistortion";
+	}	
+}
+
+Defaults
+{
+	useDof
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	focusDistance
+	{
+		Name = "Distance";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	apertureSize
+	{
+		Name = "Size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	apertureAspectRatio
+	{
+		Name = "Aspect Ratio";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	usePolygonalAperture
+	{
+		Name = "Polygon Aperture";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	apertureBlades
+	{
+		Name = "Blades";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 3 to 20;
+	}
+	apertureBladeCurvature
+	{
+		Name = "Blade Curvature";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -5.0 to 1.0;
+	}
+	apertureRotation
+	{
+		Name = "Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	focusPlaneIsPlane
+	{
+		Name = "Focus plane is a plane";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	distortionModel
+	{
+		Name = "Lens Distortion Model";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"PFBarrel" = 7,
+			"Nuke" = 0,
+			"3DE Classic LD Model" = 1,
+			"3DE4 Anamorphic, Degree 6" = 2,
+			"3DE4 Radial - Fisheye, Degree 8" = 3,
+			"(DEPRICATED) 3DE4 Radial - Standard, Degree 4" = 4,
+			"3DE4 Radial - Decentered Cylindric, Degree 4" = 5,
+			"3DE4 Anamorphic Rotate Squeeze, Degree 4" = 6,
+			"None" = 8
+		}
+	}
+	k1
+	{
+		Name = "Radial Distortion 1";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.3 to 0.3;
+	}
+	k2
+	{
+		Name = "Radial Distortion 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.1 to 0.1;
+	}
+	centerX
+	{
+		Name = "X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	centerY
+	{
+		Name = "Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	anamorphicSqueeze
+	{
+		Name = "Anamorphic Squeeze";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 2.0;
+	}
+	asymmetricDistortionX
+	{
+		Name = "Asymmetric Distortion X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	asymmetricDistortionY
+	{
+		Name = "Asymmetric Distortion Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+    centerX3DEq
+	{
+		Name = "X (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -3 to 3;
+	}
+    centerY3DEq
+	{
+		Name = "Y (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -3 to 3;
+	}
+    filmbackX3DEq
+	{
+		Name = "Width (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0 to 3;
+	}
+    filmbackY3DEq
+	{
+        Name = "Height (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0 to 3;
+	}
+    pixelRatio3DEq
+	{
+        Name = "Pixel Ratio";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 2;
+	}
+	c3dc00
+	{
+		Name = "Distortion";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	c3dc01
+	{
+		Name = "Anamorphic Squeeze";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.25 to 4.0;
+	}
+	c3dc02
+	{
+		Name = "Curvature X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	c3dc03
+	{
+		Name = "Curvature Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	c3dc04
+	{
+		Name = "Quartic Distortion";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c00
+	{
+		Name = "Cx02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c01
+	{
+		Name = "Cy02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c02
+	{
+		Name = "Cx22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c03
+	{
+		Name = "Cy22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c04
+	{
+		Name = "Cx04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c05
+	{
+		Name = "Cy04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c06
+	{
+		Name = "Cx24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c07
+	{
+		Name = "Cy24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c08
+	{
+		Name = "Cx44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c09
+	{
+		Name = "Cy44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c10
+	{
+		Name = "Cx06 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c11
+	{
+		Name = "Cy06 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c12
+	{
+		Name = "Cx26 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c13
+	{
+		Name = "Cy26 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c14
+	{
+		Name = "Cx46 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c15
+	{
+		Name = "Cy46 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c16
+	{
+		Name = "Cx66 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana6c17
+	{
+		Name = "Cy66 - Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	fish8c00
+	{
+		Name = "Distortion - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	fish8c01
+	{
+		Name = "Quartic Distortion - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	fish8c02
+	{
+		Name = "Degree 6";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	fish8c03
+	{
+		Name = "Degree 8";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c00
+	{
+		Name = "Distortion - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c01
+	{
+		Name = "U - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c02
+	{
+		Name = "V - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c03
+	{
+		Name = "Quartic Distortion - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c04
+	{
+		Name = "U - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	stand4c05
+	{
+		Name = "V - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c00
+	{
+		Name = "Distortion - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c01
+	{
+		Name = "U - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c02
+	{
+		Name = "V - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c03
+	{
+		Name = "Quartic Distortion - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c04
+	{
+		Name = "U - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c05
+	{
+		Name = "V - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	raddec4c06
+	{
+		Name = "Phi - Cylindric Direction";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -90.0 to 90.0;
+	}
+	raddec4c07
+	{
+		Name = "B - Cylindric Bending";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.1 to 0.1;
+	}
+	ana4c00
+	{
+		Name = "Cx02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c01
+	{
+		Name = "Cy02 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c02
+	{
+		Name = "Cx22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c03
+	{
+		Name = "Cy22 - Degree 2";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c04
+	{
+		Name = "Cx04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c05
+	{
+		Name = "Cy04 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c06
+	{
+		Name = "Cx24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c07
+	{
+		Name = "Cy24 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c08
+	{
+		Name = "Cx44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -0.5 to 0.5;
+	}
+	ana4c09
+	{
+		Name = "Cy44 - Degree 4";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	ana4c10
+	{
+		Name = "Lens Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -2.0 to 2.0;
+	}
+	ana4c11
+	{
+		Name = "Squeeze-X";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.9 to 1.1;
+	}
+	ana4c12
+	{
+		Name = "Squeeze-Y";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.9 to 1.1;
+	}
+	focal3DEq
+	{
+		Name = "Focal Length  (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 120;
+	}
+	focusDistance3DEq
+	{
+		Name = "Focus Distance (cm)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	pfC3
+	{
+		Name = "Low Order";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	pfC5
+	{
+		Name = "High Order";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  -0.5 to 0.5;
+	}
+	pfSqueeze
+	{
+		Name = "Anamorphic Squeeze";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0.0001 to 2;
+	}
+	pfXp
+	{
+		Name = "X (ratio)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0 to 1;
+	}
+	pfYp
+	{
+		Name = "Y (ratio)";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange =  0 to 1;
+	}
+	pfbFile
+	{
+		Name = "PFBarrel File";
+		Description = "PFBarrel File";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "dscontrol"
+		{
+		Class = "edit";
+		Caption = ";file=1;openfile=1;initialdir=D:\\madesjardins\\PROJECTS_PFTRACK;filefilter=PFBarrel Files (*.pfb)|*.pfb|All Files (*.*)|*.*";
+		}
+	}
+}
+
+Layout "Default"
+{
+	Tab "Distortion"
+	{
+		Group "Distortion Model"
+		{
+			distortionModel;
+			Row
+			{
+				pfbFile;
+			}
+			Button btnReset, aligncenter = "Reload", 120;
+		}
+		Group "Distortion Coefficients"
+		{
+			k1;
+			k2;
+			anamorphicSqueeze;
+			asymmetricDistortionX;
+			asymmetricDistortionY;
+			c3dc00; 
+			c3dc01; 
+			c3dc02; 
+			c3dc03; 
+			c3dc04; 
+			ana6c00; 
+			ana6c01; 
+			ana6c02; 
+			ana6c03; 
+			ana6c04; 
+			ana6c05; 
+			ana6c06; 
+			ana6c07; 
+			ana6c08; 
+			ana6c09; 
+			ana6c10; 
+			ana6c11; 
+			ana6c12; 
+			ana6c13; 
+			ana6c14; 
+			ana6c15; 
+			ana6c16; 
+			ana6c17;
+			fish8c00; 
+			fish8c01; 
+			fish8c02; 
+			fish8c03;  
+			stand4c00; 
+			stand4c01; 
+			stand4c02; 
+			stand4c03; 
+			stand4c04; 
+			stand4c05;
+			raddec4c00; 
+			raddec4c01; 
+			raddec4c02; 
+			raddec4c03; 
+			raddec4c04; 
+			raddec4c05;	
+			raddec4c06; 
+			raddec4c07;
+			ana4c00; 
+			ana4c01; 
+			ana4c02; 
+			ana4c03; 
+			ana4c04; 
+			ana4c05; 
+			ana4c06; 
+			ana4c07; 
+			ana4c08; 
+			ana4c09; 
+			ana4c10; 
+			ana4c11; 
+			ana4c12;
+			pfC3;
+			pfC5;
+			pfSqueeze;
+		}
+
+		Group "Camera Info"
+		{
+			Row 
+				{
+					Button linkToCamera, aligncenter = "Link To Camera", 120;
+					Button unlinkToCamera, aligncenter = "Unlink", 120;
+				}		
+			Group "Film Aperture"
+			{
+				filmbackX3DEq;
+				filmbackY3DEq;
+				pixelRatio3DEq;
+			}
+			Group "Center Offset"
+			{
+				centerX;
+				centerY;
+				centerX3DEq;
+				centerY3DEq;
+			}
+			Group "Lens Center"
+			{
+				pfXp;
+				pfYp;
+			}
+			Group "Focal"
+			{
+				focal3DEq;
+				focusDistance3DEq;
+			}
+		}
+	}
+	Tab "Depth of Field"
+	{
+		Group "Depth of Field"
+		{
+			useDof;
+			Group "Focus Distance"
+			{
+				Button linkObjectToDistance, aligncenter = "Link focus distance with...",180;
+				focusDistance;
+				focusPlaneIsPlane;
+			}
+			Group "Aperture"
+			{
+				apertureSize;
+				apertureAspectRatio;
+				usePolygonalAperture;
+				apertureBlades;
+				apertureBladeCurvature;
+				apertureRotation;
+			}
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+
+}
+
+Language = "Python";
+Logic
+{	
+from win32com.client import constants as c
+
+def btnReset_OnClicked():
+	if PPG.distortionModel.Value == 7 :
+	
+		Application.RemoveAnimation( str(PPG.pfC3.Parent) + ".pfC3")
+		Application.RemoveAnimation( str(PPG.pfC5.Parent) + ".pfC5")
+		Application.RemoveAnimation( str(PPG.pfSqueeze.Parent) + ".pfSqueeze")
+		Application.RemoveAnimation( str(PPG.pfXp.Parent) + ".pfXp")
+		Application.RemoveAnimation( str(PPG.pfYp.Parent) + ".pfYp")
+		
+		PPG.pfC3.Value = PPG.pfC3.Default
+		PPG.pfC5.Value = PPG.pfC5.Default
+		PPG.pfSqueeze.Value = PPG.pfSqueeze.Default
+		PPG.pfXp.Value = PPG.pfXp.Default
+		PPG.pfYp.Value = PPG.pfYp.Default
+		pfbFile_OnChanged()
+		
+	elif PPG.distortionModel.Value == 0 :
+	
+		Application.RemoveAnimation( str(PPG.k1.Parent) + ".k1")
+		Application.RemoveAnimation( str(PPG.anamorphicSqueeze.Parent) + ".anamorphicSqueeze")
+		Application.RemoveAnimation( str(PPG.k2.Parent) + ".k2")
+		Application.RemoveAnimation( str(PPG.asymmetricDistortionX.Parent) + ".asymmetricDistortionX")
+		Application.RemoveAnimation( str(PPG.asymmetricDistortionY.Parent) + ".asymmetricDistortionY")
+		Application.RemoveAnimation( str(PPG.centerX.Parent) + ".centerX")
+		Application.RemoveAnimation( str(PPG.centerY.Parent) + ".centerY")
+		
+		PPG.k1.Value = PPG.k1.Default
+		PPG.anamorphicSqueeze.Value = PPG.anamorphicSqueeze.Default
+		PPG.k2.Value = PPG.k2.Default
+		PPG.asymmetricDistortionX.Value = PPG.asymmetricDistortionX.Default
+		PPG.asymmetricDistortionY.Value = PPG.asymmetricDistortionY.Default
+		PPG.centerX.Value = PPG.centerX.Default
+		PPG.centerY.Value = PPG.centerY.Default
+	elif PPG.distortionModel.Value == 0 :
+		pass
+	else:
+	
+		Application.RemoveAnimation( str(PPG.centerX3DEq.Parent) + ".centerX3DEq")
+		Application.RemoveAnimation( str(PPG.centerY3DEq.Parent) + ".centerY3DEq")
+		Application.RemoveAnimation( str(PPG.filmbackX3DEq.Parent) + ".filmbackX3DEq")
+		Application.RemoveAnimation( str(PPG.filmbackY3DEq.Parent) + ".filmbackY3DEq")
+		Application.RemoveAnimation( str(PPG.focal3DEq.Parent) + ".focal3DEq")
+		Application.RemoveAnimation( str(PPG.pixelRatio3DEq.Parent)  + ".pixelRatio3DEq")
+		Application.RemoveAnimation( str(PPG.focusDistance3DEq.Parent) + ".focusDistance3DEq")
+
+		PPG.centerX3DEq.Value = PPG.centerX3DEq.Default
+		PPG.centerY3DEq.Value = PPG.centerY3DEq.Default
+		PPG.filmbackX3DEq.Value = PPG.filmbackX3DEq.Default
+		PPG.filmbackY3DEq.Value = PPG.filmbackY3DEq.Default
+		PPG.pixelRatio3DEq.Value = PPG.pixelRatio3DEq.Default
+		PPG.focal3DEq.Value = PPG.focal3DEq.Default
+		PPG.focusDistance3DEq.Value = PPG.focusDistance3DEq.Default
+
+		if PPG.distortionModel.Value == 1 :
+		
+			Application.RemoveAnimation( str(PPG.c3dc00.Parent) + ".c3dc00")
+			Application.RemoveAnimation( str(PPG.c3dc01.Parent) + ".c3dc01")
+			Application.RemoveAnimation( str(PPG.c3dc02.Parent) + ".c3dc02")
+			Application.RemoveAnimation( str(PPG.c3dc03.Parent) + ".c3dc03")
+			Application.RemoveAnimation( str(PPG.c3dc04.Parent) + ".c3dc04")
+			
+			PPG.c3dc00.Value = PPG.c3dc00.Default
+			PPG.c3dc01.Value = PPG.c3dc01.Default
+			PPG.c3dc02.Value = PPG.c3dc02.Default
+			PPG.c3dc03.Value = PPG.c3dc03.Default
+			PPG.c3dc04.Value = PPG.c3dc04.Default
+			
+		elif PPG.distortionModel.Value == 2 :
+		
+			Application.RemoveAnimation( str(PPG.ana6c00.Parent) + ".ana6c00")
+			Application.RemoveAnimation( str(PPG.ana6c01.Parent) + ".ana6c01")
+			Application.RemoveAnimation( str(PPG.ana6c02.Parent) + ".ana6c02")
+			Application.RemoveAnimation( str(PPG.ana6c03.Parent) + ".ana6c03")
+			Application.RemoveAnimation( str(PPG.ana6c04.Parent) + ".ana6c04")
+			Application.RemoveAnimation( str(PPG.ana6c05.Parent) + ".ana6c05")
+			Application.RemoveAnimation( str(PPG.ana6c06.Parent) + ".ana6c06")
+			Application.RemoveAnimation( str(PPG.ana6c07.Parent) + ".ana6c07")
+			Application.RemoveAnimation( str(PPG.ana6c08.Parent) + ".ana6c08")
+			Application.RemoveAnimation( str(PPG.ana6c09.Parent) + ".ana6c09")
+			Application.RemoveAnimation( str(PPG.ana6c10.Parent) + ".ana6c10")
+			Application.RemoveAnimation( str(PPG.ana6c11.Parent) + ".ana6c11")
+			Application.RemoveAnimation( str(PPG.ana6c12.Parent) + ".ana6c12")
+			Application.RemoveAnimation( str(PPG.ana6c13.Parent) + ".ana6c13")
+			Application.RemoveAnimation( str(PPG.ana6c14.Parent) + ".ana6c14")
+			Application.RemoveAnimation( str(PPG.ana6c15.Parent) + ".ana6c15")
+			Application.RemoveAnimation( str(PPG.ana6c16.Parent) + ".ana6c16")
+			Application.RemoveAnimation( str(PPG.ana6c17.Parent) + ".ana6c17")
+			
+			PPG.ana6c00.Value = PPG.ana6c00.Default
+			PPG.ana6c01.Value = PPG.ana6c01.Default
+			PPG.ana6c02.Value = PPG.ana6c02.Default
+			PPG.ana6c03.Value = PPG.ana6c03.Default
+			PPG.ana6c04.Value = PPG.ana6c04.Default
+			PPG.ana6c05.Value = PPG.ana6c05.Default
+			PPG.ana6c06.Value = PPG.ana6c06.Default
+			PPG.ana6c07.Value = PPG.ana6c07.Default
+			PPG.ana6c08.Value = PPG.ana6c08.Default
+			PPG.ana6c09.Value = PPG.ana6c09.Default
+			PPG.ana6c10.Value = PPG.ana6c10.Default
+			PPG.ana6c11.Value = PPG.ana6c11.Default
+			PPG.ana6c12.Value = PPG.ana6c12.Default
+			PPG.ana6c13.Value = PPG.ana6c13.Default
+			PPG.ana6c14.Value = PPG.ana6c14.Default
+			PPG.ana6c15.Value = PPG.ana6c15.Default
+			PPG.ana6c16.Value = PPG.ana6c16.Default
+			PPG.ana6c17.Value = PPG.ana6c17.Default
+			
+		elif PPG.distortionModel.Value == 3 :
+		
+			Application.RemoveAnimation( str(PPG.fish8c00.Parent) + ".fish8c00")
+			Application.RemoveAnimation( str(PPG.fish8c01.Parent) + ".fish8c01")
+			Application.RemoveAnimation( str(PPG.fish8c02.Parent) + ".fish8c02")
+			Application.RemoveAnimation( str(PPG.fish8c03.Parent) + ".fish8c03")
+			
+			PPG.fish8c00.Value = PPG.fish8c00.Default
+			PPG.fish8c01.Value = PPG.fish8c01.Default
+			PPG.fish8c02.Value = PPG.fish8c02.Default
+			PPG.fish8c03.Value = PPG.fish8c03.Default
+			
+		elif PPG.distortionModel.Value == 4 :
+		
+			Application.RemoveAnimation( str(PPG.stand4c00.Parent) + ".stand4c00")
+			Application.RemoveAnimation( str(PPG.stand4c01.Parent) + ".stand4c01")
+			Application.RemoveAnimation( str(PPG.stand4c02.Parent) + ".stand4c02")
+			Application.RemoveAnimation( str(PPG.stand4c03.Parent) + ".stand4c03")
+			Application.RemoveAnimation( str(PPG.stand4c04.Parent) + ".stand4c04")
+			Application.RemoveAnimation( str(PPG.stand4c05.Parent) + ".stand4c05")
+		
+			PPG.stand4c00.Value = PPG.stand4c00.Default
+			PPG.stand4c01.Value = PPG.stand4c01.Default
+			PPG.stand4c02.Value = PPG.stand4c02.Default
+			PPG.stand4c03.Value = PPG.stand4c03.Default
+			PPG.stand4c04.Value = PPG.stand4c04.Default
+			PPG.stand4c05.Value = PPG.stand4c05.Default
+			
+		elif PPG.distortionModel.Value == 5 :
+			
+			Application.RemoveAnimation( str(PPG.raddec4c00.Parent) + ".raddec4c00")
+			Application.RemoveAnimation( str(PPG.raddec4c01.Parent) + ".raddec4c01")
+			Application.RemoveAnimation( str(PPG.raddec4c02.Parent) + ".raddec4c02")
+			Application.RemoveAnimation( str(PPG.raddec4c03.Parent) + ".raddec4c03")
+			Application.RemoveAnimation( str(PPG.raddec4c04.Parent) + ".raddec4c04")
+			Application.RemoveAnimation( str(PPG.raddec4c05.Parent) + ".raddec4c05")
+			Application.RemoveAnimation( str(PPG.raddec4c06.Parent) + ".raddec4c06")
+			Application.RemoveAnimation( str(PPG.raddec4c07.Parent) + ".raddec4c07")
+			
+			PPG.raddec4c00.Value = PPG.raddec4c00.Default
+			PPG.raddec4c01.Value = PPG.raddec4c01.Default
+			PPG.raddec4c02.Value = PPG.raddec4c02.Default
+			PPG.raddec4c03.Value = PPG.raddec4c03.Default
+			PPG.raddec4c04.Value = PPG.raddec4c04.Default
+			PPG.raddec4c05.Value = PPG.raddec4c05.Default
+			PPG.raddec4c06.Value = PPG.raddec4c06.Default
+			PPG.raddec4c07.Value = PPG.raddec4c07.Default
+			
+		else :
+			
+			Application.RemoveAnimation( str(PPG.ana4c00.Parent) + ".ana4c00")
+			Application.RemoveAnimation( str(PPG.ana4c01.Parent) + ".ana4c01")
+			Application.RemoveAnimation( str(PPG.ana4c02.Parent) + ".ana4c02")
+			Application.RemoveAnimation( str(PPG.ana4c03.Parent) + ".ana4c03")
+			Application.RemoveAnimation( str(PPG.ana4c04.Parent) + ".ana4c04")
+			Application.RemoveAnimation( str(PPG.ana4c05.Parent) + ".ana4c05")
+			Application.RemoveAnimation( str(PPG.ana4c06.Parent) + ".ana4c06")
+			Application.RemoveAnimation( str(PPG.ana4c07.Parent) + ".ana4c07")
+			Application.RemoveAnimation( str(PPG.ana4c08.Parent) + ".ana4c08")
+			Application.RemoveAnimation( str(PPG.ana4c09.Parent) + ".ana4c09")
+			Application.RemoveAnimation( str(PPG.ana4c10.Parent) + ".ana4c10")
+			Application.RemoveAnimation( str(PPG.ana4c11.Parent) + ".ana4c11")
+			Application.RemoveAnimation( str(PPG.ana4c12.Parent) + ".ana4c12")
+			
+			PPG.ana4c00.Value = PPG.ana4c00.Default
+			PPG.ana4c01.Value = PPG.ana4c01.Default
+			PPG.ana4c02.Value = PPG.ana4c02.Default
+			PPG.ana4c03.Value = PPG.ana4c03.Default
+			PPG.ana4c04.Value = PPG.ana4c04.Default
+			PPG.ana4c05.Value = PPG.ana4c05.Default
+			PPG.ana4c06.Value = PPG.ana4c06.Default
+			PPG.ana4c07.Value = PPG.ana4c07.Default
+			PPG.ana4c08.Value = PPG.ana4c08.Default
+			PPG.ana4c09.Value = PPG.ana4c09.Default
+			PPG.ana4c10.Value = PPG.ana4c10.Default
+			PPG.ana4c11.Value = PPG.ana4c11.Default
+			PPG.ana4c12.Value = PPG.ana4c12.Default
+
+def linkToCamera_OnClicked():
+	inspectedName = str(PPG.Inspected(0))
+	ppgname = str(PPG.Name)
+	width = inspectedName.replace(ppgname,"projplanewidth")
+	height = inspectedName.replace(ppgname,"projplaneheight")
+	ocx = inspectedName.replace(ppgname,"projplaneoffx")
+	ocy = inspectedName.replace(ppgname,"projplaneoffy")
+	Application.SetExpr(str(PPG.centerX3DEq.Parent) + ".centerX3DEq", ocx + "*2.54")
+	Application.SetExpr(str(PPG.centerY3DEq.Parent) + ".centerY3DEq", ocy + "*2.54")
+	Application.SetExpr(str(PPG.filmbackX3DEq.Parent) + ".filmbackX3DEq", width + "*2.54")
+	Application.SetExpr(str(PPG.filmbackY3DEq.Parent) + ".filmbackY3DEq", height + "*2.54")
+	Application.SetExpr(str(PPG.focal3DEq.Parent) + ".focal3DEq", inspectedName.replace(ppgname,"projplanedist")+ "/10.0")
+	Application.SetExpr(str(PPG.pixelRatio3DEq.Parent)  + ".pixelRatio3DEq", inspectedName.replace(ppgname,"pixelratio"))
+	Application.SetExpr(str(PPG.focusDistance3DEq.Parent) + ".focusDistance3DEq", inspectedName.replace(ppgname,"interestdist")+ "*10.0")
+	Application.SetExpr(str(PPG.pfXp.Parent) + ".pfXp", " 0.5 + " + ocx  + " /" + width)
+	Application.SetExpr(str(PPG.pfYp.Parent) + ".pfYp", " 0.5 + " + ocy  + " / " + height)
+	Application.SetExpr(str(PPG.centerX.Parent) + ".centerX", ocx  + " / " + width)
+	Application.SetExpr(str(PPG.centerY.Parent) + ".centerY", ocy  + " / " + height)
+
+def unlinkToCamera_OnClicked():
+	Application.RemoveAnimation( str(PPG.centerX3DEq.Parent) + ".centerX3DEq")
+	Application.RemoveAnimation( str(PPG.centerY3DEq.Parent) + ".centerY3DEq")
+	Application.RemoveAnimation( str(PPG.filmbackX3DEq.Parent) + ".filmbackX3DEq")
+	Application.RemoveAnimation( str(PPG.filmbackY3DEq.Parent) + ".filmbackY3DEq")
+	Application.RemoveAnimation( str(PPG.focal3DEq.Parent) + ".focal3DEq")
+	Application.RemoveAnimation( str(PPG.pixelRatio3DEq.Parent)  + ".pixelRatio3DEq")
+	Application.RemoveAnimation( str(PPG.focusDistance3DEq.Parent) + ".focusDistance3DEq")
+	Application.RemoveAnimation( str(PPG.pfXp.Parent) + ".pfXp")
+	Application.RemoveAnimation( str(PPG.pfYp.Parent) + ".pfYp")
+	Application.RemoveAnimation( str(PPG.centerX.Parent) + ".centerX")
+	Application.RemoveAnimation( str(PPG.centerY.Parent) + ".centerY")
+
+def distortionModel_OnChanged():
+	if PPG.distortionModel.Value == 7 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reload")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(False)
+		PPG.centerY3DEq.Show(False)
+		PPG.filmbackX3DEq.Show(False)
+		PPG.filmbackY3DEq.Show(False)
+		PPG.pixelRatio3DEq.Show(False)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(False)
+		PPG.focusDistance3DEq.Show(False)
+		PPG.pfC3.Show(True)
+		PPG.pfC5.Show(True)
+		PPG.pfSqueeze.Show(True)
+		PPG.pfXp.Show(True)
+		PPG.pfYp.Show(True)
+		PPG.pfbFile.Show(True)
+	elif PPG.distortionModel.Value == 0 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(True)
+		PPG.k2.Show(True)
+		PPG.anamorphicSqueeze.Show(True)
+		PPG.asymmetricDistortionX.Show(True)
+		PPG.asymmetricDistortionY.Show(True)
+		PPG.centerX.Show(True)
+		PPG.centerY.Show(True)
+		PPG.centerX3DEq.Show(False)
+		PPG.centerY3DEq.Show(False)
+		PPG.filmbackX3DEq.Show(False)
+		PPG.filmbackY3DEq.Show(False)
+		PPG.pixelRatio3DEq.Show(False)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(False)
+		PPG.focusDistance3DEq.Show(False)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 1 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(True)
+		PPG.c3dc01.Show(True)
+		PPG.c3dc02.Show(True)
+		PPG.c3dc03.Show(True)
+		PPG.c3dc04.Show(True)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 2 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(True)
+		PPG.ana6c01.Show(True)
+		PPG.ana6c02.Show(True)
+		PPG.ana6c03.Show(True)
+		PPG.ana6c04.Show(True)
+		PPG.ana6c05.Show(True)
+		PPG.ana6c06.Show(True)
+		PPG.ana6c07.Show(True)
+		PPG.ana6c08.Show(True)
+		PPG.ana6c09.Show(True)
+		PPG.ana6c10.Show(True)
+		PPG.ana6c11.Show(True)
+		PPG.ana6c12.Show(True)
+		PPG.ana6c13.Show(True)
+		PPG.ana6c14.Show(True)
+		PPG.ana6c15.Show(True)
+		PPG.ana6c16.Show(True)
+		PPG.ana6c17.Show(True)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 3 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(True)
+		PPG.fish8c01.Show(True)
+		PPG.fish8c02.Show(True)
+		PPG.fish8c03.Show(True)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 4 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(True)
+		PPG.stand4c01.Show(True)
+		PPG.stand4c02.Show(True)
+		PPG.stand4c03.Show(True)
+		PPG.stand4c04.Show(True)
+		PPG.stand4c05.Show(True)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 5 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(True)
+		PPG.raddec4c01.Show(True)
+		PPG.raddec4c02.Show(True)
+		PPG.raddec4c03.Show(True)
+		PPG.raddec4c04.Show(True)
+		PPG.raddec4c05.Show(True)
+		PPG.raddec4c06.Show(True)
+		PPG.raddec4c07.Show(True)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	elif PPG.distortionModel.Value == 6 :
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(True)
+		PPG.centerY3DEq.Show(True)
+		PPG.filmbackX3DEq.Show(True)
+		PPG.filmbackY3DEq.Show(True)
+		PPG.pixelRatio3DEq.Show(True)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(True)
+		PPG.ana4c01.Show(True)
+		PPG.ana4c02.Show(True)
+		PPG.ana4c03.Show(True)
+		PPG.ana4c04.Show(True)
+		PPG.ana4c05.Show(True)
+		PPG.ana4c06.Show(True)
+		PPG.ana4c07.Show(True)
+		PPG.ana4c08.Show(True)
+		PPG.ana4c09.Show(True)
+		PPG.ana4c10.Show(True)
+		PPG.ana4c11.Show(True)
+		PPG.ana4c12.Show(True)
+		PPG.focal3DEq.Show(True)
+		PPG.focusDistance3DEq.Show(True)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	else:
+		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
+		PPG.k1.Show(False)
+		PPG.k2.Show(False)
+		PPG.anamorphicSqueeze.Show(False)
+		PPG.asymmetricDistortionX.Show(False)
+		PPG.asymmetricDistortionY.Show(False)
+		PPG.centerX.Show(False)
+		PPG.centerY.Show(False)
+		PPG.centerX3DEq.Show(False)
+		PPG.centerY3DEq.Show(False)
+		PPG.filmbackX3DEq.Show(False)
+		PPG.filmbackY3DEq.Show(False)
+		PPG.pixelRatio3DEq.Show(False)
+		PPG.c3dc00.Show(False)
+		PPG.c3dc01.Show(False)
+		PPG.c3dc02.Show(False)
+		PPG.c3dc03.Show(False)
+		PPG.c3dc04.Show(False)
+		PPG.ana6c00.Show(False)
+		PPG.ana6c01.Show(False)
+		PPG.ana6c02.Show(False)
+		PPG.ana6c03.Show(False)
+		PPG.ana6c04.Show(False)
+		PPG.ana6c05.Show(False)
+		PPG.ana6c06.Show(False)
+		PPG.ana6c07.Show(False)
+		PPG.ana6c08.Show(False)
+		PPG.ana6c09.Show(False)
+		PPG.ana6c10.Show(False)
+		PPG.ana6c11.Show(False)
+		PPG.ana6c12.Show(False)
+		PPG.ana6c13.Show(False)
+		PPG.ana6c14.Show(False)
+		PPG.ana6c15.Show(False)
+		PPG.ana6c16.Show(False)
+		PPG.ana6c17.Show(False)
+		PPG.fish8c00.Show(False)
+		PPG.fish8c01.Show(False)
+		PPG.fish8c02.Show(False)
+		PPG.fish8c03.Show(False)
+		PPG.stand4c00.Show(False)
+		PPG.stand4c01.Show(False)
+		PPG.stand4c02.Show(False)
+		PPG.stand4c03.Show(False)
+		PPG.stand4c04.Show(False)
+		PPG.stand4c05.Show(False)
+		PPG.raddec4c00.Show(False)
+		PPG.raddec4c01.Show(False)
+		PPG.raddec4c02.Show(False)
+		PPG.raddec4c03.Show(False)
+		PPG.raddec4c04.Show(False)
+		PPG.raddec4c05.Show(False)
+		PPG.raddec4c06.Show(False)
+		PPG.raddec4c07.Show(False)
+		PPG.ana4c00.Show(False)
+		PPG.ana4c01.Show(False)
+		PPG.ana4c02.Show(False)
+		PPG.ana4c03.Show(False)
+		PPG.ana4c04.Show(False)
+		PPG.ana4c05.Show(False)
+		PPG.ana4c06.Show(False)
+		PPG.ana4c07.Show(False)
+		PPG.ana4c08.Show(False)
+		PPG.ana4c09.Show(False)
+		PPG.ana4c10.Show(False)
+		PPG.ana4c11.Show(False)
+		PPG.ana4c12.Show(False)
+		PPG.focal3DEq.Show(False)
+		PPG.focusDistance3DEq.Show(False)
+		PPG.pfC3.Show(False)
+		PPG.pfC5.Show(False)
+		PPG.pfSqueeze.Show(False)
+		PPG.pfXp.Show(False)
+		PPG.pfYp.Show(False)
+		PPG.pfbFile.Show(False)
+	PPG.Refresh()
+
+def resetPFBarrel():
+	Application.RemoveAnimation( str(PPG.pfC3.Parent) + ".pfC3")
+	Application.RemoveAnimation( str(PPG.pfC5.Parent) + ".pfC5")
+	Application.RemoveAnimation( str(PPG.pfSqueeze.Parent) + ".pfSqueeze")
+	Application.RemoveAnimation( str(PPG.pfXp.Parent) + ".pfXp")
+	Application.RemoveAnimation( str(PPG.pfYp.Parent) + ".pfYp")
+	PPG.pfC3.Value = 0.0
+	PPG.pfC5.Value = 0.0
+	PPG.pfSqueeze.Value = 1.0
+	PPG.pfXp.Value = 0.5
+	PPG.pfYp.Value = 0.5
+	
+	
+def pfbFile_OnChanged():
+	# reset
+	Application.RemoveAnimation( str(PPG.pfC3.Parent) + ".pfC3")
+	Application.RemoveAnimation( str(PPG.pfC5.Parent) + ".pfC5")
+	Application.RemoveAnimation( str(PPG.pfSqueeze.Parent) + ".pfSqueeze")
+	Application.RemoveAnimation( str(PPG.pfXp.Parent) + ".pfXp")
+	Application.RemoveAnimation( str(PPG.pfYp.Parent) + ".pfYp")
+	PPG.pfC3.Value = PPG.pfC3.Default
+	PPG.pfC5.Value = PPG.pfC5.Default
+	PPG.pfSqueeze.Value = PPG.pfSqueeze.Default
+	PPG.pfXp.Value = PPG.pfXp.Default
+	PPG.pfYp.Value = PPG.pfYp.Default
+	
+	#if nothing, reset, else reload
+	if PPG.pfbFile.Value == "" :
+		return
+	Application.LogMessage("Parsing PFBarrel file : " + PPG.pfbFile.Value)
+	version_= -1
+	error_= ""
+	orig_w_= -1
+	orig_h_= -1
+	undist_w_= -1.0
+	undist_h_= -1.0
+	model_= -1
+	squeeze_= -1
+	nkeys_= 0
+	orig_pa_ = 1.0
+	version_offset = -1
+	with open(PPG.pfbFile.Value,'r') as f:
+		lines = f.readlines()
+		if len(lines) < 15:
+			f.close()
+			Application.LogMessage("Invalid PFBarrel File !!",c.siError)
+		else :
+			if lines[0] == "#PFBarrel 2011 v1\n":
+				version_ = 1
+			elif lines[0] == "#PFBarrel 2011 v2\n":
+				version_ = 2
+			else :
+				f.close()
+				Application.LogMessage("Invalid PFBarrel File : Bad header.",c.siError)
+			#Application.LogMessage("Version : " + str(version_))
+			orig_w_ = int(lines[3])
+			orig_h_ = int(lines[4])
+			#Application.LogMessage("Original Resolution : (" + str(orig_w_) + ", " + str(orig_h_)+")")
+			if version_ == 2:
+				orig_pa_ = float(lines[5])
+				version_offset = 0
+			#Application.LogMessage("Original Pixel Aspect Ratio : " + str(orig_pa_))
+			undist_w_ = int(lines[6+version_offset])
+			undist_h_ = int(lines[7+version_offset])
+			#Application.LogMessage("Undistorted Resolution : (" + str(undist_w_) + ", " + str(undist_h_)+")")
+			if lines[8+version_offset] == "Low Order\n":
+				model_ = 0
+				#Application.LogMessage("Model : Low Order")
+			elif lines[8+version_offset] == "High Order\n":
+				model_ = 1
+				#Application.LogMessage("Model : High Order")
+			else:
+				f.close()
+				Application.LogMessage("Invalid PFBarrel File : Bad model.",c.siError)
+			
+			squeeze_ = float(lines[9+version_offset])
+			#Application.LogMessage("Anamorphic Squeeze : " + str(squeeze_))
+			nkeys_ = int(lines[10+version_offset])
+			#Application.LogMessage("Number of Keys : " + str(nkeys_))
+			keyframes_index_start = 11+version_offset
+			if nkeys_ == 1:
+				c3_ = float(lines[keyframes_index_start+1])
+				c5_ = 0.0
+				if model_ == 1 :
+					c5_ = float(lines[keyframes_index_start+2])
+				xp_ = float(lines[keyframes_index_start+3])
+				yp_ = float(lines[keyframes_index_start+4])					
+				#Application.LogMessage("C3 = " + str(c3_) + ", C5 = " + str(c5_) +", Lens Center = (" + str(xp_) + ", " + str(yp_) + ")");
+				PPG.pfC3.Value = c3_
+				PPG.pfC5.Value = c5_
+				PPG.pfSqueeze.Value = squeeze_
+				PPG.pfXp.Value = xp_
+				PPG.pfYp.Value = yp_
+			else:
+				Application.LogMessage("Keyframed PFBarrel File")
+				for i in range(nkeys_):
+					frame_ = int(lines[keyframes_index_start + 5*i])
+					c3_ = float(lines[keyframes_index_start + 5*i + 1])
+					c5_ = 0.0
+					if model_ == 1 :
+						c5_ = float(lines[keyframes_index_start + 5*i + 2])
+					xp_ = float(lines[keyframes_index_start + 5*i + 3])
+					yp_ = float(lines[keyframes_index_start + 5*i + 4])					
+					Application.SaveKey(str(PPG.pfC3.Parent) + ".pfC3", frame_, c3_, "", "", "", "")
+					Application.SaveKey(str(PPG.pfC5.Parent) + ".pfC5", frame_, c5_, "", "", "", "")
+					Application.SaveKey(str(PPG.pfXp.Parent) + ".pfXp", frame_, xp_, "", "", "", "")
+					Application.SaveKey(str(PPG.pfYp.Parent) + ".pfYp", frame_, yp_, "", "", "", "")
+		f.close()
+
+
+
+def linkObjectToDistance_OnClicked():
+	Application.DeselectAll()
+	oPicked = Application.PickElement( c.siObjectFilter , 'Pick Primitive', 'Pick Primitive' )
+	oLinkedPrim = oPicked(2)
+	if oLinkedPrim != None:
+		Application.SetExpr(PPG.focusDistance, "ctr_dist( " + PPG.focusDistance.Parent.Parent.Parent.FullName + ". , " + oLinkedPrim.FullName + ". )")
+
+def usePolygonalAperture_OnChanged():
+	useDof_OnChanged()
+
+def useDof_OnChanged():
+	if PPG.useDof.Value == True:
+		PPG.focusDistance.ReadOnly = False
+		PPG.focusPlaneIsPlane.ReadOnly = False
+		PPG.apertureSize.ReadOnly = False
+		PPG.apertureAspectRatio.ReadOnly = False
+		PPG.usePolygonalAperture.ReadOnly = False
+		if PPG.usePolygonalAperture.Value == True :
+			PPG.apertureBlades.ReadOnly = False
+			PPG.apertureBladeCurvature.ReadOnly = False
+			PPG.apertureRotation.ReadOnly = False
+		else :
+			PPG.apertureBlades.ReadOnly = True
+			PPG.apertureBladeCurvature.ReadOnly = True
+			PPG.apertureRotation.ReadOnly = True
+	else:
+		PPG.focusDistance.ReadOnly = True
+		PPG.focusPlaneIsPlane.ReadOnly = True
+		PPG.apertureSize.ReadOnly = True
+		PPG.apertureAspectRatio.ReadOnly = True
+		PPG.usePolygonalAperture.ReadOnly = True
+		PPG.apertureBlades.ReadOnly = True
+		PPG.apertureBladeCurvature.ReadOnly = True
+		PPG.apertureRotation.ReadOnly = True
+
+def OnInit():
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html")
+	distortionModel_OnChanged()
+	useDof_OnChanged()
+	PPG.Refresh()
+}

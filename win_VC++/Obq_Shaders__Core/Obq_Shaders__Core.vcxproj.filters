@@ -123,6 +123,18 @@
     <ClCompile Include="..\..\src\Obq_Color.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_CameraProjectionSpace.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_RayDepth.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_RandomID.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Obq_Atmosphere.h">
@@ -260,9 +272,6 @@
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_deg_8.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_UVRemapLensDistortion.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Obq_Toon.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
@@ -273,6 +282,9 @@
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_Color.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_LensDistortion.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>

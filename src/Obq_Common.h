@@ -532,6 +532,236 @@ inline float getLuminance(AtColor& rgb)
 }
 
 
+// minimax clamps b between a and c
+//
+// @param a		The lower bound
+// @param b		The value that will be clamped
+// @param c		The upper bound
+// @return		b clamped between a and c
+inline double Minimax(double a, double b, double c)
+{
+	if(b<a) 
+		return a; 
+	else if(b>c) 
+		return c;
+	else
+		return b;
+}
+
+inline double mmax(double a, double b, double c)
+{
+	if(a>b)
+	{
+		if(a>c)
+			return a;
+		else
+			return c;
+	}
+	else if(b>c)
+		return b;
+	else
+		return c;
+}
+
+inline double mmin(double a, double b, double c)
+{
+	if(a<b)
+	{
+		if(a<c)
+			return a;
+		else
+			return c;
+	}
+	else if(b<c)
+		return b;
+	else
+		return c;
+}
+
+
+// degamma
+inline void degamma(double* color)
+{
+	color[0] = std::pow(color[0],2.2);
+	color[1] = std::pow(color[1],2.2);
+	color[2] = std::pow(color[2],2.2);
+}
+
+inline void sRGB2Linear(double* color)
+{
+	for(int i=0; i<3; i++)
+	{
+		double a = Minimax(0.0,color[i],1.0);
+		if(a <= 0.03928)
+			color[i] = a/12.92;
+		else
+			color[i] = std::exp(2.4 * std::log((a + 0.055) / 1.055));
+	}
+}
+
+inline void linear2sRGB(double* color)
+{
+	for(int i=0; i<3; i++)
+	{
+		double a = Minimax(0.0,color[i],1.0);
+		if(a <= 0.00304)
+			color[i] = a*12.92;
+		else
+			color[i] = 1.055*std::exp((1.0/2.4) * std::log(a))-0.055;
+	}
+}
+
+// Gabriel Fleseriu
+template <class T>
+inline bool from_string(T& t, const std::string& s, std::ios_base& (*f)(std::ios_base&))
+{
+	std::istringstream iss(s);
+	return !(iss >> f >> t).fail();
+}
+
+// maps from [-1,1] to [0,1]
+inline float myMAP01F(float a)
+{
+	return (a + 1.0f) * 0.5f;
+} 
+
+// maps from [0,1] to [-1,1]
+inline float myMAPm11F(float a)
+{
+	return 2.0f*a - 1.0f;
+}
+
+// maps from [-1,1] to [0,1]
+inline double myMAP01D(double a)
+{
+	return (a + 1.0) * 0.5;
+} 
+
+// maps from [0,1] to [-1,1]
+inline double myMAPm11D(double a)
+{
+	return 2.0*a - 1.0;
+}
+
+
+// pbrt source code Copyright(c) 1998-2010 Matt Pharr and Greg Humphreys. This section is a modified part of pbrt.
+//
+inline void ConcentricSampleDisk(float u1, float u2, int nBlades, float bladeCurvature, float rotation, float *dx, float *dy) {
+	float r, theta;
+
+	// Map uniform random numbers to $[-1,1]^2$
+	float sx = 2.0f * u1 - 1.0f;
+	float sy = 2.0f * u2 - 1.0f;
+
+	// Map square to $(r,\theta)$
+
+	// Handle degeneracy at the origin
+	if (sx == 0.0f && sy == 0.0f) 
+	{
+		*dx=0.0f;
+		*dy = 0.0f;
+	}
+	if (sx >= -sy) {
+		if (sx > sy) {
+			// Handle first region of disk
+			r = sx;
+			if (sy > 0.0f) theta = sy/r;
+			else          theta = 8.0f + sy/r;
+		}
+		else {
+			// Handle second region of disk
+			r = sy;
+			theta = 2.0f - sx/r;
+		}
+	}
+	else {
+		if (sx <= sy) {
+			// Handle third region of disk
+			r = -sx;
+			theta = 4.0f - sy/r;
+		}
+		else {
+			// Handle fourth region of disk
+			r = -sy;
+			theta = 6.0f + sx/r;
+		}
+	}
+	theta *= c_Pi / 4.0f;
+
+	//----
+	// polygonal blade if needed
+	if(nBlades > 0 && bladeCurvature != 1.0f)
+	{
+		// what are floor and ceil of the phi
+		rotation = static_cast<float>(c_Radians*rotation);
+		float angleArc = c_2Pi / nBlades;
+		float t = static_cast<float>((theta - rotation)/angleArc);
+		float tf = std::floor(t);
+		float tc = std::ceil(t);
+		
+		// t entre 0 et 1
+		t-=tf;
+		
+		// what are those 2 closest points
+		float pf[2] = {	static_cast<float>(r*std::cos(angleArc*tf+rotation)), 
+						static_cast<float>(r*std::sin(angleArc*tf+rotation))};
+
+		float pc[2] = {	static_cast<float>(r*std::cos(angleArc*tc+rotation)), 
+						static_cast<float>(r*std::sin(angleArc*tc+rotation))};
+
+		// where are we on that line at 0
+		float p0[2] = {	pc[0]*t + pf[0]*(1.0f-t) , 
+						pc[1]*t + pf[1]*(1.0f-t)};
+
+		// positive blade curvature
+		if(bladeCurvature == 0.0f)
+		{
+			*dx = p0[0];
+			*dy = p0[1];
+		}
+		else if(bladeCurvature > 0.0f )
+		{
+			*dx = bladeCurvature*(r * std::cos( theta )) + (1.0f-bladeCurvature)*p0[0];
+			*dy = bladeCurvature*(r * std::sin( theta )) + (1.0f-bladeCurvature)*p0[1];
+		}
+		else
+		{
+			// Positive
+			bladeCurvature = -bladeCurvature;
+
+			// at 0 we are at p0, at -1 we are here
+			float pm1[2] = {0.0f,0.0f};
+
+			if(t < 0.5f)	// on the floor line
+			{
+				pm1[0] = (2.0f*(0.5f-t))*pf[0];
+				pm1[1] = (2.0f*(0.5f-t))*pf[1];
+			}
+			else if(t > 0.5) // on the ceil line
+			{
+				pm1[0] = (2.0f*(t-0.5f))*pc[0];
+				pm1[1] = (2.0f*(t-0.5f))*pc[1];
+			}
+
+			*dx = pm1[0]*bladeCurvature+(1.0f-bladeCurvature)*p0[0];
+			*dy = pm1[1]*bladeCurvature+(1.0f-bladeCurvature)*p0[1];
+		}
+	}
+	else
+	{
+		//*dx = static_cast<float>(r * std::cos( phi ));
+		//*dy = static_cast<float>(r * std::sin( phi ));
+		//*dx = r * std::cos(theta);
+		//*dy = r * std::sin(theta);
+		*dx = r * std::cos(theta);
+		*dy = r * std::sin(theta);
+	}
+
+	//----
+	//*dx = r * std::cos(theta);
+	//*dy = r * std::sin(theta);
+}
+
 /////////////////////////////////////////////////////////
 // OBQ CLASSES
 /////////////////////////////////////////////////////////

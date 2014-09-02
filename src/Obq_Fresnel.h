@@ -34,7 +34,6 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #define MIN_LAMBDA 360.f
 #define MAX_LAMBDA 830.f
-#define LUT_RES 513
 
 // Arnold stuff
 //
@@ -42,7 +41,7 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqFresnelSimpleMethods);
 
 // enum for parameters
 //
-enum ObqFresnelSimpleParams { p_mode, p_iorFilename,p_lambdaUnits, p_iorRGB, p_kRGB, p_method, p_iorInRGB, p_ratioFsFp, p_transmittance, p_backfaceMode, p_degamma };
+enum ObqFresnelSimpleParams { p_mode, p_iorFilename,p_lambdaUnits, p_iorRGB, p_kRGB, p_method, p_iorInRGB, p_ratioFsFp, p_transmittance, p_backfaceMode, p_degamma, p_useLUT, p_LUTSampleSize, p_useFullSpectrum};
 
 // enum for fresnel equations
 //
@@ -71,64 +70,21 @@ typedef struct
 	int method;
 	float eta[3];
 	float k[3];
+	bool useLUT;
+	int LUTRes;
+	float LUTSampleSize;
 	AtColor* LUT;
+	bool useLUTInterpolation;
+	bool useFullSpectrum;
+	int lambdasSize;
+	float* lambdas;
+	float* etas;
+	float* ks;
+	bool degamma;
 }
 ShaderData;
 
 
-// minimax clamps b between a and c
-//
-// @param a		The lower bound
-// @param b		The value that will be clamped
-// @param c		The upper bound
-// @return		b clamped between a and c
-inline double Minimax(double a, double b, double c)
-{
-	if(b<a) 
-		return a; 
-	else if(b>c) 
-		return c;
-	else
-		return b;
-}
-
-// Gabriel Fleseriu
-template <class T>
-inline bool from_string(T& t, const std::string& s, std::ios_base& (*f)(std::ios_base&))
-{
-	std::istringstream iss(s);
-	return !(iss >> f >> t).fail();
-}
-
-inline double mmax(double a, double b, double c)
-{
-	if(a>b)
-	{
-		if(a>c)
-			return a;
-		else
-			return c;
-	}
-	else if(b>c)
-		return b;
-	else
-		return c;
-}
-
-inline double mmin(double a, double b, double c)
-{
-	if(a<b)
-	{
-		if(a<c)
-			return a;
-		else
-			return c;
-	}
-	else if(b<c)
-		return b;
-	else
-		return c;
-}
 
 // Check if file exists
 //

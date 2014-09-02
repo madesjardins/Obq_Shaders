@@ -1,0 +1,118 @@
+# SPDL Obq_CameraProjectionSpace, a trimmed version of the original SItoA's CameraProjection shader
+SPDL
+Version = "2.0.0.0";
+Reference = "{4E90D8F6-9947-43A6-9E7F-954F3D09552B}";
+PropertySet "Obq_CameraProjectionSpace_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{03C46DD6-B6DB-41A3-848C-B4F421D655EA}";
+		Type = vector;
+		flags = 1;
+	}
+	Parameter "use_render_camera" input
+	{
+		GUID = "{8426A7C7-266D-4F79-BA55-1AC28DCD507C}";
+		Type = boolean;
+		Value = On;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "projection_camera" input
+	{
+		GUID = "{AA9FD51B-01A0-4D0B-8038-9F5311C4171E}";
+		Type = string;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "camera_aspect_ratio" input
+	{
+		GUID = "{AC1C3335-B5D6-4438-A2ED-2496D1D0C6C4}";
+		Type = scalar;
+		Value = 1.0;
+		Texturable = Off;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_CameraProjectionSpace_params_meta"
+{
+	Name = "Obq_CameraProjectionSpace";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_CameraProjectionSpace";
+	}	
+}
+
+Defaults
+{
+	use_render_camera
+	{
+		Name = "Use Render Camera";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	projection_camera
+	{
+		Name = "Camera";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+
+	}
+	camera_aspect_ratio
+	{
+		Name = "Camera Aspect Ratio";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+
+}
+
+Layout "Default"
+{
+	Group "Render Camera"
+	{
+		use_render_camera;
+	}
+	Group "Other Camera"
+	{
+		Row
+		{
+			Button PickCamera = "Pick Camera";
+			projection_camera, nolabel;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+
+}
+
+Language = "Python";
+Logic
+{
+from win32com.client import constants as c
+
+#def use_render_camera_OnChanged():
+#	if PPG.use_render_camera.Value == True:
+#		PPG.projection_camera.Show(False)
+#	else:
+#		PPG.projection_camera.Show(True)
+#	PPG.Refresh()
+
+def PickCamera_OnClicked():
+	rtn =  Application.PickObject("Select Camera", "Select Camera")
+	out = rtn.Value("PickedElement")
+	if not out.IsClassOf(c.siCameraID):
+		Application.LogMessage("Please pick a Camera", c.siWarning )
+	else:
+		PPG.projection_camera.Value = out.FullName
+		PPG.camera_aspect_ratio.Value = out.aspect.Value
+
+
+def OnInit():
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_CameraProjectionSpace.html")
+	PPG.projection_camera.ReadOnly = True
+#	use_render_camera_OnChanged()
+}

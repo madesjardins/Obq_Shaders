@@ -1,0 +1,30 @@
+﻿v206 - win,linux - 	SItoA 2.6.0 - Arnold 4.0.11.0 by Marc-Antoine Desjardins
+v207 - win,linux - 	SItoA 2.7.0 - Arnold 4.0.12.1 by Marc-Antoine Desjardins
+V208 - win,linux - 	SItoA 2.8.0 - Arnold 4.0.14.0 by Marc-Antoine Desjardins
+v209 - win,linux - 	SITOA 2.9.0 - Arnold 4.0.15.1 by Marc-Antoine Desjardins
+v210 - win,linux - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v300 - win,linux - 	SITOA 3.0.0 - Arnold 4.1.3.3  by Marc-Antoine Desjardins
+v301 - win,linux - 	SITOA 3.0.1 - Arnold 4.2.0.6  by Marc-Antoine Desjardins
+
+FIXES:
+	+ Obq_RandomColor : Added instances strip controls to handle SItoA instances naming convention.
+	
+ADDITIONS:
+	+ Obq_Fresnel : Full spectrum mode for better fidelity and precalculated LUT (7% speed improvement).
+	+ Obq_StereoLens : now with DOF control.
+	
+CHANGES:
+	
+NEW SHADERS:
+	+ Obq_RandomID : Outputs a random integer based on the name of the object (core of Obq_RandomColor).
+	+ Obq_LensDistortion : A lens shader that replaces the Obq_UVRemapLensDistortion workflow + arnold_uv_remap_persp_camera.
+	+ Obq_RayDepth : Outputs the raydepth of a certain ray type.
+	+ Obq_CameraProjectionSpace : Outputs the intersection point in camera raster space.
+	
+REMOVED SHADERS:
+
+COMING SOON :
+	+ New documentation system for all obq shaders
+	+ Obq_MeasuredMaterial : Importance sampling
+	+ Obq_Material : A physically based all purpose shader
+	

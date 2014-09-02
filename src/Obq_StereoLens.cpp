@@ -43,17 +43,20 @@ node_parameters
 	AiParameterFLT("filmbackX" , 0.0f);
 	AiParameterFLT("leftCenterOffset" , 0.0f);
 	AiParameterFLT("rightCenterOffset" , 0.0f);
-	AiParameterBOOL("dof" , false);
-	AiParameterBOOL("useRigDof",false);
-	AiParameterFLT("rigDepth",100.0f);
-	AiParameterBOOL("useCameraInterest",false);
-	AiParameterSTR("cameraInterest","Camera_Interest");
-	AiParameterFLT("interestX",0.0f);
-	AiParameterFLT("interestY",0.0f);
-	AiParameterFLT("interestZ",1.0f);
 	AiParameterBOOL("recalculateDistanceForSideCameras",true);
-	AiParameterBOOL("focalPlaneIsPlane",false);
 	AiParameterINT("totalOverscanPixels",0);
+	
+	AiParameterBOOL("useDof",false);
+	AiParameterFLT("focusDistance",100.0f);
+	AiParameterFLT("apertureSize",0.1f);
+	AiParameterFLT("apertureAspectRatio",1.0f);
+	AiParameterBOOL("usePolygonalAperture",true);
+	AiParameterINT("apertureBlades",5);
+	AiParameterFLT("apertureBladeCurvature",0.0f);
+	AiParameterFLT("apertureRotation",0.0f);
+	AiParameterBOOL("focusPlaneIsPlane",true);
+
+
 	AtArray* a = AiArray(2, 1, AI_TYPE_FLOAT, 0.0f,0.0f);
 	AiParameterARRAY("fov",a);
 	
@@ -73,7 +76,6 @@ node_initialize
 	data->leftCamera = NULL;
 	data->rightCamera = NULL;
 	data->centerCamera = NULL;
-	data->cameraInterest = NULL;
 	data->leftCenterOffset = 0.0f;
 	data->rightCenterOffset = 0.0f;
 	data->tan_myFov = 1.0f;
@@ -87,6 +89,10 @@ node_initialize
 	data->focalDistanceL = 100.0f;
 	data->focalDistanceR = 100.0f;
 	data->overscanRatio = 1.0f;
+	data->viewMode = THISCAMERA;
+	data->usePolygonalAperture = true;
+	data->focusDistance = 100.0f;
+	data->focusPlaneIsPlane = true;
 
 	// Set data
 	AiCameraInitialize(node, data);
@@ -141,6 +147,8 @@ node_update
 	data->rightCamera = AiNodeLookUpByName((std::string(params[p_rightCamera].STR).append(camNodeName.substr(sitoaIndex)).c_str()));
 	AiNodeGetMatrix(data->rightCamera,"matrix",rightCameraMatrix);
 
+	data->viewMode = params[p_viewMode].INT;
+
 	if(data->centerCamera==NULL)
 	{
 		AiMsgError("Error with center camera... this is not normal...");
@@ -189,29 +197,22 @@ node_update
 		data->rightCenterOffset = 2.0f*params[p_rightCenterOffset].FLT/params[p_filmbackX].FLT;
 
 		// DOF
-		data->useDof = params[p_dof].BOOL;
+		data->useDof = params[p_useDof].BOOL;
 		if(data->useDof)
 		{
-					// DOF related values
-			data->focalDistanceC = (params[p_useRigDof].BOOL?params[p_rigDepth].FLT:AiNodeGetFlt(data->leftCamera, "focus_distance"));
-			data->apertureSize = AiArrayGetFlt(AiNodeGetArray(data->leftCamera, "aperture_size"),0);
-			data->apertureAspectRatio = AiNodeGetFlt(data->leftCamera, "aperture_aspect_ratio");
-			data->apertureBlades = AiNodeGetInt(data->leftCamera, "aperture_blades");
-			data->apertureBladeCurvature = AiNodeGetFlt(data->leftCamera, "aperture_blade_curvature");
-			data->apertureRotation = AiNodeGetFlt(data->leftCamera, "aperture_rotation");
+			// DOF related values
+			data->focalDistanceC = params[p_focusDistance].FLT;
+			data->apertureSize = params[p_apertureSize].FLT;
+			data->apertureAspectRatio = params[p_apertureAspectRatio].FLT;
+			data->usePolygonalAperture = params[p_usePolygonalAperture].BOOL;
+			data->apertureBlades = params[p_apertureBlades].INT;
+			data->apertureBladeCurvature = params[p_apertureBladeCurvature].FLT;
+			data->apertureRotation = params[p_apertureRotation].FLT;
 
 			if(data->apertureAspectRatio<=0.0f)
 				data->apertureAspectRatio = 0.001f;
 
-			// with interest
-			if(params[p_useCameraInterest].BOOL && !params[p_useRigDof].BOOL){
-
-				// distance between interest and center camera
-				float cidx = centerCameraMatrix[3][0] - params[p_interestX].FLT;
-				float cidy = centerCameraMatrix[3][1] - params[p_interestY].FLT;
-				float cidz = centerCameraMatrix[3][2] - params[p_interestZ].FLT;
-				data->focalDistanceC = std::sqrt(cidx*cidx + cidy*cidy + cidz*cidz);
-			}
+			data->focusPlaneIsPlane = params[p_focusPlaneIsPlane].BOOL;
 
 			// Focal Plane
 			if(params[p_recalculateDistanceForSideCameras].BOOL)
@@ -244,6 +245,7 @@ node_update
 			AiMsgInfo("CameraParams : focal distance from right  = %f",data->focalDistanceR);
 			AiMsgInfo("CameraParams : aperture size = %f", data->apertureSize);
 			AiMsgInfo("CameraParams : aperture ratio = %f", data->apertureAspectRatio);
+			AiMsgInfo("CameraParams : use polygonal aperture = %s", (data->usePolygonalAperture?"True":"False"));
 			AiMsgInfo("CameraParams : aperture blades = %i", data->apertureBlades);
 			AiMsgInfo("CameraParams : aperture blade curvature = %f", data->apertureBladeCurvature);
 			AiMsgInfo("CameraParams : aperture blade rotation = %f", data->apertureRotation);
@@ -262,9 +264,6 @@ node_finish
 
 camera_create_ray 
 {
-	// User params
-	const AtParamValue* params = AiNodeGetParams(node);
-
 	// AspectRatio
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
 	float aspect = data->aspect;
@@ -274,7 +273,7 @@ camera_create_ray
 	float dsy = input->dsy*data->tan_myFov;
 
 	// ViewMode
-	switch(params[p_viewMode].INT)
+	switch(data->viewMode)
 	{
 	case THISCAMERA:
 		{
@@ -283,13 +282,13 @@ camera_create_ray
 			output->dir = AiV3Normalize(p - output->origin);
 
 			//DOF
-			if(params[p_dof].BOOL && data->apertureSize >0.0f){
+			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
 				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
-				float ft = ((params[p_focalPlaneIsPlane].BOOL)?std::abs(data->focalDistanceC/output->dir.z):data->focalDistanceC);
+				float ft = (data->focusPlaneIsPlane?std::abs(data->focalDistanceC/output->dir.z):data->focalDistanceC);
 				AtPoint Pfocus = output->dir*ft;
 
 				// Focal Aspect Ratio
@@ -310,14 +309,14 @@ camera_create_ray
 			AtVector dir = AiV3Normalize(p - output->origin);
 			bool outputDone = false;
 
-			if(params[p_dof].BOOL && data->apertureSize >0.0f){
+			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
 				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
 
-				float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
+				float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
 				AtPoint Pfocus = dir*ft;
 
 				// Focal Aspect Ratio
@@ -351,13 +350,13 @@ camera_create_ray
 			bool outputDone = false;
 
 			// DOF
-			if(params[p_dof].BOOL && data->apertureSize >0.0f){
+			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
 				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
-				float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
+				float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
 				AtPoint Pfocus = dir*ft;
 
 				// Focal Aspect Ratio
@@ -393,13 +392,13 @@ camera_create_ray
 				bool outputDone = false;
 
 				// DOF
-				if(params[p_dof].BOOL && data->apertureSize >0.0f){
+				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
 					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
-					float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
+					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
 					AtPoint Pfocus = dir*ft;
 					// Focal Aspect Ratio
 					lensV*=data->apertureAspectRatio;
@@ -433,13 +432,13 @@ camera_create_ray
 				bool outputDone = false;
 
 				// DOF
-				if(params[p_dof].BOOL && data->apertureSize >0.0f){
+				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
 					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
-					float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
+					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
 					AtPoint Pfocus = dir*ft;
 
 					// Focal Aspect Ratio
@@ -475,13 +474,13 @@ camera_create_ray
 				bool outputDone = false;
 
 				// DOF
-				if(params[p_dof].BOOL && data->apertureSize >0.0f){
+				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
 					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
-					float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
+					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
 					AtPoint Pfocus = dir*ft;
 
 					// Focal Aspect Ratio
@@ -513,13 +512,13 @@ camera_create_ray
 				bool outputDone = false;
 
 				// DOF
-				if(params[p_dof].BOOL && data->apertureSize >0.0f){
+				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
 					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
-					float ft = params[p_focalPlaneIsPlane].BOOL?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
+					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
 					AtPoint Pfocus = dir*ft;
 
 					// Focal Aspect Ratio

@@ -1,0 +1,137 @@
+# SPDL - Obq_Opacity - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{DA6015D6-7193-409D-BBCA-400E39E3126E}";
+PropertySet "Obq_Opacity_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{3BA18D24-1618-4BC4-A862-0A01D3023118}";
+		Type = color;
+	}
+	Parameter "color" input
+	{
+		GUID = "{5BA9B6ED-7C67-4B20-A8E7-688A2B3D90AC}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "channel" input
+	{
+		guid = "{A7025E64-0921-4D0D-90EA-AEFA298E51C8}";
+		texturable = off;
+		type = integer;
+		value = 3;
+		Value Minimum = 0;
+		Value Maximum = 5;
+	}
+	Parameter "opacityRGBA" input
+	{
+		GUID = "{5F6299BE-F48D-4641-A47B-E9BA44CF5C59}";
+		Texturable = on;
+		Type = color;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "opacityScalar" input
+	{
+		GUID = "{2CD080AA-2643-47F6-8EDA-7EABBF527410}";
+		Texturable = on;
+		Type = scalar;
+		Value = 1.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_Opacity";
+}
+
+phenomenon "Obq_Opacity_declare"
+{
+	Name = "Obq_Opacity";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	color
+	{
+		Name = "Color";
+		UIType = "rgba";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	channel
+	{
+		Name = "Channel";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Red" = 0,
+			"Green" = 1,
+			"Blue" = 2,
+			"Alpha" = 3,
+			"RGB" = 4,
+			"Scalar Input" = 5
+		}
+	}
+	opacityRGBA
+	{
+		Name = "Opacity";
+		UIType = "rgba";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	opacityScalar
+	{
+		Name = "Opacity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Color"
+	{
+		color;
+	}
+	Group "Opacity"
+	{
+		channel;
+		opacityRGBA;
+		opacityScalar;
+	}
+}
+
+Layout "RenderTree"
+{
+	color;
+	opacityRGBA;
+	opacityScalar;		
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub channel_OnChanged()
+	IF PPG.channel.Value = 5 Then
+		PPG.opacityRGBA.Show(False)
+		PPG.opacityScalar.Show(True)
+	Else
+		PPG.opacityRGBA.Show(True)
+		PPG.opacityScalar.Show(False)
+	End IF
+	PPG.Refresh
+End sub
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
+	channel_OnChanged()
+End sub
+
+}
+
