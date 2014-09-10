@@ -1,0 +1,719 @@
+# 2014-09-10 07.48 am
+
+[node Obq_AngularCamera]
+    maya.name STRING "Obq_AngularCamera"
+    maya.id INT 0x0011CD40
+    maya.classification STRING "shader/surface"
+    maya.type                STRING  "camera"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_AngularCamera"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_AngularCamera.html"
+    houdini.order            STRING "angle flip overRender exposure"
+
+    [attr angle]
+        label                       STRING "angle"
+        desc                        STRING  "angle in degrees"
+        min                         FLOAT   0.0
+        softmax                   FLOAT   360.0
+        default                    FLOAT   360.0
+    [attr flip]
+        default                    BOOL   False
+    [attr overRender]
+        default                    BOOL   False
+
+[node Obq_Atmosphere]
+    maya.name STRING "Obq_Atmosphere"
+    maya.id INT 0x0011CD41
+    #maya.classification STRING "shader/volume/atmosphere"
+    maya.classification STRING "shader/surface"
+    maya.output_name STRING "outColor"
+    maya.output_shortname STRING "out"
+
+    houdini.icon              STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Atmosphere"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Atmosphere.html"
+    houdini.order            STRING "colorKd use3dKd absorption use3dAbsorption asymmetry radiusFalloffMode falloffStart falloffExponent useBiasGainDot biasDot gainDot objectCenter stepSize stepJitter useMaximumRayLength maximumRayLength useBiasGain bias gain compensateForCloudOpacity divideColorByOpacity secondaryTypesToo"
+
+    [attr colorKd]
+        desc                       STRING "Diffuse Color"
+        default                    RGB   0.25 1.75 5.0
+        maya.channelbox     BOOL    True
+    [attr use3dKd]
+        desc                       STRING "Enable 3D color texture"
+        default                    BOOL   False
+        maya.channelbox     BOOL    True
+    [attr absorption]
+        desc                       STRING "Absorption Coefficient"
+        min                        FLOAT   0
+        softmin                   FLOAT   0
+        softmax                  FLOAT   5
+        default                    FLOAT  0.1
+        maya.channelbox     BOOL    True
+    [attr use3dAbsorption]
+        desc                       STRING "Enable 3D absorption function"
+        default                    BOOL   False
+        maya.channelbox     BOOL    True
+    [attr asymmetry]
+        desc                        STRING "Asymmetry"
+        min                         FLOAT   -1
+        max                        FLOAT   1
+        default                    FLOAT  -0.5
+        maya.channelbox     BOOL    True
+    [attr stepSize]
+        desc                       STRING "Size"
+        min                        FLOAT   0.001
+        softmin                   FLOAT   0.001
+        softmax                  FLOAT   5
+        default                    FLOAT  0.1
+        maya.channelbox     BOOL    True
+    [attr stepJitter]
+        desc                        STRING "Jitter ratio"
+        min                         FLOAT   0
+        max                        FLOAT  0.999
+        default                    FLOAT  1
+        maya.channelbox     BOOL    True
+    [attr useBiasGain]
+        desc                        STRING "Enable"
+        default                     BOOL   False
+        maya.channelbox     BOOL    True
+    [attr bias]
+        desc                        STRING "Bias"
+        min                         FLOAT   0
+        max                        FLOAT   1
+        default                    FLOAT  0.5
+        maya.channelbox     BOOL    True
+    [attr gain]
+        desc                        STRING "Gain"
+        min                         FLOAT   0
+        max                        FLOAT   1
+        default                    FLOAT  0.5
+        maya.channelbox     BOOL    True
+    [attr useBiasGainDot]
+        desc                        STRING "Enable"
+        default                    BOOL   False
+        maya.channelbox     BOOL    True
+    [attr biasDot]
+        desc                        STRING "Bias"
+        min                         FLOAT   0
+        max                        FLOAT   1
+        default                    FLOAT  0.7
+        maya.channelbox     BOOL    True
+    [attr gainDot]
+        desc                       STRING "Gain"
+        min                        FLOAT   0
+        max                        FLOAT   1
+        default                    FLOAT  0.9
+        maya.channelbox     BOOL    True
+    [attr radiusFalloffMode]
+        desc                       STRING "Mode"
+        min                        FLOAT   0
+        max                        FLOAT   2
+        default                    FLOAT  0
+        maya.channelbox     BOOL    True
+    [attr falloffStart]
+        desc                        STRING "Start"
+        min                         FLOAT   0
+        max                        FLOAT   1
+        default                    FLOAT  0.95
+        maya.channelbox     BOOL    True
+    [attr falloffExponent]
+        desc                       STRING "Speed"
+        min                        FLOAT   0
+        softmin                   FLOAT   0
+        softmax                  FLOAT   5
+        default                    FLOAT  5
+        maya.channelbox     BOOL    True
+    [attr objectCenter]
+        desc                       STRING "Object Center"
+        default                    VECTOR  0 0 0
+        maya.channelbox     BOOL    True
+    [attr compensateForCloudOpacity]
+        desc                        STRING "Compensate"
+        min                         INT   0
+        max                        INT   2
+        default                    INT   2
+        maya.channelbox     BOOL    True
+    [attr divideColorByOpacity]
+        desc                        STRING "Divide"
+        min                         INT   0
+        max                        INT   2
+        default                    INT   1
+        maya.channelbox     BOOL    True
+    [attr useMaximumRayLength]
+        desc                       STRING "Enable maximum ray length"
+        default                    BOOL   False
+        maya.channelbox     BOOL    True
+    [attr maximumRayLength]
+        desc                        STRING "Maximum ray length"
+        min                         FLOAT   0
+        softmin                    FLOAT   0
+        softmax                   FLOAT   100
+        default                    FLOAT  10
+        maya.channelbox     BOOL    True
+    [attr secondaryTypesToo]
+        desc                        STRING "Enable for reflection and refraction rays"
+        default                     BOOL   False
+        maya.channelbox     BOOL    True
+
+[node Obq_Bend4Stereo]
+    maya.name STRING "Obq_Bend4Stereo"
+    maya.id INT 0x0011CD42
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Bend4Stereo"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Bend4Stereo.html"
+
+  # [attr shaderIn]
+    # desc                        STRING "Shader In"
+    # default                    RGBA  1 1 1 1
+    [attr bendMode]
+        desc                        STRING "Bend Mode"
+        min                         INT   0
+        max                        INT   3
+        default                    INT  0
+    [attr leftCamera]
+        desc                        STRING "Left Camera"
+        default                    STRING  "stereoCameraLeft"
+    [attr centerCamera]
+        desc                        STRING "Center Camera"
+        default                    STRING  "StereoCamera"
+    [attr rightCamera]
+        desc                        STRING "Right Camera"
+        default                    STRING  "stereoCameraRight"
+      
+[node Obq_ChangeRange]
+    maya.name STRING "Obq_ChangeRange"
+    maya.id INT 0x0011CD43
+    #maya.classification STRING "shader/utility"
+    maya.classification STRING "shader/surface"
+
+    houdini.icon              STRING "SHOP_surface"
+    houdini.label             STRING "Obq_ChangeRange"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ChangeRange.html"
+    [attr input]
+        desc                        STRING "Input"
+        softmin                    FLOAT  0
+        softmax                   FLOAT  1
+        default                    FLOAT  0.5
+    [attr oStart]
+        desc                        STRING "Old Range Start"
+        softmin                    FLOAT  0
+        softmax                   FLOAT  1
+        default                    FLOAT  0
+    [attr oEnd]
+        desc                        STRING "Old Range End"
+        softmin                    FLOAT  0
+        softmax                   FLOAT  1
+        default                    FLOAT  1
+    [attr nStart]
+        desc                        STRING "New Range Start"
+        softmin                    FLOAT  0
+        softmax                   FLOAT  1
+        default                    FLOAT  0.2
+    [attr nEnd]
+        desc                        STRING "New Range End"
+        softmin                    FLOAT  0
+        softmax                   FLOAT  1
+        default                    FLOAT  0.8
+    [attr clamp]
+        desc                       STRING "Clamp"
+        default                    BOOL True
+    [attr bias]
+        desc                       STRING "Bias"
+        min                        FLOAT 0
+        max                        FLOAT 1
+        default                    FLOAT  0.5
+    [attr gain]
+        desc                       STRING "Gain"
+        min                        FLOAT 0
+        max                        FLOAT 1
+        default                    FLOAT  1
+
+[node Obq_Environment]
+    maya.name              STRING "Obq_Environment"
+    maya.id                    INT 0x0011CD44
+    maya.classification    STRING "shader/surface"
+    #maya.classification    STRING "texture/environment"
+
+    houdini.icon              STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Environment"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Environment.html"
+    [attr tex]
+        desc                      STRING "Image"
+        default                  RGB  0 0 0
+    [attr considerAlpha]
+        desc                      STRING "Use Alpha"
+        default                  BOOL  False
+    [attr mapMode]
+        desc                      STRING "Mapping Mode"
+        min                       INT  0
+        max                      INT  3
+        default                  INT   2
+    [attr sampleLevel]
+        desc                      STRING "Sample Level"
+        min                       INT   1
+        softmin                 INT    1
+        softmax                INT    10
+        default                  INT    1
+    [attr coneAngle]
+        desc                      STRING "Cone Angle"
+        min                       FLOAT  0
+        max                      FLOAT  180
+        default                  FLOAT    12
+    [attr cosLobeGloss]
+        desc                      STRING "Cos Lobe Gloss"
+        min                       FLOAT  0
+        max                      FLOAT  1
+        default                  FLOAT    0
+    [attr useSampleCount]
+        desc                      STRING "Clamp Sample Count"
+        default                  BOOL  False
+    [attr sampleCount]
+        desc                      STRING "Max Sample Count"
+        min                       FLOAT  0
+        softmin                 INT    1
+        softmax                INT    10
+        default                  FLOAT  10
+    [attr sampleCountMultiplier]
+        desc                      STRING "Max Sample Count Multiplier"
+        min                       FLOAT  0
+        softmin                 FLOAT   1
+        softmax                FLOAT   256
+        default                  FLOAT   1
+    [attr onSurfaceMode]
+        desc                      STRING "Direction"
+        default                   INT  0
+    [attr ior]
+        desc                      STRING "IOR"
+        min                       FLOAT   0
+        softmin                  FLOAT   1
+        softmax                 FLOAT   5
+        default                   FLOAT   1
+    [attr customDirection]
+        desc                      STRING "Custom Direction"
+        softmin                  VECTOR  -1 -1 -1
+        softmax                 VECTOR  1 1 1
+        default                   VECTOR  0 1 0
+    [attr intensityCam]
+        desc                      STRING "Camera"
+        min                        FLOAT  0
+        softmin                  FLOAT   0
+        softmax                 FLOAT   2
+        default                   FLOAT   1
+    [attr intensityDifGI]
+        desc                      STRING "Diffuse GI"
+        min                        FLOAT  0
+        softmin                  FLOAT   0
+        softmax                 FLOAT   2
+        default                   FLOAT  1
+    [attr intensityRfl]
+        desc                      STRING "Reflection"
+        min                        FLOAT  0
+        softmin                  FLOAT   0
+        softmax                 FLOAT   2
+        default                   FLOAT  1
+    [attr intensityGlossy]
+        desc                      STRING "Glossy"
+        min                        FLOAT  0
+        softmin                  FLOAT   0
+        softmax                 FLOAT   2
+        default                   FLOAT  1
+    [attr intensityRfr]
+        desc                      STRING "Refraction"
+        min                        FLOAT  0
+        softmin                  FLOAT   0
+        softmax                 FLOAT   2
+        default                   FLOAT  1
+    [attr globalRotation]
+        desc                      STRING "Use rotation at a global scope"
+        default                   BOOL  True
+    [attr rotation]
+        desc                      STRING "Rotation"
+        softmin                  VECTOR  -180 -180 -180
+        softmax                 VECTOR  180 180 180
+        default                   VECTOR  0 0 0
+    [attr flipU]
+        desc                      STRING "Flip U"
+        default                   BOOL  False
+    [attr flipV]
+        desc                      STRING "Flip V"
+        default                   BOOL  False
+    [attr opaque]
+        desc                      STRING "Opaque background"
+        default                   BOOL True
+[node Obq_Etching]
+    maya.name STRING "Obq_Etching"
+    maya.id INT 0x0011CD45
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Etching"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html"
+
+[node Obq_Fresnel]
+    maya.name STRING "Obq_Fresnel"
+    maya.id INT 0x0011CD46
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Fresnel"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
+
+# [node Obq_Hair]
+    # maya.name STRING "Obq_Hair"
+    # maya.id INT 0x0011CD47
+    # maya.classification STRING "shader/surface"
+
+    # houdini.icon               STRING "SHOP_surface"
+    # houdini.label             STRING "Obq_Hair"
+    # houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Hair.html"
+
+[node Obq_IESLightFilter]
+    maya.name STRING "Obq_IESLightFilter"
+    maya.id INT 0x0011CD48
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_IESLightFilter"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_IESLightFilter.html"
+
+[node Obq_MeasuredMaterial]
+    maya.name STRING "Obq_MeasuredMaterial"
+    maya.id INT 0x0011CD49
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_MeasuredMaterial"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+
+[node Obq_MessageFlt]
+    maya.name STRING "Obq_MessageFlt"
+    maya.id INT 0x0011CD4A
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_MessageFlt"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageFlt.html"
+
+[node Obq_Opacity]
+    maya.name STRING "Obq_Opacity"
+    maya.id INT 0x0011CD4B
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Opacity"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
+
+[node Obq_RandomColor]
+    maya.name STRING "Obq_RandomColor"
+    maya.id INT 0x0011CD4C
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_RandomColor"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomColor.html"
+   [attr randMax]
+        desc                    STRING "Number of values"
+        default                 INT 8
+        min                      INT 1
+        max                     INT 16
+        maya.channelbox     BOOL    True
+    [attr seed]
+        desc                    STRING "Seed"
+        default                 INT 13
+        min                     INT 1
+        maya.channelbox     BOOL    True
+    [attr color01]
+        desc                       STRING "Color 01"
+        default                    RGB   0 0 0
+        maya.channelbox     BOOL    True
+    [attr color02]
+        desc                       STRING "Color 02"
+        default                    RGB   1 0 0
+        maya.channelbox     BOOL    True
+    [attr color03]
+        desc                       STRING "Color 03"
+        default                    RGB   0 1 0
+        maya.channelbox     BOOL    True
+    [attr color04]
+        desc                       STRING "Color 04"
+        default                    RGB   0 0 1
+        maya.channelbox     BOOL    True
+    [attr color05]
+        desc                       STRING "Color 05"
+        default                    RGB   1 1 0
+        maya.channelbox     BOOL    True
+    [attr color06]
+        desc                       STRING "Color 06"
+        default                    RGB   1 0 1
+        maya.channelbox     BOOL    True
+    [attr color07]
+        desc                       STRING "Color 07"
+        default                    RGB   0 1 1
+        maya.channelbox     BOOL    True
+    [attr color08]
+        desc                       STRING "Color 08"
+        default                    RGB   1 0.5 0
+        maya.channelbox     BOOL    True
+    [attr color09]
+        desc                       STRING "Color 09"
+        default                    RGB   0.5 1 0
+        maya.channelbox     BOOL    True
+    [attr color10]
+        desc                       STRING "Color 10"
+        default                    RGB   0 1 0.5
+        maya.channelbox     BOOL    True
+    [attr color11]
+        desc                       STRING "Color 11"
+        default                    RGB   0 0.5 1
+        maya.channelbox     BOOL    True
+    [attr color12]
+        desc                       STRING "Color 12"
+        default                    RGB   0.5 0 1
+        maya.channelbox     BOOL    True
+    [attr color13]
+        desc                       STRING "Color 13"
+        default                    RGB   1 0 0.5
+        maya.channelbox     BOOL    True
+    [attr color14]
+        desc                       STRING "Color 14"
+        default                    RGB   1 1 1
+        maya.channelbox     BOOL    True
+    [attr color15]
+        desc                       STRING "Color 15"
+        default                    RGB   0.671 0.671 0.671
+        maya.channelbox     BOOL    True
+    [attr color16]
+        desc                        STRING "Color 16"
+        default                    RGB   0.231 0.231 0.231
+        maya.channelbox     BOOL    True
+    [attr stripModelName]
+        desc                         STRING "Strip Model Name"
+        label                        STRING "Model"  
+        default                     BOOL True
+    [attr stripFrameNumber]
+        desc                         STRING "Strip Frame Number"
+        label                        STRING "Frame"  
+        default                     BOOL True
+    [attr stripInstanceFrameNumber]
+        desc                        STRING "Strip Instance Frame Number"
+        label                        STRING "Frame"  
+        default                     BOOL True
+    [attr stripInstanceID]
+        desc                        STRING "Strip Instance ID"
+        label                        STRING "ID"  
+        default                     BOOL False
+    [attr stripInstanceShape]
+        desc                        STRING "Strip Instance Shape"
+        label                        STRING "Shape"  
+        default                     BOOL False
+
+[node Obq_RGBComEmit]
+    maya.name STRING "Obq_RGBComEmit"
+    maya.id INT 0x0011CD4D
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_RGBComEmit"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComEmit.html"
+
+[node Obq_RGBComLightFilter]
+    maya.name STRING "Obq_RGBComLightFilter"
+    maya.id INT 0x0011CD4E
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_RGBComLightFilter"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComLightFilter.html"
+
+[node Obq_Root2Tip]
+    maya.name STRING "Obq_Root2Tip"
+    maya.id INT 0x0011CD4F
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Root2Tip"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Root2Tip.html"
+
+[node Obq_Shadow]
+    maya.name STRING "Obq_Shadow"
+    maya.id INT 0x0011CD50
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Shadow"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Shadow.html"
+
+# [node Obq_Simbiont]
+    # maya.name STRING "Obq_Simbiont"
+    # maya.id INT 0x0011CD51
+    # maya.classification STRING "shader/surface"
+
+  # houdini.icon               STRING "SHOP_surface"
+  # houdini.label             STRING "Obq_Simbiont"
+  # houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
+
+[node Obq_StereoLens]
+    maya.name STRING "Obq_StereoLens"
+    maya.id INT 0x0011CD52
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_StereoLens"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
+
+[node Obq_SurfaceEnvironment]
+    maya.name STRING "Obq_SurfaceEnvironment"
+    maya.id INT 0x0011CD53
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_SurfaceEnvironment"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SurfaceEnvironment.html"
+
+[node Obq_Thickness]
+    maya.name STRING "Obq_Thickness"
+    maya.id INT 0x0011CD54
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Thickness"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Thickness.html"
+
+[node Obq_Toon]
+    maya.name STRING "Obq_Toon"
+    maya.id INT 0x0011CD55
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_Toon"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Toon.html"
+
+[node Obq_ToonSimple]
+    maya.name STRING "Obq_ToonSimple"
+    maya.id INT 0x0011CD56
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_ToonSimple"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ToonSimple.html"
+
+    [attr global_compMode]
+        desc                        STRING "Compositing"
+        default                    INT  1
+    [attr multByLightColor]
+        desc                        STRING "Multiply by Light Color"
+        default                    BOOL  True
+    [attr ambient_color]
+        desc                        STRING "Color"
+        default                    RGB  1 1 1
+    [attr ambient_scale]
+        desc                        STRING "Scale"
+        default                    FLOAT  0
+    [attr ambient_multAmbience]
+        desc                        STRING "Multiply by scene ambience"
+        default                    BOOL  False
+    [attr diffuse_color]
+        desc                        STRING "Color"
+        default                    RGB  1 1 1
+    [attr diffuse_scale]
+        desc                        STRING "Scale"
+        default                    FLOAT  1
+    [attr diffuse_coverage]
+        desc                        STRING "Coverage"
+        default                    FLOAT  1
+    [attr diffuse_softness]
+        desc                        STRING "Softness"
+        default                    FLOAT  1
+    [attr highlight_color]
+        desc                        STRING "Color"
+        default                    RGB  1 1 1
+    [attr highlight_scale]
+        desc                        STRING "Scale"
+        default                    FLOAT  0
+    [attr highlight_exponent]
+        desc                        STRING "Exponent"
+        default                    FLOAT  50
+    [attr highlight_coverage]
+        desc                        STRING "Coverage"
+        default                    FLOAT  1
+    [attr highlight_softness]
+        desc                        STRING "Softness"
+        default                    FLOAT  1
+    [attr rimlight_color]
+        desc                        STRING "Color"
+        default                    RGB  1 1 1
+    [attr rimlight_scale]
+        desc                        STRING "Scale"
+        default                    FLOAT  0
+    [attr rimlight_coverage]
+        desc                        STRING "Coverage"
+        default                    FLOAT  1
+    [attr rimlight_softness]
+        desc                        STRING "Softness"
+        default                    FLOAT  1
+    [attr ambient_fb_str]
+        desc                        STRING "Ambient"
+    [attr diffuse_fb_str]
+        desc                        STRING "Diffuse"
+    [attr highlight_fb_str]
+        desc                        STRING "Highlight"
+    [attr rimlight_fb_str]
+        desc                        STRING "Rimlight"
+    [attr contour_fb_str]
+        desc                        STRING "Contour"
+    [attr putAlphaInFb]
+        desc                        STRING "Set Alpha to Over Alpha"
+        default                    BOOL  False
+    [attr opacity]
+        desc                        STRING "Color"
+        default                    RGB  1 1 1
+    [attr normalizeObjectID]
+        desc                        STRING "Normalize Object ID in Contour"
+        default                    BOOL  True 
+   [attr AOVprefix]
+        desc                        STRING "with prefix"
+        default                    STRING  "ot"
+    [attr ambient_noInternal]
+        desc                        STRING "No Internal Ambient"
+        default                    BOOL  True
+    [attr diffuse_noInternal]
+        desc                        STRING "No Internal Diffuse"
+        default                    BOOL  True
+     [attr highlight_noInternal]
+        desc                        STRING "No Internal Highlight"
+        default                    BOOL  True
+     [attr rimlight_noInternal]
+        desc                        STRING "No Internal Rimlight"
+        default                    BOOL  True
+     [attr global_clamp]
+        desc                        STRING "Clamp Before Compositing"
+        default                    BOOL  False
+[node Obq_TransformUV]
+    maya.name STRING "Obq_TransformUV"
+    maya.id INT 0x0011CD57
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_TransformUV"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformUV.html"
+
+[node Obq_UVRemapLensDistortion]
+    maya.name STRING "Obq_UVRemapLensDistortion"
+    maya.id INT 0x0011CD58
+    maya.classification STRING "shader/surface"
+
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_UVRemapLensDistortion"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_UVRemapLensDistortion.html"
+
+[node Obq_VolumeThickness]
+    maya.name STRING "Obq_VolumeThickness"
+    maya.id INT 0x0011CD59
+    maya.classification STRING "shader/surface"
+  
+    houdini.icon               STRING "SHOP_surface"
+    houdini.label             STRING "Obq_VolumeThickness"
+    houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_VolumeThickness.html"
