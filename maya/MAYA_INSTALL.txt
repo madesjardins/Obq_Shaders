@@ -17,8 +17,8 @@ HOW TO INSTALL
   + copy the content of the "icons" folder into "~/solidangle/mtoa/<Maya Version/icons",[OSX]
 
   + copy the .dll     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
-  + copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders", 	[Linux]
-  + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",	[OSX]
+  + copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
+  + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
 
   To use Obq_Simbiont:
   + copy the "bin\dte\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows]
