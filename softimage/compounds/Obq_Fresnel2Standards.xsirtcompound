@@ -257,6 +257,6 @@
 			<item type="output" name="Ks_color_Out__Surface" ppgvis="1" portvis="1"> </item>
 			<item type="output" name="Ks_Out__Surface" ppgvis="1" portvis="1"> </item>
 		</layout>
-		<ppglogic lang="VBScript"><![CDATA[PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/Obq_Fresnel2Standards_Compounds.html"]]></ppglogic>
+		<ppglogic lang="VBScript"><![CDATA[PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel2Standards.html"]]></ppglogic>
 	</definition>
 </xsi_file>
