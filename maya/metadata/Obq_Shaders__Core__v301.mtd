@@ -1,4 +1,4 @@
-# 2014-09-11 06.03 am
+# 2014-09-11 01.02 pm
 # Added v301 shader support
 
 [node Obq_AngularCamera]
@@ -797,8 +797,8 @@
     houdini.help_url        STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_IESLightFilter.html"
 
     [attr filename]
-        desc                    STRING "Filename"
-        default                 STRING "D:\IES.ies"
+        desc                    STRING "IES Profile"
+        default                 STRING "D:\\IES.ies"
 
 [node Obq_MeasuredMaterial]
     maya.name STRING "Obq_MeasuredMaterial"

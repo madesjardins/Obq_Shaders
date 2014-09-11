@@ -1,4 +1,4 @@
-# 2014-09-11 12.30 pm
+# 2014-09-11 01.02 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -36,12 +36,12 @@ evaluateRGBEnumOp = [
 
 def Obq_SimbiontCreateEvaluateRGB(attr):
     cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_SimbiontRGB', attribute=attr, label="RGB", 
+    cmds.attrEnumOptionMenuGrp('Obq_SimbiontEvaluateRGBE', attribute=attr, label="RGB", 
                                enumeratedItem=evaluateRGBEnumOp)    
     cmds.setUITemplate(popTemplate=True)
 
 def Obq_SimbiontSetEvaluateRGB(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_SimbiontRGBMode', edit=True, attribute=attr)
+    cmds.attrEnumOptionMenuGrp('Obq_SimbiontEvaluateRGBE', edit=True, attribute=attr)
 
 evaluateAlphaEnumOp = [
     (-1, 'Black'), 
