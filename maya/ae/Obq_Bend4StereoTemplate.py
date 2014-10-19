@@ -1,4 +1,4 @@
-# 2014-09-10 06.28 am
+# 2014-10-19 03.20 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -8,7 +8,7 @@ import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
 blendEnumOp = [
-    (0, "Don\'t bend"), 
+    (0, "Don't bend"), 
     (1, "Bend from left"), 
     (2, "Bend from right"),
     (3, "Bend from center")

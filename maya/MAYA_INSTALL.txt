@@ -4,9 +4,9 @@ HOW TO INSTALL
   Windows requirements : 
 	Microsoft Visual C++ 2010 redistributable package (x64)
 
-  + copy the content of the "metdata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
-  + copy the content of the "metdata" folder into "/opt/solidangle/mtoa/<Maya Version>/shaders/",[Linux]
-  + copy the content of the "metdata" folder into "~/solidangle/mtoa/<Maya Version>/shaders/",[OSX]
+  + copy the content of the "metadata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
+  + copy the content of the "metadata" folder into "/opt/solidangle/mtoa/<Maya Version>/shaders/",[Linux]
+  + copy the content of the "metadata" folder into "~/solidangle/mtoa/<Maya Version>/shaders/",[OSX]
 
   + copy the content of the "ae" folder into "C:\solidangle\mtoadeploy\<Maya Version>\scripts\mtoa\ui\ae",[Windows]
   + copy the content of the "ae" folder into "/opt/solidangle/mtoa/<Maya Version>/scripts/mtoa/ui/ae",[Linux]

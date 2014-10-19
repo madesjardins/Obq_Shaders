@@ -1,4 +1,4 @@
-# 2014-09-11 01.02 pm
+# 2014-10-19 05.13 pm
 # Added v301 shader support
 
 [node Obq_AngularCamera]
@@ -471,7 +471,7 @@
         default                 INT 1
     [attr iorFilename]
         desc                    STRING "IOR Filename"
-        default                STRING ""
+        default                STRING "C:\\Users\\madesjardins\\Downloads\\spds"
     [attr lambdaUnits]
         desc                    STRING "Lambda Units"
         default                 INT 0
@@ -884,7 +884,9 @@
         default                 RGB     1 1 1
     [attr channel]
         desc                    STRING "Channel"
-        default                 INT      1
+        default                 INT      3
+        min                      INT     0
+        max                     INT     5
     [attr opacityRGBA]
         desc                    STRING "Opacity RGBA"
         default                 RGB     1 1 1
