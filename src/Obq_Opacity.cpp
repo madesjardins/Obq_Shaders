@@ -28,19 +28,19 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqOpacitySimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqOpacityMethods);
 
 // enum for parameters
 //
-enum ObqOpacitySimpleParams { p_color, p_channel, p_opacityRGBA, p_opacityScalar };
+enum ObqOpacityParams { p_color, p_channel, p_opacityRGBA, p_opacityScalar, p_hard, p_threshold, p_invert };
 
 // enum for channel
 //
-enum {RED, GREEN, BLUE, ALPHA, RGB, SCALAR};
+enum {OPRED, OPGREEN, OPBLUE, OPALPHA, OPRGB, OPSCALAR,INPUTALPHA};
 
 // shader data struct
 //
@@ -50,35 +50,22 @@ typedef struct
 }
 ShaderData;
 
-// minimax clamps b between a and c
-//
-// @param a		The lower bound
-// @param b		The value that will be clamped
-// @param c		The upper bound
-// @return		b clamped between a and c
-inline float Minimax(float a, float b, float c)
-{
-	if(b<a) 
-		return a; 
-	else if(b>c) 
-		return c;
-	else
-		return b;
-}
-
 
 node_parameters
 {
 	AiParameterRGBA("color",1.0f,1.0f,1.0f,1.0f);
-	AiParameterINT("channel", 3);		
+	AiParameterINT("channel", INPUTALPHA);		
     AiParameterRGBA("opacityRGBA",1.0f,1.0f,1.0f,1.0f);
     AiParameterFLT("opacityScalar", 1.0f);
+	AiParameterBOOL("hard",false);
+	AiParameterFLT("threshold", 0.0f);
+	AiParameterBOOL("invert",false);
 }
 
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->channel = 3;
+	data->channel = INPUTALPHA;
 	AiNodeSetLocalData(node,data);
 }
 
@@ -102,39 +89,46 @@ shader_evaluate
 
 	switch(data->channel)
 	{
-	case RED:
+	case INPUTALPHA:
+		{
+			sg->out.RGBA =  AiShaderEvalParamRGBA(p_color);
+			sg->out_opacity = minimax(0.0f,sg->out.RGBA.a,1.0f);
+			sg->out.RGBA.a = 1.0f;
+			break;
+		}
+	case OPRED:
 		{
 			float op = AiShaderEvalParamRGBA(p_opacityRGBA).r;
 			if(op > 0.0f)
 				sg->out.RGBA = AiShaderEvalParamRGBA(p_color);
-			sg->out_opacity = Minimax(0.0f,op,1.0f);
+			sg->out_opacity = minimax(0.0f,op,1.0f);
 			break;
 		}
-	case GREEN:
+	case OPGREEN:
 		{
 			float op = AiShaderEvalParamRGBA(p_opacityRGBA).g;
 			if(op > 0.0f)
 				sg->out.RGBA = AiShaderEvalParamRGBA(p_color);
-			sg->out_opacity = Minimax(0.0f,op,1.0f);
+			sg->out_opacity = minimax(0.0f,op,1.0f);
 			break;
 		}
-	case BLUE:
+	case OPBLUE:
 		{
 			float op = AiShaderEvalParamRGBA(p_opacityRGBA).b;
 			if(op > 0.0f)
 				sg->out.RGBA = AiShaderEvalParamRGBA(p_color);
-			sg->out_opacity = Minimax(0.0f,op,1.0f);
+			sg->out_opacity = minimax(0.0f,op,1.0f);
 			break;
 		}
-	case ALPHA:
+	case OPALPHA:
 		{
 			float op = AiShaderEvalParamRGBA(p_opacityRGBA).a;
 			if(op > 0.0f)
 				sg->out.RGBA = AiShaderEvalParamRGBA(p_color);
-			sg->out_opacity = Minimax(0.0f,op,1.0f);
+			sg->out_opacity = minimax(0.0f,op,1.0f);
 			break;
 		}
-	case RGB:
+	case OPRGB:
 		{
 			AtColor op = AiColorClamp(AiShaderEvalParamRGBA(p_opacityRGBA).rgb(),0.0f,1.0f);
 			if(op.r != 0.0f || op.g != 0.0f || op.b != 0.0f)
@@ -142,15 +136,48 @@ shader_evaluate
 			sg->out_opacity = op;
 			break;
 		}
-	case SCALAR:
+	case OPSCALAR:
 		{
 			float op = AiShaderEvalParamFlt(p_opacityScalar);
 			if(op > 0.0f)
 				sg->out.RGBA = AiShaderEvalParamRGBA(p_color);
-			sg->out_opacity = Minimax(0.0f,op,1.0f);
+			sg->out_opacity = minimax(0.0f,op,1.0f);
+			break;
+		}
+	default:
+		{
+			sg->out.RGBA =  AiShaderEvalParamRGBA(p_color);
+			sg->out_opacity = minimax(0.0f,sg->out.RGBA.a,1.0f);
+			sg->out.RGBA.a = 1.0f;
 			break;
 		}
 	}
+
+	// hard opacity
+	if(AiShaderEvalParamBool(p_hard))
+	{
+		float threshold = AiShaderEvalParamFlt(p_threshold);
+		// RED
+		if(sg->out_opacity.r > threshold)
+			sg->out_opacity.r = 1.0f;
+		else
+			sg->out_opacity.r = 0.0f;
+		// GREEN
+		if(sg->out_opacity.g > threshold)
+			sg->out_opacity.g = 1.0f;
+		else
+			sg->out_opacity.g = 0.0f;
+		// BLUE
+		if(sg->out_opacity.b > threshold)
+			sg->out_opacity.b = 1.0f;
+		else
+			sg->out_opacity.b = 0.0f;
+	}
+
+	// Invert ?
+	if(AiShaderEvalParamBool(p_invert))
+		sg->out_opacity = AI_RGB_WHITE - sg->out_opacity;
+
 }
 
 //node_loader
@@ -158,7 +185,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqOpacitySimpleMethods;
+//   node->methods      = ObqOpacityMethods;
 //   node->output_type  = AI_TYPE_RGBA;
 //   node->name         = "Obq_Opacity";
 //   node->node_type    = AI_NODE_SHADER;

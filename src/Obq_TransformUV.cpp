@@ -28,16 +28,16 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqTransformUVSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqTransformUVMethods);
 
 // enum for parameters
 //
-enum ObqTransformUVSimpleParams {p_tex, p_mode,p_scaleX, p_scaleY, p_rotate, p_translateX, p_translateY, p_pivotX, p_pivotY};
+enum ObqTransformUVParams {p_tex, p_mode,p_scaleX, p_scaleY, p_rotate, p_translateX, p_translateY, p_pivotX, p_pivotY};
 
 node_parameters
 {
@@ -176,7 +176,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqTransformUVSimpleMethods;
+//   node->methods      = ObqTransformUVMethods;
 //   node->output_type  = AI_TYPE_RGBA;
 //   node->name         = "Obq_TransformUV";
 //   node->node_type    = AI_NODE_SHADER;

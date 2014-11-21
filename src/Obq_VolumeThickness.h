@@ -29,15 +29,15 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQVOLUMETHICKNESS_H
 #define OBQVOLUMETHICKNESS_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold Thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqVolumeThicknessSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqVolumeThicknessMethods);
 
 // enum of parameters
 //
-enum ObqVolumeThicknessSimpleParams {p_colorIn, p_emissionColor, p_alphaMode, p_alpha, p_thicknessMode, p_thickness, p_accumulatedThicknessThreshold, p_radius, p_exponent, p_useAbsorption, p_absorption, p_diffuseMode, p_autoTransparencyMode, p_shadowModifier, p_lightPropagationDistance, p_doubleHemisphericalDiffuse, p_lightPropagationDistanceDiffuse };
+enum ObqVolumeThicknessParams {p_colorIn, p_emissionColor, p_alphaMode, p_alpha, p_thicknessMode, p_thickness, p_accumulatedThicknessThreshold, p_radius, p_exponent, p_useAbsorption, p_absorption, p_diffuseMode, p_autoTransparencyMode, p_shadowModifier, p_lightPropagationDistance, p_doubleHemisphericalDiffuse, p_lightPropagationDistanceDiffuse };
 enum ObqVTThicknessMode{SPHERE_MODE, THICKNESS_MODE};
 
 enum OvtFlag{FIRST_IT, NEXT_IT, FRONTFACE_IT, BACKFACE_IT, DIFFUSE_IT, UNKNOWN_IT, RESET_IT};

@@ -49,7 +49,7 @@ PropertySet "Obq_RandomID_params"
       type = boolean;
       flags = 1;
       texturable = on;
-      value = on;
+      value = off;
       writable = on;
       animatable = on;
       persistable = on;
@@ -112,6 +112,16 @@ PropertySet "Obq_RandomID_params"
       readable = on;
       inspectable = on;
    }
+   Parameter "XtoA" input
+   {
+      guid = "{5F52C0F8-6F3E-43C1-8FCA-757226D69436}";
+      type = integer;
+      texturable = off;
+	  animatable = on;
+      value = 0;
+	  value minimum = 0;
+	  value maximum = 2;
+   }
 }
 
 phenomenon "Obq_RandomID_declare"
@@ -160,12 +170,25 @@ Defaults
       Name = "Shape";
       Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
    }
+   XtoA
+   {
+      Name = "Software";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "Combo";
+	  Items
+	  {
+		"SItoA" = 0,
+		"MtoA" = 1,
+		"HtoA" = 2
+	  }
+   }
 }
 
 Layout "Default"
 {
 	Group "Options"
 	{
+		XtoA;
 		randMax;
 		seed;
 	}
@@ -213,7 +236,6 @@ Logic
 
 Sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomID.html"
-	randMax_OnChanged()
 End Sub
 }
 

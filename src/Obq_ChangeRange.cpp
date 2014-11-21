@@ -28,11 +28,11 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
-AI_SHADER_NODE_EXPORT_METHODS(ObqChangeRangeSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqChangeRangeMethods);
 
-enum ObqChangeRangeSimpleParams { p_input, p_oStart, p_oEnd, p_nStart, p_nEnd, p_clamp, p_bias, p_gain};
+enum ObqChangeRangeParams { p_input, p_oStart, p_oEnd, p_nStart, p_nEnd, p_clamp, p_bias, p_gain};
 
 
 
@@ -135,7 +135,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqChangeRangeSimpleMethods;
+//   node->methods      = ObqChangeRangeMethods;
 //   node->output_type  = AI_TYPE_FLOAT;
 //   node->name         = "Obq_ChangeRange";
 //   node->node_type    = AI_NODE_SHADER;

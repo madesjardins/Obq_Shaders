@@ -30,17 +30,17 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQENVIRONMENT_H
 #define OBQENVIRONMENT_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 
 // This is an Arnold thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqEnvironmentSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqEnvironmentMethods);
 
 
 // This is the enumeration for parameters
 //
-enum ObqEnvironmentSimpleParams { p_tex, p_considerAlpha, p_mapMode, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensityCam, p_intensityDifGI, p_intensityRfl, p_intensityGlossy, p_intensityRfr, p_globalRotation , p_rotation, p_flipU, p_flipV, p_opaque };
+enum ObqEnvironmentParams { p_tex, p_considerAlpha, p_mapMode, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensityCam, p_intensityDifGI, p_intensityRfl, p_intensityGlossy, p_intensityRfr, p_globalRotation , p_rotation, p_flipU, p_flipV, p_opaque };
 
 
 // This is the enumeration for the mapping mode

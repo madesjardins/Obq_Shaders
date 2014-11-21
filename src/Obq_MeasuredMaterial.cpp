@@ -31,17 +31,17 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqMeasuredMaterialSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqMeasuredMaterialMethods);
 
 // enum for parameters
 //
-enum ObqMeasuredMaterialSimpleParams { p_filename, p_resolution, p_samples, p_direct_color, p_direct_scale,p_indirect_color, p_indirect_scale,p_useImportanceSampling, p_useHalfs, p_useJitters, p_binMaxDif, p_useMIS, p_direct_aov, p_indirect_aov};
+enum ObqMeasuredMaterialParams { p_filename, p_resolution, p_samples, p_direct_color, p_direct_scale,p_indirect_color, p_indirect_scale,p_useImportanceSampling, p_useHalfs, p_useJitters, p_binMaxDif, p_useMIS, p_direct_aov, p_indirect_aov};
 
 // shader data struct
 //
 typedef struct 
 {
-	ObqISBrdf* brdf;
+	ISBrdf* brdf;
 	int samples;
 	bool useImportanceSampling;
 	AtSampler *sampler;		// 2
@@ -105,7 +105,7 @@ node_update
 	data->Rr = AiNodeGetInt(options,"GI_total_depth");
 	data->Rr_diff = AiNodeGetInt(options, "GI_diffuse_depth");
 
-	data->brdf = new ObqISBrdf(params[p_filename].STR, static_cast<AtUInt32>(std::max(params[p_resolution].INT,3)),params[p_useHalfs].BOOL, USELUMINANCE);
+	data->brdf = new ISBrdf(params[p_filename].STR, static_cast<AtUInt32>(std::max(params[p_resolution].INT,3)),params[p_useHalfs].BOOL, USELUMINANCE);
 }
 
 node_finish
@@ -296,7 +296,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqMeasuredMaterialSimpleMethods;
+//	node->methods      = ObqMeasuredMaterialMethods;
 //	node->output_type  = AI_TYPE_RGB;
 //	node->name         = "Obq_MeasuredMaterial";
 //	node->node_type    = AI_NODE_SHADER;

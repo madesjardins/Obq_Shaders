@@ -34,20 +34,33 @@ using namespace std;
 
 node_parameters
 {
-   AiParameterINT("mode", 1);								// Fresnel Mode, custom, presets, files
-   AiParameterSTR("iorFilename","");						// eta filename
-   AiParameterINT("lambdaUnits", 0);						// 0 = nano, 1 = micro (*1000)
-   AiParameterRGB("iorRGB",0.069151f,0.475555f,1.425f);		// refractive indices
-   AiParameterRGB("kRGB",3.306609f,2.534851f,1.879887f);	// extinction coeffs
-   AiParameterINT("method", 1);								// Method to compute IOR
-   AiParameterRGB("iorInRGB",1.0f,1.0f,1.0f);				// Media in which the object is
-   AiParameterFLT("ratioFsFp", 0.5f);						// Ratio Fs Fp
-   AiParameterBOOL("transmittance", false);					// T = 1 - R
-   AiParameterINT("backfaceMode",1);						// backface mode
-   AiParameterBOOL("degamma",true);							// degamma 2.2 for metal
-   AiParameterBOOL("useLUT",true);							// use LUT for metals
-   AiParameterFLT("LUTSampleSize", 0.5f);					// size of a sample, default 0.5°
-   AiParameterBOOL("useFullSpectrum", false);				// use full spectrum in equation
+	AiParameterINT("mode", MODE_CUSTOM);						// Fresnel Mode, custom legacy, presets, files
+	AiParameterSTR("iorFilename","");						// eta filename
+	AiParameterINT("lambdaUnits", 0);						// 0 = nano, 1 = micro (*1000)
+	AiParameterRGB("iorRGB",0.100899f,0.401072f,1.569860f);	// refractive indices Default is Gold
+	AiParameterRGB("kRGB",3.404634f,2.516492f,1.776652f);	// extinction coeffs
+	AiParameterINT("method", 1);								// Method to compute IOR
+	AiParameterRGB("iorInRGB",1.0f,1.0f,1.0f);				// Media in which the object is
+	AiParameterFLT("ratioFsFp", 0.5f);						// Ratio Fs Fp
+	AiParameterBOOL("transmittance", false);					// T = 1 - R
+	AiParameterINT("backfaceMode",1);						// backface mode
+	AiParameterBOOL("useLUT",true);							// use LUT for metals
+	AiParameterFLT("LUTSampleSize", 0.5f);					// size of a sample, default 0.5°
+	AiParameterBOOL("useFullSpectrum", true);				// use full spectrum in equation
+	AiParameterBOOL("degamma",false);						// old and bad linear workflow degamma
+	AiParameterINT("outputGamma",0);							// gamma operation None
+	AiParameterSTR("lambdasStr","364.699982 375.700012 387.5 400.0 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 652.599976 688.799988 729.300049 774.900024 826.600037");	// SPDs strings space separated for gold
+	AiParameterSTR("etasStr","1.716 1.696 1.674 1.658 1.636 1.616 1.562 1.426 1.242 0.916 0.608 0.402 0.306 0.166 0.16 0.164 0.174 0.188");																					// ""
+	AiParameterSTR("ksStr","1.862 1.906 1.936 1.956 1.958 1.94 1.904 1.846 1.796 1.84 2.12 2.54 2.88 3.15 3.8 4.35 4.86 5.39");																								// ""
+	AiParameterINT("inputType",INPUT_RGB);					// RGB Legacy or string SPD
+	AiParameterINT("ccMode",CC_OFF);						// Color correction mode
+	AiParameterFLT("hueShift", 0.0f);						// hue shift
+	AiParameterFLT("saturationMod", 1.0f);					// saturation modifier
+	AiParameterINT("saturationOp",CC_MUL);					// saturation operator
+	AiParameterFLT("roughness", 0.0f);						// roughness parameter for GTR2 (GGX) filtering
+	AiParameterFLT("roughnessSampleSize", 0.05f);			// LUT roughness sample size
+	AiParameterINT("xyz2rgb",SRGB_ILLUM_D65_BRADFORD_E);	// XYZ to RGB Matrix
+
 }
 
 node_initialize
@@ -62,7 +75,6 @@ node_initialize
 	data->lambdas = NULL ;
 	data->etas = NULL;
 	data->ks = NULL;
-
 	AiNodeSetLocalData(node,data);
 }
 
@@ -75,16 +87,24 @@ node_update
 	
 	data->eta[0] = 1.0;	data->eta[1] = 1.0;	data->eta[2] = 1.0;
 	data->k[0] = 0.0;	data->k[1] = 0.0;	data->k[2] = 0.0;
+
+	int mode = params[p_mode].INT;
+	int inputType = params[p_inputType].INT;
+	data->ccMode = params[p_ccMode].INT;
+	data->satOp = params[p_satOp].INT;
+	data->xyz2rgb = params[p_xyz2rgb].INT;
+
 	bool fileOK = false;
-	
+	data->method = params[p_method].INT;
+
 	data->useFullSpectrum = params[p_useFullSpectrum].BOOL;
-	if(data->useFullSpectrum && ((params[p_mode].INT != MODE_FILES) || (params[p_method].INT == REFRACTIVE)))
+	if(data->useFullSpectrum && (!(params[p_mode].INT == MODE_FILES || params[p_inputType].INT == INPUT_STRING) || data->method == REFRACTIVE))
 	{
 		data->useFullSpectrum = false;
 		//AiMsgWarning("Can only use full spectrum with file mode for metals, reverting to approximation.");
 	}
-
 	data->degamma = params[p_degamma].BOOL;
+	data->transfer2sRGB = params[p_outputGamma].INT==OUTPUT_SRGB;
 
 	// reset tables for lambdas, etas and ks
 	if(data->lambdas != NULL)
@@ -102,126 +122,166 @@ node_update
 		delete[] data->ks;
 		data->ks = NULL;
 	}
-	
 
-	if(params[p_mode].INT == MODE_FILES)
+	if(mode == MODE_FILES || inputType == INPUT_STRING)
 	{
-		short ft = fileType(params[p_iorFilename].STR);
 		float unitConversion = ((params[p_lambdaUnits].INT==UNITS_NANO)?1.0f:1000.0f);
 
 		std::vector<float> lambdas;
 		std::vector<float> etas;
 		std::vector<float> ks;
-
-		switch(ft)
+		
+		if(mode == MODE_FILES)
 		{
-		case TYPE_CSV:
+			short ft = fileType(params[p_iorFilename].STR);
+			switch(ft)
 			{
-				
-				bool ret = loadCSV(params[p_iorFilename].STR,&lambdas,&etas,&ks,unitConversion);
-				if(ret)
+			case TYPE_CSV:
 				{
-					if(!data->useFullSpectrum)
-					{
-						Spectrum s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size());
-						s.ToRGB(data->eta);
-						s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size());
-						s.ToRGB(data->k);
-					}
-				}
-				break;
-			}
-		case TYPE_TXT:
-			{
-				bool ret = loadTXT(params[p_iorFilename].STR,&lambdas,&etas,&ks,unitConversion);
-				if(ret)
-				{
-					if(!data->useFullSpectrum)
-					{
-						Spectrum s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size());
-						s.ToRGB(data->eta);
-						s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size());
-						s.ToRGB(data->k);
-					}
-				}
-				break;
-			}
-		case TYPE_SPD:
-			{
-				std::string etaFilename(params[p_iorFilename].STR);
-				std::string kFilename("");
 
-				if(etaFilename.compare(etaFilename.size()-8,8,".eta.spd") == 0)
-				{
-					kFilename = etaFilename.substr(0,etaFilename.size()-8) + std::string(".k.spd");
-				}
-				else if(etaFilename.compare(etaFilename.size()-6,6,".k.spd") == 0)
-				{
-					kFilename = etaFilename;
-					etaFilename = etaFilename.substr(0,etaFilename.size()-6) + std::string(".eta.spd");
-				}
-
-				bool ret = loadSPD(etaFilename.c_str(),&lambdas,&etas,unitConversion);
-
-				if(ret)
-				{
-					Spectrum s;
-					if(!data->useFullSpectrum)
-					{
-						s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size());
-						s.ToRGB(data->eta);
-					}
-
-					lambdas.clear();
-
-					if(kFilename.size() < 6 || !fileExists(kFilename.c_str()))
-						break;
-					ret = loadSPD(kFilename.c_str(),&lambdas,&ks,unitConversion);
+					bool ret = loadCSV(params[p_iorFilename].STR,&lambdas,&etas,&ks,unitConversion);
 					if(ret)
 					{
 						if(!data->useFullSpectrum)
 						{
-							s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size());
+							Spectrum s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size(),data->xyz2rgb);
+							s.ToRGB(data->eta);
+							s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size(),data->xyz2rgb);
 							s.ToRGB(data->k);
 						}
+						fileOK = true;
 					}
+					break;
 				}
-			break;
+			case TYPE_TXT:
+				{
+					bool ret = loadTXT(params[p_iorFilename].STR,&lambdas,&etas,&ks,unitConversion);
+					if(ret)
+					{
+						if(!data->useFullSpectrum)
+						{
+							Spectrum s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size(),data->xyz2rgb);
+							s.ToRGB(data->eta);
+							s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size(),data->xyz2rgb);
+							s.ToRGB(data->k);
+						}
+						fileOK = true;
+					}
+					break;
+				}
+			case TYPE_SPD:
+				{
+					std::string etaFilename(params[p_iorFilename].STR);
+					std::string kFilename("");
+
+					if(etaFilename.compare(etaFilename.size()-8,8,".eta.spd") == 0)
+					{
+						kFilename = etaFilename.substr(0,etaFilename.size()-8) + std::string(".k.spd");
+					}
+					else if(etaFilename.compare(etaFilename.size()-6,6,".k.spd") == 0)
+					{
+						kFilename = etaFilename;
+						etaFilename = etaFilename.substr(0,etaFilename.size()-6) + std::string(".eta.spd");
+					}
+
+					bool ret = loadSPD(etaFilename.c_str(),&lambdas,&etas,unitConversion);
+
+					if(ret)
+					{
+						Spectrum s;
+						if(!data->useFullSpectrum)
+						{
+							s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size(),data->xyz2rgb);
+							s.ToRGB(data->eta);
+						}
+
+						lambdas.clear();
+
+						if(kFilename.size() < 6 || !fileExists(kFilename.c_str()))
+							break;
+						ret = loadSPD(kFilename.c_str(),&lambdas,&ks,unitConversion);
+						if(ret)
+						{
+							if(!data->useFullSpectrum)
+							{
+								s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size(),data->xyz2rgb);
+								s.ToRGB(data->k);
+							}
+							fileOK = true;
+						}
+					}
+					break;
+				}
+			default :
+				AiMsgError("File : \"%s\" is not of a recognized format. Will use ior = 1,1,1 and k = 0,0,0.",params[p_iorFilename].STR);
 			}
-		default :
-			AiMsgWarning("File : \"%s\" is not of a recognized format. Will use ior = 1,1,1 and k = 0,0,0.",params[p_iorFilename].STR);
+		}
+		else // INPUT_STRING
+		{
+			bool ret = loadStrings(params[p_lambdasStr].STR,params[p_etasStr].STR,params[p_ksStr].STR,&lambdas,&etas,&ks,unitConversion);
+
+			if(ret)
+			{
+				if(!data->useFullSpectrum)
+				{
+					Spectrum s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(etas[0]), (int)lambdas.size(),data->xyz2rgb);
+					s.ToRGB(data->eta);
+					s = Spectrum::FromSampled((float*)&(lambdas[0]), (float*)&(ks[0]), (int)lambdas.size(),data->xyz2rgb);
+					s.ToRGB(data->k);
+				}
+				fileOK = true;
+			}
+			else
+				AiMsgError("String : strings are not valid, check sizes (%u, %u, %u). Will use ior = 1,1,1 and k = 0,0,0.",lambdas.size(),etas.size(),ks.size());
 		}
 
 		// copy to global
-		if(data->useFullSpectrum)
+		if(data->useFullSpectrum && fileOK)
 		{
-			AiMsgInfo("labda size = %u",lambdas.size());
+			
 			data->lambdasSize = static_cast<int>(lambdas.size());
 			data->lambdas = new float[data->lambdasSize];
 			data->etas = new float[data->lambdasSize];
 			data->ks = new float[data->lambdasSize];
-			AiMsgInfo("--------------------------------------");
-			AiMsgInfo("IOR : ");
+			
 
+			std::string info_lambdas("");
+			std::string info_etas("");
+			std::string info_ks("");
+			char buf[256];
+			bool filemode = (mode == MODE_FILES);
 			for(int i = 0; i < data->lambdasSize; i++)
 			{
 				data->lambdas[i] = lambdas[i];
 				data->etas[i] = etas[i];
 				data->ks[i] = ks[i];
-				AiMsgInfo("      lambda[%i] : %f %s = ( %f, %f )", i, data->lambdas[i], ((params[p_lambdaUnits].INT==UNITS_NANO)?"nm":"um"), data->etas[i], data->ks[i]);
+				if(filemode)
+				{
+					sprintf(buf,"%f ",lambdas[i]);
+					info_lambdas.append(buf);
+					sprintf(buf,"%f ",etas[i]);
+					info_etas.append(buf);
+					sprintf(buf,"%f ",ks[i]);
+					info_ks.append(buf);
+				}
 			}
-			AiMsgInfo("--------------------------------------");
+
+			if(filemode)
+			{
+				AiMsgInfo("--------------------------------------");
+				AiMsgInfo("IOR strings form :");
+				AiMsgInfo("\tlambda : %s",info_lambdas.c_str());
+				AiMsgInfo("\tEta (n): %s",info_etas.c_str());
+				AiMsgInfo("\tk      : %s",info_ks.c_str());
+				AiMsgInfo("--------------------------------------");
+			}
 		}
 		else
 		{
-			fileOK = true;
 			AiMsgInfo("--------------------------------------");
-			AiMsgInfo("IOR : \tn red\t= %f",data->eta[0]);
-			AiMsgInfo("      \tn green\t= %f",data->eta[1]);
-			AiMsgInfo("      \tn blue\t= %f",data->eta[2]);
-			AiMsgInfo("      \tk red\t= %f",data->k[0]);
-			AiMsgInfo("      \tk green\t= %f",data->k[1]);
-			AiMsgInfo("      \tk blue\t= %f",data->k[2]);
+			AiMsgInfo("IOR RGB Form:");
+			AiMsgInfo("\tn (R,G,B)\t= (%f,%f,%f)",data->eta[0],data->eta[1],data->eta[2]);
+			AiMsgInfo("\tk (R,G,B)\t= (%f,%f,%f)",data->k[0],data->k[1],data->k[2]);
 			AiMsgInfo("--------------------------------------");
 		}
 		
@@ -229,6 +289,15 @@ node_update
 		etas.clear();
 		ks.clear();
 	}
+	else // use RGB params
+	{
+		data->eta[0] = params[p_iorRGB].RGB.r; data->eta[1] = params[p_iorRGB].RGB.g; data->eta[2] = params[p_iorRGB].RGB.b;
+		data->k[0] = params[p_kRGB].RGB.r; data->k[1] = params[p_kRGB].RGB.g; data->k[2] = params[p_kRGB].RGB.b;
+	}
+
+	// If the file or strings was bad, don't use the fullSpectrum mode -> using IOR (1,1,1,0,0,0)
+	if(!fileOK)
+		data->useFullSpectrum = false;
 
 	//-------
 	// LUT
@@ -239,46 +308,49 @@ node_update
 		data->LUT = NULL;
 	}
 
-	// Make sure nothing is plugged into the IOR
-	if(params[p_useLUT].BOOL)
-		data->useLUT = true;
-	else
-		data->useLUT = false;
+	bool ratioFsFp_isTextured = AiNodeIsLinked(node,"ratioFsFp");
+	bool roughness_isTextured = AiNodeIsLinked(node,"roughness");
 
-	if(data->useLUT && (AiNodeIsLinked(node,"iorRGB") || AiNodeIsLinked(node,"kRGB") || AiNodeIsLinked(node,"ratioFsFp") ||  AiNodeIsLinked(node,"iorInRGB")))
+	// Make sure nothing is plugged into the IOR
+	data->useLUT = params[p_useLUT].BOOL;
+	if(data->useLUT && (AiNodeIsLinked(node,"iorRGB") || AiNodeIsLinked(node,"kRGB") || ratioFsFp_isTextured ||  AiNodeIsLinked(node,"iorInRGB")))
 	{
 		data->useLUT = false;
-		AiMsgWarning("Obq_Fresnel : A parameter used for LUT calculation as a texture plugged in, cannot use LUT. Reverting to non-LUT mode.");
+		AiMsgWarning("Obq_Fresnel : A parameter used for LUT calculation has a linked texture, cannot use LUT. Reverting to non-LUT mode.");
 	}
 
-	if(data->useLUT)
+	if(data->useLUT) // TODO should only be like this
 	{
-		data->LUTRes = std::max(static_cast<int>(std::ceil(90.0/params[p_LUTSampleSize].FLT)),1);
-		data->LUTSampleSize = 90.0f/static_cast<float>(data->LUTRes);
+
+		float LUTSampleSize = params[p_LUTSampleSize].FLT;
+		data->LUTResM1 = (LUTSampleSize==0.0f?0.0f: std::ceil(90.0f/LUTSampleSize));
+		data->LUTRes = static_cast<int>(data->LUTResM1 + 1);
+		data->LUTSampleSize = (data->LUTRes==1?90.0f:90.0f/data->LUTResM1);
+		
+		float roughnessSampleSize = params[p_roughnessSampleSize].FLT;
+		data->roughnessResM1 = ((roughnessSampleSize==0.0f || !roughness_isTextured)?0.0f:std::ceil(1.0f/roughnessSampleSize));
+		data->roughnessRes = static_cast<int>(data->roughnessResM1)+1;
+		data->roughnessSampleSize = (data->roughnessRes==1?1.0f:1.0f/data->roughnessResM1);
+
 
 		// Memory allocation
-		if(params[p_method].INT == METALS)
-			data->LUT = (AtColor*) AiMalloc((data->LUTRes+1)*sizeof(AtColor));
+		if(data->method == METALS)
+			data->LUT = (AtColor*) AiMalloc(data->roughnessRes * data->LUTRes * sizeof(AtColor));
 		else
-			data->LUT = (AtColor*) AiMalloc(2*(data->LUTRes+1)*sizeof(AtColor));
+			data->LUT = (AtColor*) AiMalloc(data->roughnessRes * 2 * data->LUTRes * sizeof(AtColor));
 		
+
+
 		// Calculate and store in array
-		double lutres = data->LUTRes;
+		double lutres = data->LUTResM1;
 		double ratioFsFp = params[p_ratioFsFp].FLT;
 		double ratioFpFs = (1.0-ratioFsFp);
 		
 		if(!data->useFullSpectrum)
 		{
-			// get iorRGB from params if not in file mode
-			if(!fileOK)
+			if(data->method == METALS)
 			{
-				data->eta[0] = params[p_iorRGB].RGB.r; data->eta[1] = params[p_iorRGB].RGB.g; data->eta[2] = params[p_iorRGB].RGB.b;
-				data->k[0] = params[p_kRGB].RGB.r; data->k[1] = params[p_kRGB].RGB.g; data->k[2] = params[p_kRGB].RGB.b;
-			}
-
-			if(params[p_method].INT == METALS)
-			{
-				for(int i = 0; i <= data->LUTRes; i++)
+				for(int i = 0; i < data->LUTRes; i++)
 				{
 					double theta = static_cast<double>(i)/lutres*c_PiOver2__d;
 
@@ -302,22 +374,23 @@ node_update
 						colorFs[j] = (ratioFsFp*Rperp2 + ratioFpFs*Rparl2);
 					}
 
-					// degamma 2.2 by default
-					degamma(colorFs);
-					
-					// to sRGB
-					if(!data->degamma)
+					// For compatibility
+					if(data->degamma)
+						degamma(colorFs);
+
+					if(data->transfer2sRGB)
 						linear2sRGB(colorFs);
 
 					// Out color
-					data->LUT[i].r = static_cast<float>(Minimax(0.0,colorFs[0],1.0));
-					data->LUT[i].g = static_cast<float>(Minimax(0.0,colorFs[1],1.0));
-					data->LUT[i].b = static_cast<float>(Minimax(0.0,colorFs[2],1.0));
+					data->LUT[i].r = static_cast<float>(minimax(0.0,colorFs[0],1.0));
+					data->LUT[i].g = static_cast<float>(minimax(0.0,colorFs[1],1.0));
+					data->LUT[i].b = static_cast<float>(minimax(0.0,colorFs[2],1.0));
 
 					// Test if color is corrupted
 					if(AiColorCorrupted(data->LUT[i]))
 						data->LUT[i] = AI_RGB_WHITE;
 				}
+
 			}
 			else // REFRACTIVE
 			{
@@ -325,7 +398,7 @@ node_update
 				double colorNsIN[] = {params[p_iorInRGB].RGB.r,params[p_iorInRGB].RGB.g, params[p_iorInRGB].RGB.b};
 				double colorKs[] = {0.0f,0.0f,0.0f};
 
-				for(int i = 0; i <= data->LUTRes; i++)
+				for(int i = 0; i < data->LUTRes; i++)
 				{
 					double theta = static_cast<double>(i)/lutres*c_PiOver2__d;
 
@@ -341,7 +414,7 @@ node_update
 						{
 							colorNs[0] = colorNsIN[0] ; colorNs[1] = colorNsIN[1] ; colorNs[2] = colorNsIN[2];
 							colorNs1[0] = data->eta[0] ; colorNs1[1] = data->eta[1] ; colorNs1[2] = data->eta[2];
-							index += data->LUTRes+1;
+							index += data->LUTRes;
 						}
 
 
@@ -372,22 +445,26 @@ node_update
 							}
 						}
 
+						if(data->transfer2sRGB)
+							linear2sRGB(colorFs);
+
 						// Out color
-						data->LUT[index].r = static_cast<float>(Minimax(0.0,colorFs[0],1.0));
-						data->LUT[index].g = static_cast<float>(Minimax(0.0,colorFs[1],1.0));
-						data->LUT[index].b = static_cast<float>(Minimax(0.0,colorFs[2],1.0));
+						data->LUT[index].r = static_cast<float>(minimax(0.0,colorFs[0],1.0));
+						data->LUT[index].g = static_cast<float>(minimax(0.0,colorFs[1],1.0));
+						data->LUT[index].b = static_cast<float>(minimax(0.0,colorFs[2],1.0));
 
 						// Test if color is corrupted
 						if(AiColorCorrupted(data->LUT[index]))
 							data->LUT[index] = AI_RGB_WHITE;
 					}
 				}
+
 			}
 		}
 		else // Full spectrum for metal
 		{
 
-			for(int i = 0; i <= data->LUTRes; i++)
+			for(int i = 0; i < data->LUTRes; i++)
 			{
 				double theta = static_cast<double>(i)/lutres*c_PiOver2__d;
 
@@ -411,28 +488,138 @@ node_update
 					fs[j] = static_cast<float>((ratioFsFp*Rperp2 + ratioFpFs*Rparl2));
 				}
 
-				Spectrum s = Spectrum::FromSampled(data->lambdas, fs, data->lambdasSize);
+				Spectrum s = Spectrum::FromSampled(data->lambdas, fs, data->lambdasSize,data->xyz2rgb);
 				delete[] fs;
 
 				s.ToRGB(colorFs);
 
-				// degamma by default
-				degamma(colorFs);
-
-				// convert to sRGB
-				if(!data->degamma)
+				// degamma 2.2 DEPRICATED
+				if(data->degamma)
+						degamma(colorFs);
+				if(data->transfer2sRGB)
 					linear2sRGB(colorFs);
 
 
 				// Out color
-				data->LUT[i].r = static_cast<float>(Minimax(0.0,colorFs[0],1.0));
-				data->LUT[i].g = static_cast<float>(Minimax(0.0,colorFs[1],1.0));
-				data->LUT[i].b = static_cast<float>(Minimax(0.0,colorFs[2],1.0));
+				data->LUT[i].r = static_cast<float>(minimax(0.0,colorFs[0],1.0));
+				data->LUT[i].g = static_cast<float>(minimax(0.0,colorFs[1],1.0));
+				data->LUT[i].b = static_cast<float>(minimax(0.0,colorFs[2],1.0));
 
 				// Test if color is corrupted
 				if(AiColorCorrupted(data->LUT[i]))
 					data->LUT[i] = AI_RGB_WHITE;
 			}
+		}
+
+		//-----------
+		// ROUGHNESS
+		if(!roughness_isTextured) // single value
+		{
+			float alpha = params[p_roughness].FLT;
+			if(alpha!=0.0f) // else it's all done
+			{
+				float alpha2 = alpha*alpha;
+				float alpha2overPi = alpha2/c_Pi;
+				float alpha2minus1 = alpha2-1.0f;
+
+				float* weights = new float[data->LUTRes];
+				AtColor* colors = new AtColor[(data->method==REFRACTIVE?2*data->LUTRes:data->LUTRes)];
+
+				// calculate weight
+				for(int i = 0; i < data->LUTRes; i++)
+				{
+					float theta = static_cast<float>(i)/data->LUTResM1*c_PiOver2;
+					float costheta = std::cos(theta);
+					float denom = 1.0f+alpha2minus1*costheta*costheta;
+
+					weights[i] = (denom==0.0f?1.0f:alpha2overPi/(denom*denom));
+				}
+
+				//calculate color
+				for(int i = 0; i < data->LUTRes; i++)
+				{
+					AtColor c = AI_RGB_BLACK;
+					AtColor c2 = AI_RGB_BLACK;// refractive
+					float w = 0.0f;
+					for(int j = 0; j < data->LUTRes; j++)
+					{
+						int index_diff = std::abs(i-j);
+						w += weights[index_diff];
+						c += weights[index_diff] * data->LUT[j];
+						if(data->method == REFRACTIVE)
+							c2 += weights[index_diff] * data->LUT[data->LUTRes+j];
+					}
+					if(w == 0.0f)
+						w = 1.0f;
+					colors[i] = c/w;
+					if(data->method == REFRACTIVE)
+						colors[data->LUTRes + i] = c2/w;
+				}
+
+				//switch color
+				int roughlutres = data->LUTRes;
+				if(data->method == REFRACTIVE)
+					roughlutres*=2;
+
+				for(int i = 0; i < roughlutres; i++)
+					data->LUT[i] = colors[i];
+
+				delete[] weights;
+				delete[] colors;
+			}
+		}
+		else if(data->roughnessRes != 1)	// must do roughness precalc GGX
+		{
+
+			float* weights = new float[data->LUTRes];
+			for(int a = 1; a < data->roughnessRes; a++)
+			{
+				float alpha = static_cast<float>(a)/data->roughnessResM1;
+				float alpha2 = alpha*alpha;
+				float alpha2overPi = alpha2/c_Pi;
+				float alpha2minus1 = alpha2-1.0f;
+
+				// reset
+				for(int i = 0; i < data->LUTRes; i++)
+					weights[i] = 0.0f;
+
+				// calculate weight
+				for(int i = 0; i < data->LUTRes; i++)
+				{
+					float theta = static_cast<float>(i)/data->LUTResM1*c_PiOver2;
+					float costheta = std::cos(theta);
+					float denom = 1.0f+alpha2minus1*costheta*costheta;
+
+					weights[i] = (denom==0.0f?1.0f:alpha2overPi/(denom*denom));
+				}
+
+				for(int i = 0; i < data->LUTRes; i++)
+				{
+					AtColor c = AI_RGB_BLACK;
+					AtColor c2 = AI_RGB_BLACK; // refractive
+					float w = 0.0f;
+					for(int j = 0; j < data->LUTRes; j++)
+					{
+						int index_diff = std::abs(i-j);
+						w += weights[index_diff];
+						c += weights[index_diff]*data->LUT[j];
+						if(data->method == REFRACTIVE)
+							c2 += weights[index_diff] * data->LUT[data->LUTRes+j];
+					}
+					if(w == 0.0f)
+						w = 1.0f;
+					
+					if(data->method == REFRACTIVE)
+					{
+						data->LUT[a*2*data->LUTRes + i] = c/w;
+						data->LUT[a*2*data->LUTRes + data->LUTRes + i] = c2/w;
+					}
+					else
+						data->LUT[a*data->LUTRes + i] = c/w;
+				}
+			}
+
+			delete[] weights;
 		}
 	}
 }
@@ -474,9 +661,9 @@ shader_evaluate
 
 	//BACKFACE
 	AtVector s_normal = sg->N;
-	double s_ndotv = AiV3Dot(s_normal, sg->Rd);
+	double s_ndotv = CLAMP(AiV3Dot(s_normal, sg->Rd),-1.0f,1.0f);
 	bool backface = (s_ndotv >= 0.0);
-	s_ndotv = Minimax(AI_EPSILON,abs(s_ndotv),1.0);
+	s_ndotv = std::max(c_EpsilonF__d,abs(s_ndotv));
 	
 	if(backface)
 		s_normal = -s_normal;
@@ -484,7 +671,7 @@ shader_evaluate
 
 	int backfaceMode = AiShaderEvalParamInt(p_backfaceMode);
 
-	int method = AiShaderEvalParamInt(p_method);
+	int method = data->method;
 	bool transmittance = AiShaderEvalParamBool(p_transmittance);
 
 	// back face and trivial white or black
@@ -501,27 +688,60 @@ shader_evaluate
 
 		// get theta
 		double theta = acos(s_ndotv);
-			
-		float index_f = static_cast<float>(Minimax(0.0,theta/c_PiOver2,1.0))*static_cast<float>(data->LUTRes);
+		
+		float index_f = static_cast<float>(minimax(0.0,theta/c_PiOver2,1.0))*data->LUTResM1;
 
-		if(backfaceMode == BACKFACE_SWAP && backface && method == REFRACTIVE)
+		// No Roughness
+		if(data->roughnessRes == 1)
 		{
-			index_f += (data->LUTRes+1);
+			if(method == REFRACTIVE && backfaceMode == BACKFACE_SWAP && backface)
+				index_f += data->LUTRes;
+
+			int index_floor = static_cast<int>(floor(index_f));
+			int index_ceil = static_cast<int>(ceil(index_f));
+			float t = index_f - static_cast<float>(index_floor);
+
+			sg->out.RGB = ((1.0f-t)*data->LUT[index_floor] + t*data->LUT[index_ceil]);
 		}
+		else // Roughness
+		{
+			int lutres = data->LUTRes;
 
-		float index_floor = floor(index_f);
-		float index_ceil = ceil(index_f);
-		float t = index_f - index_floor;
+			if(method == REFRACTIVE)
+			{
+				lutres*=2;
+				if( backfaceMode == BACKFACE_SWAP && backface)
+					index_f += data->LUTRes;
+			}
 
-		sg->out.RGB = (1.0f-t)*data->LUT[static_cast<int>(index_floor)] + t*data->LUT[static_cast<int>(index_ceil)];
+			float rough = CLAMP(AiShaderEvalParamFlt(p_roughness),0.0f,1.0f)*static_cast<float>(data->roughnessResM1);
+			int rough_f = static_cast<int>(std::floor(rough));
+			int rough_c = static_cast<int>(std::ceil(rough));
+			float rough_t = rough - static_cast<float>(rough_f);
 
+			int index_floor = static_cast<int>(floor(index_f));
+			int index_ceil = static_cast<int>(ceil(index_f));
+			float t = index_f - static_cast<float>(index_floor);
+
+			int roughedIndex_ff = rough_f*lutres + index_floor;
+			int roughedIndex_fc = rough_f*lutres + index_ceil;
+			int roughedIndex_cf = rough_c*lutres + index_floor;
+			int roughedIndex_cc = rough_c*lutres + index_ceil;
+
+			AtColor value_ff = data->LUT[roughedIndex_ff];
+			AtColor value_fc = data->LUT[roughedIndex_fc];
+			AtColor value_cf = data->LUT[roughedIndex_cf];
+			AtColor value_cc = data->LUT[roughedIndex_cc];
+
+			sg->out.RGB = ((1.0f-rough_t)*((1.0f-t)*value_ff + t*value_fc) + rough_t*((1.0f-t)*value_cf + t*value_cc));
+		}
 	}
 	else if(data->useFullSpectrum) // metal
 	{
 		double ratioFsFp = double(AiShaderEvalParamFlt(p_ratioFsFp));
 		double ratioFpFs = (1.0-ratioFsFp);
-		
-		double costheta = s_ndotv;
+		double roughness = AiShaderEvalParamFlt(p_roughness);
+		double costheta = s_ndotv*(1.0 - roughness) + roughness*0.3333333; // Cheap/poor approximation
 
 		double colorFs[] = {0.0,0.0,0.0};
 
@@ -543,18 +763,21 @@ shader_evaluate
 			fs[i] = static_cast<float>((ratioFsFp*Rperp2 + ratioFpFs*Rparl2));
 		}
 
-		Spectrum s = Spectrum::FromSampled(data->lambdas, fs, data->lambdasSize);
+		Spectrum s = Spectrum::FromSampled(data->lambdas, fs, data->lambdasSize,data->xyz2rgb);
 		
 		s.ToRGB(colorFs);
 		delete[] fs;
 
-		degamma(colorFs);
-		if(!data->degamma)
+		// degamma 2.2 DEPRICATED
+		if(data->degamma)
+			degamma(colorFs);
+					
+		if(data->transfer2sRGB)
 			linear2sRGB(colorFs);
 		
-		sg->out.RGB.r = static_cast<float>(Minimax(0.0,colorFs[0],1.0));
-		sg->out.RGB.g = static_cast<float>(Minimax(0.0,colorFs[1],1.0));
-		sg->out.RGB.b = static_cast<float>(Minimax(0.0,colorFs[2],1.0));
+		sg->out.RGB.r = static_cast<float>(minimax(0.0,colorFs[0],1.0));
+		sg->out.RGB.g = static_cast<float>(minimax(0.0,colorFs[1],1.0));
+		sg->out.RGB.b = static_cast<float>(minimax(0.0,colorFs[2],1.0));
 	}
 	else
 	{
@@ -594,8 +817,8 @@ shader_evaluate
 
 		double ratioFsFp = double(AiShaderEvalParamFlt(p_ratioFsFp));
 		double ratioFpFs = (1.0-ratioFsFp);
-		
-		double costheta = s_ndotv;
+		double roughness = AiShaderEvalParamFlt(p_roughness);
+		double costheta = s_ndotv*(1.0 - roughness) + roughness*0.3333333; // Cheap/poor approximation
 
 		double colorNs[] = {iorRGB.r,iorRGB.g,iorRGB.b};
 		double colorNs1[] = {iorInRGB.r,iorInRGB.g,iorInRGB.b};
@@ -608,7 +831,7 @@ shader_evaluate
 			// Fresnel
 		case REFRACTIVE :
 			{
-				double theta = acos(s_ndotv);
+				double theta = acos(costheta);
 				//total intern reflection : 
 				//get minimum n2 and maximum n1
 				double max_n1 = mmax(colorNs1[0],colorNs1[1],colorNs1[2]);
@@ -634,15 +857,8 @@ shader_evaluate
 						(colorNs1[i]*sqrtPart + colorNs[i]*costheta),2);
 					colorFs[i] = (ratioFsFp*Fs + ratioFpFs*Fp);
 				}
-
-				//if(data->degamma)
-				//	degamma();
-				//{
-				//	colorFs[0] = std::pow(colorFs[0],2.2);
-				//	colorFs[1] = std::pow(colorFs[1],2.2);
-				//	colorFs[2] = std::pow(colorFs[2],2.2);
-				//}
-
+				if(data->transfer2sRGB)
+					linear2sRGB(colorFs);
 				break;
 			}
 			// Complex Fresnel
@@ -661,8 +877,10 @@ shader_evaluate
 
 					colorFs[i] = (ratioFsFp*Rperp2 + ratioFpFs*Rparl2);
 				}
-				degamma(colorFs);
-				if(!data->degamma)
+				// degamma 2.2 DEPRICATED
+				if(data->degamma)
+					degamma(colorFs);
+				if(data->transfer2sRGB)
 					linear2sRGB(colorFs);
 
 				break;
@@ -670,15 +888,85 @@ shader_evaluate
 		}
 
 		// Out color
-		sg->out.RGB.r = float(Minimax(0.0,colorFs[0],1.0));
-		sg->out.RGB.g = float(Minimax(0.0,colorFs[1],1.0));
-		sg->out.RGB.b = float(Minimax(0.0,colorFs[2],1.0));
+		sg->out.RGB.r = float(minimax(0.0,colorFs[0],1.0));
+		sg->out.RGB.g = float(minimax(0.0,colorFs[1],1.0));
+		sg->out.RGB.b = float(minimax(0.0,colorFs[2],1.0));
+
 
 		// Test if color is corrupted
 		if(AiColorCorrupted(sg->out.RGB))
 			sg->out.RGB = AI_RGB_BLACK;
 
 	}
+
+	// Color adjustment for minor tweak
+	if( data->ccMode != CC_OFF)
+	{
+		// HSV
+		float hueShift = AiShaderEvalParamFlt(p_hueShift);
+		float saturationMod = AiShaderEvalParamFlt(p_saturationMod);
+		switch(data->ccMode)
+		{
+		case CC_HSV:	
+			{
+				AtColor hsv;
+				RGBtoHSV(sg->out.RGB, hsv);
+
+				// H
+				hsv.r += hueShift; // [0,360]
+
+				// S
+				switch(data->satOp)
+				{
+				case CC_MUL:
+					hsv.g *= saturationMod;
+					break;
+				case CC_ADD:
+					hsv.g += saturationMod;
+					break;
+				case CC_POW:
+				default:
+					hsv.g = std::pow(hsv.g,saturationMod);
+					break;
+				}
+				
+
+				hsv.g = CLAMP(hsv.g, 0.0f, 1.0f);
+
+				HSVtoRGB(hsv,sg->out.RGB);
+				break;
+			}
+		case CC_HLS:	// same as arnold CC
+		default:
+			{
+				AtColor hls;
+				RGBtoHLS(sg->out.RGB, hls);
+				// H
+				hls.r += hueShift/360.0f; // [0, 1]
+
+				// S
+				switch(data->satOp)
+				{
+				case CC_MUL:
+					hls.b *= saturationMod;
+					break;
+				case CC_ADD:
+					hls.b += saturationMod;
+					break;
+				case CC_POW:
+				default:
+					hls.b = std::pow(hls.b,saturationMod);
+					break;
+				}
+				hls.b = CLAMP(hls.b, 0.0f, 1.0f);
+
+				HLStoRGB(hls,sg->out.RGB);
+				break;
+			}
+		}
+	}
+
+
 	// Transmittance T = 1 - R
 	if(transmittance)
 	{
@@ -702,7 +990,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqFresnelSimpleMethods;
+//   node->methods      = ObqFresnelMethods;
 //   node->output_type  = AI_TYPE_RGB;
 //   node->name         = "Obq_Fresnel";
 //   node->node_type    = AI_NODE_SHADER;

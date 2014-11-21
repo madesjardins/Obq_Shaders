@@ -31,7 +31,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQTOON_H
 #define OBQTOON_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 #include <map>
 
 static const char* c_ToonGradientMessage = "OToon";
@@ -45,7 +45,7 @@ enum Obq_RemapMode{OBQ_REMAPAVERAGE = 0, OBQ_REMAPLUMINANCE, OBQ_REMAPRGB};
 
 // enum for parameters
 //
-enum ObqMessageFltSimpleParams { 
+enum ObqMessageGetFltParams { 
 	p_global_loopLightMode,
 	p_global_compMode,
 	p_global_loopMode,

@@ -355,7 +355,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqThicknessSimpleMethods;
+//   node->methods      = ObqThicknessMethods;
 //   node->output_type  = AI_TYPE_FLOAT;
 //   node->name         = "Obq_Thickness";
 //   node->node_type    = AI_NODE_SHADER;

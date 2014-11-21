@@ -28,15 +28,15 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqRoot2TipSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqRoot2TipMethods);
 
 // enum for parameters
 //
-enum ObqRoot2TipSimpleParams { p_root, p_tip, p_mode};
+enum ObqRoot2TipParams { p_root, p_tip, p_mode};
 
 // shader data struct
 //
@@ -96,7 +96,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqRoot2TipSimpleMethods;
+//   node->methods      = ObqRoot2TipMethods;
 //   node->output_type  = AI_TYPE_RGBA;
 //   node->name         = "Obq_Root2Tip";
 //   node->node_type    = AI_NODE_SHADER;

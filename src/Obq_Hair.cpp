@@ -32,7 +32,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqHairSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqHairMethods);
 
 
 node_parameters
@@ -173,7 +173,7 @@ node_update
 	data->aov_indir_scatter = AiNodeGetStr(node,"aov_indir_scatter");
 	data->aov_indir_scatter_back = AiNodeGetStr(node,"aov_indir_scatter_back");
 
-	srand (time(NULL));
+	srand (static_cast<unsigned int>(time(NULL)));
 }
 
 node_finish
@@ -747,7 +747,7 @@ shader_evaluate
 //	if (i > 0)
 //		return false;
 //
-//	node->methods      = ObqHairSimpleParams;
+//	node->methods      = ObqHairParams;
 //	node->output_type  = AI_TYPE_RGB;
 //	node->name         = "Obq_Hair";
 //	node->node_type    = AI_NODE_SHADER;

@@ -33,7 +33,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqToonSimpleSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqToonSimpleMethods);
 
 
 node_parameters

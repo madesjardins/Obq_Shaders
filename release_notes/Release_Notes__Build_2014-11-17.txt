@@ -1,0 +1,40 @@
+﻿v210 - win,linux - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v300 - win,linux - 	SITOA 3.0.0 - Arnold 4.1.3.3  by Marc-Antoine Desjardins
+v301 - win,linux - 	SITOA 3.1.0 - Arnold 4.2.0.6  by Marc-Antoine Desjardins
+v302 - win,linux - 	SITOA 3.2.0 - Arnold 4.2.1.2  by Marc-Antoine Desjardins
+v303 - win,linux - 	SITOA 3.3.0 - Arnold 4.2.2.0  by Marc-Antoine Desjardins
+
+
+FIXES:
+	+ Obq_StereoLens : Proper derivatives in stereo mode.
+	+ Obq_Fresnel : Proper colorspace output.
+
+ADDITIONS:
+	+ A huge huge thanks to Andrew Hazelden for pushing some Maya UI templates.
+	+ Obq_LensDistortion, Obq_StereoLens : Added DoF Bokeh presets with bias and gain parameters.
+	+ Obq_Fresnel : Added string input for SPDs. Approximated roughness using GTR2 (GGX) normal distribution. Tint and saturation tweaks.
+	+ Obq_RandomID, Obq_RandomColor : added choice of SItoA, MtoA and HtoA for naming convention.
+	+ Obq_Opacity : Added new Color.Alpha mode in which opacity is determined by alpha of input color. Also invert and hard opacity options.
+	
+CHANGES:
+	+ Obq_Fresnel : Presets now have to be applied via a "Load" button. This allows look compatibility with previous Obq_Fresnel shaders.
+	+ Code : All non-shader node related files starts with "O_" instead of "Obq_".
+	+ Obq_MessageFlt : Renamed Obq_MessageGetFlt
+	+ Obq_Color : Is now RGBA.
+	
+NEW SHADERS:
+	+ Obq_ColorspaceConverter : converts colors from and to different colorspaces
+	+ Obq_SpectrumColor : output a color with the given SPD.
+	+ Obq_MessageSetFlt : Sets a scalar value in the message queue. Use with Obq_MessageGetFlt.
+	+ Obq_MessageStoreFlt : Gets a scalar value in the message queue and stores it in an AOV.
+	+ Obq_SetAlpha : Sets the alpha of a color.
+	+ Obq_TransformShadingPoint : Multiplies sg->P by a matrix and propagates this new shading point (Great to transform VDBs).
+	
+REMOVED SHADERS:
+
+TODO :
+	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
+	+ New documentation system for all obq shaders.
+	+ Code Cleanup and optimisation.
+	+ Obq_MeasuredMaterial : Importance sampling.
+	

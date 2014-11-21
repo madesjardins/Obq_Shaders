@@ -17,12 +17,14 @@ src\Obq_Fresnel.obqh
 src\Obq_Hair.obqh
 src\Obq_Color.obqh
 src\Obq_Fresnel2Standards.obqh
+src\Obq_LensDistortion.obqh
 
 #src\Obq_RandomID.obqh
 #src\Obq_RayDepth.obqh
 #src\Obq_StereoLens.obqh
 #src\Obq_UVRemapLensDistortion.obqh
-#src\Obq_LensDistortion.obqh
+#src\Obq_ColorspaceConverter.obqh
+#src\Obq_SpectrumColor.obqh
 
 #src\Obq_Atmosphere.obqh
 #src\Obq_Bend4Stereo.obqh

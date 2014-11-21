@@ -55,6 +55,9 @@ node_parameters
 	AiParameterFLT("apertureBladeCurvature",0.0f);
 	AiParameterFLT("apertureRotation",0.0f);
 	AiParameterBOOL("focusPlaneIsPlane",true);
+	AiParameterBOOL("bokehInvert",false);
+	AiParameterFLT("bokehBias",0.5f);
+	AiParameterFLT("bokehGain",0.5f);
 
 
 	AtArray* a = AiArray(2, 1, AI_TYPE_FLOAT, 0.0f,0.0f);
@@ -85,6 +88,9 @@ node_initialize
 	data->apertureBlades = 5;
 	data->apertureBladeCurvature = 0.0f;
 	data->apertureRotation = 0.0f;
+	data->bokehInvert = false;
+	data->bokehBias = 0.5f;
+	data->bokehGain = 0.5f;
 	data->focalDistanceC = 100.0f;
 	data->focalDistanceL = 100.0f;
 	data->focalDistanceR = 100.0f;
@@ -208,6 +214,9 @@ node_update
 			data->apertureBlades = params[p_apertureBlades].INT;
 			data->apertureBladeCurvature = params[p_apertureBladeCurvature].FLT;
 			data->apertureRotation = params[p_apertureRotation].FLT;
+			data->bokehInvert = params[p_bokehInvert].BOOL;
+			data->bokehBias = params[p_bokehBias].FLT;
+			data->bokehGain = 1.0f-params[p_bokehGain].FLT;
 
 			if(data->apertureAspectRatio<=0.0f)
 				data->apertureAspectRatio = 0.001f;
@@ -285,7 +294,7 @@ camera_create_ray
 			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
-				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
+				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
 				float ft = (data->focusPlaneIsPlane?std::abs(data->focalDistanceC/output->dir.z):data->focalDistanceC);
@@ -312,7 +321,7 @@ camera_create_ray
 			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
-				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
+				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
 
@@ -353,7 +362,7 @@ camera_create_ray
 			if(data->useDof && data->apertureSize >0.0f){
 				float lensU;
 				float lensV;
-				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV);
+				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 				lensU*=data->apertureSize;
 				lensV*=data->apertureSize;
 				float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
@@ -383,6 +392,10 @@ camera_create_ray
 		}
 	case STEREOLR:
 		{
+
+			// Equal derivatives y is ok, x is bad
+			dsx=dsy;
+
 			// Left Camera
 			if(input->sx < 0)
 			{
@@ -395,7 +408,7 @@ camera_create_ray
 				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
-					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
+					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
 					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
@@ -435,7 +448,7 @@ camera_create_ray
 				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
-					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
+					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
 					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;
@@ -466,6 +479,9 @@ camera_create_ray
 		}
 	case STEREODU:
 		{
+			// Equal derivatives y is ok, x is bad
+			dsy=dsx;
+
 			// Left Camera
 			if(input->sy < 0)
 			{
@@ -477,7 +493,7 @@ camera_create_ray
 				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
-					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
+					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
 					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceL/dir.z):data->focalDistanceL;
@@ -515,7 +531,7 @@ camera_create_ray
 				if(data->useDof && data->apertureSize >0.0f){
 					float lensU;
 					float lensV;
-					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV);
+					ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation, &lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
 					lensU*=data->apertureSize;
 					lensV*=data->apertureSize;
 					float ft = data->focusPlaneIsPlane?std::abs(data->focalDistanceR/dir.z):data->focalDistanceR;

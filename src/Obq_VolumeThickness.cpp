@@ -1580,7 +1580,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqVolumeThicknessSimpleMethods;
+//	node->methods      = ObqVolumeThicknessMethods;
 //	node->output_type  = AI_TYPE_RGBA;
 //	node->name         = "Obq_VolumeThickness";
 //	node->node_type    = AI_NODE_SHADER;

@@ -28,13 +28,13 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold Thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqBend4StereoSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqBend4StereoMethods);
 
-enum ObqBend4StereoSimpleParams { p_shaderIn, p_bendMode, p_leftCamera, p_centerCamera, p_rightCamera };
+enum ObqBend4StereoParams { p_shaderIn, p_bendMode, p_leftCamera, p_centerCamera, p_rightCamera };
 
 enum ObqBendModes {BEND_NONE, BEND_LEFT, BEND_RIGHT, BEND_CENTER};
 
@@ -197,7 +197,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqBend4StereoSimpleMethods;
+//	node->methods      = ObqBend4StereoMethods;
 //	node->output_type  = AI_TYPE_RGBA;
 //	node->name         = "Obq_Bend4Stereo";
 //	node->node_type    = AI_NODE_SHADER;

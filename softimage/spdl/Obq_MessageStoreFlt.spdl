@@ -1,0 +1,194 @@
+# SPDL Obq_MessageStoreFlt - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{D2FCE350-AB5B-4E59-9EF6-2DEEEFD0B184}";
+PropertySet "Obq_MessageStoreFlt"
+{
+	Parameter "out" output
+	{
+		GUID = "{691C7779-877D-49DF-9105-977748B1F1F7}";
+		Type = color;
+	}
+	Parameter "passthrough" input
+	{
+		GUID = "{A47642FA-351E-43A5-AAA3-1D2879F62435}";
+		Type = color;
+		Value = 1.0 1.0 1.0 1.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "key" input
+	{
+		GUID = "{4AB4ACAB-A294-417B-A698-5001395AA536}";
+		Type = string;
+		Value = "O1";
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "defaultValue" input
+	{
+		GUID = "{D09FB34A-6301-462D-ACE2-B7A12007B40D}";
+		Type = scalar;
+		Value = 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "storeAfter" input
+	{
+		GUID = "{8A58493C-98AD-4D8F-9051-4F37E6BCC85C}";
+		Type = boolean;
+		Value = true;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "AOVName" input
+	{
+		GUID = "{027579D6-8640-41D7-A46F-5C52850D7A0D}";
+		Type = string;
+		Value = "";
+		Texturable = Off;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_MessageStoreFlt_params_meta"
+{
+	Name = "Obq_MessageStoreFlt";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_MessageStoreFlt";
+	}	
+}
+
+Defaults
+{
+	passthrough
+	{
+		Name = "Passthrough";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "rgba";
+	}
+	key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultValue
+	{
+		Name = "Default Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	storeAfter
+	{
+		Name = "Store value after passthrough evaluation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	AOVName
+	{
+		Name = "Store In";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "combo";
+	}
+
+}
+
+Layout "Default"
+{
+	passthrough;
+	key;
+	Row
+	{
+		AOVName;
+		Button AddValueChannel,alignleft = "Add";
+	}
+	storeAfter;
+	defaultValue;
+}
+
+Layout "RenderTree"
+{
+	passthrough;
+	defaultValue;
+}
+
+Language = "VBScript";
+Logic
+{	
+
+Function AddChannel( in_type, in_param )
+	Dim		sName
+
+	AddChannel = False
+
+	sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
+	If sName = "" Then Exit Function
+
+	On Error Resume Next
+	sName = CreateRenderChannel( sName, in_type )
+	If Err.Number <> 0 Then
+		LogMessage "Unable to create channel. Does a channel with that name already exist?"
+		Exit Function
+	End If
+	If sName <> "" Then
+		For Each oInspected In PPG.Inspected
+			oInspected.Parameters( in_param ).Value = sName
+		Next
+		AddChannel = True
+	End If
+End Function
+
+Function renderChannelExists( in_type, in_param, in_name )
+	Dim oRenderChannels
+	Set oRenderChannels = ActiveProject.ActiveScene.PassContainer.Properties( "Scene Render Options" ).RenderChannels
+
+	renderChannelExists = False
+	for each oChannel in oRenderChannels
+		If oChannel.Name = in_name Then
+			renderChannelExists = True
+			Exit Function
+		End If
+	next 
+End Function
+
+Sub FillChannelCombo( in_type, in_param )
+	Dim oRenderChannels
+	Set oRenderChannels = ActiveProject.ActiveScene.PassContainer.Properties( "Scene Render Options" ).RenderChannels
+		
+	Dim		idx
+	ReDim oChannelList( oRenderChannels.Count * 2 + 3 )
+		
+	oChannelList( 0 ) = "<None>"
+	oChannelList( 1 ) = ""
+
+	idx = 1
+	for each oChannel in oRenderChannels
+		If oChannel.ChannelType = in_type Then
+			oChannelList( idx * 2 + 0 ) = oChannel.Name
+			oChannelList( idx * 2 + 1 ) = oChannel.Name
+			idx = idx + 1
+		End If
+	next 
+		
+	ReDim Preserve oChannelList( idx * 2 - 1 )
+
+	Dim oChannelCombo
+	Set oChannelCombo = PPG.PPGLayout.Item( in_param )
+	oChannelCombo.UIItems = oChannelList
+End Sub
+
+Sub AddValueChannel_OnClicked
+	If AddChannel( siRenderChannelGrayscaleType, "AOVName" ) Then
+		FillChannelCombo siRenderChannelGrayscaleType, "AOVName"
+		PPG.Refresh
+	End If
+End Sub
+
+Sub OnInit
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreFlt.html"
+	FillChannelCombo siRenderChannelGrayscaleType, "AOVName"
+	PPG.Refresh
+End Sub
+}

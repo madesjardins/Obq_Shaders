@@ -233,6 +233,31 @@ PropertySet "Obq_StereoLens"
 		Texturable = Off;
 		Value = On;
 	}
+	Parameter "bokehInvert" input
+	{
+		GUID = "{852CEFFE-1121-49FA-8A40-00FE9E6084A4}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+	}
+	Parameter "bokehBias" input
+	{
+		GUID = "{B38A3996-406A-42B5-B38E-9659E8753ED8}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "bokehGain" input
+	{
+		GUID = "{7D609C02-C4F3-4EF1-836A-46EF40B6AF91}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
 }
 
 MetaShader "Obq_StereoLens_params_meta"
@@ -374,7 +399,7 @@ Defaults
 	}
 	usePolygonalAperture
 	{
-		Name = "Polygon Aperture";
+		Name = "Polygonal Aperture";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	apertureBlades
@@ -398,6 +423,21 @@ Defaults
 	focusPlaneIsPlane
 	{
 		Name = "Focus plane is a plane";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehInvert
+	{
+		Name = "Invert";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehBias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehGain
+	{
+		Name = "Gain";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 }
@@ -466,6 +506,21 @@ Layout "Default"
 				apertureBlades;
 				apertureBladeCurvature;
 				apertureRotation;
+				Group "Bokeh Quality"
+				{
+					bokehInvert;
+					bokehBias;
+					bokehGain;
+					Group "Presets"
+					{
+						Row
+						{
+							Button btnBokehPoor, aligncenter = "Poor";
+							Button btnBokehNeutral, aligncenter = "Neutral";
+							Button btnBokehGood, aligncenter = "Good";
+						}
+					}
+				}
 			}
 		}
 	}
@@ -486,213 +541,233 @@ Layout "RenderTree"
 Language = "VBScript";
 Logic
 {	
-	Sub checkCameras()
-		Set oLCamera = Dictionary.GetObject(PPG.leftCamera.Value & "",false)
-		Set oRCamera = Dictionary.GetObject(PPG.rightCamera.Value & "",false)
-		If TypeName( oLCamera ) = "Nothing" AND TypeName( oRCamera ) = "Nothing" Then
-			PPG.cameraStatus.Value = "!! Both cameras are NOT valid !!"
-		ElseIf TypeName( oLCamera ) = "Nothing" Then
-			PPG.cameraStatus.Value = "!! Left camera is NOT valid !!"
-		ElseIf TypeName( oRCamera ) = "Nothing" then
-			PPG.cameraStatus.Value = "!! Right camera is NOT valid !!"
-		Else
-			PPG.cameraStatus.Value = "Both cameras are valid."
-		End If
-	End Sub
 
-	Sub leftCamera_OnChanged()
-		SetExpr PPG.filmbackX.Parent & ".filmbackX", PPG.leftCamera.Value & ".camera.projplanewidth"
-		SetExpr PPG.leftCenterOffset.Parent & ".leftCenterOffset", PPG.leftCamera.Value & ".camera.projplaneoffx"
-		checkCameras()
-	End Sub
+
+Sub btnBokehPoor_OnClicked()
+	PPG.bokehInvert.Value = False
+	PPG.bokehBias.Value = 0.7
+	PPG.bokehGain.Value = 0.2
+End Sub
 	
-	Sub rightCamera_OnChanged()
-		SetExpr PPG.rightCenterOffset.Parent & ".rightCenterOffset", PPG.rightCamera.Value & ".camera.projplaneoffx"
-		checkCameras()
-	End Sub
+Sub btnBokehNeutral_OnClicked()
+	PPG.bokehInvert.Value = False
+	PPG.bokehBias.Value = 0.5
+	PPG.bokehGain.Value = 0.5
+End Sub
 
-	function Ceil( Number )
-		Ceil = Int( Number )
-		if Ceil <> Number then
-			Ceil = Ceil + 1
-		end if
-	end function
+Sub btnBokehGood_OnClicked()
+	PPG.bokehInvert.Value = True
+	PPG.bokehBias.Value = 0.33
+	PPG.bokehGain.Value = 0.685
+End Sub
 
-	function Floor( Number )
-		Floor = Int( Number )
-	end function
+Sub checkCameras()
+	Set oLCamera = Dictionary.GetObject(PPG.leftCamera.Value & "",false)
+	Set oRCamera = Dictionary.GetObject(PPG.rightCamera.Value & "",false)
+	If TypeName( oLCamera ) = "Nothing" AND TypeName( oRCamera ) = "Nothing" Then
+		PPG.cameraStatus.Value = "!! Both cameras are NOT valid !!"
+	ElseIf TypeName( oLCamera ) = "Nothing" Then
+		PPG.cameraStatus.Value = "!! Left camera is NOT valid !!"
+	ElseIf TypeName( oRCamera ) = "Nothing" then
+		PPG.cameraStatus.Value = "!! Right camera is NOT valid !!"
+	Else
+		PPG.cameraStatus.Value = "Both cameras are valid."
+	End If
+End Sub
+
+Sub leftCamera_OnChanged()
+	SetExpr PPG.filmbackX.Parent & ".filmbackX", PPG.leftCamera.Value & ".camera.projplanewidth"
+	SetExpr PPG.leftCenterOffset.Parent & ".leftCenterOffset", PPG.leftCamera.Value & ".camera.projplaneoffx"
+	checkCameras()
+End Sub
 	
-	function Round( Number )
-		Round = Int(Number + 0.5)
-	end function
+Sub rightCamera_OnChanged()
+	SetExpr PPG.rightCenterOffset.Parent & ".rightCenterOffset", PPG.rightCamera.Value & ".camera.projplaneoffx"
+	checkCameras()
+End Sub
 
-	Sub updatePassResolution_OnChanged()
-		IF PPG.updatePassResolution.Value = true Then
-			SetValue "Passes.Current.ImageLockAspectRatio", false
-			SetValue "Passes.Current.ImageWidth", PPG.renderResolutionX.Value
-			SetValue "Passes.Current.ImageHeight", PPG.renderResolutionY.Value
-		End If
-	End Sub
+function Ceil( Number )
+	Ceil = Int( Number )
+	if Ceil <> Number then
+		Ceil = Ceil + 1
+	end if
+end function
 
-	Sub change_targetResolution()
-		If PPG.viewMode.Value = 3 then
-			If PPG.useOverscan.Value = true then
-				bleed = Floor( Ceil(PPG.filterSize)/2)
-				PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
-				PPG.renderResolutionY.Value = PPG.targetResolutionY.Value
-				PPG.totalOverscanPixels.Value = 4*bleed
-				PPG.leftCropInfo = "Crop { box {" & bleed & " " & 0 & " " & PPG.targetResolutionX + bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
-				PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX - bleed & " " & 0 & " " & PPG.renderResolutionX - bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
-			Else
-				PPG.renderResolutionX.Value = 2*PPG.targetResolutionX
-				PPG.renderResolutionY.Value = PPG.targetResolutionY
-				PPG.totalOverscanPixels.Value = 0
-				PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
-				PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
-			End If
-		ElseIf PPG.viewMode.Value = 4 then
-			If PPG.useOverscan.Value = true then
-				bleed = Floor( Ceil(PPG.filterSize.Value)/2)
-				PPG.renderResolutionX.Value = PPG.targetResolutionX 
-				PPG.renderResolutionY.Value = 2*(PPG.targetResolutionY.Value + 2*bleed)
-				PPG.totalOverscanPixels.Value = 4*bleed
-				PPG.leftCropInfo = "Crop { box {" & 0 & " " & bleed & " " & PPG.targetResolutionX & " " &  PPG.targetResolutionY + bleed & "} reformat true crop false name Left}"
-				PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY - bleed - PPG.targetResolutionY & " " & PPG.targetResolutionX & " " &  PPG.renderResolutionY - bleed & "} reformat true crop false name Right}"
-			Else
-				PPG.renderResolutionX.Value = PPG.targetResolutionX
-				PPG.renderResolutionY.Value = 2.0*PPG.targetResolutionY
-				PPG.totalOverscanPixels.Value = 0
-				PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX.Value & " " & PPG.targetResolutionY.Value &"} reformat true crop false name Left}"
-				PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY.Value - PPG.targetResolutionY.Value & " " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value &"} reformat true crop false name Right}"
-			End If
+function Floor( Number )
+	Floor = Int( Number )
+end function
+	
+function Round( Number )
+	Round = Int(Number + 0.5)
+end function
+
+Sub updatePassResolution_OnChanged()
+	IF PPG.updatePassResolution.Value = true Then
+		SetValue "Passes.Current.ImageLockAspectRatio", false
+		SetValue "Passes.Current.ImageWidth", PPG.renderResolutionX.Value
+		SetValue "Passes.Current.ImageHeight", PPG.renderResolutionY.Value
+	End If
+End Sub
+
+Sub change_targetResolution()
+	If PPG.viewMode.Value = 3 then
+		If PPG.useOverscan.Value = true then
+			bleed = Floor( Ceil(PPG.filterSize)/2)
+			PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
+			PPG.renderResolutionY.Value = PPG.targetResolutionY.Value
+			PPG.totalOverscanPixels.Value = 4*bleed
+			PPG.leftCropInfo = "Crop { box {" & bleed & " " & 0 & " " & PPG.targetResolutionX + bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
+			PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX - bleed & " " & 0 & " " & PPG.renderResolutionX - bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
 		Else
-			PPG.renderResolutionX.Value = PPG.targetResolutionX
+			PPG.renderResolutionX.Value = 2*PPG.targetResolutionX
 			PPG.renderResolutionY.Value = PPG.targetResolutionY
 			PPG.totalOverscanPixels.Value = 0
-			PPG.leftCropInfo = "none"
-			PPG.rightCropInfo = "none"
+			PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
+			PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
 		End If
-		updatePassResolution_OnChanged()
-	End Sub
-
-	Sub filterSize_OnChanged()
-		change_targetResolution()
-	End Sub
-	
-	Sub targetResolutionX_OnChanged()
-		change_targetResolution()
-	End Sub
-	
-	Sub targetResolutionY_OnChanged()
-		change_targetResolution()
-	End Sub
-
-	Sub viewMode_OnChanged()
-		change_targetResolution()
-		If PPG.viewMode = 3 Or PPG.viewMode = 4 Then
-			PPG.leftCropInfo.Show(True)
-			PPG.rightCropInfo.Show(True)
-			PPG.useOverscan.Readonly = False
+	ElseIf PPG.viewMode.Value = 4 then
+		If PPG.useOverscan.Value = true then
+			bleed = Floor( Ceil(PPG.filterSize.Value)/2)
+			PPG.renderResolutionX.Value = PPG.targetResolutionX 
+			PPG.renderResolutionY.Value = 2*(PPG.targetResolutionY.Value + 2*bleed)
+			PPG.totalOverscanPixels.Value = 4*bleed
+			PPG.leftCropInfo = "Crop { box {" & 0 & " " & bleed & " " & PPG.targetResolutionX & " " &  PPG.targetResolutionY + bleed & "} reformat true crop false name Left}"
+			PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY - bleed - PPG.targetResolutionY & " " & PPG.targetResolutionX & " " &  PPG.renderResolutionY - bleed & "} reformat true crop false name Right}"
 		Else
-			PPG.useOverscan.Readonly = True
-			PPG.leftCropInfo.Show(False)
-			PPG.rightCropInfo.Show(False)
+			PPG.renderResolutionX.Value = PPG.targetResolutionX
+			PPG.renderResolutionY.Value = 2.0*PPG.targetResolutionY
+			PPG.totalOverscanPixels.Value = 0
+			PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX.Value & " " & PPG.targetResolutionY.Value &"} reformat true crop false name Left}"
+			PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY.Value - PPG.targetResolutionY.Value & " " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value &"} reformat true crop false name Right}"
 		End If
-		PPG.Refresh
-	End Sub
+	Else
+		PPG.renderResolutionX.Value = PPG.targetResolutionX
+		PPG.renderResolutionY.Value = PPG.targetResolutionY
+		PPG.totalOverscanPixels.Value = 0
+		PPG.leftCropInfo = "none"
+		PPG.rightCropInfo = "none"
+	End If
+	updatePassResolution_OnChanged()
+End Sub
 
-	Sub useOverscan_OnChanged()
-		change_targetResolution()
-		PPG.Refresh
-	End sub
+Sub filterSize_OnChanged()
+	change_targetResolution()
+End Sub
 	
-	Sub pickCameras_OnClicked()	
-		dim leftC, rightC, button
-		DeselectAll
-		PickObject "Select Left Camera", "Select Left Camera", leftC, button
+Sub targetResolutionX_OnChanged()
+	change_targetResolution()
+End Sub
+	
+Sub targetResolutionY_OnChanged()
+	change_targetResolution()
+End Sub
+
+Sub viewMode_OnChanged()
+	change_targetResolution()
+	If PPG.viewMode = 3 Or PPG.viewMode = 4 Then
+		PPG.leftCropInfo.Show(True)
+		PPG.rightCropInfo.Show(True)
+		PPG.useOverscan.Readonly = False
+	Else
+		PPG.useOverscan.Readonly = True
+		PPG.leftCropInfo.Show(False)
+		PPG.rightCropInfo.Show(False)
+	End If
+	PPG.Refresh
+End Sub
+
+Sub useOverscan_OnChanged()
+	change_targetResolution()
+	PPG.Refresh
+End sub
+	
+Sub pickCameras_OnClicked()	
+	dim leftC, rightC, button
+	DeselectAll
+	PickObject "Select Left Camera", "Select Left Camera", leftC, button
+	if button <> 0 then
+		PickObject "Select Right Camera", "Select Right Camera", rightC, button
 		if button <> 0 then
-			PickObject "Select Right Camera", "Select Right Camera", rightC, button
-			if button <> 0 then
-				PPG.leftCamera.Value = leftC
-				PPG.rightCamera.Value = rightC
-				leftCamera_OnChanged()
-				rightCamera_OnChanged()
-			end if
+			PPG.leftCamera.Value = leftC
+			PPG.rightCamera.Value = rightC
+			leftCamera_OnChanged()
+			rightCamera_OnChanged()
 		end if
-	End Sub
+	end if
+End Sub
 	
-	Function myReplace(str1,str2,str3)
-		myReplace=Replace(str1,str2,str3)
-	End Function 	
+Function myReplace(str1,str2,str3)
+	myReplace=Replace(str1,str2,str3)
+End Function 	
 	
 	
-	Sub triggerfishInit()
-		'TriggerFish rig
-		PPG.leftCamera.Value = "Stereo_Camera.LeftCamera"
-		PPG.rightCamera.Value = "Stereo_Camera.RightCamera"
-		SetExpr PPG.useDof.Parent & ".useDof", PPG.useDof.Model & ".Camera_info.DOF"
-		SetExpr PPG.focusDistance.Parent & ".focusDistance", PPG.focusDistance.Model & ".dof_anim.DisplayInfo_DOF.depth"	
-		leftCamera_onChanged()
-		rightCamera_OnChanged()
-	End Sub
+Sub triggerfishInit()
+	'TriggerFish rig
+	PPG.leftCamera.Value = "Stereo_Camera.LeftCamera"
+	PPG.rightCamera.Value = "Stereo_Camera.RightCamera"
+	SetExpr PPG.useDof.Parent & ".useDof", PPG.useDof.Model & ".Camera_info.DOF"
+	SetExpr PPG.focusDistance.Parent & ".focusDistance", PPG.focusDistance.Model & ".dof_anim.DisplayInfo_DOF.depth"	
+	leftCamera_onChanged()
+	rightCamera_OnChanged()
+End Sub
 	
 
-	Sub linkObjectToDistance_OnClicked()	
-		dim linkedPrim, button
-		DeselectAll
-		PickObject "Select a primitive", "Select a primitive", linkedPrim, button
-		If button <> 0 then
-			SetExpr PPG.focusDistance, "ctr_dist( " & PPG.focusDistance.Parent.Parent.Parent.FullName & ". , " & linkedPrim.FullName & ". )"
-		End If
-	End Sub
+Sub linkObjectToDistance_OnClicked()	
+	dim linkedPrim, button
+	DeselectAll
+	PickObject "Select a primitive", "Select a primitive", linkedPrim, button
+	If button <> 0 then
+		SetExpr PPG.focusDistance, "ctr_dist( " & PPG.focusDistance.Parent.Parent.Parent.FullName & ". , " & linkedPrim.FullName & ". )"
+	End If
+End Sub
 
-	Sub usePolygonalAperture_OnChanged()
-		useDof_OnChanged()
-	End Sub
+Sub usePolygonalAperture_OnChanged()
+	useDof_OnChanged()
+End Sub
 
-	Sub useDof_OnChanged()
-		IF PPG.useDof.Value = True Then
-			PPG.focusDistance.ReadOnly = False
-			PPG.focusPlaneIsPlane.ReadOnly = False
-			PPG.apertureSize.ReadOnly = False
-			PPG.apertureAspectRatio.ReadOnly = False
-			PPG.usePolygonalAperture.ReadOnly = False
-			IF PPG.usePolygonalAperture.Value = True Then
-				PPG.apertureBlades.ReadOnly = False
-				PPG.apertureBladeCurvature.ReadOnly = False
-				PPG.apertureRotation.ReadOnly = False
-			Else
-				PPG.apertureBlades.ReadOnly = True
-				PPG.apertureBladeCurvature.ReadOnly = True
-				PPG.apertureRotation.ReadOnly = True
-			End If
+Sub useDof_OnChanged()
+	IF PPG.useDof.Value = True Then
+		PPG.focusDistance.ReadOnly = False
+		PPG.focusPlaneIsPlane.ReadOnly = False
+		PPG.apertureSize.ReadOnly = False
+		PPG.apertureAspectRatio.ReadOnly = False
+		PPG.usePolygonalAperture.ReadOnly = False
+		IF PPG.usePolygonalAperture.Value = True Then
+			PPG.apertureBlades.ReadOnly = False
+			PPG.apertureBladeCurvature.ReadOnly = False
+			PPG.apertureRotation.ReadOnly = False
 		Else
-			PPG.focusDistance.ReadOnly = True
-			PPG.focusPlaneIsPlane.ReadOnly = True
-			PPG.apertureSize.ReadOnly = True
-			PPG.apertureAspectRatio.ReadOnly = True
-			PPG.usePolygonalAperture.ReadOnly = True
 			PPG.apertureBlades.ReadOnly = True
 			PPG.apertureBladeCurvature.ReadOnly = True
 			PPG.apertureRotation.ReadOnly = True
 		End If
-	End Sub
+	Else
+		PPG.focusDistance.ReadOnly = True
+		PPG.focusPlaneIsPlane.ReadOnly = True
+		PPG.apertureSize.ReadOnly = True
+		PPG.apertureAspectRatio.ReadOnly = True
+		PPG.usePolygonalAperture.ReadOnly = True
+		PPG.apertureBlades.ReadOnly = True
+		PPG.apertureBladeCurvature.ReadOnly = True
+		PPG.apertureRotation.ReadOnly = True
+	End If
+End Sub
 
 
-	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
-		'Setting Expressions
-		SetExpr PPG.filterSize.Parent & ".filterSize", "Passes.Arnold_Render_Options.output_filter_width"
-		leftCamera_onChanged()
-		rightCamera_OnChanged()
-		useOverscan_OnChanged()
-		viewMode_OnChanged()
-		PPG.cameraStatus.ReadOnly = True
-		PPG.renderResolutionX.ReadOnly = True
-		PPG.renderResolutionY.ReadOnly = True
-		PPG.totalOverscanPixels.ReadOnly = True
-		'triggerfishInit()
-		useDof_OnChanged()
-		PPG.Refresh
-	End Sub
+Sub OnInit
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
+	'Setting Expressions
+	SetExpr PPG.filterSize.Parent & ".filterSize", "Passes.Arnold_Render_Options.output_filter_width"
+	leftCamera_onChanged()
+	rightCamera_OnChanged()
+	useOverscan_OnChanged()
+	viewMode_OnChanged()
+	PPG.cameraStatus.ReadOnly = True
+	PPG.renderResolutionX.ReadOnly = True
+	PPG.renderResolutionY.ReadOnly = True
+	PPG.totalOverscanPixels.ReadOnly = True
+	'triggerfishInit()
+	useDof_OnChanged()
+	PPG.Refresh
+End Sub
 }

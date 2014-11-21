@@ -105,12 +105,6 @@
     <ClCompile Include="..\..\src\Obq_VolumeThickness.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ObqISBrdf.cpp">
-      <Filter>Source Files\Obq</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Obq_MessageFlt.cpp">
-      <Filter>Source Files\Obq</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Obq_Toon.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
@@ -118,9 +112,6 @@
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_Hair.cpp">
-      <Filter>Source Files\Obq</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Obq_Color.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_CameraProjectionSpace.cpp">
@@ -135,15 +126,36 @@
     <ClCompile Include="..\..\src\Obq_RandomID.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_ColorspaceConverter.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_SpectrumColor.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\O_ISBrdf.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_MessageGetFlt.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_MessageSetFlt.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_SetAlpha.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_MessageStoreFlt.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_Color.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_TransformShadingPoint.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Obq_Atmosphere.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Obq_BrdfRead.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Obq_Common.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_Environment.h">
@@ -165,9 +177,6 @@
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_VolumeThickness.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\ObqISBrdf.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h">
@@ -281,10 +290,22 @@
     <ClInclude Include="..\..\src\Obq_Hair.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_Color.h">
+    <ClInclude Include="..\..\src\Obq_LensDistortion.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_LensDistortion.h">
+    <ClInclude Include="..\..\src\O_Colorspaces.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_SpectrumColor.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_Common.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_ISBrdf.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_BrdfRead.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,14 +31,14 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQTOONSIMPLE_H
 #define OBQTOONSIMPLE_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 #include <map>
 
 enum Obq_CompMode{OBQ_COMPADD = 0, OBQ_COMPOVER, OBQ_COMPMAX, OBQ_COMPSCREEN}; // Screen mode : A+B-AB (if A and B [0,1], else A if A>B, else B)
 
 // enum for parameters
 //
-enum ObqMessageFltSimpleParams { 
+enum ObqMessageGetFltParams { 
 	p_global_compMode,
 	p_global_multByLightColor,
 

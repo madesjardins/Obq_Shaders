@@ -1,0 +1,104 @@
+# SPDL Obq_MessageSetFlt - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{1182A861-5C75-42F5-ADBD-911C3336DED3}";
+PropertySet "Obq_MessageSetFlt"
+{
+	Parameter "out" output
+	{
+		GUID = "{21A07D99-A573-464F-9FFD-503A22756E33}";
+		Type = color;
+	}
+	Parameter "passthrough" input
+	{
+		GUID = "{767E083F-F488-47BD-9AD9-451B9396DD2D}";
+		Type = color;
+		Value = 1.0 1.0 1.0 1.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "key" input
+	{
+		GUID = "{1EEEEBCD-6E72-4354-B24A-F926A5CC2D72}";
+		Type = string;
+		Value = "O1";
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "value" input
+	{
+		GUID = "{B89027E0-784C-4A10-B3E1-D56DFB9CE178}";
+		Type = scalar;
+		Value = 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "setAfter" input
+	{
+		GUID = "{15D72587-4D75-4E5C-81F2-DCE6ED9357EE}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_MessageSetFlt_params_meta"
+{
+	Name = "Obq_MessageSetFlt";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_MessageSetFlt";
+	}	
+}
+
+Defaults
+{
+	passthrough
+	{
+		Name = "Passthrough";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "rgba";
+	}
+	key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	value
+	{
+		Name = "Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	setAfter
+	{
+		Name = "Set value after passthrough evaluation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+
+}
+
+Layout "Default"
+{
+	passthrough;
+	key;
+	value;
+	setAfter;
+}
+
+Layout "RenderTree"
+{
+	passthrough;
+	value;
+}
+
+Language = "VBScript";
+Logic
+{	
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetFlt.html"
+	End Sub
+}

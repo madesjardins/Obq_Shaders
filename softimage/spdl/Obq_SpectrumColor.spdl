@@ -1,0 +1,210 @@
+# SPDL - Obq_SpectrumColor - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{199D3A21-1B95-40DC-AF52-9BE376449809}";
+PropertySet "Obq_SpectrumColor_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{1CB27A28-5E67-4A40-989B-69D088945177}";
+		Type = color;
+	}
+	Parameter "mode" input
+	{
+		guid = "{9526463A-7DC6-4146-B6AF-CF6D0319B3D9}";
+		texturable = off;
+		type = integer;
+		value = 1;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "filename" input
+	{
+		GUID = "{108810C2-22A7-4AC6-833C-3148D1C8499D}";
+		Type = string;
+		Texturable = off;
+		Value = "";
+	}
+	Parameter "lambdaUnits" input
+	{
+		GUID = "{9437124E-7E4A-4477-B982-9D6AFA8B5827}";
+		Texturable = off;
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "lambdasStr" input
+	{
+		GUID = "{69EEE089-ABE9-4226-9955-75C02AA95012}";
+		Type = String;
+		Texturable = Off;
+		Animatable = Off;
+		Value = "460.0 530.0 650.0";
+	}
+	Parameter "intensitiesStr" input
+	{
+		GUID = "{74CC6865-9F58-4886-9763-408951BE3A2C}";
+		Type = String;
+		Texturable = Off;
+		Animatable = Off;
+		Value = "0.0 1.0 0.0";
+	}
+	Parameter "xyz2rgb" input
+	{
+		GUID = "{931AAEF3-F6E0-4AF8-8A9B-85F9B42D8367}";
+		Texturable = off;
+		Type = integer;
+		Value = 2;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "gamma" input
+	{
+		GUID = "{E117BFEC-98E0-4463-BD77-454546BC23D3}";
+		Type = Integer;
+		Texturable = Off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+}
+
+phenomenon "Obq_SpectrumColor_declare"
+{
+	Name = "Obq_SpectrumColor";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"String" = 1,
+			"File" = 0
+		}
+	}
+	filename
+	{
+		Name = "Filename";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "dscontrol"
+		{
+		Class = "edit";
+		Caption = ";file=1;openfile=1;initialdir=C:\\;filefilter=Comma separated (*.csv)|*.csv|Tab Separated (*.txt)|*.txt|SPD (*.spd)|*.spd";
+		}
+	}
+	lambdaUnits
+	{
+		Name = "Wavelength Units";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Nano (nm) [360-830]" = 0,
+			"Micro (um) [0.360-0.830]" = 1
+		}
+	}
+	lambdasStr
+	{
+		Name = "Lambda";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	intensitiesStr
+	{
+		Name = "Intensities";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	xyz2rgb
+	{
+		Name = "XYZ to RGB Matrix";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"sRGB Illuminant E" = 0,
+			"sRGB Illuminant D65 <- E (Bradford)" = 1,
+			"sRGB Illuminant D65" = 2,
+			"XYZ" = 3,	
+		}
+	}
+	gamma
+	{
+		Name = "Gamma";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Linear" = 0,
+			"sRGB" = 1
+		}
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Settings"
+	{
+		mode;
+	}
+	Group "SPD (Strings or File *.csv, *.txt, *.spd)"
+	{		
+		filename;
+		lambdasStr;
+		intensitiesStr;
+		lambdaUnits;
+	}
+	Group "Colorspace"
+	{
+		xyz2rgb;
+		gamma;
+	}
+}
+
+Layout "RenderTree"
+{
+}
+
+Language = "VBScript";
+Logic
+{
+
+Sub mode_OnChanged()
+	If PPG.Mode.Value = 0 Then
+		PPG.lambdasStr.Show(False)
+		PPG.intensitiesStr.Show(False)
+		PPG.filename.Show(True)
+	Else
+		PPG.lambdasStr.Show(True)
+		PPG.intensitiesStr.Show(True)
+		PPG.filename.Show(False)
+	End If
+	PPG.Refresh()
+End Sub
+
+Sub xyz2rgb_OnChanged()
+	If PPG.xyz2rgb.Value = 3 Then
+		PPG.gamma.ReadOnly = True
+	Else
+		PPG.gamma.ReadOnly = False
+	End If
+End Sub
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SpectrumColor.html"
+	mode_OnChanged()
+	xyz2rgb_OnChanged()
+End Sub
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_SpectrumColor";
+}

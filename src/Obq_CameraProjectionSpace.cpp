@@ -1,6 +1,6 @@
 /*This is a trimmed version of SItoA's CameraProjection Shader. Instead of outputing color, this one outputs the camera raster space coordinates.*/
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 AI_SHADER_NODE_EXPORT_METHODS(ObqCameraProjectionSpaceMethods);
 

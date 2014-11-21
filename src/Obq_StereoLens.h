@@ -30,7 +30,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold thingy
 // 
@@ -39,7 +39,7 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqStereoLensMethods);
 // Param enum for fast direct access
 //
 enum Obq_StereoLensParams { p_viewMode, p_leftCamera, p_rightCamera, p_filmbackX, p_leftCenterOffset, p_rightCenterOffset, 
-	p_recalculateDistanceForSideCameras, p_totalOverscanPixels, p_useDof, p_focusDistance, p_apertureSize, p_apertureAspectRatio, p_usePolygonalAperture, p_apertureBlades, p_apertureBladeCurvature, p_apertureRotation, p_focusPlaneIsPlane,p_fov};
+	p_recalculateDistanceForSideCameras, p_totalOverscanPixels, p_useDof, p_focusDistance, p_apertureSize, p_apertureAspectRatio, p_usePolygonalAperture, p_apertureBlades, p_apertureBladeCurvature, p_apertureRotation, p_focusPlaneIsPlane,p_bokehInvert, p_bokehBias, p_bokehGain, p_fov};
 
 // View Mode enum
 //
@@ -66,6 +66,9 @@ typedef struct
 	int apertureBlades;
 	float apertureRotation;
 	float apertureBladeCurvature;
+	bool bokehInvert;
+	float bokehBias;
+	float bokehGain;
 	float overscanRatio;
 	AtNode* leftCamera;
 	AtNode* rightCamera;

@@ -54,10 +54,10 @@ float InterpolateSpectrumSamples(const float *lambda, const float *vals,
             return Lerp(t, vals[i], vals[i+1]);
         }
     }
-    return 0.f;
+    return 0.0;
 }
 
-
+// CIE 1931
 const float CIE_X[nCIESamples] = {
     // CIE X function values
       0.0001299000f, 0.0001458470f, 0.0001638021f, 0.0001840037f,

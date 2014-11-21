@@ -21,9 +21,9 @@ PropertySet "Obq_Opacity_pset"
 		guid = "{A7025E64-0921-4D0D-90EA-AEFA298E51C8}";
 		texturable = off;
 		type = integer;
-		value = 3;
+		value = 6;
 		Value Minimum = 0;
-		Value Maximum = 5;
+		Value Maximum = 6;
 	}
 	Parameter "opacityRGBA" input
 	{
@@ -40,6 +40,27 @@ PropertySet "Obq_Opacity_pset"
 		Value = 1.0;
 		Value Minimum = 0.0;
 		Value Maximum = 1.0;
+	}
+	Parameter "invert" input
+	{
+		GUID = "{6C203A91-CF12-4732-9090-5061B6F58EC7}";
+		Texturable = on;
+		Type = boolean;
+		Value = false;
+	}
+	Parameter "hard" input
+	{
+		GUID = "{AEA28961-613F-4412-857B-B246BB8270F4}";
+		Texturable = off;
+		Type = boolean;
+		Value = false;
+	}
+	Parameter "threshold" input
+	{
+		GUID = "{2CD080AA-2643-47F6-8EDA-7EABBF527410}";
+		Texturable = off;
+		Type = scalar;
+		Value = 0.0;
 	}
 }
 
@@ -70,12 +91,13 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Red" = 0,
-			"Green" = 1,
-			"Blue" = 2,
-			"Alpha" = 3,
-			"RGB" = 4,
-			"Scalar Input" = 5
+			"  Color : Alpha" = 6,
+			"Opacity : Red" = 0,
+			"Opacity : Green" = 1,
+			"Opacity : Blue" = 2,
+			"Opacity : Alpha" = 3,
+			"Opacity : RGB" = 4,
+			"Opacity : Scalar" = 5
 		}
 	}
 	opacityRGBA
@@ -88,6 +110,22 @@ Defaults
 	{
 		Name = "Opacity";
 		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	invert
+	{
+		Name = "Invert";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	hard
+	{
+		Name = "Use hard opacity";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	threshold
+	{
+		Name = "Threshold";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
 	}
 }
 
@@ -103,6 +141,12 @@ Layout "Default"
 		channel;
 		opacityRGBA;
 		opacityScalar;
+		Row
+		{
+			hard;
+			threshold;
+		}
+		invert;
 	}
 }
 
@@ -110,7 +154,10 @@ Layout "RenderTree"
 {
 	color;
 	opacityRGBA;
-	opacityScalar;		
+	opacityScalar;
+	hard;
+	threshold;
+	invert;		
 }
 
 Language = "VBScript";
@@ -121,6 +168,9 @@ sub channel_OnChanged()
 	IF PPG.channel.Value = 5 Then
 		PPG.opacityRGBA.Show(False)
 		PPG.opacityScalar.Show(True)
+	ElseIf PPG.channel.Value = 6 Then
+		PPG.opacityRGBA.Show(False)
+		PPG.opacityScalar.Show(False)
 	Else
 		PPG.opacityRGBA.Show(True)
 		PPG.opacityScalar.Show(False)
@@ -128,9 +178,14 @@ sub channel_OnChanged()
 	PPG.Refresh
 End sub
 
+sub hard_OnChanged()
+	PPG.threshold.ReadOnly = Not PPG.hard.Value
+End sub
+
 sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
 	channel_OnChanged()
+	hard_OnChanged()
 End sub
 
 }

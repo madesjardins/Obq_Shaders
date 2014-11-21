@@ -478,7 +478,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqEnvironmentSimpleMethods;
+//   node->methods      = ObqEnvironmentMethods;
 //   node->output_type  = AI_TYPE_RGBA;
 //   node->name         = "Obq_Environment";
 //   node->node_type    = AI_NODE_SHADER;

@@ -1,0 +1,278 @@
+# SPDL - Obq_TransformShadingPoint - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{780402B8-AEC7-40B7-9FDA-2339B89F7897}";
+PropertySet "Obq_TransformShadingPoint_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{9FF55FDE-24EA-4139-84AC-F31F83823301}";
+		Type = color;
+	}
+	Parameter "passthrough" input
+	{
+		GUID = "{81A07314-3BC8-465C-A5CE-B4FC95921137}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "coordinates" input
+	{
+		GUID = "{17D31061-238B-45AF-8E9E-2DD90E91344D}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+	Parameter "transforms" input
+	{
+		GUID = "{BF607B53-56DC-4EA5-AF2D-070044E6E098}";
+		Type = Matrix;
+		Texturable = off;
+		Value = 1.0 0.0 0.0 0.0  0.0 1.0 0.0 0.0  0.0 0.0 1.0 0.0  0.0 0.0 0.0 1.0;
+	}
+	Parameter "invert" input
+	{
+		GUID = "{99F6CA71-FEC9-4A06-967E-B18E193BC339}";
+		Type = boolean;
+		Texturable = off;
+		Value = true;
+	}
+	Parameter "scale" input
+	{
+		GUID = "{B410E622-460F-4CFA-8E49-69AB67417C2D}";
+		Type = vector;
+		Texturable = off;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "rotation" input
+	{
+		GUID = "{5C383E8E-48AE-48A4-87FE-7C9C958B0D2D}";
+		Type = vector;
+		Texturable = off;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "translation" input
+	{
+		GUID = "{02506689-A9DE-48EF-8E63-581124EF2526}";
+		Type = vector;
+		Texturable = off;
+		Value = 0.0 0.0 0.0;
+	}
+	Parameter "rotationOrder" input
+	{
+		GUID = "{319E5EC2-272F-4D0B-BB00-CEBDD08E0368}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 5;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{77608077-414F-45B5-BED1-0091F2B2C723}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_TransformShadingPoint";
+}
+
+phenomenon "Obq_TransformShadingPoint_declare"
+{
+	Name = "Obq_TransformShadingPoint";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	passthrough
+	{
+		Name = "Shader";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgba";
+	}
+	coordinates
+	{
+		Name = "Space";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "combo";
+		Items
+		{
+			"Object" = 0,
+			"World" = 1
+		}
+	}
+	transforms
+	{
+		Name = "Transforms";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	invert
+	{
+		Name = "Invert";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	scale
+	{
+		Name = "Scale";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	rotation
+	{
+		Name = "Rotation";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	translation
+	{
+		Name = "Translation";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	rotationOrder
+	{
+		Name = "Rotation Order";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "combo";
+		Items
+		{
+			"XYZ" = 0,
+			"XZY" = 1,
+			"YXZ" = 2,
+			"YZX" = 3,
+			"ZXY" = 4,
+			"ZYX" = 5
+		}
+	}
+	mode
+	{
+		Name = "Transforms mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "combo";
+		Items
+		{
+			"SRT" = 0,
+			"Matrix" = 1
+		}
+	}
+}
+
+
+Layout "Default"
+{
+	Group "Passthrough"
+	{
+		passthrough;
+	}
+	Group "Coordinates"
+	{
+		coordinates;
+	}
+	Group "Transforms"
+	{
+		mode;
+		Row
+		{
+			Button btnLinkObject,aligncenter = "Link to Object", 100;
+			Button btnUnLinkObject,aligncenter = "Unlink", 100;
+		}
+		invert;
+		scale;
+		rotationOrder;
+		rotation;
+		translation;
+		transforms;
+
+	}
+}
+
+Layout "RenderTree"
+{
+	passthrough;
+}
+
+Language = "Python";
+Logic
+{
+from win32com.client import constants as c
+
+def btnLinkObject_OnClicked():
+	oPicked = Application.PickElement( c.siGenericObjectFilter, 'Pick object', 'Pick object' )
+	oObj = oPicked(2)
+	
+	if oObj:
+		oTrans = oObj.Kinematics.Global.GetTransform2(None)
+		oMat = XSIMath.CreateMatrix4()
+		oTrans.GetMatrix4(oMat)
+		transformsName = str(PPG.transforms.Parent)+".transforms"
+		for i in range(0,4):
+			for j in range(0,4):
+				Application.SetValue(transformsName+"._"+str(i)+str(j), oMat.Value(i,j), "")
+	
+		Application.SetExpr(str(PPG.scale.Parent)+".scale.x", str(oObj.FullName)+".kine.global.sclx", "")
+		Application.SetExpr(str(PPG.scale.Parent)+".scale.y", str(oObj.FullName)+".kine.global.scly", "")
+		Application.SetExpr(str(PPG.scale.Parent)+".scale.z", str(oObj.FullName)+".kine.global.sclz", "")
+		Application.SetExpr(str(PPG.rotation.Parent)+".rotation.x", str(oObj.FullName)+".kine.global.rotx", "")
+		Application.SetExpr(str(PPG.rotation.Parent)+".rotation.y", str(oObj.FullName)+".kine.global.roty", "")
+		Application.SetExpr(str(PPG.rotation.Parent)+".rotation.z", str(oObj.FullName)+".kine.global.rotz", "")
+		Application.SetExpr(str(PPG.translation.Parent)+".translation.x", str(oObj.FullName)+".kine.global.posx", "")
+		Application.SetExpr(str(PPG.translation.Parent)+".translation.y", str(oObj.FullName)+".kine.global.posy", "")
+		Application.SetExpr(str(PPG.translation.Parent)+".translation.z", str(oObj.FullName)+".kine.global.posz", "")
+
+def btnUnLinkObject_OnClicked():
+	Application.RemoveAnimation(str(PPG.transforms.Parent)+".transforms._00,"+str(PPG.transforms.Parent)+".transforms._01,"+str(PPG.transforms.Parent)+".transforms._02,"+str(PPG.transforms.Parent)+".transforms._03,"+str(PPG.transforms.Parent)+".transforms._10,"+str(PPG.transforms.Parent)+".transforms._11,"+str(PPG.transforms.Parent)+".transforms._12,"+str(PPG.transforms.Parent)+".transforms._13,"+str(PPG.transforms.Parent)+".transforms._20,"+str(PPG.transforms.Parent)+".transforms._21,"+str(PPG.transforms.Parent)+".transforms._22,"+str(PPG.transforms.Parent)+".transforms._23,"+str(PPG.transforms.Parent)+".transforms._30,"+str(PPG.transforms.Parent)+".transforms._31,"+str(PPG.transforms.Parent)+".transforms._32,"+str(PPG.transforms.Parent)+".transforms._33", 1, "", "", "", "")
+	transformsName = str(PPG.transforms.Parent)+".transforms"
+	for i in range(0,4):
+		for j in range(0,4):
+			v = 0
+			if i == j:
+				v = 1
+			Application.SetValue(transformsName+"._"+str(i)+str(j),v, "")
+	
+	Application.RemoveAnimation(str(PPG.scale.Parent)+".scale.x,"+str(PPG.scale.Parent)+".scale.y,"+str(PPG.scale.Parent)+".scale.z", 1, "", "", "", "")
+	Application.RemoveAnimation(str(PPG.rotation.Parent)+".rotation.x,"+str(PPG.rotation.Parent)+".rotation.y,"+str(PPG.rotation.Parent)+".rotation.z", 1, "", "", "", "")
+	Application.RemoveAnimation(str(PPG.translation.Parent)+".translation.x,"+str(PPG.translation.Parent)+".translation.y,"+str(PPG.translation.Parent)+".translation.z", 1, "", "", "", "")
+	Application.SetValue(str(PPG.scale.Parent)+".scale.x" , 1.0, "")
+	Application.SetValue(str(PPG.scale.Parent)+".scale.y" , 1.0, "")
+	Application.SetValue(str(PPG.scale.Parent)+".scale.z" , 1.0, "")
+	Application.SetValue(str(PPG.rotation.Parent)+".rotation.x" , 0.0, "")
+	Application.SetValue(str(PPG.rotation.Parent)+".rotation.y" , 0.0, "")
+	Application.SetValue(str(PPG.rotation.Parent)+".rotation.z" , 0.0, "")
+	Application.SetValue(str(PPG.translation.Parent)+".translation.x" , 0.0, "")
+	Application.SetValue(str(PPG.translation.Parent)+".translation.y" , 0.0, "")
+	Application.SetValue(str(PPG.translation.Parent)+".translation.z" , 0.0, "")
+
+
+def mode_OnChanged():
+	if PPG.mode.Value == 0:
+		PPG.PPGLayout.Item( "btnUnLinkObject").SetAttribute("Label", "Unlink")
+		PPG.PPGLayout.Item( "btnLinkObject").SetAttribute("Label", "Link To Object")
+		PPG.scale.Show(True)
+		PPG.rotationOrder.Show(True)
+		PPG.rotation.Show(True)
+		PPG.translation.Show(True)
+		PPG.transforms.Show(False)
+	else :
+		PPG.PPGLayout.Item( "btnUnLinkObject").SetAttribute("Label", "Identity")
+		PPG.PPGLayout.Item( "btnLinkObject").SetAttribute("Label", "Set From Object")
+		PPG.scale.Show(False)
+		PPG.rotationOrder.Show(False)
+		PPG.rotation.Show(False)
+		PPG.translation.Show(False)
+		PPG.transforms.Show(True)
+	PPG.Refresh()
+
+def OnInit():
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformShadingPoint.html")
+	mode_OnChanged()
+
+}
+
+

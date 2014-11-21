@@ -27,11 +27,11 @@ SOFTWARE.
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 *------------------------------------------------------------------------
 */
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqRayDepthSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqRayDepthMethods);
 
 enum OBQTYPE {ALL, REFL, REFR, DIFF, GLOSS};
 
@@ -43,7 +43,7 @@ ShaderData;
 
 // enum for parameters
 //
-enum ObqRayDepthSimpleParams
+enum ObqRayDepthParams
 {
 	p_type
 };
@@ -101,7 +101,7 @@ shader_evaluate
 //	if (i > 0)
 //		return false;
 //
-//	node->methods      = ObqRayDepthSimpleMethods;
+//	node->methods      = ObqRayDepthMethods;
 //	node->output_type  = AI_TYPE_INT;
 //	node->name         = "Obq_RayDepth";
 //	node->node_type    = AI_NODE_SHADER;

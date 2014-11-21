@@ -28,7 +28,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQMEASUREDMATERIAL_H
 #define OBQMEASUREDMATERIAL_H
 
-#include "ObqISBrdf.h"
+#include "O_ISBrdf.h"
 
 #define USELUMINANCE true
 
@@ -53,7 +53,7 @@ inline void uniformDirOnHemisphere(AtVector& out, float rnd[2])
 class MeasuredBRDF{
 
 public:
-	MeasuredBRDF(ObqISBrdf* _measured = NULL, AtVector _minusRd = AI_V3_Y, AtVector _U = AI_V3_X, AtVector _V = AI_V3_Y, AtVector _W = AI_V3_Z, AtVector _Ng = AI_V3_Y, AtUInt32 _binMaxDif = 13,bool _useJitters = false):
+	MeasuredBRDF(ISBrdf* _measured = NULL, AtVector _minusRd = AI_V3_Y, AtVector _U = AI_V3_X, AtVector _V = AI_V3_Y, AtVector _W = AI_V3_Z, AtVector _Ng = AI_V3_Y, AtUInt32 _binMaxDif = 13,bool _useJitters = false):
 	  measured(_measured),
 		  minusRd(_minusRd),
 		  U(_U), V(_V), W(_W),
@@ -73,7 +73,7 @@ public:
 	  }
 	  AtVector U,V,W,Ng,minusRd;
 	  AtUInt32 currentIndex;
-	  ObqISBrdf* measured;
+	  ISBrdf* measured;
 	  AtUInt32 binMaxDif;
 	  bool useJitters;
 	  float* currentPdf;
@@ -86,7 +86,7 @@ public:
 static AtVector MeasuredBRDFEvalSample(const void *brdf, float rx, float ry)
 {
 	const MeasuredBRDF *measured = (const MeasuredBRDF*)brdf;
-	ObqISBrdf* isBrdf = measured->measured;
+	ISBrdf* isBrdf = measured->measured;
 	AtVector omega;
 	AtColor c = AI_RGB_BLACK;
 	float pdf = 1.0f;
@@ -111,7 +111,7 @@ static AtVector MeasuredBRDFEvalSample(const void *brdf, float rx, float ry)
 static AtColor MeasuredBRDFEvalBrdf(const void *brdf, const AtVector *indir)
 {
 	const MeasuredBRDF *measured = (const MeasuredBRDF*)brdf;
-	ObqISBrdf* isBrdf = measured->measured;
+	ISBrdf* isBrdf = measured->measured;
 
 	// Not seen test
 	if (AiV3Dot(*indir, measured->Ng) < 0 )
@@ -148,7 +148,7 @@ static AtColor MeasuredBRDFEvalBrdf(const void *brdf, const AtVector *indir)
 static float MeasuredBRDFEvalPdf(const void *brdf, const AtVector *indir)
 {
 	const MeasuredBRDF *measured = (const MeasuredBRDF*)brdf;
-	ObqISBrdf* isBrdf = measured->measured;
+	ISBrdf* isBrdf = measured->measured;
 
 	if(AiV3Dot(*indir, measured->Ng) < 0 )
 	{

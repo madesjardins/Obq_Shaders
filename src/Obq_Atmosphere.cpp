@@ -506,7 +506,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqAtmosphereSimpleMethods;
+//	node->methods      = ObqAtmosphereMethods;
 //	node->output_type  = AI_TYPE_RGBA;
 //	node->name         = "Obq_Atmosphere";
 //	node->node_type    = AI_NODE_SHADER;

@@ -28,28 +28,20 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 #include "pbrt/spectrum.h"
-#include <vector>
-
-#define MIN_LAMBDA 360.f
-#define MAX_LAMBDA 830.f
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqFresnelSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqFresnelMethods);
 
 // enum for parameters
 //
-enum ObqFresnelSimpleParams { p_mode, p_iorFilename,p_lambdaUnits, p_iorRGB, p_kRGB, p_method, p_iorInRGB, p_ratioFsFp, p_transmittance, p_backfaceMode, p_degamma, p_useLUT, p_LUTSampleSize, p_useFullSpectrum};
+enum ObqFresnelParams { p_mode, p_iorFilename, p_lambdaUnits, p_iorRGB, p_kRGB, p_method, p_iorInRGB, p_ratioFsFp, p_transmittance, p_backfaceMode, p_useLUT, p_LUTSampleSize, p_useFullSpectrum, p_degamma, p_outputGamma, p_lambdasStr, p_etasStr, p_ksStr, p_inputType, p_ccMode, p_hueShift, p_saturationMod, p_satOp, p_roughness, p_roughnessSampleSize, p_xyz2rgb};
 
 // enum for fresnel equations
 //
 enum {REFRACTIVE, METALS};
-
-// enum for file type
-//
-enum {TYPE_CSV,TYPE_TXT,TYPE_SPD, TYPE_BAD};
 
 // enum for units
 //
@@ -57,10 +49,16 @@ enum {UNITS_NANO, UNITS_MICRO};
 
 // enum for mode
 //
-enum {MODE_CUSTOM, MODE_PRESETS, MODE_FILES};
+enum {MODE_CUSTOM, MODE_PRESET_LEGACY, MODE_FILES};
 
 // enum for backfacemode
 enum {BACKFACE_SAME, BACKFACE_SWAP, BACKFACE_WHITE, BACKFACE_BLACK};
+
+// enum for colorcorrection
+enum {CC_OFF, CC_HSV, CC_HLS};
+
+// enum for colorcorrection
+enum {CC_ADD, CC_MUL, CC_POW};
 
 // shader data struct
 //
@@ -72,52 +70,26 @@ typedef struct
 	float k[3];
 	bool useLUT;
 	int LUTRes;
+	float LUTResM1;
 	float LUTSampleSize;
 	AtColor* LUT;
 	bool useLUTInterpolation;
+	int roughnessRes;
+	float roughnessResM1;
+	float roughnessSampleSize;
 	bool useFullSpectrum;
+	bool degamma;
 	int lambdasSize;
 	float* lambdas;
 	float* etas;
 	float* ks;
-	bool degamma;
+	bool transfer2sRGB;
+	int xyz2rgb;
+	int ccMode;
+	int satOp;
 }
 ShaderData;
 
-
-
-// Check if file exists
-//
-inline bool fileExists(const char* filename)
-{
-    std::ifstream ifs ( filename , std::ifstream::in );
-
-    if(ifs==NULL)
-        return false;
-
-    ifs.close();
-    return true;
-
-}
-
-// check for file type
-//
-inline short fileType(const char* filename)
-{
-	std::string fname(filename);
-	
-	if(fname.size() < 4)
-		return TYPE_BAD;
-
-	if(fname.compare(fname.size()-4,4,".csv") == 0 || fname.compare(fname.size()-4,4,".CSV") == 0 )
-		return TYPE_CSV;
-	if(fname.compare(fname.size()-4,4,".txt") == 0 || fname.compare(fname.size()-4,4,".TXT") == 0 )
-		return TYPE_TXT;
-	if(fname.compare(fname.size()-4,4,".spd") == 0 || fname.compare(fname.size()-4,4,".SPD") == 0 )
-		return TYPE_SPD;
-
-	return TYPE_BAD;
-}
 
 // load a file
 //
@@ -217,20 +189,58 @@ inline bool loadTXT(const char* filename, std::vector<float>* lambdas, std::vect
 	return true;
 }
 
-// split a string with character c
-//
-// Shi Chuan : http://www.blog.highub.com/c-plus-plus/c-parse-split-delimited-string/
-//
-inline void split(const  std::string& s, char c, std::vector<std::string>& v) {
-   std::string::size_type i = 0;
-   std::string::size_type j = s.find(c);
-   while (j != std::string::npos) {
-      v.push_back(s.substr(i, j-i));
-      i = ++j;
-      j = s.find(c, j);
-      if (j == std::string::npos)
-         v.push_back(s.substr(i, s.length( )));
-   }
+// Strings are space separated
+inline bool loadStrings(const char* lsStr, const char* etasStr, const char* ksStr, std::vector<float>* lambdas, std::vector<float>* etas,std::vector<float>* ks, float unitConversion)
+{
+	
+	std::string lsStr_s(lsStr), etasStr_s(etasStr), ksStr_s(ksStr);
+	std::string buf;
+	
+	// LAMBDAs
+	std::stringstream ss(lsStr_s);
+	std::vector<std::string> tokens;
+	float lambda, eta, k;
+	
+	while(ss >> buf)
+		tokens.push_back(buf);
+
+	for( std::vector<std::string>::iterator it = tokens.begin(); it != tokens.end(); ++it)
+	{
+		if(from_string<float>(lambda, (*it), std::dec))
+		{
+			float ulambda = unitConversion*lambda;
+			if(ulambda >= MIN_LAMBDA && ulambda <=  MAX_LAMBDA)
+				lambdas->push_back( ulambda );
+		}
+	}
+	tokens.clear();
+	
+	// ETAs
+	std::stringstream ssn(etasStr_s);
+	while(ssn >> buf)
+		tokens.push_back(buf);
+
+	for( std::vector<std::string>::iterator it = tokens.begin(); it != tokens.end(); ++it)
+	{
+		if(from_string<float>(eta, (*it), std::dec))
+			etas->push_back( eta );
+
+	}
+	tokens.clear();
+
+	// Ks
+	std::stringstream ssk(ksStr_s);
+	while(ssk >> buf)
+		tokens.push_back(buf);
+
+	for( std::vector<std::string>::iterator it = tokens.begin(); it != tokens.end(); ++it)
+	{
+		if(from_string<float>(k, (*it), std::dec))
+			ks->push_back( k );
+	}
+
+	// check for return
+	return (lambdas->size() == etas->size() && (lambdas->size() == ks->size() || ks->size() == 0));
 }
 
 // load a file

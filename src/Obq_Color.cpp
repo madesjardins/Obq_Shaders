@@ -1,7 +1,7 @@
 /*
 Obq_Color :
 
-A simple RGB color
+A simple RGBA color
 
 *------------------------------------------------------------------------
 Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
@@ -27,29 +27,42 @@ SOFTWARE.
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 *------------------------------------------------------------------------
 */
-#include "Obq_Color.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqColorSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqColorMethods);
 
+
+// enum for parameters
+//
+enum ObqColorParams
+{
+	p_color
+};
+
+typedef struct 
+{
+	AtRGBA color;
+}
+ShaderData;
 
 node_parameters
 {
-	AiParameterRGB("color",1.0f,1.0f,1.0f);
+	AiParameterRGBA("color",1.0f,1.0f,1.0f,1.0f);
 }
 
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 	AiNodeSetLocalData(node,data);
-	data->color = AI_RGB_WHITE;
+	data->color = AI_RGBA_WHITE;
 }
 
 node_update
 {
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	data->color = params[p_color].RGB;
+	data->color = params[p_color].RGBA;
 }
 
 node_finish
@@ -61,7 +74,7 @@ node_finish
 shader_evaluate
 {
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	sg->out.RGB = data->color;
+	sg->out.RGBA = data->color;
 }
 
 //node_loader
@@ -69,8 +82,8 @@ shader_evaluate
 //	if (i > 0)
 //		return false;
 //
-//	node->methods      = ObqColorSimpleMethods;
-//	node->output_type  = AI_TYPE_RGB;
+//	node->methods      = ObqColorMethods;
+//	node->output_type  = AI_TYPE_RGBA;
 //	node->name         = "Obq_Color";
 //	node->node_type    = AI_NODE_SHADER;
 //#ifdef _WIN32

@@ -28,38 +28,44 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
-extern AtNodeMethods* ObqAtmosphereSimpleMethods;
+extern AtNodeMethods* ObqAtmosphereMethods;
 extern AtNodeMethods* ObqAngularCameraMethods;
-extern AtNodeMethods* ObqBend4StereoSimpleMethods;
+extern AtNodeMethods* ObqBend4StereoMethods;
 extern AtNodeMethods* ObqCameraProjectionSpaceMethods;
-extern AtNodeMethods* ObqChangeRangeSimpleMethods;
-extern AtNodeMethods* ObqColorSimpleMethods;
-extern AtNodeMethods* ObqEnvironmentSimpleMethods;
-extern AtNodeMethods* ObqEtchingSimpleMethods;
-extern AtNodeMethods* ObqFresnelSimpleMethods;
-extern AtNodeMethods* ObqHairSimpleMethods;
+extern AtNodeMethods* ObqChangeRangeMethods;
+extern AtNodeMethods* ObqColorMethods;
+extern AtNodeMethods* ObqColorspaceConverterMethods;
+extern AtNodeMethods* ObqEnvironmentMethods;
+extern AtNodeMethods* ObqEtchingMethods;
+extern AtNodeMethods* ObqFresnelMethods;
+extern AtNodeMethods* ObqHairMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
 extern AtNodeMethods* ObqLensDistortionMethods;
-extern AtNodeMethods* ObqMeasuredMaterialSimpleMethods;
-extern AtNodeMethods* ObqMessageFltSimpleMethods;
-extern AtNodeMethods* ObqOpacitySimpleMethods;
-extern AtNodeMethods* ObqRandomColorSimpleMethods;
-extern AtNodeMethods* ObqRandomIDSimpleMethods;
-extern AtNodeMethods* ObqRayDepthSimpleMethods;
-extern AtNodeMethods* ObqRGBComEmitSimpleMethods;
+extern AtNodeMethods* ObqMeasuredMaterialMethods;
+extern AtNodeMethods* ObqMessageGetFltMethods;
+extern AtNodeMethods* ObqMessageSetFltMethods;
+extern AtNodeMethods* ObqMessageStoreFltMethods;
+extern AtNodeMethods* ObqOpacityMethods;
+extern AtNodeMethods* ObqRandomColorMethods;
+extern AtNodeMethods* ObqRandomIDMethods;
+extern AtNodeMethods* ObqRayDepthMethods;
+extern AtNodeMethods* ObqRGBComEmitMethods;
 extern AtNodeMethods* ObqRGBComLightFilterMethod;
-extern AtNodeMethods* ObqRoot2TipSimpleMethods;
-extern AtNodeMethods* ObqShadowSimpleMethods;
+extern AtNodeMethods* ObqRoot2TipMethods;
+extern AtNodeMethods* ObqSetAlphaMethods;
+extern AtNodeMethods* ObqShadowMethods;
+extern AtNodeMethods* ObqSpectrumColorMethods;
 extern AtNodeMethods* ObqStereoLensMethods;
-extern AtNodeMethods* ObqSurfaceEnvironmentSimpleMethods;
-extern AtNodeMethods* ObqThicknessSimpleMethods;
+extern AtNodeMethods* ObqSurfaceEnvironmentMethods;
+extern AtNodeMethods* ObqThicknessMethods;
+extern AtNodeMethods* ObqToonMethods;
 extern AtNodeMethods* ObqToonSimpleMethods;
-extern AtNodeMethods* ObqToonSimpleSimpleMethods;
-extern AtNodeMethods* ObqTransformUVSimpleMethods;
-extern AtNodeMethods* ObqUVRemapLensDistortionSimpleMethods;
-extern AtNodeMethods* ObqVolumeThicknessSimpleMethods;
+extern AtNodeMethods* ObqTransformShadingPointMethods;
+extern AtNodeMethods* ObqTransformUVMethods;
+extern AtNodeMethods* ObqUVRemapLensDistortionMethods;
+extern AtNodeMethods* ObqVolumeThicknessMethods;
 
 
 enum SHADERS
@@ -70,6 +76,7 @@ enum SHADERS
 	OBQ_CAMERAPROJECTIONSPACE,
 	OBQ_CHANGERANGE,
 	OBQ_COLOR,
+	OBQ_COLORSPACECONVERTER,
 	OBQ_ENVIRONMENT,
 	OBQ_ETCHING,
 	OBQ_FRESNEL,
@@ -77,7 +84,9 @@ enum SHADERS
 	OBQ_IESLIGHTFILTER,
 	OBQ_LENSDISTORTION,
 	OBQ_MEASUREDMATERIAL,
-	OBQ_MESSAGEFLT,
+	OBQ_MESSAGEGETFLT,
+	OBQ_MESSAGESETFLT,
+	OBQ_MESSAGESTOREFLT,
 	OBQ_OPACITY,
 	OBQ_RANDOMCOLOR,
 	OBQ_RANDOMID,
@@ -85,12 +94,15 @@ enum SHADERS
 	OBQ_RGBCOMEMIT,
 	OBQ_RGBCOMLIGHTFILTER,
 	OBQ_ROOT2TIP,
+	OBQ_SETALPHA,
 	OBQ_SHADOW,
+	OBQ_SPECTRUMCOLOR,
 	OBQ_STEREOLENS,
 	OBQ_SURFACEENVIRONMENT,
 	OBQ_THICKNESS,
 	OBQ_TOON,
 	OBQ_TOONSIMPLE,
+	OBQ_TRANSFORMSHADINGPOINT,
 	OBQ_TRANSFORMUV,
 	OBQ_UVREMAPLENSDISTORTION,
 	OBQ_VOLUMETHICKNESS
@@ -107,13 +119,13 @@ node_loader
 		node->node_type   = AI_NODE_CAMERA;
 		break;
 	case OBQ_ATMOSPHERE:
-		node->methods      = ObqAtmosphereSimpleMethods;
+		node->methods      = ObqAtmosphereMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Atmosphere";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_BEND4STEREO:
-		node->methods      = ObqBend4StereoSimpleMethods;
+		node->methods      = ObqBend4StereoMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Bend4Stereo";
 		node->node_type    = AI_NODE_SHADER;
@@ -125,37 +137,43 @@ node_loader
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_CHANGERANGE:
-		node->methods      = ObqChangeRangeSimpleMethods;
+		node->methods      = ObqChangeRangeMethods;
 		node->output_type  = AI_TYPE_FLOAT;
 		node->name         = "Obq_ChangeRange";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_COLOR:
-		node->methods      = ObqColorSimpleMethods;
-		node->output_type  = AI_TYPE_RGB;
+		node->methods      = ObqColorMethods;
+		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Color";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_COLORSPACECONVERTER:
+		node->methods      = ObqColorspaceConverterMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_ColorspaceConverter";
+		node->node_type    = AI_NODE_SHADER;
+		break;
 	case OBQ_ENVIRONMENT:
-		node->methods      = ObqEnvironmentSimpleMethods;
+		node->methods      = ObqEnvironmentMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Environment";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_ETCHING:
-		node->methods      = ObqEtchingSimpleMethods;
+		node->methods      = ObqEtchingMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Etching";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_FRESNEL:
-		node->methods      = ObqFresnelSimpleMethods;
+		node->methods      = ObqFresnelMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Fresnel";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_HAIR:
-		node->methods      = ObqHairSimpleMethods;
+		node->methods      = ObqHairMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Hair";
 		node->node_type    = AI_NODE_SHADER;
@@ -173,43 +191,55 @@ node_loader
 		node->node_type   = AI_NODE_CAMERA;
 		break;
 	case OBQ_MEASUREDMATERIAL:
-		node->methods      = ObqMeasuredMaterialSimpleMethods;
+		node->methods      = ObqMeasuredMaterialMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_MeasuredMaterial";
 		node->node_type    = AI_NODE_SHADER;
 		break;
-	case OBQ_MESSAGEFLT:
-		node->methods      = ObqMessageFltSimpleMethods;
+	case OBQ_MESSAGEGETFLT:
+		node->methods      = ObqMessageGetFltMethods;
 		node->output_type  = AI_TYPE_FLOAT;
-		node->name         = "Obq_MessageFlt";
+		node->name         = "Obq_MessageGetFlt";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_MESSAGESETFLT:
+		node->methods      = ObqMessageSetFltMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_MessageSetFlt";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_MESSAGESTOREFLT:
+		node->methods      = ObqMessageStoreFltMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_MessageStoreFlt";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_OPACITY:
-		node->methods      = ObqOpacitySimpleMethods;
+		node->methods      = ObqOpacityMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_Opacity";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_RANDOMCOLOR:
-		node->methods      = ObqRandomColorSimpleMethods;
+		node->methods      = ObqRandomColorMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_RandomColor";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_RANDOMID:
-		node->methods      = ObqRandomIDSimpleMethods;
+		node->methods      = ObqRandomIDMethods;
 		node->output_type  = AI_TYPE_INT;
 		node->name         = "Obq_RandomID";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_RAYDEPTH:
-		node->methods      = ObqRayDepthSimpleMethods;
+		node->methods      = ObqRayDepthMethods;
 		node->output_type  = AI_TYPE_INT;
 		node->name         = "Obq_RayDepth";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_RGBCOMEMIT:
-		node->methods      = ObqRGBComEmitSimpleMethods;
+		node->methods      = ObqRGBComEmitMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_RGBComEmit";
 		node->node_type    = AI_NODE_SHADER;
@@ -221,15 +251,27 @@ node_loader
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_ROOT2TIP:
-		node->methods      = ObqRoot2TipSimpleMethods;
+		node->methods      = ObqRoot2TipMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Root2Tip";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_SETALPHA:
+		node->methods      = ObqSetAlphaMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_SetAlpha";
+		node->node_type    = AI_NODE_SHADER;
+		break;
 	case OBQ_SHADOW:
-		node->methods      = ObqShadowSimpleMethods;
+		node->methods      = ObqShadowMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Shadow";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_SPECTRUMCOLOR:
+		node->methods      = ObqSpectrumColorMethods;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_SpectrumColor";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_STEREOLENS:
@@ -239,43 +281,49 @@ node_loader
 		node->node_type   = AI_NODE_CAMERA;
 		break;
 	case OBQ_SURFACEENVIRONMENT:
-		node->methods      = ObqSurfaceEnvironmentSimpleMethods;
+		node->methods      = ObqSurfaceEnvironmentMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_SurfaceEnvironment";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_THICKNESS:
-		node->methods      = ObqThicknessSimpleMethods;
+		node->methods      = ObqThicknessMethods;
 		node->output_type  = AI_TYPE_FLOAT;
 		node->name         = "Obq_Thickness";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_TOON:
-		node->methods      = ObqToonSimpleMethods;
+		node->methods      = ObqToonMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_Toon";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_TOONSIMPLE:
-		node->methods      = ObqToonSimpleSimpleMethods;
+		node->methods      = ObqToonSimpleMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_ToonSimple";
 		node->node_type    = AI_NODE_SHADER;
 		break;
+	case OBQ_TRANSFORMSHADINGPOINT:
+		node->methods      = ObqTransformShadingPointMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_TransformShadingPoint";
+		node->node_type    = AI_NODE_SHADER;
+		break;
 	case OBQ_TRANSFORMUV:
-		node->methods      = ObqTransformUVSimpleMethods;
+		node->methods      = ObqTransformUVMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_TransformUV";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_UVREMAPLENSDISTORTION:
-		node->methods      = ObqUVRemapLensDistortionSimpleMethods;
+		node->methods      = ObqUVRemapLensDistortionMethods;
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_UVRemapLensDistortion";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_VOLUMETHICKNESS:
-		node->methods      = ObqVolumeThicknessSimpleMethods;
+		node->methods      = ObqVolumeThicknessMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_VolumeThickness";
 		node->node_type    = AI_NODE_SHADER;

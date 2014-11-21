@@ -30,7 +30,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 #include "yafaray/yafaray_ies_parser.h"
 
 //---------------

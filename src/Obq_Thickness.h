@@ -31,15 +31,15 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQTHICKNESS_H
 #define OBQTHICKNESS_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold Thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqThicknessSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqThicknessMethods);
 
 // enum of parameters
 //
-enum ObqThicknessSimpleParams { p_sampleLevel, p_coneAngle, p_useVdotNForMaxAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_backface, p_intersectOthers, p_maxRayDepth, p_normalizeMode, p_maxRayLength, p_useMaxRayLength, p_dirMode, p_dirInverted, p_dirSmooth, p_dirGeometric, p_dirSafe, p_customDirection, p_ior, p_noHitMode, p_multNdotR, p_NdotRExp, p_enterSurface, p_geometricLimitMultiplier, p_thicknessMode, p_multiplyByDepth};
+enum ObqThicknessParams { p_sampleLevel, p_coneAngle, p_useVdotNForMaxAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_backface, p_intersectOthers, p_maxRayDepth, p_normalizeMode, p_maxRayLength, p_useMaxRayLength, p_dirMode, p_dirInverted, p_dirSmooth, p_dirGeometric, p_dirSafe, p_customDirection, p_ior, p_noHitMode, p_multNdotR, p_NdotRExp, p_enterSurface, p_geometricLimitMultiplier, p_thicknessMode, p_multiplyByDepth};
 
 // enum for direction mode
 //

@@ -26,7 +26,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 
 
@@ -41,11 +41,11 @@ ShaderData;
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqEtchingSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqEtchingMethods);
 
 // enum for parameters
 //
-enum ObqEtchingSimpleParams { 
+enum ObqEtchingParams { 
 	p_shading_input, 
 	p_coordinates_input, 
 	p_use_linear_signal, 
@@ -486,7 +486,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqEtchingSimpleMethods;
+//	node->methods      = ObqEtchingMethods;
 //	node->output_type  = AI_TYPE_RGB;
 //	node->name         = "Obq_Etching";
 //	node->node_type    = AI_NODE_SHADER;

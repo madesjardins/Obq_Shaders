@@ -1,0 +1,79 @@
+# SPDL - Obq_SetAlpha - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{B43934CD-4E31-4948-B206-E61E4DB40309}";
+PropertySet "Obq_SetAlpha_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{453C7143-34ED-47AF-AB32-864D95AE5918}";
+		Type = color;
+	}
+	Parameter "color" input
+	{
+		GUID = "{93FB897B-2C1F-4EFB-B2A7-064695F12143}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0;
+	}
+	Parameter "alpha" input
+	{
+		GUID = "{E8117F1B-A49E-4660-BEF0-C07AA3B4E84C}";
+		Type = scalar;
+		Texturable = on;
+		Value = 1.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_SetAlpha";
+}
+
+phenomenon "Obq_SetAlpha_declare"
+{
+	Name = "Obq_SetAlpha";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	color
+	{
+		Name = "Color";
+		UIType = "rgb";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	alpha
+	{
+		Name = "Alpha";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+	color;
+	alpha;
+}
+
+Layout "RenderTree"
+{
+	color;
+	alpha;
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SetAlpha.html"
+End sub
+
+}
+

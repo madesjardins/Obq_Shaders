@@ -28,17 +28,27 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 
 
 // Arnold Thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqRandomIDSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqRandomIDMethods);
 
 // enum of parameters
 //
-enum ObqRandomIDSimpleParams {p_randMax, p_seed, p_stripModelName, p_stripFrameNumber, p_stripInstanceFrameNumber, p_stripInstanceID,p_stripInstanceShape};
+enum ObqRandomIDParams {p_randMax, p_seed, p_stripModelName, p_stripFrameNumber, p_stripInstanceFrameNumber, p_stripInstanceID,p_stripInstanceShape, p_XtoA};
+
+enum ObqRandomXtoA {SITOA, MTOA, HTOA};
+
+typedef struct 
+{
+	const char* XtoA_name;
+	const char* XtoA_instance_name;
+	int XtoA_instance_len;
+}
+ShaderData;
 
 // parameters
 //
@@ -46,56 +56,83 @@ node_parameters
 {
 	AiParameterINT("randMax", 4);	
 	AiParameterINT("seed", 233);
-	AiParameterBOOL("stripModelName", true);
+	AiParameterBOOL("stripModelName", false);
 	AiParameterBOOL("stripFrameNumber", true);
 	AiParameterBOOL("stripInstanceFrameNumber", true);
 	AiParameterBOOL("stripInstanceID", false);
 	AiParameterBOOL("stripInstanceShape", false);
+	AiParameterINT("XtoA",0);
 }
 
 node_initialize
 {
-
+	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
+	data->XtoA_name = ".SItoA.";
+	data->XtoA_instance_name = ".SItoA.Instance";
+	data->XtoA_instance_len = 15;
+	AiNodeSetLocalData(node,data);
 }
 
 node_update
 {
-
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+	switch(params[p_XtoA].INT)
+	{
+	case MTOA:
+		data->XtoA_name = ".MtoA.";
+		data->XtoA_instance_name = ".MtoA.Instance";
+		data->XtoA_instance_len = 14;
+		break;
+	case HTOA:
+		data->XtoA_name = ".HtoA.";
+		data->XtoA_instance_name = ".HtoA.Instance";
+		data->XtoA_instance_len = 14;
+		break;
+	case SITOA:
+	default:
+		data->XtoA_name = ".SItoA.";
+		data->XtoA_instance_name = ".SItoA.Instance";
+		data->XtoA_instance_len = 15;
+		break;
+	}
+	
 }
-
 
 node_finish
 {
-
+	ShaderData *data = (ShaderData*) AiNodeGetLocalData(node);
+	AiFree(data);
 }
 
 shader_evaluate
 {
+	ShaderData *data = (ShaderData*) AiNodeGetLocalData(node);
+
 	// GET NAME (This is far from optimal)
 	std::string name(AiNodeGetName(sg->Op));
 	
 	// TEST .SItoA.
 	std::size_t len = name.length();
-	std::size_t lastSItoA = name.rfind(".SItoA.");
+	std::size_t lastXtoA = name.rfind(data->XtoA_name);
 	std::size_t startNameIndex = 0;
-	std::size_t endNameIndex = lastSItoA;
+	std::size_t endNameIndex = lastXtoA;
 
 	if(endNameIndex==std::string::npos)
 	{
-		AiMsgError("[Obq_RandomID] : Couldn't find the frame number separator. Name is : %s and separator is .SItoA.",name.c_str());
+		AiMsgError("[Obq_RandomID] : Couldn't find the frame number separator. Name is : %s and separator is %s",name.c_str(),data->XtoA_name);
 		sg->out.RGBA = AI_RGBA_BLACK;
 		return; 
 	}
 
 	// INSTANCE TEST
-	std::size_t firstSItoA = name.find(".SItoA.");
+	std::size_t firstXtoA = name.find(data->XtoA_name);
 
 	// STRIP MODEL
 	if(AiShaderEvalParamBool(p_stripModelName))
 	{
 		
 		std::size_t startDotModel = name.find('.');
-		if(startDotModel < firstSItoA)
+		if(startDotModel < firstXtoA)
 			startNameIndex = startDotModel+1;
 	}
 
@@ -110,11 +147,11 @@ shader_evaluate
 
 	if(stripInstanceFrameNumber || stripInstanceID || stripInstanceShape)
 	{
-		std::size_t startInstanceSItoA = name.find(".SItoA.Instance",firstSItoA);
-		if(startInstanceSItoA != std::string::npos)
+		std::size_t startInstanceXtoA = name.find(data->XtoA_instance_name,firstXtoA);
+		if(startInstanceXtoA != std::string::npos)
 		{
-			// strip the SItoA.Instance
-			std::size_t startInstanceFrameNumber = startInstanceSItoA + 15;
+			// strip the XtoA.Instance
+			std::size_t startInstanceFrameNumber = startInstanceXtoA + data->XtoA_instance_len;
 			std::size_t startInstanceID = name.find(".",startInstanceFrameNumber+1);
 			std::size_t startInstanceShape = name.find(" ",startInstanceID);
 
@@ -127,10 +164,10 @@ shader_evaluate
 				instanceName += name.substr(startInstanceID,startInstanceShape-startInstanceID);
 
 			if(!stripInstanceShape)
-				instanceName += name.substr(startInstanceShape,lastSItoA-startInstanceShape);
+				instanceName += name.substr(startInstanceShape,lastXtoA-startInstanceShape);
 
-			name = name.substr(0,startInstanceSItoA) + instanceName + name.substr(lastSItoA);
-			endNameIndex -= ((lastSItoA-startInstanceSItoA) - instanceName.length());
+			name = name.substr(0,startInstanceXtoA) + instanceName + name.substr(lastXtoA);
+			endNameIndex -= ((lastXtoA-startInstanceXtoA) - instanceName.length());
 		}
 	}
 
@@ -158,7 +195,7 @@ shader_evaluate
 //	if (i > 0)
 //		return FALSE;
 //
-//	node->methods      = ObqRandomIDSimpleMethods;
+//	node->methods      = ObqRandomIDMethods;
 //	node->output_type  = AI_TYPE_INT;
 //	node->name         = "Obq_RandomID";
 //	node->node_type    = AI_NODE_SHADER;

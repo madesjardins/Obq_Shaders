@@ -76,6 +76,31 @@ PropertySet "Obq_LensDistortion"
 		Texturable = Off;
 		Value = On;
 	}
+	Parameter "bokehInvert" input
+	{
+		GUID = "{2B18C11C-F8FF-495E-A6B7-DCFEFC3B0DCB}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+	}
+	Parameter "bokehBias" input
+	{
+		GUID = "{FEA3589D-9DCB-4B14-B95F-C35030512FBE}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "bokehGain" input
+	{
+		GUID = "{C073EDFC-2C6E-45ED-8985-79D3CD37CEA2}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
 	Parameter "distortionModel" input
 	{
 		GUID = "{1BAB0957-C1F7-4443-B2F3-B48FF1FCAF6B}";
@@ -733,7 +758,7 @@ Defaults
 	}
 	usePolygonalAperture
 	{
-		Name = "Polygon Aperture";
+		Name = "Polygonal Aperture";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	apertureBlades
@@ -757,6 +782,21 @@ Defaults
 	focusPlaneIsPlane
 	{
 		Name = "Focus plane is a plane";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehInvert
+	{
+		Name = "Invert";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehBias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokehGain
+	{
+		Name = "Gain";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	distortionModel
@@ -1355,6 +1395,21 @@ Layout "Default"
 				apertureBlades;
 				apertureBladeCurvature;
 				apertureRotation;
+				Group "Bokeh Quality"
+				{
+					bokehInvert;
+					bokehBias;
+					bokehGain;
+					Group "Presets"
+					{
+						Row
+						{
+							Button btnBokehPoor, aligncenter = "Poor";
+							Button btnBokehNeutral, aligncenter = "Neutral";
+							Button btnBokehGood, aligncenter = "Good";
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1369,6 +1424,21 @@ Language = "Python";
 Logic
 {	
 from win32com.client import constants as c
+
+def btnBokehPoor_OnClicked():
+	PPG.bokehInvert.Value = False
+	PPG.bokehBias.Value = 0.7
+	PPG.bokehGain.Value = 0.2
+	
+def btnBokehNeutral_OnClicked():
+	PPG.bokehInvert.Value = False
+	PPG.bokehBias.Value = 0.5
+	PPG.bokehGain.Value = 0.5
+
+def btnBokehGood_OnClicked():
+	PPG.bokehInvert.Value = True
+	PPG.bokehBias.Value = 0.33
+	PPG.bokehGain.Value = 0.685
 
 def btnReset_OnClicked():
 	if PPG.distortionModel.Value == 7 :
@@ -2410,6 +2480,9 @@ def useDof_OnChanged():
 			PPG.apertureBlades.ReadOnly = True
 			PPG.apertureBladeCurvature.ReadOnly = True
 			PPG.apertureRotation.ReadOnly = True
+		PPG.bokehInvert.ReadOnly = False
+		PPG.bokehBias.ReadOnly = False
+		PPG.bokehGain.ReadOnly = False
 	else:
 		PPG.focusDistance.ReadOnly = True
 		PPG.focusPlaneIsPlane.ReadOnly = True
@@ -2419,6 +2492,9 @@ def useDof_OnChanged():
 		PPG.apertureBlades.ReadOnly = True
 		PPG.apertureBladeCurvature.ReadOnly = True
 		PPG.apertureRotation.ReadOnly = True
+		PPG.bokehInvert.ReadOnly = True
+		PPG.bokehBias.ReadOnly = True
+		PPG.bokehGain.ReadOnly = True
 
 def OnInit():
 	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html")

@@ -1,0 +1,413 @@
+# SPDL - Obq_ColorspaceConverter - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{DC34DAF8-03EE-48D0-8F73-B3D0CBEA78B0}";
+PropertySet "Obq_ColorspaceConverter_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{3E9B4F44-6920-4066-BCD0-2EC6BCA23916}";
+		Type = color;
+	}
+	Parameter "color" input
+	{
+		GUID = "{E27A9202-DFC7-4471-A5BF-1CBB50EF9A59}";
+		Type = color;
+		Texturable = on;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "colorspaceIn" input
+	{
+		GUID = "{D60400C1-C6FA-4361-845A-0CA05A0FA92F}";
+		Type = integer;
+		Texturable = off;
+		Value = 1;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "colorspaceOut" input
+	{
+		GUID = "{D049E3EF-66FE-4116-9851-86CBEE19EC05}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "csGammaIn" input
+	{
+		GUID = "{FFEF5E93-4406-41B7-8BA4-0139D658C080}";
+		Type = integer;
+		Texturable = off;
+		Value = 3;
+		Value Minimum = 0;
+		Value Maximum = 6;
+	}
+	Parameter "csGammaOut" input
+	{
+		GUID = "{F3F22775-7703-4A94-9CDE-678FD7C13030}";
+		Type = integer;
+		Texturable = off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 6;
+	}
+	Parameter "csIlluminantIn" input
+	{
+		GUID = "{94ACB63B-A912-4FCE-BF40-AD6D48ABD457}";
+		Type = integer;
+		Texturable = off;
+		Value = 5;
+		Value Minimum = 0;
+		Value Maximum = 11;
+	}
+	Parameter "csIlluminantOut" input
+	{
+		GUID = "{EF9E19E1-6051-4D5C-82C8-68705401F38B}";
+		Type = integer;
+		Texturable = off;
+		Value = 5;
+		Value Minimum = 0;
+		Value Maximum = 11;
+	}
+	Parameter "csPrimariesIn" input
+	{
+		GUID = "{9112B628-9487-4672-ACA4-A760B481EEA1}";
+		Type = integer;
+		Texturable = off;
+		Value = 15;
+		Value Minimum = 0;
+		Value Maximum = 19;
+	}
+	Parameter "csPrimariesOut" input
+	{
+		GUID = "{0649A846-DD98-49F8-9718-8C1F946C3BE9}";
+		Type = integer;
+		Texturable = off;
+		Value = 15;
+		Value Minimum = 0;
+		Value Maximum = 19;
+
+	}
+	Parameter "switchInOut" input
+	{
+		GUID = "{0BC20829-5FF8-4798-9104-4144D2AE549D}";
+		Type = boolean;
+		Texturable = off;
+		Value = off;
+	}
+	Parameter "useBradford" input
+	{
+		GUID = "{27307065-3808-4496-86A4-A7FB9CDCACF0}";
+		Type = boolean;
+		Texturable = off;
+		Value = on;
+	}
+	Parameter "clamp" input
+	{
+		GUID = "{80921A35-C318-4ED2-A4D2-CF30043BBE78}";
+		Type = boolean;
+		Texturable = off;
+		Value = on;
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_ColorspaceConverter";
+}
+
+phenomenon "Obq_ColorspaceConverter_declare"
+{
+	Name = "Obq_ColorspaceConverter";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	color
+	{
+		Name = "Color";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "rgba";
+	}
+	colorspaceIn
+	{
+		Name = "IN";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"CIE XYZ" = 3,
+			"XSI Linear" = 0,
+			"XSI sRGB" = 1,
+			"CIE RGB" = 2
+			
+		}
+	}
+	colorspaceOut
+	{
+		Name = "OUT";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"CIE XYZ" = 3,
+			"XSI Linear" = 0,
+			"XSI sRGB" = 1,
+			"CIE RGB" = 2
+		}
+	}
+	csGammaIn
+	{
+		Name = "Gamma";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Linear" = 0,
+			"sRGB" = 3,
+			"Rec.709" = 5,
+			"1.8 (Apple)" = 1,
+			"2.2" = 2,
+			"2.4" = 4,
+			"L*" = 6
+		}
+	}
+	csGammaOut 
+	{
+		Name = "Gamma";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Linear" = 0,
+			"sRGB" = 3,
+			"Rec.709" = 5,
+			"1.8 (Apple)" = 1,
+			"2.2" = 2,
+			"2.4" = 4,
+			"L*" = 6
+		}
+	}
+	csIlluminantIn
+	{
+		Name = "Illuminant";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"A" = 0,
+			"B" = 1,
+			"C" = 2,
+			"D50" = 3,
+			"D55" = 4,
+			"D65" = 5,
+			"D75" = 6,
+			"E" = 7,
+			"F2" = 8,
+			"F7" = 9,
+			"F11" = 10
+		}
+	}
+	csIlluminantOut
+	{
+		Name = "Illuminant";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"A" = 0,
+			"B" = 1,
+			"C" = 2,
+			"D50" = 3,
+			"D55" = 4,
+			"D65" = 5,
+			"D75" = 6,
+			"E" = 7,
+			"F2" = 8,
+			"F7" = 9,
+			"F11" = 10
+		}
+	}
+	csPrimariesIn
+	{
+		Name = "Primaries";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"CIE XYZ" = 19,
+			"XSI Linear RGB" = 0,
+			"Adobe RGB 1998" = 1,
+			"Apple RGB" = 2,
+			"Best RGB" = 3,
+			"Beta RGB" = 4,
+			"Bruce RGB" = 5,
+			"CIE RGB" = 6,
+			"ColorMatch RGB" = 7,
+			"Don RGB 4" = 8,
+			"ECI RGB V2" = 9,
+			"EKTA Space PS5" = 10,
+			"NTSC RGB" = 11,
+			"PAL/SECAM RGB" = 12,
+			"ProPhoto" = 13,
+			"SMPTE_C" = 14,
+			"sRGB" = 15,
+			"Wide Gamut RGB" = 16,
+			"Rec.709" = 17,
+			"Rec.2020" = 18,
+			"CIE XYZ" = 19
+		}
+	}
+	csPrimariesOut
+	{
+		Name = "Primaries";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"CIE XYZ" = 19,
+			"XSI Linear RGB" = 0,
+			"Adobe RGB 1998" = 1,
+			"Apple RGB" = 2,
+			"Best RGB" = 3,
+			"Beta RGB" = 4,
+			"Bruce RGB" = 5,
+			"CIE RGB" = 6,
+			"ColorMatch RGB" = 7,
+			"Don RGB 4" = 8,
+			"ECI RGB V2" = 9,
+			"EKTA Space PS5" = 10,
+			"NTSC RGB" = 11,
+			"PAL/SECAM RGB" = 12,
+			"ProPhoto" = 13,
+			"SMPTE_C" = 14,
+			"sRGB" = 15,
+			"Wide Gamut RGB" = 16,
+			"Rec.709" = 17,
+			"Rec.2020" = 18
+			
+		}
+	}
+	switchInOut
+	{
+		Name = "Switch In and Out";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	useBradford
+	{
+		Name = "Use Bradford chromatic adaptation matrix";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	clamp
+	{
+		Name = "Clamp";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	
+}
+
+
+Layout "Default"
+{
+	Group "Input"
+	{
+		color;
+		Row
+		{
+			csPrimariesIn;
+			csGammaIn;
+			csIlluminantIn;
+		}
+	}
+	Group "Output"
+	{
+		Row
+		{
+			csPrimariesOut;
+			csGammaOut;
+			csIlluminantOut;
+		}
+	}
+	Group "Options"
+	{
+		switchInOut;
+		useBradford;
+		clamp;
+	}
+	Group "Load Colorspace Presets"
+	{
+		Row
+		{
+			colorspaceIn;
+			Button btnLoadPresetIn, aligncenter = "Load", 60;
+		}
+		Row
+		{
+			colorspaceOut;
+			Button btnLoadPresetOut, aligncenter = "Load", 60;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+	color;
+}
+
+Language = "VBScript";
+Logic
+{
+
+sub btnLoadPresetIn_OnClicked()
+	If PPG.colorspaceIn.Value = 0 Then
+		PPG.csPrimariesIn.Value = 15
+		PPG.csGammaIn.Value = 0
+		PPG.csIlluminantIn.Value = 7
+	ElseIf PPG.colorspaceIn.Value = 1 Then
+		PPG.csPrimariesIn.Value = 15
+		PPG.csGammaIn.Value = 3
+		PPG.csIlluminantIn.Value = 7
+	ElseIf PPG.colorspaceIn.Value = 2 Then
+		PPG.csPrimariesIn.Value = 6
+		PPG.csGammaIn.Value = 2
+		PPG.csIlluminantIn.Value = 7
+	ElseIf PPG.colorspaceIn.Value = 3 Then
+		PPG.csPrimariesIn.Value = 19
+		PPG.csGammaIn.Value = 0
+		PPG.csIlluminantIn.Value = 7
+	End If
+	PPG.Refresh()
+End sub
+
+sub btnLoadPresetOut_OnClicked()
+	If PPG.colorspaceOut.Value = 0 Then
+		PPG.csPrimariesOut.Value = 15
+		PPG.csGammaOut.Value = 0
+		PPG.csIlluminantOut.Value = 7
+	ElseIf PPG.colorspaceOut.Value = 1 Then
+		PPG.csPrimariesOut.Value = 15
+		PPG.csGammaOut.Value = 3
+		PPG.csIlluminantOut.Value = 7
+	ElseIf PPG.colorspaceOut.Value = 2 Then
+		PPG.csPrimariesOut.Value = 6
+		PPG.csGammaOut.Value = 2
+		PPG.csIlluminantOut.Value = 7
+	ElseIf PPG.colorspaceOut.Value = 3 Then
+		PPG.csPrimariesOut.Value = 19
+		PPG.csGammaOut.Value = 0
+		PPG.csIlluminantOut.Value = 7
+	End If
+	PPG.Refresh()
+End sub
+
+
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ColorspaceConverter.html"
+End sub
+
+}
+

@@ -28,15 +28,15 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqShadowSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqShadowMethods);
 
 // enum for parameters
 //
-enum ObqShadowSimpleParams { p_mode, p_traceType, p_opacity, p_shadowsOnUnlit };
+enum ObqShadowParams { p_mode, p_traceType, p_opacity, p_shadowsOnUnlit };
 
 // shader data struct
 //
@@ -279,7 +279,7 @@ shader_evaluate
 //   if (i > 0)
 //      return FALSE;
 //
-//   node->methods      = ObqShadowSimpleMethods;
+//   node->methods      = ObqShadowMethods;
 //   node->output_type  = AI_TYPE_RGB;
 //   node->name         = "Obq_Shadow";
 //   node->node_type    = AI_NODE_SHADER;

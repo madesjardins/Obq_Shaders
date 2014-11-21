@@ -274,7 +274,7 @@ PropertySet "Obq_RandomColor_params"
       type = boolean;
       flags = 1;
       texturable = on;
-      value = on;
+      value = off;
       writable = on;
       animatable = on;
       persistable = on;
@@ -336,6 +336,16 @@ PropertySet "Obq_RandomColor_params"
       persistable = on;
       readable = on;
       inspectable = on;
+   }
+   Parameter "XtoA" input
+   {
+      guid = "{B81445E2-A7B9-4C2C-AD00-2E43B913676E}";
+      type = integer;
+      texturable = off;
+	  animatable = on;
+      value = 0;
+	  value minimum = 0;
+	  value maximum = 2;
    }
 }
 
@@ -480,12 +490,25 @@ Defaults
       Name = "Shape";
       Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
    }
+   XtoA
+   {
+      Name = "Software";
+      Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	  UIType = "Combo";
+	  Items
+	  {
+		"SItoA" = 0,
+		"MtoA" = 1,
+		"HtoA" = 2
+	  }
+   }
 }
 
 Layout "Default"
 {
 	Group "Options"
 	{
+		XtoA;
 		randMax;
 		seed;
 	}
@@ -826,7 +849,7 @@ Sub randMax_OnChanged()
 		PPG.color15.Show(True)
 		PPG.color16.Show(True)
 	End If
-	'PPG.Refresh
+	PPG.Refresh
 End Sub
 
 Sub OnInit()

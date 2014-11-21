@@ -30,16 +30,16 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQSURFACEENVIRONMENT_H
 #define OBQSURFACEENVIRONMENT_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 // This is an Arnold thingy
 //
-AI_SHADER_NODE_EXPORT_METHODS(ObqSurfaceEnvironmentSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqSurfaceEnvironmentMethods);
 
 
 // This is the enumeration for parameters
 //
-enum ObqSurfaceEnvironmentSimpleParams { p_tex, p_considerAlpha, p_mapMode, p_usePassEnvShader, p_rayTypeEnv, p_useIntensityEnv, p_useTransformsEnv, p_useRoughnessEnv, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensity, p_globalRotation , p_rotation, p_passthrough, p_passthroughShader, p_renderChannel, p_flipU, p_flipV };
+enum ObqSurfaceEnvironmentParams { p_tex, p_considerAlpha, p_mapMode, p_usePassEnvShader, p_rayTypeEnv, p_useIntensityEnv, p_useTransformsEnv, p_useRoughnessEnv, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensity, p_globalRotation , p_rotation, p_passthrough, p_passthroughShader, p_renderChannel, p_flipU, p_flipV };
 
 
 // This is the enumeration for the mapping mode

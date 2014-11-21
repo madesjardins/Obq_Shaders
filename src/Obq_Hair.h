@@ -28,7 +28,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #ifndef OBQHAIR_H
 #define OBQHAIR_H
 
-#include "Obq_Common.h"
+#include "O_Common.h"
 
 
 const int c_a_bar_f_nSamples = c_ObqHemisphereThetaRes;
@@ -59,7 +59,7 @@ static float ObqHairDualScatEvalPdf_DS(const void *brdf, const AtVector *indir);
 
 // enum for parameters
 //
-enum ObqHairSimpleParams
+enum ObqHairParams
 {
 	p_opacity,
 	p_alpha_R,

@@ -27,9 +27,9 @@ SOFTWARE.
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 *------------------------------------------------------------------------
 */
-#include "Obq_Common.h"
+#include "O_Common.h"
 
-AI_SHADER_NODE_EXPORT_METHODS(ObqRGBComEmitSimpleMethods);
+AI_SHADER_NODE_EXPORT_METHODS(ObqRGBComEmitMethods);
  
 // parameters
 //
@@ -38,7 +38,7 @@ node_parameters
 	AiParameterRGBA ( "passthrough", 1.0f,1.0f,1.0f, 1.0f );
 }
 
-enum ObqRGBComEmitSimpleParams{p_passthrough};
+enum ObqRGBComEmitParams{p_passthrough};
 
 node_initialize
 {
