@@ -42,6 +42,7 @@
 <tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
@@ -50,19 +51,26 @@
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
@@ -77,7 +85,7 @@
 <br>
 <img src="images/Obq_LensDistortion_01.jpg" alt="Synopsis image"  >
 <p class="idesc">Fig.1 : Example of a checkerboard rendered with distortion.</p>
-<p class="note" >Note : Using SItoA 3.1.2 and up, you need to add an Arnold Camera Option property and select "Custom (lens shader)" as the camera type.</p>
+<p class="warning">Warning : Using SItoA 3.1.2 and up, you need to add an Arnold Camera Option property and select "Custom (lens shader)" as the camera type.</p>
 <br>
 <h5>Usage</h5>
 <p>Simply use as lens shader and set the distortion parameters. You can also add depth of field from within the shader UI.</p>
@@ -85,7 +93,7 @@
 <hr/>
 <br>
 <br>
-<h5>Lens Distortion Model [distortionModel]</h5>
+<h5>Lens Distortion Model <em>[distortionModel]</em></h5>
 <p>The distortion model used :</p>
 <table borders="0" cellpadding=0 cellspacing=0 width=700>
 <tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="260"><span class="enumElem">PFBarrel</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">PFTrack's distortion model.</td></tr>
@@ -99,7 +107,7 @@
 <tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="260"><span class="enumElem">None</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">No distortion.</td></tr>
 </table>
 <br>
-<h5>PFBarrel File [pfbFile]</h5>
+<h5>PFBarrel File <em>[pfbFile]</em></h5>
 <p>Load a PFBarrel file.</p>
 <br>
 <hr/>
@@ -114,46 +122,50 @@
 <hr/>
 <h4>Depth of Field</h4>
 <br>
-<h5>Enable [useDof]</h5>
+<h5>Enable <em>[useDof]</em></h5>
 <p>Enable the depth of field.</p>
 <p class="note" >Note : If you enable this here, you don't need to enable it in the Render Options.</p>
 <p class="note" >Note : The result is not exactly the same as Arnold's default DoF, but it's very similar.</p>
 <br>
-<h5>Distance [focusDistance]</h5>
+<h5>Distance <em>[focusDistance]</em></h5>
 <p>The distance at which an object is in focus.</p>
 <br>
-<h5>Focus plane is a plane [focusPlaneIsPlane]</h5>
+<h5>Focus plane is a plane <em>[focusPlaneIsPlane]</em></h5>
 <p>Wether or not the focus plane is actually a plane or curved plane (on by default).</p>
 <br>
-<h5>Size [apertureSize]</h5>
+<h5>Size <em>[apertureSize]</em></h5>
 <p>This size controls the amount of blur (size of the iris).</p>
 <br>
-<h5>Aspect Ratio [apertureAspectRatio]</h5>
+<h5>Aspect Ratio <em>[apertureAspectRatio]</em></h5>
 <p>The aspect ratio of the lens. Values smaller than 1 will give an horizontal elongated oval vand values greater than 1 will give a vertical elongated oval.</p>
 <br>
-<h5>Polygonal Aperture [usePolygonalAperture]</h5>
+<h5>Polygonal Aperture <em>[usePolygonalAperture]</em></h5>
 <p>The shape of the iris is polygonal instead of circular.</p>
 <br>
-<h5>Blades [apertureBlades]</h5>
+<h5>Blades <em>[apertureBlades]</em></h5>
 <p>The number of blades the iris has. For example, using 5 blades will give a pentagon shaped iris.</p>
 <br>
-<h5>Blade Curvature [apertureBladeCurvature]</h5>
+<h5>Blade Curvature <em>[apertureBladeCurvature]</em></h5>
 <p>A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.</p>
 <br>
-<h5>Rotation [apertureRotation]</h5>
+<img src="images/Obq_bokeh_04.jpg" alt="Blade curvature" width=512 >
+<p class="idesc">Fig.2 : Blade curvature of 1, 0, -1, -2 and -3.</p>
+<br>
+<h5>Rotation <em>[apertureRotation]</em></h5>
 <p>The rotation in degrees of the shape of the iris.</p>
 <br>
 <hr/>
 <h4>Bokeh Quality</h4>
 <p>The bokeh "quality" look can be altered using a bias and gain parameters. This effectively changes the distribution of the rays.</p>
+<p class="note" >Note : These parameters will eventually be replaced by better sampling functions and image based bokeh.</p>
 <br>
-<h5>Invert [bokehInvert]</h5>
+<h5>Invert <em>[bokehInvert]</em></h5>
 <p>Invert the output of the bias/gain operation.</p>
 <br>
-<h5>Bias [bokehBias]</h5>
+<h5>Bias <em>[bokehBias]</em></h5>
 <p>Bias control of the bokeh.</p>
 <br>
-<h5>Gain [bokehGain]</h5>
+<h5>Gain <em>[bokehGain]</em></h5>
 <p>Gain control of the bokeh.</p>
 <table borders="0" cellpadding=0 cellspacing=0 width=700>
 <tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Poor bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain)  values around (false, 0.7, 0.2 ).</td></tr>
@@ -161,11 +173,8 @@
 <tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Good bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain) values around (true, 0.33, 0.685 ).</td></tr>
 </table>
 <br>
-<img src="images/Obq_bokeh_01.jpg" alt="Bokeh looks" width=512 >
-<p class="idesc">Fig.2 : Bokeh looks with different bias and gain values (non inverted).</p>
-<br>
-<img src="images/Obq_bokeh_02.jpg" alt="Bokeh looks2" width=512 >
-<p class="idesc">Fig.3 : Bokeh looks with different bias and gain values (inverted).</p>
+<img src="images/Obq_bokeh_03.jpg" alt="Bokeh looks2" width=256 >
+<p class="idesc">Fig.3 : Poor, Neutral and Good bokeh.</p>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

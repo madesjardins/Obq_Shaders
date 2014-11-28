@@ -194,7 +194,7 @@ phenomenon "Obq_Atmosphere_declare"
 {
 	Name = "Obq_Atmosphere";
 	Version = 1;
-	Use = texture;
+	Use = material;
 }
 
 Defaults

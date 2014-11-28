@@ -42,6 +42,7 @@
 <tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
@@ -50,19 +51,26 @@
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
@@ -72,13 +80,14 @@
 <h2>Obq_Fresnel</h2>
 <br>
 <h5>Class</h5>
-<p>Texture</p>
+<p>Texture [Generator]</p>
 <br>
 <h5>Output</h5>
 <p>Color RGB</p>
 <br>
 <h5>Synopsis</h5>
-<p>Obq_Fresnel is a texture node that outputs colored proportion of light reflected/refracted from a surface based on the refractive indices and the extinction coefficients. Note that this shader is particularly useful for getting the right metal reflection color by driving the <em>ks_color</em> port of a standard shader. A lot of presets are available, but you can also import wavelength dependent complex IORs. Creation of an energy conserving 2-layers material can also be done by using the <a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards compound</a>.</p>
+<p>Obq_Fresnel is a texture node that outputs colored proportion of light reflected/refracted from a surface based on the refractive indices and the extinction coefficients. Note that this shader is particularly useful for getting the right metal reflection color by driving the <em>ks_color</em> port of a standard shader. A lot of presets are available, but you can also import wavelength dependent complex IORs files (.spd, .csv, .txt) or enter them as strings directly. Creation of an energy conserving 2-layers material can also be done by using the <a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards compound</a>.</p>
+<p class="note" >Note : Even though this is a newer Obq_Fresnel, older Obq_Fresnel nodes will give the same look. You can press the "Load" preset button to update the look.</p>
 <p class="warning">Warning : You should not use the Obq_Fresnel for dielectrics (material with refraction), the <em>Use IOR for Fresnel</em> parameter of the standard shader should be used instead. However, you can use the <em>Material Type : Refractive</em> for coatings.</p>
 <br>
 <img src="images/Obq_Fresnel_01.jpg" alt="Synopsis image" width=768 >
@@ -96,30 +105,59 @@
 <h5>Fresnel Mode <em>[mode]</em></h5>
 <p>Different value input mode.</p>
 <table borders="0" cellpadding=0 cellspacing=0 width=700>
-<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">Custom</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">enter arbitrary values.</td></tr>
-<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">Preset</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">choose predefined materials.</td></tr>
-<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="50"><span class="enumElem">File</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">load a file containing wavelengths and their respective refractive indices and extinction coefficients, respectively n [eta] and k. You can load comma-separated values (.csv), tab-separated values (.txt) and pbrt's .spd.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="178"><span class="enumElem">Custom</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">enter arbitrary values or load presets from the combo box and button.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="178"><span class="enumElem">Custom (DEPRICATED Presets)</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">For compatibility with old Obq_Fresnel nodes. Please hit the load button if you want to update this Obq_Fresnel node.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="178"><span class="enumElem">File</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">load a file containing wavelengths and their respective refractive indices and extinction coefficients, respectively n [eta] and k. You can load comma-separated values (.csv), tab-separated values (.txt) and pbrt's .spd.</td></tr>
 </table>
-<p class="note" >Note : You can get files from websites like : <a href="http://refractiveindex.info" target="blank">http://refractiveindex.info</a> and <a href="http://www.filmetrics.com/refractive-index-database" target="blank">http://www.filmetrics.com/refractive-index-database</a>. Change verbosity level to "warning+info", open the script editor and render to see the RGB values for n and k. You can also add this value as a preset by modifying the spdl.</p>
+<p class="warning">Warning : Hitting the load preset button to update old Obq_Fresnel will change the look.</p>
+<br>
+<h5>Input Type <em>[inputType]</em></h5>
+<p>There are 2 different custom input types :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="85"><span class="enumElem">RGB (LEGACY)</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">use RGB values.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="85"><span class="enumElem">String SPD</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">use spectral power distribution strings. Essentially the content of the file mode but in preset.</td></tr>
+</table>
+<br>
+<hr/>
+<h4>Presets</h4>
 <br>
 <h5>Presets <em>[presets]</em></h5>
 <p>Material presets with their values.</p>
+<p class="warning">Warning : Presets are now loaded using the load button.</p>
+<p>To add a preset :</p>
+<ul>
+<li>Get a csv or txt file from the web (<a href = "http://www.filmetrics.com/refractive-index-database" target="_blank">Filmetrics</a> or <a href="http://refractiveindex.info" target="_blank">Refractive Index</a>) or spd files from <a href="http://www.pbrt.org" target="_blank">pbrt</a>.</li>
+<li>Select the File mode.</li>
+<li>Select the proper units for the file.</li>
+<li>Change the Arnold verbosity level to "warning+info".</li>
+<li>Render.</li>
+<li>Open the script editor and look for the line "# INFO : [arnold] IOR RGB Form:".</li>
+<li>The 2 following lines contains the RGB values for both eta (n) and k.</li>
+<li>If you want the strings values, simply open the file in a text editor.</li>
+<li>Edit the Obq_Fresnel.spdl template file. (This is for Softimage, but should be similar in Maya and Houdini)</li>
+<li>Look for the "preset" parameter declaration and increment the maximum value (remember it too, this is your preset number).</li>
+<li>Look for the "preset" combo box declaration and add your preset name and preset number in there.</li>
+<li>Look for the "btnLoadPreset_OnClicked()" function. Add a condition for that new preset number (you can copy+paste a previous preset and change the values).</li>
+<li>Enter the 2 RGB values and the 3 strings SPD for that preset.</li>
+</ul>
 <br>
 <hr/>
-<h4>LookUp Table</h4>
-<br>
-<h5>Enable precalculated LUT <em>[useLUT]</em></h5>
-<p>Precalculate the fresnel term for every <em>sample size &deg;</em> during the proprocessing phase.</p>
-<p class="note" >Note : This translate into an acceleration of approximately 7%.</p>
-<br>
-<h5>Sample size (&deg;) <em>[LUTSampleSize]</em></h5>
-<p>The distance in degrees between 2 samples in the LUT. This will produce a LUT with 90/LUTSampleSize + 1 entries.</p>
-<br>
-<hr/>
-<h4>File</h4>
+<h4>SPD (Strings or File)</h4>
 <br>
 <h5>Filename <em>[iorFilename]</em></h5>
 <p>You can browse for a ior files. While .csv and .txt contains both n and k or only n, spds only contains one of them at a time. Gold, for example, would have a file "Au.eta.spd" for n and a "Au.k.spd" for k. Loading one of them will automatically load the other if it exists.</p>
+<p class="note" >Note : This parameter is available in file mode.</p>
+<br>
+<h5>Lambda <em>[lambdasStr]</em></h5>
+<p>A string representing the sampled wavelenghts.</p>
+<p class="note" >Note : This parameter and the following 2 are available in custom mode with string spd input type.</p>
+<p class="note" >Note : You can copy the content of a spd file to the proper string parameters. In file mode, when using the verbose "warning+info" mode, the log will show the string values of the loaded file. This is quite practicle if you want to add a new preset.</p>
+<br>
+<h5>Eta (n) <em>[etasStr]</em></h5>
+<p>A string representing the real part of the complex index of refraction for the sampled wavelenghts.</p>
+<br>
+<h5>k <em>[ksStr]</em></h5>
+<p>A string representing the imaginary part of the complex index of refraction for the sampled wavelenghts.</p>
 <br>
 <h5>Wavelenghts Units <em>[lambdaUnits]</em></h5>
 <p>Depending on the origin of the file, wavelenghts units will usually be :</p>
@@ -128,24 +166,19 @@
 <tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="80"><span class="enumElem">micrometers</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">[ 0.360um-0.830um ].</td></tr>
 </table>
 <p>You have to select the appropriate one.</p>
-<p class="note" >Note : A warning might be issued if the shader thinks you selected the wrong units.</p>
-<br>
-<h5>Use full spectrum data in equations (metal) <em>[useFullSpectrum]</em></h5>
-<p>Normally, the complex IOR spectral data is transformed into 2 CIE XYZ coordinates and then converted into 2 RGB values representing a complex index of refraction, not a color. These RGB values (eta and k) are then used in the complex fresnel equations. When you enable this option, the fresnel term for every spectral entries is calculated and the result is transformed into a CIE XYZ coordinate and then converted into a RGB value representing a color. This should give very slightly better results.</p>
-<p class="note" >Note : This option is only available in file mode for metals.</p>
-<p class="warning">Warning : This is longer to process and should always be used with a LUT.</p>
+<p class="warning">Warning : A warning will be issued if the shader thinks you selected the wrong units.</p>
 <br>
 <hr/>
-<h4>Refractive Indices</h4>
+<h4>RGB Refractive Indices</h4>
 <br>
 <h5>n (eta) <em>[iorRGB]</em></h5>
-<p>RGB n [eta] are the real parts of the refractive indices. There is no single specific wavelenght for red, green or blue. It's rather a sum of weighted values. The best way to choose values for them is to actually load the file corresponding to that material, select "warning+info" verbose level in the diagnostic tab of the Arnold render options and look at the log for the actual RGB values.</p>
+<p>RGB n [eta] are the real parts of the complex index of refraction. There is no single specific wavelenght for red, green or blue. It's rather a sum of weighted values. The best way to choose values for them is to actually load the file corresponding to that material, select "warning+info" verbose level in the diagnostic tab of the Arnold render options and look at the log for the actual RGB values.</p>
 <br>
 <hr/>
 <h4>Extinction Coefficients</h4>
 <br>
 <h5>k <em>[kRGB]</em></h5>
-<p>RGB k (extinction coefficients) are the complex part of the refractive indices. Metals absorb and reflect light, that's what gives the color. They are approximately equal to 0 for non metals. Values can be found the same way as for n.</p>
+<p>RGB k (extinction coefficients) are the imaginary parts of the complex index of refraction. Metals absorb and reflect light, that's what gives the color. They are approximately equal to 0 for non metals. Values can be found the same way as for n.</p>
 <br>
 <hr/>
 <h4>Equations</h4>
@@ -159,6 +192,10 @@
 <br>
 <hr/>
 <h4>Options</h4>
+<br>
+<h5>Roughness <em>[roughness]</em></h5>
+<p>This approximates the fresnel coefficient for a rough surface using a GTX normal distribution function.</p>
+<p class="warning">Warning : You should use this parameter with the LUT enable only.</p>
 <br>
 <h5>Ratio of polarized Fs/Fp <em>[ratioFsFp]</em></h5>
 <p>Ratio of s- and p-polarisations.</p>
@@ -178,20 +215,64 @@
 <h5>Output Refraction Color <em>[transmittance]</em></h5>
 <p>By default, this shader returns the reflected portion of light. If this is check, it will return the refracted portion of light. It's essentially equals to 1-R except for metals (0).</p>
 <br>
-<h5>DeGamma metals for linear workflow <em>[degamma]</em></h5>
-<p>This options should be checked for metals when using a linear gamma, otherwise, colors might seem washed out.</p>
-<br>
-<hr/>
-<h4>Standard IOR <em>(DEPRICATED)</em></h4>
-<br>
-<h5>Expression for standard IOR <em>-</em></h5>
-<p>You should set this expression on <em>IOR</em> parameter of the standard if you do dielectrics, but don't.</p>
-<br>
 <hr/>
 <h4>Media In</h4>
 <br>
 <h5>Refractive Indices - n <em>[iorInRGB]</em></h5>
 <p>Same as previous n, but this is the media in which your object lies. Generally equals to 1, but if you're in water, for example, it would be 1.33. Ideally, this would exist and would be equal the the ray current IOR.</p>
+<br>
+<hr/>
+<h4>LookUp Table</h4>
+<br>
+<h5>Enable precalculated LUT <em>[useLUT]</em></h5>
+<p>Precalculate the fresnel term for every <em>sample size &deg;</em> during the proprocessing phase.</p>
+<p class="note" >Note : This translate into an acceleration of approximately 7%.</p>
+<br>
+<h5>Sample size (&deg;) <em>[LUTSampleSize]</em></h5>
+<p>The distance in degrees between 2 samples in the LUT. This will produce a LUT with 90/LUTSampleSize + 1 entries.</p>
+<br>
+<h5>Roughness sample size <em>[roughnessSampleSize]</em></h5>
+<p>The distance [0,1] between 2 samples in the rough LUT. This will produce a LUT with (90/LUTSampleSize + 1) * (1/roughnessSampleSize +1) entries.</p>
+<br>
+<hr/>
+<h4>Spectrum</h4>
+<br>
+<h5>Use full spectrum data in equations (metal) <em>[useFullSpectrum]</em></h5>
+<p>Normally, the complex IOR spectral data is transformed into 2 CIE XYZ coordinates and then converted into 2 RGB values representing a complex index of refraction, not a color. These RGB values (eta and k) are then used in the complex fresnel equations. When you enable this option, the fresnel term for every spectral entries is calculated and the result is transformed into a CIE XYZ coordinate and then converted into a RGB value representing a color. This should give very slightly better results.</p>
+<p class="note" >Note : This option is only available for metals.</p>
+<p class="warning">Warning : This is longer to process and should always be used with a LUT.</p>
+<br>
+<hr/>
+<h4>ColorSpace</h4>
+<br>
+<h5>XYZ to RGB Matrix <em>[xyz2rgb]</em></h5>
+<p>This allows you to control the XYZ to RGB matrix in case you need to.</p>
+<br>
+<h5>Gamma <em>[outputGamma]</em></h5>
+<p>This allows you to control the gamma in case you need to.</p>
+<br>
+<h5>Old linear workflow for metal (compatibility) <em>[degamma]</em></h5>
+<p>This is the old parameter and it is here for look compatibility between this new and the old Obq_Fresnel.</p>
+<br>
+<hr/>
+<h4>Color Adjustment</h4>
+<br>
+<h5>Mode <em>[ccMode]</em></h5>
+<p>This allows you to slightly tweak the color (hue and saturation) to match a certain look.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="20"><span class="enumElem">Off</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Don't use any color adjustment.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="20"><span class="enumElem">HSV</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Modify the color using the HSV coordinates system.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="20"><span class="enumElem">HLS</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Modify the color using the HLS coordinates system.</td></tr>
+</table>
+<br>
+<h5>Hue Shift (&deg;) <em>[hueShift]</em></h5>
+<p>A standard hue shift in degrees.</p>
+<br>
+<h5>Saturation Modifier<em>[saturationMod]</em></h5>
+<p>Modifies the saturation using a certain operation.</p>
+<br>
+<h5>Saturation Operation<em>[saturationOp]</em></h5>
+<p>Uses this operation to affect the saturation by the saturation modifier.</p>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

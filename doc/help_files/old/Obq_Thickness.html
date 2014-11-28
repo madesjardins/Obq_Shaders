@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_Thickness v2.04.1 (win64 - SItoA 2.4.0 - Arnold
+4.0.7.1)</title>
+
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: black; width: 20px;"></td>
+<td style="background-color: black;"><big><big><br>
+<br>
+</big></big></td>
+<td style="width: 20px; background-color: black;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(97, 97, 97);"></td>
+<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Thickness</font>
+</big></big></td>
+<td style="background-color: rgb(97, 97, 97);"></td>
+</tr>
+<tr>
+<td></td>
+<td style="background-color: white;">
+<p><font color="Blue">| &nbsp;<a href="#Darktree">Description</a>
+&nbsp;| &nbsp;<a href="#Installation">Installation</a>
+&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
+&nbsp;</font><font color="Blue">|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
+&nbsp;|</font></p>
+<p><span style="font-weight: bold;">Category:</span>
+Texture </p>
+<p><span style="font-weight: bold;">Shader
+Family:</span> Texture</p>
+<p><span style="font-weight: bold;">Output:</span>
+Scalar Value</p>
+<p>Obq_Thickness measures the thickness of a pixel/surface
+in a chosen direction. It is not affected by opacity cutouts.
+</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Darktree"></a>Direction</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Direction Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);">In
+which direction the thickness is calculated.<br>
+<ul>
+<li>View Direction</li>
+<li>Surface Normal Direction</li>
+<li>Surface Front-Facing Normal Direction</li>
+<li>Reflection Direction</li>
+<li>Refraction Direction</li>
+<li>Custom Direction</li>
+</ul>
+<span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Modifiers</span></td>
+<td style="background-color: rgb(231, 231, 231);">3
+modifiers to change the main direction:<br>
+<ul>
+<li><span style="font-style: italic;">Invert</span></li>
+<li><span style="font-style: italic;"><span style="font-style: italic;">Smooth (no bump)</span></span></li>
+<li><span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;">Geometric</span><br>
+</span></span></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">IOR</span></td>
+<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Available
+when Refraction Direction is used, IOR stands for Index of refraction.
+It must be the same value used in the shader.</td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Thickness</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Thickness Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>These
+are the are the 3 thickness modes : <br>
+</span>
+<ul style="font-weight: bold;">
+<li><span><span style="font-style: italic;">Thickness
+of this object</span> :&nbsp;<span style="font-weight: normal;">only shows the thickness of
+the&nbsp;object that was intersecteds.</span></span></li>
+<li><span><span style="font-style: italic;">&nbsp;Count
+intersections</span> : &nbsp;<span style="font-weight: normal;">counts the number of
+intersections the ray has.</span></span></li>
+<li><span><span style="font-style: italic;">&nbsp;Accumulate
+distance inside volume</span>&nbsp; :&nbsp;<span style="font-weight: normal;">the sum of &nbsp;ray
+lenghts spent inside volumes along the ray. It stops when the ray
+doesn't hit anything as usual or&nbsp;if it hits the back side of
+an object before its front side.</span></span></li>
+</ul>
+<span style="font-style: italic;">When using
+the 3rd option, each time the ray hits a front side face, it increments
+a counter. Each time the ray hits a backface</span>, it
+decrements the counter. If the counter reach -1, it stops. This is a
+nice way to stop the accumulation of lenghts.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Multiply by NdotR</span></td>
+<td style="background-color: rgb(231, 231, 231);">Available
+for the "Count intersections" and "Accumulate distance inside volume"
+modes, this multiplies the distances by the absolute value of the dot
+product between the surface normal and the&nbsp;ray direction. When
+using spheres for particles, this is a nice way to give a sort of
+particle density look.<br>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Exponent</span></td>
+<td style="background-color: rgb(231, 231, 231);">This
+is the exponent of the NdotR value.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Consider thickness of
+intersecting volumes</span></td>
+<td style="background-color: rgb(231, 231, 231);">Only
+available for the 3rd mode, this multiplies the current calculated ray
+lenght by the number of intersecting objects. <br>
+<br>
+<span style="font-style: italic;">For example,
+if a smaller sphere resides inside a sphere, the result will be the sum
+of 3 ray lenghts. The first one will be between the front entry point
+of the biggest sphere and the front entry point of the smallest sphere.
+The 2nd ray lenght calculated will be the one inside the smaller sphere
+and will be multiplied by 2, because we are actually inside 2 spheres
+now. The last one will be between the exit point of the smallest sphere
+and the exit point of the biggest</span> sphere.</td>
+<td style="font-style: italic;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Options</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Backface is</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>This
+is important when dealing with refraction and transparency.<br>
+</span>
+<ul>
+<li>Always 0.0</li>
+<li>Always 1.0</li>
+<li>Equal to Maximum Ray Length</li>
+<li>Considered normally</li>
+</ul>
+<span style="font-style: italic;">If this
+shader is used to drive the transparency, you want the backface to be
+"Always 1.0", otherwise, a second evaluation of the thickness will be
+evaluated for the refracted ray hitting the second surface. Another
+important note is the fact that if not considered normally, the values
+are not normalized even if a normalization has been asked, hence the
+"Always 1.0" in the previous situation.</span>
+<span></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Intersect Others</span></td>
+<td style="background-color: rgb(231, 231, 231);">Thickness
+considers other objects inside. <br>
+<span style="font-style: italic;">See Maximum
+Ray Depth for a good example.</span><span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">No Hit means</span></td>
+<td style="background-color: rgb(231, 231, 231);">When
+a thickness ray doesn't hit anything, you either have the choice to
+consider the surface :<br>
+<ul>
+<li>Infinitely thin</li>
+<li>Infinitely thick</li>
+</ul>
+With infinitely thick, you can represent an ocean, for example, with
+only a grid, you don't need a sea bed.</td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Ray Settings</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Maximum Ray Depth</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>Simply
+put, the maximum ray depth,&nbsp;is the maximum number
+of times a ray will intersect a surface and trace another ray. If 0 is
+chosen, it means there is no maximum depth and the ray will continue
+until it doesn't hit anything.<br>
+q<br>
+<span style="font-style: italic;">Example : In
+"Thickness of this object" mode, if
+you have 3 nested cubes [ a cube inside another cube inside another
+cube ]and uncheck "Intersect Others", when the eye-ray hits the
+biggest cube's surface, it will launch another ray to check the
+thickness. When this&nbsp;ray ( depth 1 ) hit the 2nd cube, it will
+figure it's not
+the same cube, so it will launch another ray from that intersection
+point and this&nbsp;ray will have a depth of 2, meaning that if
+you&nbsp;have a maximum ray depth of 1, you will stop before
+shooting that ray and see the&nbsp;shape of the 2nd cube in black
+(or white if Inverse normalize). Following the same&nbsp;logic, in
+order for this exemple to work, you'll need a maximum ray depth of 5.</span></span><span></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Maximum Ray Length</span></td>
+<td style="background-color: rgb(231, 231, 231);">Maximum
+total
+lenght of&nbsp;thickness rays.</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Use Max Ray Length</span></td>
+<td style="background-color: rgb(231, 231, 231);">Thickness
+rays shot by this shader will have a maximum total lenght after which
+it will
+consider that the ray didn't intersect anything.</td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Output Settings</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Normalize Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span></span><span></span>Normalizes
+with maximum ray length [0,1] or invert the normalized result. If you
+don't normalize, the result will be the raw thickness in softimage
+units.<br>
+<ul>
+<li>Don't normalize</li>
+<li>Normalize with max ray length</li>
+<li>Inverse normalize with max ray length</li>
+</ul>
+<span style="font-style: italic;">If you're
+driving the transparency of an object with this shader, you will want
+to choose "Inverse normalize ..." thicker pixels will be dark, thicker
+means less transparency and thinner will be light.</span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Blur</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Sample Level</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span>The
+square root of the number of samples taken to create blurred background
+effect.<br>
+<br>
+<span style="font-style: italic;">If this is
+set to 5, 25 rays will be shot.</span></span><span></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Clamp Sample Count</span></td>
+<td style="background-color: rgb(231, 231, 231);">Check
+this and use the Max Sample Count to limit the number of environmenet
+samples taken.<span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Max Sample Count</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+maximum number of samples taken from the environment.<span style="font-style: italic;"><span style="font-style: italic;"></span><br>
+<br>
+Sample
+Level isn't texturable because the random samples are generated at
+update time. Using this port, you can texture the maximum number of
+rays shot knowing that it can never be higher than the square of
+&nbsp;the Sample Level value.</span><span style="font-style: italic;"></span></td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Max Sample Count Multiplier</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"></span>A
+simple multiplier used to raise an 8-bit picture value above 1.<br>
+<br>
+<span style="font-style: italic;">You can set
+this to 255 and texture with the absolute value of samples you want.</span><span style="font-style: italic;"></span></td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;"></span><span style="font-weight: bold;">Cone Angle</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"><span style="font-style: italic;"></span></span><span style="font-style: italic;"></span>The maximum cone
+angle in which the samples will be taken
+from.&nbsp;If set to 0, only 1 sample will be taken no matter the
+sample level.<br>
+<br>
+<span style="font-style: italic;">Shooting
+more rays will soften the noise.</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;"></span><span style="font-weight: bold;">Gloss</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"></span>This
+gloss translates into the cosine exponent of the cone distribution.
+This means that a value of 0 will produce&nbsp;a uniform
+distribution
+inside the cone while a higher value will give more of an elleptical
+shape&nbsp;distribution (Phong peaks). In other words, using a cone
+angle of 180 will give exactly a cos^n distribution.<br>
+<br>
+<span style="font-style: italic;">The equation
+used to transform gloss into exponent is : Exponent = Gloss/(1-Gloss)^8<br>
+Ex: A Gloss of 0.188 gives</span><span style="font-style: italic;"> approximately</span><span style="font-style: italic;"> an exponent of 1.</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Advanced Options</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Use safe directions</span></td>
+<td style="background-color: rgb(231, 231, 231);">When
+activated, reflected rays will use Arnold's AiReflectSafe(...) function
+that " makes sure the reflected vector doesn't penetrate below the
+geometric normal, which happens when the smooth (interpolated) normal
+points away from the viewing direction near silhouettes".</td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Enter surface by</span><br>
+<span style="font-weight: bold;">(0.0001 units)</span></td>
+<td style="background-color: rgb(231, 231, 231);">When
+intersecting a polygon, the origin of the next ray shot from there will
+actually be translated along the backface normal by this value *
+0.0001. Putting a negative value will translate along the front normal.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Use geometric normal to limit
+cone angle</span></td>
+<td style="background-color: rgb(231, 231, 231);">When
+this option is checked, the cone angle value will be scaled down to
+ensure no rays go through the own surface. </td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Multiplys geometric limit by</span></td>
+<td style="background-color: rgb(231, 231, 231);">This
+enforce the previous option by further scaling down the cone.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Custom Direction</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Custom Direction</span></td>
+<td style="background-color: rgb(231, 231, 231);"><span></span>A
+custom vector for direction purposes.</td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<ol>
+<li>Copy the <strong><em>Obq_Thickness.dll</em></strong>
+in the proper
+"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
+folder and the <strong><em>Obq_Thickness.spdl</em></strong>
+in
+the proper "<strong><em>SItoA\Application\spdl</em></strong>"
+folder.</li>
+<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
+Visual C++ 2010 redistributable package (x64)</a> if not already
+done.</li>
+</ol>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
+Tree Usage</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>Guess what's in the box : <br>
+<br>
+<img style="width: 917px; height: 612px;" alt="Guess what's in the box" src="thicknessex2.jpg"><br>
+<br>
+Obq_Thickness is also great for driving the Refraction
+scale&nbsp;of the
+Standard shader or for driving gradients by thickness.<br>
+<br>
+<img style="width: 100%;" onclick="window.open('thicknessex.jpg')" alt="Thickness Example" src="thicknessex.jpg"></td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td><small><big>Copyright (c) 2012
+Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
+<br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.</big><br>
+<br>
+<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<hr style="width: 100%; height: 2px;"></td>
+<td style="background-color: white;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</body></html>

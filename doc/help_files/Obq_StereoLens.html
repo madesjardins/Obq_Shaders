@@ -1,453 +1,221 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_StereoLens v2.04.1 (win64 - SItoA 2.4.0 - Arnold
-4.0.7.1)</title>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_StereoLens</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
 </head>
 <body>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
-<tbody>
-<tr>
-<td style="background-color: black; width: 20px;"></td>
-<td style="background-color: black;"><big><big><br>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
+</table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_StereoLens</h2>
 <br>
-</big></big></td>
-<td style="width: 20px; background-color: black;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(97, 97, 97);"></td>
-<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_StereoLens</font></big></big></td>
-<td style="background-color: rgb(97, 97, 97);"></td>
-</tr>
-<tr>
-<td></td>
-<td style="background-color: white;">
-<p><font color="Blue">| &nbsp;<a href="#Description">Description</a>
-&nbsp;| &nbsp;<a href="#Installation">Installation</a>
-&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
-&nbsp;</font><font color="Blue">|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
-&nbsp;|</font></p>
-<p><span style="font-weight: bold;">Category:</span>
-Lens </p>
-<p><span style="font-weight: bold;">Shader
-Family:</span> Lens</p>
-<p><span style="font-weight: bold;">Output:</span>
-Color</p>
-<p>Obq_StereoLens renders a pair of stereo&nbsp;frames
-from the center camera of a
-stereo&nbsp;rig into a single frame.&nbsp;</p>
-<p><span style="font-style: italic;">Note
-: Because of filtering, the
-lines of pixels immediately next to the left-right border are
-blended, the </span><span style="font-style: italic;">floor(filter_width/2)
-lines in fact</span><span style="font-style: italic;">.
-To correct this, an automatic overscan mode was created</span><span style="font-style: italic;">. </span><span style="font-style: italic;">Make sure the render width and
-height are correct. Copy-paste
-</span><span style="font-style: italic;">the&nbsp;left/right
-crop text in Nuke to create the adequate crop nodes.</span></p>
-<p><span style="font-style: italic;">Note 2 :
-The "Polygonal Aperture" mode of&nbsp;DoF doesn't react exactly
-like the default Arnold one for&nbsp;</span><span style="font-style: italic;">"Blade Curvature"
-values&nbsp;</span><span style="font-style: italic;">below
-0. &nbsp;At -1, you get the thightest star shape and below that,
-this implementation keeps the star shape and enlarges it.</span>
-</p>
-<p></p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Description"></a>View
-Mode</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Class</h5>
+<p>Lens</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">View Mode</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-is the type of frame that will be rendered :<br>
-<ul>
-<li><span style="font-weight: bold; font-style: italic;">Center Camera</span>
-: because the lens shader is applied to the center camera, this is the
-view as is.</li>
-<li><span style="font-weight: bold; font-style: italic;">Left Camera</span>
-: renders what the left camera views.</li>
-<li><span style="font-weight: bold; font-style: italic;">Left Camera</span>
-: renders what the right camera views.</li>
-<li><span style="font-weight: bold; font-style: italic;">Stereo Camera
-&lt;left-right&gt;</span>
-: renders a single frame of the stereo camera pair, the left camera
-subframe to the left side and the right&nbsp;camera subframe to the
-right.</li>
-<li><span style="font-weight: bold; font-style: italic;">Stereo Camera
-&lt;down-up&gt;</span>
-: like the previous option, but&nbsp;the left camera subframe will
-be
-at the bottom and&nbsp;the right&nbsp;camera subframe will be
-on top.</li>
-</ul>
-<span style="font-style: italic;">Whenever you
-use a Stereo Camera &lt;...&gt; view mode, the output
-resolution in the proper dimension will be doubled.</span>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<h5>Synopsis</h5>
+<p>A camera lens shader that allows you to render a pair of stereo images into a single frame.</p>
+<br>
+<img src="images/Obq_StereoLens_01.jpg" alt="Synopsis image"  >
+<p class="idesc">Fig.1 : Example of lizard rendered with Obq_StereoLens.</p>
+<p class="warning">Warning : Using SItoA 3.1.2 and up, you need to add an Arnold Camera Option property and select "Custom (lens shader)" as the camera type.</p>
+<br>
+<h5>Usage</h5>
+<p>Simply use the Obq_StereoLens as a lens shader on the center camera of the Softimage stereo camera rig or your own rig. Pick the left and right camera. When you render, select the center camera and make sure the scene/pass output resolution is equal to the Render Resolution of the shader. Once rendered, copy-paste the crop node text in Nuke to create left crop and right crop nodes. You can also add depth of field from within the shader UI.</p>
+<br>
+<hr/>
+<h4>View Mode</h4>
+<br>
+<h5>View Mode <em>[viewMode]</em></h5>
+<p>This is the type of frame that will be rendered :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="160"><span class="enumElem">Center Camera</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">because the lens shader is applied to the center camera, this is the view as is.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="160"><span class="enumElem">Left Camera</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">renders what the left camera views.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="160"><span class="enumElem">Right Camera</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">renders what the right camera views.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="160"><span class="enumElem">Stereo Camera &lt;left-right&gt;</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">renders a single frame of the stereo camera pair, the left camera subframe to the left side and the right camera subframe to the right.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="160"><span class="enumElem">Stereo Camera &lt;down-up&gt;</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">like the previous option, but the left camera subframe will be at the bottom and the right camera subframe will be on top. This is the prefered rendering mode for stereo image pair.</td></tr>
+</table>
+<p class="note" >Note : Whenever you use a Stereo Camera &lt;...&gt; view mode, the output resolution in the proper dimension will be doubled.</p>
+<br>
+<hr/>
+<h4>Cameras</h4>
+<br>
+<h5>Left <em>[leftCamera]</em></h5>
+<p>The full name of the left camera.</p>
+<p class="note" >Note : You can click on the "Pick Left and Right Cameras" button to begin a pick session.</p>
+<br>
+<h5>Right <em>[rightCamera]</em></h5>
+<p>The full name of the right camera.</p>
+<br>
+<h5>Status <em>[cameraStatus]</em></h5>
+<p>This will indicate if both cameras are valid.</p>
+<br>
+<hr/>
+<h4>Automatic Overscan</h4>
+<br>
+<h5>Enable <em>[useOverscan]</em></h5>
+<p>Enables the automatic overscan mode to counter the blended lines of pixels. This should always be checked.</p>
+<br>
+<h5>Filter Size <em>[filterSize]</em></h5>
+<p>The width of the filter in the render options &gt; Sampling &gt; Pixel Filtering &gt; Width.</p>
+<p class="note" >Note : Because of filtering, the lines of pixels immediately next to the left-right border are blended, the floor(filter_width/2) lines in fact. To correct this, an automatic overscan mode was created. Make sure the render width and height are correct. Copy-paste the left/right crop text in Nuke to create the adequate crop nodes.</p>
+<br>
+<hr/>
+<h4>Target Resolution</h4>
+<br>
+<h5>Width <em>[targetResolutionX]</em></h5>
+<p>The final width in pixels you want each left/right frame to have.</p>
+<br>
+<h5>Height <em>[targetResolutionY]</em></h5>
+<p>The final height in pixels you want each left/right frame to have.</p>
+<br>
+<hr/>
+<h4>Render Resolution</h4>
+<br>
+<h5>Width <em>[renderResolutionX]</em></h5>
+<p>The width in pixels needed to give the target width once cropped because of blended pixels.</p>
+<br>
+<h5>Height <em>[renderResolutionY]</em></h5>
+<p>The height in pixels needed to give the target height once cropped because of blended pixels.</p>
+<br>
+<h5>Automatic update of pass output resolution <em>[updatePassResolution]</em></h5>
+<p>Checking this will enable the update of the resolution automatically in the pass options.</p>
+<br>
+<hr/>
+<h4>Nuke Info</h4>
+<p>Copy-paste the text to create the proper crop nodes in Nuke.</p>
+<br>
+<hr/>
+<h4>Depth of Field</h4>
+<br>
+<h5>Enable <em>[useDof]</em></h5>
+<p>Enable the depth of field.</p>
+<p class="note" >Note : If you enable this here, you don't need to enable it in the Render Options.</p>
+<p class="note" >Note : The result is not exactly the same as Arnold's default DoF, but it's very similar.</p>
+<br>
+<h5>Distance <em>[focusDistance]</em></h5>
+<p>The distance at which an object is in focus.</p>
+<br>
+<h5>Focus plane is a plane <em>[focusPlaneIsPlane]</em></h5>
+<p>Wether or not the focus plane is actually a plane or curved plane (on by default).</p>
+<br>
+<h5>Recalculate focus distance for left and right cameras<em>[recalculateDistanceForSideCameras]</em></h5>
+<p>This allows to adjust the focus distance, given for the center camera, for the left and right camera. Don't check this if you're using an off-axis stereo type rig.</p>
+<br>
+<h5>Size <em>[apertureSize]</em></h5>
+<p>This size controls the amount of blur (size of the iris).</p>
+<br>
+<h5>Aspect Ratio <em>[apertureAspectRatio]</em></h5>
+<p>The aspect ratio of the lens. Values smaller than 1 will give an horizontal elongated oval vand values greater than 1 will give a vertical elongated oval.</p>
+<br>
+<h5>Polygonal Aperture <em>[usePolygonalAperture]</em></h5>
+<p>The shape of the iris is polygonal instead of circular.</p>
+<br>
+<h5>Blades <em>[apertureBlades]</em></h5>
+<p>The number of blades the iris has. For example, using 5 blades will give a pentagon shaped iris.</p>
+<br>
+<h5>Blade Curvature <em>[apertureBladeCurvature]</em></h5>
+<p>A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.</p>
+<br>
+<img src="images/Obq_bokeh_04.jpg" alt="Blade curvature" width=512 >
+<p class="idesc">Fig.2 : Blade curvature of 1, 0, -1, -2 and -3.</p>
+<br>
+<h5>Rotation <em>[apertureRotation]</em></h5>
+<p>The rotation in degrees of the shape of the iris.</p>
+<br>
+<hr/>
+<h4>Bokeh Quality</h4>
+<p>The bokeh "quality" look can be altered using a bias and gain parameters. This effectively changes the distribution of the rays.</p>
+<p class="note" >Note : These parameters will eventually be replaced by better sampling functions and image based bokeh.</p>
+<br>
+<h5>Invert <em>[bokehInvert]</em></h5>
+<p>Invert the output of the bias/gain operation.</p>
+<br>
+<h5>Bias <em>[bokehBias]</em></h5>
+<p>Bias control of the bokeh.</p>
+<br>
+<h5>Gain <em>[bokehGain]</em></h5>
+<p>Gain control of the bokeh.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Poor bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain)  values around (false, 0.7, 0.2 ).</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Neutral bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain)  = (false, 0.5, 0.5 ).</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Good bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain) values around (true, 0.33, 0.685 ).</td></tr>
 </table>
 <br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Cameras</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Left</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-full name of the left camera.<br>
-<br>
-<span style="font-style: italic;">You can
-click on the "Pick Left and Right Cameras" button to begin a pick
-session.</span> <span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Right</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-full name of the right camera.</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Status</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-will indicate if both cameras are valid.</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Camera Interest</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-full name of the center camera interest.<br>
-<br>
-<span style="font-style: italic;">This field
-is only shown when the focus point is at interest.</span></td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Status</span> (Interest)</td>
-<td style="background-color: rgb(231, 231, 231);">This
-will indicate if the camera interest is valid.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">DoF Advanced Options</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Recalculate focus distance for
-left and right cameras</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-allows to adjust
-the focus distance, given for the center camera, for the left and right
-camera. Don't check this if you're&nbsp;using an off-axis stereo
-type
-rig.
-<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Focal plane is a plane</span></td>
-<td style="background-color: rgb(231, 231, 231);">By
-default, the focal
-plane of Arnold is not actually a plane, it's curved. Check this if
-you're using an off-axis stereo type rig.</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Use a custom/rig focus distance</span></td>
-<td style="background-color: rgb(231, 231, 231);">Check
-this if you want to overwrite the "Focus Distance" of the "Depth of
-Field" tab in the "Arnold Render Options".</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Focus distance</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-value to overwrite the "Focus Distance" of the&nbsp;"Arnold Render
-Options" with.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Automatic Overscan</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Enable</span></td>
-<td style="background-color: rgb(231, 231, 231);">Enables
-the automatic overscan mode to counter the blended lines of
-pixels. This should always be checked.<span style="font-style: italic;"><br>
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Resolutions</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Target Resolution width/height</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-resolution you want each left/right frame to have (ex: 1920x1080)<span style="font-style: italic;">
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Render Resolution width/height</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-final output resolution of the stereo frame you must render at. If the
-automatic overscan mode is enable, this will include the necessary
-overscan.<br>
-<br>
-<span style="font-style: italic;">When these
-value changes, the pass output resolution values are updated as well.</span></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Nuke Info</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Nuke Info<br>
-left/right crop</span></td>
-<td style="background-color: rgb(231, 231, 231);">Copy-paste
-the text to create the proper crop nodes in Nuke.<span style="font-style: italic;">
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Copy the <strong><em>Obq_StereoLens.dll</em></strong>
-in the proper
-"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
-folder and the <strong><em>Obq_</em></strong><strong><em>StereoLens.</em></strong><strong><em>spdl</em></strong>
-in
-the proper "<strong><em>SItoA\Application\spdl</em></strong>"
-folder.</li>
-<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
-Visual C++ 2010 redistributable package (x64)</a> if not already
-done.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
-Tree Usage</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Simply use the Obq_StereoLens as a lens shader on
-the center camera
-of the Softimage stereo camera rig or your own rig. Pick the left and
-right camera. When you render, select the center camera and make sure
-the scene/pass output resolution is equal to the&nbsp;<span style="font-style: italic;">Render Resolution</span>
-of the shader. Once rendered, copy-paste the&nbsp;crop node text in
-Nuke to create left crop and right crop nodes.<br>
-<br>
-<br>
-<img src="StereoLensEX.jpg" alt="Stereo Lens example" onclick="window.open('StereoLensEX.jpg')" style="width: 100%;"></td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td><small><big>Copyright</big></small><small><big>
-(c)</big></small><small><big>&nbsp; 2012
-Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
-</big></small><small><big><br>
-Permission is hereby granted, free of charge, to any person obtaining a
-copy <br>
-of this software and associated documentation files (the "Software"),
-to deal <br>
-in the Software without restriction, including without limitation the
-rights <br>
-to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell <br>
-copies of the Software, and to permit persons to whom the Software is <br>
-furnished to do so, subject to the following conditions:<br>
-<br>
-The above copyright notice and this permission notice shall be included
-in all <br>
-copies or substantial portions of the Software.<br>
-<br>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR <br>
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, <br>
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-<br>
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER <br>
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, <br>
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE <br>
-SOFTWARE.</big><br>
-<br>
-<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<hr style="width: 100%; height: 2px;"></td>
-<td style="background-color: white;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</body></html>
+<img src="images/Obq_bokeh_03.jpg" alt="Bokeh looks2" width=256 >
+<p class="idesc">Fig.3 : Poor, Neutral and Good bokeh.</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

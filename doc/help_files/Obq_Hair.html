@@ -42,6 +42,7 @@
 <tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
@@ -50,19 +51,26 @@
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
@@ -79,8 +87,9 @@
 <br>
 <h5>Synopsis</h5>
 <p>The Obq_Hair shader is a look-driven dual scattering hair shader implementation of Sadeghi et al. "An artist friendly hair shading system" using Ou et al. "ISHair: Importance Sampling for Hair Scattering". This shader can output up to 14 AOVs to help you adjust the scale of each component.</p>
-<p class="note" >Note : alHair, from the alShaders collection by Anders Langlands, implements the same papers.</p>
+<p class="note" >Note : alHair, from the alShaders collection by Anders Langlands, implements the same papers and is more user friendly.</p>
 <p class="note" >Note : We strongly suggest you read the paper <a href='http://dl.acm.org/citation.cfm?id=1778793' target='_blank'>"An artist friendly hair shading system"</a> if you want to learn more about this shader. The works of Marschner et al. "Light Scattering from Human Hair Fibers" and Zinke et al. "Dual Scattering Approximation for Fast Multiple Scattering in Hair" are also suggested.</p>
+<p class="warning">Warning : At the moment, there is a disparity between some Windows and Linux renders. I hope to have the time to address this soon.</p>
 <br>
 <img src="images/Obq_Hair_01.jpg" alt="Synopsis image" width=768 >
 <p class="idesc">Fig.1 : Images from the movie <em>"La belle et la b&ecirc;te"</em>. The face of the beast uses Obq_Hair.</p>

@@ -124,7 +124,7 @@ phenomenon "Obq_MeasuredMaterial_declare"
 {
 	Name = "Obq_MeasuredMaterial";
 	Version = 1;
-	Use = texture;
+	Use = material;
 }
 
 Defaults
@@ -248,12 +248,12 @@ Layout "Default"
 	{
 		Row 
 		{
-			direct_AOV, nolabel;
+			direct_AOV;
 			Button AddRenderChannel,alignright = "Add...";
 		}
 		Row 
 		{
-			indirect_AOV, nolabel;
+			indirect_AOV;
 			Button AddRenderChannel,alignright = "Add...";
 		}
 	}
@@ -278,24 +278,25 @@ Logic
 {
 
 Sub AddRenderChannel_OnClicked
-		Dim		sName
+	Dim		sName
 
-		sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
-		If sName = "" Then Exit Sub
+	sName = InputBox( XSIUtils.Translate( "Render Channel Name", "XSISPDLFILE" ) )
+	If sName = "" Then Exit Sub
 
-		On Error Resume Next
-		sName = CreateRenderChannel( sName, siRenderChannelColorType )
-		If Err.Number <> 0 Then
-			LogMessage "Unable to create channel. Does a channel with that name already exist?"
-			Exit Sub
-		End If
-		If sName <> "" Then
-			For Each oInspected In PPG.Inspected
-				oInspected.channel = sName
-			Next
-			OnInit
-		End If
-	End Sub
+	On Error Resume Next
+	sName = CreateRenderChannel( sName, siRenderChannelColorType )
+	If Err.Number <> 0 Then
+		LogMessage "Unable to create channel. Does a channel with that name already exist?"
+		Exit Sub
+	End If
+	If sName <> "" Then
+		For Each oInspected In PPG.Inspected
+			oInspected.channel = sName
+		Next
+		OnInit
+	End If
+	PPG.Refresh()
+End Sub
 
 
 sub OnInit()
@@ -333,6 +334,7 @@ sub OnInit()
 	Dim oChannelCombo2
 	Set oChannelCombo2 = PPG.PPGLayout.Item( "indirect_AOV" )
 	oChannelCombo2.UIItems = oChannelList
+	PPG.Refresh()
 End sub
 
 }

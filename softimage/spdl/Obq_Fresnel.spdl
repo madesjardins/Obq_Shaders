@@ -551,7 +551,6 @@ Layout "Default"
 			etasStr;
 			ksStr;
 			lambdaUnits;
-			useFullSpectrum;
 		}
 		Group "Refractive Indices" 
 		{
@@ -776,6 +775,7 @@ End Sub
 '############################################################################
 Sub btnLoadPreset_OnClicked()
 	If PPG.mode.Value <> 2 Then
+		PPG.mode.Value = 0
 		PPG.degamma.Value = False
 		If PPG.presets.Value = 0 Then			' Aluminium (Al) [Rakic]: 
 			iorCoeffs = ARRAY(1.434591,0.931848,0.578377, 7.797164,6.619770,5.337601)			

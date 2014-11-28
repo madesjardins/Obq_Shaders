@@ -1,258 +1,125 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Obq_ChangeRange v2.04.1 (win64 - SItoA 2.04.1 - Arnold
-4.0.7.1)</title>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_ChangeRange</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
 </head>
 <body>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
-<tbody>
-<tr>
-<td style="background-color: black; width: 20px;"></td>
-<td style="background-color: black;"><big><big><br>
-<br>
-</big></big></td>
-<td style="width: 20px; background-color: black;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(97, 97, 97);"></td>
-<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_ChangeRange</font>
-</big></big></td>
-<td style="background-color: rgb(97, 97, 97);"></td>
-</tr>
-<tr>
-<td></td>
-<td style="background-color: white;">
-<p><font color="Blue">| &nbsp;<a href="#Darktree">Description</a>
-&nbsp;| &nbsp;<a href="#Installation">Installation</a>
-&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
-&nbsp;| </font><font color="Blue"> &nbsp;<a href="#Copyrights">Copyrights</a>
-&nbsp;|</font></p>
-<p><span style="font-weight: bold;">Category:</span>&nbsp;Processing
-&gt; Math </p>
-<p><span style="font-weight: bold;">Shader
-Family:</span> Texture</p>
-<p><span style="font-weight: bold;">Output:</span>
-Scalar Value</p>
-<p>Obq_ChangeRange is an upgraded version of the Scalar
-Change Range. It lets you remap a scalar parameter expressed in an old
-min/max range to a new min/max range and adds a clamp, a bias and a
-gain.
-</p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Darktree"></a>Description</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Input</span></td>
-<td style="background-color: rgb(231, 231, 231);">Specifies
-the scalar value to be remapped.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Old Range
-Start, End</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Specifies
-the start and end of the current range of values.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-9EAB42EF-806A-43FB-84E6-BE8DD5123BCF">New Range
-Start, End</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Specifies
-the start and end of the new range of values.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
 </table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_ChangeRange</h2>
+<br>
+<h5>Class</h5>
+<p>Texture [Passthrough &gt; Modify &gt; Value ]</p>
+<br>
+<h5>Output</h5>
+<p>Scalar</p>
+<br>
+<h5>Synopsis</h5>
+<p>Obq_ChangeRange is an upgraded version of the Scalar Change Range. It lets you remap a scalar parameter expressed in an old min/max range to a new min/max range and adds a clamp, a bias and a gain.</p>
+<br>
+<h5>Usage</h5>
+<p>Obq_ChangeRange is used like the original Scalar Change Range.</p>
+<br>
+<hr/>
 <br>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Extra Options</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Input <em>[input]</em></h5>
+<p>Specifies the scalar value to be remapped.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Clamp</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>If
-this option is on, it will clamp values out of&nbsp;range
-accordingly.<br>
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Bias</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Controls
-the contrast. Values below 0.5 create larger dark areas, values above
-0.5 create larger light areas. </td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Gain</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Controls
-the brightness of the effect.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<h5>Old Range Start <em>[oStart]</em></h5>
+<p>Specifies the start of the current range of values.</p>
 <br>
+<h5>Old Range End <em>[oEnd]</em></h5>
+<p>Specifies the end of the current range of values.</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>New Range Start <em>[nStart]</em></h5>
+<p>Specifies the start of the new range of values.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Copy the <span style="font-weight: bold; font-style: italic;">Obq_ChangeRange.dll</span>
-in the proper
-"<span style="font-weight: bold; font-style: italic;">SItoA\Application\bin\nt-x86-64</span>"
-folder and the <span style="font-weight: bold; font-style: italic;">Obq_ChangeRange.spdl</span>
-in the proper "<span style="font-weight: bold; font-style: italic;">SItoA\Application\spdl</span>"
-folder.</li>
-<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
-Visual C++ 2010
-redistributable package (x64)</a> if not already done.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
+<h5>New Range End <em>[nEnd]</em></h5>
+<p>Specifies the end of the new range of values.</p>
 <br>
+<h5>Clamp <em>[clamp]</em></h5>
+<p>If this option is on, it will clamp values out of range accordingly.</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
-Tree Usage</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Bias <em>[bias]</em></h5>
+<p>Controls the contrast. Values below 0.5 create larger dark areas, values above 0.5 create larger light areas.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Obq_ChangeRange is used like the original Scalar
-Change Range.</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Copyright (c) 2012 Marc-Antoine Desjardins,
-ObliqueFX <small><big>(madesjardins@obliquefx.com)</big></small><br>
-<br>
-Permission is hereby granted, free of charge, to any person obtaining a
-copy <br>
-of this software and associated documentation files (the "Software"),
-to deal <br>
-in the Software without restriction, including without limitation the
-rights <br>
-to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell <br>
-copies of the Software, and to permit persons to whom the Software is <br>
-furnished to do so, subject to the following conditions:<br>
-<br>
-The above copyright notice and this permission notice shall be included
-in all <br>
-copies or substantial portions of the Software.<br>
-<br>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR <br>
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, <br>
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-<br>
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER <br>
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, <br>
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE <br>
-SOFTWARE.<br>
-<br>
-Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a><br>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<hr style="width: 100%; height: 2px;"></td>
-<td style="background-color: white;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</body></html>
+<h5>Gain <em>[gain]</em></h5>
+<p>Controls the brightness of the effect.</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

@@ -42,6 +42,7 @@
 <tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
@@ -50,25 +51,61 @@
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
 </table>
 </div>
 <div id="content-help"><br>
+<h2>Obq_Root2Tip</h2>
+<br>
+<h5>Class</h5>
+<p>Texture [Generator]</p>
+<br>
+<h5>Output</h5>
+<p>Color RGB</p>
+<br>
+<h5>Synopsis</h5>
+<p>Obq_Root2Tip is a texture node that outputs the interpolated color between root and tip based on the position of the shading point on a hair strand.</p>
+<br>
+<h5>Usage</h5>
+<p>Use this node in the color input of the Obq_Hair shader to have the colors vary along the hair.</p>
+<br>
+<hr/>
+<br>
+<br>
+<h5>Root <em>[root]</em></h5>
+<p>The color at the root of an hair strand.</p>
+<br>
+<h5>Tip <em>[tip]</em></h5>
+<p>The color at the tip of an hair strand.</p>
+<br>
+<h5>Interpolation <em>[mode]</em></h5>
+<p>The type of interpolation :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Linear</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Linear interpolation.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Hermite</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Cubic interpolation.</td></tr>
+</table>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

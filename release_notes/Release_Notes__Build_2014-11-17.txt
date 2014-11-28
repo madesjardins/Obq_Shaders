@@ -19,7 +19,7 @@ ADDITIONS:
 CHANGES:
 	+ Obq_Fresnel : Presets now have to be applied via a "Load" button. This allows look compatibility with previous Obq_Fresnel shaders.
 	+ Code : All non-shader node related files starts with "O_" instead of "Obq_".
-	+ Obq_MessageFlt : Renamed Obq_MessageGetFlt
+	+ Obq_MessageFlt : Renamed to Obq_MessageGetFlt and parameter "message" renamed to "key".
 	+ Obq_Color : Is now RGBA.
 	
 NEW SHADERS:
@@ -34,7 +34,6 @@ REMOVED SHADERS:
 
 TODO :
 	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
-	+ New documentation system for all obq shaders.
 	+ Code Cleanup and optimisation.
 	+ Obq_MeasuredMaterial : Importance sampling.
 	

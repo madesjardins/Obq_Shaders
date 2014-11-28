@@ -1,114 +1,126 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Obq_Simbiont v2.04.1 (win64 - SItoA 2.4.0 - Arnold
-4.0.7.1)</title>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_Simbiont</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
 </head>
 <body>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
-<tbody>
-<tr>
-<td style="background-color: black; width: 20px;"></td>
-<td style="background-color: black;"><big><big><br>
-<br>
-</big></big></td>
-<td style="width: 20px; background-color: black;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(97, 97, 97);"></td>
-<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_Simbiont</font>
-</big></big></td>
-<td style="background-color: rgb(97, 97, 97);"></td>
-</tr>
-<tr>
-<td></td>
-<td style="background-color: white;">
-<p><font color="Blue">| &nbsp;<a href="#Darktree">Description</a>
-&nbsp;| &nbsp;<a href="#Installation">Installation</a>
-&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
-&nbsp;| </font><font color="Blue"> &nbsp;<a href="#Copyrights">Copyrights</a>
-&nbsp;|</font></p>
-<p><span style="font-weight: bold;">Category:</span>
-Texture </p>
-<p><span style="font-weight: bold;">Shader
-Family:</span> Texture</p>
-<p><span style="font-weight: bold;">Output:</span>
-Color</p>
-<p>Obq_Simbiont is a Darktree 2.5 loader&nbsp;node in
-Softimage that reads .dsts files for the Arnold Renderer. </p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Darktree"></a>Darktree</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Darktree file</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-darktree
-file you want to load.<br>
-<span style="font-style: italic;">Note that
-you can change the default browsing directory on line #645 of the
-Obq_Simbiont.spdl.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Darktree component libs path</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">This
-is the path to the DarkTree Engine "dte_components" libraries. If this
-path is incorrect, you will see red Xs as the resulting texture.<br>
-<span style="font-style: italic;">Note that
-you MUST change this path accordingly on line #30 of the
-Obq_Simbiont.spdl.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
 </table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_Simbiont</h2>
 <br>
+<h5>Class</h5>
+<p>Texture [Generator]</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Output</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Output</h5>
+<p>Color RGBA</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">RGB</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>What
-is outputed in the RGB channels. This is based on the loaded file and
-all choices might not return results.<br>
-Choices are : <br>
-</span>
+<h5>Synopsis</h5>
+<p>Obq_Simbiont is a fractal generator node that read DarkTree files.</p>
+<p class="note" >Note : Check the installation guide of the documentation to properly install the needed library.</p>
+<br>
+<img src="images/Obq_Simbiont_01.jpg" alt="Synopsis image" width=768 >
+<p class="idesc">Fig.1 : A simple DarkTree file with displacement workflow. Use Elevation as Alpha output and a picker to select it and plug into the displacement port.</p>
+<br>
+<h5>Usage</h5>
+<p>Browse for a <a href="http://www.darksim.com/html/downloads.html" target = "_blank">DarkTree file</a>. Select the type of output for RGB and Alpha. Adjust the options and tweaks <em>et voill&agrave;</em>.</p>
+<br>
+<hr/>
+<h4>DarkTree</h4>
+<br>
+<h5>Darktree file <em>[filename]</em></h5>
+<p>The darktree file you want to load.</p>
+<p class="note" >Note : You can change the default browsing directory on line #660 of the Obq_Simbiont.spdl.</p>
+<br>
+<h5>DarkTree component libs Path <em>[componentLibsPath]</em></h5>
+<p>This is the path to the DarkTree Engine "dte_components" libraries. If this path is incorrect, you will see red Xs as the resulting texture.</p>
+<p class="note" >Note : This path is define on line #30 of the Obq_Simbiont.spdl.</p>
+<br>
+<h5>Preserve tweaks on load <em>[preserveTweaksOnLoad]</em></h5>
+<p>This doesn't reload tweaks when filename_OnChange() is called. This can be useful for scripting purpose.</p>
+<br>
+<hr/>
+<h4>Output</h4>
+<br>
+<h5>RGB <em>[evaluateRGB]</em></h5>
+<p>A choice of output for the RGB channels :</p>
 <ul>
 <li>Black</li>
-<li>Color [<span style="font-style: italic;">default</span>]</li>
+<li>Color [default]</li>
 <li>Percent</li>
-<li>Elevation [<span style="font-style: italic;">displacement
-or bump</span>]</li>
+<li>Elevation [displacement or bump]</li>
 <li>Diffuse level</li>
-<li>Diffuse Func</li>
+<li>%enumItem</li>
 <li>Luminosity</li>
 <li>Specular Level</li>
 <li>Specular Func</li>
@@ -125,484 +137,97 @@ or bump</span>]</li>
 <li>Clear Coat Glossiness</li>
 <li>Clear Coar Thickness</li>
 <li>Clear Coat Smoothness</li>
-<li>Bump [<span style="font-style: italic;">Normal
-map</span>]</li>
+<li>Bump [Normal map]</li>
 <li>Alpha</li>
 </ul>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Grayscale</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">If
-the choice selected for RGB returns a single value, elevation for
-instance, it will be put in the red channel for simplicity. If you want
-to copy that value in all the channels, you can check this option. </td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Alpha</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Like
-RGB, but the result is stored in the alpha channel.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<br>
+<h5>Grayscale <em>[outRRR]</em></h5>
+<p>Copies the red channel into blue and green for grayscale values.</p>
+<br>
+<h5>Alpha <em>[evaluateAlpha]</em></h5>
+<p>A choice of output for the alpha channels, the choices are the same as RGB parameter.</p>
+<br>
+<hr/>
+<h4>Bump</h4>
+<br>
+<h5>Sample Size <em>[sampleSize]</em></h5>
+<p>A rough indication of the diameter of the point/pixel being sampled.  This is used when evaluating bump.</p>
+<br>
+<h5>Bump Scale <em>[bumpScale]</em></h5>
+<p>A bump height scaling factor.  This is used when evaluating bump.</p>
+<br>
+<hr/>
+<h4>Camera</h4>
+<br>
+<h5>Camera Near <em>[cameraNear]</em></h5>
+<p>Some darktree files have effects based on a normalized value of how far is the camera.</p>
+<p class="note" >Note : Use the near and far to give the range for the effect.</p>
+<br>
+<h5>Camera Far <em>[cameraFar]</em></h5>
+<p>Same as the above.</p>
+<br>
+<hr/>
+<h4>Others</h4>
+<br>
+<h5>Continuous Rep <em>[continuousRep]</em></h5>
+<p>A 0.0 to 1.0 normalized value used for function evaluation. DTE_EVAL_DIFFUSE_FUNC and DTE_EVAL_SPECULAR_FUNC are where this value is often used when evaluating a texture. If you need additional information on using the specular and diffuse functions, please contact DarkSim support.</p>
+<br>
+<h5>Region Rep <em>[regionRep]</em></h5>
+<p>A random integer value used to indicate different regional areas of the texture. Patterned components within DarkTree, Bricks for example, set this value for linked child components. Control components use this value to generate random colors and values. A potential use for this value would be a custom designed texture that requires regional information to be passed into the texture from the renderer.</p>
+<br>
+<hr/>
+<h4>Animation</h4>
+<br>
+<h5>Time <em>[frameNumber]</em></h5>
+<p>Can be seen as a current frame number for an animated texture. This is a floating point value and need not be an integral frame.  Please note that this will have an effect only on DarkTrees that use the Time component.</p>
+<br>
+<hr/>
+<h4>Coordinates</h4>
+<br>
+<h5>Coordinates System <em>[coordinatesSystem]</em></h5>
+<p>Coordinates system used for evaluation :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Object Space</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Does not change with transforms or deformation.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">World Space</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Changes with transforms or deformation.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">UV Space</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Active UV set.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Camera Space</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Camera projection.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Raster Space</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Pixel space.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Custom</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">A custom vector input (customCoordinates parameter).</td></tr>
 </table>
 <br>
+<h5>Custom Coordinates <em>[customCoordinates]</em></h5>
+<p>A custom coordinates input. This is most often used to connect a node such as a "Projection Lookup".</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Bump</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<hr/>
+<h4>Transform</h4>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Sample Size</span></td>
-<td style="background-color: rgb(231, 231, 231);">A
-rough indication of the diameter of the point/pixel being
-sampled.&nbsp; This is used when evaluating bump.<span style="font-style: italic;"><br>
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Bump Scale</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">A
-bump height scaling factor.&nbsp; This is used when evaluating bump.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
+<h5>Scale <em>[coordinateScale]</em></h5>
+<p>This is a global scaling factor.</p>
+<p class="note" >Note : If you want to scale down the fractal, you have to scale up this parameter.</p>
+<br>
+<hr/>
+<h4>Acceleration</h4>
+<br>
+<h5>Tweak at the global scope <em>[globalTweaksOnly]</em></h5>
+<p>Tweaks are perform with the given value for all the object. This is good when you don't need to drive tweaks with textures. Otherwise, it should be off.</p>
+<br>
+<hr/>
+<h4>Tweak Actions</h4>
+<p>These buttons allows you the save, load and reset tweaks with a simple text file.</p>
+<br>
+<hr/>
+<h4>Tweaks #</h4>
+<p>Tweaks allow someone to change certain values of the DarkTree file on the fly.</p>
+<p class="note" >Note : A given DarkTree file may contain any number of macro controls, or Tweaks. These tweaks are evaluated at runtime and can be modified with textures in Softimage. There is a maximum of 16 tweaks in this implementation. The tweaks are automatically loaded by a python script when the filename is change. Only the proper input choice will be displayed.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Enable</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Enable this tweak.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Name</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">The name of the tweak.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Color</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">A color input for the tweak. Used only for color driven tweaks.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="30"><span class="enumElem">Float</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">A scalar input for the tweak. If the tweak is of boolean nature, x >0 => true. If the tweak requires an integer, the scalar will be rounded.</td></tr>
 </table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Camera</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Camera Near</span></td>
-<td style="background-color: rgb(231, 231, 231);">Some
-darktree files have effects based on a normalized value of how far is
-the camera.<span style="font-style: italic;"> <br>
-Use the near and far to give the range for the effect.<br>
-</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Camera Far</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-style: italic;">Same as above.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Others</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Continuous Rep</span></td>
-<td style="background-color: rgb(231, 231, 231);">A
-0.0 to 1.0 normalized value used for function
-evaluation.&nbsp;DTE_EVAL_DIFFUSE_FUNC and DTE_EVAL_SPECULAR_FUNC
-are where this value
-is often used when evaluating a texture.&nbsp;If you need
-additional information on using the specular and diffuse functions,
-please contact DarkSim support.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Region Rep</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">A
-random integer value used to indicate different regional areas of the
-texture.&nbsp;Patterned components within DarkTree, Bricks for
-example, set this value for linked child components.&nbsp;Control
-components use this value to generate random colors and
-values.&nbsp;A potential use for this value would be a custom
-designed texture that requires regional information to be passed into
-the texture from the renderer.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Animation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Time</span></td>
-<td style="background-color: rgb(231, 231, 231);">Can
-be seen as a current frame number for an animated
-texture.&nbsp;This is a floating point value and need not be an
-integral frame.&nbsp; Please note that this will have an effect
-only on DarkTrees that use the Time component.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Coordinates</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Coordinate System</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"></span>This is the system
-used to evaluate the textures.<br>
-Choices are : <br>
-<ul>
-<li>Object Space [<span style="font-style: italic;">default</span>]</li>
-<li>World Space</li>
-<li>UV Space [<span style="font-style: italic;">first
-uv set</span>]</li>
-<li>Camera Space [<span style="font-style: italic;">camera projection</span>]</li>
-<li>Raster Space [<span style="font-style: italic;">XY Screen coordinates</span>]<span style="font-style: italic;"></span></li>
-<li>Custom [<span style="font-style: italic;">enables
-Custom Coordinates</span>]</li>
-</ul>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top;"><span style="font-weight: bold;">Custom Coordinates</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">This
-is most often used to connect a node such as a "Projection Lookup".</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Transform</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Scale</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-is a global scaling factor.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Acceleration</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Tweak at global scope</span></td>
-<td style="background-color: rgb(231, 231, 231);">Tweaks
-are perform with the given value for all the object. This is good when
-you don't need to drive tweaks with expressions or textures.<span style="font-style: italic;"></span> Otherwise, it
-should be off.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Tweaks #X</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Enable</span></td>
-<td style="background-color: rgb(231, 231, 231);">Enable
-this tweak.<br>
-<span style="font-style: italic;">A given
-DarkTree file may contain any number of macro controls, or Tweaks.
-These tweaks are evaluated at runtime and can be modified with
-expressions or texture
-maps in Softimage. There is a maximum of 16 tweaks in this
-implementation.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Name</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-name of the tweak.<br>
-<span style="font-style: italic;">The tweaks
-are automatically loaded by a python script when the filename is
-change. Only the proper input choice will be displayed.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Color</span></td>
-<td style="background-color: rgb(231, 231, 231);">A
-color input for the tweak.<br>
-<span style="font-style: italic;">Used only
-for color driven tweaks.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Float</span></td>
-<td style="background-color: rgb(231, 231, 231);">A
-scalar input for the tweak.<br>
-<span style="font-style: italic;">If the tweak
-is of boolean nature, x &gt;0 =&gt; true</span>.<br>
-<span style="font-style: italic;">If the tweak
-requires an integer, the scalar will be rounded.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Copy the <strong><em>Obq_Simbiont.dll</em></strong>
-in the proper
-"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
-folder and the <strong><em>Obq_Simbiont.spdl</em></strong>
-in
-the proper "<strong><em>SItoA\Application\spdl</em></strong>"
-folder.</li>
-<li>You'll need to download the <a href="http://www.darksim.com/" target="_blank">DarkTree
-Engine (DTE Win 64-bit)</a> , copy the "<strong><em>components</em></strong>"
-folder
-in&nbsp;the proper folder
-"<strong><em>..\SItoA\Application\bin\nt-x86-64</em></strong>"
-and&nbsp;change the path in
-the
-<strong><em>Obq_Simbiont.spdl</em></strong>
-on <strong><em>line 30</em></strong> to the
-proper "<strong><em>components</em></strong>"
-path.</li>
-<li>You also have to copy the "<strong><em>dte_2600_64.dll</em></strong>"
-in
-"<strong><em>C:\Windows</em></strong>", unless
-you have the full DarkTree software installed.</li>
-<li>Optionally, you can change the path to the
-"<strong><em>DTRep_thumb</em></strong>" ( <a href="http://www.darksim.com/" target="_blank">DarkTree
-repository</a> ) on <strong><em>line 645</em></strong>
-of the
-<strong><em>Obq_Simbiont.spdl</em></strong>.</li>
-<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
-Visual C++ 2010 redistributable package (x64)</a> if not already
-done.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
-Tree Usage</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-The simplest way to use the&nbsp;Obq_Simbiont, is to open a
-darktree file, have the "Color" output in RGB to drive the Kd_color of
-the Standard shader and "Elevation" in Alpha in order to drive a bump3d
-node. Unfortunately, because there is no node caching nor multioutput
-nodes in Arnold yet, this will result in 2 evaluations of the
-Obq_Simbiont, but nothing can be done easily as of now.<br>
-<br>
-Here's an example of a simple potato skin. This darktree node has 12
-tweaks.<br>
-<br>
-<img style="width: 100%;" onclick="window.open('simbiontex.jpg')" alt="Render Tree Example" title="Render Tree Example" src="simbiontex.jpg"></td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Copyright (c) 2012 Marc-Antoine Desjardins,
-ObliqueFX <small><big>(madesjardins@obliquefx.com)</big></small><br>
-<br>
-Permission is hereby granted, free of charge, to any person obtaining a
-copy <br>
-of this software and associated documentation files (the "Software"),
-to deal <br>
-in the Software without restriction, including without limitation the
-rights <br>
-to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell <br>
-copies of the Software, and to permit persons to whom the Software is <br>
-furnished to do so, subject to the following conditions:<br>
-<br>
-The above copyright notice and this permission notice shall be included
-in all <br>
-copies or substantial portions of the Software.<br>
-<br>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR <br>
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, <br>
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-<br>
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER <br>
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, <br>
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE <br>
-SOFTWARE.<br>
-<br>
-Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a><br>
-<br>
-DarkTree is&nbsp;(C) 1998-2011 Darkling Simulations, <a href="http://www.darksim.com/">http://www.darksim.com/</a>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<hr style="width: 100%; height: 2px;"></td>
-<td style="background-color: white;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</body></html>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

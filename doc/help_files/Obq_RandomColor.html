@@ -42,6 +42,7 @@
 <tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
@@ -50,25 +51,86 @@
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageFlt.html">Obq_MessageFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
 </table>
 </div>
 <div id="content-help"><br>
+<h2>Obq_RandomColor</h2>
+<br>
+<h5>Class</h5>
+<p>Texture [Generator]</p>
+<br>
+<h5>Output</h5>
+<p>Color RGBA</p>
+<br>
+<h5>Synopsis</h5>
+<p>Obq_RandomColor is a texture node that outputs a random color based on the shaded object's name.</p>
+<br>
+<h5>Usage</h5>
+<p>Multiple objects can share a material with this node and it will output different colors.</p>
+<br>
+<hr/>
+<h4>Options</h4>
+<br>
+<h5>Software <em>[XtoA]</em></h5>
+<p>Different value input mode.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="35"><span class="enumElem">SItoA</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Softimage.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="35"><span class="enumElem">MtoA</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Maya.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="35"><span class="enumElem">HtoA</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Houdini.</td></tr>
+</table>
+<br>
+<h5>Number of values <em>[randMax]</em></h5>
+<p>The maximum number of random colors.</p>
+<br>
+<h5>Seed <em>[seed]</em></h5>
+<p>An offset for the random number generator.</p>
+<br>
+<hr/>
+<h4>Strip</h4>
+<br>
+<h5>Model <em>[stripModelName]</em></h5>
+<p>Strip the model name from the equation. If 2 objets has the same name but not the same model as parent, this will make both object have the same color.</p>
+<br>
+<h5>Frame <em>[stripFrameNumber]</em></h5>
+<p>Strip the frame number from the equation. If this isn't checked, the colors will change each frame.</p>
+<br>
+<h5>Instances Frame <em>[stripInstanceFrameNumber]</em></h5>
+<p>Special cases for instances.</p>
+<br>
+<h5>Instances ID <em>[stripInstanceID]</em></h5>
+<p>Special cases for instances. If this is not check, because all instances share the same pointcloud name, all instances will have the same color.</p>
+<br>
+<h5>Instances Shape <em>[stripInstanceFrameNumber]</em></h5>
+<p>Special cases for instances. All instances have a shape description in their Arnold name and this option strips it.</p>
+<br>
+<hr/>
+<h4>Inputs</h4>
+<br>
+<h5>Color # <em>[color#]</em></h5>
+<p>The color inputs that are selected randomly based on the name of the shaded object.</p>
 </div>
 </div>
 <div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>

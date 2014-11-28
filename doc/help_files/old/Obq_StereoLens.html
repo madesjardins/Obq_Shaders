@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_StereoLens v2.04.1 (win64 - SItoA 2.4.0 - Arnold
+4.0.7.1)</title>
+
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: black; width: 20px;"></td>
+<td style="background-color: black;"><big><big><br>
+<br>
+</big></big></td>
+<td style="width: 20px; background-color: black;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+<td style="background-color: rgb(33, 33, 33);"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(97, 97, 97);"></td>
+<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_StereoLens</font></big></big></td>
+<td style="background-color: rgb(97, 97, 97);"></td>
+</tr>
+<tr>
+<td></td>
+<td style="background-color: white;">
+<p><font color="Blue">| &nbsp;<a href="#Description">Description</a>
+&nbsp;| &nbsp;<a href="#Installation">Installation</a>
+&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
+&nbsp;</font><font color="Blue">|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
+&nbsp;|</font></p>
+<p><span style="font-weight: bold;">Category:</span>
+Lens </p>
+<p><span style="font-weight: bold;">Shader
+Family:</span> Lens</p>
+<p><span style="font-weight: bold;">Output:</span>
+Color</p>
+<p>Obq_StereoLens renders a pair of stereo&nbsp;frames
+from the center camera of a
+stereo&nbsp;rig into a single frame.&nbsp;</p>
+<p><span style="font-style: italic;">Note
+: Because of filtering, the
+lines of pixels immediately next to the left-right border are
+blended, the </span><span style="font-style: italic;">floor(filter_width/2)
+lines in fact</span><span style="font-style: italic;">.
+To correct this, an automatic overscan mode was created</span><span style="font-style: italic;">. </span><span style="font-style: italic;">Make sure the render width and
+height are correct. Copy-paste
+</span><span style="font-style: italic;">the&nbsp;left/right
+crop text in Nuke to create the adequate crop nodes.</span></p>
+<p><span style="font-style: italic;">Note 2 :
+The "Polygonal Aperture" mode of&nbsp;DoF doesn't react exactly
+like the default Arnold one for&nbsp;</span><span style="font-style: italic;">"Blade Curvature"
+values&nbsp;</span><span style="font-style: italic;">below
+0. &nbsp;At -1, you get the thightest star shape and below that,
+this implementation keeps the star shape and enlarges it.</span>
+</p>
+<p></p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Description"></a>View
+Mode</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">View Mode</span></td>
+<td style="background-color: rgb(231, 231, 231);">This
+is the type of frame that will be rendered :<br>
+<ul>
+<li><span style="font-weight: bold; font-style: italic;">Center Camera</span>
+: because the lens shader is applied to the center camera, this is the
+view as is.</li>
+<li><span style="font-weight: bold; font-style: italic;">Left Camera</span>
+: renders what the left camera views.</li>
+<li><span style="font-weight: bold; font-style: italic;">Left Camera</span>
+: renders what the right camera views.</li>
+<li><span style="font-weight: bold; font-style: italic;">Stereo Camera
+&lt;left-right&gt;</span>
+: renders a single frame of the stereo camera pair, the left camera
+subframe to the left side and the right&nbsp;camera subframe to the
+right.</li>
+<li><span style="font-weight: bold; font-style: italic;">Stereo Camera
+&lt;down-up&gt;</span>
+: like the previous option, but&nbsp;the left camera subframe will
+be
+at the bottom and&nbsp;the right&nbsp;camera subframe will be
+on top.</li>
+</ul>
+<span style="font-style: italic;">Whenever you
+use a Stereo Camera &lt;...&gt; view mode, the output
+resolution in the proper dimension will be doubled.</span>
+</td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Cameras</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Left</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+full name of the left camera.<br>
+<br>
+<span style="font-style: italic;">You can
+click on the "Pick Left and Right Cameras" button to begin a pick
+session.</span> <span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Right</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+full name of the right camera.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Status</span></td>
+<td style="background-color: rgb(231, 231, 231);">This
+will indicate if both cameras are valid.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Camera Interest</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+full name of the center camera interest.<br>
+<br>
+<span style="font-style: italic;">This field
+is only shown when the focus point is at interest.</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Status</span> (Interest)</td>
+<td style="background-color: rgb(231, 231, 231);">This
+will indicate if the camera interest is valid.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">DoF Advanced Options</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Recalculate focus distance for
+left and right cameras</span></td>
+<td style="background-color: rgb(231, 231, 231);">This
+allows to adjust
+the focus distance, given for the center camera, for the left and right
+camera. Don't check this if you're&nbsp;using an off-axis stereo
+type
+rig.
+<span style="font-style: italic;"></span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Focal plane is a plane</span></td>
+<td style="background-color: rgb(231, 231, 231);">By
+default, the focal
+plane of Arnold is not actually a plane, it's curved. Check this if
+you're using an off-axis stereo type rig.</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Use a custom/rig focus distance</span></td>
+<td style="background-color: rgb(231, 231, 231);">Check
+this if you want to overwrite the "Focus Distance" of the "Depth of
+Field" tab in the "Arnold Render Options".</td>
+<td></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Focus distance</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+value to overwrite the "Focus Distance" of the&nbsp;"Arnold Render
+Options" with.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Automatic Overscan</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Enable</span></td>
+<td style="background-color: rgb(231, 231, 231);">Enables
+the automatic overscan mode to counter the blended lines of
+pixels. This should always be checked.<span style="font-style: italic;"><br>
+</span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Resolutions</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Target Resolution width/height</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+resolution you want each left/right frame to have (ex: 1920x1080)<span style="font-style: italic;">
+</span></td>
+<td style="width: 40px;"></td>
+</tr>
+<tr>
+<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Render Resolution width/height</span></td>
+<td style="background-color: rgb(231, 231, 231);">The
+final output resolution of the stereo frame you must render at. If the
+automatic overscan mode is enable, this will include the necessary
+overscan.<br>
+<br>
+<span style="font-style: italic;">When these
+value changes, the pass output resolution values are updated as well.</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Nuke Info</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Nuke Info<br>
+left/right crop</span></td>
+<td style="background-color: rgb(231, 231, 231);">Copy-paste
+the text to create the proper crop nodes in Nuke.<span style="font-style: italic;">
+</span></td>
+<td style="width: 40px;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<ol>
+<li>Copy the <strong><em>Obq_StereoLens.dll</em></strong>
+in the proper
+"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
+folder and the <strong><em>Obq_</em></strong><strong><em>StereoLens.</em></strong><strong><em>spdl</em></strong>
+in
+the proper "<strong><em>SItoA\Application\spdl</em></strong>"
+folder.</li>
+<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
+Visual C++ 2010 redistributable package (x64)</a> if not already
+done.</li>
+</ol>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
+Tree Usage</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td>Simply use the Obq_StereoLens as a lens shader on
+the center camera
+of the Softimage stereo camera rig or your own rig. Pick the left and
+right camera. When you render, select the center camera and make sure
+the scene/pass output resolution is equal to the&nbsp;<span style="font-style: italic;">Render Resolution</span>
+of the shader. Once rendered, copy-paste the&nbsp;crop node text in
+Nuke to create left crop and right crop nodes.<br>
+<br>
+<br>
+<img src="StereoLensEX.jpg" alt="Stereo Lens example" onclick="window.open('StereoLensEX.jpg')" style="width: 100%;"></td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
+<td style="background-color: white;"></td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
+<tbody>
+<tr>
+<td><small><big>Copyright</big></small><small><big>
+(c)</big></small><small><big>&nbsp; 2012
+Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
+</big></small><small><big><br>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy <br>
+of this software and associated documentation files (the "Software"),
+to deal <br>
+in the Software without restriction, including without limitation the
+rights <br>
+to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell <br>
+copies of the Software, and to permit persons to whom the Software is <br>
+furnished to do so, subject to the following conditions:<br>
+<br>
+The above copyright notice and this permission notice shall be included
+in all <br>
+copies or substantial portions of the Software.<br>
+<br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR <br>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, <br>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+<br>
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER <br>
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, <br>
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE <br>
+SOFTWARE.</big><br>
+<br>
+<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
+</td>
+<td style="width: 40px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</td>
+<td style="background-color: white;">
+</td>
+</tr>
+<tr>
+<td style="background-color: white;"></td>
+<td style="background-color: white;">
+<hr style="width: 100%; height: 2px;"></td>
+<td style="background-color: white;"></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+</body></html>

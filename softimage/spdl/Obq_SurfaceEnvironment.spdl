@@ -202,7 +202,7 @@ phenomenon "Obq_SurfaceEnvironment_declare"
 {
 	Name = "Obq_SurfaceEnvironment";
 	Version = 1;
-	Use = texture;
+	Use = material;
 }
 
 Defaults

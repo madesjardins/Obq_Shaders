@@ -1,178 +1,143 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Obq_SurfaceEnvironment v2.04.1 (win64 - SItoA 2.4.0 -
-Arnold 4.0.7.1)</title>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_SurfaceEnvironment</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
 </head>
 <body>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="0">
-<tbody>
-<tr>
-<td style="background-color: black; width: 20px;"></td>
-<td style="background-color: black;"><big><big><br>
-<br>
-</big></big></td>
-<td style="width: 20px; background-color: black;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-<td style="background-color: rgb(33, 33, 33);"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(97, 97, 97);"></td>
-<td style="background-color: rgb(97, 97, 97);"><big><big><font color="White">Obq_SurfaceEnvironment</font>
-</big></big></td>
-<td style="background-color: rgb(97, 97, 97);"></td>
-</tr>
-<tr>
-<td></td>
-<td style="background-color: white;">
-<p><font color="Blue">| &nbsp;<a href="#Description">Description</a>
-&nbsp;| &nbsp;<a href="#Installation">Installation</a>
-&nbsp;|&nbsp;</font><font color="Blue"> <a href="#Usage">Render Tree Usage</a>
-&nbsp;</font><font color="Blue">|</font><font color="Blue">&nbsp;</font><font color="Blue"><a href="#Copyrights">Copyrights</a>
-&nbsp;|</font></p>
-<p><span style="font-weight: bold;">Category:</span>
-Texture </p>
-<p><span style="font-weight: bold;">Shader
-Family:</span> Texture</p>
-<p><span style="font-weight: bold;">Output:</span>
-Color</p>
-<p>Obq_SurfaceEnvironement is an upgraded version of
-sta_environment that you
-can use directly without using an environment port. This is usually
-mixed in the beauty or used with the AOV passthrough.
-</p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Description"></a>Pass
-Environment Shader</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Use The Pass Environment Shader</span></td>
-<td style="background-color: rgb(231, 231, 231);">Sends
-a ray to the pass environment shader instead of using this shader's
-image. <br>
-<br>
-<span style="font-style: italic;">All
-transforms, roughness settings and intensity of this node will also be
-used for cumulative effects. It could be useful to have a per object
-rotation by overloading the transforms of this node, but using the pass
-environment's image.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Ray Type</span></td>
-<td style="background-color: rgb(231, 231, 231);">Sets
-the ray type of the ray sent to the pass environment shader. Available
-upon checking the above option.<br>
-<br>
-<span style="font-style: italic;">This is very
-useful if you have a ray type switch in your pass shader.</span><br>
-<span style="font-style: italic;"></span></td>
-<td></td>
-</tr>
-</tbody>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
 </table>
+</div>
+<div id="content-help"><br>
+<h2>Obq_SurfaceEnvironment</h2>
 <br>
+<h5>Class</h5>
+<p>Material [Passtrough]</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Direction</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Output</h5>
+<p>Color RGBA</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Image</span></td>
-<td style="background-color: rgb(231, 231, 231);">The
-image to use as texture.<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Use Alpha</span></td>
-<td style="background-color: rgb(231, 231, 231);">Use
-the alpha channel of the image in the evaluation.<br>
+<h5>Synopsis</h5>
+<p>Obq_SurfaceEnvironement is an upgraded version of sta_environment that you can use directly without using an environment port. This is usually mixed in the beauty or used with the AOV passthrough.</p>
 <br>
-<span style="font-style: italic;">This is off
-by default and unless you need it to drive an effect, it should remain
-off.</span></td>
-<td></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Mapping Mode</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">How
-to map this texture on a virtual environment sphere.<br>
+<h5>Usage</h5>
+<p>Obq_SurfaceEnvironement is great for mix in an object material or passthrough with a shader and calculate the result in an AOV. You can also use this node to have a per object environment rotation using overrides.</p>
+<br>
+<img src="images/Obq_Environment_01.jpg" alt="Usage image" width=768 >
+<p class="idesc">Fig.1 : In this example, we use the Obq_Environment of the pass shader to light the sphere, but we secretly render the reflections from the Obq_SurfaceEnvironment node and store it inside an AOV without affecting the main result.</p>
+<br>
+<hr/>
+<h4>Pass Environment Shader</h4>
+<br>
+<h5>Use The Pass Environment Shader <em>[usePassEnvShader]</em></h5>
+<p>Sends a ray to the pass environment shader instead of using this shader's image.</p>
+<p class="note" >Note : All transforms, roughness settings and intensity of this node will also be used for cumulative effects. It could be useful to have a per object rotation by overloading the transforms of this node, but using the pass environment's image.</p>
+<br>
+<h5>Ray Type <em>[rayTypeEnv]</em></h5>
+<p>Sets the ray type of the ray sent to the pass environment shader. Available upon checking the above option.</p>
+<p class="note" >Note : This is very useful if you have a ray type switch in your pass shader.</p>
+<br>
+<hr/>
+<h4>Image</h4>
+<br>
+<h5>Image <em>[tex]</em></h5>
+<p>The image to use as texture.</p>
+<br>
+<h5>Use Alpha <em>[considerAlpha]</em></h5>
+<p>Use the alpha channel of the image in the evaluation.</p>
+<p class="note" >Note : This is off by default and unless you need it to drive an effect, it should remain off.</p>
+<br>
+<h5>Mapping Mode <em>[mapMode]</em></h5>
+<p>How to map this texture on a virtual environment sphere :</p>
 <ul>
 <li>Mirrored Ball</li>
-<li>Angular Map<br>
-</li>
-<li>Lattitude-Longitude<br>
-</li>
+<li>Angular Map</li>
+<li>Lattitude-Longitude</li>
 <li>Vertical Cross</li>
 </ul>
-</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Flip U</span></td>
-<td style="background-color: rgb(231, 231, 231);">Flips
-the image horizontally.</td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Flip V</span></td>
-<td style="background-color: rgb(231, 231, 231);">Flips
-the image vertically.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <br>
+<h5>Flip U <em>[flipU]</em></h5>
+<p>Flips the image horizontally.</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Ray Option in Object Render Tree</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Flip V <em>[flipV]</em></h5>
+<p>Flips the image vertically.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Direction</span></td>
-<td style="background-color: rgb(231, 231, 231);">What
-direction is used to shoot the ray in a virtual environment sphere
-around the object.<br>
+<hr/>
+<h4>Ray Options In Object Render Tree</h4>
+<br>
+<h5>Direction <em>[onSurfaceMode]</em></h5>
+<p>When using this shader in the environment port of an object's material, you can use different directions :</p>
 <ul>
 <li>View Direction</li>
-<li>View Direction (Inverted)<br>
-</li>
+<li>View Direction (Inverted)</li>
 <li>Surface Normal Direction</li>
 <li>Surface Normal Direction (no bump)</li>
 <li>Surface Normal Direction (Inverted)</li>
@@ -183,353 +148,72 @@ around the object.<br>
 <li>Reflection Direction (no bump)</li>
 <li>Refraction Direction</li>
 <li>Refraction Direction (no bump)</li>
-<li>Custom Direction [ port&nbsp;accessible in
-the "Ray Options"group in the render tree ]</li>
+<li>Custom Direction [ port accessible in the "Ray Options"group in the render tree ]</li>
 </ul>
-<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; width: 120px; text-align: left; background-color: rgb(231, 231, 231); vertical-align: top; font-weight: bold;"><span class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">IOR</span></td>
-<td style="background-color: rgb(231, 231, 231); vertical-align: top;">Available
-when Refracted Ray&nbsp;is used, IOR stands for Index of refraction.</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;" class="MenuCascade" id="GUID-8B685B95-6F36-4FE2-9607-262574271851">Custom
-Direction</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-is the vector used as custom direction. It's only accessible via the
-port of the node's render tree layout.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p class="note" >Note : This option doesn't apply to pass shaders because the direction of ray that hits the background will be used.</p>
 <br>
+<h5>IOR <em>[ior]</em></h5>
+<p>Available when Refraction Direction is used, IOR stands for Index Of Refraction.</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Intensity</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Custom Direction <em>[customDirection]</em></h5>
+<p>This is the vector used as custom direction.</p>
+<p class="note" >Note : It's only accessible via the port of the node's render tree layout.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; width: 150px; background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Intensity</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-is a basic value multiplier.&nbsp;<span style="font-style: italic;"></span>
-<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<hr/>
+<h4>Intensity</h4>
 <br>
+<h5>Intensity <em>[intensity]</em></h5>
+<p>This is a basic value multiplier.</p>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Roughness</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<hr/>
+<h4>Roughness</h4>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Sample Level</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>The
-square root of the number of samples taken to create blurred background
-effect.<br>
+<h5>Sample Level <em>[sampleLevel]</em></h5>
+<p>The square root of the number of samples taken to create blurred background effect.</p>
+<p class="note" >Note : If this is set to 5, for example, 25 rays will be shot.</p>
 <br>
-<span style="font-style: italic;">If this is
-set to 5, 25 rays will be shot.</span></span><span></span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Cone Angle</span></td>
-<td style="background-color: rgb(231, 231, 231);">A&nbsp;rough
-approximation of the cone angle in which the samples will be taken
-from.&nbsp;If set to 0, only 1 sample will be taken no matter the
-sample level.<br>
+<h5>Cone Angle <em>[coneAngle]</em></h5>
+<p>The maximum cone angle in which the samples will be taken from. If set to 0, only 1 sample will be taken no matter the sample level.</p>
+<p class="note" >Note : Shooting more rays will soften the noise.</p>
 <br>
-<span style="font-style: italic;">Shooting
-more rays will soften the noise.</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Cos Lobe Gloss</span></td>
-<td style="background-color: rgb(231, 231, 231);">This
-gloss translates into the cosine exponent of the cone
-distribution. This means that a value of 0 will produce&nbsp;a
-uniform
-distribution inside the cone while a higher value will give more of an
-elleptical shape&nbsp;distribution (Phong peaks). In other words,
-using a
-cone angle of 180 will give exactly a cos^n distribution.<br>
+<h5>Cos Lobe Gloss <em>[cosLobeGloss]</em></h5>
+<p>This gloss translates into the cosine exponent of the cone distribution. This means that a value of 0 will produce a uniform distribution inside the cone while a higher value will give more of an elleptical shape distribution (Phong peaks). In other words, using a cone angle of 180 will give exactly a cos^n distribution.</p>
+<p class="note" >Note : The equation used to transform gloss into exponent is : Exponent = Gloss/(1-Gloss)^8. Ex: A Gloss of 0.188 gives approximately an exponent of 1.</p>
 <br>
-<span style="font-style: italic;">The equation
-used to transform gloss into exponent is : Exponent = Gloss/(1-Gloss)^8<br>
-Ex: A Gloss of 0.188 gives</span><span style="font-style: italic;"> approximately</span><span style="font-style: italic;"> an exponent of 1.</span></td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Clamp Sample Count</span></td>
-<td style="background-color: rgb(231, 231, 231);">Check
-this and use the Max Sample Count to limit the number of environmenet
-samples taken.<span style="font-style: italic;"></span></td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Max Sample Count</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"><span style="font-style: italic;"></span></span>The
-maximum number of samples taken from the environment.<span style="font-style: italic;"><span style="font-style: italic;"></span><br>
+<h5>Clamp Sample Count <em>[useSampleCount]</em></h5>
+<p>Check this and use the Max Sample Count to limit the number of environmenet samples taken.</p>
 <br>
-Sample Level isn't texturable because the random samples are generated
-at update time. Using this port, you can texture the maximum number of
-rays shot knowing that it can never be higher than the square of
-the Sample Level value.</span></td>
-<td></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Max Sample Count Multiplier</span></td>
-<td style="background-color: rgb(231, 231, 231);">A
-simple multiplier used to raise an 8-bit picture value above 1.<br>
+<h5>Max Sample Count <em>[sampleCount]</em></h5>
+<p>The maximum number of samples taken from the environment.</p>
+<p class="note" >Note : Sample Level isn't texturable because the random samples are generated at update time. Using this port, you can texture the maximum number of rays shot knowing that it can never be higher than the square of  the Sample Level value.</p>
 <br>
-<span style="font-style: italic;">You can set
-this to 255 and texture with the absolute value of samples you want.</span></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<h5>Max Sample Count Multiplier <em>[sampleCountMultiplier]</em></h5>
+<p>A simple multiplier used to raise an 8-bit picture value above 1.</p>
+<p class="note" >Note : You can set this to 255 and texture with the absolute value of samples you want.</p>
 <br>
+<hr/>
+<h4>Transformation</h4>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Transformations</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Use rotation at a global scope <em>[globalRotation]</em></h5>
+<p>Checking this option will calculates the rotation matrix at update time. Meaning it'll be faster if you don't need per pixel rotations.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Use rotation at a global scope</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>Checking
-this option will calculate the rotation matrix at update time.</span>
-Meaning it'll be faster if you don't need per pixel rotations.</td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Rotation</span></td>
-<td style="background-color: rgb(231, 231, 231);">Rotation
-angles in degrees around the principal axis.<br>
-<span style="font-style: italic;"></span></td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<h5>Rotation <em>[rotation]</em></h5>
+<p>Rotation angles in degrees around the principal axis.</p>
 <br>
+<hr/>
+<h4>Render Channel</h4>
 <br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White">Render Channel</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
+<h5>Passthrough -&gt; Result only in AOV <em>[passthrough]</em></h5>
+<p>This is a passthrough option if you want the result to be rendered only in the render channel.</p>
 <br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Passthrough -&gt; Result only
-in AOV</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span>This
-is a passthrough option if you want the result to be rendered only in
-the render channel</span></td>
-<td style="width: 40px;"></td>
-</tr>
-<tr>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-weight: bold;">Passthrough Shader</span></td>
-<td style="background-color: rgb(231, 231, 231);">Only
-visible as a port in the node's render tree layout, this is the value
-that will passthrough without being modified by the result of this
-shader. Only activated if the above boolean is set to "On".</td>
-<td></td>
-</tr>
-<tr>
-<td style="height: 20px; text-align: left; vertical-align: top; background-color: rgb(231, 231, 231); width: 150px;"><span style="font-weight: bold;">Render Channel</span></td>
-<td style="background-color: rgb(231, 231, 231);"><span style="font-style: italic;"></span>The AOV in which
-you want to render the result.</td>
-<td style="width: 40px;"></td>
-</tr>
-</tbody>
-</table>
+<h5>Passthrough Shader <em>[passthroughShader]</em></h5>
+<p>Only visible as a port in the node's render tree layout, this is the value that will passthrough without being modified by the result of this shader. Only activated if the above boolean is set to "On".</p>
 <br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Installation"></a>Installation</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>
-<ol>
-<li>Copy the <strong><em>Obq_SurfaceEnvironment.dll</em></strong>
-in the proper
-"<strong><em>SItoA\Application\bin\nt-x86-64</em></strong>"
-folder and the <strong><em>Obq_</em></strong><strong><em>SurfaceEnvironment</em></strong><strong><em>.spdl</em></strong>
-in
-the proper "<strong><em>SItoA\Application\spdl</em></strong>"
-folder.</li>
-<li>You'll need to install <a target="_blank" href="http://www.microsoft.com/download/en/details.aspx?id=14632">Microsoft
-Visual C++ 2010 redistributable package (x64)</a> if not already
-done.</li>
-</ol>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Usage"></a>Render
-Tree Usage</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td>Obq_SurfaceEnvironement is great for&nbsp;mix
-in an object material or passthrough with a shader and calculate the
-result in an AOV. You can also use this node to have a per object
-environment rotation using overrides.<br>
-<br>
-In this example, we use the Obq_Environment of the pass shader
-to&nbsp;light the sphere, but we secretly render the reflections
-from the Obq_SurfaceEnvironment node and store it inside an AOV without
-affecting the main result.<br>
-&nbsp;<img style="width: 100%;" onclick="window.open('environmentex.jpg')" alt="Environment Example" src="environmentex.jpg"></td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: rgb(149, 149, 149); font-weight: bold;"><font color="White"><a name="Copyrights"></a>Copyrights</font></td>
-<td style="background-color: white;"></td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="5" cellspacing="2">
-<tbody>
-<tr>
-<td><small><big>Copyright (c) 2012
-Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)<br>
-<br>
-Permission is hereby granted, free of charge, to any person obtaining a
-copy <br>
-of this software and associated documentation files (the "Software"),
-to deal <br>
-in the Software without restriction, including without limitation the
-rights <br>
-to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell <br>
-copies of the Software, and to permit persons to whom the Software is <br>
-furnished to do so, subject to the following conditions:<br>
-<br>
-The above copyright notice and this permission notice shall be included
-in all <br>
-copies or substantial portions of the Software.<br>
-<br>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR <br>
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, <br>
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-<br>
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER <br>
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, <br>
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE <br>
-SOFTWARE.</big><br>
-<br>
-<big>Licensed under the MIT license: <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">http://www.opensource.org/licenses/mit-license.php</a></big></small>
-</td>
-<td style="width: 40px;"><br>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</td>
-<td style="background-color: white;">
-</td>
-</tr>
-<tr>
-<td style="background-color: white;"></td>
-<td style="background-color: white;">
-<hr style="width: 100%; height: 2px;"></td>
-<td style="background-color: white;"></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-</body></html>
+<h5>Render Channel <em>[renderChannel]</em></h5>
+<p>The AOV in which you want to render the result.</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

@@ -154,7 +154,7 @@ phenomenon "Obq_VolumeThickness_declare"
 {
 	Name = "Obq_VolumeThickness";
 	Version = 1;
-	Use = texture;
+	Use = material;
 }
 
 Defaults
@@ -335,17 +335,17 @@ Language = "VBScript";
 Logic
 {
 
-Sub autoTransparencyMode_OnChanged()
-	If PPG.autoTransparencyMode.Value = 0 Then
-		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "Always", ""
-	Else
-		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "shadow-only", ""
-	End If
-End Sub
+'Sub autoTransparencyMode_OnChanged()
+'	If PPG.autoTransparencyMode.Value = 0 Then
+'		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "Always", ""
+'	Else
+'		Application.SetValue "Passes.Arnold_Render_Options.auto_transparency_mode", "shadow-only", ""
+'	End If
+'End Sub
 
 Sub OnInit()
 	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_VolumeThickness.html"
-	autoTransparencyMode_OnChanged()
+	'autoTransparencyMode_OnChanged()
 End Sub
 }
 
