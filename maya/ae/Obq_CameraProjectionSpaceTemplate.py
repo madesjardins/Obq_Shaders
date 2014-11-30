@@ -1,4 +1,4 @@
-# 2014-10-19 10.16 am
+# 2014-11-30 12.54 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -16,26 +16,25 @@ def Obq_CameraProjectionSpaceHelpURL():
 
 class AEObq_CameraProjectionSpaceTemplate(ShaderAETemplate):
     convertToMayaStyle = True
-
-    def setup(self):
     
-        # Hide the node swatch preview until the shader is able to render a preview
+    def setup(self):
+
         #self.addSwatch()
 
         self.beginScrollLayout()
 
         self.addCustom('message', 'AEshaderTypeNew', 'AEshaderTypeReplace')
 
-        pm.picture(image="Obq_shader_header.png", parent="AttrEdObq_CameraProjectionSpaceFormLayout")
+        pm.picture(image='Obq_shader_header.png', parent="AttrEdObq_CameraProjectionSpaceFormLayout")
         Obq_CameraProjectionSpaceHelpURL()
-        
-        self.beginLayout("Render Camera", collapse=False)
-        self.addControl("use_render_camera", label="Use Render Camera")
+
+        self.beginLayout("Render Camera", collapse=False )
+        self.addControl("useRenderCamera", label="Render Camera")
         self.endLayout()
 
-        self.beginLayout("Other Camera", collapse=False)
-        self.addControl("projection_camera",  label="Camera")
-        self.addControl("camera_aspect_ratio",  label="Camera Aspect Ratio")
+        self.beginLayout("Other Camera", collapse=False )
+        self.addControl("projectionCamera", label="Camera")
+        self.addControl("cameraAspectRatio", label="Camera Aspect Ratio")
         self.endLayout()
 
         # include/call base class/node attributes
@@ -44,6 +43,6 @@ class AEObq_CameraProjectionSpaceTemplate(ShaderAETemplate):
         # Hide the NormalCamera and HardwareColor Extra Attributes
         self.suppress('normalCamera')
         self.suppress('hardwareColor')
-      
+
         self.addExtraControls()
         self.endScrollLayout()

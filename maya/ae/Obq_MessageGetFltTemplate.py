@@ -1,4 +1,5 @@
-# 2014-11-30 08.28 am
+# 2014-11-30 12.54 pm
+# Note: Maya's internal .message attribute is automatically linked into the string field by Arnold.
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -37,7 +38,7 @@ def Obq_MessageGetFltSetPresetMode(attr):
     
 def Obq_MessageGetFltHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
-    ObqNodeType = 'Obq_Color'
+    ObqNodeType = 'Obq_MessageGetFlt'
     ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetFlt.html'
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)

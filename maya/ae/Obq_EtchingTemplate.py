@@ -1,4 +1,4 @@
-# 2014-10-19 01.34 pm
+# 2014-11-30 12.54 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -24,7 +24,7 @@ def Obq_EtchingSetAutoFilteringMode(attr):
     
 def Obq_EtchingHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
-    ObqNodeType = 'Obq_Color'
+    ObqNodeType = 'Obq_Etching'
     ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html'
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)

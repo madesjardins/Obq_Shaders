@@ -1,4 +1,4 @@
-# 2014-10-19 05.13 pm
+# 2014-11-30 12.54 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -27,7 +27,7 @@ def Obq_OpacitySetChannelMode(attr):
     
 def Obq_OpacityHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
-    ObqNodeType = 'Obq_Color'
+    ObqNodeType = 'Obq_Opacity'
     ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html'
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)

@@ -1,4 +1,4 @@
-# 2014-10-19 04.55 pm
+# 2014-11-30 12.54 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -9,7 +9,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
 def Obq_RandomIDHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
-    ObqNodeType = 'Obq_Color'
+    ObqNodeType = 'Obq_RandomID'
     ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomID.html'
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)
