@@ -1,10 +1,10 @@
-# 2014-09-10 05.57 am
+# 2014-11-30 08.28 am
 
 import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
 import mtoa.ui.ae.templates as templates
-from mtoa.ui.ae.customShapeAttributes import CameraTemplate as CameraTemplate
+#from mtoa.ui.ae.customShapeAttributes import CameraTemplate as CameraTemplate
 
 ViewModeEnumOp = [
     (0, 'Center Camera'),
@@ -29,7 +29,7 @@ def Obq_StereoLensHelpURL():
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)
 
-class Obq_StereoLensTemplate(CameraTemplate):
+class Obq_StereoLensTemplate(templates.AttributeTemplate):
     def setup(self):
         self.beginLayout("Obq_StereoLens", collapse=False)
 
@@ -100,4 +100,4 @@ class Obq_StereoLensTemplate(CameraTemplate):
         self.endLayout()
 
 templates.registerTranslatorUI(Obq_StereoLensTemplate, "camera", "Obq_StereoLens")
-templates.registerTranslatorUI(Obq_StereoLensTemplate, "stereoRigCamera", "Obq_StereoLens")
+#templates.registerTranslatorUI(Obq_StereoLensTemplate, "stereoRigCamera", "Obq_StereoLens")

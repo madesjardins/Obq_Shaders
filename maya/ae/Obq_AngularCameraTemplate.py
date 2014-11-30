@@ -1,12 +1,12 @@
-# 2014-09-10 05.58 am
+# 2014-11-30 08.28 am
 
 import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
 import mtoa.ui.ae.templates as templates
-from mtoa.ui.ae.customShapeAttributes import CameraTemplate as CameraTemplate
+#from mtoa.ui.ae.customShapeAttributes import CameraTemplate as CameraTemplate
  
-class Obq_AngularCameraTemplate(CameraTemplate):
+class Obq_AngularCameraTemplate(templates.AttributeTemplate):
     def setup(self):
         self.beginLayout("Obq_AngularCamera", collapse=False)
         self.beginNoOptimize()
@@ -23,4 +23,4 @@ class Obq_AngularCameraTemplate(CameraTemplate):
         self.endLayout()
 
 templates.registerTranslatorUI(Obq_AngularCameraTemplate, "camera", "Obq_AngularCamera")
-templates.registerTranslatorUI(Obq_AngularCameraTemplate, "stereoRigCamera", "Obq_AngularCamera")
+#templates.registerTranslatorUI(Obq_AngularCameraTemplate, "stereoRigCamera", "Obq_AngularCamera")
