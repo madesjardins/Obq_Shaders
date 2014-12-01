@@ -1,5 +1,5 @@
-# 2014-11-30 12.54 pm
-# Note: Maya's internal .message attribute is automatically linked into the string field by Arnold.
+# 2014-12-01 12.49 am
+# Updated to change "message" attribute to "key" to avoid a Maya attribute name collision
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -59,10 +59,12 @@ class AEObq_MessageGetFltTemplate(ShaderAETemplate):
         Obq_MessageGetFltHelpURL()
 
         self.beginLayout("Main", collapse=False )
-        self.addControl("defaultValue", label="Default Value")
+
         #self.addCustom("mode", Obq_MessageGetFltCreateModeMode, Obq_MessageGetFltSetModeMode)
         #self.addCustom("preset", Obq_MessageGetFltCreatePresetMode, Obq_MessageGetFltSetPresetMode)
-        self.addControl("message", label="Message")
+        self.addControl("key", label="Key")
+        self.addSeparator()
+        self.addControl("defaultValue", label="Default Value")
         self.endLayout() #End Main
         
         # include/call base class/node attributes

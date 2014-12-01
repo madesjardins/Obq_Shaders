@@ -44,7 +44,7 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 
 ### 2014-11-30 Changes  ###
-- **[ACH]** Updated the metadata file to add the new v303 shaders  
+- **[ACH]** Updated the metadata file to add the new v303 shaders and fix indentation
 - **[ACH]** Updated Obq Help links in ae template files  
 - **[ACH]** Added new Maya Node IDs to Metadata files:
 	- Obq_MessageSetFlt
@@ -53,7 +53,13 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 	- Obq_SpectrumColor
 	- Obq_TransformShadingPoint
 - **[ACH]** Created a new `Obq_ColorspaceConverter` ae template file  
+- **[ACH]** Created a new `Obq_MessageSetFlt` ae template file  
+- **[ACH]** Created a new `Obq_MessageStoreFlt` ae template file  
 - **[ACH]** Renamed ae template file `Obq_MessageFltTemplate.py` to `Obq_MessageGetFltTemplate.py`
+- **[ACH]** Updated `Obq_MessageGetFltTemplate.py` and mtd to change `message` attribute to `key`.
+- **[ACH]** Updated `Obq_RandomColorTemplate.py` and mtd to add the `XtoA` attribute.
+- **[ACH]** Updated `Obq_OpacityTemplate.py` and mtd to add the modified attributes.
+- **[ACH]** Updated `Obq_FresnelTemplate.py` and mtd to add the modified attributes.
 
 ### 2014-10-19 Changes  ###
 - **[ACH]** Added ae templates for the following shaders:
@@ -89,14 +95,15 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Known Issues ##
 
+### Obq_RandomColor ###
+  With Strip Model Name and Strip Frame Number enabled and the new XtoA Software attribute set to MtoA I get the following error in Maya and MtoA Kick.exe:
+  ```[Obq_RandomColor] : Couldn't find the frame number separator. Name is : pSphereShape22 and separator is .MtoA.```
+
 ### Obq_MeasuredMaterial ###
 - Adding an Obq_MeasuredMaterial node to a Maya scene causes a crash. This might be caused by MtoA trying to render a preview swatch.
 
 ### Obq_ColorspaceConverterTemplate.py ###
 - The ColorspaceIn and ColorspaceOut GUI elements haven't been implemented yet.
-
-### Obq_MessageGetFltTemplate.pu  ###
-- There is a name collision Issue where Maya's internal ".message" attribute is automatically linked into the shader's Arnold message attribute string field.
 
 ### OBQ Lens Shaders ###
 
@@ -109,8 +116,6 @@ Also the current MtoA release's registerTranslatorUI function won't allow a 3rd 
 
 Several of the Obq shader's lack ae template files. The following ae template files need to be created:
 
-- Obq_MessageSetFlt
-- Obq_MessageStoreFlt
 - Obq_RGBComEmit
 - Obq_RGBComLightFilter
 - Obq_Root2Tip

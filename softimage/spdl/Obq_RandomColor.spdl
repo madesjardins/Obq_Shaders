@@ -297,7 +297,7 @@ PropertySet "Obq_RandomColor_params"
    }
    Parameter "stripInstanceFrameNumber" input
    {
-	  title = "Strip Instance Frame Number";
+      title = "Strip Instance Frame Number";
       guid = "{85D27845-5212-422D-BB33-696DFAE6BFBF}";
       type = boolean;
       flags = 1;
@@ -311,7 +311,7 @@ PropertySet "Obq_RandomColor_params"
    }
      Parameter "stripInstanceID" input
    {
-	  title = "Strip Instance ID";
+      title = "Strip Instance ID";
       guid = "{AC171264-043B-47B5-AC2C-86A5B0AF4DE9}";
       type = boolean;
       flags = 1;
@@ -325,7 +325,7 @@ PropertySet "Obq_RandomColor_params"
    }
    Parameter "stripInstanceShape" input
    {
-	  title = "Strip Instance Shape";
+      title = "Strip Instance Shape";
       guid = "{3A04C06F-015D-4E5E-9760-A078BB149E70}";
       type = boolean;
       flags = 1;
@@ -342,10 +342,10 @@ PropertySet "Obq_RandomColor_params"
       guid = "{B81445E2-A7B9-4C2C-AD00-2E43B913676E}";
       type = integer;
       texturable = off;
-	  animatable = on;
+      animatable = on;
       value = 0;
-	  value minimum = 0;
-	  value maximum = 2;
+      value minimum = 0;
+      value maximum = 2;
    }
 }
 

@@ -1,4 +1,4 @@
-# 2014-11-30 12.54 pm
+# 2014-11-30 11.50 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -8,12 +8,13 @@ import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
 channelModeEnumOp = [
-    (0, 'Red'), 
-    (1, 'Green'), 
-    (2, 'Blue'), 
-    (3, 'Alpha'), 
-    (4, 'RGB'), 
-    (5, 'Scalar Input'), 
+    (6, '  Color : Alpha'), 
+    (0, 'Opacity : Red'), 
+    (1, 'Opacity : Green'), 
+    (2, 'Opacity : Blue'), 
+    (3, 'Opacity : Alpha'), 
+    (4, 'Opacity : RGB'), 
+    (5, 'Opacity : Scalar Input'), 
 ]
 
 def Obq_OpacityCreateChannelMode(attr):
@@ -55,6 +56,10 @@ class AEObq_OpacityTemplate(ShaderAETemplate):
         self.addCustom("channel", Obq_OpacityCreateChannelMode, Obq_OpacitySetChannelMode)
         self.addControl("opacityRGBA", label="Opacity RGBA")
         self.addControl("opacityScalar", label="Opacity Scalar")
+        self.addControl("hard", label="Use hard opacity")
+        self.addSeparator()
+        self.addControl("threshold", label="Threshold")
+        self.addControl("invert", label="Invert")
         self.endLayout() #End Opacity
         
         # include/call base class/node attributes

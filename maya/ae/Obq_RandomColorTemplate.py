@@ -1,4 +1,4 @@
-# 2014-09-10 05.58 am
+# 2014-11-30 11.22 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -6,6 +6,23 @@ import maya.mel as mel
 import mtoa.utils as utils
 import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
+
+
+randomColorXtoAModeEnumOp = [
+    (0, 'SItoA'), 
+    (1, 'MtoA'), 
+    (2, 'HtoA'), 
+]
+
+def Obq_RandomColorCreateXtoAMode(attr):
+    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
+    cmds.attrEnumOptionMenuGrp('Obq_RandomColorXtoAMode', attribute=attr, label="Software", 
+                               enumeratedItem=randomColorXtoAModeEnumOp)    
+    cmds.setUITemplate(popTemplate=True)
+    
+def Obq_RandomColorSetXtoAMode(attr):
+    cmds.attrEnumOptionMenuGrp('Obq_RandomColorXtoAMode', edit=True, attribute=attr)
+
 
 def Obq_RandomColorHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
@@ -31,13 +48,23 @@ class AEObq_RandomColorTemplate(ShaderAETemplate):
 
 
         self.beginLayout("Options", collapse=False )
+        self.addCustom("XtoA", Obq_RandomColorCreateXtoAMode, Obq_RandomColorSetXtoAMode)
         self.addControl("randMax", label="Number of values")
         self.addControl("seed", label="Seed")
         self.endLayout()
+        
         self.beginLayout("Strip", collapse=False )
         self.beginNoOptimize()
         self.addControl("stripModelName", label="Strip Model Name")
         self.addControl("stripFrameNumber", label="Strip Frame Number")
+        self.endNoOptimize()
+        self.endLayout()
+
+        self.beginLayout("Instances", collapse=False )
+        self.beginNoOptimize()
+        self.addControl("stripInstanceFrameNumber", label="Strip Instances Frame Number")
+        self.addControl("stripInstanceID", label="Strip Instances ID")
+        self.addControl("stripInstanceShape", label="Strip Instances Shape")
         self.endNoOptimize()
         self.endLayout()
 

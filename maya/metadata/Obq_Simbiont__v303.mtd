@@ -2,7 +2,7 @@
 
 [node Obq_Simbiont]
   maya.name                     STRING "Obq_Simbiont"
-  maya.id                       INT 0x0011CD51
+  maya.id                       INT     0x0011CD51
   maya.classification           STRING "shader/surface"
 
   houdini.icon                  STRING "SHOP_surface"
@@ -14,30 +14,30 @@
     default                     STRING "\\\\NEARLINE1\\bank\\3D\\SHADERS\\DarkTree"
   [attr sampleSize]
     desc                        STRING "Sample Size"
-    min                         FLOAT  0
+    min                         FLOAT   0
     softmin                     FLOAT   0
     softmax                     FLOAT   1
     default                     FLOAT   0.2
   [attr bumpScale]
     desc                        STRING "Bump Scale"
-    softmin                     FLOAT   -1
+    softmin                     FLOAT  -1
     softmax                     FLOAT   1
     default                     FLOAT   1
   [attr frameNumber]
     desc                        STRING "Time"
-    min                         FLOAT  0
+    min                         FLOAT   0
     softmin                     FLOAT   0
     softmax                     FLOAT   1000
     default                     FLOAT   0
   [attr cameraNear]
     desc                        STRING "Camera Near"
-    min                         FLOAT  0
-    softmin                     FLOAT  0
-    softmax                     FLOAT  10
-    default                     FLOAT  0
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   10
+    default                     FLOAT   0
   [attr cameraFar]
     desc                        STRING "Camera Far"
-    min                         FLOAT  0
+    min                         FLOAT   0
     softmin                     FLOAT   0
     softmax                     FLOAT   100
     default                     FLOAT   1000
@@ -51,18 +51,17 @@
     default                     INT     0
  [attr evaluateRGB]
     desc                        STRING "RGB"
-    min                         INT     -1
+    min                         INT    -1
     max                         INT     22
     default                     INT     0
  [attr evaluateAlpha]
     desc                        STRING "Alpha"
-    label                       STRING "Patate"
-    min                         INT     -1
+    min                         INT    -1
     max                         INT     22
     default                     INT     0
   [attr outRRR]
     desc                        STRING "Grayscale"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr coordinateSystem]
     desc                        STRING "Coordinate System"
     min                         INT     0
@@ -70,13 +69,13 @@
     default                     INT     0
   [attr customCoordinates]
     desc                        STRING "Custom Coordinates"
-    default                     VECTOR 0 0 0
+    default                     VECTOR  0 0 0
   [attr coordinateScale]
     desc                        STRING "Coordinate Scale"
-    default                     VECTOR 1 1 1
+    default                     VECTOR  1 1 1
   [attr globalTweaksOnly]
     desc                        STRING "Global Tweaks Only"
-    default                     BOOL  True
+    default                     BOOL    True
   [attr componentLibsPath]
     desc                        STRING "Component Libs Path"
     default                     STRING "C:\\oblique\\xsi\\workgroups\\dte_64_components"
@@ -85,7 +84,7 @@
 
   [attr tweakEnable0]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName0]
     desc                        STRING "Name"
   [attr tweakColor0]
@@ -98,7 +97,7 @@
     default                     FLOAT   0
   [attr tweakEnable1]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName1]
     desc                        STRING "Name"
   [attr tweakColor1]
@@ -111,7 +110,7 @@
     default                     FLOAT   0
   [attr tweakEnable2]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName2]
     desc                        STRING "Name"
   [attr tweakColor2]
@@ -124,7 +123,7 @@
     default                     FLOAT   0
   [attr tweakEnable3]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName3]
     desc                        STRING "Name"
   [attr tweakColor3]
@@ -137,7 +136,7 @@
     default                     FLOAT   0
   [attr tweakEnable4]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName4]
     desc                        STRING "Name"
   [attr tweakColor4]
@@ -150,7 +149,7 @@
     default                     FLOAT   0
   [attr tweakEnable5]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName5]
     desc                        STRING "Name"
   [attr tweakColor5]
@@ -163,7 +162,7 @@
     default                     FLOAT   0
   [attr tweakEnable6]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName6]
     desc                        STRING "Name"
   [attr tweakColor6]
@@ -176,7 +175,7 @@
     default                     FLOAT   0
   [attr tweakEnable7]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName7]
     desc                        STRING "Name"
   [attr tweakColor7]
@@ -189,7 +188,7 @@
     default                     FLOAT   0
   [attr tweakEnable8]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName8]
     desc                        STRING "Name"
   [attr tweakColor8]
@@ -202,7 +201,7 @@
     default                     FLOAT   0
   [attr tweakEnable9]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName9]
     desc                        STRING "Name"
   [attr tweakColor9]
@@ -215,7 +214,7 @@
     default                     FLOAT   0
   [attr tweakEnable10]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName10]
     desc                        STRING "Name"
   [attr tweakColor10]
@@ -228,7 +227,7 @@
     default                     FLOAT   0
   [attr tweakEnable11]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName11]
     desc                        STRING "Name"
   [attr tweakColor11]
@@ -241,7 +240,7 @@
     default                     FLOAT   0
   [attr tweakEnable12]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName12]
     desc                        STRING "Name"
   [attr tweakColor12]
@@ -254,7 +253,7 @@
     default                     FLOAT   0
   [attr tweakEnable13]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName13]
     desc                        STRING "Name"
   [attr tweakColor13]
@@ -267,7 +266,7 @@
     default                     FLOAT   0
   [attr tweakEnable14]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName14]
     desc                        STRING "Name"
   [attr tweakColor14]
@@ -280,7 +279,7 @@
     default                     FLOAT   0
   [attr tweakEnable15]
     desc                        STRING "Enable"
-    default                     BOOL  False
+    default                     BOOL    False
   [attr tweakName15]
     desc                        STRING "Name"
   [attr tweakColor15]
