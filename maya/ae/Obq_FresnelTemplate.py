@@ -1,5 +1,6 @@
-# 2014-12-01 12.39 am
-# Note: ior4standard and iorExpression not yet implemented
+# 2014-12-02 02.44 am
+# Note: Presets have been done as Maya stock attrPresets
+#       ior4standard and iorExpression are not yet implemented
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -230,22 +231,22 @@ class AEObq_FresnelTemplate(ShaderAETemplate):
 
         self.beginLayout("Main", collapse=False )
         
-        self.beginLayout("Settings", collapse=True )
+        self.beginLayout("Settings", collapse=False )
         self.addCustom("mode", Obq_FresnelCreateModeMode, Obq_FresnelSetModeMode)
         self.addCustom("inputType", Obq_FresnelCreateInputTypeMode, Obq_FresnelSetInputTypeMode)
         self.endLayout() #End Settings
                 
-        self.beginLayout("Presets", collapse=True )
+        #self.beginLayout("Presets", collapse=True )
         # ADD NEW MATERIAL HERE AND DON'T FORGET TO ADD IT IN THE LAYOUT COMBO BOX
         # .spd, .csv and .txt, can be taken from :
         # PBRT
         # http://www.filmetrics.com/refractive-index-database 
         # or http://refractiveindex.info/?group=METALS&material=Gold
         #self.addCustom("presets", Obq_FresnelCreatePresetsMode, Obq_FresnelSetPresetsMode)
-        self.endLayout() #End Presets
+        #self.endLayout() #End Presets
 
         
-        self.beginLayout("SPD (Strings or File *.csv, *.txt, *.spd)", collapse=True )
+        self.beginLayout("SPD (Strings or File *.csv, *.txt, *.spd)", collapse=False )
         self.addControl("iorFilename", label="Filename")
         self.addControl("lambdasStr", label="Lambda")
         self.addControl("etasStr", label="Eta (n)")
@@ -253,31 +254,31 @@ class AEObq_FresnelTemplate(ShaderAETemplate):
         self.addCustom("lambdaUnits", Obq_FresnelCreateLambdaUnitsMode, Obq_FresnelSetLambdaUnitsMode)
         self.endLayout() #End File
         
-        self.beginLayout("Refractive Indices", collapse=True )
+        self.beginLayout("Refractive Indices", collapse=False )
         self.addControl("iorRGB", label="n")
         self.endLayout() #End Refractive Indices
         
-        self.beginLayout("Extinction Coefficients", collapse=True )
+        self.beginLayout("Extinction Coefficients", collapse=False )
         self.addControl("kRGB", label="k")
         self.endLayout() #End Extinction Coefficients
         
-        self.beginLayout("Equations", collapse=True )
+        self.beginLayout("Equations", collapse=False )
         self.addCustom("method", Obq_FresnelCreateMethodMode, Obq_FresnelSetMethodMode)
         self.endLayout() #End Equations
         
-        self.beginLayout("Options", collapse=True )
+        self.beginLayout("Options", collapse=False )
         self.addControl("roughness", label="Roughness")
         self.addControl("ratioFsFp", label="Ratio of polarized Fs/Fp")
         self.addCustom("backfaceMode", Obq_FresnelCreateBackfaceMode, Obq_FresnelSetBackfaceMode)
         self.endLayout() #End Options
         
-        self.beginLayout("Output", collapse=True )
+        self.beginLayout("Output", collapse=False )
         self.beginNoOptimize()
         self.addControl("transmittance", label="Output Refraction Color")
         self.endNoOptimize()
         self.endLayout() #End Output
         
-        self.beginLayout("Media In Refractive Indices", collapse=True )
+        self.beginLayout("Media In Refractive Indices", collapse=False )
         self.addControl("iorInRGB", label="n")
         self.endLayout() #End Media In Refractive Indices
         
@@ -291,7 +292,7 @@ class AEObq_FresnelTemplate(ShaderAETemplate):
         self.addControl("roughnessSampleSize", label="Roughness sample size")
         self.endLayout() #End LookUp Table
         
-        self.beginLayout("Spectrum", collapse=True )
+        self.beginLayout("Spectrum", collapse=False )
         self.addControl("useFullSpectrum", label="Use full spectrum data in equations (metal)")
         self.endLayout() #End Spectrum
         

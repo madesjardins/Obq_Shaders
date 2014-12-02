@@ -14,8 +14,12 @@
         + copy the content of the "icons" folder into "/opt/solidangle/mtoa/<Maya Version/icons",[Linux]
         + copy the content of the "icons" folder into "~/solidangle/mtoa/<Maya Version/icons",[OSX]
 
-        + copy the .dll     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
-        + copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
+		+ copy the content of the "attrPresets" folder into "C:\Users\<User Account>\Documents\maya\<Maya Version>\presets\attrPresets",[Windows]
+		+ copy the content of the "attrPresets" folder into "/home/<User Account>/maya/<Maya Version>/presets/attrPresets",[Linux]
+		+ copy the content of the "attrPresets" folder into "~/Library/Preferences/Autodesk/maya/<Maya Version>/presets/attrPresets",[OSX]
+
+        + copy the .dll   in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
+        + copy the .so    in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
         + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
 
 
@@ -42,6 +46,8 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Version History ##
 
+### 2014-12-02 Changes  ###
+- **[ACH]** Added a Maya attrPresets folder and ported the 42 `Obq_Fresnel` material presets from the `Obq_Fresnel.spdl` file into the Maya attribute editor "Presets" menu format.
 
 ### 2014-11-30 Changes  ###
 - **[ACH]** Updated the metadata file to add the new v303 shaders and fix indentation

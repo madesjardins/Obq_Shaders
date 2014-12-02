@@ -2,7 +2,7 @@ HOW TO INSTALL
 ==============
 
   Windows requirements : 
-	Microsoft Visual C++ 2010 redistributable package (x64)
+  Microsoft Visual C++ 2010 redistributable package (x64)
 
   + copy the content of the "metadata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
   + copy the content of the "metadata" folder into "/opt/solidangle/mtoa/<Maya Version>/shaders/",[Linux]
@@ -16,12 +16,16 @@ HOW TO INSTALL
   + copy the content of the "icons" folder into "/opt/solidangle/mtoa/<Maya Version/icons",[Linux]
   + copy the content of the "icons" folder into "~/solidangle/mtoa/<Maya Version/icons",[OSX]
 
+  + copy the content of the "attrPresets" folder into "C:\Users\<User Account>\Documents\maya\<Maya Version>\presets\attrPresets",[Windows]
+  + copy the content of the "attrPresets" folder into "/home/<User Account>/maya/<Maya Version>/presets/attrPresets",[Linux]
+  + copy the content of the "attrPresets" folder into "~/Library/Preferences/Autodesk/maya/<Maya Version>/presets/attrPresets",[OSX]
+
   + copy the .dll     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
   + copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
   + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
 
   To use Obq_Simbiont:
-  + copy the "bin\dte\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another 	[Windows]
+  + copy the "bin\dte\dte_2600_64.dll" (DarkTree library) to either "C:\Windows" or another   [Windows]
     arbitrary directory (AD). If you chose the AD method, you'll need to append this AD 
     to the PATH environment variable. For example, you can add : 
     "set PATH=%PATH%;\\serverX\dte_folder" in the .bat that launches Maya (without the quotes).
@@ -36,9 +40,9 @@ HOW TO INSTALL
   The "Core" version contains all Obq_Shaders that don't require additional libs than Arnold's.
   Here's the list of the shaders you won't find in the "Core" version and must be compiled/copied separately:
 
-	* Obq_Simbiont
+  * Obq_Simbiont
 
-	
+  
 Linux and Mac OSX :
 
   Because Obq_Simbiont requires a Windows library, it is not available for Linux and Mac OSX.  
@@ -49,11 +53,11 @@ HOW TO COMPILE
 ==============
 
 Requirements:
-	Microsoft Visual C++ (Express) 2010 [windows]
-	Windows SDK [windows]
-	Arnold SDK  [all OS]
-	GLM 0.9.4.3 (or above)  [all OS]
-	GCC 4.1.2 (recommended) [Linux, Mac OSX]
+  Microsoft Visual C++ (Express) 2010 [windows]
+  Windows SDK [windows]
+  Arnold SDK  [all OS]
+  GLM 0.9.4.3 (or above)  [all OS]
+  GCC 4.1.2 (recommended) [Linux, Mac OSX]
 
 
 On Windows, simply open the VC++ solution (Obq_Shaders.sln) in the folder "win_VC++" and build a Release x64 version of all projects.

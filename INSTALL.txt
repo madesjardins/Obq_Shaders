@@ -26,6 +26,10 @@ HOW TO INSTALL
 	+ copy the content of the "icons" folder into "/opt/solidangle/mtoa/<Maya Version/icons",[Linux]
 	+ copy the content of the "icons" folder into "~/solidangle/mtoa/<Maya Version/icons",[OSX]
 
+  + copy the content of the "attrPresets" folder into "C:\Users\<User Account>\Documents\maya\<Maya Version>\presets\attrPresets",[Windows]
+  + copy the content of the "attrPresets" folder into "/home/<User Account>/maya/<Maya Version>/presets/attrPresets",[Linux]
+  + copy the content of the "attrPresets" folder into "~/Library/Preferences/Autodesk/maya/<Maya Version>/presets/attrPresets",[OSX]
+  
 	+ copy the .dll     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
 	+ copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
 	+ copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
