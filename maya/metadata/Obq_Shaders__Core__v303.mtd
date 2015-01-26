@@ -1,4 +1,4 @@
-# 2014-11-30 11.50 pm
+# 2015-01-26 05.42 pm
 # Added Obq v303 shader support
 
 [node Obq_AngularCamera]
@@ -11,7 +11,8 @@
   houdini.label                 STRING "Obq_AngularCamera"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_AngularCamera.html"
   houdini.order                 STRING "angle flip overRender exposure"
-
+  [attr is_perspective]
+    default                     BOOL   True
   [attr angle]
     desc                        STRING "Angle"
     min                         FLOAT   0.0
@@ -1167,6 +1168,8 @@
   houdini.label                 STRING "Obq_StereoLens"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
 
+  [attr is_perspective]
+    default                     BOOL   True
   [attr viewMode]
     desc                        STRING "viewMode"
     default                     INT     0

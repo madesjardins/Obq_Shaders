@@ -46,6 +46,10 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Version History ##
 
+### 2015-01-26 Changes  ###
+- **[ACH]** Updated the metadata file to add a the attribute "is_perspective" to the lens shaders. This should help fix the Arnold "Not a perspective camera, cannot use view-dependent subdivision" error.	[https://trac.solidangle.com/mtoa/ticket/1646#comment:9](https://trac.solidangle.com/mtoa/ticket/1646#comment:9)
+
+
 ### 2014-12-02 Changes  ###
 - **[ACH]** Added a Maya attrPresets folder and ported the 42 `Obq_Fresnel` material presets from the `Obq_Fresnel.spdl` file into the Maya attribute editor "Presets" menu format.
 
