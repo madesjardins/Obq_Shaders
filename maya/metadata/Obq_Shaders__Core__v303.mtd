@@ -1,4 +1,4 @@
-# 2015-01-26 05.42 pm
+# 2015-01-26 08.07 pm
 # Added Obq v303 shader support
 
 [node Obq_AngularCamera]
@@ -1874,7 +1874,9 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_LensDistortion"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html"
-
+  
+  [attr is_perspective]
+    default                     BOOL   True
   [attr useDof]
     desc                        STRING "useDof"
     default                     BOOL    False
