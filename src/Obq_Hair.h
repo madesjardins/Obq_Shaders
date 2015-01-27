@@ -1075,7 +1075,7 @@ public:
 		float phi = calcPhi(phi_i,phi_r);
 
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 
 		AtColor cR = m_I_R*M_R(theta_h)*N_R(phi)/cos2theta_d;
@@ -1094,7 +1094,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 
 		cR = m_I_R*M_R(theta_h)*N_R(phi)/cos2theta_d;
@@ -1110,7 +1110,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		cR =	m_scale_R*	m_I_R*M_R(theta_h)*		N_R(phi)		/cos2theta_d;
 		cTT =	m_scale_TT*	m_I_TT*M_TT(theta_h)*	N_TT(phi)		/cos2theta_d;
@@ -1125,7 +1125,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		AtColor cR =	m_scale_R*	m_I_R*M_R(theta_h)*		N_R(phi)		/cos2theta_d;
 		AtColor cTT =	m_scale_TT*	m_I_TT*M_TT(theta_h)*	N_TT(phi)		/cos2theta_d;
@@ -1141,7 +1141,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		return m_scale_R*	m_I_R*M_R(theta_h)*		N_R(phi)		/cos2theta_d;
 	}
@@ -1152,7 +1152,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		return m_scale_TT*	m_I_TT*M_TT(theta_h)*	N_TT(phi)		/cos2theta_d;
 	}
@@ -1163,7 +1163,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		return m_scale_TRT*m_I_TRT*M_TRT(theta_h)*	N_TRT(phi)		/cos2theta_d;
 	}
@@ -1174,7 +1174,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		return m_scale_g*M_TRT(theta_h)*	m_I_g*N_g(phi)	/cos2theta_d;
 	}
@@ -1186,7 +1186,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 
 		AtColor cR =   m_I_R*M_R_G(theta_h,sigma_bar_f_2)*hairData.get_N_G_R(theta_i)/cos2theta_d;
@@ -1224,7 +1224,7 @@ public:
 			float theta_h = (theta_r+theta_i)/2.0f;
 			float theta_d = (theta_r-theta_i)/2.0f;
 
-			float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+			float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 			if(std::abs(theta_r_id) == resM1) // poles
 			{
@@ -1288,7 +1288,7 @@ public:
 		float theta_d = (theta_r-theta_i)/2.0f;
 		float phi = calcPhi(phi_i,phi_r);
 
-		float cos2theta_d = CLAMP(std::pow(std::cos(theta_d),2),0.0001f,1.0f);
+		float cos2theta_d = CLAMP(static_cast<float>(std::pow(std::cos(theta_d),2)),0.0001f,1.0f);
 
 		cR =	m_scale_R*	M_R(theta_h)*	N_R(phi)	/cos2theta_d;
 		cTT =	m_scale_TT*	M_TT(theta_h)*	N_TT(phi)	/cos2theta_d;

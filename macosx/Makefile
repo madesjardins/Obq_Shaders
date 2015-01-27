@@ -1,19 +1,19 @@
 EXT = dylib
-OBQVERSION = v303
+OBQVERSION = v304
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
-GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.2.0-darwin
+GLMPATH = /Users/madesjardins/Softwares/glm
+ARNOLD = /Users/madesjardins/Arnold/Arnold-4.2.3.1-darwin
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH)
 LINKINCLUDES = -L$(ARNOLD)/bin
-CPP = g++-4.1
+CPP = g++
 COMMONFLAGS = 
 OPTIMIZE = -O3 -Wall
 # create dependency files: -MMD 
 CPPFLAGS = -c -fmessage-length=0 -fPIC -MMD \
 $(OPTIMIZE) $(COMMONFLAGS) $(INCLUDES)
-LINKFLAGS = -dynamiclib -Wl,--no-undefined
+LINKFLAGS = -dynamiclib -Wl
 LIBS = -lai
 LINKING = $(LINKINCLUDES) $(LIBS)
 
