@@ -33,6 +33,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <ai.h>
 #include <algorithm>
 #include <cstdlib>
+#include <cstring>
 #include <cmath>
 #include <iostream>
 #include <sstream>
