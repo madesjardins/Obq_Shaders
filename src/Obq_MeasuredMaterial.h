@@ -54,10 +54,10 @@ class MeasuredBRDF{
 
 public:
 	MeasuredBRDF(ISBrdf* _measured = NULL, AtVector _minusRd = AI_V3_Y, AtVector _U = AI_V3_X, AtVector _V = AI_V3_Y, AtVector _W = AI_V3_Z, AtVector _Ng = AI_V3_Y, AtUInt32 _binMaxDif = 13,bool _useJitters = false):
-	  measured(_measured),
-		  minusRd(_minusRd),
-		  U(_U), V(_V), W(_W),
+	  U(_U), V(_V), W(_W),
 		  Ng(_Ng),
+		  minusRd(_minusRd),
+		  measured(_measured),
 		  binMaxDif(_binMaxDif),
 		  useJitters(_useJitters)
 	  {

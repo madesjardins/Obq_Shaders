@@ -930,7 +930,7 @@ inline bool fileExists(const char* filename)
 {
     std::ifstream ifs ( filename , std::ifstream::in );
 
-    if(ifs==NULL)
+    if(!ifs.is_open())
         return false;
 
     ifs.close();

@@ -110,7 +110,7 @@ node_update
 			s.ToRGB(data->rgb);
 		}
 		else
-			AiMsgError("Strings are not valid, check sizes (%u, %u, %u).",lambdas.size(),intensities.size());
+			AiMsgError("Strings are not valid, check sizes (%lu, %lu).",lambdas.size(),intensities.size());
 	}
 
 	// transfer to sRGB gamma ?

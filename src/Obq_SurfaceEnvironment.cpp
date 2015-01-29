@@ -178,7 +178,7 @@ shader_evaluate
 		float gloss = AiShaderEvalParamFlt(p_cosLobeGloss);
 
 		// Ray Type
-		unsigned int rayType;
+		unsigned int rayType = AI_RAY_CAMERA;
 
 		if( usePassEnvShader ){
 

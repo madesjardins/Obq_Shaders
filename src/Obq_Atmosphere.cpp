@@ -122,7 +122,7 @@ shader_evaluate
 			//////////////////
 			// RADIUS FALLOFF
 			//////////////////
-			AtVector objectCenter;
+			AtVector objectCenter = AI_V3_ZERO;
 			bool useRadiusFalloff = false;
 			float objectRadius = 1.0f;
 			float falloffStart = 1.0f;

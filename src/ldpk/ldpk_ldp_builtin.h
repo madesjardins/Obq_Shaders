@@ -343,7 +343,7 @@ namespace ldpk
 #else
 			int r = pthread_mutex_destroy(&_mutex);
 			if(r)
-				{ AiMsgError("ldpk::ldp_builtin::pthread_mutex_destroy: ", strerror(r)); }
+				{ AiMsgError("ldpk::ldp_builtin::pthread_mutex_destroy: %s", strerror(r)); }
 #endif
 			}
 //! @name Filmback, Lens Center Offset, Focal Length and Pixel Aspect.

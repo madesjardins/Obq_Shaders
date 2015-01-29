@@ -299,7 +299,7 @@ public:
 		// use Importance sampling
 		if(isRes > 0)
 		{
-			AiMsgInfo("Creating Importance sampling data", filename);
+			AiMsgInfo("Creating Importance sampling data");
 			createIS(isRes);
 		}
 

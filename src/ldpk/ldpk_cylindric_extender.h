@@ -6,7 +6,9 @@
 #ifndef ldpk_cylindric_extender_sdv
 #define ldpk_cylindric_extender_sdv
 
+#ifndef M_PI
 #define M_PI 3.14159265358979
+#endif
 
 #include <ldpk/ldpk_extender_base.h>
 

@@ -9,7 +9,9 @@
 #include <ldpk/ldpk_ldp_builtin.h>
 #include <ldpk/ldpk_generic_radial_distortion.h>
 
+#ifndef M_PI
 #define M_PI 3.14159265358979
+#endif
 
 //! @file tde4_ldp_radial_deg_8.h
 //! @brief Plugin class for radial distortion

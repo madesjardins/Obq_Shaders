@@ -193,7 +193,7 @@ public:
     RGBSpectrum(float v = 0.f) : CoefficientSpectrum<3>(v) { }
     RGBSpectrum(const CoefficientSpectrum<3> &v)
         : CoefficientSpectrum<3>(v) { }
-    RGBSpectrum(const RGBSpectrum &s, SpectrumType type = SPECTRUM_REFLECTANCE) {
+    RGBSpectrum(const RGBSpectrum &s, SpectrumType type = SPECTRUM_REFLECTANCE) : CoefficientSpectrum<3>()  {
         *this = s;
     }
     static RGBSpectrum FromRGB(const float rgb[3],

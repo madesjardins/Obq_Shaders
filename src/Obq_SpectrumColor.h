@@ -55,7 +55,7 @@ inline bool loadSPD(const char* filename, std::vector<float>* lambdas, std::vect
 
 	std::ifstream ifs ( filename , std::ifstream::in );
 	
-	if(ifs==NULL)
+	if(!ifs.is_open())
 	{
 		AiMsgError("Can't open file : \"%s\".",filename);
 		return false;
@@ -101,7 +101,7 @@ inline bool loadTXT(const char* filename, std::vector<float>* lambdas, std::vect
 	
 	std::ifstream ifs ( filename , std::ifstream::in );
 	
-	if(ifs==NULL)
+	if(!ifs.is_open())
 	{
 		AiMsgError("Can't open file : \"%s\".",filename);
 		return false;
@@ -192,7 +192,7 @@ inline bool loadCSV(const char* filename, std::vector<float>* lambdas, std::vect
 	
 	std::ifstream ifs ( filename , std::ifstream::in );
 	
-	if(ifs==NULL)
+	if(!ifs.is_open())
 	{
 		AiMsgError("Can't open file : \"%s\".",filename);
 		return false;

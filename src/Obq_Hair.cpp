@@ -826,7 +826,7 @@ static AtVector ObqHairSingleScatEvalSample_separateLobes(const void *brdf, floa
 	const ObqHair *hairData = (const ObqHair*)brdf;
 
 	//AtVector indir;
-	float theta_o, phi_o;
+	float theta_o = 0.0f, phi_o = 0.0f;
 	float rnd[2] = {rx,ry};
 	if(hairData->get_MIScurrentUseRandom())
 	{
@@ -963,7 +963,7 @@ static AtVector ObqHairDualScatEvalSample_separateLobes(const void *brdf, float 
 {
 	const ObqHair *hairData = (const ObqHair*)brdf;
 	
-	float theta_o, phi_o;
+	float theta_o = 0.0f, phi_o = 0.0f;
 	float rnd[2] = {rx,ry};
 	if(hairData->get_MIScurrentUseRandom())
 	{

@@ -232,7 +232,7 @@ node_update
 				fileOK = true;
 			}
 			else
-				AiMsgError("String : strings are not valid, check sizes (%u, %u, %u). Will use ior = 1,1,1 and k = 0,0,0.",lambdas.size(),etas.size(),ks.size());
+				AiMsgError("String : strings are not valid, check sizes (%lu, %lu, %lu). Will use ior = 1,1,1 and k = 0,0,0.",lambdas.size(),etas.size(),ks.size());
 		}
 
 		// copy to global
@@ -657,7 +657,9 @@ shader_evaluate
 {
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 
-	AtColor iorRGB, kRGB, iorInRGB;
+   AtColor iorRGB = AI_RGB_BLACK;
+   AtColor kRGB = AI_RGB_BLACK;
+   AtColor iorInRGB = AI_RGB_BLACK;
 
 	//BACKFACE
 	AtVector s_normal = sg->N;

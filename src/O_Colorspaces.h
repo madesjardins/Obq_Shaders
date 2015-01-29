@@ -479,10 +479,10 @@ public:
 		:
 		gId(_gId),
 		ilmntId(_ilmntId),
+		hasPrimariesInfo(false),
 		Rx(_Rx), Ry(_Ry), RY(_Ry), 
 		Gx(_Gx), Gy(_Gy), GY(_GY),
-		Bx(_Bx), By(_By), BY(_BY),
-		hasPrimariesInfo(false)
+		Bx(_Bx), By(_By), BY(_BY)
 	{
 		illuminantID2XYZ(_ilmntId, Xw, Yw, Zw);
 		updateMatrices();

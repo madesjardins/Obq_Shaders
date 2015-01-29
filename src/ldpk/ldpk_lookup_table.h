@@ -206,7 +206,7 @@ namespace ldpk
 	bool lookup_table<VEC2>::next()
 		{
 // Each position painted
-		if(_k >= _samples.size()) return false;
+		if(_k >= int(_samples.size())) return false;
 
 		int kx = _k % _nx;
 		if(kx <= _ix_lc)

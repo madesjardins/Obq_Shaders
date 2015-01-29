@@ -40,6 +40,7 @@ namespace ldpk
 			_c2 = _u1 = _v1 = 0.0;
 			_c4 = _u3 = _v3 = 0.0;
 			}
+		virtual ~radial_decentered_distortion() {}
 //! Get coefficient c[i], 0 <= i < 6
 		double get_coeff(int i) const
 			{
