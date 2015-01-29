@@ -67,6 +67,42 @@ HOW TO COMPILE
   When compiling for linux and macosx, please use the Makefiles from within the folders.
   Simply change the OBQVERSION, GLMPATH and ARNOLD path before running make.
 
+  [New]
+  
+  - GLM is now included as a submodule.
+    Just run:
+      
+      'git submodule init' on a new clone
+        or
+      'git submodule sync' after a source update ('git pull')
+      
+    followed by:
+      
+      'git submodule update'
+  
+  - SCons build scripts
+    You can now build using SCons if you have it installed:
+    
+      'scons with-arnold=/path/to/arnold/sdk'
+    
+    If everything goes as expected, you should have the shaders in a newly created
+    'release' directory.
+    
+    Notes:
+    
+    - An 'excons.cache' file will be created that contains the flags you passed
+      to scons the last time. The values will be printed out, and unless you need
+      to change, you can simply run 'scons' the next time.
+    - As with make, you can compile files in parallel using '-jN' when N is the number of jobs to run.
+    - You can build a debug version by adding 'debug=1' to the command.
+    - You can control the warning level by adding 'warnings=none|std|all' to the command. (Default is 'all')
+    - You can make warnings as errors by adding 'warnings-as-errors=1' to the command.
+    - You can select the visual c++ compiler version by adding 'mscver=10.0' to the command. (Default is '9.0')
+      As far as I remember:
+         Visual Studio 2005 -> 8.0
+         Visual Studio 2008 -> 9.0
+         Visual Studio 2010 -> 10.0
+         Visual Studio 2012 -> 11.0
 
 SItoA ARNOLD VERSION
 ====================
