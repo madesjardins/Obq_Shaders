@@ -1,0 +1,6 @@
+[submodule "excons"]
+	path = excons
+	url = git://github.com/gatgui/excons.git
+[submodule "glm"]
+	path = glm
+	url = git://github.com/g-truc/glm
