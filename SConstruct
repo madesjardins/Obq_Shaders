@@ -5,6 +5,7 @@ import excons
 from excons.tools import maya
 from excons.tools import arnold
 
+excons.SetArgument("no-arch", 1)
 env = excons.MakeBaseEnv()
 
 Obq_version = "v304"
