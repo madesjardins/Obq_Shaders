@@ -183,6 +183,8 @@ node_parameters
 
 	AtArray* a = AiArray(2, 1, AI_TYPE_FLOAT, 0.0f,0.0f);
 	AiParameterARRAY("fov",a);	
+
+	AiMetaDataSetBool(mds, NULL, "is_perspective", true);
 }
 
 
