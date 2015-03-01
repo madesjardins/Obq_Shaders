@@ -1,4 +1,4 @@
-# 2015-03-01 08.33 am
+# 2015-03-01 11.38 am
 
 [node Obq_AngularCamera]
   maya.name                     STRING "Obq_AngularCamera"
@@ -66,7 +66,7 @@
     default                     FLOAT   0.1
     maya.channelbox             BOOL    True
   [attr use3dAbsorption]
-    desc                        STRING
+    desc                        STRING "Enable 3D absorption function"
     houdini.label               STRING "Enable 3D absorption function"
     default                     BOOL    False
     maya.channelbox             BOOL    True
