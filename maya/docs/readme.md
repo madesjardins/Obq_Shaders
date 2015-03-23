@@ -38,7 +38,7 @@ If you don't own a copy of DarkTree, you can download some DarkTree files here:
 
 ## OBQ Shaders in Maya ##
 
-The easiest way to check if MtoA has loaded the Oblique shaders is by opening up Maya's `Create Node` window and clicking on the Arnold render node section on the left side of the window. If the OBQ shaders are visible in the list and they have a custom "OBQ" icon then the shaders were installed correctly.
+The easiest way to check if MtoA has loaded the Oblique shaders is by opening up Maya's `Create Node` window and clicking on the Arnold render node section on the left side of the window. If the OBQ shaders are visible in the list and they have a custom "OBQ" icon, then the shaders were installed correctly.
 
 ![OBQ Shaders in the Maya Create Node Window](images/create_node_window.png)
 
@@ -46,14 +46,17 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Version History ##
 
-### 2015-01-26 Changes  ###
+### 2015-03-01 Changes ###
+- **[ACH]** Updated the metadata files to add a Houdini "OBQ Shaders" category, and improved the Houdini GUI labeling.
+
+### 2015-01-26 Changes ###
 - **[ACH]** Updated the metadata file to add a the attribute "is_perspective" to the lens shaders. This should help fix the Arnold "Not a perspective camera, cannot use view-dependent subdivision" error.	[https://trac.solidangle.com/mtoa/ticket/1646#comment:9](https://trac.solidangle.com/mtoa/ticket/1646#comment:9)
 
 
-### 2014-12-02 Changes  ###
+### 2014-12-02 Changes ###
 - **[ACH]** Added a Maya attrPresets folder and ported the 42 `Obq_Fresnel` material presets from the `Obq_Fresnel.spdl` file into the Maya attribute editor "Presets" menu format.
 
-### 2014-11-30 Changes  ###
+### 2014-11-30 Changes ###
 - **[ACH]** Updated the metadata file to add the new v303 shaders and fix indentation
 - **[ACH]** Updated Obq Help links in ae template files  
 - **[ACH]** Added new Maya Node IDs to Metadata files:
@@ -71,7 +74,7 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 - **[ACH]** Updated `Obq_OpacityTemplate.py` and mtd to add the modified attributes.
 - **[ACH]** Updated `Obq_FresnelTemplate.py` and mtd to add the modified attributes.
 
-### 2014-10-19 Changes  ###
+### 2014-10-19 Changes ###
 - **[ACH]** Added ae templates for the following shaders:
 
 	- Obq_CameraProjectionSpace
@@ -83,13 +86,13 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 	- Obq_RandomID
 	- Obq_RayDepth
 
-### 2014-09-11 Changes  ###
+### 2014-09-11 Changes ###
 - **[ACH]** Added the default shader settings to the Maya .mtd metadata file.
 - **[ACH]** Added Obq_Simbiont ae template file.
 - **[ACH]** Added OBQ_IESLightFilter ae template file.
 
 
-### 2014-09-10 Changes  ###
+### 2014-09-10 Changes ###
 - **[ACH]** Added Maya files for:
 	- Obq_Atmosphere
 	- Obq_Bend4Stereo
@@ -99,7 +102,7 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 - **[ACH]** Updated the Obq_ToonSimple ae template
 
 
-### 2014-09-08 Changes  ###
+### 2014-09-08 Changes ###
 - **[ACH]** Added custom Maya OBQ icons.
 - **[ACH]** Renamed metadata file to match current shader DLL.
 

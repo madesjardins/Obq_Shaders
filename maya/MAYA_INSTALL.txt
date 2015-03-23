@@ -20,8 +20,8 @@ HOW TO INSTALL
   + copy the content of the "attrPresets" folder into "/home/<User Account>/maya/<Maya Version>/presets/attrPresets",[Linux]
   + copy the content of the "attrPresets" folder into "~/Library/Preferences/Autodesk/maya/<Maya Version>/presets/attrPresets",[OSX]
 
-  + copy the .dll     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
-  + copy the .so     in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
+  + copy the .dll   in "bin" into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
+  + copy the .so    in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
   + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
 
   To use Obq_Simbiont:
