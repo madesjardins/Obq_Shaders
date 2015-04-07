@@ -589,12 +589,19 @@ camera_create_ray
 
 //node_loader
 //{
-//	if (i != 0)
-//		return FALSE;
-//	node->methods     = ObqStereoLensMethods;
-//	node->output_type = AI_TYPE_UNDEFINED;
-//	node->name        = "Obq_StereoLens";
-//	node->node_type   = AI_NODE_CAMERA;
-//	strcpy(node->version, AI_VERSION);
-//	return TRUE;
+	// if (i != 0)
+		// return false;
+	// node->methods     = ObqStereoLensMethods;
+	// node->output_type = AI_TYPE_NONE;
+	// node->name        = "Obq_StereoLens";
+	// node->node_type   = AI_NODE_CAMERA;
+  
+  //[ACH] Note: Visual Studio prefers strcpy_s which will remove the compiler warning message
+  // #if defined _WIN32 || defined _WIN64
+  // strcpy_s(node->version, AI_VERSION);
+  // #else
+  // strcpy(node->version, AI_VERSION);
+  // #endif
+  
+	// return true;
 //}

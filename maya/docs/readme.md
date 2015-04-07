@@ -47,11 +47,13 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 ## Version History ##
 
 ### 2015-03-01 Changes ###
+- **[ACH]** Updated the metadata file and the ae template for the Obq_StereoLens shader in MtoA.
+
+### 2015-03-01 Changes ###
 - **[ACH]** Updated the metadata files to add a Houdini "OBQ Shaders" category, and improved the Houdini GUI labeling.
 
 ### 2015-01-26 Changes ###
 - **[ACH]** Updated the metadata file to add a the attribute "is_perspective" to the lens shaders. This should help fix the Arnold "Not a perspective camera, cannot use view-dependent subdivision" error.	[https://trac.solidangle.com/mtoa/ticket/1646#comment:9](https://trac.solidangle.com/mtoa/ticket/1646#comment:9)
-
 
 ### 2014-12-02 Changes ###
 - **[ACH]** Added a Maya attrPresets folder and ported the 42 `Obq_Fresnel` material presets from the `Obq_Fresnel.spdl` file into the Maya attribute editor "Presets" menu format.
@@ -118,14 +120,18 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 ### Obq_ColorspaceConverterTemplate.py ###
 - The ColorspaceIn and ColorspaceOut GUI elements haven't been implemented yet.
 
-### OBQ Lens Shaders ###
+### Obq_StereoLens ###
+
+The shader needs to be customized to work with Maya/MtoA's camera naming system.
+
+## OBQ Lens Shaders ##
 
 MtoA loads lens shaders in Maya using the ae template file's `templates.registerTranslatorUI` function. At this point in time there appears to be an issue where the `Obq_AngularCamera` and `Obq_StereoLens` shaders aren't listed in the CameraShape node's Arnold section. This is something that has to be explored further.
 
 Also the current MtoA release's registerTranslatorUI function won't allow a 3rd party lens shader to be associated as both a "camera" and a "stereoRigCamera" object. This means that lens shader's won't be able to be added to the center camera view in a stereo camera rig.
 
 
-### Missing AE Template Files ###
+## Missing AE Template Files ##
 
 Several of the Obq shader's lack ae template files. The following ae template files need to be created:
 
