@@ -1,0 +1,31 @@
+// Obq_StereoLens shader for Arnold/C4DtoA
+// 2015-04-08 08.01 am
+
+STRINGTABLE ainode_Obq_StereoLens
+{
+	ainode_Obq_StereoLens   "Arnold Obq_StereoLens node";
+ 
+	C4DAI_OBQ_STEREOLENS_MAIN_GRP               "Main";
+  
+	C4DAIP_OBQ_STEREOLENS_VIEWMODE                      "viewMode";
+	C4DAIP_OBQ_STEREOLENS_LEFTCAMERA                    "Left Camera";
+  C4DAIP_OBQ_STEREOLENS_RIGHTCAMERA                   "Right Camera";
+  C4DAIP_OBQ_STEREOLENS_FILMBACKX                     "Filmback X";
+  C4DAIP_OBQ_STEREOLENS_LEFTCENTEROFFSET              "Left Center Offset";
+  C4DAIP_OBQ_STEREOLENS_RIGHTCENTEROFFSET             "Right Center Offset";
+  C4DAIP_OBQ_STEREOLENS_RECALCULATEDISTANCEFORSIDECAM "Recalculate Distance For Side Cam";
+  C4DAIP_OBQ_STEREOLENS_TOTALOVERSCANPIXELS           "Total Overscan Pixels";
+  C4DAIP_OBQ_STEREOLENS_USEDOF                        "Use DOF";
+  C4DAIP_OBQ_STEREOLENS_FOCUSDISTANCE                 "Focus Distance";
+  C4DAIP_OBQ_STEREOLENS_APERTURESIZE                  "Aperture Size";
+  C4DAIP_OBQ_STEREOLENS_APERTUREASPECTRATIO           "Aperture Aspect Ratio";
+  C4DAIP_OBQ_STEREOLENS_USEPOLYGONALAPERTURE          "Use Polygonal Aperture";
+  C4DAIP_OBQ_STEREOLENS_APERTUREBLADES                "Aperture Blades";
+  C4DAIP_OBQ_STEREOLENS_APERTUREBLADECURVATURE        "Aperture Blade Curvature";
+  C4DAIP_OBQ_STEREOLENS_APERTUREROTATION              "Aperture Rotation";
+  C4DAIP_OBQ_STEREOLENS_FOCUSPLANEISPLANE             "Focus Plane is Plane";
+  C4DAIP_OBQ_STEREOLENS_BOKEHINVERT                   "Invert";
+  C4DAIP_OBQ_STEREOLENS_BOKEHBIAS                     "Bias";
+  C4DAIP_OBQ_STEREOLENS_BOKEHGAIN                     "Gain";
+}
+
