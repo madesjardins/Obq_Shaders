@@ -3,12 +3,12 @@
 
 STRINGTABLE ainode_Obq_StereoLens
 {
-	ainode_Obq_StereoLens   "Arnold Obq_StereoLens node";
+  ainode_Obq_StereoLens   "Arnold Obq_StereoLens node";
  
-	C4DAI_OBQ_STEREOLENS_MAIN_GRP               "Main";
+  C4DAI_OBQ_STEREOLENS_MAIN_GRP               "Main";
   
-	C4DAIP_OBQ_STEREOLENS_VIEWMODE                      "viewMode";
-	C4DAIP_OBQ_STEREOLENS_LEFTCAMERA                    "Left Camera";
+  C4DAIP_OBQ_STEREOLENS_VIEWMODE                      "viewMode";
+  C4DAIP_OBQ_STEREOLENS_LEFTCAMERA                    "Left Camera";
   C4DAIP_OBQ_STEREOLENS_RIGHTCAMERA                   "Right Camera";
   C4DAIP_OBQ_STEREOLENS_FILMBACKX                     "Filmback X";
   C4DAIP_OBQ_STEREOLENS_LEFTCENTEROFFSET              "Left Center Offset";
