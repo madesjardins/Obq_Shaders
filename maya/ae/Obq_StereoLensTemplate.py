@@ -34,7 +34,6 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Obq_StereoLens", collapse=False)
 
         Obq_StereoLensHelpURL()
-
         
         self.beginLayout("Main", collapse=False)
         
@@ -111,7 +110,6 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.endLayout()     # end Obq_StereoLens layout
 
         self.beginLayout("Options", collapse=True)
-        self.addSeparator()
         self.addControl("aiUserOptions", label="User Options")
         self.endLayout()
 

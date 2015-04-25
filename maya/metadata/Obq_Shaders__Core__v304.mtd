@@ -1,11 +1,12 @@
-# 2015-03-01 11.38 am
+# 2015-04-25 09.52 am
 
 [node Obq_AngularCamera]
-  maya.name                     STRING "Obq_AngularCamera"
+  maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD40
   maya.classification           STRING "shader/surface"
   maya.type                     STRING "camera"
-
+  maya.translator               STRING "Obq_AngularCamera"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_AngularCamera"
@@ -1444,155 +1445,157 @@
   # houdini.label               STRING "Obq_Simbiont"
   # houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
 
-# [node Obq_StereoLens]
-  # maya.name                     STRING "Obq_StereoLens"
-  # maya.id                       INT     0x0011CD52
-  # maya.classification           STRING "shader/surface"
+[node Obq_StereoLens]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD52
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_StereoLens"
   
-  # houdini.category              STRING "OBQShaders"
-  # houdini.icon                  STRING "SHOP_surface"
-  # houdini.label                 STRING "Obq_StereoLens"
-  # houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_StereoLens"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
 
-  # [attr is_perspective]
-    # default                     BOOL   True
-    # default                     BOOL   True
-  # [attr viewMode]
-    # desc                        STRING "viewMode"
-    # houdini.label               STRING "viewMode"
-    # default                     INT     0
-  # [attr leftCamera]
-    # desc                        STRING "Left Camera"
-    # houdini.label               STRING "Left Camera"
-    # default                     STRING "Camera_L"
-  # [attr rightCamera]
-    # desc                        STRING "Right Camera"
-    # houdini.label               STRING "Right Camera"
-    # default                     STRING "Camera_R"
-  # [attr filmbackX]
-    # desc                        STRING "Filmback X"
-    # houdini.label               STRING "Filmback X"
-    # default                     FLOAT   0
-  # [attr leftCenterOffset]
-    # desc                        STRING "Left Center Offset"
-    # houdini.label               STRING "Left Center Offset"
-    # default                     FLOAT   0
-  # [attr rightCenterOffset]
-    # desc                        STRING "Right Center Offset"
-    # houdini.label               STRING "Right Center Offset"
-    # default                     FLOAT   0
-  # [attr recalculateDistanceForSideCam]
-    # desc                        STRING "Recalculate Distance For Side Cam"
-    # houdini.label               STRING "Recalculate Distance For Side Cam"
-    # default                     BOOL    True
-  # [attr totalOverscanPixels]
-    # desc                        STRING "Total Overscan Pixels"
-    # houdini.label               STRING "Total Overscan Pixels"
-    # default                     INT     0
-  # [attr useDof]
-    # desc                        STRING "Use DOF"
-    # houdini.label               STRING "Use DOF"
-    # default                     BOOL    False
-  # [attr focusDistance]
-    # desc                        STRING "Focus Distance"
-    # houdini.label               STRING "Focus Distance"
-    # default                     FLOAT   100
-  # [attr apertureSize]
-    # desc                        STRING "Aperture Size"
-    # houdini.label               STRING "Aperture Size"
-    # default                     FLOAT   0.1
-  # [attr apertureAspectRatio]
-    # desc                        STRING "Aperture Aspect Ratio"
-    # houdini.label               STRING "Aperture Aspect Ratio"
-    # default                     FLOAT   1
-  # [attr usePolygonalAperture]
-    # desc                        STRING "Use Polygonal Aperture"
-    # houdini.label               STRING "Use Polygonal Aperture"
-    # default                     BOOL    True
-  # [attr apertureBlades]
-    # desc                        STRING "Aperture Blades"
-    # houdini.label               STRING "Aperture Blades"
-    # default                     INT     5
-  # [attr apertureBladeCurvature]
-    # desc                        STRING "Aperture Blade Curvature"
-    # houdini.label               STRING "Aperture Blade Curvature"
-    # default                     FLOAT   0
-  # [attr apertureRotation]
-    # desc                        STRING "Aperture Rotation"
-    # houdini.label               STRING "Aperture Rotation"
-    # default                     FLOAT   0
-  # [attr focusPlaneIsPlane]
-    # desc                        STRING "Focus Plane is Plane"
-    # houdini.label               STRING "Focus Plane is Plane"
-    # default                     BOOL    True
-  # [attr fov]
-    # desc                        STRING "FOV"
-    # houdini.label               STRING "FOV"
-  # [attr position]
-    # desc                        STRING "Position"
-    # houdini.label               STRING "Position"
-    # default                     POINT   0 0 -1
-  # [attr look_at]
-    # desc                        STRING "Look At"
-    # houdini.label               STRING "Look At"
-    # default                     POINT   0 0 1
-  # [attr up]
-    # desc                        STRING "Up"
-    # houdini.label               STRING "Up"
-    # default                     VECTOR  0 1 0
-  # [attr matrix]
-    # desc                        STRING "Matrix"    
-    # houdini.label               STRING "Matrix"    
-  # [attr near_clip]
-    # desc                        STRING "Near Clip"
-    # houdini.label               STRING "Near Clip"
-    # default                     FLOAT   0.0001
-  # [attr near_clip]
-    # desc                        STRING "Far Clip"
-    # houdini.label               STRING "Far Clip"
-    # default                     FLOAT   1e+030
-   # [attr shutter_start]
-    # desc                        STRING "shutter_start"
-    # houdini.label               STRING "shutter_start"
-    # default                     FLOAT   0
-  # [attr shutter_end]
-    # desc                        STRING "shutter_end"
-    # houdini.label               STRING "shutter_end"
-    # default                     FLOAT   0
-  # [attr shutter_type]
-    # desc                        STRING "shutter_type"
-    # houdini.label               STRING "shutter_type"
-  # [attr shutter_curve]
-    # desc                        STRING "shutter_curve"
-    # houdini.label               STRING "shutter_curve"
-  # [attr rolling_shutter]
-    # desc                        STRING "rolling_shutter"
-    # houdini.label               STRING "rolling_shutter"
-  # [attr rolling_shutter_duration]
-    # desc                        STRING "rolling_shutter_duration"
-    # houdini.label               STRING "rolling_shutter_duration"
-    # default                     FLOAT   0
-  # [attr filtermap]
-    # desc                        STRING "filtermap"
-    # houdini.label               STRING "filtermap"
-  # [attr handedness]
-    # desc                        STRING "handedness"
-    # houdini.label               STRING "handedness"
-  # [attr time_samples]
-    # desc                        STRING "time_samples"            
-    # houdini.label               STRING "time_samples"            
-  # [attr screen_window_min]
-    # desc                        STRING "screen_window_min"
-    # houdini.label               STRING "screen_window_min"
-    # default                     POINT2  -1 -1
-  # [attr screen_window_max]
-    # desc                        STRING "screen_window_max"
-    # houdini.label               STRING "screen_window_max"
-    # default                     POINT2  1 1
-  # [attr exposure]
-    # desc                        STRING "exposure"
-    # houdini.label               STRING "exposure"
-    # default                     FLOAT   0
+  [attr is_perspective]
+    default                     BOOL   True
+    default                     BOOL   True
+  [attr viewMode]
+    desc                        STRING "viewMode"
+    houdini.label               STRING "viewMode"
+    default                     INT     0
+  [attr leftCamera]
+    desc                        STRING "Left Camera"
+    houdini.label               STRING "Left Camera"
+    default                     STRING "Camera_L"
+  [attr rightCamera]
+    desc                        STRING "Right Camera"
+    houdini.label               STRING "Right Camera"
+    default                     STRING "Camera_R"
+  [attr filmbackX]
+    desc                        STRING "Filmback X"
+    houdini.label               STRING "Filmback X"
+    default                     FLOAT   0
+  [attr leftCenterOffset]
+    desc                        STRING "Left Center Offset"
+    houdini.label               STRING "Left Center Offset"
+    default                     FLOAT   0
+  [attr rightCenterOffset]
+    desc                        STRING "Right Center Offset"
+    houdini.label               STRING "Right Center Offset"
+    default                     FLOAT   0
+  [attr recalculateDistanceForSideCam]
+    desc                        STRING "Recalculate Distance For Side Cam"
+    houdini.label               STRING "Recalculate Distance For Side Cam"
+    default                     BOOL    True
+  [attr totalOverscanPixels]
+    desc                        STRING "Total Overscan Pixels"
+    houdini.label               STRING "Total Overscan Pixels"
+    default                     INT     0
+  [attr useDof]
+    desc                        STRING "Use DOF"
+    houdini.label               STRING "Use DOF"
+    default                     BOOL    False
+  [attr focusDistance]
+    desc                        STRING "Focus Distance"
+    houdini.label               STRING "Focus Distance"
+    default                     FLOAT   100
+  [attr apertureSize]
+    desc                        STRING "Aperture Size"
+    houdini.label               STRING "Aperture Size"
+    default                     FLOAT   0.1
+  [attr apertureAspectRatio]
+    desc                        STRING "Aperture Aspect Ratio"
+    houdini.label               STRING "Aperture Aspect Ratio"
+    default                     FLOAT   1
+  [attr usePolygonalAperture]
+    desc                        STRING "Use Polygonal Aperture"
+    houdini.label               STRING "Use Polygonal Aperture"
+    default                     BOOL    True
+  [attr apertureBlades]
+    desc                        STRING "Aperture Blades"
+    houdini.label               STRING "Aperture Blades"
+    default                     INT     5
+  [attr apertureBladeCurvature]
+    desc                        STRING "Aperture Blade Curvature"
+    houdini.label               STRING "Aperture Blade Curvature"
+    default                     FLOAT   0
+  [attr apertureRotation]
+    desc                        STRING "Aperture Rotation"
+    houdini.label               STRING "Aperture Rotation"
+    default                     FLOAT   0
+  [attr focusPlaneIsPlane]
+    desc                        STRING "Focus Plane is Plane"
+    houdini.label               STRING "Focus Plane is Plane"
+    default                     BOOL    True
+  [attr fov]
+    desc                        STRING "FOV"
+    houdini.label               STRING "FOV"
+  [attr position]
+    desc                        STRING "Position"
+    houdini.label               STRING "Position"
+    default                     POINT   0 0 -1
+  [attr look_at]
+    desc                        STRING "Look At"
+    houdini.label               STRING "Look At"
+    default                     POINT   0 0 1
+  [attr up]
+    desc                        STRING "Up"
+    houdini.label               STRING "Up"
+    default                     VECTOR  0 1 0
+  [attr matrix]
+    desc                        STRING "Matrix"    
+    houdini.label               STRING "Matrix"    
+  [attr near_clip]
+    desc                        STRING "Near Clip"
+    houdini.label               STRING "Near Clip"
+    default                     FLOAT   0.0001
+  [attr near_clip]
+    desc                        STRING "Far Clip"
+    houdini.label               STRING "Far Clip"
+    default                     FLOAT   1e+030
+   [attr shutter_start]
+    desc                        STRING "shutter_start"
+    houdini.label               STRING "shutter_start"
+    default                     FLOAT   0
+  [attr shutter_end]
+    desc                        STRING "shutter_end"
+    houdini.label               STRING "shutter_end"
+    default                     FLOAT   0
+  [attr shutter_type]
+    desc                        STRING "shutter_type"
+    houdini.label               STRING "shutter_type"
+  [attr shutter_curve]
+    desc                        STRING "shutter_curve"
+    houdini.label               STRING "shutter_curve"
+  [attr rolling_shutter]
+    desc                        STRING "rolling_shutter"
+    houdini.label               STRING "rolling_shutter"
+  [attr rolling_shutter_duration]
+    desc                        STRING "rolling_shutter_duration"
+    houdini.label               STRING "rolling_shutter_duration"
+    default                     FLOAT   0
+  [attr filtermap]
+    desc                        STRING "filtermap"
+    houdini.label               STRING "filtermap"
+  [attr handedness]
+    desc                        STRING "handedness"
+    houdini.label               STRING "handedness"
+  [attr time_samples]
+    desc                        STRING "time_samples"            
+    houdini.label               STRING "time_samples"            
+  [attr screen_window_min]
+    desc                        STRING "screen_window_min"
+    houdini.label               STRING "screen_window_min"
+    default                     POINT2  -1 -1
+  [attr screen_window_max]
+    desc                        STRING "screen_window_max"
+    houdini.label               STRING "screen_window_max"
+    default                     POINT2  1 1
+  [attr exposure]
+    desc                        STRING "exposure"
+    houdini.label               STRING "exposure"
+    default                     FLOAT   0
 
 [node Obq_SurfaceEnvironment]
   maya.name                     STRING "Obq_SurfaceEnvironment"
@@ -2373,11 +2376,12 @@
     default                     FLOAT   0.1
 
 [node Obq_LensDistortion]
-  maya.name                     STRING "Obq_LensDistortion"
+  maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD5A
   maya.classification           STRING "shader/surface"
-  maya.output_name              STRING "outValue"
-
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_LensDistortion"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_LensDistortion"
@@ -2386,44 +2390,56 @@
   [attr is_perspective]
     default                     BOOL   True
   [attr useDof]
-    desc                        STRING "useDof"
-    houdini.label               STRING "useDof"
+    desc                        STRING "Enable"
+    houdini.label               STRING "Enable"
     default                     BOOL    False
   [attr focusDistance]
-    desc                        STRING "focusDistance"
-    houdini.label               STRING "focusDistance"
+    desc                        STRING "Distance"
+    houdini.label               STRING "Distance"
     default                     FLOAT   100
   [attr apertureSize]
-    desc                        STRING "apertureSize"
-    houdini.label               STRING "apertureSize"
+    desc                        STRING "Size"
+    houdini.label               STRING "Size"
     default                     FLOAT   0.1
   [attr apertureAspectRatio]
-    desc                        STRING "apertureAspectRatio"
-    houdini.label               STRING "apertureAspectRatio"
+    desc                        STRING "Aspect Ratio"
+    houdini.label               STRING "Aspect Ratio"
     default                     FLOAT   1
   [attr usePolygonalAperture]
-    desc                        STRING "usePolygonalAperture"
-    houdini.label               STRING "usePolygonalAperture"
+    desc                        STRING "Polygonal Aperture"
+    houdini.label               STRING "Polygonal Aperture"
     default                     BOOL    True
   [attr apertureBlades]
-    desc                        STRING "apertureBlades"
-    houdini.label               STRING "apertureBlades"
+    desc                        STRING "Blades"
+    houdini.label               STRING "Blades"
     default                     INT     5
   [attr apertureBladeCurvature]
-    desc                        STRING "apertureBladeCurvature"
-    houdini.label               STRING "apertureBladeCurvature"
+    desc                        STRING "Blade Curvature"
+    houdini.label               STRING "Blade Curvature"
     default                     FLOAT   0
   [attr apertureRotation]
-    desc                        STRING "apertureRotation"
-    houdini.label               STRING "apertureRotation"
+    desc                        STRING "Rotation"
+    houdini.label               STRING "Rotation"
     default                     FLOAT   0
   [attr focusPlaneIsPlane]
-    desc                        STRING "focusPlaneIsPlane"
-    houdini.label               STRING "focusPlaneIsPlane"
+    desc                        STRING "Focus Plane is a Plane"
+    houdini.label               STRING "Focus Plane is a Plane"
     default                     BOOL    True
+  [attr bokehInvert]
+    desc                        STRING "Invert"
+    houdini.label               STRING "Invert"
+    default                     BOOL    False
+  [attr bokehBias]
+    desc                        STRING "Bias"
+    houdini.label               STRING "Bias"
+    default                     FLOAT   0.5
+  [attr bokehGain]
+    desc                        STRING "Gain"
+    houdini.label               STRING "Gain"
+    default                     FLOAT   0.5
   [attr distortionModel]
-    desc                        STRING "distortionModel"
-    houdini.label               STRING "distortionModel"
+    desc                        STRING "Distortion Model"
+    houdini.label               STRING "Distortion Model"
     default                     INT     0
   [attr k1]
     desc                        STRING "k1"
@@ -2434,44 +2450,44 @@
     houdini.label               STRING "k2"
     default                     FLOAT   0
   [attr centerX]
-    desc                        STRING "centerX"
-    houdini.label               STRING "centerX"
+    desc                        STRING "Center X"
+    houdini.label               STRING "Center X"
     default                     FLOAT   0
   [attr centerY]
-    desc                        STRING "centerY"
-    houdini.label               STRING "centerY"
+    desc                        STRING "Center Y"
+    houdini.label               STRING "Center Y"
     default                     FLOAT   0
   [attr anamorphicSqueeze]
-    desc                        STRING "anamorphicSqueeze"
-    houdini.label               STRING "anamorphicSqueeze"
+    desc                        STRING "Anamorphic Squeeze"
+    houdini.label               STRING "Anamorphic Squeeze"
     default                     FLOAT   1
   [attr asymmetricDistortionX]
-    desc                        STRING "asymmetricDistortionX"
-    houdini.label               STRING "asymmetricDistortionX"
+    desc                        STRING "Asymmetric Distortion X"
+    houdini.label               STRING "Asymmetric Distortion X"
     default                     FLOAT   0
   [attr asymmetricDistortionY]
-    desc                        STRING "asymmetricDistortionY"
-    houdini.label               STRING "asymmetricDistortionY"
+    desc                        STRING "Asymmetric Distortion Y"
+    houdini.label               STRING "Asymmetric Distortion Y"
     default                     FLOAT   0
   [attr centerX3DEq]
-    desc                        STRING "centerX3DEq"
-    houdini.label               STRING "centerX3DEq"
+    desc                        STRING "CenterX 3DEq"
+    houdini.label               STRING "CenterX 3DEq"
     default                     FLOAT   0
   [attr centerY3DEq]
-    desc                        STRING "centerY3DEq"
-    houdini.label               STRING "centerY3DEq"
+    desc                        STRING "CenterY 3DEq"
+    houdini.label               STRING "CenterY 3DEq"
     default                     FLOAT   0
   [attr filmbackX3DEq]
-    desc                        STRING "filmbackX3DEq"
-    houdini.label               STRING "filmbackX3DEq"
+    desc                        STRING "Filmback X 3DEq"
+    houdini.label               STRING "Filmback X 3DEq"
     default                     FLOAT   0.3465
   [attr filmbackY3DEq]
-    desc                        STRING "filmbackY3DEq"
-    houdini.label               STRING "filmbackY3DEq"
+    desc                        STRING "Filmback Y 3DEq"
+    houdini.label               STRING "Filmback Y 3DEq"
     default                     FLOAT   0.1949
   [attr pixelRatio3DEq]
-    desc                        STRING "pixelRatio3DEq"
-    houdini.label               STRING "pixelRatio3DEq"
+    desc                        STRING "Pixel Ratio 3DEq"
+    houdini.label               STRING "Pixel Ratio 3DEq"
     default                     FLOAT   1
   [attr c3dc00]
     desc                        STRING "c3dc00"
@@ -2542,8 +2558,8 @@
     houdini.label               STRING "ana6c11"
     default                     FLOAT   0
   [attr ana6c12]
-    desc                        STRING "ana6c11"
-    houdini.label               STRING "ana6c11"
+    desc                        STRING "ana6c12"
+    houdini.label               STRING "ana6c12"
     default                     FLOAT   0
   [attr ana6c13]
     desc                        STRING "ana6c13"
@@ -2690,12 +2706,12 @@
     houdini.label               STRING "ana4c12"
     default                     FLOAT   1
   [attr focal3DEq]
-    desc                        STRING "focal3DEq"
-    houdini.label               STRING "focal3DEq"
+    desc                        STRING "Focal 3DEq"
+    houdini.label               STRING "Focal 3DEq"
     default                     FLOAT   5
   [attr focusDistance3DEq]
-    desc                        STRING "focusDistance3DEq"
-    houdini.label               STRING "focusDistance3DEq"
+    desc                        STRING "Focus Distance 3DEq"
+    houdini.label               STRING "Focus Distance 3DEq"
     default                     FLOAT   100
   [attr pfC3]
     desc                        STRING "pfC3"
@@ -2706,8 +2722,8 @@
     houdini.label               STRING "pfC5"
     default                     FLOAT   0
   [attr pfSqueeze]
-    desc                        STRING "pfSqueeze"
-    houdini.label               STRING "pfSqueeze"
+    desc                        STRING "pf Squeeze"
+    houdini.label               STRING "pf Squeeze"
     default                     FLOAT   1
   [attr pfXp]
     desc                        STRING "pfXp"
@@ -2720,71 +2736,71 @@
   [attr fov]
     desc                        STRING "fov"
     houdini.label               STRING "fov"
-  [attr position]
-    desc                        STRING "position"
-    houdini.label               STRING "position"
-    default                     POINT   0 0 0
-  [attr look_at]
-    desc                        STRING "look_at"
-    houdini.label               STRING "look_at"
-    default                     POINT   0 0 -1
-  [attr up]
-    desc                        STRING "up"
-    houdini.label               STRING "up"
-    default                     VECTOR  0 1 0
-  [attr matrix]
-    desc                        STRING "matrix"
-    houdini.label               STRING "matrix"
-  [attr near_clip]
-    desc                        STRING "near_clip"
-    houdini.label               STRING "near_clip"
-    default                     FLOAT   0.0001
-  [attr far_clip]
-    desc                        STRING "far_clip"
-    houdini.label               STRING "far_clip"
-    default                     FLOAT   1e+030
-  [attr shutter_start]
-    desc                        STRING "shutter_start"
-    houdini.label               STRING "shutter_start"
-    default                     FLOAT   0
-  [attr shutter_end]
-    desc                        STRING "shutter_end"
-    houdini.label               STRING "shutter_end"
-    default                     FLOAT   0
-  [attr shutter_type]
-    desc                        STRING "shutter_type"
-    houdini.label               STRING "shutter_type"
-  [attr shutter_curve]
-    desc                        STRING "shutter_curve"
-    houdini.label               STRING "shutter_curve"
-  [attr rolling_shutter]
-    desc                        STRING "rolling_shutter"
-    houdini.label               STRING "rolling_shutter"
-  [attr rolling_shutter_duration]
-    desc                        STRING "rolling_shutter_duration"
-    houdini.label               STRING "rolling_shutter_duration"
-    default                     FLOAT   0
-  [attr filtermap]
-    desc                        STRING "filtermap"
-    houdini.label               STRING "filtermap"
-  [attr handedness]
-    desc                        STRING "handedness"
-    houdini.label               STRING "handedness"
-  [attr time_samples]
-    desc                        STRING "time_samples"            
-    houdini.label               STRING "time_samples"            
-  [attr screen_window_min]
-    desc                        STRING "screen_window_min"
-    houdini.label               STRING "screen_window_min"
-    default                     POINT2  -1 -1
-  [attr screen_window_max]
-    desc                        STRING "screen_window_max"
-    houdini.label               STRING "screen_window_max"
-    default                     POINT2  1 1
-  [attr exposure]
-    desc                        STRING "exposure"
-    houdini.label               STRING "exposure"
-    default                     FLOAT   0
+  # [attr position]
+    # desc                        STRING "position"
+    # houdini.label               STRING "position"
+    # default                     POINT   0 0 0
+  # [attr look_at]
+    # desc                        STRING "look_at"
+    # houdini.label               STRING "look_at"
+    # default                     POINT   0 0 -1
+  # [attr up]
+    # desc                        STRING "up"
+    # houdini.label               STRING "up"
+    # default                     VECTOR  0 1 0
+  # [attr matrix]
+    # desc                        STRING "matrix"
+    # houdini.label               STRING "matrix"
+  # [attr near_clip]
+    # desc                        STRING "near_clip"
+    # houdini.label               STRING "near_clip"
+    # default                     FLOAT   0.0001
+  # [attr far_clip]
+    # desc                        STRING "far_clip"
+    # houdini.label               STRING "far_clip"
+    # default                     FLOAT   1e+030
+  # [attr shutter_start]
+    # desc                        STRING "shutter_start"
+    # houdini.label               STRING "shutter_start"
+    # default                     FLOAT   0
+  # [attr shutter_end]
+    # desc                        STRING "shutter_end"
+    # houdini.label               STRING "shutter_end"
+    # default                     FLOAT   0
+  # [attr shutter_type]
+    # desc                        STRING "shutter_type"
+    # houdini.label               STRING "shutter_type"
+  # [attr shutter_curve]
+    # desc                        STRING "shutter_curve"
+    # houdini.label               STRING "shutter_curve"
+  # [attr rolling_shutter]
+    # desc                        STRING "rolling_shutter"
+    # houdini.label               STRING "rolling_shutter"
+  # [attr rolling_shutter_duration]
+    # desc                        STRING "rolling_shutter_duration"
+    # houdini.label               STRING "rolling_shutter_duration"
+    # default                     FLOAT   0
+  # [attr filtermap]
+    # desc                        STRING "filtermap"
+    # houdini.label               STRING "filtermap"
+  # [attr handedness]
+    # desc                        STRING "handedness"
+    # houdini.label               STRING "handedness"
+  # [attr time_samples]
+    # desc                        STRING "time_samples"            
+    # houdini.label               STRING "time_samples"            
+  # [attr screen_window_min]
+    # desc                        STRING "screen_window_min"
+    # houdini.label               STRING "screen_window_min"
+    # default                     POINT2  -1 -1
+  # [attr screen_window_max]
+    # desc                        STRING "screen_window_max"
+    # houdini.label               STRING "screen_window_max"
+    # default                     POINT2  1 1
+  # [attr exposure]
+    # desc                        STRING "exposure"
+    # houdini.label               STRING "exposure"
+    # default                     FLOAT   0
 
 [node Obq_CameraProjectionSpace]
   maya.name                     STRING "Obq_CameraProjectionSpace"

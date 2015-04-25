@@ -46,6 +46,11 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Version History ##
 
+### 2015-04-22 Changes ###
+- **[ACH]** Updated the metadata file and the ae template for the Obq_StereoLens, and Obq_AngularCamera shaders in MtoA.
+- **[ACH]** Added a Obq_LensDistortion metadata file.
+- **[ACH]** Fixed the Obq lens shader GUI loading issues.
+
 ### 2015-03-01 Changes ###
 - **[ACH]** Updated the metadata file and the ae template for the Obq_StereoLens shader in MtoA.
 
@@ -125,8 +130,6 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 The shader needs to be customized to work with Maya/MtoA's camera naming system.
 
 ## OBQ Lens Shaders ##
-
-MtoA loads lens shaders in Maya using the ae template file's `templates.registerTranslatorUI` function. At this point in time there appears to be an issue where the `Obq_AngularCamera` and `Obq_StereoLens` shaders aren't listed in the CameraShape node's Arnold section. This is something that has to be explored further.
 
 Also the current MtoA release's registerTranslatorUI function won't allow a 3rd party lens shader to be associated as both a "camera" and a "stereoRigCamera" object. This means that lens shader's won't be able to be added to the center camera view in a stereo camera rig.
 
