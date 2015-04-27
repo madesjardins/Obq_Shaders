@@ -139,6 +139,13 @@ node_update
 	data->contour_fb_str = params[p_contour_fb_str].STR;
 	data->putAlphaInFb = params[p_putAlphaInFb].BOOL;
 
+	// Register AOV with AI_AOV_BLEND_OPACITY
+	if(data->ambient_fb_str && std::strlen(data->ambient_fb_str))		AiAOVRegister(data->ambient_fb_str,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->diffuse_fb_str && std::strlen(data->diffuse_fb_str))		AiAOVRegister(data->diffuse_fb_str,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->highlight_fb_str && std::strlen(data->highlight_fb_str))	AiAOVRegister(data->highlight_fb_str,	AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->rimlight_fb_str && std::strlen(data->rimlight_fb_str))		AiAOVRegister(data->rimlight_fb_str,	AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->contour_fb_str && std::strlen(data->contour_fb_str))		AiAOVRegister(data->contour_fb_str,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+
 	// Get Ambience from Options
 	AtNode* options = AiUniverseGetOptions();
 	if(AiNodeLookUpUserParameter(options, "ambience") != NULL)
@@ -176,6 +183,8 @@ node_update
 	data->highlight_noInternal = params[p_highlight_noInternal].BOOL;
 	data->rimlight_noInternal = params[p_rimlight_noInternal].BOOL;
 
+	data->global_noInternal = data->ambient_noInternal || data->diffuse_noInternal || data->highlight_noInternal || data->rimlight_noInternal;
+
 	data->global_clamp = params[p_global_clamp].BOOL;
 
 }
@@ -192,9 +201,20 @@ node_finish
 
 shader_evaluate
 {
-	// opacity
+	// Access shader Data
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+
+	// opacity noInternal
+	bool backface = ( AiV3Dot(sg->Rd,sg->N) > 0);
+	if(backface && data->global_noInternal)
+	{
+		sg->out_opacity = AI_RGB_BLACK;
+		return;
+	}
+
 	sg->out_opacity = AiShaderEvalParamRGB(p_opacity);
 
+	// Shadow
 	if(sg->Rt & AI_RAY_SHADOW)
 	{
 		sg->out.RGB =  AI_RGB_BLACK;
@@ -202,11 +222,6 @@ shader_evaluate
 	}
 	else
 	{
-
-		bool backface = ( AiV3Dot(sg->Rd,sg->N) > 0);
-
-		// Access shader Data
-		ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 
 		// diffuse
 		bool		do_diffuse = false;

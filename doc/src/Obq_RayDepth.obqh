@@ -1,0 +1,29 @@
+%shadername :: Obq_RayDepth
+
+%class :: Texture [Getter]
+
+%output :: Integer
+
+%synopsisStart
+
+%pp :: Obq_RayDepth outputs the total ray depth or ray depth for a particular type of ray.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Multiple objects can share a material with this node and it will output different colors.
+
+#%usageEnd
+
+%section :: RayType
+
+%param :: Ray Type <em>[type]</em>
+%pp :: Different ray types :
+%tableStart
+%tableItem :: 35 :: All :: Total ray depth.
+%tableItem :: 35 :: Reflection :: Reflected only ray depth.
+%tableItem :: 35 :: Refraction :: Refracted only ray depth.
+%tableItem :: 35 :: Glossy :: Glossy reflected only ray depth.
+%tableItem :: 35 :: Diffuse :: Diffused only ray depth.
+%tableEnd

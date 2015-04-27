@@ -1,0 +1,30 @@
+%shadername :: Obq_Root2Tip
+
+%class :: Texture [Generator]
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: Obq_Root2Tip is a texture node that outputs the interpolated color between root and tip based on the position of the shading point on a hair strand.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use this node in the color input of the Obq_Hair shader to have the colors vary along the hair.
+
+%usageEnd
+
+%param :: Root <em>[root]</em>
+%pp :: The color at the root of an hair strand.
+
+%param :: Tip <em>[tip]</em>
+%pp :: The color at the tip of an hair strand.
+
+%param :: Interpolation <em>[mode]</em>
+%pp :: The type of interpolation :
+%tableStart
+%tableItem :: 30 :: Linear :: Linear interpolation.
+%tableItem :: 30 :: Hermite :: Cubic interpolation.
+%tableEnd

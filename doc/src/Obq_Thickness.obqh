@@ -1,0 +1,163 @@
+%shadername :: Obq_Thickness
+
+%class :: Texture [Generator > Probe]
+
+%output :: Scalar
+
+%synopsisStart
+
+%pp :: Obq_Thickness measures the thickness of a shading point in a chosen direction. 
+%warning :: It is not affected by opacity cutouts.
+%image :: src/images/Obq_Thickness_02.jpg :: Synopsis image :: 768
+%idesc :: Guess what's in the box.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply use Obq_Thickness as is, or you can use it to drive another parameter like a gradient. 
+%image :: src/images/Obq_Thickness_01.jpg :: Usage image :: 768
+%idesc :: The thickness of smoke seen as a gradient.
+
+#%usageEnd
+
+%section :: Direction
+
+%param :: Direction Mode <em>[dirMode]</em>
+%pp :: In which direction the thickness is calculated.
+%enumStart
+%enumItem :: View Direction
+%enumItem :: Surface Normal Direction 
+%enumItem :: Surface Front-Facing Normal Direction
+%enumItem :: Reflection Direction
+%enumItem :: Refraction Direction
+%enumItem :: Custom Direction
+%enumEnd
+
+%param :: Invert <em>[dirInverted]</em>
+%pp :: Invert the direction.
+
+%param :: Smooth <em>[dirSmooth]</em>
+%pp :: Without bump.
+
+%param :: Geometric <em>[dirGeometric]</em>
+%pp :: No geometry approximation discontinuity smoothing. 
+
+%param :: IOR <em>[ior]</em>
+%pp :: Index of refraction. 
+
+	
+%section :: Thickness
+
+%param :: Thickness Mode <em>[thicknessMode]</em>
+%pp :: These are the are the 3 thickness modes :
+%tableStart
+%tableItem :: 210 :: Thickness of this object :: only shows the thickness of the object that was intersectecs.
+%tableItem :: 210 :: Count intersections :: counts the number of intersections the ray has.
+%tableItem :: 210 :: Accumulate distance inside volume :: the sum of  ray lenghts spent inside volumes along the ray. It stops when the ray doesn't hit anything as usual or if it hits the back side of an object before its front side. Each time the ray hits a front side face, it increments a counter. Each time the ray hits a backface, it decrements the counter. If the counter reach -1, it stops. This is a nice way to stop the accumulation of lenghts.
+%tableEnd
+	
+%param :: Multiply by NdotR <em>[multNdotR]</em>
+%pp :: Available for the "Count intersections" and "Accumulate distance inside volume" modes, this multiplies the distances by the absolute value of the dot product between the surface normal and the ray direction. When using spheres for particles, this is a nice way to give a sort of particle density look.
+
+%param :: Exponent <em>[NdotRExp]</em>
+%pp :: This is the exponent of the NdotR value.
+
+%param :: Consider thickness of intersecting volumes <em>[multiplyByDepth]</em>
+%pp :: Only available for the 3rd mode, this multiplies the current calculated ray lenght by the number of intersecting objects.
+%note :: For example, if a smaller sphere resides inside a sphere, the result will be the sum of 3 ray lenghts. The first one will be between the front entry point of the biggest sphere and the front entry point of the smallest sphere. The 2nd ray lenght calculated will be the one inside the smaller sphere and will be multiplied by 2, because we are actually inside 2 spheres now. The last one will be between the exit point of the smallest sphere and the exit point of the biggest sphere.
+
+%section :: Options
+
+%param :: Backface is <em>[backface]</em>
+%pp :: This is important when dealing with refraction and transparency.
+%enumStart
+%enumItem :: Always 0.0.
+%enumItem :: Always 1.0.
+%enumItem :: Equal to Maximum Ray Length.
+%enumItem :: Considered normally.
+%enumEnd
+%note :: If this shader is used to drive the transparency, you want the backface to be "Always 1.0", otherwise, a second evaluation of the thickness will be evaluated for the refracted ray hitting the second surface. Another important note is the fact that if not considered normally, the values are not normalized even if a normalization has been asked, hence the "Always 1.0" in the previous situation.
+
+
+%param :: Intersect Others <em>[intersectOthers]</em>
+%pp :: Thickness considers other objects inside. 
+%note :: See Maximum Ray Depth for a good example.
+
+%param :: No Hit means <em>[noHitMode]</em>
+%pp :: When a thickness ray doesn't hit anything, you either have the choice to consider the surface :
+%enumStart
+%enumItem :: Infinitely thin.
+%enumItem :: Infinitely thick.
+%enumEnd
+%note :: With infinitely thick, you can represent an ocean, for example, with only a grid, you don't need a sea bed.
+
+	
+%section :: Ray Settings
+
+
+%param :: Maximum Ray Depth <em>[maxRayDepth]</em>
+%pp :: Simply put, the maximum ray depth, is the maximum number of times a ray will intersect a surface and trace another ray. If 0 is chosen, it means there is no maximum depth and the ray will continue until it doesn't hit anything.
+%note :: In "Thickness of this object" mode, if you have 3 nested cubes [ a cube inside another cube inside another cube ]and uncheck "Intersect Others", when the eye-ray hits the biggest cube's surface, it will launch another ray to check the thickness. When this ray ( depth 1 ) hit the 2nd cube, it will figure it's not the same cube, so it will launch another ray from that intersection point and this ray will have a depth of 2, meaning that if you have a maximum ray depth of 1, you will stop before shooting that ray and see the shape of the 2nd cube in black (or white if Inverse normalize). Following the same logic, in order for this exemple to work, you'll need a maximum ray depth of 5.
+
+%param :: Maximum Ray Length <em>[maxRayLength]</em>
+%pp :: Maximum total lenght of thickness rays.
+
+%param :: Use Max Ray Length <em>[usemaxRayLength]</em>
+%pp :: Thickness rays shot by this shader will have a maximum total lenght after which it will consider that the ray didn't intersect anything.
+
+%section :: Output Settings
+
+%param :: Normalize Mode <em>[normalizeMode]</em>
+%pp :: Normalizes with maximum ray length [0,1] or invert the normalized result. If you don't normalize, the result will be the raw thickness in softimage units.
+%enumStart
+%enumItem :: Don't normalize.
+%enumItem :: Normalize with max ray length.
+%enumItem :: Inverse normalize with max ray length.
+%enumEnd
+%note :: If you're driving the transparency of an object with this shader, you will want to choose "Inverse normalize ..." thicker pixels will be dark, thicker means less transparency and thinner will be light.
+
+
+%section :: Blur
+
+%param :: Sample Level <em>[sampleLevel]</em>
+%pp :: The square root of the number of samples taken to create blurred background effect.
+%note :: If this is set to 5, 25 rays will be shot.
+	
+%param :: Clamp Sample Count <em>[useSampleCount]</em>
+%pp :: Check this and use the Max Sample Count to limit the number of environmenet samples taken.
+
+%param :: Max Sample Count <em>[sampleCount]</em>
+%pp :: The maximum number of samples taken from the environment.
+%note :: Sample Level isn't texturable because the random samples are generated at update time. Using this port, you can texture the maximum number of rays shot knowing that it can never be higher than the square of  the Sample Level value.
+
+%param :: Max Sample Count Multiplier <em>[sampleCountMultiplier]</em>
+%pp :: A simple multiplier used to raise an 8-bit picture value above 1.
+%note :: You can set this to 255 and texture with the absolute value of samples you want.
+
+%param :: Cone Angle <em>[coneAngle]</em>
+%pp :: The maximum cone angle in which the samples will be taken from. If set to 0, only 1 sample will be taken no matter the sample level.
+%note :: Shooting more rays will soften the noise.
+
+%param :: Gloss <em>[cosLobeGloss]</em>
+%pp :: This gloss translates into the cosine exponent of the cone distribution. This means that a value of 0 will produce a uniform distribution inside the cone while a higher value will give more of an elleptical shape distribution (Phong peaks). In other words, using a cone angle of 180 will give exactly a cos^n distribution.
+%note :: The equation used to transform gloss into exponent is : Exponent = Gloss/(1-Gloss)^8. A Gloss of 0.188 gives approximately an exponent of 1.
+
+%section :: Advanced Options
+
+%param :: Use safe directions <em>[dirSafe]</em>
+%pp :: When activated, reflected rays will use Arnold's AiReflectSafe(...) function that " makes sure the reflected vector doesn't penetrate below the geometric normal, which happens when the smooth (interpolated) normal points away from the viewing direction near silhouettes".
+
+%param :: Enter surface by (0.0001 units) <em>[enterSurface]</em>
+%pp :: When intersecting a polygon, the origin of the next ray shot from there will actually be translated along the backface normal by this value * 0.0001. Putting a negative value will translate along the front normal.
+
+%param :: Use geometric normal to limit cone angle <em>[useVdotNForMaxAngle]</em>
+%pp :: When this option is checked, the cone angle value will be scaled down to ensure no rays go through the own surface.
+
+%param :: Multiplys geometric limit by <em>[geometricLimitMultiplier]</em>
+%pp :: This enforce the previous option by further scaling down the cone.
+
+%section :: Custom Direction
+
+%param :: Custom Direction <em>[customDirection]</em>
+%pp :: A custom vector for direction purposes.

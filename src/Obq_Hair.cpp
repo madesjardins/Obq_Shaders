@@ -173,6 +173,23 @@ node_update
 	data->aov_indir_scatter = AiNodeGetStr(node,"aov_indir_scatter");
 	data->aov_indir_scatter_back = AiNodeGetStr(node,"aov_indir_scatter_back");
 
+	if(data->aov_dir_R && std::strlen(data->aov_dir_R))		AiAOVRegister(data->aov_dir_R,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_TRT && std::strlen(data->aov_dir_TRT))	AiAOVRegister(data->aov_dir_TRT,	AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_g && std::strlen(data->aov_dir_g))		AiAOVRegister(data->aov_dir_g,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_TT && std::strlen(data->aov_dir_TT))	AiAOVRegister(data->aov_dir_TT,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_back && std::strlen(data->aov_dir_back))		AiAOVRegister(data->aov_dir_back,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_scatter && std::strlen(data->aov_dir_scatter))		AiAOVRegister(data->aov_dir_scatter,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_dir_scatter_back && std::strlen(data->aov_dir_scatter_back))		AiAOVRegister(data->aov_dir_scatter_back,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+
+	if(data->aov_indir_R && std::strlen(data->aov_indir_R))		AiAOVRegister(data->aov_indir_R,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_TRT && std::strlen(data->aov_indir_TRT))	AiAOVRegister(data->aov_indir_TRT,	AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_g && std::strlen(data->aov_indir_g))		AiAOVRegister(data->aov_indir_g,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_TT && std::strlen(data->aov_indir_TT))	AiAOVRegister(data->aov_indir_TT,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_back && std::strlen(data->aov_indir_back))		AiAOVRegister(data->aov_indir_back,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_scatter && std::strlen(data->aov_indir_scatter))		AiAOVRegister(data->aov_indir_scatter,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+	if(data->aov_indir_scatter_back && std::strlen(data->aov_indir_scatter_back))		AiAOVRegister(data->aov_indir_scatter_back,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
+
+
 	srand (static_cast<unsigned int>(time(NULL)));
 }
 

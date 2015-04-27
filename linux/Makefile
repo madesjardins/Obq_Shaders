@@ -156,6 +156,13 @@ $(SRCPATH)/Obq_LensDistortion.h \
 $(SRCPATH)/O_Common.h
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LensDistortion.cpp
 
+# Obq_LightSaturationFilter
+
+Obq_LightSaturationFilter.o: \
+$(SRCPATH)/Obq_LightSaturationFilter.cpp \
+$(SRCPATH)/O_Common.h
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LightSaturationFilter.cpp
+
 # Obq_MeasuredMaterial
 
 Obq_MeasuredMaterial.o: \
@@ -342,6 +349,7 @@ Obq_Fresnel.o \
 Obq_Hair.o \
 Obq_IESLightFilter.o \
 Obq_LensDistortion.o \
+Obq_LightSaturationFilter.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageGetFlt.o \
 Obq_MessageSetFlt.o \
@@ -381,6 +389,7 @@ Obq_Fresnel.o \
 Obq_Hair.o \
 Obq_IESLightFilter.o \
 Obq_LensDistortion.o \
+Obq_LightSaturationFilter.o \
 Obq_MeasuredMaterial.o \
 Obq_MessageGetFlt.o \
 Obq_MessageSetFlt.o \

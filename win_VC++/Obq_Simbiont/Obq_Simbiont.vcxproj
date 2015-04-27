@@ -154,6 +154,10 @@
     <ClCompile Include="..\..\src\Obq_Simbiont.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\dte\dtengine.h" />
+    <ClInclude Include="..\..\src\dte\misc.h" />
+    <ClInclude Include="..\..\src\dte\tform.h" />
+    <ClInclude Include="..\..\src\dte\vmat.h" />
     <ClInclude Include="..\..\src\O_Common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

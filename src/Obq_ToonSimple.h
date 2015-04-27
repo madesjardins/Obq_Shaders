@@ -112,6 +112,8 @@ typedef struct
 	bool rimlight_noInternal;
 
 	bool global_clamp;
+
+	bool global_noInternal;
 }
 ShaderData;
 

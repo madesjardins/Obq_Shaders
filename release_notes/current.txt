@@ -1,0 +1,29 @@
+v210 - win,linux, OSX - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v300 - win,linux, OSX - 	SITOA 3.0.0 - Arnold 4.1.3.5  by Marc-Antoine Desjardins
+v301 - win,linux, OSX - 	SITOA 3.1.0 - Arnold 4.2.0.6  by Marc-Antoine Desjardins
+v302 - win,linux, OSX - 	SITOA 3.2.0 - Arnold 4.2.1.2  by Marc-Antoine Desjardins
+v303 - win,linux, OSX - 	SITOA 3.3.0 - Arnold 4.2.2.0  by Marc-Antoine Desjardins
+
+v304 - win,linux, OSX - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
+
+v305 - win,linux, OSX - 	SITOA 3.5.0 - Arnold 4.X.X.X  by Marc-Antoine Desjardins
+
+FIXES:
+	+ Blended AOVs.
+
+ADDITIONS:
+	+ Maya UI templates updated by Andrew Hazelden.
+	+ Obq_Simbiont : Easy replace libs paths button on all instances of Obq_Simbionts
+	
+CHANGES:
+	
+NEW SHADERS:
+	+ Obq_LightSaturationFilter : change saturation of light based on object using message passing.
+	
+REMOVED SHADERS:
+
+TODO :
+	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
+	+ Code Cleanup and optimisation.
+	+ Obq_MeasuredMaterial : Importance sampling.
+	

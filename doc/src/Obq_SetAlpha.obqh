@@ -1,0 +1,23 @@
+%shadername :: Obq_SetAlpha
+
+%class :: Texture [Passthrough &gt; Modify]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_SetAlpha is a texture node that sets the alpha of the input color.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: This node is quite self explanatory.
+
+%usageEnd
+
+%param :: Color <em>[color]</em>
+%pp :: The color input.
+
+%param :: Alpha <em>[alpha]</em>
+%pp :: The alpha you want to give the color parameter.

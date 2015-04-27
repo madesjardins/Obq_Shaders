@@ -40,7 +40,9 @@ enum ObqMessageSetFltParams {
 	p_passthrough,
 	p_key,
 	p_value,
-	p_setAfter
+	p_setAfter,
+	p_restoreValue,
+	p_defaultRestoredValue
 };
 
 // shader data struct
@@ -49,6 +51,8 @@ typedef struct
 {
 	const char* key;
 	bool setAfter;
+	bool restoreValue;
+
 }
 ShaderData;
 
@@ -58,6 +62,8 @@ node_parameters
 	AiParameterSTR("key", "O1");
 	AiParameterFLT("value", 0.0f);
 	AiParameterBOOL("setAfter", false);
+	AiParameterBOOL("restoreValue", false);
+	AiParameterFLT("defaultRestoredValue", 0.0f);
 }
 
 node_initialize
@@ -65,6 +71,7 @@ node_initialize
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 	data->key = "O1";
 	data->setAfter = false;
+	data->restoreValue = false;
 	AiNodeSetLocalData(node,data);
 }
 
@@ -74,6 +81,7 @@ node_update
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 	data->key = params[p_key].STR;
 	data->setAfter = params[p_setAfter].BOOL;
+	data->restoreValue = params[p_restoreValue].BOOL;
 }
 
 node_finish
@@ -86,16 +94,25 @@ node_finish
 shader_evaluate
 {
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+	float value = AiShaderEvalParamFlt(p_value);
 
 	if(data->setAfter)
 	{
 		sg->out.RGBA = AiShaderEvalParamRGBA(p_passthrough);
-		AiStateSetMsgFlt(data->key, AiShaderEvalParamFlt(p_value));
+		AiStateSetMsgFlt(data->key, value);
 	}
 	else
 	{
-		AiStateSetMsgFlt(data->key, AiShaderEvalParamFlt(p_value));
+		float restoredValue = 0.0;
+		if(data->restoreValue)
+			if(!AiStateGetMsgFlt(data->key, &restoredValue))
+				restoredValue = AiShaderEvalParamFlt(p_defaultRestoredValue);
+
+		AiStateSetMsgFlt(data->key, value);
 		sg->out.RGBA = AiShaderEvalParamRGBA(p_passthrough);
+
+		if(data->restoreValue)
+			AiStateSetMsgFlt(data->key, restoredValue);
 	}
 }
 

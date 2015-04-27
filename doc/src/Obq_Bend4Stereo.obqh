@@ -1,0 +1,46 @@
+%shadername :: Obq_Bend4Stereo
+
+%class :: Texture [Passthrough &gt; Modify &gt; Shader Globals]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_Bend4Stereo is a passthrough node that changes the ray direction for camera rays. Used with stereo cameras, this allows the shading of the two cameras to be calculated from a single one.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use the Obq_Bend4Stereo on all materials as a passthrough right before the "Surface" port of the material node or the "camera" port of a "ray_switch" node.
+%image :: src/images/Obq_Bend4Stereo_01.jpg :: Usage image :: 768
+%idesc :: In this stereo frame, the magenta and green in the highlights represent disparities between the render with and without bending.
+
+#%usageEnd
+
+%section :: Bend Mode
+
+%param :: Bend Mode <em>[bendMode]</em>
+%pp :: How to bend :
+%tableStart
+%tableItem :: 110 :: Don't bend :: leave ray direction as-is.
+%tableItem :: 110 :: Bend from left :: both cameras will be calculated as if coming from the left camera.
+%tableItem :: 110 :: Bend from right :: both cameras will be calculated as if coming from the right camera.
+%tableItem :: 110 :: Bend from center :: both cameras will be calculated as if coming from the center camera.
+%tableEnd
+
+%section :: Cameras
+
+%pp : The pick button helps you select all 3 cameras (order is center, left, right).
+
+%param :: Center <em>[centerCamera]</em>
+%pp :: The center camera. 
+
+%param :: Left <em>[leftCamera]</em>
+%pp :: The left camera. 
+
+%param :: Right <em>[rightCamera]</em>
+%pp :: The right camera. 
+
+%param :: CameraStatus <em>[cameraStatus]</em>
+%pp :: This shows the validity of the cameras.

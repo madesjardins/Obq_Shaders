@@ -1,0 +1,141 @@
+%shadername :: Obq_Simbiont
+
+%class :: Texture [Generator]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_Simbiont is a fractal generator node that read DarkTree files.
+%note :: Check the installation guide of the documentation to properly install the needed library.
+%image :: src/images/Obq_Simbiont_01.jpg :: Synopsis image :: 768
+%idesc :: A simple DarkTree file with displacement workflow. Use Elevation as Alpha output and a picker to select it and plug into the displacement port.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Browse for a <a href="http://www.darksim.com/html/downloads.html" target = "_blank">DarkTree file</a>. Select the type of output for RGB and Alpha. Adjust the options and tweaks <em>et voill&agrave;</em>. 
+
+#%usageEnd
+
+%section :: DarkTree
+
+%param :: Darktree file <em>[filename]</em>
+%pp :: The darktree file you want to load.
+%note :: You can change the default browsing directory on line #660 of the Obq_Simbiont.spdl.
+
+%param :: DarkTree component libs Path <em>[componentLibsPath]</em>
+%pp :: This is the path to the DarkTree Engine "dte_components" libraries. If this path is incorrect, you will see red Xs as the resulting texture.
+%note :: This path is define on line #30 of the Obq_Simbiont.spdl.
+
+%param :: Preserve tweaks on load <em>[preserveTweaksOnLoad]</em>
+%pp :: This doesn't reload tweaks when filename_OnChange() is called. This can be useful for scripting purpose.
+
+%section :: Output
+
+%param :: RGB <em>[evaluateRGB]</em>
+%pp :: A choice of output for the RGB channels :
+%enumStart
+%enumItem :: Black
+%enumItem :: Color [default]
+%enumItem :: Percent
+%enumItem :: Elevation [displacement or bump]
+%enumItem :: Diffuse level
+%enumItem :: %enumItem :: Diffuse Func
+%enumItem :: Luminosity
+%enumItem :: Specular Level
+%enumItem :: Specular Func
+%enumItem :: Specular Color
+%enumItem :: Glossiness
+%enumItem :: MetalLevel
+%enumItem :: Anisotropy
+%enumItem :: Aniso Dir
+%enumItem :: Reflectivity
+%enumItem :: Environement
+%enumItem :: Transparency
+%enumItem :: Refraction
+%enumItem :: Clear Coat Level
+%enumItem :: Clear Coat Glossiness
+%enumItem :: Clear Coar Thickness
+%enumItem :: Clear Coat Smoothness
+%enumItem :: Bump [Normal map]
+%enumItem :: Alpha
+%enumEnd
+
+%param :: Grayscale <em>[outRRR]</em>
+%pp :: Copies the red channel into blue and green for grayscale values.
+
+%param :: Alpha <em>[evaluateAlpha]</em>
+%pp :: A choice of output for the alpha channels, the choices are the same as RGB parameter.
+
+%section :: Bump
+
+%param :: Sample Size <em>[sampleSize]</em>
+%pp :: A rough indication of the diameter of the point/pixel being sampled.  This is used when evaluating bump.
+
+%param :: Bump Scale <em>[bumpScale]</em>
+%pp :: A bump height scaling factor.  This is used when evaluating bump.
+
+%section :: Camera
+
+%param :: Camera Near <em>[cameraNear]</em>
+%pp :: Some darktree files have effects based on a normalized value of how far is the camera. 
+%note :: Use the near and far to give the range for the effect.
+
+%param :: Camera Far <em>[cameraFar]</em>
+%pp :: Same as the above.
+
+%section :: Others
+
+%param :: Continuous Rep <em>[continuousRep]</em>
+%pp :: A 0.0 to 1.0 normalized value used for function evaluation. DTE_EVAL_DIFFUSE_FUNC and DTE_EVAL_SPECULAR_FUNC are where this value is often used when evaluating a texture. If you need additional information on using the specular and diffuse functions, please contact DarkSim support.
+
+%param :: Region Rep <em>[regionRep]</em>
+%pp :: A random integer value used to indicate different regional areas of the texture. Patterned components within DarkTree, Bricks for example, set this value for linked child components. Control components use this value to generate random colors and values. A potential use for this value would be a custom designed texture that requires regional information to be passed into the texture from the renderer.
+
+%section :: Animation
+
+%param :: Time <em>[frameNumber]</em>
+%pp :: Can be seen as a current frame number for an animated texture. This is a floating point value and need not be an integral frame.  Please note that this will have an effect only on DarkTrees that use the Time component.
+
+%section :: Coordinates
+
+%param :: Coordinates System <em>[coordinatesSystem]</em>
+%pp :: Coordinates system used for evaluation :
+%tableStart
+%tableItem :: 90 :: Object Space :: Does not change with transforms or deformation.
+%tableItem :: 90 :: World Space :: Changes with transforms or deformation.
+%tableItem :: 90 :: UV Space :: Active UV set.
+%tableItem :: 90 :: Camera Space :: Camera projection.
+%tableItem :: 90 :: Raster Space :: Pixel space.
+%tableItem :: 90 :: Custom :: A custom vector input (customCoordinates parameter).
+%tableEnd
+
+%param :: Custom Coordinates <em>[customCoordinates]</em>
+%pp :: A custom coordinates input. This is most often used to connect a node such as a "Projection Lookup".
+
+%section :: Transform
+
+%param :: Scale <em>[coordinateScale]</em>
+%pp :: This is a global scaling factor.
+%note :: If you want to scale down the fractal, you have to scale up this parameter.
+
+%section :: Acceleration
+
+%param :: Tweak at the global scope <em>[globalTweaksOnly]</em>
+%pp :: Tweaks are perform with the given value for all the object. This is good when you don't need to drive tweaks with textures. Otherwise, it should be off.
+
+%section :: Tweak Actions
+
+%pp :: These buttons allows you the save, load and reset tweaks with a simple text file.
+
+%section :: Tweaks #
+%pp :: Tweaks allow someone to change certain values of the DarkTree file on the fly. 
+%note :: A given DarkTree file may contain any number of macro controls, or Tweaks. These tweaks are evaluated at runtime and can be modified with textures in Softimage. There is a maximum of 16 tweaks in this implementation. The tweaks are automatically loaded by a python script when the filename is change. Only the proper input choice will be displayed.
+%tableStart
+%tableItem :: 30 :: Enable :: Enable this tweak. 
+%tableItem :: 30 :: Name :: The name of the tweak. 
+%tableItem :: 30 :: Color :: A color input for the tweak. Used only for color driven tweaks.
+%tableItem :: 30 :: Float :: A scalar input for the tweak. If the tweak is of boolean nature, x >0 => true. If the tweak requires an integer, the scalar will be rounded.
+%tableEnd

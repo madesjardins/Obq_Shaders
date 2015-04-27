@@ -129,7 +129,10 @@ node_update
 	data->aov_matte = params[p_aov_matte].STR;
 	data->aov_input = params[p_aov_input].STR;
 	data->autoFilteringOut = params[p_autoFilteringOut].BOOL;
-	
+
+	if(data->aov_matte && std::strlen(data->aov_matte))	AiAOVRegister(data->aov_matte,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
+	if(data->aov_input && std::strlen(data->aov_input))	AiAOVRegister(data->aov_input,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
+
 }
 
 node_finish

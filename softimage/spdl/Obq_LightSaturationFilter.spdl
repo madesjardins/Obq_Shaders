@@ -1,0 +1,152 @@
+# SPDL - Obq_LightSaturationFilter - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{5170A012-1639-0000-0001-1999DA2873C1}";
+
+PropertySet "Obq_LightSaturationFilter_params"
+{
+	Parameter "out" output
+	{
+		guid = "{AFAD18D3-0525-413F-B0B8-486BB078C2C2}";
+		type = model;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{6CC707C1-91D9-42D0-95C2-0603C123B4E0}";
+		Type = integer;
+		Value = 0;
+		Texturable = Off;
+		Animatable = Off;
+		Value Minimum = 0;
+		Value Maximum = 2;
+	}
+	Parameter "key" input
+	{
+		GUID = "{8036B699-8891-49EF-ADC7-5C627C981651}";
+		Type = string;
+		Value = "O1";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "triggerValue" input
+	{
+		GUID = "{0E30C67A-2813-4F8A-9F65-06914F7A9380}";
+		Type = scalar;
+		Value = 1.0;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "saturation" input
+	{
+		GUID = "{BBE6640B-483B-44B7-87BF-22E9474F5065}";
+		Type = scalar;
+		Value = 0.0;
+		Texturable = Off;
+		Animatable = On;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "defaultSaturation" input
+	{
+		GUID = "{C1E92E5F-2E43-4D2A-883E-22C88F6A4A6D}";
+		Type = scalar;
+		Value = 1.0;
+		Texturable = Off;
+		Animatable = On;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+}
+
+MetaShader
+{
+   Name = "Obq_LightSaturationFilter";
+   Type = light;
+   Renderer "Arnold Render"
+   {
+      Name = "Obq_LightSaturationFilter";
+   }
+}
+
+Defaults
+{
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Simple saturation modifier" = 0,
+			"Use trigger message" = 1,
+			"Use message as saturation" = 2
+		}
+	}
+   key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	triggerValue
+	{
+		Name = "Trigger Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 2.0;
+	}
+	saturation
+	{
+		Name = "Saturation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultSaturation
+	{
+		Name = "Default Saturation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+}
+
+Layout "Default"
+{
+	mode;
+	key;
+	triggerValue;
+	saturation;
+	defaultSaturation;
+}
+
+
+Layout "RenderTree"
+{
+}
+
+Language = "VBScript";
+Logic
+{
+
+Sub mode_OnChanged()
+	IF PPG.mode.Value = 0 Then
+		PPG.key.Show(False)
+		PPG.triggerValue.Show(False)
+		PPG.saturation.Show(True)
+		PPG.defaultSaturation.Show(False)
+	ElseIf PPG.mode.Value = 1 Then
+		PPG.key.Show(True)
+		PPG.triggerValue.Show(True)
+		PPG.saturation.Show(True)
+		PPG.defaultSaturation.Show(True)
+	Else
+		PPG.key.Show(True)
+		PPG.triggerValue.Show(False)
+		PPG.saturation.Show(False)
+		PPG.defaultSaturation.Show(True)
+	End IF
+	PPG.Refresh()
+End Sub
+
+sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LightSaturationFilter.html"
+	mode_OnChanged()
+End sub
+
+}
+

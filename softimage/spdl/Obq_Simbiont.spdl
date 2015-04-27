@@ -657,7 +657,7 @@ Defaults
 		UIType = "dscontrol"
 		{
 		Class = "edit";
-		Caption = ";file=1;openfile=1;initialdir=\\\\NEARLINE1\\bank\\3D\\SHADERS\\DarkTree;filefilter=Darktree Shader Files (*.dsts)|*.dsts|Darktree Color Files (*.dstc)|*.dstc|Darktree Percent Files (*.dstp)|*.dstp|Darktree Bump Files (*.dstb)|*.dstb|All Files (*.*)|*.*";
+		Caption = ";file=1;openfile=1;initialdir=F:\\Arnold\\DTRep_thumb;filefilter=All Files (*.*)|*.*|Darktree Shader Files (*.dsts)|*.dsts|Darktree Color Files (*.dstc)|*.dstc|Darktree Percent Files (*.dstp)|*.dstp|Darktree Bump Files (*.dstb)|*.dstb";
 		}
 	}
 	componentLibsPath
@@ -1183,6 +1183,7 @@ Layout "Default"
 			filename;
 			componentLibsPath;
 			preserveTweaksOnLoad;
+			Button btn_replaceLibsPath,aligncenter = "Replace all libs paths", 140;
 		}
 		Group "Output"
 		{
@@ -1209,6 +1210,7 @@ Layout "Default"
 		{
 			frameNumber;
 		}
+		
 	}
 	Tab "Options"
 	{
@@ -1874,6 +1876,9 @@ def resetTweaks():
 def filename_OnChanged():
 	if PPG.preserveTweaksOnLoad.Value == False :
 		resetTweaks()
+		filename = PPG.filename.Value
+		if filename[-4:] == ".jpg":
+			PPG.filename.Value = filename[:-4]+".dsts"
 		with open(PPG.filename.Value,'r') as f:
 			lines = f.readlines()
 			tweakstart = 0;
@@ -2882,6 +2887,18 @@ def loadTweaks_OnClicked():
 		
 	else :
 			Application.LogMessage("Load canceled.")
+
+def btn_replaceLibsPath_OnClicked():
+	path = XSIUIToolkit.PickFolder("C:\\", "Pick DTE Component Libs Folder")
+	if len(path) > 0:
+		oLibs = Application.ActiveProject.ActiveScene.MaterialLibraries
+		for lib in oLibs:
+			for mat in lib.Items:
+				Application.LogMessage(mat)
+				allShaders = mat.GetAllShaders()
+				for n in allShaders:
+					if n.Parameters.GetAsText().find("componentLibsPath")>-1:
+						Application.SetValue(n.FullName + ".componentLibsPath", path, "")
 
 def OnInit():
 	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html");

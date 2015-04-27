@@ -1,0 +1,51 @@
+%shadername :: Obq_RandomID
+
+%class :: Texture [Generator]
+
+%output :: Integer
+
+%synopsisStart
+
+%pp :: Obq_RandomID is a texture node that outputs a random integer based on the shaded object's name.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Multiple objects can share a material with this node and it will output different integers.
+
+#%usageEnd
+
+%section :: Options
+
+%param :: Software <em>[XtoA]</em>
+%pp :: Different value input mode.
+%tableStart
+%tableItem :: 35 :: SItoA :: Softimage.
+%tableItem :: 35 :: MtoA :: Maya.
+%tableItem :: 35 :: HtoA :: Houdini.
+%tableEnd
+
+%param :: Number of values <em>[randMax]</em>
+%pp :: The maximum number of random IDs.
+
+%param :: Seed <em>[seed]</em>
+%pp :: An offset for the random number generator.
+
+%section :: Strip
+
+%param :: Model <em>[stripModelName]</em>
+%pp :: Strip the model name from the equation. If 2 objets has the same name but not the same model as parent, this will make both object have the same color.
+
+%param :: Frame <em>[stripFrameNumber]</em>
+%pp :: Strip the frame number from the equation. If this isn't checked, the colors will change each frame.
+
+%param :: Instances Frame <em>[stripInstanceFrameNumber]</em>
+%pp :: Special cases for instances.
+
+%param :: Instances ID <em>[stripInstanceID]</em>
+%pp :: Special cases for instances. If this is not check, because all instances share the same pointcloud name, all instances will have the same color.
+
+%param :: Instances Shape <em>[stripInstanceFrameNumber]</em>
+%pp :: Special cases for instances. All instances have a shape description in their Arnold name and this option strips it.
+

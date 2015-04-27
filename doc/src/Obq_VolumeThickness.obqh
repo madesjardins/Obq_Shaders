@@ -1,0 +1,92 @@
+%shadername :: Obq_VolumeThickness
+
+%class :: Material
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_VolumeThickness is a particle density shader ideal for rendering smoke or other volumes. 
+%warning :: This depricated shader was created before Arnold went volume.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use it like any other shader and get the particle color with modified alpha based on the age percentage. You could also plug a fractal to modify the radius of the particles and give it a little bit of variation.
+%note :: This is a surface shader (surface port), not a volume shader.
+%image :: src/images/Obq_VolumeThickness_01.jpg :: Synopsis image :: 768
+%idesc :: A thick gray smoke emanates from the ground.
+
+#%usageEnd
+
+%section :: Particle Color
+
+%param :: Diffuse <em>[colorIn]</em>
+%pp :: The diffuse color of the particle.
+
+%param :: Emission <em>[emissionColor]</em>
+%pp :: The diffuse color of the particle.
+
+%param :: Alpha Mode <em>[alphaMode]</em>
+%pp :: Which alpha parameter will be used for this particle. The alpha is a global modifier of thickness. A particle with an alpha of 0 will be completely transparent while an alpha of 1 will not modify the thickness parameters. Choices are :
+%enumStart
+%enumItem :: Alpha parameter.
+%enumItem :: Diffuse alpha.
+%enumItem :: Emission alpha.
+%enumItem :: Max of diffuse and emission.
+%enumEnd
+
+%param :: Alpha <em>[alpha]</em>
+%pp :: The alpha paramter.
+
+%section :: Thickness Parameters
+
+%param :: Radius <em>[radius]</em>
+%pp :: In order to calculate the thickness of a particle, this shader makes the assumption that all particles are spherical and requires the radius instead of calculating the thickness with a ray. The opacity of that particle is then calculated using the thickness and the absorption coefficient.
+%note :: The formula for opacity used here is : opacity = alpha*(1-e^(-absorption*2*radius* NdotR^exponent)).
+
+%param :: Exponent <em>[exponent]</em>
+%pp :: To give a more beautiful opacity falloff, you can raise the exponent. 
+%note :: An exponent of 0 will give a sharp look while an exponent of 4 will give a more fluffy look.
+
+%param :: Absorption Coefficient <em>[absorption]</em>
+%pp :: The higher the coefficient, the less transparent the particle will be.
+
+%param :: Accumulated Threshold <em>[accumulatedThicknessThreshold]</em>
+%pp :: Similar to the auto-transparency threshold, when this accumulated opacity is reached, it is considered as opaque.
+
+%section :: Auto-Transparency
+
+%param :: Mode Used <em>[autoTransparencyMode]</em>
+%warning :: This parameter is no longer used because this render options was removed in Arnold.
+
+%section :: Advanced Ray Options
+
+%param :: GI response <em>[diffuseMode]</em>
+%pp :: When a particle is hit with a GI ray, many options are available to approximate a particle contribution to GI and speed up the rendering.
+%tableStart
+%tableItem :: 120 :: Full :: the full particle shading will be calculated along the GI ray.
+%tableItem :: 120 :: Full (Emission only) :: only the emission color will be transmitted along the GI ray.
+%tableItem :: 120 :: Direct*sqrt(opacity) :: the direct lighting+emission multiplied by the square root of the opacity of the first particle hit will be return.
+%tableItem :: 120 :: Direct*opacity :: the direct lighting+emission multiplied by the opacity of the first particle hit will be return.
+%tableItem :: 120 :: Direct :: the direct lighting+emission of the first particle hit will be return.
+%tableItem :: 120 :: None :: particles don't contribute to GI of other object. Note that this is not the same as disabling the diffuse visibility of the point cloud.
+%tableEnd
+
+%param :: Double hemispherical GI Sampling <em>[doubleHemisphericalDiffuse]</em>
+%pp :: Shoots diffuse samples in both hemispheres.
+
+%param :: Direct illumination sampling distance <em>[lightPropagationDistance]</em>
+%pp :: Because particles are often near each other and illumination generally varies smoothly along a ray, using this option can speed up rendering by lowering the amount of time the direct lighting is calculated.This ensures that the direct lighting will only be called when there is at least X units between a point and the previously stored direct lighting sample point.
+
+%param :: Indirect illumination sampling distance <em>[lightPropagationDistanceDiffuse]</em>
+%pp :: Like the previous parameter but for GI rays.
+
+%section :: Shadows Options
+
+%param :: Occlusion modifier <em>[shadowModifier]</em>
+%pp :: Because using a low auto-transparency depth leads to darker shadows, you can counter the effect by lowering this value.
+
+
+

@@ -1,0 +1,9 @@
+%shadername :: Obq_IESLightFilter
+
+%class :: Light Filter
+
+%synopsisStart
+
+%warning :: Obq_IESLightFilter was created before Arnold had Photometric Lights and should not be used anymore.
+
+%synopsisEnd

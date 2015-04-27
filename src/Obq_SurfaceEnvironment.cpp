@@ -115,6 +115,9 @@ node_update
 	else
 		data->sampler = NULL;
 
+	const char* rc = params[p_renderChannel].STR;
+		if(rc && std::strlen(rc))	AiAOVRegister(rc,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
+
 }
 
 

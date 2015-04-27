@@ -30,8 +30,8 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "O_Common.h"
 
-extern AtNodeMethods* ObqAtmosphereMethods;
 extern AtNodeMethods* ObqAngularCameraMethods;
+extern AtNodeMethods* ObqAtmosphereMethods;
 extern AtNodeMethods* ObqBend4StereoMethods;
 extern AtNodeMethods* ObqCameraProjectionSpaceMethods;
 extern AtNodeMethods* ObqChangeRangeMethods;
@@ -43,6 +43,7 @@ extern AtNodeMethods* ObqFresnelMethods;
 extern AtNodeMethods* ObqHairMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
 extern AtNodeMethods* ObqLensDistortionMethods;
+extern AtNodeMethods* ObqLightSaturationFilterMethod;
 extern AtNodeMethods* ObqMeasuredMaterialMethods;
 extern AtNodeMethods* ObqMessageGetFltMethods;
 extern AtNodeMethods* ObqMessageSetFltMethods;
@@ -83,6 +84,7 @@ enum SHADERS
 	OBQ_HAIR,
 	OBQ_IESLIGHTFILTER,
 	OBQ_LENSDISTORTION,
+	OBQ_LIGHTSATURATIONFILTER,
 	OBQ_MEASUREDMATERIAL,
 	OBQ_MESSAGEGETFLT,
 	OBQ_MESSAGESETFLT,
@@ -189,6 +191,12 @@ node_loader
 		node->output_type = AI_TYPE_UNDEFINED;
 		node->name        = "Obq_LensDistortion";
 		node->node_type   = AI_NODE_CAMERA;
+		break;
+	case OBQ_LIGHTSATURATIONFILTER:
+		node->methods      = ObqLightSaturationFilterMethod;
+		node->output_type  = AI_TYPE_RGB;
+		node->name         = "Obq_LightSaturationFilter";
+		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_MEASUREDMATERIAL:
 		node->methods      = ObqMeasuredMaterialMethods;

@@ -41,6 +41,22 @@ PropertySet "Obq_MessageSetFlt"
 		Texturable = Off;
 		Animatable = On;
 	}
+	Parameter "restoreValue" input
+	{
+		GUID = "{25CAEF52-7318-4126-8D92-38E904500185}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "defaultRestoredValue" input
+	{
+		GUID = "{94082E0D-DB4D-4561-8E72-A71DA7695A67}";
+		Type = scalar;
+		Value = 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
 }
 
 MetaShader "Obq_MessageSetFlt_params_meta"
@@ -78,7 +94,17 @@ Defaults
 		Name = "Set value after passthrough evaluation";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
-
+	restoreValue
+	{
+		Name = "Restore value after if any";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultRestoredValue
+	{
+		Name = "Default restored value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
 }
 
 Layout "Default"
@@ -87,18 +113,42 @@ Layout "Default"
 	key;
 	value;
 	setAfter;
+	restoreValue;
+	defaultRestoredValue;
 }
 
 Layout "RenderTree"
 {
 	passthrough;
 	value;
+	defaultRestoredValue;
 }
 
 Language = "VBScript";
 Logic
 {	
+
+	Sub updateVisibility()
+		IF PPG.setAfter.Value = True Then
+			PPG.restoreValue.Show(False)
+			PPG.defaultRestoredValue.Show(False)
+		Else
+			PPG.restoreValue.Show(True)
+			PPG.defaultRestoredValue.Show(PPG.restoreValue.Value)			
+		End IF
+		PPG.Refresh()
+	End Sub
+
+	Sub setAfter_OnChanged()
+		updateVisibility()
+	End Sub
+
+	Sub restoreValue_OnChanged()
+		updateVisibility()
+	End Sub
+
 	Sub OnInit
 		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetFlt.html"
+		updateVisibility()
 	End Sub
 }

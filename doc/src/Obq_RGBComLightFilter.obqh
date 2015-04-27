@@ -1,0 +1,9 @@
+%shadername :: Obq_RGBComLightFilter
+
+%class :: Light Filter
+
+%synopsisStart
+
+%warning :: Obq_RGBComLightFilter will be replaced by a more versatile node based on the Obq_Message template soon.
+
+%synopsisEnd

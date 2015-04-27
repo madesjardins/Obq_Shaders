@@ -19,12 +19,6 @@
     <Filter Include="Source Files\pbrt">
       <UniqueIdentifier>{73266510-bd01-45f3-b471-55bf07714e24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\dte">
-      <UniqueIdentifier>{e8302992-79f5-4253-a2be-eb94d57385ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\lpdk">
-      <UniqueIdentifier>{1869a5e2-2f4f-4e46-8f30-3896a152d84a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Obq">
       <UniqueIdentifier>{41746b9c-ce62-4653-8c65-f26a5022c80f}</UniqueIdentifier>
     </Filter>
@@ -34,6 +28,9 @@
     <Filter Include="Header Files\yafaray">
       <UniqueIdentifier>{3f8d26a0-e994-4799-a8c9-2c7c0b0cacdb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\lpdk">
+      <UniqueIdentifier>{4e8c167e-43fa-486f-8126-e0c26c52592f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Obq_Shaders__Core.cpp">
@@ -41,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\pbrt\spectrum.cpp">
       <Filter>Source Files\pbrt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Obq_AngularCamera.cpp">
-      <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_Atmosphere.cpp">
       <Filter>Source Files\Obq</Filter>
@@ -87,9 +81,6 @@
     <ClCompile Include="..\..\src\Obq_Shadow.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Obq_StereoLens.cpp">
-      <Filter>Source Files\Obq</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Obq_SurfaceEnvironment.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
@@ -115,9 +106,6 @@
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_CameraProjectionSpace.cpp">
-      <Filter>Source Files\Obq</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Obq_RayDepth.cpp">
@@ -153,6 +141,18 @@
     <ClCompile Include="..\..\src\Obq_TransformShadingPoint.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_LightSaturationFilter.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_AngularCamera.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Obq_StereoLens.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Obq_Atmosphere.h">
@@ -167,9 +167,6 @@
     <ClInclude Include="..\..\src\Obq_MeasuredMaterial.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_StereoLens.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Obq_SurfaceEnvironment.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
@@ -182,20 +179,32 @@
     <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h">
       <Filter>Header Files\yafaray</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\dte\dtengine.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\misc.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\tform.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\dte\vmat.h">
-      <Filter>Header Files\dte</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\pbrt\spectrum.h">
       <Filter>Header Files\pbrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_Toon.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_ToonSimple.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_Hair.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_Colorspaces.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_SpectrumColor.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_Common.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_ISBrdf.h">
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\O_BrdfRead.h">
+      <Filter>Header Files\Obq</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ldpk\ldpk.h">
       <Filter>Header Files\lpdk</Filter>
@@ -257,12 +266,6 @@
     <ClInclude Include="..\..\src\ldpk\nuke_ld_3de4_base.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ldpk\tde4_ld_all_builtins.h">
-      <Filter>Header Files\lpdk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\ldpk\tde4_ld_plugin.h">
-      <Filter>Header Files\lpdk</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_all_par_types.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
@@ -281,31 +284,16 @@
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_deg_8.h">
       <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_Toon.h">
-      <Filter>Header Files\Obq</Filter>
+    <ClInclude Include="..\..\src\ldpk\tde4_ld_all_builtins.h">
+      <Filter>Header Files\lpdk</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Obq_ToonSimple.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Obq_Hair.h">
-      <Filter>Header Files\Obq</Filter>
+    <ClInclude Include="..\..\src\ldpk\tde4_ld_plugin.h">
+      <Filter>Header Files\lpdk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_LensDistortion.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\O_Colorspaces.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Obq_SpectrumColor.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\O_Common.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\O_ISBrdf.h">
-      <Filter>Header Files\Obq</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\O_BrdfRead.h">
+    <ClInclude Include="..\..\src\Obq_StereoLens.h">
       <Filter>Header Files\Obq</Filter>
     </ClInclude>
   </ItemGroup>

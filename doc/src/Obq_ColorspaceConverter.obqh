@@ -1,0 +1,53 @@
+%shadername :: Obq_ColorspaceConverter
+
+%class :: Texture [Passtrough &gt; Modify &gt; Value]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_ColorspaceConverter is a colorspace conversion node.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Plug in the input a color from a certain colorspace and chose in what colorspace this color should be output. You can use the combo boxes and load buttons for quick presets.
+
+#%usageEnd
+
+%section :: Input
+
+%param :: Color <em>[color]</em>
+%pp :: The input color.
+
+%param :: Primaries <em>[csPrimariesIn]</em>
+%pp :: The primaries of the input colorspace.
+
+%param :: Gamma <em>[csGammaIn]</em>
+%pp :: The gamma of the input colorspace.
+
+%param :: Illuminant <em>[csIlluminantIn]</em>
+%pp :: The illuminant of the input colorspace.
+
+%section :: Output
+
+%param :: Primaries <em>[csPrimariesIn]</em>
+%pp :: The primaries of the output colorspace.
+
+%param :: Gamma <em>[csGammaIn]</em>
+%pp :: The gamma of the output colorspace.
+
+%param :: Illuminant <em>[csIlluminantIn]</em>
+%pp :: The illuminant of the output colorspace.
+
+%section :: Options
+
+%param :: Switch In and Out <em>[switchInOut]</em>
+%pp :: Switches the input and output colorspaces.
+
+%param :: Use Bradford chromatic adapation matrix <em>[useBradford]</em>
+%pp :: This creates a better chromatic adaptated colorspace conversion matrix.
+
+%param :: Clamp <em>[clamp]</em>
+%pp :: Clamp values between [0,1].
