@@ -727,7 +727,7 @@ public:
 	inline float M_TRT(float theta_h) const { return g(m_beta2_TRT, m_alpha_TRT, theta_h); }
 	inline float N_TRT(float phi) const { return std::cos(phi/2.0f); }
 
-	inline float N_g(float phi) const { return g(std::pow(m_gamma_g,2), 0.0f, abs(phi) - m_phi_g); }
+	inline float N_g(float phi) const { return g(std::pow(m_gamma_g,2), 0.0f, std::abs(phi) - m_phi_g); }
 
 	// MxG
 	inline AtColor M_R_G(float theta_h, AtColor sigma_bar_f_2) const
