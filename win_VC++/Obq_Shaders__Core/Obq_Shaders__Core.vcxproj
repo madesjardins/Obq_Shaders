@@ -129,8 +129,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>F:\Arnold\Arnold-4.2.3.1-windows\include;F:\Softwares\glm;..\..\src;..\..\src\dte;..\..\src\ldpk;..\..\src\pbrt;..\..\src\yafaray;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>
-      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,13 +151,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Obq_AngularCamera.cpp" />
     <ClCompile Include="..\..\src\Obq_Color.cpp" />
+    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp" />
+    <ClCompile Include="..\..\src\Obq_LightSaturationFilter.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageSetFlt.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageStoreFlt.cpp" />
     <ClCompile Include="..\..\src\Obq_SetAlpha.cpp" />
+    <ClCompile Include="..\..\src\Obq_StereoLens.cpp" />
     <ClCompile Include="..\..\src\Obq_TransformShadingPoint.cpp" />
     <ClCompile Include="..\..\src\O_ISBrdf.cpp" />
-    <ClCompile Include="..\..\src\Obq_AngularCamera.cpp" />
     <ClCompile Include="..\..\src\Obq_Atmosphere.cpp" />
     <ClCompile Include="..\..\src\Obq_Bend4Stereo.cpp" />
     <ClCompile Include="..\..\src\Obq_CameraProjectionSpace.cpp" />
@@ -170,7 +171,6 @@
     <ClCompile Include="..\..\src\Obq_Fresnel.cpp" />
     <ClCompile Include="..\..\src\Obq_Hair.cpp" />
     <ClCompile Include="..\..\src\Obq_IESLightFilter.cpp" />
-    <ClCompile Include="..\..\src\Obq_LensDistortion.cpp" />
     <ClCompile Include="..\..\src\Obq_MeasuredMaterial.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageGetFlt.cpp" />
     <ClCompile Include="..\..\src\Obq_Opacity.cpp" />
@@ -183,7 +183,6 @@
     <ClCompile Include="..\..\src\Obq_Shaders__Core.cpp" />
     <ClCompile Include="..\..\src\Obq_Shadow.cpp" />
     <ClCompile Include="..\..\src\Obq_SpectrumColor.cpp" />
-    <ClCompile Include="..\..\src\Obq_StereoLens.cpp" />
     <ClCompile Include="..\..\src\Obq_SurfaceEnvironment.cpp" />
     <ClCompile Include="..\..\src\Obq_Thickness.cpp" />
     <ClCompile Include="..\..\src\Obq_Toon.cpp" />
@@ -194,10 +193,6 @@
     <ClCompile Include="..\..\src\pbrt\spectrum.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\dte\dtengine.h" />
-    <ClInclude Include="..\..\src\dte\misc.h" />
-    <ClInclude Include="..\..\src\dte\tform.h" />
-    <ClInclude Include="..\..\src\dte\vmat.h" />
     <ClInclude Include="..\..\src\ldpk\ldpk.h" />
     <ClInclude Include="..\..\src\ldpk\ldpk_classic_3de_mixed_distortion.h" />
     <ClInclude Include="..\..\src\ldpk\ldpk_cylindric_extender.h" />
@@ -226,7 +221,9 @@
     <ClInclude Include="..\..\src\ldpk\tde4_ldp_radial_deg_8.h" />
     <ClInclude Include="..\..\src\ldpk\tde4_ld_all_builtins.h" />
     <ClInclude Include="..\..\src\ldpk\tde4_ld_plugin.h" />
+    <ClInclude Include="..\..\src\Obq_LensDistortion.h" />
     <ClInclude Include="..\..\src\Obq_SpectrumColor.h" />
+    <ClInclude Include="..\..\src\Obq_StereoLens.h" />
     <ClInclude Include="..\..\src\O_Colorspaces.h" />
     <ClInclude Include="..\..\src\O_ISBrdf.h" />
     <ClInclude Include="..\..\src\Obq_Atmosphere.h" />
@@ -236,12 +233,10 @@
     <ClInclude Include="..\..\src\Obq_Fresnel.h" />
     <ClInclude Include="..\..\src\Obq_Hair.h" />
     <ClInclude Include="..\..\src\Obq_MeasuredMaterial.h" />
-    <ClInclude Include="..\..\src\Obq_StereoLens.h" />
     <ClInclude Include="..\..\src\Obq_SurfaceEnvironment.h" />
     <ClInclude Include="..\..\src\Obq_Thickness.h" />
     <ClInclude Include="..\..\src\Obq_Toon.h" />
     <ClInclude Include="..\..\src\Obq_ToonSimple.h" />
-    <ClInclude Include="..\..\src\Obq_LensDistortion.h" />
     <ClInclude Include="..\..\src\Obq_VolumeThickness.h" />
     <ClInclude Include="..\..\src\pbrt\spectrum.h" />
     <ClInclude Include="..\..\src\yafaray\yafaray_ies_parser.h" />

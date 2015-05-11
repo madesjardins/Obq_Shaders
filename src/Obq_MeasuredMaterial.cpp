@@ -106,6 +106,9 @@ node_update
 	data->Rr_diff = AiNodeGetInt(options, "GI_diffuse_depth");
 
 	data->brdf = new ISBrdf(params[p_filename].STR, static_cast<AtUInt32>(std::max(params[p_resolution].INT,3)),params[p_useHalfs].BOOL, USELUMINANCE);
+
+	if(data->direct_aov && std::strlen(data->direct_aov))	AiAOVRegister(data->direct_aov,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
+	if(data->indirect_aov && std::strlen(data->indirect_aov))	AiAOVRegister(data->indirect_aov,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
 }
 
 node_finish

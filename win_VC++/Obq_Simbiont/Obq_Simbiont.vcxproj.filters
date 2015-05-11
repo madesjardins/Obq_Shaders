@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Obq">
+      <UniqueIdentifier>{ff34e665-fce6-474f-82f3-a5921e5b97f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dte">
+      <UniqueIdentifier>{c774dc6b-4f35-4c72-abe1-6912fce0730c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Obq_Simbiont.cpp">
@@ -21,7 +27,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\O_Common.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\dtengine.h">
+      <Filter>Header Files\Dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\misc.h">
+      <Filter>Header Files\Dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\tform.h">
+      <Filter>Header Files\Dte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dte\vmat.h">
+      <Filter>Header Files\Dte</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

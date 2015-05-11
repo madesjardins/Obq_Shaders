@@ -1,0 +1,51 @@
+%shadername :: Obq_Opacity
+
+%class :: Texture [Passthrough &gt; Opacity]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: This is the equivalent of the Sprite Mental Ray shader that enables you to pierce geometry based on a texture.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Normally, you would use the opacity parameter of the standard, to achieve the same effect, but this is a great shader when you have camera projection that doesn't need shading.
+
+#%usageEnd
+
+%section :: Color
+
+%param :: Color <em>[color]</em>
+%pp :: This is the input port.
+
+%section :: Opacity
+
+%param :: Channel <em>[channel]</em>
+%pp :: What value is used for opacity :
+%tableStart
+%tableItem :: 95 :: Color : Alpha :: uses the color parameter's alpha value.
+%tableItem :: 95 :: Opacity : Red :: uses the opacity (RGBA) parameter's red value.
+%tableItem :: 95 :: Opacity : Green :: uses the opacity (RGBA) parameter's green value.
+%tableItem :: 95 :: Opacity : Blue :: uses the opacity (RGBA) parameter's blue value.
+%tableItem :: 95 :: Opacity : Alpha :: uses the opacity (RGBA) parameter's alpha value.
+%tableItem :: 95 :: Opacity : RGB :: uses the opacity (RGBA) parameter's RGB value (Arnold's opacity is actually RGB).
+%tableItem :: 95 :: Opacity : Scalar :: uses the opacity (scalar) parameter's value.
+%tableEnd
+
+%param :: Opacity (color) <em>[opacityRGBA]</em>
+%pp :: This is the color opacity input.
+
+%param :: Opacity (scalar) <em>[opacityScalar]</em>
+%pp :: This is the color opacity input.
+
+%param :: Use hard opacity <em>[hard]</em>
+%pp :: In hard mode, it's either fully opaque, if opacity > threshold, or fully transparent elsewise.
+
+%param :: Threshold <em>[threshold]</em>
+%pp :: The threshold beyond which the opacity is set to white.
+
+%param :: Invert <em>[invert]</em>
+%pp :: Invert the opacity.

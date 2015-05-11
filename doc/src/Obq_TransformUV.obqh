@@ -1,0 +1,39 @@
+%shadername :: Obq_TransformUV
+
+%class :: Texture [Passthrough &gt; Modify &gt; Shader Globals]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_TransformUV is a passthrough node that transforms the UV coordinates in the shader globals.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use as passthrough between nodes when you want to modify the UVs.
+%note :: The input for passthrough is a blue Tex dot, but it is the same as a red dot for color.
+
+#%usageEnd
+
+%section :: Mode
+
+%param :: Transform order <em>[mode]</em>
+%pp :: The order in which the scale/rotate/translate transforms are executed.
+
+%section :: Scale
+
+%pp :: The X and Y scale.
+
+%section :: Rotate
+
+%pp :: Rotation angle in degrees.
+
+%section :: Translate
+
+%pp :: The X and Y translation.
+
+%section :: Center
+
+%pp :: The center of transform, useful for rotation and scaling.

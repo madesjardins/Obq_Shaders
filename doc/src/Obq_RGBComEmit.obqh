@@ -1,0 +1,11 @@
+%shadername :: Obq_RGBComEmit
+
+%class :: Texture [Passthrough &gt; Set]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%warning :: Obq_RGBComEmit will be replaced by a more versatile node based on the Obq_Message template soon. This is basically an Obq_MessageSetBool with the key "ComRGB"
+
+%synopsisEnd

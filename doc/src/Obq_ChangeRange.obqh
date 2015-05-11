@@ -1,0 +1,42 @@
+%shadername :: Obq_ChangeRange
+
+%class :: Texture [Passthrough &gt; Modify &gt; Value ]
+
+%output :: Scalar
+
+%synopsisStart
+
+%pp :: Obq_ChangeRange is an upgraded version of the Scalar Change Range. It lets you remap a scalar parameter expressed in an old min/max range to a new min/max range and adds a clamp, a bias and a gain.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Obq_ChangeRange is used like the original Scalar Change Range.
+
+%usageEnd
+
+%param :: Input <em>[input]</em>
+%pp :: Specifies the scalar value to be remapped.
+
+%param :: Old Range Start <em>[oStart]</em>
+%pp :: Specifies the start of the current range of values.
+
+%param :: Old Range End <em>[oEnd]</em>
+%pp :: Specifies the end of the current range of values.
+
+%param :: New Range Start <em>[nStart]</em>
+%pp :: Specifies the start of the new range of values.
+
+%param :: New Range End <em>[nEnd]</em>
+%pp :: Specifies the end of the new range of values.
+
+
+%param :: Clamp <em>[clamp]</em>
+%pp :: If this option is on, it will clamp values out of range accordingly.
+
+%param :: Bias <em>[bias]</em>
+%pp :: Controls the contrast. Values below 0.5 create larger dark areas, values above 0.5 create larger light areas.
+
+%param :: Gain <em>[gain]</em>
+%pp :: Controls the brightness of the effect.

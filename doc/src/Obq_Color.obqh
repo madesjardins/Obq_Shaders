@@ -1,0 +1,23 @@
+%shadername :: Obq_Color
+
+%class :: Texture [Generator]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_Color is a very fast untexturable color. 
+%note :: Use this intead of a "constant" or a "color4 passthrough" when you need a constant color.
+
+%synopsisEnd
+
+#%usageStart
+
+#%usageEnd
+
+%section :: Color
+
+%param :: Color <em>[color]</em>
+%pp :: The RGBA value of the color.
+
+

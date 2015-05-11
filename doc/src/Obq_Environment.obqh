@@ -1,0 +1,127 @@
+%shadername :: Obq_Environment
+
+%class :: Environment
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_Environement is an upgraded version of sta_environment. You can also plug it in the environment port of a material to use with Phong, Reflection shaders and more, but not the standard.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Obq_Environement is great for use with the environment port of an object's render tree when using the old Phong shader ( and Reflection shader ). But if you want to use it with the standard shader, you'll have to use it as a pass shader.
+%image :: src/images/Obq_Environment_01.jpg :: Usage image :: 768
+%idesc :: In this example, we use the Obq_Environment of the pass shader to light the sphere, but we secretly render the reflections from the Obq_SurfaceEnvironment node and store it inside an AOV without affecting the main result.
+
+#%usageEnd
+
+%section :: Image
+
+%param :: Image <em>[tex]</em>
+%pp :: The image to use as texture.
+
+%param :: Use Alpha <em>[considerAlpha]</em>
+%pp :: Use the alpha channel of the image in the evaluation.
+%note :: This is off by default and unless you need it to drive an effect, it should remain off.
+
+%param :: Opaque Background <em>[opaque]</em>
+%pp :: Uncheck if you want the background to be black with alpha = 0.
+
+%param :: Mapping Mode <em>[mapMode]</em>
+%pp :: How to map this texture on a virtual environment sphere :
+%enumStart
+%enumItem :: Mirrored Ball
+%enumItem :: Angular Map
+%enumItem :: Lattitude-Longitude
+%enumItem :: Vertical Cross
+%enumEnd
+
+%param :: Flip U <em>[flipU]</em>
+%pp :: Flips the image horizontally.
+
+%param :: Flip V <em>[flipV]</em>
+%pp :: Flips the image vertically.
+
+
+%section :: Ray Options In Object Render Tree
+
+%param :: Direction <em>[onSurfaceMode]</em>
+%pp :: When using this shader in the environment port of an object's material, you can use different directions :
+%enumStart
+%enumItem :: View Direction
+%enumItem :: View Direction (Inverted)
+%enumItem :: Surface Normal Direction
+%enumItem :: Surface Normal Direction (no bump)
+%enumItem :: Surface Normal Direction (Inverted)
+%enumItem :: Surface Normal Direction (no bump, Inverted)
+%enumItem :: Surface Normal Direction (Front-Facing)
+%enumItem :: Surface Normal Direction (Back-Facing)
+%enumItem :: Reflection Direction
+%enumItem :: Reflection Direction (no bump)
+%enumItem :: Refraction Direction
+%enumItem :: Refraction Direction (no bump)
+%enumItem :: Custom Direction [ port accessible in the "Ray Options"group in the render tree ]
+%enumEnd
+%note :: This option doesn't apply to pass shaders because the direction of ray that hits the background will be used.
+
+%param :: IOR <em>[ior]</em>
+%pp :: Available when Refraction Direction is used, IOR stands for Index Of Refraction.
+
+%param :: Custom Direction <em>[customDirection]</em>
+%pp :: This is the vector used as custom direction.
+%note :: It's only accessible via the port of the node's render tree layout.
+
+%section :: Intensities
+
+%param :: Camera <em>[intensityCam]</em>
+%pp :: This is a basic value multiplier. 
+%note :: In a pass shader, this is for the eye rays that hits the background. When used in the environment port an object's material, this is the only useful multiplier and works for all direction.
+
+%param :: Diffuse <em>[intensityDifGI]</em>
+%pp :: Multiplier for the indirect lighting caused by this environment. (Pass Shader only)
+
+%param :: Reflection <em>[intensityRfl]</em>
+%pp :: Used for mirror reflection that hits the background. (Pass Shader only)
+
+%param :: Glossy <em>[intensityGlossy]</em>
+%pp :: Used for glossy reflection that hits the background. (Pass Shader only)
+
+%param :: Refraction <em>[intensityRfr]</em>
+%pp :: Used for refracted ray that hits the background. (Pass Shader only)
+
+
+%section :: Roughness
+
+%param :: Sample Level <em>[sampleLevel]</em>
+%pp :: The square root of the number of samples taken to create blurred background effect.
+%note :: If this is set to 5, for example, 25 rays will be shot.
+
+%param :: Cone Angle <em>[coneAngle]</em>
+%pp :: The maximum cone angle in which the samples will be taken from. If set to 0, only 1 sample will be taken no matter the sample level.
+%note :: Shooting more rays will soften the noise.
+
+%param :: Cos Lobe Gloss <em>[cosLobeGloss]</em>
+%pp :: This gloss translates into the cosine exponent of the cone distribution. This means that a value of 0 will produce a uniform distribution inside the cone while a higher value will give more of an elleptical shape distribution (Phong peaks). In other words, using a cone angle of 180 will give exactly a cos^n distribution.
+%note :: The equation used to transform gloss into exponent is : Exponent = Gloss/(1-Gloss)^8. Ex: A Gloss of 0.188 gives approximately an exponent of 1.
+
+%param :: Clamp Sample Count <em>[useSampleCount]</em>
+%pp :: Check this and use the Max Sample Count to limit the number of environmenet samples taken.
+
+%param :: Max Sample Count <em>[sampleCount]</em>
+%pp :: The maximum number of samples taken from the environment.
+%note :: Sample Level isn't texturable because the random samples are generated at update time. Using this port, you can texture the maximum number of rays shot knowing that it can never be higher than the square of  the Sample Level value.
+
+%param :: Max Sample Count Multiplier <em>[sampleCountMultiplier]</em>
+%pp :: A simple multiplier used to raise an 8-bit picture value above 1.
+%note :: You can set this to 255 and texture with the absolute value of samples you want.
+
+%section :: Transformation
+
+%param :: Use rotation at a global scope <em>[globalRotation]</em>
+%pp :: Checking this option will calculates the rotation matrix at update time. Meaning it'll be faster if you don't need per pixel rotations.
+
+%param :: Rotation <em>[rotation]</em>
+%pp :: Rotation angles in degrees around the principal axis.

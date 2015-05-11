@@ -1,0 +1,255 @@
+%shadername :: Obq_Hair
+
+%class :: Material
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: The Obq_Hair shader is a look-driven dual scattering hair shader implementation of Sadeghi et al. "An artist friendly hair shading system" using Ou et al. "ISHair: Importance Sampling for Hair Scattering". This shader can output up to 14 AOVs to help you adjust the scale of each component.
+
+%note :: alHair, from the alShaders collection by Anders Langlands, implements the same papers and is more user friendly.
+
+%note :: We strongly suggest you read the paper <a href='http://dl.acm.org/citation.cfm?id=1778793' target='_blank'>"An artist friendly hair shading system"</a> if you want to learn more about this shader. The works of Marschner et al. "Light Scattering from Human Hair Fibers" and Zinke et al. "Dual Scattering Approximation for Fast Multiple Scattering in Hair" are also suggested.
+
+%warning :: At the moment, there is a disparity between some Windows and Linux renders. I hope to have the time to address this soon.
+
+%image :: src/images/Obq_Hair_01.jpg :: Synopsis image :: 768
+%idesc :: Images from the movie <em>"La belle et la b&ecirc;te"</em>. The face of the beast uses Obq_Hair.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply use this shader in the surface port of your hair material. Because preprocessing certain values helps to optimize this shader, there are 2 different types of parameters : non-texturables (shown in the UI) and texturables (shown in the render tree node). The non-texturables will be used to precalculate data needed for the dual scattering and should be set to values representing the texturable ones. If nothing is connected to a texturable parameter port, its non-texturable value will be use. The scales of the 4 lobes (R, TT, TRT-G and G) should always sum to 1. The default values are good approximates using the values in the papers. There are no internal fresnel terms but you can use external fresnel nodes to drive the different scales.
+
+%note :: We suggest when doing the look development to output the 7 AOVs (using the <em>Merge direct and indirect</em> mode) of the components in order to figure out the various parameters and later use the MIS Mode <em>All lobes at once N times</em> with N=1, which merges the 4 lobes together but renders faster and with less noise. You can mix the 4 main lobes with the scattering lobes in compositing later.
+
+%warning :: If you want the dual scattering to work, you must add an Arnold Parameters property to your hair and uncheck opaque.
+
+#%usageEnd
+
+%section :: BCSDF
+%pp :: (Bidirectional Curve Scattering Distribution Function)
+
+%param :: Use preprocessing parameters only <em>[use_pre_only]</em>
+%pp :: When this is checked, only non-texturable parameters for the BCSDF will be used, all plugged-in texturables are ignored.
+%note :: You should always set non-texturable lobe colors in a way that they represent the textured hair colors (average color) because they are used to precalculate certain data for dual scattering. If you change the textured hair colors, you need to adjust the non-texturable colors. You can simply check this option and render to verify instead of unplugging the nodes plugged in texturables.
+
+%section :: Primary Highlight (R lobe)
+
+%pp :: Each hair is represented as a dielectric cylinder. This lobe corresponds to the light reflected by the hair without being transmited (refracted) first.
+
+%param :: Color <em>[color_R]</em>
+%pp :: The color of the primary highlight. This is usually white because it represents the light that bounces off the hair without going through the hair.
+
+%param :: Scale <em>[scale_R]</em>
+%pp :: The scale of the primary highlight. Because the lobe functions are unit height (higest value is 1) we need to scale the lobes relatively between each other and have them sum to 1. 
+%note :: Based on the papers, the R lobe should be approximately a third of the TT lobe, twice the TRT-G lobe and half the glints (g) lobe. Fresnel terms could be added for more realism.
+
+%param :: Shift(&deg;) <em>[alpha_R]</em>
+%pp :: The longitudinal shift in degrees towards the tip of the primary highlight. The hair is made up tilted scales and because of that, the highlight is shifted towards the root of the hair, which explains the negative value.
+%image :: src/images/Obq_Hair_02.jpg :: Shift :: 640
+%idesc :: From left to right, shifts of : -7.5&deg;, 0&deg; and 7.5&deg;. The root of the hair is at the top of the image and the tip at the bottom.
+%note :: Based on the papers, values between -10&deg; and -5&deg; are those of normal human hair. This parameter is known as alpha_R. The TT and TRT lobes are tilted towards the tip of the hair and their values are : alpha_TT = -alpha_R/2 and alpha_TRT = -3*alpha_R/2.
+
+%param :: Width(&deg;) <em>[beta_R]</em>
+%pp :: The longitudinal width in degrees of the lobe (standard deviation). This represent how fat is the highlight's lobe.
+%image :: src/images/Obq_Hair_03.jpg :: Width :: 640
+%idesc :: From left to right, widths of : 7.5&deg;, 15&deg; and 3.75&deg;.
+%note :: Based on the papers, values between 5&deg; and 10&deg; are those of normal human hair. This parameter is known as beta_R. The TT and TRT lobes width can be derived from the beta_R value : beta_TT = beta_R/2 and beta_TRT = 2*beta_R.
+
+%param :: Other shifts and widths based on primary HL <em>[normal_shifts_widths]</em>
+%pp :: When this is checked, longitudinal shifts and widths of TT and TRT lobes will be calculated using the relations shown in the notes above.
+
+%section :: Secondary Highlight (TRT lobe)
+
+%pp :: For a better control, the secondary highlight (TRT lobe) is divided in two subcomponents : the TRT-G (TRT minus G) lobe and the glints (G lobe). The secondary highlights represent light being first transmitted in the hair, then reflected inside the hair and transmitted back out. The glints are 2 symmetrical bright peaks and represent caustics.
+
+%param :: Color <em>[color_TRT]</em>
+%pp :: The color of the secondary highlight without the glints. This is actually the TRT-G lobe. This is usually more saturated than both R and TT lobes because the light has travelled longer inside the hair and has been absorbed more. This is totally independent from the color of glints.
+
+%param :: Scale <em>[scale_TRT]</em>
+%pp :: The scale of the secondary highlight without the glints.
+
+%param :: Shift(&deg;) <em>[alpha_TRT]</em>
+%pp :: The longitudinal shift in degrees towards the tip.
+
+%param :: Width(&deg;) <em>[beta_TRT]</em>
+%pp :: The longitudinal width in degrees of the lobe (standard deviation).
+
+%section :: Glints (G lobe)
+
+%pp :: The shift and the width parameters of the TRT component influences both the TRT-G and the glints, but the colors and scales are independent.
+
+%image :: src/images/Obq_Hair_04.jpg :: Width :: 426
+%idesc :: From left to right, widths of TRT for glints : 15&deg; and 7.5&deg;.
+
+%param :: Color <em>[color_g]</em>
+%pp :: The color of the secondary highlight without the glints. This is actually the TRT-G lobe. This is usually more saturated than both R and TT lobes because the light has travelled longer inside the hair and has been absorbed more. This is totally independent from the color of glints.
+
+%param :: Scale <em>[scale_g]</em>
+%pp :: The scale of the secondary highlight without the glints.
+
+%param :: Azimuthal width(&deg;) <em>[gamma_g]</em>
+%pp :: The azimutal width in degrees. This represents how fat the glints are perpendicularly to the direction of the hair.
+
+%image :: src/images/Obq_Hair_05.jpg :: Azimuthal width :: 426
+%idesc :: From left to right, azimuthal widths of glints : 17.5&deg; and 9&deg;.
+
+%param :: Half angle between peeks (&deg;) <em>[phi_g]</em>
+%pp :: The half angle between the glints. A higher value will seperate the 2 peeks and a smaller value will bring them closer.
+
+%image :: src/images/Obq_Hair_06.jpg :: Half angle between peeks :: 426
+%idesc :: From left to right, half angle between peeks of glints : 37.5&deg; and 20&deg;.
+
+%section :: Rimlight (TT lobe)
+
+%pp :: The rimlight correspond to the light that is transmitted in the hair on one side and transmitted again on the other side, i.e. that goes through the hair. This is for an unshadowed hair, you need dual scattering or an opacity smaller than 1 to see the rimlight through more than one hair.
+
+%image :: src/images/Obq_Hair_07.jpg :: Rimlight :: 214
+%idesc :: A backlit lump of hair (red light, no dual scattering).
+
+%param :: Color <em>[color_TT]</em>
+%pp :: The color of the rimlight. This is usually more saturated than R, but less than TRT lobes.
+
+%param :: Scale <em>[scale_TT]</em>
+%pp :: The scale of the rimlight.
+
+%param :: Shift(&deg;) <em>[alpha_TT]</em>
+%pp :: The longitudinal shift in degrees towards the tip.
+
+%param :: Width(&deg;) <em>[beta_TT]</em>
+%pp :: The longitudinal width in degrees of the lobe (standard deviation).
+
+%param :: Azimuthal Width(&deg;) <em>[gamma_TT]</em>
+%pp :: The azimuthal width in degrees of the lobe (standard deviation). This represent how fat the rimlight is perpendicularly to the direction of the hair.
+
+
+%section :: Dual Scattering (B.S. and F.S. lobes)
+
+%pp :: Dual scattering simulates light bounces inside the volume of hair.
+%image :: src/images/Obq_Hair_08.jpg :: Dual Scattering :: 620
+%idesc :: A lump of hair lit from the front and the back. From left to right : single scattering, back scattering+forward scattering and final render.
+
+%param :: Single Scattering Mode <em>[singleScatteringMode]</em>
+%pp :: When checked, no scattering will be calculated.
+
+%section :: Back Scattering
+
+%pp :: Back scattering accounts for light that bounces of hairs and arrives at the shading point.
+%note :: Note that this is already colored in function of the BCSDF lobes.
+
+%param :: + Shift (&deg;)<em>[alpha_back]</em>
+%pp :: Additionnal longitudinal shift in degrees.
+
+%param :: + Width (&deg;)<em>[beta_back]</em>
+%pp :: Additionnal longitudinal width in degrees.
+
+%param :: Color Mult <em>[color_back]</em>
+%pp :: Multiplies the result by this color.
+%note :: This is normally white, but you can change this color to create a desired look.
+
+%param :: Scale <em>[scale_back]</em>
+%pp :: Scale of the back scattering lobe.
+%note :: This is normally 1, but you can change this color to add some sort of diffuse color inside the hair.
+
+%param :: Back scattering density <em>[d_b__pre, d_b]</em>
+%pp :: Density of hair.
+%note :: This is around 0.7 for human hair.
+
+%section :: Forward Scattering
+
+%pp :: Forward scattering accounts for light that goes through the hairs and arrives at the shading point.
+%note ::This is already colored in function of the BCSDF lobes.
+
+%param :: Color Mult <em>[color_forward]</em>
+%pp :: Multiplies the result by this color.
+%note :: This is normally white, but you can change this color to create a desired look.
+
+%param :: Scale <em>[scale_forward]</em>
+%pp :: Scale of the forward scattering lobe.
+%note :: This is normally 1, but you can change this color to add some sort of diffuse color inside the hair.
+
+%param :: Forward scattering density <em>[d_f__pre, d_f]</em>
+%pp :: Density of hair.
+%note :: This is around 0.7 for human hair.
+
+%section :: Direct Illumination
+
+%param :: Scale <em>[scale_direct]</em>
+%pp :: Scale of the direct illumination.
+
+%param :: Color Mult <em>[color_direct</em>
+%pp :: Multiplies the direct illumination result by this color.
+
+%param :: MIS Mode <em>[color_direct</em>
+%pp :: Mode of multiple importance sampling. Results using MIS will be less noisy.
+%tableStart
+%tableItem :: 150 :: No MIS :: Do not use MIS.
+%tableItem :: 150 :: All lobes at once N times :: Does MIS considering all the lobes at once. This is the fastest MIS.<br><font color="darkblue"><em>Note : The number of samples (N), should always be 1 in this case.</em></font><br><font color="darkred"><em>Warning : This will merge all four primary lobes results together.</em></font>
+%tableItem :: 150 :: Randomly select N lobes :: Does MIS by choosing a random lobe based on an energy function N times. Best way to do MIS and keep seperate lobes AOVs (using N = 1).
+%tableItem :: 150 :: Additional lobes according to samples :: Do MIS with each lobe N times according to the settings in sampling group. Useful when you have a lobe that is particularly noisy.<br><font color="darkblue"><em>Note : The number of samples (N) for each lobe, should not be greater than 1.</em></font>
+%tableEnd
+
+%section :: Indirect Illumination
+
+%param :: Samples <em>[samples]</em>
+%pp :: The square root of the number of samples that will be used for indirect lighting. Use 0 to disable indirect illumination.
+%note :: The samples are of type glossy.
+
+
+%param :: Use imporance sampling <em>[useImportanceSampling]</em>
+%pp :: Check this to use importance sampling for the indirect illumination.
+%note :: This should always be checked.
+
+%param :: Scale <em>[scale_indirect]</em>
+%pp :: Scale of the indirect illumination.
+
+%param :: Color Mult <em>[color_indirect]</em>
+%pp :: Multiplies the indirect illumination result by this color.
+
+%section :: Opacity
+
+%param :: Opacity <em>[opacity]</em>
+%pp :: The opacity of the hair. 
+
+%param :: Unlink Self Opacity <em>[unlinkOpacity]</em>
+%pp :: You can separate the self opacity from the general opacity to either fake scattering in single scattering mode or affect the scattering intensity in dual scattering mode.
+
+%param :: Self Opacity <em>[shadow_opacity]</em>
+%pp :: The opacity of the hair for shadow rays. This is available if you check "Unlink Self Opacity".
+
+%param :: Intersection modifier (^) <em>[numGMS_modifier]</em>
+%pp :: This exponent modifies the number of hair intersections during the forward scattering computation (num^modifier) to allow light to go furter into the hair volume.
+
+%image :: src/images/Obq_Hair_09.jpg :: Intersection modifier :: 768
+%idesc :: A cross section of a lump of hair lit from above. Values of modifier (exponent) from left to right : 1, 1/2, 1/4 and 1/8.
+
+%section :: Additionnal Options
+
+%param :: Self rays between different shaders <em>[checkShaderNameToo]</em>
+%pp :: To check if the rays are self rays during the forward scattering computation, we use a pointer to the shader to compare if the source of the ray is the same as the receiver. This works when using either a single hair object or multiple hair objects with the same material. If you want the forward scattering to be calculated among different hair object with different materials, you have to check this. This will have a small impact on the speed, but will allow this. The only requirement is that the hair shader nodes must contain "Obq_Hair". So "Red_Obq_Hair" and "Obq_Hair_Blond" will work, but not "Obq_BlondHair".
+
+%section :: RayType Optimization
+
+%pp :: To help things speed up, there is a ray switch inside the shader. The modes of computation depending on the ray types are : 
+%tableStart
+%tableItem :: 220 :: color :: Use a constant color.
+%tableItem :: 220 :: direct (No Dual Scattering) :: Use the shader in single scattering mode and only for direct lighting.
+%tableItem :: 220 :: direct+indirect (No Dual Scattering) :: Use the shader in single scattering mode.
+%tableItem :: 220 :: Same as Camera Ray :: Use the full direct+indirect illumination with dual scattering.<br><font color="darkblue"><em>Note : Only available for reflected and refracted rays.</em></font>
+%tableEnd
+
+%section :: AOVs
+
+%param :: Mode <em>[aov_mode]</em>
+%pp :: Fourteen (14) AOVs are available for this shader. To make things easier in terms of AOVs managing, you have a few modes available to you in order to merge certain lobes and illumination mode together.
+%note :: You can press the "Set Pass Hair Framebuffers" to set the proper framebuffers in the pass.
+
+%section :: Presets
+
+%pp :: "Default Settings" will reset all settings to default.
+%pp :: "Normalize scales to 1" will normalize the scales of the 4 primary lobes to 1.
+
+

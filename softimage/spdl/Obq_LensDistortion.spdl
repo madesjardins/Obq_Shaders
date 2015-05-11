@@ -198,7 +198,7 @@ PropertySet "Obq_LensDistortion"
 		Type = scalar;
 		flags  = 1;
 		Value = 0.3465;
-        Value Minimum = 0;
+		Value Minimum = 0;
 		Texturable = Off;
 	}
     Parameter "filmbackY3DEq" input
@@ -207,7 +207,7 @@ PropertySet "Obq_LensDistortion"
 		Type = scalar;
 		flags  = 1;
 		Value = 0.1949;
-        Value Minimum = 0;
+		Value Minimum = 0;
 		Texturable = Off;
 	}
     Parameter "pixelRatio3DEq" input
@@ -216,7 +216,7 @@ PropertySet "Obq_LensDistortion"
 		Type = scalar;
 		flags  = 1;
 		Value = 1;
-        Value Minimum = 0.0001;
+		Value Minimum = 0.0001;
 		Texturable = Off;
 	}
 	Parameter "c3dc00" input

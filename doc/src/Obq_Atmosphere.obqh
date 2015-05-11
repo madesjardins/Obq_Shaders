@@ -1,0 +1,123 @@
+%shadername :: Obq_Atmosphere
+
+%class :: Material
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: A shader made for planetary atmosphere, but can also be used as a simple ray marcher.
+%image :: src/images/Obq_Atmosphere_01.jpg :: Synopsis image :: 768
+%idesc :: A planet's atmosphere.
+%note :: This shader was created before Arnold went volume, so I suggest you go with the volume_collector.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: This is a surface shader (surface port of a material), not a volume shader. You have to put an Arnold Parameter property on the shaded object and uncheck "Opaque".
+%image :: src/images/Obq_Atmosphere_02.jpg :: Usage image :: 512
+%idesc :: A cube in fractal smoky sphere.
+
+#%usageEnd
+
+%section :: Volume
+
+%param :: Diffuse Color <em>[colorKd]</em>
+%pp :: The diffuse color of media.
+
+%param :: Enable 3D color texture <em>[use3dKd]</em>
+%pp :: Enables the evaluation of a 3D texture and not just the surface texture for diffuse color.
+
+%param :: Absorption Coefficient <em>[absorption]</em>
+%pp :: The absorption coefficient of the media.
+
+%param :: Enable 3D absorption function <em>[use3dAbsorption]</em>
+%pp :: Enables the evaluation of a 3D texture and not just the surface texture for absorption.
+
+%param :: Asymmetry <em>[asymmetry]</em>
+%pp :: Asymmetry of the phase function, negative value correspond to back-scattering, 0 is isotropic and positive correspond to forward-scattering.
+
+%section :: Radius Falloff 
+%pp :: This option was designed for spherical objects like planets. Samples closer to the edge of the sphere absorb less.
+
+%param :: Mode <em>[radiusFalloffMode]</em>
+%pp :: The different modes and ways to get center :
+%tableStart
+%tableItem :: 213 :: Don't use Radius Falloff :: should be selected for simple ray marching mode.
+%tableItem :: 213 :: Get center from object matrix :: use the matrix of the object to find center.
+%tableItem :: 213 :: Get center from object center vector :: use the object center vector in the "Geo" tab as center coordinates.
+%tableEnd
+%note :: In order for the matrix mode to work, you must use the user option "preserve_scene_data true".
+
+%param :: Start <em>[falloffStart]</em>
+%pp :: Radius ratio at which the falloff start.
+
+%param :: Speed <em>[falloffExponent]</em>
+%pp :: Exponent that modifies the rate of the falloff.
+
+%section :: Silhouette Falloff 
+
+%param :: Enable <em>[useBiasGainDot]</em>
+%pp :: Enables a silhouette falloff similar to an incidence camera/surface node.
+
+%param :: Bias <em>[biasDot]</em>
+%pp :: Controls the contrast. Values below 0.5 create larger dark areas, values above 0.5 create larger light areas.
+
+%param :: Gain <em>[gainDot]</em>
+%pp :: Controls the brightness of the effect.
+
+%section :: Geometric Information 
+
+%param :: Object center <em>[objectCenter]</em>
+%pp :: Center of the sphere. Used for "Get center from object center vector" radius falloff mode.
+
+%section :: Ray Marching
+
+%param :: Size <em>[stepSize]</em>
+%pp :: Size of each steps in the ray marching process in units. It is important to scale the steps based on the scale of the scene. The bigger the steps, the faster the render.
+
+%param :: Jitter ratio <em>[stepJitter]</em>
+%pp :: Random step size ratio modification to prevent artifacts.
+
+%param :: Enable maximum ray length <em>[useMaximumRayLength]</em>
+%pp :: Enables a maximum ray length after which the march stops and return accumulated color.
+
+%param :: Maximum ray length <em>[maximumRayLength]</em>
+%pp :: Maximum ray length.
+
+
+%section :: Final Opacity Modification (Bias-Gain)
+
+%param :: Enable <em>[useBiasGain]</em>
+%pp :: Enables a bias and gain operation on the final opacity.
+
+%param :: Bias <em>[bias]</em>
+%pp :: Controls the contrast. Values below 0.5 create larger dark areas, values above 0.5 create larger light areas.
+
+%param :: Gain <em>[gain]</em>
+%pp ::Controls the brightness of the effect.
+
+
+
+%section :: Advanced Options
+
+%param :: Non-opaque hit compensation <em>[compensateForCloudOpacity]</em>
+%pp :: When a non-opaque object is hit during the ray marching process, a compensation must be done :
+%tableStart
+%tableItem :: 145 :: Never :: don't compensate.
+%tableItem :: 145 :: By dropping max opacity :: the maximum opacity is lowered by that object's opacity.
+%tableItem :: 145 :: By raising total opacity :: raises the accumulated opacity so far by that object's opacity [default].
+%tableEnd
+
+%param :: Color/Opactiy compensation <em>[divideColorByOpacity]</em>
+%pp :: Because there will be a double alpha multiplication effect if left as-is for values lower than 1, a compensation must be done, a sort of unpremult operation.
+%tableStart
+%tableItem :: 100 :: Never :: don't compensate.
+%tableItem :: 100 :: Before Bias-Gain :: unpremult before bias and gain operations [default].
+%tableItem :: 100 :: After Bias-Gain :: unpremult after bias and gain operations.
+%tableEnd
+
+%param :: Enable for reflection/glossy and refraction rays <em>[secondaryTypesToo]</em>
+%pp :: The ray marching will also occur for reflection and refraction rays and not only camera rays.
+

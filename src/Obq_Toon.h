@@ -186,6 +186,8 @@ typedef struct
 	bool global_remapMultByColor;
 
 	bool global_clamp;
+
+	bool global_noInternal;
 }
 ShaderData;
 

@@ -1,0 +1,73 @@
+%shadername :: Obq_MeasuredMaterial
+
+%class :: Material
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: Obq_MeasuredMaterial is a shader that reads binary BRDF files (MERL database .binary or MaterialSketcher .mskbrdf).
+%warning :: This shader is in development right now and not all the parameters are active.
+%image :: src/images/Obq_MeasuredMaterial_01.jpg :: Synopsis image :: 768
+%idesc :: In this example, the Stanford dragon is shaded using the MERL red metallic paint BRDF.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply browse for a binary BRDF file and render.
+
+#%usageEnd
+
+%section :: BRDF
+
+%param :: Filename <em>[filename]</em>
+%pp :: The binary BRDF filename, either MERL database or MaterialSketcher (not yet public) BRDF.
+
+%param :: Resolution <em>[resolution]</em>
+%pp :: The LUT resolution for that BRDF inside the shader.
+
+%section :: Direct
+
+%param :: Color <em>[direct_color]</em>
+%pp :: A direct color multiplier.
+
+%param :: Scale <em>[direct_scale]</em>
+%pp :: A direct scale factor.
+
+%param :: Use MIS (test) <em>[useMIS]</em>
+%pp :: Use multiple importance sampling for direct illumination.
+
+%section :: Inirect
+
+%param :: Color <em>[indirect_color]</em>
+%pp :: An indirect color multiplier.
+
+%param :: Scale <em>[indirect_scale]</em>
+%pp :: A indirect scale factor.
+
+%param :: Use MIS (test) <em>[useImportanceSampling]</em>
+%pp :: Use multiple importance sampling for indirect illumination.
+
+%param :: Samples <em>[samples]</em>
+%pp :: The square root of the number of samples to use for indirect illumination.
+
+
+%section :: Options
+
+%param :: Stop binary search when in range of <em>[binMaxDif]</em>
+%pp :: An optimization for the MIS and IS.
+
+%param :: Use jitters <em>[useJitters]</em>
+%pp :: Use a bit of randomness to break repeating patterns.
+
+%param :: Use half hints (test) <em>[useHalfs]</em>
+%pp :: Another optimization for the MIS and IS.
+
+%section :: AOVs
+
+%param :: Direct <em>[direct_AOV]</em>
+%pp :: The direct AOV.
+
+%param :: Indirect <em>[direct_AOV]</em>
+%pp :: The indirect AOV.

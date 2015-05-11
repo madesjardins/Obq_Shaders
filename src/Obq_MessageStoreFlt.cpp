@@ -32,7 +32,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 *------------------------------------------------------------------------
 */
 
-#include "ai.h"
+#include "O_Common.h"
 
 // Arnold stuff
 //
@@ -83,6 +83,9 @@ node_update
 	data->key = params[p_key].STR;
 	data->AOVName = params[p_AOVName].STR;
 	data->storeAfter = params[p_storeAfter].BOOL;
+
+	if(data->AOVName && std::strlen(data->AOVName))
+		AiAOVRegister(data->AOVName, AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
 }
 
 node_finish

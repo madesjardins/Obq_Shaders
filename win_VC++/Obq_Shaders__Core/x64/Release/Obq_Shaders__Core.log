@@ -1,16 +1,19 @@
-﻿Build started 27/01/2015 2:51:48 PM.
-     1>Project "F:\VS_Projects\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
+﻿Build started 27/04/2015 12:07:59 AM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.3.1-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Color.cpp ..\..\src\Obq_MessageSetFlt.cpp ..\..\src\Obq_MessageStoreFlt.cpp ..\..\src\Obq_SetAlpha.cpp ..\..\src\Obq_TransformShadingPoint.cpp ..\..\src\O_ISBrdf.cpp ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_ColorspaceConverter.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageGetFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_SpectrumColor.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.3.1-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_LightSaturationFilter.cpp ..\..\src\Obq_MessageSetFlt.cpp ..\..\src\Obq_MessageStoreFlt.cpp ..\..\src\Obq_SetAlpha.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_TransformShadingPoint.cpp ..\..\src\O_ISBrdf.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_ColorspaceConverter.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageGetFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_SpectrumColor.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         Obq_AngularCamera.cpp
          Obq_Color.cpp
+         Obq_LensDistortion.cpp
+         Obq_LightSaturationFilter.cpp
          Obq_MessageSetFlt.cpp
          Obq_MessageStoreFlt.cpp
          Obq_SetAlpha.cpp
+         Obq_StereoLens.cpp
          Obq_TransformShadingPoint.cpp
          O_ISBrdf.cpp
-         Obq_AngularCamera.cpp
          Obq_Atmosphere.cpp
          Obq_Bend4Stereo.cpp
          Obq_CameraProjectionSpace.cpp
@@ -21,10 +24,9 @@
          Obq_Fresnel.cpp
          Obq_Hair.cpp
          Obq_IESLightFilter.cpp
-         Obq_LensDistortion.cpp
+         Compiling...
          Obq_MeasuredMaterial.cpp
          Obq_MessageGetFlt.cpp
-         Compiling...
          Obq_Opacity.cpp
          Obq_RandomColor.cpp
          Obq_RandomID.cpp
@@ -35,7 +37,6 @@
          Obq_Shaders__Core.cpp
          Obq_Shadow.cpp
          Obq_SpectrumColor.cpp
-         Obq_StereoLens.cpp
          Obq_SurfaceEnvironment.cpp
          Obq_Thickness.cpp
          Obq_Toon.cpp
@@ -45,13 +46,16 @@
          Obq_VolumeThickness.cpp
          spectrum.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v304\Obq_Shaders__Core__v304.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.3.1-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v304.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v304.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v304\Obq_Shaders__Core__v304.lib" /MACHINE:X64 /DLL x64\Release\Obq_Color.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v304\Obq_Shaders__Core__v304.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.3.1-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v304.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v304.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v304\Obq_Shaders__Core__v304.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
+         x64\Release\Obq_Color.obj
+         x64\Release\Obq_LensDistortion.obj
+         x64\Release\Obq_LightSaturationFilter.obj
          x64\Release\Obq_MessageSetFlt.obj
          x64\Release\Obq_MessageStoreFlt.obj
          x64\Release\Obq_SetAlpha.obj
+         x64\Release\Obq_StereoLens.obj
          x64\Release\Obq_TransformShadingPoint.obj
          x64\Release\O_ISBrdf.obj
-         x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Atmosphere.obj
          x64\Release\Obq_Bend4Stereo.obj
          x64\Release\Obq_CameraProjectionSpace.obj
@@ -62,7 +66,6 @@
          x64\Release\Obq_Fresnel.obj
          x64\Release\Obq_Hair.obj
          x64\Release\Obq_IESLightFilter.obj
-         x64\Release\Obq_LensDistortion.obj
          x64\Release\Obq_MeasuredMaterial.obj
          x64\Release\Obq_MessageGetFlt.obj
          x64\Release\Obq_Opacity.obj
@@ -75,7 +78,6 @@
          x64\Release\Obq_Shaders__Core.obj
          x64\Release\Obq_Shadow.obj
          x64\Release\Obq_SpectrumColor.obj
-         x64\Release\Obq_StereoLens.obj
          x64\Release\Obq_SurfaceEnvironment.obj
          x64\Release\Obq_Thickness.obj
          x64\Release\Obq_Toon.obj
@@ -87,16 +89,16 @@
             Creating library ..\..\bin\v304\Obq_Shaders__Core__v304.lib and object ..\..\bin\v304\Obq_Shaders__Core__v304.exp
          Generating code
          Finished generating code
-         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\..\..\bin\v304\Obq_Shaders__Core__v304.dll
+         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\..\..\bin\v304\Obq_Shaders__Core__v304.dll
        Manifest:
          C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v304\Obq_Shaders__Core__v304.dll;#2" /manifest x64\Release\Obq_Shaders__Core__v304.dll.intermediate.manifest
        PostBuildEvent:
          del /F /Q x64\Release\*.* ..\..\bin\v304\*.lib ..\..\bin\v304\*.exp
          :VCEnd
-         F:\VS_Projects\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\x64\Release\Obq_Shaders__Core.log
+         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\x64\Release\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\VS_Projects\Obq_Arnold_Shaders--private-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:19.40
+Time Elapsed 00:00:21.01

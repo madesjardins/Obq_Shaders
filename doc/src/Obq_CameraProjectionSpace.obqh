@@ -1,0 +1,23 @@
+%shadername :: Obq_CameraProjectionSpace
+
+%class :: Texture [Generator]
+
+%output :: Vector
+
+%synopsisStart
+
+%pp :: This shader outputs the intersection point in raster space.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply use this in the render tree to drive parameters based on camera projection/raster space.
+
+%usageEnd
+
+%param :: Render Camera <em>[use_render_camera]</em>
+%pp :: Outputs the render camera raster space instead of the picked camera (other camera).
+
+%param :: Other Camera <em>[projection_camera]</em>
+%pp :: Use this camera for projection instead of the render camera.

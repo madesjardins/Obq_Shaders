@@ -1,0 +1,57 @@
+%shadername :: Obq_TransformShadingPoint
+
+%class :: Texture [Passthrough &gt; Modify &gt; Shader Globals]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_TransformShadingPoint is a passthrough node that transforms the shading point. This is particiularly useful when you want to move VDB simulations coming from Houdini.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use as the node that connects into the material node (surface or volume port).
+
+#%usageEnd
+
+%section :: Passthrough
+
+%param :: Shader <em>[passthrough]</em>
+%pp :: The input for your shading branch.
+
+%section :: Coordinates
+
+%param :: Space <em>[coordinates]</em>
+%pp :: The space coordinates for this modification : 
+%enumStart
+%enumItem :: Object
+%enumItem :: World 
+%enumEnd
+
+%section :: Transforms
+
+%pp :: Use the buttons to link or set to objects transform.
+
+%param :: Transform mode <em>[mode]</em>
+%pp :: Options are :  
+%enumStart
+%enumItem :: SRT
+%enumItem :: Matrix 
+%enumEnd
+
+%param :: Invert <em>[invert]</em>
+%pp :: This inverts the transforms.
+
+%param :: Rotation Order <em>[rotationOrder]</em>
+%pp :: This is the rotation order needed for the SRT mode.
+
+%param :: Scale <em>[scale]</em>
+
+%param :: Rotation <em>[rotation]</em>
+
+%param :: Translation <em>[translation]</em>
+
+%param :: Transforms <em>[transforms]</em>
+%pp :: The matrix.

@@ -1,4 +1,4 @@
-# 2014-11-30 08.28 am
+# 2015-04-06 12.39 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -16,7 +16,7 @@ ViewModeEnumOp = [
 
 def Obq_StereoLensCreateViewMode(attr):
     cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_StereoLensViewMode', attribute=attr, label="Camera", enumeratedItem=ViewModeEnumOp)    
+    cmds.attrEnumOptionMenuGrp('Obq_StereoLensViewMode', attribute=attr, label="View Mode", enumeratedItem=ViewModeEnumOp)    
     cmds.setUITemplate(popTemplate=True)
 
 def Obq_StereoLensSetViewMode(attr):
@@ -34,7 +34,9 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Obq_StereoLens", collapse=False)
 
         Obq_StereoLensHelpURL()
-
+        
+        self.beginLayout("Main", collapse=False)
+        
         self.beginLayout("View Mode", collapse=False)
         self.addCustom('aiViewMode', Obq_StereoLensCreateViewMode, Obq_StereoLensSetViewMode)
         self.endLayout()
@@ -42,60 +44,72 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Cameras", collapse=False)
         self.addControl("aiLeftCamera", label="Left")
         self.addControl("aiRightCamera", label="Right")
-        self.addControl("aiCameraStatus", label="Status")
+        # Note this attribute might not exist
+        # Error: MayaAttributeError: Maya Attribute does not exist (or is not unique):: u'perspShape.aiCameraStatus' # 
+        #self.addControl("aiCameraStatus", label="Status")
+        self.endLayout()
+        
+        
+        self.beginLayout("Automatic Overscan", collapse=True)
+        #self.addControl("aiUseOverscan", label="Enable use Overscan")
+        #self.addControl("aiFilterSize", label="Filter Size")
         self.endLayout()
 
-        self.beginLayout("Camera Interest", collapse=False)
-        self.addControl("aiCameraInterest", label="Camera Interest")
-        #self.addControl("aiInterest", label="Interest")
-        self.addControl("aiInterestX", label="Interest X")
-        self.addControl("aiInterestY", label="Interest Y")
-        self.addControl("aiInterestZ", label="Interest Z")
-        self.addControl("aiCameraInterestStatus", label="Camera Interest Status")
+        self.beginLayout("Target Resolution", collapse=True)
+        # self.addControl("aiTargetResolutionX", label="Width")
+        # self.addControl("aiTargetResolutionY", label="Height")
         self.endLayout()
 
-        self.beginLayout("DoF Advanced Options", collapse=False)
+        self.beginLayout("Render Resolution", collapse=True)
+        #self.addControl("aiRenderResolutionX", label="Width")
+        #self.addControl("aiRenderResolutionY", label="Height")
+        #self.addControl("aiUpdatePassResolution", label="Automatic update of pass output resolution")
+        self.endLayout()
+
+        self.beginLayout("Nuke Info", collapse=True)
+        #self.addControl("aiLeftCropInfo", label="Left Crop")
+        #self.addControl("aiRghtCropInfo", label="Right Crop")
+        self.endLayout()
+        
+        self.endLayout() # End of Main Layout
+
+        
+        
+        self.beginLayout("Depth of Field", collapse=False)
+        self.addControl("aiUseDof", label="Enable DoF")
+        
+        self.beginLayout("Focus Distance", collapse=False)
+        self.addControl("aiFocusDistance", label="Distance")
+        self.addControl("aiFocusPlaneIsPlane", label="Focal plane is a plane")
         self.addControl("aiRecalculateDistanceForSideCameras", label="Recalculate focus distance for left and right cameras")
-        self.addControl("aiFocalPlaneIsPlane", label="Focal plane is a plane")
-        self.addControl("aiUseRigDof", label="Use a custom/rig focus distance")
-        self.addControl("aiRigDepth", label="Focus distance")
         self.endLayout()
 
-        self.beginLayout("Automatic Overscan", collapse=False)
-        self.addControl("aiUseOverscan", label="Enable")
+        self.beginLayout("Aperture", collapse=False)
+        self.addControl("aiApertureSize", label="Size")
+        self.addControl("aiApertureAspectRatio", label="Aspect Ratio")
+        self.addControl("aiUsePolygonalAperture", label="Polygonal Aperture")
+        self.addControl("aiApertureBlades", label="Blades")
+        self.addControl("aiApertureBladeCurvature", label="Blade Curvature")
+        self.addControl("aiApertureRotation", label="Rotation")
+        
+        self.beginLayout("Bokeh Quality", collapse=False)
+        self.addControl("aiBokehInvert", label="Invert")
+        self.addControl("aiBokehBias", label="Bias")
+        self.addControl("aiBokehGain", label="Gain")
         self.endLayout()
-
-        self.beginLayout("Target Resolution", collapse=False)
-        self.addControl("aiTargetResolutionX", label="Width")
-        self.addControl("aiTargetResolutionY", label="Height")
-        self.endLayout()
-
-        self.beginLayout("Render Resolution", collapse=False)
-        self.addControl("aiRenderResolutionX", label="Width")
-        self.addControl("aiRenderResolutionY", label="Height")
-        self.addControl("aiUpdatePassResolution", label="Automatic update of pass output resolution")
-        self.endLayout()
-
-        self.beginLayout("Nuke Info", collapse=False)
-        self.addControl("aiLeftCropInfo", label="Left crop")
-        self.addControl("aiRghtCropInfo", label="Right crop")
-        self.endLayout()
-
-        self.beginLayout("Debug", collapse=False)
-        self.addControl("aiDof", label="Enable DoF")
-        self.addControl("aiUseCameraInterest", label="Use camera interest as focus point")
-        self.addControl("aiFilterSize", label="Filter size")
-        self.addControl("aiFilmbackX", label="Filmback X")
-        self.addControl("aiLeftCenterOffset", label="Left Optical Center Offset")
-        self.addControl("aiRightCenterOffset", label="Right Optical Center Offset")
-        self.addControl("aiTotalOverscanPixels", label="Total Pixel Overscan")
-        self.endLayout()
+        
+        self.endLayout() #End of Aperture Layout
+        
+        # self.beginLayout("Debug", collapse=False)
+        # self.addControl("aiFilmbackX", label="Filmback X")
+        # self.addControl("aiLeftCenterOffset", label="Left Optical Center Offset")
+        # self.addControl("aiRightCenterOffset", label="Right Optical Center Offset")
+        # self.addControl("aiTotalOverscanPixels", label="Total Pixel Overscan")
+        # self.endLayout()
 
         self.endLayout()     # end Obq_StereoLens layout
 
         self.beginLayout("Options", collapse=True)
-        self.addCommonAttributes()
-        self.addSeparator()
         self.addControl("aiUserOptions", label="User Options")
         self.endLayout()
 

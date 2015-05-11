@@ -1,0 +1,11 @@
+%shadername :: Obq_UVRemapLensDistortion
+
+%class :: Texture [Passthrough &gt; Lens]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%warning :: This node is depricated and has been replaced by Obq_LensDistortion.in the shader globals.
+
+%synopsisEnd

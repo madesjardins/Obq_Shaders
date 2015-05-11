@@ -1,0 +1,190 @@
+%shadername :: Obq_Fresnel
+
+%class :: Texture [Generator]
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: Obq_Fresnel is a texture node that outputs colored proportion of light reflected/refracted from a surface based on the refractive indices and the extinction coefficients. Note that this shader is particularly useful for getting the right metal reflection color by driving the <em>ks_color</em> port of a standard shader. A lot of presets are available, but you can also import wavelength dependent complex IORs files (.spd, .csv, .txt) or enter them as strings directly. Creation of an energy conserving 2-layers material can also be done by using the <a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards compound</a>.
+%note :: Even though this is a newer Obq_Fresnel, older Obq_Fresnel nodes will give the same look. You can press the "Load" preset button to update the look.
+%warning :: You should not use the Obq_Fresnel for dielectrics (material with refraction), the <em>Use IOR for Fresnel</em> parameter of the standard shader should be used instead. However, you can use the <em>Material Type : Refractive</em> for coatings.
+%image :: src/images/Obq_Fresnel_01.jpg :: Synopsis image :: 768
+%idesc :: In this example, the Stanford dragon is shaded using an Obq_Fresnel with an iron preset plugged into the <em>specular color</em> port of the standard shader. Note that the Fresnel parameters of the standard must not be enabled.
+
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: The simplest way is to use Obq_Fresnel is to plug the output in the <em>specular color</em> port of the standard shader like shown above. Using the Obq_Fresnel2standards compounds, you can also achieve multi-layered materials and respect energy conservation.
+%image :: src/images/Obq_Fresnel_02.jpg :: Usage image :: 768
+%idesc :: Statues of Ajax from left to right : smooth gold, rough copper, rough osmium with silver flakes underneath a smooth acrylic layer, smooth ice and a vegetable oil covered rosewood. The gold and copper Ajax have been created with their respective preset and simply connected to the <em>specular color</em> port of the standard shader. The third and fifth Ajax are using the compounds shown below the render.
+
+#%usageEnd
+
+%section :: Settings
+
+%param :: Fresnel Mode <em>[mode]</em>
+%pp :: Different value input mode.
+%tableStart
+%tableItem :: 178 :: Custom :: enter arbitrary values or load presets from the combo box and button.
+%tableItem :: 178 :: Custom (DEPRICATED Presets) :: For compatibility with old Obq_Fresnel nodes. Please hit the load button if you want to update this Obq_Fresnel node.
+%tableItem :: 178 :: File :: load a file containing wavelengths and their respective refractive indices and extinction coefficients, respectively n [eta] and k. You can load comma-separated values (.csv), tab-separated values (.txt) and pbrt's .spd.
+%tableEnd
+
+%warning :: Hitting the load preset button to update old Obq_Fresnel will change the look.
+
+%param :: Input Type <em>[inputType]</em>
+%pp :: There are 2 different custom input types :
+%tableStart
+%tableItem :: 85 :: RGB (LEGACY) :: use RGB values.
+%tableItem :: 85 :: String SPD :: use spectral power distribution strings. Essentially the content of the file mode but in preset.
+%tableEnd
+
+%section :: Presets
+
+%param :: Presets <em>[presets]</em>
+%pp :: Material presets with their values.
+%warning :: Presets are now loaded using the load button.
+
+%pp :: To add a preset :
+%enumStart
+%enumItem :: Get a csv or txt file from the web (<a href = "http://www.filmetrics.com/refractive-index-database" target="_blank">Filmetrics</a> or <a href="http://refractiveindex.info" target="_blank">Refractive Index</a>) or spd files from <a href="http://www.pbrt.org" target="_blank">pbrt</a>.
+%enumItem :: Select the File mode.
+%enumItem :: Select the proper units for the file.
+%enumItem :: Change the Arnold verbosity level to "warning+info".
+%enumItem :: Render.
+%enumItem :: Open the script editor and look for the line "# INFO : [arnold] IOR RGB Form:".
+%enumItem :: The 2 following lines contains the RGB values for both eta (n) and k.
+%enumItem :: If you want the strings values, simply open the file in a text editor.
+%enumItem :: Edit the Obq_Fresnel.spdl template file. (This is for Softimage, but should be similar in Maya and Houdini)
+%enumItem :: Look for the "preset" parameter declaration and increment the maximum value (remember it too, this is your preset number).
+%enumItem :: Look for the "preset" combo box declaration and add your preset name and preset number in there.
+%enumItem :: Look for the "btnLoadPreset_OnClicked()" function. Add a condition for that new preset number (you can copy+paste a previous preset and change the values).
+%enumItem :: Enter the 2 RGB values and the 3 strings SPD for that preset.
+%enumEnd
+
+
+%section :: SPD (Strings or File)
+
+%param :: Filename <em>[iorFilename]</em>
+%pp :: You can browse for a ior files. While .csv and .txt contains both n and k or only n, spds only contains one of them at a time. Gold, for example, would have a file "Au.eta.spd" for n and a "Au.k.spd" for k. Loading one of them will automatically load the other if it exists.
+%note :: This parameter is available in file mode.
+
+%param :: Lambda <em>[lambdasStr]</em>
+%pp :: A string representing the sampled wavelenghts.
+%note :: This parameter and the following 2 are available in custom mode with string spd input type.
+%note :: You can copy the content of a spd file to the proper string parameters. In file mode, when using the verbose "warning+info" mode, the log will show the string values of the loaded file. This is quite practicle if you want to add a new preset.
+
+%param :: Eta (n) <em>[etasStr]</em>
+%pp :: A string representing the real part of the complex index of refraction for the sampled wavelenghts.
+
+%param :: k <em>[ksStr]</em>
+%pp :: A string representing the imaginary part of the complex index of refraction for the sampled wavelenghts.
+
+%param :: Wavelenghts Units <em>[lambdaUnits]</em>
+%pp :: Depending on the origin of the file, wavelenghts units will usually be :
+%tableStart
+%tableItem :: 80 :: nanometers :: [ 360nm-830nm ].
+%tableItem :: 80 :: micrometers :: [ 0.360um-0.830um ].
+%tableEnd
+%pp :: You have to select the appropriate one.
+%warning :: A warning will be issued if the shader thinks you selected the wrong units.
+
+%section :: RGB Refractive Indices
+
+%param :: n (eta) <em>[iorRGB]</em>
+%pp :: RGB n [eta] are the real parts of the complex index of refraction. There is no single specific wavelenght for red, green or blue. It's rather a sum of weighted values. The best way to choose values for them is to actually load the file corresponding to that material, select "warning+info" verbose level in the diagnostic tab of the Arnold render options and look at the log for the actual RGB values.
+
+%section :: Extinction Coefficients
+%param :: k <em>[kRGB]</em>
+%pp :: RGB k (extinction coefficients) are the imaginary parts of the complex index of refraction. Metals absorb and reflect light, that's what gives the color. They are approximately equal to 0 for non metals. Values can be found the same way as for n.
+
+%section :: Equations
+
+%param :: Materiel Type <em>[method]</em>
+%pp :: The fresnel implementation used for evaluation :
+%tableStart
+%tableItem :: 70 :: Refractive :: uses equations for dielectrics. Choose this mode if the material reflects and/or refract lights. If you want to simulate a varnished piece of wood, for example, choose this mode and use values of the varnish. Instead of driving the refraction scale or color with the transmitted value, drive the diffuse scale of the shader or premultiply the texture color with it. These equations ignore k.
+%tableItem :: 70 :: Metals :: uses equations for metals. Choose this mode if you want to drive the reflection or specular color of a material.
+%tableEnd
+
+%section :: Options
+
+%param :: Roughness <em>[roughness]</em>
+%pp :: This approximates the fresnel coefficient for a rough surface using a GTX normal distribution function.
+%warning :: You should use this parameter with the LUT enable only.
+
+%param :: Ratio of polarized Fs/Fp <em>[ratioFsFp]</em>
+%pp :: Ratio of s- and p-polarisations.
+
+%param :: Backface <em>[backfaceMode]</em>
+%pp :: This allows you to control what happens when a backface of a polygon is intersected by a ray. This is only used when "Refractive" type is chosen and you want to use on a dielectric even though you're not supposed to ;)
+%tableStart
+%tableItem :: 110 :: Same as Frontface :: This treats backfaced polygon as frontface.
+%tableItem :: 110 :: Swap IORs :: Use this when the refracting material is a closed volume. It swaps the ior and the media in ior. Because it is important to know in which media you are in when calculating these values, being in water and going into glass will not give the same values as being in glass and going into water.
+%tableItem :: 110 :: Always White :: Returns white.
+%tableItem :: 110 :: Always Black :: Returns black.
+%tableEnd
+
+%section :: Output
+%param :: Output Refraction Color <em>[transmittance]</em>
+%pp :: By default, this shader returns the reflected portion of light. If this is check, it will return the refracted portion of light. It's essentially equals to 1-R except for metals (0).
+
+%section :: Media In
+%param :: Refractive Indices - n <em>[iorInRGB]</em>
+%pp :: Same as previous n, but this is the media in which your object lies. Generally equals to 1, but if you're in water, for example, it would be 1.33. Ideally, this would exist and would be equal the the ray current IOR.
+
+%section :: LookUp Table
+
+%param :: Enable precalculated LUT <em>[useLUT]</em>
+%pp :: Precalculate the fresnel term for every <em>sample size &deg;</em> during the proprocessing phase.
+%note :: This translate into an acceleration of approximately 7%.
+
+%param :: Sample size (&deg;) <em>[LUTSampleSize]</em>
+%pp :: The distance in degrees between 2 samples in the LUT. This will produce a LUT with 90/LUTSampleSize + 1 entries.
+
+%param :: Roughness sample size <em>[roughnessSampleSize]</em>
+%pp :: The distance [0,1] between 2 samples in the rough LUT. This will produce a LUT with (90/LUTSampleSize + 1) * (1/roughnessSampleSize +1) entries.
+
+%section :: Spectrum
+
+%param :: Use full spectrum data in equations (metal) <em>[useFullSpectrum]</em>
+%pp :: Normally, the complex IOR spectral data is transformed into 2 CIE XYZ coordinates and then converted into 2 RGB values representing a complex index of refraction, not a color. These RGB values (eta and k) are then used in the complex fresnel equations. When you enable this option, the fresnel term for every spectral entries is calculated and the result is transformed into a CIE XYZ coordinate and then converted into a RGB value representing a color. This should give very slightly better results.
+%note :: This option is only available for metals.
+%warning :: This is longer to process and should always be used with a LUT.
+
+%section :: ColorSpace
+
+%param :: XYZ to RGB Matrix <em>[xyz2rgb]</em>
+%pp :: This allows you to control the XYZ to RGB matrix in case you need to.
+
+%param :: Gamma <em>[outputGamma]</em>
+%pp :: This allows you to control the gamma in case you need to.
+
+%param :: Old linear workflow for metal (compatibility) <em>[degamma]</em>
+%pp :: This is the old parameter and it is here for look compatibility between this new and the old Obq_Fresnel.
+
+%section :: Color Adjustment
+
+%param :: Mode <em>[ccMode]</em>
+%pp :: This allows you to slightly tweak the color (hue and saturation) to match a certain look.
+%tableStart
+%tableItem :: 20 :: Off :: Don't use any color adjustment.
+%tableItem :: 20 :: HSV :: Modify the color using the HSV coordinates system.
+%tableItem :: 20 :: HLS :: Modify the color using the HLS coordinates system.
+%tableEnd
+
+%param :: Hue Shift (&deg;) <em>[hueShift]</em>
+%pp :: A standard hue shift in degrees.
+
+%param :: Saturation Modifier<em>[saturationMod]</em>
+%pp :: Modifies the saturation using a certain operation.
+
+%param :: Saturation Operation<em>[saturationOp]</em>
+%pp :: Uses this operation to affect the saturation by the saturation modifier.
+
+
+
+

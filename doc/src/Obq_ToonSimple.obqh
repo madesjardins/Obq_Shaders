@@ -1,0 +1,115 @@
+%shadername :: Obq_ToonSimple
+
+%class :: Material
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: A simple toon shader based on Obq_Toon. A dot product for each component (diffuse = NdotL, highlight = NdotH and rimlight = NdotV) is calculated to determine the shading and then remapped according to some rules.
+%image :: src/images/Obq_Toon_01.jpg :: Synopsis image :: 512
+%idesc :: A simple toon example.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: For a classic toon look, use it exactly like the Mental Ray toon shader with the coverage and softness parameters.
+
+#%usageEnd
+
+%section :: Globals
+
+%param :: Ambient Color <em>[ambient_color]</em>
+%pp :: This is a simple constant.
+
+
+%param :: Ambient Scale <em>[ambient_scale]</em>
+%pp :: Let's you adjust the Ambient mix.
+
+
+%param :: Multiply by scene ambience <em>[ambient_multAmbience]</em>
+%pp :: When checked, this multiplies the ambient color by the scene ambience.
+
+
+%param :: No Internal Ambient <em>[ambient_noInternal]</em>
+%pp :: With a non-opaque object, check this to disable the ambient contribution of back-facing polygons. See <em>opacity</em> for example.
+
+
+%param :: Opacity Color <em>[opacity]</em>
+%pp :: This is the opacity of the shader.
+%note :: Use the <em>No Internal</em> component parameters to activate or deactivate contribution of back-facing polygons.
+%image :: src/images/Obq_Toon_07.jpg :: Opacity and no internal :: 512
+%idesc :: Left is an opaque sphere, in the middle a semi-opaque sphere and right, semi-opaque sphere with all <em>_noInternal</em> checked.
+
+
+
+%param :: Compositing <em>[global_compMode]</em>
+%pp :: This tells the shader how to composite ambient, diffuse, highlight and rimlight results together in that order.
+%tableStart
+%tableItem :: 40 :: Add :: this will add all the results.
+%tableItem :: 40 :: Over :: this will mix the results one by one using the rule : out = A + (1-A.alpha)*out, where A.alpha is the channel with the greatest value.
+%tableItem :: 40 :: Max :: for each channel, the greatest value of the components will be used.
+%tableItem :: 40 :: Screen :: for each channel, out = A + out - A*out for values of A and out [0,1], else the greatest value between the two.
+%tableEnd
+%image :: src/images/Obq_Toon_05.jpg :: global_compMode :: 512
+%idesc :: A sphere with grey diffuse, reddish highlight and bluish rimlight. From left to right: <em>Add</em>, <em>Over</em>, <em>Max</em> and <em>Screen</em> mode. There is no apparent highlight on the third sphere because the red channel of the diffuse is higher than the red channel of the highlight.
+
+%param :: Multiply by Light Color <em>[global_multByLightColor]</em>
+%pp :: When checked, this multiplies all light samples by the light color.
+%note ::  In theory, this should always be checked. If it's off, you wont have any shadows.
+
+%param :: Clamp Before Compositing <em>[global_clamp]</em>
+%pp :: When checked, this clamps the values of the accumulated results before compositing a new component.
+%note ::  This helps solidify colors.
+
+%section :: Diffuse/Highlight/Rimlight
+%pp :: The diffuse component uses the N dot L of the Lambertian model, the highlight component uses the N dot H of the Blinn-Phong model and the rimlight uses the N dot V to to determine shading. Once this shading is calculated, it is remapped with respect to the <em>Coverage</em>, <em>Softness</em> and <em>Exponent</em> parameters.
+
+%param :: Color <em>[_color]</em>
+%pp :: This is the color of the diffuse component.
+
+%param :: Scale <em>[_scale]</em>
+%pp :: This is the scale of the diffuse component.
+
+%param :: Exponent <em>[highlight_exponent]</em>
+%pp :: The bigger the exponent, the smaller the highlight.
+
+%param :: Coverage <em>[_coverage]</em>
+%pp :: This will somewhat scale down the span of the lit portion of the object.
+%image :: src/images/Obq_Toon_03.jpg :: Coverage :: 512
+%idesc :: Different values of <em>Coverage</em> = {1.0, 0.5, 0.25, 0.0}.
+%note :: dot = 1-(1-dot)/coverage
+
+%param :: Softness <em>[_softness]</em>
+%pp :: This will somewhat push highest values down. Use a value of 0 for a classic toon look.
+%image :: src/images/Obq_Toon_04.jpg :: Softness :: 512
+%idesc :: Different values of <em>Softness</em> = {1.0, 0.5, 0.25, 0.0}.
+%note :: dot = dot/softness. When used for highlight, if you put 0 here you should use a <em>Coverage of less than 1,</em>
+
+%param :: No Internal <em>[_noInternal]</em>
+%pp :: This will deactivate contribution of back-facing polygons.
+
+%section :: AOVs
+
+%pp :: You can also render all components in seperate AOVs.
+%note :: If a recently created AOV doesn't show in the list, close the shader UI and reopen it.
+
+%param :: Create/Set default AOVs with prefix
+%pp :: Pressing this button will set the AOVs' names, or create them if they do not exist, using the prefix and the default names rule.
+
+%param :: Contour AOV
+%pp :: This can help you do contours in compositing by edge detecting its channels.
+%tableStart
+%tableItem :: 40 :: Red :: Depth.
+%tableItem :: 40 :: Green :: Polygon ID.
+%tableItem :: 40 :: Blue :: Object ID.
+%tableItem :: 40 :: Alpha :: Incidence.
+%tableEnd
+%note :: Object IDs start at 1 in order to have the background equal 0.
+
+%param :: Set Alpha to Over Alpha <em>[putAlphaInFb]</em>
+%pp :: When checked, an RGBA AOV will have an alpha equal to the alpha used for compositing in over mode.
+
+%param :: Normalize Object ID in Contour <em>[normalizeObjectID]</em>
+%pp :: When checked, the object IDs used for the blue channel in the contour AOV will be normalized.

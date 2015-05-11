@@ -1,0 +1,64 @@
+%shadername :: Obq_SpectrumColor
+
+%class :: Texture [Generator]
+
+%output :: Color RGB
+
+%synopsisStart
+
+%pp :: Obq_SpectrumColor will generate a color based on a spectral power distribution (SPD) file or strings.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Make sure the wavelength units and colorspace information are good. 
+
+#%usageEnd
+
+%section :: Settings
+
+%param :: Mode <em>[mode]</em>
+%pp :: The darktree file you want to load.
+%tableStart
+%tableItem :: 30 :: String :: A string with wavelengths and their associated intensities in a second string. 
+%tableItem :: 30 :: File :: An SPD file. 
+%tableEnd
+	
+%section :: SPD (Spectral Power Distribution)
+	
+%param :: Filename <em>[filename]</em>
+%pp :: The darktree file you want to load.
+
+%param :: Lambda <em>[lambdasStr]</em>
+%pp :: The string containing the sampled wavelengths.
+
+%param :: Intensities <em>[intensitiesStr]</em>
+%pp :: The string containing the sampled intensities.
+
+%param :: Wavelength Units <em>[lambdaUnits]</em>
+%pp :: The wavelength units.
+%tableStart
+%tableItem :: 110 :: Nanometers (nm) :: [ 360nm-830nm ].
+%tableItem :: 110 :: Micrometers (um) :: [ 0.360um-0.830um ].
+%tableEnd
+%warning :: It is important to have the proper units in order to get the proper result.
+	
+%section :: Colorspace
+
+%param :: XYZ to RGB Matrix Units <em>[xyz2rgb]</em>
+%pp :: The primaries and illuminant used for the SPD.
+%tableStart
+%tableItem :: 220 :: sRGB Illuminant E :: sRGB primaries with illuminant E.
+%tableItem :: 220 :: sRGB Ill. D65 <- Ill. E (Bradford) :: A Bradford chromatic adapted matrix from illuminant E to D65 using sRGB primaries.
+%tableItem :: 220 :: sRGB Illuminant D65 :: sRGB primaries with illuminant D65.
+%tableItem :: 220 :: XYZ :: Don't convert from CIE XYZ to RGB. This is used when you need more options for colorspace in conjonction the Obq_ColorspaceConverter node.
+%tableEnd
+	
+%param :: Gamma <em>[gamma]</em>
+
+%pp :: The gamma used by the SPD.
+%tableStart
+%tableItem :: 30 :: Linear :: Linear gamma.
+%tableItem :: 30 :: sRGB:: sRGB gamma.
+%tableEnd

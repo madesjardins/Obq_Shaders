@@ -1,0 +1,149 @@
+%shadername :: Obq_StereoLens
+
+%class :: Lens
+
+#%output ::
+
+%synopsisStart
+
+%pp :: A camera lens shader that allows you to render a pair of stereo images into a single frame.
+%image :: src/images/Obq_StereoLens_01.jpg :: Synopsis image :: 0
+%idesc :: Example of lizard rendered with Obq_StereoLens.
+%warning :: Using SItoA 3.1.2 and up, you need to add an Arnold Camera Option property and select "Custom (lens shader)" as the camera type.
+
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply use the Obq_StereoLens as a lens shader on the center camera of the Softimage stereo camera rig or your own rig. Pick the left and right camera. When you render, select the center camera and make sure the scene/pass output resolution is equal to the Render Resolution of the shader. Once rendered, copy-paste the crop node text in Nuke to create left crop and right crop nodes. You can also add depth of field from within the shader UI.
+#%usageEnd
+
+%section :: View Mode
+
+%param :: View Mode <em>[viewMode]</em>
+%pp :: This is the type of frame that will be rendered :
+%tableStart
+%tableItem :: 160 :: Center Camera :: because the lens shader is applied to the center camera, this is the view as is.
+%tableItem :: 160 :: Left Camera :: renders what the left camera views.
+%tableItem :: 160 :: Right Camera :: renders what the right camera views.
+%tableItem :: 160 :: Stereo Camera &lt;left-right&gt; :: renders a single frame of the stereo camera pair, the left camera subframe to the left side and the right camera subframe to the right.
+%tableItem :: 160 :: Stereo Camera &lt;down-up&gt; :: like the previous option, but the left camera subframe will be at the bottom and the right camera subframe will be on top. This is the prefered rendering mode for stereo image pair.
+%tableEnd
+%note :: Whenever you use a Stereo Camera &lt;...&gt; view mode, the output resolution in the proper dimension will be doubled.
+
+%section :: Cameras
+
+%param :: Left <em>[leftCamera]</em>
+%pp :: The full name of the left camera.
+%note :: You can click on the "Pick Left and Right Cameras" button to begin a pick session.
+
+%param :: Right <em>[rightCamera]</em>
+%pp :: The full name of the right camera.
+
+%param :: Status <em>[cameraStatus]</em>
+%pp :: This will indicate if both cameras are valid.
+
+%section :: Automatic Overscan
+
+%param :: Enable <em>[useOverscan]</em>
+%pp :: Enables the automatic overscan mode to counter the blended lines of pixels. This should always be checked.
+
+%param :: Filter Size <em>[filterSize]</em>
+%pp :: The width of the filter in the render options &gt; Sampling &gt; Pixel Filtering &gt; Width.
+%note :: Because of filtering, the lines of pixels immediately next to the left-right border are blended, the floor(filter_width/2) lines in fact. To correct this, an automatic overscan mode was created. Make sure the render width and height are correct. Copy-paste the left/right crop text in Nuke to create the adequate crop nodes.
+
+%section :: Target Resolution
+
+%param :: Width <em>[targetResolutionX]</em>
+%pp :: The final width in pixels you want each left/right frame to have.
+
+%param :: Height <em>[targetResolutionY]</em>
+%pp :: The final height in pixels you want each left/right frame to have.
+
+%section :: Render Resolution
+
+%param :: Width <em>[renderResolutionX]</em>
+%pp :: The width in pixels needed to give the target width once cropped because of blended pixels.
+
+%param :: Height <em>[renderResolutionY]</em>
+%pp :: The height in pixels needed to give the target height once cropped because of blended pixels.
+
+%param :: Automatic update of pass output resolution <em>[updatePassResolution]</em>
+%pp :: Checking this will enable the update of the resolution automatically in the pass options.
+
+%section :: Nuke Info
+
+%pp :: Copy-paste the text to create the proper crop nodes in Nuke.
+
+%section :: Depth of Field
+
+%param :: Enable <em>[useDof]</em>
+%pp :: Enable the depth of field.
+%note :: If you enable this here, you don't need to enable it in the Render Options.
+%note :: The result is not exactly the same as Arnold's default DoF, but it's very similar.
+
+%param :: Distance <em>[focusDistance]</em>
+%pp :: The distance at which an object is in focus.
+
+%param :: Focus plane is a plane <em>[focusPlaneIsPlane]</em>
+%pp :: Wether or not the focus plane is actually a plane or curved plane (on by default).
+
+%param :: Recalculate focus distance for left and right cameras<em>[recalculateDistanceForSideCameras]</em>
+%pp :: This allows to adjust the focus distance, given for the center camera, for the left and right camera. Don't check this if you're using an off-axis stereo type rig.
+
+%param :: Size <em>[apertureSize]</em>
+%pp :: This size controls the amount of blur (size of the iris).
+
+%param :: Aspect Ratio <em>[apertureAspectRatio]</em>
+%pp :: The aspect ratio of the lens. Values smaller than 1 will give an horizontal elongated oval vand values greater than 1 will give a vertical elongated oval.
+
+%param :: Polygonal Aperture <em>[usePolygonalAperture]</em>
+%pp :: The shape of the iris is polygonal instead of circular.
+
+%param :: Blades <em>[apertureBlades]</em>
+%pp :: The number of blades the iris has. For example, using 5 blades will give a pentagon shaped iris.
+
+%param :: Blade Curvature <em>[apertureBladeCurvature]</em>
+%pp :: A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.
+
+%image :: src/images/Obq_bokeh_04.jpg :: Blade curvature :: 512
+%idesc :: Blade curvature of 1, 0, -1, -2 and -3.
+
+%param :: Rotation <em>[apertureRotation]</em>
+%pp :: The rotation in degrees of the shape of the iris.
+
+%section :: Bokeh Quality
+
+%pp :: The bokeh "quality" look can be altered using a bias and gain parameters. This effectively changes the distribution of the rays. 
+%note :: These parameters will eventually be replaced by better sampling functions and image based bokeh.
+
+%param :: Invert <em>[bokehInvert]</em>
+%pp :: Invert the output of the bias/gain operation.
+
+%param :: Bias <em>[bokehBias]</em>
+%pp :: Bias control of the bokeh.
+
+%param :: Gain <em>[bokehGain]</em>
+%pp :: Gain control of the bokeh.
+
+%tableStart
+%tableItem :: 90 :: Poor bokeh :: (invert, bias, gain)  values around (false, 0.7, 0.2 ).
+%tableItem :: 90 :: Neutral bokeh :: (invert, bias, gain)  = (false, 0.5, 0.5 ).
+%tableItem :: 90 :: Good bokeh :: (invert, bias, gain) values around (true, 0.33, 0.685 ).
+%tableEnd
+
+%image :: src/images/Obq_bokeh_03.jpg :: Bokeh looks2 :: 256
+%idesc :: Poor, Neutral and Good bokeh.
+
+#%image :: src/images/Obq_bokeh_01.jpg :: Bokeh looks :: 512
+#%idesc :: Bokeh looks with different bias and gain values (non inverted).
+
+#%image :: src/images/Obq_bokeh_02.jpg :: Bokeh looks2 :: 512
+#%idesc :: Bokeh looks with different bias and gain values (inverted).
+
+
+
+
+
+

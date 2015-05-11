@@ -1,0 +1,50 @@
+%shadername :: Obq_AngularCamera
+
+%class :: Lens
+
+#%output ::
+
+%synopsisStart
+
+%pp :: A camera shader that allows you to create angular maps of 3D scenes.
+%image :: src/images/Obq_AngularCamera_01.jpg :: Synopsis image :: 384
+%idesc :: Example of spherical map.
+%note :: The shader compensate for the filter width when rendering in order to give the useful pixels an alpha of 1.
+%warning :: The shader automatically flips the U when used in Arnold 4.1 and above (SItoA 3.0 and up) in order to stay consistent when used in a skydome or sta_environment.
+
+
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply translate the camera where you want to capture the angular map and render.
+%image :: src/images/Obq_AngularCamera_02.jpg :: Usage :: -256
+%idesc :: Since an angular map looks a bit like a mirrored ball, the center of the image will be the back of the camera.
+%note :: If the camera is looking along the -Z axis, you won't need to rotate the skydome using it, otherwise, apply the same rotation.
+%usageEnd
+
+%param :: Angle [angle]
+%pp :: The span in degrees of the angular map.
+%image :: src/images/Obq_AngularCamera_03.jpg  :: angle :: -192
+%idesc :: From higher to lower values [360, 180, 90].
+%note :: Normally, this is set to 360.
+
+%param :: Opposite view [flip]
+%pp :: Let's you render an angular map in the opposite direction.
+%image :: src/images/Obq_AngularCamera_04.jpg  :: flip :: 256
+%idesc :: Angular map taken with the rear camera view.
+
+%param :: Over Render [overRender]
+%pp :: This allows you to render the whole image instead of only the necessary pixels, which sort of wraps around.
+%image :: src/images/Obq_AngularCamera_05.jpg  :: flip :: 256
+%idesc :: An over rendered angular map.
+%note :: Unless you want to for an aesthetic reason, don't check this, it will take more time to render (approximately 4/pi times).
+
+#%exampleStart
+#%exampleItem :: Golden Dragon
+#%pp :: Un dragon avec settings :
+#%enumStart
+#%enumItem :: AA : 3
+#%enumItem :: Render Time : 00:00:20
+#%exampleEnd
