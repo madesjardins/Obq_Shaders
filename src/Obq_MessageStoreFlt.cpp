@@ -4,9 +4,6 @@ Obq_MessageStoreFlt :
 	Returns the value in the message passing queue with the corresponding key.
 	If the key doesn't exist, returns the default value
 
-	Used with the Obq_Toon in gradient mode, this allows the lookup in gradient mode instead of image.
-	Just plug this into the input of the gradient mixer.
-
 *------------------------------------------------------------------------
 Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
@@ -61,7 +58,7 @@ ShaderData;
 node_parameters
 {
 	AiParameterRGBA("passthrough", 1.0f,1.0f,1.0f,1.0f);
-	AiParameterSTR("key", "O1");
+	AiParameterSTR("key", "Of");
 	AiParameterFLT("defaultValue", 0.0f);
 	AiParameterSTR("AOVName", "");
 	AiParameterBOOL("storeAfter", true);
@@ -70,7 +67,7 @@ node_parameters
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->key = "O1";
+	data->key = "Of";
 	data->AOVName = "";
 	data->storeAfter = true;
 	AiNodeSetLocalData(node,data);
@@ -85,7 +82,7 @@ node_update
 	data->storeAfter = params[p_storeAfter].BOOL;
 
 	if(data->AOVName && std::strlen(data->AOVName))
-		AiAOVRegister(data->AOVName, AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
+		AiAOVRegister(data->AOVName, AI_TYPE_FLOAT, AI_AOV_BLEND_OPACITY);
 }
 
 node_finish

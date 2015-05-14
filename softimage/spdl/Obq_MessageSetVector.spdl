@@ -1,0 +1,154 @@
+# SPDL Obq_MessageSetVector - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{176B45B2-5291-4B26-B813-6F2F1E46E1BB}";
+PropertySet "Obq_MessageSetVector"
+{
+	Parameter "out" output
+	{
+		GUID = "{5FF5715D-1212-474A-BCB8-5E1DF00954FB}";
+		Type = color;
+	}
+	Parameter "passthrough" input
+	{
+		GUID = "{89D0AFB4-ECE8-4E35-80EE-AA1CFE122785}";
+		Type = color;
+		Value = 1.0 1.0 1.0 1.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "key" input
+	{
+		GUID = "{1A5AD47D-872D-4F9E-897D-00E1B0514D83}";
+		Type = string;
+		Value = "Ov";
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "value" input
+	{
+		GUID = "{51B80CA3-B23A-4A08-842C-7F9DA5C7FFBE}";
+		Type = vector;
+		Value = 0.0 0.0 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
+	Parameter "setAfter" input
+	{
+		GUID = "{DE391288-91B2-449B-8F58-B4AA4A043888}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "restoreValue" input
+	{
+		GUID = "{487E86D4-9ECC-4767-9EC6-FE08B5F0BDF2}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "defaultRestoredValue" input
+	{
+		GUID = "{DDCC8B47-6467-43B0-8A25-B67F384E3BE4}";
+		Type = vector;
+		Value = 0.0 0.0 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_MessageSetVector_params_meta"
+{
+	Name = "Obq_MessageSetVector";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_MessageSetVector";
+	}	
+}
+
+Defaults
+{
+	passthrough
+	{
+		Name = "Passthrough";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "rgba";
+	}
+	key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	value
+	{
+		Name = "Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	setAfter
+	{
+		Name = "Set value after passthrough evaluation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	restoreValue
+	{
+		Name = "Restore value after if any";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultRestoredValue
+	{
+		Name = "Default restored value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+}
+
+Layout "Default"
+{
+	passthrough;
+	key;
+	value;
+	setAfter;
+	restoreValue;
+	defaultRestoredValue;
+}
+
+Layout "RenderTree"
+{
+	passthrough;
+	value;
+	defaultRestoredValue;
+}
+
+Language = "VBScript";
+Logic
+{	
+
+	Sub updateVisibility()
+		IF PPG.setAfter.Value = True Then
+			PPG.restoreValue.Show(False)
+			PPG.defaultRestoredValue.Show(False)
+		Else
+			PPG.restoreValue.Show(True)
+			PPG.defaultRestoredValue.Show(PPG.restoreValue.Value)			
+		End IF
+		PPG.Refresh()
+	End Sub
+
+	Sub setAfter_OnChanged()
+		updateVisibility()
+	End Sub
+
+	Sub restoreValue_OnChanged()
+		updateVisibility()
+	End Sub
+
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetVector.html"
+		updateVisibility()
+	End Sub
+}

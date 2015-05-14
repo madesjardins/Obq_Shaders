@@ -1,0 +1,138 @@
+# SPDL Obq_MessageGetBool - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{1F05F4BB-7C4A-4D0B-973F-8E331D037B31}";
+PropertySet "Obq_MessageGetBool"
+{
+	Parameter "out" output
+	{
+		GUID = "{699630DC-9E29-4E38-957A-6CB3EB41D804}";
+		Type = boolean;
+		flags = 1;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{A37163E8-93BD-404D-9236-01AB74FC18B2}";
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "preset" input
+	{
+		GUID = "{04CA00D8-9FFB-477A-856A-59DAD428C478}";
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 0;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "key" input
+	{
+		GUID = "{BCED9875-B4B2-4F46-A780-7879D7C3AFB1}";
+		Type = string;
+		Value = "Ob";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "defaultValue" input
+	{
+		GUID = "{B4322993-AEC3-4A9F-A6D4-0BC8ED99F700}";
+		Type = boolean;
+		Value = true;
+		Texturable = On;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_MessageGetBool_params_meta"
+{
+	Name = "Obq_MessageGetBool";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_MessageGetBool";
+	}	
+}
+
+Defaults
+{
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Custom" = 0,
+			"Preset" = 1
+		}
+	}
+	preset
+	{
+		Name = "Preset";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Default" = 0
+		}
+	}
+	key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultValue
+	{
+		Name = "Default Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+
+}
+
+Layout "Default"
+{
+		defaultValue;
+		mode;
+		preset;
+		key;
+}
+
+Layout "RenderTree"
+{
+	defaultValue;
+}
+
+Language = "VBScript";
+Logic
+{	
+
+	Sub preset_OnChanged()
+		If PPG.preset.Value = 0 Then
+			PPG.key.Value = "Ob"
+		End If
+	End Sub
+
+	Sub mode_OnChanged()
+		If PPG.mode.Value = 0 Then
+			PPG.preset.Show(False)
+			PPG.key.ReadOnly = False
+		Else
+			PPG.preset.Show(True)
+			PPG.key.ReadOnly = True
+			preset_OnChanged()
+		End If
+		PPG.Refresh()
+	End Sub
+
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetBool.html"
+		mode_OnChanged()
+		PPG.Refresh
+	End Sub
+}

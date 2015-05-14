@@ -59,7 +59,7 @@ ShaderData;
 node_parameters
 {
 	AiParameterRGBA("passthrough", 1.0f,1.0f,1.0f,1.0f);
-	AiParameterSTR("key", "O1");
+	AiParameterSTR("key", "Of");
 	AiParameterFLT("value", 0.0f);
 	AiParameterBOOL("setAfter", false);
 	AiParameterBOOL("restoreValue", false);
@@ -69,7 +69,7 @@ node_parameters
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->key = "O1";
+	data->key = "Of";
 	data->setAfter = false;
 	data->restoreValue = false;
 	AiNodeSetLocalData(node,data);
@@ -103,7 +103,7 @@ shader_evaluate
 	}
 	else
 	{
-		float restoredValue = 0.0;
+		float restoredValue = 0.0f;
 		if(data->restoreValue)
 			if(!AiStateGetMsgFlt(data->key, &restoredValue))
 				restoredValue = AiShaderEvalParamFlt(p_defaultRestoredValue);

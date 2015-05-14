@@ -261,7 +261,8 @@ shader_evaluate
 					AtShaderGlobals  *sgMarch = new AtShaderGlobals(*sg);
 
 					// isotrope shading
-					sgMarch->Nf.x = 0.0f; sgMarch->Nf.y = 0.0f; sgMarch->Nf.z = 0.0f;
+					//sgMarch->Nf.x = 0.0f; sgMarch->Nf.y = 0.0f; sgMarch->Nf.z = 0.0f;
+					sgMarch->fhemi = false;
 					sgMarch->P = originTrace; // the current point is the first point
 
 					// thickness of each step

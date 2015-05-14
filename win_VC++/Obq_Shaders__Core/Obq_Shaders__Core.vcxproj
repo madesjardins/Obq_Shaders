@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\bin\v304\</OutDir>
-    <TargetName>Obq_Shaders__Core__v304</TargetName>
+    <OutDir>..\..\bin\v306\</OutDir>
+    <TargetName>Obq_Shaders__Core__v306</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -128,14 +128,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OBQ_SHADERS__CORE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>F:\Arnold\Arnold-4.2.3.1-windows\include;F:\Softwares\glm;..\..\src;..\..\src\dte;..\..\src\ldpk;..\..\src\pbrt;..\..\src\yafaray;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\Arnold\Arnold-4.2.6.2-windows\include;F:\Softwares\glm;..\..\src;..\..\src\dte;..\..\src\ldpk;..\..\src\pbrt;..\..\src\yafaray;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>F:\Arnold\Arnold-4.2.3.1-windows\lib;..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\Arnold\Arnold-4.2.6.2-windows\lib;..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ai.lib;</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
@@ -155,8 +155,20 @@
     <ClCompile Include="..\..\src\Obq_Color.cpp" />
     <ClCompile Include="..\..\src\Obq_LensDistortion.cpp" />
     <ClCompile Include="..\..\src\Obq_LightSaturationFilter.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageGetBool.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageGetColor.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageGetInt.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageGetVector.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageSetBool.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageSetColor.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageSetFlt.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageSetInt.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageSetVector.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageStoreBool.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageStoreColor.cpp" />
     <ClCompile Include="..\..\src\Obq_MessageStoreFlt.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageStoreInt.cpp" />
+    <ClCompile Include="..\..\src\Obq_MessageStoreVector.cpp" />
     <ClCompile Include="..\..\src\Obq_SetAlpha.cpp" />
     <ClCompile Include="..\..\src\Obq_StereoLens.cpp" />
     <ClCompile Include="..\..\src\Obq_TransformShadingPoint.cpp" />

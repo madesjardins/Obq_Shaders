@@ -1,25 +1,25 @@
-﻿Build started 25/04/2015 12:16:49 AM.
-     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 2 (build target(s)).
+﻿Build started 14/05/2015 4:09:46 PM.
+     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Simbiont.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.3.1-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SIMBIONT_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Simbiont.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.4.3-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SIMBIONT_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Simbiont.cpp
          Obq_Simbiont.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v304\Obq_Simbiont__v304.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.3.1-windows\lib" /LIBPATH:..\..\lib ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Simbiont__v304.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Simbiont__v304.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v304\Obq_Simbiont__v304.lib" /MACHINE:X64 /DLL x64\Release\Obq_Simbiont.obj
-            Creating library ..\..\bin\v304\Obq_Simbiont__v304.lib and object ..\..\bin\v304\Obq_Simbiont__v304.exp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v306\Obq_Simbiont__v306.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.6.2-windows\lib" /LIBPATH:..\..\lib ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Simbiont__v306.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Simbiont__v306.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v306\Obq_Simbiont__v306.lib" /MACHINE:X64 /DLL x64\Release\Obq_Simbiont.obj
+            Creating library ..\..\bin\v306\Obq_Simbiont__v306.lib and object ..\..\bin\v306\Obq_Simbiont__v306.exp
          Generating code
          Finished generating code
-         Obq_Simbiont.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\..\..\bin\v304\Obq_Simbiont__v304.dll
+         Obq_Simbiont.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\..\..\bin\v306\Obq_Simbiont__v306.dll
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v304\Obq_Simbiont__v304.dll;#2" /manifest x64\Release\Obq_Simbiont__v304.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v306\Obq_Simbiont__v306.dll;#2" /manifest x64\Release\Obq_Simbiont__v306.dll.intermediate.manifest
        PostBuildEvent:
-         del /F /Q x64\Release\*.* ..\..\bin\v304\*.lib ..\..\bin\v304\*.exp
+         del /F /Q x64\Release\*.* ..\..\bin\v306\*.lib ..\..\bin\v306\*.exp
          :VCEnd
-         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\x64\Release\Obq_Simbiont.log
+         F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\x64\Release\Obq_Simbiont.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
+     1>Done Building Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.86
+Time Elapsed 00:00:01.58

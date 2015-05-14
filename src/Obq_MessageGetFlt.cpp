@@ -55,14 +55,14 @@ ShaderData;
 
 node_parameters
 {
-	AiParameterSTR("key", "OToon");
+	AiParameterSTR("key", "Of");
 	AiParameterFLT("defaultValue", 0.0f);
 }
 
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->key = "OToon";
+	data->key = "Of";
 	AiNodeSetLocalData(node,data);
 }
 

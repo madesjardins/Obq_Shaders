@@ -21,7 +21,7 @@ PropertySet "Obq_MessageSetFlt"
 	{
 		GUID = "{1EEEEBCD-6E72-4354-B24A-F926A5CC2D72}";
 		Type = string;
-		Value = "O1";
+		Value = "Of";
 		Texturable = Off;
 		Animatable = On;
 	}

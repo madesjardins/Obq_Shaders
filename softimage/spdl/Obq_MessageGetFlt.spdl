@@ -26,7 +26,7 @@ PropertySet "Obq_MessageGetFlt"
 		Type = integer;
 		Value = 0;
 		Value Minimum = 0;
-		Value Maximum = 0;
+		Value Maximum = 1;
 		Texturable = Off;
 		Animatable = On;
 	}
@@ -34,7 +34,7 @@ PropertySet "Obq_MessageGetFlt"
 	{
 		GUID = "{51920947-A131-4308-B757-2FB4B56B4827}";
 		Type = string;
-		Value = "";
+		Value = "Of";
 		Texturable = Off;
 		Animatable = Off;
 	}
@@ -79,7 +79,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Obq_Toon" = 0
+			"Default" = 0,
+			"Obq_Toon" = 1
 		}
 	}
 	key
@@ -115,6 +116,8 @@ Logic
 
 	Sub preset_OnChanged()
 		If PPG.preset.Value = 0 Then
+			PPG.key.Value = "Of"
+		ElseIf PPG.preset.Value = 1 Then
 			PPG.key.Value = "OToon"
 		End If
 	End Sub

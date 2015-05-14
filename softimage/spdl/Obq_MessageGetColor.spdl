@@ -1,0 +1,138 @@
+# SPDL Obq_MessageGetColor - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{B1A1011C-924E-41AB-A535-70BEF708BC59}";
+PropertySet "Obq_MessageGetColor"
+{
+	Parameter "out" output
+	{
+		GUID = "{4BB5F182-D43C-45D9-954E-49246C1224D6}";
+		Type = color;
+		flags = 1;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{AE12B002-2D37-492F-92D7-AAC277309590}";
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "preset" input
+	{
+		GUID = "{4AD1EBDD-3B32-492D-9350-CBC2D90803DF}";
+		Type = integer;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 0;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "key" input
+	{
+		GUID = "{DAB69370-C941-423B-B647-F4EE6E2FF385}";
+		Type = string;
+		Value = "Oc";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "defaultValue" input
+	{
+		GUID = "{671DB12E-1ED7-4D39-B87F-964EAECDED1F}";
+		Type = color;
+		Value = 0.0 0.0 0.0 0.0;
+		Texturable = On;
+		Animatable = On;
+	}
+}
+
+MetaShader "Obq_MessageGetColor_params_meta"
+{
+	Name = "Obq_MessageGetColor";
+	Type = texture;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_MessageGetColor";
+	}	
+}
+
+Defaults
+{
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Custom" = 0,
+			"Preset" = 1
+		}
+	}
+	preset
+	{
+		Name = "Preset";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Default" = 0
+		}
+	}
+	key
+	{
+		Name = "Key";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	defaultValue
+	{
+		Name = "Default Value";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+
+}
+
+Layout "Default"
+{
+		defaultValue;
+		mode;
+		preset;
+		key;
+}
+
+Layout "RenderTree"
+{
+	defaultValue;
+}
+
+Language = "VBScript";
+Logic
+{	
+
+	Sub preset_OnChanged()
+		If PPG.preset.Value = 0 Then
+			PPG.key.Value = "Oc"
+		End If
+	End Sub
+
+	Sub mode_OnChanged()
+		If PPG.mode.Value = 0 Then
+			PPG.preset.Show(False)
+			PPG.key.ReadOnly = False
+		Else
+			PPG.preset.Show(True)
+			PPG.key.ReadOnly = True
+			preset_OnChanged()
+		End If
+		PPG.Refresh()
+	End Sub
+
+	Sub OnInit
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetColor.html"
+		mode_OnChanged()
+		PPG.Refresh
+	End Sub
+}
