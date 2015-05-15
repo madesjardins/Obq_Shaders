@@ -1,4 +1,4 @@
-# 2015-04-25 09.52 am
+# 2015-05-15 06.01 pm
 
 [node Obq_AngularCamera]
   maya.name                     STRING "camera"
@@ -3125,3 +3125,21 @@
     houdini.label               STRING "Rotation Order"
     default                     INT     0
     
+# This is a stub entry for the new Obq_KettleUVCamera shader. The actual shader name is expected to change before the final release.
+	
+[node Obq_KettleUVCamera]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD65
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_KettleUVCamera"
+  
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_KettleUVCamera"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVCameraa.html"
+  houdini.order                 STRING ""
+  
+  [attr is_perspective]
+    default                     BOOL   True
+

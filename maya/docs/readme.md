@@ -46,6 +46,9 @@ If MtoA has a problem loading the OBQ shaders you can check the Maya Script Edit
 
 ## Version History ##
 
+### 2015-05-15 Changes ###
+- **[ACH]** Added a basic metadata file and an ae template for the new Obq_KettleUVCamera lens shader that is under development.
+
 ### 2015-04-22 Changes ###
 - **[ACH]** Updated the metadata file and the ae template for the Obq_StereoLens, and Obq_AngularCamera shaders in MtoA.
 - **[ACH]** Added a Obq_LensDistortion metadata file.
