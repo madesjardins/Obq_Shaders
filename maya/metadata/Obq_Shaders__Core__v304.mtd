@@ -3137,7 +3137,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_KettleUVCamera"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVCameraa.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVCamera.html"
   houdini.order                 STRING ""
   
   [attr is_perspective]
