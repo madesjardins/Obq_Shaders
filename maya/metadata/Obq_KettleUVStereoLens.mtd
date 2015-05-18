@@ -1,3 +1,5 @@
+# 2015-05-18 01.08 pm
+
 [node Obq_KettleUVStereoLens]
   maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD65
@@ -113,13 +115,13 @@
     houdini.label               STRING "Width"
     default                     INT     1920
     min                         INT     1
-    softmax                     INT     8192
+    softmax                     INT     4096
   [attr renderResolutionY]
     desc                        STRING "Height"
     houdini.label               STRING "Height"
     default                     INT     1080
     min                         INT     1
-    softmax                     INT     4320
+    softmax                     INT     4096
   [attr leftCropInfo]
     desc                        STRING "Left crop"
     houdini.label               STRING "Left crop"
