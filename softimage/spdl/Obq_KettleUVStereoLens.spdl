@@ -1,0 +1,816 @@
+# SPDL Obq_KettleUVStereoLens - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{3DB47178-519F-4B9B-A2A2-E74536C6F067}";
+PropertySet "Obq_KettleUVStereoLens"
+{
+	Parameter "out" output
+	{
+		GUID = "{A895FD8D-29AF-404D-9658-324CB085492E}";
+		Type = color;
+		flags = 1;
+	}
+
+	Parameter "origin_polymesh" input
+	{
+		GUID = "{E70897C9-D00A-47E1-AE27-0A7BEED0905C}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "origin_camera" input
+	{
+		GUID = "{4F340A5D-F7F0-461D-B3D8-A2E978DCF3B8}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "target_polymesh" input
+	{
+		GUID = "{9BFCC6B2-3C4C-4D0B-84DE-D3FA1D818589}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "target_camera" input
+	{
+		GUID = "{9EADFDEC-1FDA-4B36-A6F6-717F1524FD2B}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "polymeshes_status" input
+	{
+		GUID = "{79FB3B5B-C128-45C9-A626-68A79A335BB8}";
+		Type = string;
+		flags = 1;
+		Value = "Not initialized";
+		Animatable = Off;
+	}
+	Parameter "grid_size" input
+	{
+		GUID = "{9D81494C-27D9-4512-8448-5DB40F55E073}";
+		Type = integer;
+		flags = 1;
+		Value = 16;
+		Value Minimum = 1;
+		Value Maximum = 512;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "view_mode" input
+	{
+		GUID = "{F51D6DB2-CFE4-406C-B4F6-8180E30E4263}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+		Texturable = off;
+		Animatable = Off;
+	}
+	Parameter "stereo_type" input
+	{
+		GUID = "{B0CF6A2C-E955-4269-8A04-0A37D3C417E2}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 2;
+		Texturable = off;
+		Animatable = Off;
+	}
+	Parameter "interaxial_mode" input
+	{
+		GUID = "{5C0F37A6-FD76-4C3B-B451-6D4397826F93}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+		Texturable = off;
+		Animatable = Off;
+	}
+	Parameter "interaxial_epsilon" input
+	{
+		GUID = "{2A3F869B-EB7B-44DB-A7B4-9869073C95FD}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.001;
+		Value Minimum = 0.0001;
+		Value Maximum = 0.01;
+		Texturable = off;
+		Animatable = Off;
+	}
+	Parameter "interaxial_separation" input
+	{
+		GUID = "{4F2C843E-7277-4F6C-B330-1DD2A83F3AEE}";
+		Type = scalar;
+		Texturable = Off;
+		Value = -0.6;
+	}
+	Parameter "zero_parallax_mode" input
+	{
+		GUID = "{30B138E0-DA3E-48CF-8EFE-7CC3DB23EBF9}";
+		Type = integer;
+		Texturable = Off;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 1;
+		Animatable = Off;
+	}
+	Parameter "zero_parallax_distance" input
+	{
+		GUID = "{50043ADB-AE36-4F03-8BB0-C178EF590F9E}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 100.0;
+		Value Minimum = 0;
+	}
+	Parameter "target_resolution_x" input
+	{
+		GUID = "{76081CDD-7D75-48D0-AFF6-5CD6CAF775FE}";
+		Type = integer;
+		flags = 1;
+		Value = 1920.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "target_resolution_y" input
+	{
+		GUID = "{D1C54033-724B-4DD8-BC08-48094EF44E2F}";
+		Type = integer;
+		flags = 1;
+		Value = 1080.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "filter_size" input
+	{
+		GUID = "{FF8C0A11-31A7-4E78-9B6C-13013BD8E351}";
+		Type = scalar;
+		flags = 1;
+		Value = 3.0;
+		Value Minimum = 0;
+		Texturable = Off;
+		Animatable = On;
+	}
+	Parameter "render_resolution_x" input
+	{
+		GUID = "{96DB77C9-4193-43F7-B27F-3E6B0F1A598A}";
+		Type = integer;
+		flags = 1;
+		Value = 1920.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "render_resolution_y" input
+	{
+		GUID = "{0201061B-21CA-4376-8FA1-1E5C0CD3160F}";
+		Type = integer;
+		flags = 1;
+		Value = 1080.0;
+		Value Minimum = 1;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "nuke_crop_info" input
+	{
+		GUID = "{32042E0A-5F57-4C64-BC1A-5A0775AA16A3}";
+		Type = string;
+		flags = 1;
+		Value = "Not Stereo";
+		Animatable = Off;
+	}
+	Parameter "total_overscan_pixels" input
+	{
+		GUID = "{66448B0A-9698-4565-9708-F4203FBC60ED}";
+		Type = integer;
+		flags = 1;
+		Value = 0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "update_pass_resolution" input
+	{
+		GUID = "{0B04D2FA-ADB7-4299-827A-7C5700B3B9F2}";
+		Type = boolean;
+		flags = 1;
+		Value = on;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "use_render_region" input
+	{
+		GUID = "{55586100-1553-4B6C-8DBB-97A920AA923D}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "regionU0" input
+	{
+		GUID = "{90E0CE40-CC6B-4280-8BE5-1837E7CA315D}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "regionV0" input
+	{
+		GUID = "{A1DCE114-6145-4A52-8932-9C5E20531440}";
+		Type = scalar;
+		flags = 1;
+		Value = 0.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "regionU1" input
+	{
+		GUID = "{64DAAB49-6F4E-41E0-A1E1-653CB1835BCF}";
+		Type = scalar;
+		flags = 1;
+		Value = 1.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "regionV1" input
+	{
+		GUID = "{A9C5AE74-3FC2-40D9-A117-29D97907576C}";
+		Type = scalar;
+		flags = 1;
+		Value = 1.0;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "crop_to_region" input
+	{
+		GUID = "{AB93CE55-AD66-4370-B4D4-3AD18CE14211}";
+		Type = boolean;
+		flags = 1;
+		Value = off;
+		Texturable = Off;
+		Animatable = Off;
+	}
+}
+
+MetaShader "Obq_KettleUVStereoLens_params_meta"
+{
+	Name = "Obq_KettleUVStereoLens";
+	Type = lens;
+	
+	Renderer "Arnold Render"
+	{
+		Name = "Obq_KettleUVStereoLens";
+	}	
+}
+
+Defaults
+{
+
+	origin_polymesh
+	{
+		Name = "Origin Polymesh";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	origin_camera
+	{
+		Name = "Origin Camera";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	target_polymesh
+	{
+		Name = "Target Polymesh";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	target_camera
+	{
+		Name = "Target Camera";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	polymeshes_status
+	{
+		Name = "Status";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	grid_size
+	{
+		Name = "Grid Size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 128;
+	}
+	view_mode
+	{
+		Name = "View Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Single (Right)" = 0,
+			"Left" = 1,
+			"Stereo <left-right>" = 2,
+			"Stereo <down-up>" = 3
+		}
+	}
+	stereo_type
+	{
+		Name = "Stereo Type";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Neutral" = 0,
+			"Parallel" = 1,
+			"Converged" = 2
+		}
+	}
+	interaxial_mode
+	{
+		Name = "Interaxial Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Offset in U coordinates" = 0,
+			"R dominant, on mesh (RED)" = 1,
+			"R dominant, not on mesh (GREEN)" = 2,
+			"No dominance, not on mesh (BLUE)" = 3
+		}
+	}
+	interaxial_epsilon
+	{
+		Name = "Interaxial Separation Epsilon";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	interaxial_separation
+	{
+		Name = "Interaxial Separation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -1.0 to 1.0;
+	}
+	zero_parallax_mode
+	{
+		Name = "Zero Parallax Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"Use Target Mesh" = 0,
+			"Use Distance" = 1
+		}
+	}
+	zero_parallax_distance
+	{
+		Name = "Zero Parallax Distance";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 200.0;
+	}
+	target_resolution_x
+	{
+		Name = "Width";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 4096;
+	}
+	target_resolution_y
+	{
+		Name = "Height";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 1 to 4096;
+	}
+	filter_size
+	{
+		Name = "Filter size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 5.0;
+	}
+	render_resolution_x
+	{
+		Name = "Width";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	render_resolution_y
+	{
+		Name = "Height";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	nuke_crop_info
+	{
+		Name = "Nuke crop";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	total_overscan_pixels
+	{
+		Name = "Total Pixel Overscan";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	update_pass_resolution
+	{
+		Name = "Automatic update of pass output resolution";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	use_render_region
+	{
+		Name = "Render Region Only";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	regionU0
+	{
+		Name = "U0";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	regionV0
+	{
+		Name = "V0";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	regionU1
+	{
+		Name = "U1";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	regionV1
+	{
+		Name = "V1";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	crop_to_region
+	{
+		Name = "Crop to Region";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+}
+
+Layout "Default"
+{
+	Tab "Main"
+	{
+		Group "Polymeshes"
+		{
+			Button pickPolymeshes,aligncenter = "Pick Origin and Target Polymeshes",180;
+			origin_polymesh;
+			target_polymesh;
+			polymeshes_status;
+		}
+		Group "Rendered View"
+		{
+			view_mode;
+		}
+	}
+	Tab "Stereo"
+	{
+		Group "Settings"
+		{
+			#stereo_type;
+			#interaxial_mode;
+			interaxial_separation;
+			zero_parallax_mode;
+			zero_parallax_distance;
+		}
+		Group "Automatic Overscan"
+		{
+			filter_size;
+			Group "Target Resolution"
+			{
+				Row
+				{
+					target_resolution_x;
+					target_resolution_y;
+				}
+			}
+			Group "Render Resolution"
+			{
+				Row
+				{
+					render_resolution_x;
+					render_resolution_y;
+				}
+				update_pass_resolution;
+			}
+			Group "Nuke Info"
+			{
+				nuke_crop_info;
+			}
+		}
+	}
+	Tab "Region"
+	{
+		Group "Render Region"
+		{
+			use_render_region;
+			crop_to_region;
+			Group "Lower bound UV"
+			{
+				Row 
+				{
+					regionU0, noLabel;
+					regionV0, noLabel;
+				}
+			}
+			Group "Higher bound UV"
+			{
+				Row 
+				{
+					regionU1, noLabel;
+					regionV1, noLabel;
+				}
+			}
+		}
+	}
+	Tab "Advanced"
+	{
+		Group "Acceleration"
+		{
+			grid_size;
+		}
+		Group "Other"
+		{
+			interaxial_epsilon;
+		}
+	}
+	Tab "Debug"
+	{
+		Group "Cameras"
+		{
+			origin_camera;
+			target_camera;
+		}
+		Group "Overscan"
+		{
+			total_overscan_pixels;
+		}
+	}
+}
+
+Layout "RenderTree"
+{
+
+}
+
+Language = "Python";
+Logic
+{
+from win32com.client import constants as c
+import math
+
+def update_pass_resolution_OnChanged():
+	if PPG.update_pass_resolution.Value :
+		Application.SetValue("Passes.Current.ImageFormatOverride", True)
+		Application.SetValue("Passes.Current.ImageFormatPreset", 0)
+		Application.SetValue("Passes.Current.ImageLockAspectRatio", False)
+		Application.SetValue("Passes.Current.ImageWidth", PPG.render_resolution_x.Value)
+		Application.SetValue("Passes.Current.ImageHeight", PPG.render_resolution_y.Value)
+
+
+def change_targetResolution():
+	
+	tResolutionX = PPG.target_resolution_x.Value
+	tResolutionY = PPG.target_resolution_y.Value
+	
+	if PPG.use_render_region.Value and PPG.crop_to_region.Value:
+		tResolutionX = PPG.target_resolution_x.Value*math.abs(PPG.regionU1.Value - PPG.regionU0.Value)
+		tResolutionY = PPG.target_resolution_y.Value*math.abs(PPG.regionV1.Value - PPG.regionV0.Value)
+	
+	if PPG.view_mode.Value == 2:
+		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
+		PPG.render_resolution_x.Value = 2*(tResolutionX + 2*bleed)
+		PPG.render_resolution_y.Value = tResolutionY
+		PPG.total_overscan_pixels.Value = 4*bleed
+		leftCropInfo = "Crop { box {" + str(bleed) + " " + str(0) + " " + str(tResolutionX + bleed) + " " + str(tResolutionY) +"} reformat true crop false name Left selected false xpos -50 ypos 40}"
+		rightCropInfo = "Crop { box {" + str(PPG.render_resolution_x.Value - tResolutionX - bleed) + " " + str(0) + " " + str(PPG.render_resolution_x.Value - bleed) + " " + str(tResolutionY) +"} reformat true crop false name Right selected false xpos 50 ypos 40}"
+		PPG.nuke_crop_info.Value = 'Reformat { format "' + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 0 0 " + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 1 ObqStereoLens" + str(PPG.render_resolution_x.Value) +"x"+ str(PPG.render_resolution_y.Value) +'PAR1" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}\nset ObqNukeCropInfo [stack 0]\n'+ leftCropInfo + "\npush $ObqNukeCropInfo\n" + rightCropInfo
+	elif PPG.view_mode.Value == 3 :
+		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
+		PPG.render_resolution_x.Value = tResolutionX 
+		PPG.render_resolution_y.Value = 2*(tResolutionY + 2*bleed)
+		PPG.total_overscan_pixels.Value = 4*bleed
+		leftCropInfo = "Crop { box {" + str(0) + " " + str(bleed) + " " + str(tResolutionX) + " " + str(tResolutionY + bleed) + "} reformat true crop false name Left selected false xpos -50 ypos 40}"
+		rightCropInfo = "Crop { box {" + str(0) + " " + str(PPG.render_resolution_y.Value - bleed - tResolutionY) + " " + str(tResolutionX) + " " + str(PPG.render_resolution_y.Value - bleed) + "} reformat true crop false name Right selected false xpos 50 ypos 40}"
+		PPG.nuke_crop_info.Value = 'Reformat { format "' + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 0 0 " + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 1 ObqStereoLens" + str(PPG.render_resolution_x.Value) +"x"+ str(PPG.render_resolution_y.Value) +'PAR1" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}\nset ObqNukeCropInfo [stack 0]\n'+ leftCropInfo + "\npush $ObqNukeCropInfo\n" + rightCropInfo
+	else:
+		PPG.render_resolution_x.Value = tResolutionX
+		PPG.render_resolution_y.Value = tResolutionY
+		PPG.total_overscan_pixels.Value = 0
+		PPG.nuke_crop_info.Value = "No need to crop"
+
+	update_pass_resolution_OnChanged()
+
+def use_render_region_OnChanged():
+	if not PPG.use_render_region.Value:
+		PPG.regionU0.ReadOnly = True
+		PPG.regionU1.ReadOnly = True
+		PPG.regionV0.ReadOnly = True
+		PPG.regionV1.ReadOnly = True
+		PPG.crop_to_region.ReadOnly = True
+	else:
+		PPG.regionU0.ReadOnly = False
+		PPG.regionU1.ReadOnly = False
+		PPG.regionV0.ReadOnly = False
+		PPG.regionV1.ReadOnly = False
+		PPG.crop_to_region.ReadOnly = False
+	change_targetResolution()
+
+
+def regionU0_OnChanged():
+	change_targetResolution()
+
+def regionU1_OnChanged():
+	change_targetResolution()
+
+def regionV0_OnChanged():
+	change_targetResolution()
+
+def regionV1_OnChanged():
+	change_targetResolution()
+
+def crop_to_region_OnChanged():
+	change_targetResolution()
+
+def filter_size_OnChanged():
+	change_targetResolution()
+	
+def target_resolution_x_OnChanged():
+	change_targetResolution()
+	
+def target_resolution_y_OnChanged():
+	change_targetResolution()
+
+def view_mode_OnChanged():
+	change_targetResolution()
+	if PPG.view_mode.Value == 2 or PPG.view_mode.Value == 3:
+		PPG.nuke_crop_info.Show(True)
+	else:
+		PPG.nuke_crop_info.Show(False)
+	PPG.Refresh()
+
+def stereo_type_OnChanged():
+	if PPG.stereo_type.Value == 2 and PPG.zero_parallax_mode.Value == 1:
+		PPG.zero_parallax_distance.ReadOnly = False
+	else:
+		PPG.zero_parallax_distance.ReadOnly = True
+	PPG.Refresh()
+
+def zero_parallax_mode_OnChanged():
+	stereo_type_OnChanged()
+
+def checkPolymeshes():
+
+	originOK = False
+	targetOK = False
+	chekTarget = (PPG.view_mode.Value != -1)
+	
+	if len(PPG.origin_polymesh.Value) > 0 and len(PPG.target_polymesh.Value) > 0 and len(PPG.origin_camera.Value) > 0 and len(PPG.target_camera.Value) > 0:
+		oOriginO = Application.Dictionary.GetObject(PPG.origin_polymesh.Value,False)
+		oTargetO = Application.Dictionary.GetObject(PPG.target_polymesh.Value,False)
+		oOriginC = Application.Dictionary.GetObject(PPG.origin_camera.Value,False)
+		oTargetC = Application.Dictionary.GetObject(PPG.target_camera.Value,False)
+		
+		if oOriginO is None or oOriginC is None:
+			PPG.polymeshes_status.Value = "!! Origin polymesh or camera is NOT valid !!"
+		elif chekTarget and ( oTargetO is None or oTargetC is None):
+			PPG.polymeshes_status.Value = "!! Target polymesh or camera is NOT valid !!"
+		elif oOriginO.Type != "polymsh" or oOriginC.Type != "camera":
+			PPG.polymeshes_status.Value = "!! Origin polymesh or camera is NOT valid !!"
+		elif chekTarget and (oTargetO.Type != "polymsh" or oTargetC.Type != "camera"):
+			PPG.polymeshes_status.Value = "!! Target polymesh or camera is NOT valid !!"
+		else:
+			
+			#Check constraint between ORIGIN polymesh and camera
+			for cns in oOriginO.Kinematics.Constraints:
+				if cns.Type == "posecns":
+					if cns.Constraining(0).FullName == oOriginC.FullName:
+						originOK = True
+						break
+
+			if not originOK:
+				for cns in oOriginC.Kinematics.Constraints:
+					if cns.Type == "posecns":
+						if cns.Constraining(0).FullName == oOriginO.FullName:
+							originOK = True
+							break
+
+			if not originOK:
+				PPG.polymeshes_status.Value = "!! Origin polymesh is not constraining origin camera !!"
+			
+			if chekTarget:
+				for cns in oTargetO.Kinematics.Constraints:
+					if cns.Type == "posecns":
+						if cns.Constraining(0).FullName == oTargetC.FullName:
+							targetOK = True
+							break
+
+				if not targetOK:
+					for cns in oTargetC.Kinematics.Constraints:
+						if cns.Type == "posecns":
+							if cns.Constraining(0).FullName == oTargetO.FullName:
+								targetOK = True
+								break
+
+				if not targetOK:
+					PPG.polymeshes_status.Value = "!! Target polymesh is not constraining target camera !!"
+					
+			if originOK and targetOK:
+				PPG.polymeshes_status.Value = "!! Both meshes are valid !!"
+	else:
+		PPG.polymeshes_status.Value = "!! Invalid, please pick Origin/Target Polymeshes (with constrained cameras)."
+
+
+def pickPolymeshes_OnClicked():	
+	Application.DeselectAll()
+	
+	PPG.origin_polymesh.Value = ""
+	PPG.origin_camera.Value = ""
+	PPG.target_polymesh.Value = ""
+	PPG.target_camera.Value = ""
+	
+	doOrigin = False
+	doTarget = False
+	originO = None
+	targetO = None
+	
+	oPicked = Application.PickElement( c.siPolyMeshFilter, "Select Origin Polymesh", "Select Origin Polymesh" )
+	originO = oPicked(2)
+	
+	if oPicked(0) > 0 and not originO is None and originO.Type == "polymsh":
+		doOrigin = True
+		if PPG.view_mode.Value != -1:
+			oPicked = Application.PickElement( c.siPolyMeshFilter, "Select Target Polymesh", "Select Target Polymesh" )
+			targetO = oPicked(2)
+			
+			if oPicked(0) > 0 and not targetO is None and targetO.Type == "polymsh":
+				doTarget = True
+	
+	if doOrigin:
+		oConstraints = Application.FindObjects2(c.siConstraintID)
+
+		originFound = False
+		targetFound = False
+
+		if not doTarget:
+			targetFound = True
+		
+		for oCns in oConstraints:
+			if oCns.Type == "posecns":
+				if not originFound and(oCns.Constrained.FullName == originO.FullName or oCns.Constraining(0).FullName == originO.FullName):
+					if oCns.Constrained.Type == "polymsh" and oCns.Constraining(0).Type == "camera":
+						PPG.origin_polymesh.Value = oCns.Constrained.FullName
+						PPG.origin_camera.Value = oCns.Constraining(0).FullName
+						originFound = True
+					elif oCns.Constrained.Type == "camera" and oCns.Constraining(0).Type == "polymsh":
+						PPG.origin_camera.Value = oCns.Constrained.FullName
+						PPG.origin_polymesh.Value = oCns.Constraining(0).FullName
+						originFound = True
+
+				elif not targetFound and (oCns.Constrained.FullName == targetO.FullName or oCns.Constraining(0).FullName == targetO.FullName):
+					if oCns.Constrained.Type == "polymsh" and oCns.Constraining(0).Type == "camera":
+						PPG.target_polymesh.Value = oCns.Constrained.FullName
+						PPG.target_camera.Value = oCns.Constraining(0).FullName
+						targetFound = True
+					elif oCns.Constrained.Type == "camera" and oCns.Constraining(0).Type == "polymsh":
+						PPG.target_camera.Value = oCns.Constrained.FullName
+						PPG.target_polymesh.Value = oCns.Constraining(0).FullName
+						targetFound = True
+
+			if originFound and targetFound:
+				break
+
+	checkPolymeshes()
+
+
+def OnInit():
+	PPG.PPGLayout.SetAttribute("HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html")
+	PPG.polymeshes_status.ReadOnly = True
+	PPG.origin_polymesh.ReadOnly = True
+	PPG.origin_camera.ReadOnly = True
+	PPG.target_polymesh.ReadOnly = True
+	PPG.target_camera.ReadOnly = True
+	checkPolymeshes()
+	Application.SetExpr(str(PPG.filter_size.Parent.FullName) + ".filter_size", "Passes.Arnold_Render_Options.output_filter_width")
+	view_mode_OnChanged()
+	stereo_type_OnChanged()
+	PPG.render_resolution_x.ReadOnly = True
+	PPG.render_resolution_y.ReadOnly = True
+	PPG.total_overscan_pixels.ReadOnly = True
+	use_render_region_OnChanged()
+	PPG.Refresh()
+}

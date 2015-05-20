@@ -1,172 +1,81 @@
-﻿Build started 14/05/2015 4:09:46 PM.
+﻿Build started 20/05/2015 3:35:13 PM.
      1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
-     1>PrepareForBuild:
-         Creating directory "..\..\bin\v306\".
-       InitializeBuildStatus:
+     1>InitializeBuildStatus:
          Creating "x64\Release\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.6.2-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_LightSaturationFilter.cpp ..\..\src\Obq_MessageGetBool.cpp ..\..\src\Obq_MessageGetColor.cpp ..\..\src\Obq_MessageGetInt.cpp ..\..\src\Obq_MessageGetVector.cpp ..\..\src\Obq_MessageSetBool.cpp ..\..\src\Obq_MessageSetColor.cpp ..\..\src\Obq_MessageSetFlt.cpp ..\..\src\Obq_MessageSetInt.cpp ..\..\src\Obq_MessageSetVector.cpp ..\..\src\Obq_MessageStoreBool.cpp ..\..\src\Obq_MessageStoreColor.cpp ..\..\src\Obq_MessageStoreFlt.cpp ..\..\src\Obq_MessageStoreInt.cpp ..\..\src\Obq_MessageStoreVector.cpp ..\..\src\Obq_SetAlpha.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_TransformShadingPoint.cpp ..\..\src\O_ISBrdf.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_ColorspaceConverter.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageGetFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_SpectrumColor.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.4.3-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\kettle /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\kettle\Grid2DAS.cpp ..\..\src\kettle\KettleBaker.cpp ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_KettleUVStereoLens.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_LightSaturationFilter.cpp ..\..\src\Obq_MessageGetBool.cpp ..\..\src\Obq_MessageGetColor.cpp ..\..\src\Obq_MessageGetInt.cpp ..\..\src\Obq_MessageGetVector.cpp ..\..\src\Obq_MessageSetBool.cpp ..\..\src\Obq_MessageSetColor.cpp ..\..\src\Obq_MessageSetFlt.cpp ..\..\src\Obq_MessageSetInt.cpp ..\..\src\Obq_MessageSetVector.cpp ..\..\src\Obq_MessageStoreBool.cpp ..\..\src\Obq_MessageStoreColor.cpp ..\..\src\Obq_MessageStoreFlt.cpp ..\..\src\Obq_MessageStoreInt.cpp ..\..\src\Obq_MessageStoreVector.cpp ..\..\src\Obq_SetAlpha.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_TransformShadingPoint.cpp ..\..\src\O_ISBrdf.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_ColorspaceConverter.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageGetFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_SpectrumColor.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         Grid2DAS.cpp
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(29): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(35): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(41): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+         KettleBaker.cpp
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(29): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(35): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(41): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
          Obq_AngularCamera.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Color.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
+         Obq_KettleUVStereoLens.cpp
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(29): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(35): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
+     1>f:\obq_shaders\obq_arnold_shaders_git\obq_arnold_shaders--public-\src\kettle\arnold_utils.h(41): warning C4244: 'argument' : conversion from 'const AtUInt64' to 'AtUInt32', possible loss of data
          Obq_LensDistortion.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_LightSaturationFilter.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageGetBool.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageGetColor.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageGetInt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageGetVector.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageSetBool.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageSetColor.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageSetFlt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageSetInt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageSetVector.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageStoreBool.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageStoreColor.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageStoreFlt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageStoreInt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
+         Compiling...
          Obq_MessageStoreVector.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_SetAlpha.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_StereoLens.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
-         Compiling...
          Obq_TransformShadingPoint.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          O_ISBrdf.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Atmosphere.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Bend4Stereo.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_CameraProjectionSpace.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_ChangeRange.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_ColorspaceConverter.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Environment.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Etching.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Fresnel.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Hair.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_IESLightFilter.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MeasuredMaterial.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_MessageGetFlt.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Opacity.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_RandomColor.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_RandomID.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
-         Obq_RayDepth.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
-         Obq_RGBComEmit.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
-         Obq_RGBComLightFilter.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Compiling...
+         Obq_RayDepth.cpp
+         Obq_RGBComEmit.cpp
+         Obq_RGBComLightFilter.cpp
          Obq_Root2Tip.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Shaders__Core.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Shadow.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_SpectrumColor.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_SurfaceEnvironment.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Thickness.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_Toon.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_ToonSimple.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_TransformUV.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_UVRemapLensDistortion.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          Obq_VolumeThickness.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
          spectrum.cpp
-     1>F:\Arnold\Arnold-4.2.6.2-windows\include\ai_nodes.h(237): warning C4190: 'AiNodeGetStrAtString' has C-linkage specified, but returns UDT 'AtString' which is incompatible with C
-                 f:\arnold\arnold-4.2.6.2-windows\include\ai_string.h(40) : see declaration of 'AtString'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v306\Obq_Shaders__Core__v306.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.6.2-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v306.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v306.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v306\Obq_Shaders__Core__v306.lib" /MACHINE:X64 /DLL x64\Release\Obq_AngularCamera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\v305\Obq_Shaders__Core__v305.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.4.3-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release\Obq_Shaders__Core__v305.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release\Obq_Shaders__Core__v305.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\v305\Obq_Shaders__Core__v305.lib" /MACHINE:X64 /DLL x64\Release\Grid2DAS.obj
+         x64\Release\KettleBaker.obj
+         x64\Release\Obq_AngularCamera.obj
          x64\Release\Obq_Color.obj
+         x64\Release\Obq_KettleUVStereoLens.obj
          x64\Release\Obq_LensDistortion.obj
          x64\Release\Obq_LightSaturationFilter.obj
          x64\Release\Obq_MessageGetBool.obj
@@ -217,14 +126,14 @@
          x64\Release\Obq_UVRemapLensDistortion.obj
          x64\Release\Obq_VolumeThickness.obj
          x64\Release\spectrum.obj
-            Creating library ..\..\bin\v306\Obq_Shaders__Core__v306.lib and object ..\..\bin\v306\Obq_Shaders__Core__v306.exp
+            Creating library ..\..\bin\v305\Obq_Shaders__Core__v305.lib and object ..\..\bin\v305\Obq_Shaders__Core__v305.exp
          Generating code
          Finished generating code
-         Obq_Shaders__Core.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\..\..\bin\v306\Obq_Shaders__Core__v306.dll
+         Obq_Shaders__Core.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\..\..\bin\v305\Obq_Shaders__Core__v305.dll
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v306\Obq_Shaders__Core__v306.dll;#2" /manifest x64\Release\Obq_Shaders__Core__v306.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v305\Obq_Shaders__Core__v305.dll;#2" /manifest x64\Release\Obq_Shaders__Core__v305.dll.intermediate.manifest
        PostBuildEvent:
-         del /F /Q x64\Release\*.* ..\..\bin\v306\*.lib ..\..\bin\v306\*.exp
+         del /F /Q x64\Release\*.* ..\..\bin\v305\*.lib ..\..\bin\v305\*.exp
          :VCEnd
          F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\x64\Release\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
@@ -232,4 +141,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:30.01
+Time Elapsed 00:00:28.44

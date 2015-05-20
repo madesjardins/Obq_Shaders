@@ -42,6 +42,7 @@ extern AtNodeMethods* ObqEtchingMethods;
 extern AtNodeMethods* ObqFresnelMethods;
 extern AtNodeMethods* ObqHairMethods;
 extern AtNodeMethods* ObqIESLightFilterMethod;
+extern AtNodeMethods* ObqKettleUVStereoLensMethods;
 extern AtNodeMethods* ObqLensDistortionMethods;
 extern AtNodeMethods* ObqLightSaturationFilterMethod;
 extern AtNodeMethods* ObqMeasuredMaterialMethods;
@@ -95,6 +96,7 @@ enum SHADERS
 	OBQ_FRESNEL,
 	OBQ_HAIR,
 	OBQ_IESLIGHTFILTER,
+	OBQ_KETTLEUVSTEREOLENS,
 	OBQ_LENSDISTORTION,
 	OBQ_LIGHTSATURATIONFILTER,
 	OBQ_MEASUREDMATERIAL,
@@ -209,6 +211,12 @@ node_loader
 		node->output_type  = AI_TYPE_RGB;
 		node->name         = "Obq_IESLightFilter";
 		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_KETTLEUVSTEREOLENS:
+		node->methods      = ObqKettleUVStereoLensMethods;
+		node->output_type  = AI_TYPE_UNDEFINED;
+		node->name         = "Obq_KettleUVStereoLens";
+		node->node_type    = AI_NODE_CAMERA;
 		break;
 	case OBQ_LENSDISTORTION:
 		node->methods     = ObqLensDistortionMethods;

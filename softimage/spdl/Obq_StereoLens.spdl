@@ -124,20 +124,12 @@ PropertySet "Obq_StereoLens"
 		Texturable = Off;
 		Animatable = Off;
 	}
-	Parameter "leftCropInfo" input
+	Parameter "nukeCropInfo" input
 	{
-		GUID = "{DEDB0691-B838-4F21-942F-32C8FE977D9A}";
+		GUID = "{93E79E12-5E82-46FE-97F9-7EB002EF1A7F}";
 		Type = string;
 		flags = 1;
-		Value = "Not Stereo";
-		Animatable = Off;
-	}
-	Parameter "rightCropInfo" input
-	{
-		GUID = "{20235B1F-F26F-4527-A7B6-93444DA2DC85}";
-		Type = string;
-		flags = 1;
-		Value = "Not Stereo";
+		Value = "";
 		Animatable = Off;
 	}
 	Parameter "useOverscan" input
@@ -355,14 +347,9 @@ Defaults
 		Name = "Height";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
-	leftCropInfo
+	nukeCropInfo
 	{
-		Name = "Left crop";
-		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
-	}
-	rightCropInfo
-	{
-		Name = "Right crop";
+		Name = "Nuke crop";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	totalOverscanPixels
@@ -481,8 +468,7 @@ Layout "Default"
 		}
 		Group "Nuke Info"
 		{
-			leftCropInfo;
-			rightCropInfo;
+			nukeCropInfo;
 		}
 	}
 
@@ -603,6 +589,8 @@ end function
 
 Sub updatePassResolution_OnChanged()
 	IF PPG.updatePassResolution.Value = true Then
+		SetValue "Passes.Current.ImageFormatOverride", true
+		SetValue "Passes.Current.ImageFormatPreset", 0
 		SetValue "Passes.Current.ImageLockAspectRatio", false
 		SetValue "Passes.Current.ImageWidth", PPG.renderResolutionX.Value
 		SetValue "Passes.Current.ImageHeight", PPG.renderResolutionY.Value
@@ -616,14 +604,16 @@ Sub change_targetResolution()
 			PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
 			PPG.renderResolutionY.Value = PPG.targetResolutionY.Value
 			PPG.totalOverscanPixels.Value = 4*bleed
-			PPG.leftCropInfo = "Crop { box {" & bleed & " " & 0 & " " & PPG.targetResolutionX + bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
-			PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX - bleed & " " & 0 & " " & PPG.renderResolutionX - bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
+			leftCropInfo = "Crop { box {" & bleed & " " & 0 & " " & PPG.targetResolutionX + bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Left selected false xpos -50 ypos 40}"
+			rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX - bleed & " " & 0 & " " & PPG.renderResolutionX - bleed & " " & PPG.targetResolutionY &"} reformat true crop false name Right selected false xpos 50 ypos 40}"
+			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		Else
 			PPG.renderResolutionX.Value = 2*PPG.targetResolutionX
 			PPG.renderResolutionY.Value = PPG.targetResolutionY
 			PPG.totalOverscanPixels.Value = 0
-			PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Left}"
-			PPG.rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right}"
+			leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Left selected false xpos -50 ypos 40}"
+			rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right selected false xpos 50 ypos 40}"
+			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		End If
 	ElseIf PPG.viewMode.Value = 4 then
 		If PPG.useOverscan.Value = true then
@@ -631,21 +621,22 @@ Sub change_targetResolution()
 			PPG.renderResolutionX.Value = PPG.targetResolutionX 
 			PPG.renderResolutionY.Value = 2*(PPG.targetResolutionY.Value + 2*bleed)
 			PPG.totalOverscanPixels.Value = 4*bleed
-			PPG.leftCropInfo = "Crop { box {" & 0 & " " & bleed & " " & PPG.targetResolutionX & " " &  PPG.targetResolutionY + bleed & "} reformat true crop false name Left}"
-			PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY - bleed - PPG.targetResolutionY & " " & PPG.targetResolutionX & " " &  PPG.renderResolutionY - bleed & "} reformat true crop false name Right}"
+			leftCropInfo = "Crop { box {" & 0 & " " & bleed & " " & PPG.targetResolutionX & " " &  PPG.targetResolutionY + bleed & "} reformat true crop false name Left selected false xpos -50 ypos 40}"
+			rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY - bleed - PPG.targetResolutionY & " " & PPG.targetResolutionX & " " &  PPG.renderResolutionY - bleed & "} reformat true crop false name Right selected false xpos 50 ypos 40}"
+			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		Else
 			PPG.renderResolutionX.Value = PPG.targetResolutionX
 			PPG.renderResolutionY.Value = 2.0*PPG.targetResolutionY
 			PPG.totalOverscanPixels.Value = 0
-			PPG.leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX.Value & " " & PPG.targetResolutionY.Value &"} reformat true crop false name Left}"
-			PPG.rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY.Value - PPG.targetResolutionY.Value & " " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value &"} reformat true crop false name Right}"
+			leftCropInfo = "Crop { box {0 0 " & PPG.targetResolutionX.Value & " " & PPG.targetResolutionY.Value &"} reformat true crop false name Left selected false xpos -50 ypos 40}"
+			rightCropInfo = "Crop { box {" & 0 & " " & PPG.renderResolutionY.Value - PPG.targetResolutionY.Value & " " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value &"} reformat true crop false name Right selected false xpos 50 ypos 40}"
+			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		End If
 	Else
 		PPG.renderResolutionX.Value = PPG.targetResolutionX
 		PPG.renderResolutionY.Value = PPG.targetResolutionY
 		PPG.totalOverscanPixels.Value = 0
-		PPG.leftCropInfo = "none"
-		PPG.rightCropInfo = "none"
+		nukeCropInfo = "none"
 	End If
 	updatePassResolution_OnChanged()
 End Sub
@@ -665,13 +656,11 @@ End Sub
 Sub viewMode_OnChanged()
 	change_targetResolution()
 	If PPG.viewMode = 3 Or PPG.viewMode = 4 Then
-		PPG.leftCropInfo.Show(True)
-		PPG.rightCropInfo.Show(True)
+		PPG.nukeCropInfo.Show(True)
 		PPG.useOverscan.Readonly = False
 	Else
 		PPG.useOverscan.Readonly = True
-		PPG.leftCropInfo.Show(False)
-		PPG.rightCropInfo.Show(False)
+		PPG.nukeCropInfo.Show(False)
 	End If
 	PPG.Refresh
 End Sub

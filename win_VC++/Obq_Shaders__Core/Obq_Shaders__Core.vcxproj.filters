@@ -31,6 +31,12 @@
     <Filter Include="Header Files\lpdk">
       <UniqueIdentifier>{4e8c167e-43fa-486f-8126-e0c26c52592f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\kettle">
+      <UniqueIdentifier>{a113611e-a8b4-44bb-bc3e-b69bf803fb8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Obq\kettle">
+      <UniqueIdentifier>{63536f68-c1ab-4f8b-8546-b963bbe34b36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Obq_Shaders__Core.cpp">
@@ -189,6 +195,15 @@
     <ClCompile Include="..\..\src\Obq_MessageStoreInt.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_KettleUVStereoLens.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\kettle\Grid2DAS.cpp">
+      <Filter>Source Files\Obq\kettle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\kettle\KettleBaker.cpp">
+      <Filter>Source Files\Obq\kettle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Obq_Atmosphere.h">
@@ -331,6 +346,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Obq_StereoLens.h">
       <Filter>Header Files\Obq</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\kettle\arnold_utils.h">
+      <Filter>Header Files\kettle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\kettle\Grid2DAS.h">
+      <Filter>Header Files\kettle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\kettle\KettleBaker.h">
+      <Filter>Header Files\kettle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
