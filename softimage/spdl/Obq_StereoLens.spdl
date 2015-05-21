@@ -311,7 +311,7 @@ Defaults
 	}
 	recalculateDistanceForSideCameras
 	{
-		Name = "Recalculate focus distance for left and right cameras";
+		Name = "Recalculate Focus Distance for Left and Right Cameras";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	useOverscan
@@ -333,7 +333,7 @@ Defaults
 	}
 	filterSize
 	{
-		Name = "Filter size";
+		Name = "Filter Size";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 0.0 to 5.0;
 	}
@@ -359,7 +359,7 @@ Defaults
 	}
 	updatePassResolution
 	{
-		Name = "Automatic update of pass output resolution";
+		Name = "Automatic Update of Pass Output Resolution";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	useDof
@@ -409,7 +409,7 @@ Defaults
 	}
 	focusPlaneIsPlane
 	{
-		Name = "Focus plane is a plane";
+		Name = "Focus Plane is a Plane";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	bokehInvert

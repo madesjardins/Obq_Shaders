@@ -1,4 +1,4 @@
-# 2015-05-18 01.08 pm
+# 2015-05-20 10.29 pm
 
 [node Obq_AngularCamera]
   maya.name                     STRING "camera"
@@ -24,7 +24,7 @@
   [attr flip]
     desc                        STRING "Flip"
     houdini.label               STRING "Flip"
-    default                     BOOL    False
+    default                     BOOL    True
   [attr overRender]
     desc                        STRING "Over Render"
     houdini.label               STRING "Over Render"
@@ -1467,22 +1467,22 @@
   [attr leftCamera]
     desc                        STRING "Left Camera"
     houdini.label               STRING "Left Camera"
-    default                     STRING "Camera_L"
+    default                     STRING "StereoCamera_Left"
   [attr rightCamera]
     desc                        STRING "Right Camera"
     houdini.label               STRING "Right Camera"
-    default                     STRING "Camera_R"
+    default                     STRING "StereoCamera_Right"
   [attr filmbackX]
     desc                        STRING "Filmback X"
     houdini.label               STRING "Filmback X"
     default                     FLOAT   0
   [attr leftCenterOffset]
-    desc                        STRING "Left Center Offset"
-    houdini.label               STRING "Left Center Offset"
+    desc                        STRING "Left Optical Center Offset"
+    houdini.label               STRING "Left Optical Center Offset"
     default                     FLOAT   0
   [attr rightCenterOffset]
-    desc                        STRING "Right Center Offset"
-    houdini.label               STRING "Right Center Offset"
+    desc                        STRING "Right Optical Center Offset"
+    houdini.label               STRING "Right Optical Center Offset"
     default                     FLOAT   0
   [attr recalculateDistanceForSideCam]
     desc                        STRING "Recalculate Distance For Side Cam"
@@ -3124,177 +3124,172 @@
     desc                        STRING "Rotation Order"
     houdini.label               STRING "Rotation Order"
     default                     INT     0
+
     
-# This is a stub entry for the new Obq_KettleUVStereoLens shader. The actual shader name is expected to change before the final release.
-	
-# [node Obq_KettleUVStereoLens]
-  # maya.name                     STRING "camera"
-  # maya.id                       INT     0x0011CD65
-  # maya.classification           STRING "shader/surface"
-  # maya.type                     STRING "camera"
-  # maya.translator               STRING "Obq_KettleUVStereoLens"
+[node Obq_KettleUVStereoLens]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD65
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_KettleUVStereoLens"
   
-  # houdini.category              STRING "OBQShaders"
-  # houdini.icon                  STRING "SHOP_surface"
-  # houdini.label                 STRING "Obq_KettleUVStereoLens"
-  # houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html"
-  # houdini.order                 STRING ""
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_KettleUVStereoLens"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html"
+  houdini.order                 STRING ""
   
-  # [attr is_perspective]
-    # default                     BOOL    True
-  # [attr origin_polymesh]
-    # desc                        STRING "Origin Polymesh"
-    # houdini.label               STRING "Origin Polymesh"
-    # default                     STRING ""  
-  # [attr origin_camera]
-    # desc                        STRING "Origin Camera"
-    # houdini.label               STRING "Origin Camera"
-    # default                     STRING ""
-  # [attr target_polymesh]
-    # desc                        STRING "Target Polymesh"
-    # houdini.label               STRING "Target Polymesh"
-    # default                     STRING ""
-  # [attr target_camera]
-    # desc                        STRING "Target Camera"
-    # houdini.label               STRING "Target Camera"
-    # default                     STRING ""
-  # [attr polymeshesStatus]
+  [attr is_perspective]
+    default                     BOOL    True
+  [attr origin_polymesh]
+    desc                        STRING "Origin Polymesh"
+    houdini.label               STRING "Origin Polymesh"
+    default                     STRING ""  
+  [attr origin_camera]
+    desc                        STRING "Origin Camera"
+    houdini.label               STRING "Origin Camera"
+    default                     STRING ""
+  [attr target_polymesh]
+    desc                        STRING "Target Polymesh"
+    houdini.label               STRING "Target Polymesh"
+    default                     STRING ""
+  [attr target_camera]
+    desc                        STRING "Target Camera"
+    houdini.label               STRING "Target Camera"
+    default                     STRING ""
+  # [attr polymeshes_status]
     # desc                        STRING "Status"
     # houdini.label               STRING "Status"
     # default                     STRING "Not initialized"
-  # [attr grid_size]
-    # desc                        STRING "Grid Size"
-    # houdini.label               STRING "Grid Size"
-    # default                     INT     16
-    # min                         INT     1
-    # max                         INT     512
-    # softmax                     INT     128
-  # [attr view_mode]
-    # desc                        STRING "View Mode"
-    # houdini.label               STRING "View Mode"
-    # houdini.type                STRING "menu:single:menu"
-    # houdini.menu                STRING "0;Single (Right);1;Left;2;Stereo <left-right>;3;Stereo <down-up>"
-    # default                     INT     0
-    # min                         INT     0
-    # max                         INT     3
-  # [attr stereo_type]
-    # desc                        STRING "Stereo Type"
-    # houdini.label               STRING "Stereo Type"
-    # houdini.type                STRING "menu:single:menu"
-    # houdini.menu                STRING "0;Neutral;1;Parallel;2;Converged"
-    # default                     INT     0
-    # min                         INT     0
-    # max                         INT     2
-  # [attr interaxial_mode]
-    # desc                        STRING "Interaxial Mode"
-    # houdini.label               STRING "Interaxial Mode"
-    # houdini.type                STRING "menu:single:menu"
-    # houdini.menu                STRING "0;Offset in U coordinates;1;R dominant, on mesh (RED);2;R dominant, not on mesh (GREEN);3;No dominance, not on mesh (BLUE)"
-    # default                     INT     0
-    # min                         INT     0
-    # max                         INT     3
-  # [attr interaxial_epsilon]
-    # desc                        STRING "Interaxial Separation Epsilon"
-    # houdini.label               STRING "Interaxial Separation Epsilon"
-    # default                     FLOAT   0.001
-    # min                         FLOAT   0.0001
-    # max                         FLOAT   0.01
-  # [attr interaxial_separation]
-    # desc                        STRING "Interaxial Separation"
-    # houdini.label               STRING "Interaxial Separation"
-    # default                     FLOAT   -0.6
-    # softmax                     FLOAT   -1.0
-    # softmin                     FLOAT   1.0
-  # [attr zero_parallax_mode]
-    # desc                        STRING "Zero Parallax Mode"
-    # houdini.label               STRING "Zero Parallax Mode"
-    # houdini.type                STRING "menu:single:menu"
-    # houdini.menu                STRING "0;Use Target Mesh;1;Use Distance"
-    # default                     INT     0
-    # min                         INT     0
-    # max                         INT     1          
-  # [attr zero_parallax_distance]
-    # desc                        STRING "Zero Parallax Distance"
-    # houdini.label               STRING "Zero Parallax Distance"
-    # default                     FLOAT   100.0
-    # min                         FLOAT   0.0
-    # softmax                     FLOAT   200.0
-  # [attr targetResolutionX]
+  [attr grid_size]
+    desc                        STRING "Grid Size"
+    houdini.label               STRING "Grid Size"
+    default                     INT     16
+    min                         INT     1
+    max                         INT     512
+    softmax                     INT     128
+  [attr view_mode]
+    desc                        STRING "View Mode"
+    houdini.label               STRING "View Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Single (Right);1;Left;2;Stereo <Left-Right>;3;Stereo <Down-Up>"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     3
+  [attr stereo_type]
+    desc                        STRING "Stereo Type"
+    houdini.label               STRING "Stereo Type"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Neutral;1;Parallel;2;Converged"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     2
+  [attr interaxial_mode]
+    desc                        STRING "Interaxial Mode"
+    houdini.label               STRING "Interaxial Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Offset in U Coordinates;1;R Dominant, on Mesh (RED);2;R Dominant, not on Mesh (GREEN);3;No Dominance, not on Msh (BLUE)"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     3
+  [attr interaxial_epsilon]
+    desc                        STRING "Interaxial Separation Epsilon"
+    houdini.label               STRING "Interaxial Separation Epsilon"
+    default                     FLOAT   0.001
+    min                         FLOAT   0.0001
+    max                         FLOAT   0.01
+  [attr interaxial_separation]
+    desc                        STRING "Interaxial Separation"
+    houdini.label               STRING "Interaxial Separation"
+    default                     FLOAT   -0.6
+    softmax                     FLOAT   -1.0
+    softmin                     FLOAT   1.0
+  [attr zero_parallax_mode]
+    desc                        STRING "Zero Parallax Mode"
+    houdini.label               STRING "Zero Parallax Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Use Target Mesh;1;Use Distance"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     1          
+  [attr zero_parallax_distance]
+    desc                        STRING "Zero Parallax Distance"
+    houdini.label               STRING "Zero Parallax Distance"
+    default                     FLOAT   100.0
+    min                         FLOAT   0.0
+    softmax                     FLOAT   200.0
+  # [attr target_resolution_x]
     # desc                        STRING "Width"
     # houdini.label               STRING "Width"
     # default                     INT     1920
     # min                         INT     1
     # softmax                     INT     4096
-  # [attr targetResolutionY]
+  # [attr target_resolution_y]
     # desc                        STRING "Height"
     # houdini.label               STRING "Height"
     # default                     INT     1080
     # min                         INT     1
     # softmax                     INT     4096
-  # [attr filterSize]
-    # desc                        STRING "Filter size"
-    # houdini.label               STRING "Filter size"
+  # [attr filter_size]
+    # desc                        STRING "Filter Size"
+    # houdini.label               STRING "Filter Size"
     # default                     FLOAT   3.0
     # min                         FLOAT   0.0
     # softmax                     FLOAT   5.0
-  # [attr renderResolutionX]
+  # [attr render_resolution_x]
     # desc                        STRING "Width"
     # houdini.label               STRING "Width"
     # default                     INT     1920
     # min                         INT     1
     # softmax                     INT     4096
-  # [attr renderResolutionY]
+  # [attr render_resolution_y]
     # desc                        STRING "Height"
     # houdini.label               STRING "Height"
     # default                     INT     1080
     # min                         INT     1
     # softmax                     INT     4096
-  # [attr leftCropInfo]
-    # desc                        STRING "Left crop"
-    # houdini.label               STRING "Left crop"
+  # [attr nuke_crop_info]
+    # desc                        STRING "Nuke Crop"
+    # houdini.label               STRING "Nuke Crop"
     # default                     STRING "Not Stereo"
-  # [attr rightCropInfo]
-    # desc                        STRING "Right crop"
-    # houdini.label               STRING "Right crop"
-    # default                     STRING "Not Stereo"
-  # [attr totalOverscanPixels]
-    # desc                        STRING "Total Pixel Overscan"
-    # houdini.label               STRING "Total Pixel Overscan"
-    # default                     INT     0
-  # [attr updatePassResolution]
-    # desc                        STRING "Automatic update of pass output resolution"
-    # houdini.label               STRING "Automatic update of pass output resolution"
+  [attr total_overscan_pixels]
+    desc                        STRING "Total Pixel Overscan"
+    houdini.label               STRING "Total Pixel Overscan"
+    default                     INT     0
+  # [attr update_pass_resolution]
+    # desc                        STRING "Automatic Update of Pass Output Resolution"
+    # houdini.label               STRING "Automatic Update of Pass Output Resolution"
     # default                     BOOL    True
-  # [attr useRenderRegion]
-    # desc                        STRING "Render Region Only"
-    # houdini.label               STRING "Render Region Only"
-    # default                     BOOL    False
-  # [attr regionU0]
-    # desc                        STRING "U0"
-    # houdini.label               STRING "U0"
-    # default                     FLOAT   0.0
-    # min                         FLOAT   0.0
-    # max                         FLOAT   1.0
-  # [attr regionV0]
-    # desc                        STRING "V0"
-    # houdini.label               STRING "V0"
-    # default                     FLOAT   0.0
-    # min                         FLOAT   0.0
-    # max                         FLOAT   1.0
-  # [attr regionU1]
-    # desc                        STRING "U1"
-    # houdini.label               STRING "U1"
-    # default                     FLOAT   1.0
-    # min                         FLOAT   0.0
-    # max                         FLOAT   1.0
-  # [attr regionV1]
-    # desc                        STRING "V1"
-    # houdini.label               STRING "V1"
-    # default                     FLOAT   1.0
-    # min                         FLOAT   0.0
-    # max                         FLOAT   1.0  
-  # [attr cropToRegion]
-    # desc                        STRING "Crop to Region"
-    # houdini.label               STRING "Crop to Region"
-    # default                     BOOL    False
+  [attr use_render_region]
+    desc                        STRING "Render Region Only"
+    houdini.label               STRING "Render Region Only"
+    default                     BOOL    False
+  [attr regionU0]
+    desc                        STRING "U0"
+    houdini.label               STRING "U0"
+    default                     FLOAT   0.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionV0]
+    desc                        STRING "V0"
+    houdini.label               STRING "V0"
+    default                     FLOAT   0.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionU1]
+    desc                        STRING "U1"
+    houdini.label               STRING "U1"
+    default                     FLOAT   1.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionV1]
+    desc                        STRING "V1"
+    houdini.label               STRING "V1"
+    default                     FLOAT   1.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0  
+  [attr crop_to_region]
+    desc                        STRING "Crop to Region"
+    houdini.label               STRING "Crop to Region"
+    default                     BOOL    False
 

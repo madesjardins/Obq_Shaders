@@ -1,16 +1,19 @@
-# 2015-05-18 12.01 pm
+# 2015-05-20 10.44 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
 import mtoa.ui.ae.templates as templates
 #from mtoa.ui.ae.customShapeAttributes import CameraTemplate as CameraTemplate
- 
+
+# -------------------------------------------------------------------
+# viewMode
+
 viewModeEnumOp = [
     (0, "Single (Right)"), 
     (1, "Left"), 
-    (2, "Stereo <left-right>"),
-    (3, "Stereo <down-up>")
+    (2, "Stereo <Left-Right>"),
+    (3, "Stereo <Down-Up>")
 ]
 
 def Obq_KettleUVStereoLensCreateViewMode(attr):
@@ -20,6 +23,9 @@ def Obq_KettleUVStereoLensCreateViewMode(attr):
     
 def Obq_KettleUVStereoLensSetViewMode(attr):
     cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensViewMode', edit=True, attribute=attr)
+    
+# -------------------------------------------------------------------
+# StereoType
     
 stereoTypeEnumOp = [
     (0, "Neutral"), 
@@ -35,27 +41,52 @@ def Obq_KettleUVStereoLensCreateStereoType(attr):
 def Obq_KettleUVStereoLensSetStereoType(attr):
     cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensStereoType', edit=True, attribute=attr)
     
+# -------------------------------------------------------------------
+# InteraxialMode    
+    
 interaxialModeEnumOp = [
-    (0, "Neutral"), 
-    (1, "Parallel"), 
-    (2, "Converged")
+    (0, "Offset in U Coordinates"), 
+    (1, "R Dominant, on Mesh (RED)"), 
+    (2, "R Dominant, not on Mesh (GREEN)"),
+    (2, "No Dominance, not on Mesh (BLUE)")
 ]
 
 def Obq_KettleUVStereoLensCreateInteraxialMode(attr):
     cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
     cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensInteraxialMode', attribute=attr, label="Interaxial Separation", enumeratedItem=interaxialModeEnumOp)    
     cmds.setUITemplate(popTemplate=True)
-    
+
 def Obq_KettleUVStereoLensSetInteraxialMode(attr):
     cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensInteraxialMode', edit=True, attribute=attr) 
+
+# -------------------------------------------------------------------
+# ZeroParallaxMode
     
+ZeroParallaxModeEnumOp = [
+    (0, "Use Target Mesh"), 
+    (1, "Use Distance")
+]
+
+def Obq_KettleUVStereoLensCreateZeroParallaxMode(attr):
+    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
+    cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensZeroParallaxMode', attribute=attr, label="Zero Parallax Mode", enumeratedItem=ZeroParallaxModeEnumOp)    
+    cmds.setUITemplate(popTemplate=True)
+    
+def Obq_KettleUVStereoLensSetZeroParallaxMode(attr):
+    cmds.attrEnumOptionMenuGrp('Obq_KettleUVStereoLensZeroParallaxMode', edit=True, attribute=attr) 
+    
+# -------------------------------------------------------------------
+#  Node Help
+
 def Obq_KettleUVStereoLensHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_KettleUVStereoLens'
     ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html'
     ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
     mel.eval(ObqHelpCommand)
- 
+
+# -------------------------------------------------------------------
+
 class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
     def setup(self):
         self.beginLayout("Obq_KettleUVStereoLens", collapse=False)
@@ -65,44 +96,43 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Main", collapse=False)
         
         self.beginLayout("Polymeshes", collapse=False)
-        self.addControl("origin_polymesh",  label="Origin Polymesh")
-        self.addControl("target_polymesh",  label="Origin Camera")
-        self.addControl("polymeshesStatus",  label="Status")
+        self.addControl("aiOriginPolymesh",  label="Origin Polymesh")
+        self.addControl("aiTargetPolymesh",  label="Target Polymesh")
+        # self.addControl("aiPolymeshesStatus",  label="Status")
         self.endLayout() # end Polymeshes Layout
+        
+        self.beginLayout("Rendered View", collapse=False)
+        self.addCustom("aiViewMode", Obq_KettleUVStereoLensCreateViewMode, Obq_KettleUVStereoLensSetViewMode) 
+        self.endLayout() # end Rendered View Layout
+        self.endLayout() # end Main Layout
         
         self.beginLayout("Stereo", collapse=False)
         
-        self.beginLayout("Rendered View", collapse=False)
-        self.addCustom('view_mode', Obq_KettleUVStereoLensCreateViewMode, Obq_KettleUVStereoLensSetViewMode) 
-        self.endLayout() # end Rendered View Layout
-        
         self.beginLayout("Settings", collapse=False)
-        self.addCustom('stereo_type', Obq_KettleUVStereoLensCreateStereoType, Obq_KettleUVStereoLensSetStereoType)
-        self.addCustom('interaxial_mode', Obq_KettleUVStereoLensCreateInteraxialMode, Obq_KettleUVStereoLensSetInteraxialMode)
-        
-        self.addControl("interaxial_separation",  label="Interaxial Separation")
-        self.addControl("zero_parallax_mode",  label="Zero Parallax Mode")
-        self.addControl("zero_parallax_distance",  label="Zero Parallax Distance")
+        # self.addCustom("aiStereoType", Obq_KettleUVStereoLensCreateStereoType, Obq_KettleUVStereoLensSetStereoType)
+        # self.addCustom("aiInteraxialMode", Obq_KettleUVStereoLensCreateInteraxialMode, Obq_KettleUVStereoLensSetInteraxialMode)
+        self.addControl("aiInteraxialSeparation",  label="Interaxial Separation")
+        self.addCustom("aiZeroParallaxMode", Obq_KettleUVStereoLensCreateZeroParallaxMode, Obq_KettleUVStereoLensSetZeroParallaxMode)
+        self.addControl("aiZeroParallaxDistance",  label="Zero Parallax Distance")
         self.endLayout() # end Settings Layout
         
         self.beginLayout("Automatic Overscan", collapse=False)
-        self.addControl("filterSize",  label="Filter size")
+        # self.addControl("aiFilterSize",  label="Filter Size")
         
         self.beginLayout("Target Resolution", collapse=False)
-        self.addControl("targetResolutionX",  label="Width")
-        self.addControl("targetResolutionY",  label="Height")
+        # self.addControl("aiTargetResolutionX",  label="Width")
+        # self.addControl("aiTargetResolutionY",  label="Height")
         self.endLayout() # end Target Resolution Layout
         
         self.beginLayout("Render Resolution", collapse=False)
-        self.addControl("renderResolutionX",  label="Width")
-        self.addControl("renderResolutionY",  label="Height")
+        # self.addControl("aiRenderResolutionX",  label="Width")
+        # self.addControl("aiRenderResolutionY",  label="Height")
         
-        self.addControl("updatePassResolution",  label="Automatic update of pass output resolution")
+        # self.addControl("aiUpdatePassResolution",  label="Automatic Update of Pass Output Resolution")
         self.endLayout() # end Render Resolution Layout
         
         self.beginLayout("Nuke Info", collapse=False)
-        self.addControl("leftCropInfo",  label="Left crop")
-        self.addControl("rightCropInfo",  label="Right crop")
+        #self.addControl("aiNukeCropInfo",  label="Nuke Crop")
         self.endLayout() # end Nuke Info Layout
         
         self.endLayout() # end Automatic Overscan Layout
@@ -113,32 +143,36 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Region", collapse=False)
 
         self.beginLayout("Render Region", collapse=False)
-        self.addControl("useRenderRegion",  label="Render Region Only")
-        self.addControl("cropToRegion",  label="Crop to Region")
+        self.addControl("aiUseRenderRegion",  label="Render Region Only")
+        self.addControl("aiCropToRegion",  label="Crop to Region")
         self.endLayout() # end Render Region Layout 
         
-        self.beginLayout("Lower bound UV", collapse=False)
-        self.addControl("regionU0",  label="U0")
-        self.addControl("regionV0",  label="V0")
+        self.beginLayout("Lower Bound UV", collapse=False)
+        #self.addControl("aiRegionU0",  label="U0")
+        #self.addControl("aiRegionV0",  label="V0")
+        self.addControl("aiRegionU0",  label="")
+        self.addControl("aiRegionV0",  label="")
         self.endLayout() # end Lower bound UV Layout 
         
-        self.beginLayout("Higher bound UV", collapse=False)
-        self.addControl("regionU1",  label="U1")
-        self.addControl("regionV1",  label="V1")
+        self.beginLayout("Higher Bound UV", collapse=False)
+        #self.addControl("aiRegionU1",  label="U1")
+        #self.addControl("aiRegionV1",  label="V1")
+        self.addControl("aiRegionU1",  label="")
+        self.addControl("aiRegionV1",  label="")
         self.endLayout() # end Higher bound UV Layout 
         
         self.endLayout() # end Region Layout
-       
+        
         # ---------------------------------------------------------------------
        
         self.beginLayout("Advanced", collapse=False)
         
         self.beginLayout("Acceleration", collapse=False)
-        self.addControl("grid_size",  label="Grid Size")
+        self.addControl("aiGridSize",  label="Grid Size")
         self.endLayout() # end Acceleration Layout  
 
         self.beginLayout("Other", collapse=False)
-        self.addControl("interaxial_epsilon",  label="Interaxial Separation Epsilon")
+        self.addControl("aiInteraxialEpsilon",  label="Interaxial Separation Epsilon")
         self.endLayout() # end Other Layout 
         
         self.endLayout() # end Advanced Layout 
@@ -148,19 +182,18 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
         self.beginLayout("Debug", collapse=False)
         
         self.beginLayout("Cameras", collapse=False)
-        self.addControl("origin_camera",  label="Origin Camera")
-        self.addControl("target_camera",  label="Target Camera")
+        self.addControl("aiOriginCamera",  label="Origin Camera")
+        self.addControl("aiTargetCamera",  label="Target Camera")
         self.endLayout() # end Cameras Layout 
         
         self.beginLayout("Overscan", collapse=False)
-        self.addControl("totalOverscanPixels",  label="Total Pixel Overscan")
+        self.addControl("aiTotalOverscanPixels",  label="Total Pixel Overscan")
         self.endLayout() # end Overscan Layout
         
         self.endLayout() # end Debug Layout 
 
         # ---------------------------------------------------------------------
         
-        self.endLayout() # end Main Layout
         self.endLayout() # end Obq_KettleUVStereoLens layout
 
         self.beginLayout("Options", collapse=True )

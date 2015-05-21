@@ -1,4 +1,4 @@
-# 2015-04-06 12.39 pm
+# 2015-05-20 10.39 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -10,8 +10,8 @@ ViewModeEnumOp = [
     (0, 'Center Camera'),
     (1, 'Left Camera'),
     (2, 'Right Camera'),
-    (3, 'Stereo Camera <left-right>'),
-    (4, 'Stereo Camera <down-up>')
+    (3, 'Stereo Camera <Left-Right>'),
+    (4, 'Stereo Camera <Down-Up>')
 ]
 
 def Obq_StereoLensCreateViewMode(attr):
@@ -46,13 +46,13 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.addControl("aiRightCamera", label="Right")
         # Note this attribute might not exist
         # Error: MayaAttributeError: Maya Attribute does not exist (or is not unique):: u'perspShape.aiCameraStatus' # 
-        #self.addControl("aiCameraStatus", label="Status")
+        # self.addControl("aiCameraStatus", label="Status")
         self.endLayout()
         
         
         self.beginLayout("Automatic Overscan", collapse=True)
-        #self.addControl("aiUseOverscan", label="Enable use Overscan")
-        #self.addControl("aiFilterSize", label="Filter Size")
+        # self.addControl("aiUseOverscan", label="Enable use Overscan")
+        # self.addControl("aiFilterSize", label="Filter Size")
         self.endLayout()
 
         self.beginLayout("Target Resolution", collapse=True)
@@ -61,14 +61,13 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         self.endLayout()
 
         self.beginLayout("Render Resolution", collapse=True)
-        #self.addControl("aiRenderResolutionX", label="Width")
-        #self.addControl("aiRenderResolutionY", label="Height")
-        #self.addControl("aiUpdatePassResolution", label="Automatic update of pass output resolution")
+        # self.addControl("aiRenderResolutionX", label="Width")
+        # self.addControl("aiRenderResolutionY", label="Height")
+        # self.addControl("aiUpdatePassResolution", label="Automatic update of pass output resolution")
         self.endLayout()
 
         self.beginLayout("Nuke Info", collapse=True)
-        #self.addControl("aiLeftCropInfo", label="Left Crop")
-        #self.addControl("aiRghtCropInfo", label="Right Crop")
+        # self.addControl("aiNukeCropInfo", label="Nuke Crop")
         self.endLayout()
         
         self.endLayout() # End of Main Layout
@@ -80,8 +79,8 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
         
         self.beginLayout("Focus Distance", collapse=False)
         self.addControl("aiFocusDistance", label="Distance")
-        self.addControl("aiFocusPlaneIsPlane", label="Focal plane is a plane")
-        self.addControl("aiRecalculateDistanceForSideCameras", label="Recalculate focus distance for left and right cameras")
+        self.addControl("aiFocusPlaneIsPlane", label="Focal Plane is a Plane")
+        self.addControl("aiRecalculateDistanceForSideCameras", label="Recalculate Focus Distance for Left and Right Cameras")
         self.endLayout()
 
         self.beginLayout("Aperture", collapse=False)

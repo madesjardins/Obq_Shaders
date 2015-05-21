@@ -329,8 +329,8 @@ Defaults
 		{
 			"Single (Right)" = 0,
 			"Left" = 1,
-			"Stereo <left-right>" = 2,
-			"Stereo <down-up>" = 3
+			"Stereo <Left-Right>" = 2,
+			"Stereo <Down-Up>" = 3
 		}
 	}
 	stereo_type
@@ -352,10 +352,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Offset in U coordinates" = 0,
-			"R dominant, on mesh (RED)" = 1,
-			"R dominant, not on mesh (GREEN)" = 2,
-			"No dominance, not on mesh (BLUE)" = 3
+			"Offset in U Coordinates" = 0,
+			"R Dominant, on Mesh (RED)" = 1,
+			"R Dominant, not on Mesh (GREEN)" = 2,
+			"No Dominance, not on Mesh (BLUE)" = 3
 		}
 	}
 	interaxial_epsilon
@@ -400,7 +400,7 @@ Defaults
 	}
 	filter_size
 	{
-		Name = "Filter size";
+		Name = "Filter Size";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 0.0 to 5.0;
 	}
@@ -416,7 +416,7 @@ Defaults
 	}
 	nuke_crop_info
 	{
-		Name = "Nuke crop";
+		Name = "Nuke Crop";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	total_overscan_pixels
@@ -426,7 +426,7 @@ Defaults
 	}
 	update_pass_resolution
 	{
-		Name = "Automatic update of pass output resolution";
+		Name = "Automatic Update of Pass Output Resolution";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	use_render_region
@@ -519,7 +519,7 @@ Layout "Default"
 		{
 			use_render_region;
 			crop_to_region;
-			Group "Lower bound UV"
+			Group "Lower Bound UV"
 			{
 				Row 
 				{
@@ -527,7 +527,7 @@ Layout "Default"
 					regionV0, noLabel;
 				}
 			}
-			Group "Higher bound UV"
+			Group "Higher Bound UV"
 			{
 				Row 
 				{
