@@ -1,4 +1,4 @@
-# 2015-05-20 10.44 pm
+# 2015-05-21 02.02 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -10,10 +10,14 @@ import mtoa.ui.ae.templates as templates
 # viewMode
 
 viewModeEnumOp = [
-    (0, "Single (Right)"), 
+    (0, "Center"), 
     (1, "Left"), 
-    (2, "Stereo <Left-Right>"),
-    (3, "Stereo <Down-Up>")
+    (2, "Right"), 
+    (3, "Stereo <Left-Right>"),
+    (4, "Stereo <Down-Up>"),
+    (5, "Bake"),
+    (6 "Normal (Geometry)"),
+    (7, "Normal (Shading)")
 ]
 
 def Obq_KettleUVStereoLensCreateViewMode(attr):

@@ -1,4 +1,4 @@
-# 2015-05-20 10.29 pm
+# 2015-05-21 02.02 pm
 
 [node Obq_AngularCamera]
   maya.name                     STRING "camera"
@@ -3172,10 +3172,10 @@
     desc                        STRING "View Mode"
     houdini.label               STRING "View Mode"
     houdini.type                STRING "menu:single:menu"
-    houdini.menu                STRING "0;Single (Right);1;Left;2;Stereo <Left-Right>;3;Stereo <Down-Up>"
-    default                     INT     0
+    houdini.menu                STRING "0;Center;1;Left;2;Right;3;Stereo <Left-Right>;4;Stereo <Down-Up>;5;Bake;6;Normal (Geometry);Normal (Shading)"
+    default                     INT     2
     min                         INT     0
-    max                         INT     3
+    max                         INT     7
   [attr stereo_type]
     desc                        STRING "Stereo Type"
     houdini.label               STRING "Stereo Type"
