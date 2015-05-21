@@ -1,0 +1,111 @@
+# SPDL - Obq_NodeInfo - Created by Marc-Antoine Desjardins - ObliqueFX - madesjardins@obliquefx.com : Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+SPDL
+Version = "2.0.0.0";
+Reference = "{A6985EEB-1FB5-42C6-9639-C89DE2FD3F5E}";
+PropertySet "Obq_NodeInfo_pset"
+{
+	Parameter "out" output
+	{
+		GUID = "{A78F25B4-5264-4296-AEB7-8C3A29D0CD55}";
+		Type = color;
+	}
+	Parameter "passthrough" input
+	{
+		GUID = "{B263BB6C-2BFB-49BC-B263-3FD9ADDD63C3}";
+		Type = color;
+		Texturable = on;
+		Animatable = on;
+		Value = 1.0 1.0 1.0 1.0;
+	}
+	Parameter "mode" input
+	{
+		GUID = "{18243D76-40AA-44CB-85BA-46705C38A521}";
+		Type = integer;
+		Texturable = off;
+		Animatable = on;
+		Value = 0;
+		Value Minimum = 0;
+		Value Maximum = 3;
+	}
+	Parameter "node_name" input
+	{
+		GUID = "{3DE8D1E4-8D9E-48E0-BA9E-404B7EFB03BC}";
+		Type = string;
+		Texturable = off;
+		Animatable = on;
+		Value = "";
+	}
+}
+
+Plugin = Shader
+{
+	FileName = "Obq_NodeInfo";
+}
+
+phenomenon "Obq_NodeInfo_declare"
+{
+	Name = "Obq_NodeInfo";
+	Version = 1;
+	Use = texture;
+}
+
+Defaults
+{
+	passthrough
+	{
+		Name = "Passthrough";
+		UIType = "rgba";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+	mode
+	{
+		Name = "Mode";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"This Node" = 0,
+			"Other Node" = 1,
+			"Universe Options" = 2,
+			"Render Camera" = 3
+		}
+	}
+	node_name
+	{
+		Name = "Node Name";
+		Commands = "{F5C75F11-2F05-11D3-AA95-00AA0068D2C0}";
+	}
+}
+
+
+Layout "Default"
+{
+		passthrough;
+		mode;
+		node_name;
+}
+
+Layout "RenderTree"
+{
+	passthrough;
+}
+
+Language = "VBScript";
+Logic
+{
+
+Sub mode_OnChanged()
+	If PPG.mode.Value = 1 Then
+		PPG.node_name.Show(true)
+	Else
+		PPG.node_name.Show(false)
+	End If
+End Sub
+
+Sub OnInit()
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_NodeInfo.html"
+	mode_OnChanged()
+End sub
+
+}
+

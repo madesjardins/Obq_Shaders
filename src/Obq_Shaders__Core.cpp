@@ -61,6 +61,7 @@ extern AtNodeMethods* ObqMessageStoreColorMethods;
 extern AtNodeMethods* ObqMessageStoreFltMethods;
 extern AtNodeMethods* ObqMessageStoreIntMethods;
 extern AtNodeMethods* ObqMessageStoreVectorMethods;
+extern AtNodeMethods* ObqNodeInfoMethods;
 extern AtNodeMethods* ObqOpacityMethods;
 extern AtNodeMethods* ObqRandomColorMethods;
 extern AtNodeMethods* ObqRandomIDMethods;
@@ -115,6 +116,7 @@ enum SHADERS
 	OBQ_MESSAGESTOREFLT,
 	OBQ_MESSAGESTOREINT,
 	OBQ_MESSAGESTOREVECTOR,
+	OBQ_NODEINFO,
 	OBQ_OPACITY,
 	OBQ_RANDOMCOLOR,
 	OBQ_RANDOMID,
@@ -324,6 +326,12 @@ node_loader
 		node->methods      = ObqMessageStoreVectorMethods;
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_MessageStoreVector";
+		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_NODEINFO:
+		node->methods      = ObqNodeInfoMethods;
+		node->output_type  = AI_TYPE_RGBA;
+		node->name         = "Obq_NodeInfo";
 		node->node_type    = AI_NODE_SHADER;
 		break;
 	case OBQ_OPACITY:

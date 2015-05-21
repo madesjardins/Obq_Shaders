@@ -71,9 +71,9 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{F51D6DB2-CFE4-406C-B4F6-8180E30E4263}";
 		Type = integer;
 		flags = 1;
-		Value = 0;
+		Value = 2;
 		Value Minimum = 0;
-		Value Maximum = 3;
+		Value Maximum = 7;
 		Texturable = off;
 		Animatable = Off;
 	}
@@ -327,10 +327,14 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Single (Right)" = 0,
+			"Center" = 0,
 			"Left" = 1,
-			"Stereo <Left-Right>" = 2,
-			"Stereo <Down-Up>" = 3
+			"Right" = 2,
+			"Stereo <Left-Right>" = 3,
+			"Stereo <Down-Up>" = 4,
+			"Bake" = 5,
+			"Normal (Geometry)" = 6,
+			"Normal (Shading)" = 7
 		}
 	}
 	stereo_type

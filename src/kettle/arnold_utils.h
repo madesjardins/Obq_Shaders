@@ -26,19 +26,19 @@ inline T readArnoldArrayElement(const AtArray* ain, const AtUInt64& i)
 template <>
 inline AtVector readArnoldArrayElement<AtVector>(const AtArray* ain, const AtUInt64& i)
 {
-	return AiArrayGetVec(ain, i);
+	return AiArrayGetVec(ain, static_cast<AtUInt32>(i));
 }
 
 template <>
 inline AtVector2 readArnoldArrayElement<AtVector2>(const AtArray* ain, const AtUInt64& i)
 {
-	return AiArrayGetPnt2(ain, i);
+	return AiArrayGetPnt2(ain, static_cast<AtUInt32>(i));
 }
 
 template <>
 inline AtUInt32 readArnoldArrayElement<AtUInt32>(const AtArray* ain, const AtUInt64& i)
 {
-	return AiArrayGetUInt(ain, i);
+	return AiArrayGetUInt(ain, static_cast<AtUInt32>(i));
 }
 
 template <typename T>

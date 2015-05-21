@@ -27,6 +27,14 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 	p_crop_to_region
 };
 
+enum ViewMode{CENTER, LEFT, RIGHT, STEREOLR, STEREODU, BAKE, NORMAL_G, NORMAL_S};
+
+enum StereoType{NEUTRAL, PARALLEL, CONVERGED};
+
+enum ZeroParallaxMode{USETARGET,USEDISTANCE};
+
+enum InteraxialMode{INU,RED,GREEN,BLUE};
+
 node_parameters
 {
 	AiParameterSTR("origin_polymesh", "");
@@ -36,9 +44,9 @@ node_parameters
 
 	AiParameterINT("grid_size", 16);
 
-	AiParameterINT("view_mode", 0);						// Single (Right) , Left, Stereo <left-right>, Stereo <down-up>
-	AiParameterINT("stereo_type", 0);					// Neutral (don't change anything), Parallel (align both on middle vector), Converged (to a specific distance )
-	AiParameterINT("interaxial_mode", 0);
+	AiParameterINT("view_mode", RIGHT);					// TODO : Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals_Geometry, Normals_Shading
+	AiParameterINT("stereo_type", CONVERGED);			// TODO : Neutral (don't change anything UV-to-UV), Parallel (align both on middle vector), Converged (to a specific distance )
+	AiParameterINT("interaxial_mode", BLUE);			// NOT USED BLUE is default
 	AiParameterFLT("interaxial_epsilon", 0.001f);		// value used to search
 	AiParameterFLT("interaxial_separation", -0.1f);		// in u coordinates typically, if >0 it goes to the left
 	AiParameterINT("zero_parallax_mode",0);				// 0 = use target, 1 = Use distance
@@ -53,13 +61,7 @@ node_parameters
 	AiParameterBOOL("crop_to_region", false);
 }
 
-enum BakeViewMode{RIGHT,LEFT, STEREOLR, STEREODU};
 
-enum BakeStereoType{NEUTRAL,PARALLEL, CONVERGED};
-
-enum ZeroParallaxMode{USETARGET,USEDISTANCE};
-
-enum InteraxialMode{INU,RED,GREEN,BLUE};
 
 struct kettle_bakeData{ // might needed for other data than the baker node, what calculates the transformations
 	CKettleBaker* baker;
@@ -191,6 +193,8 @@ node_initialize
 		//AtArray* origin_matrix_list = AiNodeGetArray(origin_camera_node, "matrix");
 		//AtArray* target_matrix_list = AiNodeGetArray(target_camera_node, "matrix");
 		//AtArray* baking_matrix_list = AiNodeGetArray(node, "matrix");
+
+		// select which uv set
 
 		try
 		{
