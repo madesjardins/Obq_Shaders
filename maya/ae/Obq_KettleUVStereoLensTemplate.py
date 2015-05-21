@@ -1,4 +1,4 @@
-# 2015-05-21 02.02 pm
+# 2015-05-21 02.21 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -16,7 +16,7 @@ viewModeEnumOp = [
     (3, "Stereo <Left-Right>"),
     (4, "Stereo <Down-Up>"),
     (5, "Bake"),
-    (6 "Normal (Geometry)"),
+    (6, "Normal (Geometry)"),
     (7, "Normal (Shading)")
 ]
 
