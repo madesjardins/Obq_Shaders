@@ -73,7 +73,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		flags = 1;
 		Value = 2;
 		Value Minimum = 0;
-		Value Maximum = 7;
+		Value Maximum = 6;
 		Texturable = off;
 		Animatable = Off;
 	}
@@ -333,8 +333,8 @@ Defaults
 			"Stereo <Left-Right>" = 3,
 			"Stereo <Down-Up>" = 4,
 			"Bake" = 5,
-			"Normal (Geometry)" = 6,
-			"Normal (Shading)" = 7
+			"Normal" = 6
+			
 		}
 	}
 	stereo_type
@@ -665,6 +665,8 @@ def view_mode_OnChanged():
 		PPG.nuke_crop_info.Show(True)
 	else:
 		PPG.nuke_crop_info.Show(False)
+		
+	checkPolymeshes()
 	PPG.Refresh()
 
 def stereo_type_OnChanged():
@@ -681,21 +683,25 @@ def checkPolymeshes():
 
 	originOK = False
 	targetOK = False
-	chekTarget = (PPG.view_mode.Value != -1)
+	checkTarget = (PPG.view_mode.Value < 5)
 	
-	if len(PPG.origin_polymesh.Value) > 0 and len(PPG.target_polymesh.Value) > 0 and len(PPG.origin_camera.Value) > 0 and len(PPG.target_camera.Value) > 0:
+	if len(PPG.origin_polymesh.Value) > 0 and len(PPG.origin_camera.Value) > 0 and ((len(PPG.target_polymesh.Value) > 0 and len(PPG.target_camera.Value) > 0) or not checkTarget):
 		oOriginO = Application.Dictionary.GetObject(PPG.origin_polymesh.Value,False)
-		oTargetO = Application.Dictionary.GetObject(PPG.target_polymesh.Value,False)
 		oOriginC = Application.Dictionary.GetObject(PPG.origin_camera.Value,False)
-		oTargetC = Application.Dictionary.GetObject(PPG.target_camera.Value,False)
+		if checkTarget:
+			oTargetO = Application.Dictionary.GetObject(PPG.target_polymesh.Value,False)
+			oTargetC = Application.Dictionary.GetObject(PPG.target_camera.Value,False)
+		else:
+			oTargetO = None
+			oTargetC = None
 		
 		if oOriginO is None or oOriginC is None:
 			PPG.polymeshes_status.Value = "!! Origin polymesh or camera is NOT valid !!"
-		elif chekTarget and ( oTargetO is None or oTargetC is None):
+		elif checkTarget and ( oTargetO is None or oTargetC is None):
 			PPG.polymeshes_status.Value = "!! Target polymesh or camera is NOT valid !!"
 		elif oOriginO.Type != "polymsh" or oOriginC.Type != "camera":
 			PPG.polymeshes_status.Value = "!! Origin polymesh or camera is NOT valid !!"
-		elif chekTarget and (oTargetO.Type != "polymsh" or oTargetC.Type != "camera"):
+		elif checkTarget and (oTargetO.Type != "polymsh" or oTargetC.Type != "camera"):
 			PPG.polymeshes_status.Value = "!! Target polymesh or camera is NOT valid !!"
 		else:
 			
@@ -715,8 +721,8 @@ def checkPolymeshes():
 
 			if not originOK:
 				PPG.polymeshes_status.Value = "!! Origin polymesh is not constraining origin camera !!"
-			
-			if chekTarget:
+
+			if checkTarget:
 				for cns in oTargetO.Kinematics.Constraints:
 					if cns.Type == "posecns":
 						if cns.Constraining(0).FullName == oTargetC.FullName:
@@ -733,8 +739,14 @@ def checkPolymeshes():
 				if not targetOK:
 					PPG.polymeshes_status.Value = "!! Target polymesh is not constraining target camera !!"
 					
-			if originOK and targetOK:
-				PPG.polymeshes_status.Value = "!! Both meshes are valid !!"
+			if originOK:
+				if targetOK:
+					PPG.polymeshes_status.Value = "!! Both meshes are valid !!"
+				elif not checkTarget:
+					PPG.polymeshes_status.Value = "!! Origin mesh is valid !!"
+				else:
+					PPG.polymeshes_status.Value = "!! "+str(originOK)+" " +str(targetOK)+" "+str(checkTarget)+" !!"
+			 
 	else:
 		PPG.polymeshes_status.Value = "!! Invalid, please pick Origin/Target Polymeshes (with constrained cameras)."
 
@@ -757,7 +769,7 @@ def pickPolymeshes_OnClicked():
 	
 	if oPicked(0) > 0 and not originO is None and originO.Type == "polymsh":
 		doOrigin = True
-		if PPG.view_mode.Value != -1:
+		if PPG.view_mode.Value < 5:
 			oPicked = Application.PickElement( c.siPolyMeshFilter, "Select Target Polymesh", "Select Target Polymesh" )
 			targetO = oPicked(2)
 			

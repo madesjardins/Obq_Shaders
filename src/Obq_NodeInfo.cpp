@@ -53,19 +53,18 @@ node_parameters
 
 node_initialize
 {
-}
-
-node_update
-{
+	AiMsgInfo("#### Node Info <Node Initialize>");
 	AtNode* nodeToQuery;
-	switch(AiNodeGetInt(node,"mode"))
+	int mode = AiNodeGetInt(node,"mode");
+	switch(mode)
 	{
 	case OTHERNODE:		
 		{
 			// TODO :: check if MtoA, SItoA, HtoA, C4DtoA...
-			std::string nodeName(AiNodeGetName(node));
+			std::string nodeName(AiNodeGetName(AiUniverseGetCamera()));
 			std::size_t sitoaIndex = nodeName.rfind(".SItoA.");
 			std::string lastPartName(nodeName.substr(sitoaIndex));
+			AiMsgInfo("#### Node Info <Querying: %s>",std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
 			nodeToQuery = AiNodeLookUpByName(std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
 			break;
 		}
@@ -80,6 +79,11 @@ node_update
 		break;
 	}
 	
+	if(nodeToQuery == NULL)
+	{
+		AiMsgError("#### Node Info <Query FAILED> ");
+		return;
+	}
 
 	AiMsgInfo("#### Node name : %s, Entry : %s",AiNodeGetName(nodeToQuery), AiNodeEntryGetName(AiNodeGetNodeEntry(nodeToQuery)));
 
@@ -90,9 +94,9 @@ node_update
 	{
 		const AtParamEntry *pentry = AiParamIteratorGetNext(piter);
 		AiMsgInfo("\t\tName : %s, Type : %s", AiParamGetName(pentry),AiParamGetTypeName(AiParamGetType(pentry)));
-		if(AiParamGetType(pentry) == AI_TYPE_ARRAY)
+		/*if(AiParamGetType(pentry) == AI_TYPE_ARRAY)
 			AiMsgInfo("\t\t\tArray Type : %s, Num : %u", AiParamGetTypeName(AiNodeGetArray(nodeToQuery,AiParamGetName(pentry))->type),AiParamGetTypeName(AiNodeGetArray(nodeToQuery,AiParamGetName(pentry))->nelements));
-		else if(AiParamGetType(pentry) == AI_TYPE_STRING)
+		else */if(AiParamGetType(pentry) == AI_TYPE_STRING)
 			AiMsgInfo("\t\t\tValue : %s", AiNodeGetStr(nodeToQuery,AiParamGetName(pentry)));
 		else if(AiParamGetType(pentry) == AI_TYPE_FLOAT)
 			AiMsgInfo("\t\t\tValue : %f", AiNodeGetFlt(nodeToQuery,AiParamGetName(pentry)));
@@ -125,8 +129,14 @@ node_update
 	AiMetaDataIteratorDestroy(mpiter);
 }
 
+node_update
+{
+	AiMsgInfo("#### Node Info <Node Update>");
+}
+
 node_finish
 {
+	AiMsgInfo("#### Node Info <Node Finish>");
 }
 
 shader_evaluate
