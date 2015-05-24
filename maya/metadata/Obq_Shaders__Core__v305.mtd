@@ -3292,4 +3292,148 @@
     desc                        STRING "Crop to Region"
     houdini.label               STRING "Crop to Region"
     default                     BOOL    False
+[node Obq_LightSaturationFilter]
+  maya.name                     STRING "Obq_LightSaturationFilter"
+  maya.id                       INT     0x0011CD66
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
 
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_LightSaturationFilter"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LightSaturationFilter.html"
+[node Obq_MessageGetBool]
+  maya.name                     STRING "Obq_MessageGetBool"
+  maya.id                       INT     0x0011CD67
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetBool.html"
+[node Obq_MessageGetColor]
+  maya.name                     STRING "Obq_MessageGetColor"
+  maya.id                       INT     0x0011CD68
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetColor.html"
+[node Obq_MessageGetInt]
+  maya.name                     STRING "Obq_MessageGetInt"
+  maya.id                       INT     0x0011CD69
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetInt.html"
+[node Obq_MessageGetVector]
+  maya.name                     STRING "Obq_MessageGetVector"
+  maya.id                       INT     0x0011CD6A
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetVector.html"
+  
+  
+  
+[node Obq_MessageSetBool]
+  maya.name                     STRING "Obq_MessageSetBool"
+  maya.id                       INT     0x0011CD6B
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetBool.html"
+[node Obq_MessageSetColor]
+  maya.name                     STRING "Obq_MessageSetColor"
+  maya.id                       INT     0x0011CD6C
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetColor.html"
+[node Obq_MessageSetInt]
+  maya.name                     STRING "Obq_MessageSetInt"
+  maya.id                       INT     0x0011CD6D
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetInt.html"
+[node Obq_MessageSetVector]
+  maya.name                     STRING "Obq_MessageSetVector"
+  maya.id                       INT     0x0011CD6E
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetVector.html"
+[node Obq_MessageStoreBool]
+  maya.name                     STRING "Obq_MessageStoreBool"
+  maya.id                       INT     0x0011CD6F
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreBool.html"
+[node Obq_MessageStoreColor]
+  maya.name                     STRING "Obq_MessageStoreColor"
+  maya.id                       INT     0x0011CD70
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreColor.html"
+[node Obq_MessageStoreInt]
+  maya.name                     STRING "Obq_MessageStoreInt"
+  maya.id                       INT     0x0011CD71
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreInt.html"
+[node Obq_MessageStoreVector]
+  maya.name                     STRING "Obq_MessageStoreVector"
+  maya.id                       INT     0x0011CD72
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreVector.html"
+[node Obq_NodeInfo]
+  maya.name                     STRING "Obq_NodeInfo"
+  maya.id                       INT     0x0011CD3
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_NodeInfo"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_NodeInfo.html"
+
+  
