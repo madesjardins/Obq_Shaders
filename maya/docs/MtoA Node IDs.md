@@ -40,5 +40,18 @@ Here is a list of the current Maya node IDs used by MtoA for the Obq Shaders:
     Obq_TransformShadingPoint  0x0011CD64  
     Obq_KettleUVStereoLens  0x0011CD65  
     
-
-
+    Obq_LightSaturationFilter  0x0011CD66
+    Obq_MessageGetBool  0x0011CD67
+    Obq_MessageGetColor  0x0011CD68
+    Obq_MessageGetInt  0x0011CD69
+    Obq_MessageGetVector  0x0011CD6A
+    Obq_MessageSetBool  0x0011CD6B
+    Obq_MessageSetColor  0x0011CD6C
+    Obq_MessageSetInt  0x0011CD6D
+    Obq_MessageSetVector  0x0011CD6E
+    Obq_MessageStoreBool  0x0011CD6F
+    Obq_MessageStoreColor  0x0011CD70
+    Obq_MessageStoreInt  0x0011CD71
+    Obq_MessageStoreVector  0x0011CD72
+    Obq_NodeInfo  0x0011CD3
+    
