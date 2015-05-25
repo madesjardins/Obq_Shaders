@@ -94,9 +94,15 @@ node_initialize
 	{
 		const AtParamEntry *pentry = AiParamIteratorGetNext(piter);
 		AiMsgInfo("\t\tName : %s, Type : %s", AiParamGetName(pentry),AiParamGetTypeName(AiParamGetType(pentry)));
-		/*if(AiParamGetType(pentry) == AI_TYPE_ARRAY)
-			AiMsgInfo("\t\t\tArray Type : %s, Num : %u", AiParamGetTypeName(AiNodeGetArray(nodeToQuery,AiParamGetName(pentry))->type),AiParamGetTypeName(AiNodeGetArray(nodeToQuery,AiParamGetName(pentry))->nelements));
-		else */if(AiParamGetType(pentry) == AI_TYPE_STRING)
+		if(AiParamGetType(pentry) == AI_TYPE_ARRAY)
+		{
+			AtArray* a = AiNodeGetArray(nodeToQuery,AiParamGetName(pentry));
+			if(a!=NULL)
+				AiMsgInfo("\t\t\tArray Type : Recoverable");//%s, num : %u ", AiParamGetTypeName(a->type),a->nelements);
+			else
+				AiMsgInfo("\t\t\tArray Type : Error getting Array Type !! "/*, AiParamGetTypeName(a->type),a->nelements*/);
+		}
+		else if(AiParamGetType(pentry) == AI_TYPE_STRING)
 			AiMsgInfo("\t\t\tValue : %s", AiNodeGetStr(nodeToQuery,AiParamGetName(pentry)));
 		else if(AiParamGetType(pentry) == AI_TYPE_FLOAT)
 			AiMsgInfo("\t\t\tValue : %f", AiNodeGetFlt(nodeToQuery,AiParamGetName(pentry)));
