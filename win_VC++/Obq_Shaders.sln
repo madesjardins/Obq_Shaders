@@ -9,6 +9,8 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		Release_v209|Win32 = Release_v209|Win32
+		Release_v209|x64 = Release_v209|x64
 		Release_v210|Win32 = Release_v210|Win32
 		Release_v210|x64 = Release_v210|x64
 		Release_v303|Win32 = Release_v303|Win32
@@ -27,6 +29,10 @@ Global
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|Win32.Build.0 = Release|Win32
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|x64.ActiveCfg = Debug|x64
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Debug|x64.Build.0 = Debug|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v209|Win32.ActiveCfg = Release_v209|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v209|Win32.Build.0 = Release_v209|Win32
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v209|x64.ActiveCfg = Release_v209|x64
+		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v209|x64.Build.0 = Release_v209|x64
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v210|Win32.ActiveCfg = Release_v210|Win32
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v210|Win32.Build.0 = Release_v210|Win32
 		{D38EFABA-4782-4B68-B784-CF677DAEBA93}.Release_v210|x64.ActiveCfg = Release_v210|x64
@@ -55,6 +61,10 @@ Global
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|Win32.Build.0 = Release|Win32
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|x64.ActiveCfg = Debug|x64
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Debug|x64.Build.0 = Debug|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v209|Win32.ActiveCfg = Release_v209|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v209|Win32.Build.0 = Release_v209|Win32
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v209|x64.ActiveCfg = Release_v209|x64
+		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v209|x64.Build.0 = Release_v209|x64
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v210|Win32.ActiveCfg = Release_v210|Win32
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v210|Win32.Build.0 = Release_v210|Win32
 		{628F193D-141B-47F8-A816-8D51984B83C3}.Release_v210|x64.ActiveCfg = Release_v210|x64

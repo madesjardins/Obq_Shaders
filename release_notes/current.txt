@@ -1,7 +1,8 @@
-v303 - win,linux,OSX - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
-v304 - win,linux,OSX - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
-v305 - win,linux,OSX - 	SITOA 3.5.0 - Arnold 4.2.4.2  by Marc-Antoine Desjardins
-v306 - win,linux,OSX - 	SITOA 3.6.0 - Arnold 4.2.6.2  by Marc-Antoine Desjardins
+v210 - win - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
+v303 - win - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
+v304 - win - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
+v305 - win - 	SITOA 3.5.0 - Arnold 4.2.4.2  by Marc-Antoine Desjardins
+v306 - win - 	SITOA 3.6.0 - Arnold 4.2.6.2  by Marc-Antoine Desjardins
 
 FIXES:
 	+ Blended AOVs.
@@ -17,11 +18,12 @@ NEW SHADERS:
 	+ Obq_LightSaturationFilter : change saturation of light based on object using message passing.
 	+ Obq_KettleUVCamera : from an object to another, UV to UV, in stereo, it's the fusion of KettleBake and Obq_StereoLens.
 	+ Obq_Message{Get, Set, Store}{Color, Vector, Int, Bool} : for message passing.
+	+ Obq_NodeInfo : Prints parameters of self or others nodes.
 	
 REMOVED SHADERS:
 
 TODO :
-	+ Obq_StereoLens for Maya.
+	+ Lens shaders for Maya.
 	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
 	+ Code Cleanup and optimisation.
 	+ Obq_MeasuredMaterial : Importance sampling.
