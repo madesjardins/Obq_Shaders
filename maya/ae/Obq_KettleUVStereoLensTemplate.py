@@ -1,4 +1,4 @@
-# 2015-05-21 02.21 pm
+# 2015-05-27 08.14 pm
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -16,8 +16,7 @@ viewModeEnumOp = [
     (3, "Stereo <Left-Right>"),
     (4, "Stereo <Down-Up>"),
     (5, "Bake"),
-    (6, "Normal (Geometry)"),
-    (7, "Normal (Shading)")
+    (6, "Normal")
 ]
 
 def Obq_KettleUVStereoLensCreateViewMode(attr):
@@ -32,9 +31,8 @@ def Obq_KettleUVStereoLensSetViewMode(attr):
 # StereoType
     
 stereoTypeEnumOp = [
-    (0, "Neutral"), 
-    (1, "Parallel"), 
-    (2, "Converged")
+    (0, "Parallel"), 
+    (1, "Converged")
 ]
 
 def Obq_KettleUVStereoLensCreateStereoType(attr):
@@ -99,28 +97,43 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
         
         self.beginLayout("Main", collapse=False)
         
-        self.beginLayout("Polymeshes", collapse=False)
-        self.addControl("aiOriginPolymesh",  label="Origin Polymesh")
-        self.addControl("aiTargetPolymesh",  label="Target Polymesh")
-        # self.addControl("aiPolymeshesStatus",  label="Status")
-        self.endLayout() # end Polymeshes Layout
-        
         self.beginLayout("Rendered View", collapse=False)
         self.addCustom("aiViewMode", Obq_KettleUVStereoLensCreateViewMode, Obq_KettleUVStereoLensSetViewMode) 
         self.endLayout() # end Rendered View Layout
+        
+        self.beginLayout("Polymeshes", collapse=False)
+        
+        self.beginLayout("Origin", collapse=False)
+        self.addControl("aiOriginPolymesh",  label="Origin Polymesh")
+        self.addControl("aiUvSetOrigin",  label="UV Set")
+        self.endLayout() # end Origin Layout
+        
+        self.beginLayout("Target", collapse=False)
+        self.addControl("aiTargetPolymesh",  label="Target Polymesh")
+        self.addControl("aiUvSetTarget",  label="UV Set")
+        self.endLayout() # end Target Layout
+        
+        self.beginLayout("Status", collapse=True)
+        # self.addControl("aiPolymeshesStatus",  label="Status")
+        self.endLayout() # end Target Layout
+        
+        self.endLayout() # end Polymeshes Layout
+        
+
         self.endLayout() # end Main Layout
+        
         
         self.beginLayout("Stereo", collapse=False)
         
         self.beginLayout("Settings", collapse=False)
-        # self.addCustom("aiStereoType", Obq_KettleUVStereoLensCreateStereoType, Obq_KettleUVStereoLensSetStereoType)
+        self.addCustom("aiStereoType", Obq_KettleUVStereoLensCreateStereoType, Obq_KettleUVStereoLensSetStereoType)
         # self.addCustom("aiInteraxialMode", Obq_KettleUVStereoLensCreateInteraxialMode, Obq_KettleUVStereoLensSetInteraxialMode)
         self.addControl("aiInteraxialSeparation",  label="Interaxial Separation")
         self.addCustom("aiZeroParallaxMode", Obq_KettleUVStereoLensCreateZeroParallaxMode, Obq_KettleUVStereoLensSetZeroParallaxMode)
         self.addControl("aiZeroParallaxDistance",  label="Zero Parallax Distance")
         self.endLayout() # end Settings Layout
         
-        self.beginLayout("Automatic Overscan", collapse=False)
+        self.beginLayout("Automatic Overscan", collapse=True)
         # self.addControl("aiFilterSize",  label="Filter Size")
         
         self.beginLayout("Target Resolution", collapse=False)
@@ -176,7 +189,7 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
         self.endLayout() # end Acceleration Layout  
 
         self.beginLayout("Other", collapse=False)
-        self.addControl("aiInteraxialEpsilon",  label="Interaxial Separation Epsilon")
+        self.addControl("aiInteraxialEpsilon",  label="Interaxial Sep. Epsilon")
         self.endLayout() # end Other Layout 
         
         self.endLayout() # end Advanced Layout 
