@@ -1,5 +1,5 @@
-﻿Build started 21/05/2015 11:46:39 AM.
-     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 3 (build target(s)).
+﻿Build started 27/05/2015 2:57:50 PM.
+     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v303\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -134,4 +134,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:28.37
+Time Elapsed 00:00:28.59

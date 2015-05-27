@@ -12,7 +12,7 @@
 // OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
 // WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+// modified by Marc-Antoine Desjardins [Obq_Shaders] 2015
 #pragma once
 
 #include <ai.h>
@@ -28,7 +28,7 @@ class CGrid2DAS;
 
 class CKettleBaker{
 public:
-	CKettleBaker(AtNode* node, AtNode* camera_node);
+	CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspace); // added multi-uv support
 	~CKettleBaker();
 
 	bool findSurfacePoint(const AtPoint2& uv, AtVector& pout, AtVector& nout);

@@ -19,7 +19,7 @@
 
 #include "Grid2DAS.h"
 
-CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node)
+CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspace)
 {
 	if(AiNodeIs(node, "polymesh"))
 	{
@@ -43,7 +43,12 @@ CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node)
 		else
 			mNList.reserve(mTriangleCount);
 
-		AtArray* uvlist = AiNodeGetArray(node, "uvlist");
+		bool useDefaultUV = (std::strcmp(uvspace, "DefaultUV") == 0);
+
+		const char* uvspace_list = (useDefaultUV? "uvlist" : uvspace); // multi-uv support
+		AiMsgInfo("[Obq_KettleUVStereoLens] <%s> is using uv = %s",AiNodeGetName(node), uvspace_list);
+
+		AtArray* uvlist = AiNodeGetArray(node, uvspace_list);
 		if(uvlist)
 			readArnoldArray(mUVList, uvlist);
 		else
@@ -57,8 +62,12 @@ CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node)
 		std::vector<AtUInt32> nidxs;
 		readArnoldArray(nidxs, AiNodeGetArray(node, "nidxs"));
 
+		char uvspace_idxs[256]; // multi-uv support
+		std::sprintf(uvspace_idxs,"%sidxs",(useDefaultUV?"uv":uvspace));
+		AiMsgInfo("[Obq_KettleUVStereoLens] <%s> is using uvidxs = %s",AiNodeGetName(node), uvspace_idxs);
+
 		std::vector<AtUInt32> uvidxs;
-		readArnoldArray(uvidxs, AiNodeGetArray(node, "uvidxs"));
+		readArnoldArray(uvidxs, AiNodeGetArray(node, uvspace_idxs));
 
 		AtUInt32 last_id = 0;
 		// count the exact count, so no constant vector reallocation, 

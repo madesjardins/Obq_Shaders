@@ -71,7 +71,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{F51D6DB2-CFE4-406C-B4F6-8180E30E4263}";
 		Type = integer;
 		flags = 1;
-		Value = 2;
+		Value = 0;
 		Value Minimum = 0;
 		Value Maximum = 6;
 		Texturable = off;
@@ -82,9 +82,9 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{B0CF6A2C-E955-4269-8A04-0A37D3C417E2}";
 		Type = integer;
 		flags = 1;
-		Value = 0;
+		Value = 1;
 		Value Minimum = 0;
-		Value Maximum = 2;
+		Value Maximum = 1;
 		Texturable = off;
 		Animatable = Off;
 	}
@@ -93,7 +93,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{5C0F37A6-FD76-4C3B-B451-6D4397826F93}";
 		Type = integer;
 		flags = 1;
-		Value = 0;
+		Value = 3;
 		Value Minimum = 0;
 		Value Maximum = 3;
 		Texturable = off;
@@ -140,7 +140,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{76081CDD-7D75-48D0-AFF6-5CD6CAF775FE}";
 		Type = integer;
 		flags = 1;
-		Value = 1920.0;
+		Value = 1024.0;
 		Value Minimum = 1;
 		Texturable = Off;
 		Animatable = Off;
@@ -150,7 +150,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{D1C54033-724B-4DD8-BC08-48094EF44E2F}";
 		Type = integer;
 		flags = 1;
-		Value = 1080.0;
+		Value = 1024.0;
 		Value Minimum = 1;
 		Texturable = Off;
 		Animatable = Off;
@@ -170,7 +170,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{96DB77C9-4193-43F7-B27F-3E6B0F1A598A}";
 		Type = integer;
 		flags = 1;
-		Value = 1920.0;
+		Value = 1024.0;
 		Value Minimum = 1;
 		Texturable = Off;
 		Animatable = Off;
@@ -180,7 +180,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{0201061B-21CA-4376-8FA1-1E5C0CD3160F}";
 		Type = integer;
 		flags = 1;
-		Value = 1080.0;
+		Value = 1024.0;
 		Value Minimum = 1;
 		Texturable = Off;
 		Animatable = Off;
@@ -273,6 +273,24 @@ PropertySet "Obq_KettleUVStereoLens"
 		Texturable = Off;
 		Animatable = Off;
 	}
+	Parameter "uv_set_origin" input
+	{
+		GUID = "{FA04F7E4-E5EB-49C7-9AFA-55067162EC56}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
+	Parameter "uv_set_target" input
+	{
+		GUID = "{849D785E-9FC9-4AFB-8CA8-FB232B6ED85A}";
+		Type = string;
+		flags = 1;
+		Value = "";
+		Texturable = Off;
+		Animatable = Off;
+	}
 }
 
 MetaShader "Obq_KettleUVStereoLens_params_meta"
@@ -291,7 +309,7 @@ Defaults
 
 	origin_polymesh
 	{
-		Name = "Origin Polymesh";
+		Name = "Polymesh";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	origin_camera
@@ -301,7 +319,7 @@ Defaults
 	}
 	target_polymesh
 	{
-		Name = "Target Polymesh";
+		Name = "Polymesh";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 	target_camera
@@ -344,9 +362,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Neutral" = 0,
-			"Parallel" = 1,
-			"Converged" = 2
+			"Parallel" = 0,
+			"Converged" = 1
 		}
 	}
 	interaxial_mode
@@ -369,7 +386,7 @@ Defaults
 	}
 	interaxial_separation
 	{
-		Name = "Interaxial Separation";
+		Name = "Interaxial Separation (unit)";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = -1.0 to 1.0;
 	}
@@ -463,29 +480,65 @@ Defaults
 		Name = "Crop to Region";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
+	uv_set_origin
+	{
+		Name = "UV Set";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"" = "DefaultUV"
+		}
+	}
+	uv_set_target
+	{
+		Name = "UV Set";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIType = "Combo";
+		Items
+		{
+			"" = "DefaultUV"
+		}
+	}
 }
 
 Layout "Default"
 {
 	Tab "Main"
 	{
-		Group "Polymeshes"
-		{
-			Button pickPolymeshes,aligncenter = "Pick Origin and Target Polymeshes",180;
-			origin_polymesh;
-			target_polymesh;
-			polymeshes_status;
-		}
 		Group "Rendered View"
 		{
 			view_mode;
+			use_default_uv_set;
+		}
+		Group "Polymeshes"
+		{
+			Button pickPolymeshes,aligncenter = "Pick Origin and Target Polymeshes",180;
+			Group "Origin"
+			{
+				
+				origin_polymesh;
+				Row
+				{
+					uv_set_origin;
+				}
+			}
+			Group "Target"
+			{
+				target_polymesh;
+				uv_set_target;
+			}
+			Group "Status"
+			{
+				polymeshes_status, noLabel;
+			}
 		}
 	}
 	Tab "Stereo"
 	{
 		Group "Settings"
 		{
-			#stereo_type;
+			stereo_type;
 			#interaxial_mode;
 			interaxial_separation;
 			zero_parallax_mode;
@@ -577,6 +630,44 @@ Logic
 from win32com.client import constants as c
 import math
 
+
+def updateUVSetOrigin():
+	oObj = Application.Dictionary.GetObject(PPG.origin_polymesh.Value)
+	uvspaces = []
+	
+	for cls in oObj.ActivePrimitive.Geometry.Clusters:
+		if cls.Type == "sample":
+			for p in cls.Properties:
+				if p.Type == "uvspace":
+					uvspaces.append(p.Name)
+					if len(uvspaces) == 1:
+						uvspaces.append("DefaultUV")
+					else:
+						uvspaces.append(p.Name)
+	
+	PPG.PPGLayout.Item( "uv_set_origin" ).UIItems = uvspaces
+	PPG.uv_set_origin.Value = "DefaultUV"
+	PPG.Refresh()
+
+def updateUVSetTarget():
+	oObj = Application.Dictionary.GetObject(PPG.target_polymesh.Value)
+	uvspaces = []
+	
+	for cls in oObj.ActivePrimitive.Geometry.Clusters:
+		if cls.Type == "sample":
+			for p in cls.Properties:
+				if p.Type == "uvspace":
+					uvspaces.append(p.Name)
+					if len(uvspaces) == 1:
+						uvspaces.append("DefaultUV")
+					else:
+						uvspaces.append(p.Name)
+	
+	PPG.PPGLayout.Item( "uv_set_target" ).UIItems = uvspaces
+	PPG.uv_set_target.Value = "DefaultUV"
+	PPG.Refresh()
+
+
 def update_pass_resolution_OnChanged():
 	if PPG.update_pass_resolution.Value :
 		Application.SetValue("Passes.Current.ImageFormatOverride", True)
@@ -595,7 +686,7 @@ def change_targetResolution():
 		tResolutionX = PPG.target_resolution_x.Value*math.abs(PPG.regionU1.Value - PPG.regionU0.Value)
 		tResolutionY = PPG.target_resolution_y.Value*math.abs(PPG.regionV1.Value - PPG.regionV0.Value)
 	
-	if PPG.view_mode.Value == 2:
+	if PPG.view_mode.Value == 3:
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = 2*(tResolutionX + 2*bleed)
 		PPG.render_resolution_y.Value = tResolutionY
@@ -603,7 +694,7 @@ def change_targetResolution():
 		leftCropInfo = "Crop { box {" + str(bleed) + " " + str(0) + " " + str(tResolutionX + bleed) + " " + str(tResolutionY) +"} reformat true crop false name Left selected false xpos -50 ypos 40}"
 		rightCropInfo = "Crop { box {" + str(PPG.render_resolution_x.Value - tResolutionX - bleed) + " " + str(0) + " " + str(PPG.render_resolution_x.Value - bleed) + " " + str(tResolutionY) +"} reformat true crop false name Right selected false xpos 50 ypos 40}"
 		PPG.nuke_crop_info.Value = 'Reformat { format "' + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 0 0 " + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 1 ObqStereoLens" + str(PPG.render_resolution_x.Value) +"x"+ str(PPG.render_resolution_y.Value) +'PAR1" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}\nset ObqNukeCropInfo [stack 0]\n'+ leftCropInfo + "\npush $ObqNukeCropInfo\n" + rightCropInfo
-	elif PPG.view_mode.Value == 3 :
+	elif PPG.view_mode.Value == 4 :
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = tResolutionX 
 		PPG.render_resolution_y.Value = 2*(tResolutionY + 2*bleed)
@@ -634,7 +725,6 @@ def use_render_region_OnChanged():
 		PPG.crop_to_region.ReadOnly = False
 	change_targetResolution()
 
-
 def regionU0_OnChanged():
 	change_targetResolution()
 
@@ -661,7 +751,7 @@ def target_resolution_y_OnChanged():
 
 def view_mode_OnChanged():
 	change_targetResolution()
-	if PPG.view_mode.Value == 2 or PPG.view_mode.Value == 3:
+	if PPG.view_mode.Value == 3 or PPG.view_mode.Value == 4:
 		PPG.nuke_crop_info.Show(True)
 	else:
 		PPG.nuke_crop_info.Show(False)
@@ -670,9 +760,15 @@ def view_mode_OnChanged():
 	PPG.Refresh()
 
 def stereo_type_OnChanged():
-	if PPG.stereo_type.Value == 2 and PPG.zero_parallax_mode.Value == 1:
-		PPG.zero_parallax_distance.ReadOnly = False
+	
+	if PPG.stereo_type.Value == 1 :
+		PPG.zero_parallax_mode.ReadOnly = False
+		if PPG.zero_parallax_mode.Value == 1:
+			PPG.zero_parallax_distance.ReadOnly = False
+		else:
+			PPG.zero_parallax_distance.ReadOnly = True
 	else:
+		PPG.zero_parallax_mode.ReadOnly = True
 		PPG.zero_parallax_distance.ReadOnly = True
 	PPG.Refresh()
 
@@ -740,7 +836,9 @@ def checkPolymeshes():
 					PPG.polymeshes_status.Value = "!! Target polymesh is not constraining target camera !!"
 					
 			if originOK:
+				updateUVSetOrigin()
 				if targetOK:
+					updateUVSetTarget()
 					PPG.polymeshes_status.Value = "!! Both meshes are valid !!"
 				elif not checkTarget:
 					PPG.polymeshes_status.Value = "!! Origin mesh is valid !!"
@@ -758,7 +856,11 @@ def pickPolymeshes_OnClicked():
 	PPG.origin_camera.Value = ""
 	PPG.target_polymesh.Value = ""
 	PPG.target_camera.Value = ""
-	
+	PPG.PPGLayout.Item( "uv_set_origin" ).UIItems = ["",""]
+	PPG.PPGLayout.Item( "uv_set_target" ).UIItems = ["",""]
+	PPG.uv_set_origin.Value = ""
+	PPG.uv_set_target.Value = ""
+
 	doOrigin = False
 	doTarget = False
 	originO = None
@@ -811,6 +913,18 @@ def pickPolymeshes_OnClicked():
 				break
 
 	checkPolymeshes()
+	PPG.Refresh()
+
+
+def pickUVSetOrigin_OnClicked():	
+	Application.DeselectAll()
+	
+	oPicked = Application.PickElement( c.siTextureControlFilter, "Select Texture Projection", "Select Origin Polymesh" )
+	uvSet = oPicked(2)
+	
+	if oPicked(0) > 0 :
+		PPG.uv_set_origin.Value = uvSet
+
 
 
 def OnInit():
@@ -823,7 +937,8 @@ def OnInit():
 	checkPolymeshes()
 	Application.SetExpr(str(PPG.filter_size.Parent.FullName) + ".filter_size", "Passes.Arnold_Render_Options.output_filter_width")
 	view_mode_OnChanged()
-	stereo_type_OnChanged()
+	#stereo_type_OnChanged()
+	zero_parallax_mode_OnChanged()
 	PPG.render_resolution_x.ReadOnly = True
 	PPG.render_resolution_y.ReadOnly = True
 	PPG.total_overscan_pixels.ReadOnly = True

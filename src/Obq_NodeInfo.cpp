@@ -4,7 +4,7 @@ Obq_NodeInfo :
 A simple passthrough node that gives info
 
 *------------------------------------------------------------------------
-Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -53,7 +53,7 @@ node_parameters
 
 node_initialize
 {
-	AiMsgInfo("#### Node Info <Node Initialize>");
+	AiMsgInfo("#### Node Info <Node Initialize> [%s]",AiNodeGetName(node));
 	AtNode* nodeToQuery;
 	int mode = AiNodeGetInt(node,"mode");
 	switch(mode)
@@ -98,9 +98,9 @@ node_initialize
 		{
 			AtArray* a = AiNodeGetArray(nodeToQuery,AiParamGetName(pentry));
 			if(a!=NULL)
-				AiMsgInfo("\t\t\tArray Type : Recoverable");//%s, num : %u ", AiParamGetTypeName(a->type),a->nelements);
+				AiMsgInfo("\t\t\tArray Type : %s, num : %u ", AiParamGetTypeName(a->type),a->nelements);
 			else
-				AiMsgInfo("\t\t\tArray Type : Error getting Array Type !! "/*, AiParamGetTypeName(a->type),a->nelements*/);
+				AiMsgInfo("\t\t\tArray not available.");
 		}
 		else if(AiParamGetType(pentry) == AI_TYPE_STRING)
 			AiMsgInfo("\t\t\tValue : %s", AiNodeGetStr(nodeToQuery,AiParamGetName(pentry)));
@@ -119,7 +119,19 @@ node_initialize
 		const AtUserParamEntry *upentry = AiUserParamIteratorGetNext(upiter);
 		AiMsgInfo("\t\tName : %s, Type : %s", AiUserParamGetName(upentry),AiParamGetTypeName(AiUserParamGetType(upentry)));
 		if(AiUserParamGetType(upentry) == AI_TYPE_ARRAY)
+		{
+			//AtArray* a = AiNodeGetArray(nodeToQuery,AiUserParamGetName(upentry));
+			//if(a!=NULL)
 			AiMsgInfo("\t\t\tArray Type : %s", AiParamGetTypeName(AiUserParamGetArrayType(upentry)));
+			//else
+			//	AiMsgInfo("\t\t\tArray not available.");
+		}
+		else if(AiUserParamGetType(upentry) == AI_TYPE_STRING)
+			AiMsgInfo("\t\t\tValue : %s", AiNodeGetStr(nodeToQuery,AiUserParamGetName(upentry)));
+		else if(AiUserParamGetType(upentry) == AI_TYPE_FLOAT)
+			AiMsgInfo("\t\t\tValue : %f", AiNodeGetFlt(nodeToQuery,AiUserParamGetName(upentry)));
+		else if(AiUserParamGetType(upentry) == AI_TYPE_INT)
+			AiMsgInfo("\t\t\tValue : %i", AiNodeGetInt(nodeToQuery,AiUserParamGetName(upentry)));
 	}
 	AiUserParamIteratorDestroy(upiter);
 
@@ -137,12 +149,12 @@ node_initialize
 
 node_update
 {
-	AiMsgInfo("#### Node Info <Node Update>");
+	AiMsgInfo("#### Node Info <Node Update> [%s]",AiNodeGetName(node));
 }
 
 node_finish
 {
-	AiMsgInfo("#### Node Info <Node Finish>");
+	AiMsgInfo("#### Node Info <Node Finish> [%s]",AiNodeGetName(node));
 }
 
 shader_evaluate

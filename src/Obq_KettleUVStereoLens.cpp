@@ -1,3 +1,48 @@
+/*
+Obq_NodeInfo :
+
+A simple passthrough node that gives info
+
+*------------------------------------------------------------------------
+Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+*------------------------------------------------------------------------
+// KettleBaker
+// Copyright (c) 2013, Kettle Studio Ltd. All rights reserved.
+// Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+// Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+// Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials 
+// provided with the distribution.
+// Neither the name of the authors nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written 
+// permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHORS 
+// BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+// OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "O_Common.h"
 
 #include "KettleBaker.h"
@@ -24,12 +69,14 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 	p_regionV0,
 	p_regionU1,
 	p_regionV1,
-	p_crop_to_region
+	p_crop_to_region,
+	p_uv_set_origin,
+	p_uv_set_target
 };
 
 enum ViewMode{CENTER, LEFT, RIGHT, STEREOLR, STEREODU, BAKE, NORMAL};
 
-enum StereoType{NEUTRAL, PARALLEL, CONVERGED};
+enum StereoType{PARALLEL, CONVERGED};
 
 enum ZeroParallaxMode{USETARGET,USEDISTANCE};
 
@@ -44,13 +91,13 @@ node_parameters
 
 	AiParameterINT("grid_size", 16);
 
-	AiParameterINT("view_mode", RIGHT);					// TODO : Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals_Geometry, Normals_Shading
-	AiParameterINT("stereo_type", CONVERGED);			// TODO : Neutral (don't change anything UV-to-UV), Parallel (align both on middle vector), Converged (to a specific distance )
+	AiParameterINT("view_mode", CENTER);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
+	AiParameterINT("stereo_type", CONVERGED);			// Parallel (align both on middle vector), Converged (to a specific distance )
 	AiParameterINT("interaxial_mode", BLUE);			// NOT USED BLUE is default
 	AiParameterFLT("interaxial_epsilon", 0.001f);		// value used to search
-	AiParameterFLT("interaxial_separation", -0.1f);		// in u coordinates typically, if >0 it goes to the left
-	AiParameterINT("zero_parallax_mode",0);				// 0 = use target, 1 = Use distance
-	AiParameterFLT("zero_parallax_distance", false);	//
+	AiParameterFLT("interaxial_separation", -0.6f);		// in u coordinates typically, if >0 it goes to the left
+	AiParameterINT("zero_parallax_mode",USETARGET);		// 0 = use target, 1 = Use distance
+	AiParameterFLT("zero_parallax_distance", 100.0);	//
 	AiParameterINT("total_overscan_pixels",0);			// number of additional pixels needed to annihilate filtering
 
 	AiParameterBOOL("use_render_region", false);
@@ -59,6 +106,9 @@ node_parameters
 	AiParameterFLT("regionU1", 1.0f);
 	AiParameterFLT("regionV1", 1.0f);
 	AiParameterBOOL("crop_to_region", false);
+
+	AiParameterSTR("uv_set_origin", "DefaultUV");				// uvspace
+	AiParameterSTR("uv_set_target", "DefaultUV");				// uvspace
 }
 
 
@@ -95,6 +145,9 @@ struct ShaderData{
 	AtMatrix origin_camera_matrix;
 	AtMatrix target_camera_matrix;
 	AtMatrix ibaking_camera_matrix;
+	AtArray* a_origin_camera_matrix;
+	AtArray* a_target_camera_matrix;
+	AtArray* a_baking_camera_matrix;
 	bool use_render_region;
 	float regionU0;
 	float regionV0;
@@ -105,7 +158,7 @@ struct ShaderData{
 
 
 
-inline bool findOriginAndTargetWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world, AtPoint& posT_world)
+inline bool findOriginAndTargetWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world, AtPoint& posT_world, float time)
 {
 	AtVector position;
 	AtVector positionT;
@@ -114,35 +167,47 @@ inline bool findOriginAndTargetWorld(AtPoint2 screen_uv, ShaderData* data, AtPoi
 
 	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position, normal) && data->kdata[1].baker->findSurfacePoint(screen_uv, positionT,normalT))
 	{
-		AiM4PointByMatrixMult(&posO_world,data->origin_camera_matrix,&position);
-		AiM4PointByMatrixMult(&posT_world,data->target_camera_matrix,&positionT);
+		AtMatrix origin_camera_matrix, target_camera_matrix;
+		AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
+		AiArrayInterpolateMtx(data->a_target_camera_matrix,time,0,target_camera_matrix);
+
+		AiM4PointByMatrixMult(&posO_world,/*data->*/origin_camera_matrix,&position);
+		AiM4PointByMatrixMult(&posT_world,/*data->*/target_camera_matrix,&positionT);
+		
 		return true;
 	}
 	else
 		return false;
 }
 
-inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world)
+inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world, float time)
 {
 	AtVector position;
 	AtVector normal;
 
 	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position,normal))
 	{
-		AiM4PointByMatrixMult(&posO_world,data->origin_camera_matrix,&position);
+		AtMatrix origin_camera_matrix;
+		AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
+
+		AiM4PointByMatrixMult(&posO_world,/*data->*/origin_camera_matrix,&position);
 		return true;
 	}
 	else
 		return false;
 }
 
-inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world, AtVector& normalO_world)
+// bake does not need motion
+inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_world, AtVector& normalO_world, float time)
 {
 	AtVector position;
 	AtVector normal;
 
 	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position, normal))
 	{
+		//AtMatrix origin_camera_matrix;
+		//AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
+
 		AiM4PointByMatrixMult(&posO_world,data->origin_camera_matrix,&position);
 		AiM4VectorByMatrixMult(&normalO_world,data->origin_camera_matrix,&normal);
 		return true;
@@ -205,18 +270,13 @@ node_initialize
 	}
 	else
 	{
-		// TODO : use arrays for independant animated meshes
-		//AtArray* origin_matrix_list = AiNodeGetArray(origin_camera_node, "matrix");
-		//AtArray* target_matrix_list = AiNodeGetArray(target_camera_node, "matrix");
-		//AtArray* baking_matrix_list = AiNodeGetArray(node, "matrix");
-
-		// select which uv set
 
 		try
 		{
-			data->kdata[0].baker = new CKettleBaker(origin_polymesh_node, node);
+			data->kdata[0].baker = new CKettleBaker(origin_polymesh_node, node, AiNodeGetStr(node,"uv_set_origin"));
+
 			if(data->viewMode < BAKE)
-				data->kdata[1].baker = new CKettleBaker(target_polymesh_node, node);
+				data->kdata[1].baker = new CKettleBaker(target_polymesh_node, node, AiNodeGetStr(node,"uv_set_target"));
 		}
 		catch(std::exception ex)
 		{
@@ -231,10 +291,16 @@ node_initialize
 	AtMatrix camera_matrix;
 
 	AiNodeGetMatrix(data->origin_camera_node,"matrix",data->origin_camera_matrix);
+	data->a_origin_camera_matrix = AiNodeGetArray(data->origin_camera_node, "matrix");
 	if(data->viewMode < BAKE)
+	{
 		AiNodeGetMatrix(data->target_camera_node,"matrix",data->target_camera_matrix);
+		data->a_target_camera_matrix = AiNodeGetArray(data->target_camera_node, "matrix");
+	}
 	AiNodeGetMatrix(node,"matrix",camera_matrix);
 	AiM4Invert(camera_matrix,data->ibaking_camera_matrix);
+	data->a_baking_camera_matrix = AiNodeGetArray(node, "matrix"); // will need to be inverted on the fly
+
 
 	// Update shaderData variables
 	AtNode* options = AiUniverseGetOptions();
@@ -317,7 +383,7 @@ camera_create_ray
 	output->dOdx = AI_V3_ZERO;
 	output->dOdy = AI_V3_ZERO;
 	output->weight = 0.0f;
-
+	
 	if(data->kdata[0].baker == 0 ||  (data->kdata[1].baker == 0 && data->viewMode < BAKE))
 		return;
 
@@ -399,7 +465,7 @@ camera_create_ray
 	// NON BAKE MODE
 	if(data->viewMode < BAKE)
 	{
-		if(!findOriginAndTargetWorld(screen_uv, data, posO_world, posT_world))
+		if(!findOriginAndTargetWorld(screen_uv, data, posO_world, posT_world, input->relative_time))
 			return;
 
 		// calculate direction to target from center
@@ -419,8 +485,8 @@ camera_create_ray
 			screen_uv_El.y = wrapAround((sy + 1.0f) * 0.5f);
 		}
 		AtPoint posO_world_El;
-
-		if(!findOriginWorld(screen_uv_El, data, posO_world_El))
+		
+		if(!findOriginWorld(screen_uv_El, data, posO_world_El, input->relative_time))
 			return;
 
 		AtVector center2ElDirN_world = AiV3Normalize(posO_world_El-posO_world);
@@ -440,19 +506,32 @@ camera_create_ray
 		AtVector posO_world_Blue = posO_world + separationSign*leftVn*data->interaxialSeparation/2.0f;
 
 		// pose in camera
-		AiM4PointByMatrixMult(&output->origin,data->ibaking_camera_matrix,&posO_world_Blue);
+		//-- motion --
+		AtMatrix baking_camera_matrix, ibaking_camera_matrix;
+		AiArrayInterpolateMtx(data->a_baking_camera_matrix,input->relative_time,0,baking_camera_matrix);
+		AiM4Invert(baking_camera_matrix, ibaking_camera_matrix);
+		//-- motion --
 
+		AiM4PointByMatrixMult(&output->origin,/*data->*/ibaking_camera_matrix,&posO_world_Blue);
+		
 
 		// calculate direction
 		AtVector dir_world_Blue;
 
-		if( data->zeroParallaxMode == USETARGET)
-			dir_world_Blue = posT_world - posO_world_Blue;
+		if(data->stereoType == CONVERGED)
+		{
+			if( data->zeroParallaxMode == USETARGET)
+				dir_world_Blue = posT_world - posO_world_Blue;
+			else
+				dir_world_Blue = (posO_world + data->zeroParallaxDistance*AiV3Normalize(posT_world - posO_world)) - posO_world_Blue;
+		}
 		else
-			dir_world_Blue = (posO_world + data->zeroParallaxDistance*AiV3Normalize(posT_world - posO_world)) - posO_world_Blue;
+		{
+			dir_world_Blue = dirN_world;
+		}
 
 		AtVector dir_cam;
-		AiM4VectorByMatrixMult(&dir_cam,data->ibaking_camera_matrix,&dir_world_Blue);
+		AiM4VectorByMatrixMult(&dir_cam,/*data->*/ibaking_camera_matrix,&dir_world_Blue);
 		AiV3Normalize(output->dir,dir_cam );
 
 	}
@@ -462,7 +541,7 @@ camera_create_ray
 		// BAKE MODE
 		AtVector normO_world;
 
-		if(!findOriginWorld(screen_uv, data, posO_world, normO_world))
+		if(!findOriginWorld(screen_uv, data, posO_world, normO_world, input->relative_time))
 			return;
 
 
@@ -479,6 +558,12 @@ camera_create_ray
 		}
 
 		// pose in camera
+		//-- no motion when baking --
+		//AtMatrix baking_camera_matrix, ibaking_camera_matrix;
+		//AiArrayInterpolateMtx(data->a_baking_camera_matrix,input->relative_time,0,baking_camera_matrix);
+		//AiM4Invert(baking_camera_matrix, ibaking_camera_matrix);
+		//-- no motion when baking --
+
 		AiM4PointByMatrixMult(&output->origin,data->ibaking_camera_matrix,&posO_world);
 		AiM4VectorByMatrixMult(&dir_cam,data->ibaking_camera_matrix,&dirN_world);
 		AiV3Normalize(output->dir,dir_cam );
