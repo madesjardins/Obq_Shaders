@@ -1,7 +1,7 @@
 /*
-Obq_NodeInfo :
+Obq_KettleUVStereoLens :
 
-A simple passthrough node that gives info
+A mesh to mesh or UV bake lens shader
 
 *------------------------------------------------------------------------
 Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
@@ -45,7 +45,11 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "O_Common.h"
 
-#include "KettleBaker.h"
+#ifdef _WIN32
+#include "kettle\KettleBaker.h"
+#else
+#include "kettle/KettleBaker.h"
+#endif
 
 AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 
@@ -71,7 +75,17 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 	p_regionV1,
 	p_crop_to_region,
 	p_uv_set_origin,
-	p_uv_set_target
+	p_uv_set_target,
+	p_use_dof,
+	p_aperture_size_,
+	p_aperture_aspect_ratio_,
+	p_use_polygonal_aperture,
+	p_aperture_blades_,
+	p_aperture_blade_curvature_,
+	p_aperture_rotation_,
+	p_bokeh_invert,
+	p_bokeh_bias,
+	p_bokeh_gain
 };
 
 enum ViewMode{CENTER, LEFT, RIGHT, STEREOLR, STEREODU, BAKE, NORMAL};
@@ -107,24 +121,21 @@ node_parameters
 	AiParameterFLT("regionV1", 1.0f);
 	AiParameterBOOL("crop_to_region", false);
 
-	AiParameterSTR("uv_set_origin", "DefaultUV");				// uvspace
-	AiParameterSTR("uv_set_target", "DefaultUV");				// uvspace
+	AiParameterSTR("uv_set_origin", "DefaultUV");		// uvspace
+	AiParameterSTR("uv_set_target", "DefaultUV");		// uvspace
+
+	AiParameterBOOL("use_dof",false);					// available in non bake/normal mode
+	//AiParameterFLT("focus_distance",100.0f);			//is zero_parallax_distance
+	AiParameterFLT("aperture_size_",0.1f);
+	AiParameterFLT("aperture_aspect_ratio_",1.0f);
+	AiParameterBOOL("use_polygonal_aperture",true);
+	AiParameterINT("aperture_blades_",5);
+	AiParameterFLT("aperture_blade_curvature_",0.0f);
+	AiParameterFLT("aperture_rotation_",0.0f);
+	AiParameterBOOL("bokeh_invert",false);
+	AiParameterFLT("bokeh_bias",0.5f);
+	AiParameterFLT("bokeh_gain",0.5f);
 }
-
-
-
-struct kettle_bakeData{ // might needed for other data than the baker node, what calculates the transformations
-	CKettleBaker* baker;
-	//AtMatrix constraining_camera_matrix;
-	//AtMatrix baking_camera_imatrix;
-
-	kettle_bakeData() : baker(0){}
-
-	~kettle_bakeData(){if(baker !=NULL) delete baker;}
-
-	static void* operator new(size_t s)	{return AiMalloc((unsigned long)s);}
-	static void operator delete(void* p){AiFree(p);}	
-};
 
 struct ShaderData{
 	float aspect;
@@ -139,7 +150,8 @@ struct ShaderData{
 	int viewMode;
 	int stereoType;
 	float overscanRatio;
-	kettle_bakeData* kdata;
+	CKettleBaker* bakerOrigin;
+	CKettleBaker* bakerTarget;
 	AtNode* origin_camera_node;
 	AtNode* target_camera_node;
 	AtMatrix origin_camera_matrix;
@@ -154,6 +166,17 @@ struct ShaderData{
 	float regionU1;
 	float regionV1;
 	bool crop_to_region;
+
+	bool useDof;
+	float apertureSize;
+	float apertureAspectRatio;
+	int apertureBlades;
+	float apertureRotation;
+	float apertureBladeCurvature;
+	bool bokehInvert;
+	float bokehBias;
+	float bokehGain;
+	bool usePolygonalAperture;
 };
 
 
@@ -165,14 +188,14 @@ inline bool findOriginAndTargetWorld(AtPoint2 screen_uv, ShaderData* data, AtPoi
 	AtVector normal;
 	AtVector normalT;
 
-	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position, normal) && data->kdata[1].baker->findSurfacePoint(screen_uv, positionT,normalT))
+	if(data->bakerOrigin->findSurfacePoint(screen_uv, position, normal) && data->bakerTarget->findSurfacePoint(screen_uv, positionT,normalT))
 	{
 		AtMatrix origin_camera_matrix, target_camera_matrix;
 		AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
 		AiArrayInterpolateMtx(data->a_target_camera_matrix,time,0,target_camera_matrix);
 
-		AiM4PointByMatrixMult(&posO_world,/*data->*/origin_camera_matrix,&position);
-		AiM4PointByMatrixMult(&posT_world,/*data->*/target_camera_matrix,&positionT);
+		AiM4PointByMatrixMult(&posO_world,origin_camera_matrix,&position);
+		AiM4PointByMatrixMult(&posT_world,target_camera_matrix,&positionT);
 		
 		return true;
 	}
@@ -185,12 +208,12 @@ inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_
 	AtVector position;
 	AtVector normal;
 
-	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position,normal))
+	if(data->bakerOrigin->findSurfacePoint(screen_uv, position,normal))
 	{
 		AtMatrix origin_camera_matrix;
 		AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
 
-		AiM4PointByMatrixMult(&posO_world,/*data->*/origin_camera_matrix,&position);
+		AiM4PointByMatrixMult(&posO_world,origin_camera_matrix,&position);
 		return true;
 	}
 	else
@@ -203,11 +226,8 @@ inline bool findOriginWorld(AtPoint2 screen_uv, ShaderData* data, AtPoint& posO_
 	AtVector position;
 	AtVector normal;
 
-	if(data->kdata[0].baker->findSurfacePoint(screen_uv, position, normal))
+	if(data->bakerOrigin->findSurfacePoint(screen_uv, position, normal))
 	{
-		//AtMatrix origin_camera_matrix;
-		//AiArrayInterpolateMtx(data->a_origin_camera_matrix,time,0,origin_camera_matrix);
-
 		AiM4PointByMatrixMult(&posO_world,data->origin_camera_matrix,&position);
 		AiM4VectorByMatrixMult(&normalO_world,data->origin_camera_matrix,&normal);
 		return true;
@@ -235,9 +255,9 @@ inline float remapRegion(float v, float lo, float hi)
 
 node_initialize
 {
-
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->kdata = new kettle_bakeData[2];
+	data->bakerOrigin = NULL;
+	data->bakerTarget = NULL;
 
 	// Get all nodes
 	std::string camNodeName(AiNodeGetName(node));
@@ -254,39 +274,59 @@ node_initialize
 	
 	if(origin_polymesh_node == NULL)
 	{
-		AiMsgError("The origin polymesh was not found! : %s", AiNodeGetStr(node, "origin_polymesh"));
+		AiMsgError("[Obq_KettleUVStereoLens] The origin polymesh was not found! : \"%s\"", AiNodeGetStr(node, "origin_polymesh"));
+		AiFree(data);
+		return;
 	}
 	else if(data->origin_camera_node == NULL)
 	{
-		AiMsgError("The origin camera was not found! : %s ",AiNodeGetStr(node, "origin_camera"));
+		AiMsgError("[Obq_KettleUVStereoLens] The origin camera was not found! :\"%s\"",AiNodeGetStr(node, "origin_camera"));
+		AiFree(data);
+		return;
 	}
 	else if(data->viewMode < BAKE && target_polymesh_node == NULL)
 	{
-		AiMsgError("The target polymesh was not found! : %s ",AiNodeGetStr(node, "target_polymesh"));
+		AiMsgError("[Obq_KettleUVStereoLens] The target polymesh was not found! :\"%s\"",AiNodeGetStr(node, "target_polymesh"));
+		AiFree(data);
+		return;
 	}
 	else if(data->viewMode < BAKE && data->target_camera_node == NULL)
 	{
-		AiMsgError("The target camera was not found! : %s ",AiNodeGetStr(node, "target_camera"));
+		AiMsgError("[Obq_KettleUVStereoLens] The target camera was not found! : \"%s\"",AiNodeGetStr(node, "target_camera"));
+		AiFree(data);
+		return;
 	}
 	else
 	{
 
-		try
-		{
-			data->kdata[0].baker = new CKettleBaker(origin_polymesh_node, node, AiNodeGetStr(node,"uv_set_origin"));
+			data->bakerOrigin = new CKettleBaker(origin_polymesh_node, node, AiNodeGetStr(node,"uv_set_origin"));
+			if(data->bakerOrigin->isGood())
+			{
+				if(data->viewMode < BAKE)
+				{
+					data->bakerTarget = new CKettleBaker(target_polymesh_node, node, AiNodeGetStr(node,"uv_set_target"));
+					if(data->bakerTarget->isGood()!=1)
+					{
+						delete data->bakerTarget;
+						delete data->bakerOrigin;
+						data->bakerOrigin = NULL;
+						data->bakerTarget = NULL;
+						AiFree(data);
+						AiMsgError("[Obq_KettleUVStereoLens] There was an problem while creating the target data.");
+						return;
+					}
+				}
+			}
+			else
+			{
+				delete data->bakerOrigin;
+				data->bakerOrigin = NULL;
+				AiFree(data);
+				AiMsgError("[Obq_KettleUVStereoLens] There was an problem while creating the origin data.");
+				return;
+			}
+	
 
-			if(data->viewMode < BAKE)
-				data->kdata[1].baker = new CKettleBaker(target_polymesh_node, node, AiNodeGetStr(node,"uv_set_target"));
-		}
-		catch(std::exception ex)
-		{
-			delete data->kdata[0].baker;
-			delete data->kdata[1].baker;
-			data->kdata[0].baker = 0;
-			data->kdata[1].baker = 0;
-			AiMsgError("[KettleBaker] Exception caught at Node Initialize %s", ex.what());
-		}
-	}
 	// Get all matrix, if we restrain the cameras together (ie, they are the same, no need to get the array)
 	AtMatrix camera_matrix;
 
@@ -340,7 +380,7 @@ node_initialize
 
 	data->stereoType = AiNodeGetInt(node,"stereo_type");
 	data->zeroParallaxMode = AiNodeGetInt(node,"zero_parallax_mode");
-	//if(data->stereoType >= CONVERGED)
+	//if(data->stereoType >= CONVERGED)	// keep it for dof even if parallel
 	data->zeroParallaxDistance = AiNodeGetFlt(node,"zero_parallax_distance");
 
 	data->use_render_region = AiNodeGetBool(node,"use_render_region");
@@ -357,34 +397,60 @@ node_initialize
 
 	data->crop_to_region = AiNodeGetBool(node,"crop_to_region");
 
+	// DOF
+	data->useDof = AiNodeGetBool(node,"use_dof");
+	data->apertureSize = AiNodeGetFlt(node,"aperture_size_");
+	if(data->useDof)
+	{
+		// DOF related values
+		
+		data->apertureAspectRatio = AiNodeGetFlt(node,"aperture_aspect_ratio_");
+		data->usePolygonalAperture = AiNodeGetBool(node,"use_polygonal_aperture");
+		data->apertureBlades = AiNodeGetInt(node,"aperture_blades_");
+		data->apertureBladeCurvature = AiNodeGetFlt(node,"aperture_blade_curvature_");
+		data->apertureRotation = AiNodeGetFlt(node,"aperture_rotation_");
+		data->bokehInvert = AiNodeGetBool(node,"bokeh_invert");
+		data->bokehBias = AiNodeGetFlt(node,"bokeh_bias");
+		data->bokehGain = 1.0f-AiNodeGetFlt(node,"bokeh_gain");
+
+		if(data->apertureAspectRatio<=0.0f)
+			data->apertureAspectRatio = 0.001f;
+	}
+
 	AiCameraInitialize(node, data);
+	}
 }
 
 node_update
 {
 	AiCameraUpdate(node, false);
-
 }
 
 node_finish
 {
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
-	delete[] data->kdata;
-	AiFree(data);
+	if(data != NULL)
+	{
+		if(data->bakerOrigin != NULL)
+			delete data->bakerOrigin;
+		if(data->bakerTarget != NULL)
+			delete data->bakerTarget;
+		AiFree(data);
+	}
 	AiCameraDestroy(node);
 }
 
 camera_create_ray 
 {
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
-	//AiMsgInfo("Relative Time = %f",input->relative_time);
+	
 	output->dDdx = AI_V3_ZERO;
 	output->dDdy = AI_V3_ZERO;
 	output->dOdx = AI_V3_ZERO;
 	output->dOdy = AI_V3_ZERO;
 	output->weight = 0.0f;
 	
-	if(data->kdata[0].baker == 0 ||  (data->kdata[1].baker == 0 && data->viewMode < BAKE))
+	if(data->bakerOrigin == NULL ||  (data->bakerTarget == NULL && data->viewMode < BAKE))
 		return;
 
 	// calculate the uv
@@ -504,6 +570,37 @@ camera_create_ray
 		// calculate position world
 		float separationSign = (isRight?-1.0f:1.0f);
 		AtVector posO_world_Blue = posO_world + separationSign*leftVn*data->interaxialSeparation/2.0f;
+		AtVector posO_world_Blue_nodof = posO_world_Blue;
+
+		if(data->useDof && data->apertureSize >0.0f)
+		{
+			float lensU;
+			float lensV;
+			ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
+			lensU*=data->apertureSize;
+			lensV*=data->apertureSize*data->apertureAspectRatio;
+			posO_world_Blue+=lensU*leftVn;
+			posO_world_Blue+=lensV*upVn;
+		}
+
+		// calculate direction
+		AtVector dir_world_Blue;
+
+		if(data->stereoType == CONVERGED)
+		{
+
+			if( data->zeroParallaxMode == USETARGET)
+			{
+				dir_world_Blue = posT_world - posO_world_Blue;
+			}
+			else
+				dir_world_Blue = (posO_world + data->zeroParallaxDistance*AiV3Normalize(posT_world - posO_world)) - posO_world_Blue;
+		}
+		else
+		{
+			//dir_world_Blue = dirN_world;
+			AiV3Normalize(dir_world_Blue,(posO_world_Blue_nodof + data->zeroParallaxDistance*AiV3Normalize(posT_world - posO_world)) - posO_world_Blue);
+		}
 
 		// pose in camera
 		//-- motion --
@@ -513,22 +610,6 @@ camera_create_ray
 		//-- motion --
 
 		AiM4PointByMatrixMult(&output->origin,/*data->*/ibaking_camera_matrix,&posO_world_Blue);
-		
-
-		// calculate direction
-		AtVector dir_world_Blue;
-
-		if(data->stereoType == CONVERGED)
-		{
-			if( data->zeroParallaxMode == USETARGET)
-				dir_world_Blue = posT_world - posO_world_Blue;
-			else
-				dir_world_Blue = (posO_world + data->zeroParallaxDistance*AiV3Normalize(posT_world - posO_world)) - posO_world_Blue;
-		}
-		else
-		{
-			dir_world_Blue = dirN_world;
-		}
 
 		AtVector dir_cam;
 		AiM4VectorByMatrixMult(&dir_cam,/*data->*/ibaking_camera_matrix,&dir_world_Blue);
@@ -554,7 +635,54 @@ camera_create_ray
 		}
 		else // NORMAL
 		{
-			dirN_world = AiV3Normalize(normO_world);
+			if(data->useDof && data->apertureSize >0.0f)
+			{
+				// calculate epsilon left 3d space U vector
+				AtPoint2 screen_uv_El;
+
+				if(data->use_render_region && data->crop_to_region)
+				{ 
+					screen_uv_El.x = wrapAround(remapRegion((sx + 1.0f) * 0.5f,data->regionU0,data->regionU1) + leftSign*data->interaxialEpsilon);
+					screen_uv_El.y = wrapAround(remapRegion((sy + 1.0f) * 0.5f,data->regionV0,data->regionV1));
+				}
+				else
+				{ 
+					screen_uv_El.x = wrapAround((sx + 1.0f) * 0.5f + leftSign*data->interaxialEpsilon);
+					screen_uv_El.y = wrapAround((sy + 1.0f) * 0.5f);
+				}
+				AtPoint posO_world_El;
+				AtVector norm0_world_El;
+				if(!findOriginWorld(screen_uv_El, data, posO_world_El, norm0_world_El, input->relative_time))
+					return;
+
+				AtVector center2ElDirN_world = AiV3Normalize(posO_world_El-posO_world);
+
+				// calculate upV
+				AtVector upV, upVn;
+				AiV3Cross (upV, dirN_world, center2ElDirN_world);
+				AiV3Normalize(upVn,upV);
+
+				// calculate Left vector
+				AtVector leftV, leftVn;
+				AiV3Cross (leftV, upVn, dirN_world);
+				AiV3Normalize(leftVn,leftV);
+
+				AtVector posO_world_nodof = posO_world;
+
+				float lensU;
+				float lensV;
+				ConcentricSampleDisk(input->lensx, input->lensy, data->apertureBlades, data->apertureBladeCurvature, data->apertureRotation,&lensU, &lensV, data->bokehInvert, data->bokehBias, data->bokehGain);
+				lensU*=data->apertureSize;
+				lensV*=data->apertureSize*data->apertureAspectRatio;
+				posO_world+=lensU*leftVn;
+				posO_world+=lensV*upVn;
+
+				AiV3Normalize(dirN_world,(posO_world_nodof + data->zeroParallaxDistance*AiV3Normalize(normO_world)) - posO_world);
+			}
+			else
+			{
+				dirN_world = AiV3Normalize(normO_world);
+			}
 		}
 
 		// pose in camera

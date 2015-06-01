@@ -291,6 +291,83 @@ PropertySet "Obq_KettleUVStereoLens"
 		Texturable = Off;
 		Animatable = Off;
 	}
+	Parameter "use_dof" input
+	{
+		GUID = "{C7CB8D34-1898-4F8D-8BAB-EE43F4DF4F6F}";
+		Type = boolean;
+		Texturable = Off;
+		Value = off;
+	}
+	Parameter "aperture_size_" input
+	{
+		GUID = "{4BE50BD5-10E1-413A-B93E-6765D0DA5CC8}";
+		Type = scalar;
+		Value = 0.1;
+		Texturable = Off;
+		Value Minimum = 0;
+	}
+	Parameter "aperture_aspect_ratio_" input
+	{
+		GUID = "{C251BB87-8D08-4DC1-8DEB-7FCCA4D639B6}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 1.0;
+		Value Minimum = 0.0001;
+	}
+	Parameter "use_polygonal_aperture" input
+	{
+		GUID = "{E1755BD9-3EB1-444D-9BDB-2AA221E91C1A}";
+		Type = boolean;
+		Texturable = Off;
+		Value = On;
+	}
+	Parameter "aperture_blades_" input
+	{
+		GUID = "{4DC35FC3-7F0A-4103-8006-AB4256E2C978}";
+		Type = integer;
+		Value = 5;
+		Texturable = Off;
+		Value Minimum = 3;
+	}
+	Parameter "aperture_blade_curvature_" input
+	{
+		GUID = "{FC701996-BA08-4DED-B5E6-AE0974389702}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "aperture_rotation_" input
+	{
+		GUID = "{F4BC80D4-D7E7-4CDF-B8DA-A8181FA071CF}";
+		Type = scalar;
+		Texturable = Off;
+		Value = 0.0;
+	}
+	Parameter "bokeh_invert" input
+	{
+		GUID = "{9F761C72-EED1-4D3E-923A-4307ADE3A0A9}";
+		Type = boolean;
+		Value = false;
+		Texturable = Off;
+	}
+	Parameter "bokeh_bias" input
+	{
+		GUID = "{8B7FC285-EFC4-4923-93DA-14DF4630BA97}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
+	Parameter "bokeh_gain" input
+	{
+		GUID = "{0346C72B-615A-429C-8747-333A544FE912}";
+		Type = scalar;
+		Value = 0.5;
+		Texturable = Off;
+		Value Minimum = 0.0;
+		Value Maximum = 1.0;
+	}
 }
 
 MetaShader "Obq_KettleUVStereoLens_params_meta"
@@ -403,7 +480,7 @@ Defaults
 	}
 	zero_parallax_distance
 	{
-		Name = "Zero Parallax Distance";
+		Name = "Zero Parallax Distance\nFocus Distance";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 0.0 to 200.0;
 	}
@@ -499,6 +576,61 @@ Defaults
 		{
 			"" = "DefaultUV"
 		}
+	}
+	use_dof
+	{
+		Name = "Enable";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	aperture_size_
+	{
+		Name = "Size";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 1.0;
+	}
+	aperture_aspect_ratio_
+	{
+		Name = "Aspect Ratio";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	use_polygonal_aperture
+	{
+		Name = "Polygonal Aperture";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	aperture_blades_
+	{
+		Name = "Blades";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 3 to 20;
+	}
+	aperture_blade_curvature_
+	{
+		Name = "Blade Curvature";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = -5.0 to 1.0;
+	}
+	aperture_rotation_
+	{
+		Name = "Rotation";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0 to 50.0;
+	}
+	bokeh_invert
+	{
+		Name = "Invert";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokeh_bias
+	{
+		Name = "Bias";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	bokeh_gain
+	{
+		Name = "Gain";
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 	}
 }
 
@@ -605,6 +737,7 @@ Layout "Default"
 			interaxial_epsilon;
 		}
 	}
+
 	Tab "Debug"
 	{
 		Group "Cameras"
@@ -615,6 +748,37 @@ Layout "Default"
 		Group "Overscan"
 		{
 			total_overscan_pixels;
+		}
+	}
+	Tab "Depth of Field"
+	{
+		Group "Depth of Field"
+		{
+			use_dof;
+			Group "Aperture"
+			{
+				aperture_size_;
+				aperture_aspect_ratio_;
+				use_polygonal_aperture;
+				aperture_blades_;
+				aperture_blade_curvature_;
+				aperture_rotation_;
+				Group "Bokeh Quality"
+				{
+					bokeh_invert;
+					bokeh_bias;
+					bokeh_gain;
+					Group "Presets"
+					{
+						Row
+						{
+							Button btnBokehPoor, aligncenter = "Poor";
+							Button btnBokehNeutral, aligncenter = "Neutral";
+							Button btnBokehGood, aligncenter = "Good";
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -629,6 +793,55 @@ Logic
 {
 from win32com.client import constants as c
 import math
+
+
+def btnBokehPoor_OnClicked():
+	PPG.bokeh_invert.Value = False
+	PPG.bokeh_bias.Value = 0.7
+	PPG.bokeh_gain.Value = 0.2
+
+	
+def btnBokehNeutral_OnClicked():
+	PPG.bokeh_invert.Value = False
+	PPG.bokeh_bias.Value = 0.5
+	PPG.bokeh_gain.Value = 0.5
+
+
+def btnBokehGood_OnClicked():
+	PPG.bokeh_invert.Value = True
+	PPG.bokeh_bias.Value = 0.33
+	PPG.bokeh_gain.Value = 0.685
+
+
+def use_polygonal_aperture_OnChanged():
+	use_dof_OnChanged()
+
+def use_dof_OnChanged():
+	if PPG.use_dof.Value and PPG.view_mode.Value != 5:
+		PPG.aperture_size_.ReadOnly = False
+		PPG.aperture_aspect_ratio_.ReadOnly = False
+		PPG.use_polygonal_aperture.ReadOnly = False
+		PPG.bokeh_invert.ReadOnly = False
+		PPG.bokeh_bias.ReadOnly = False
+		PPG.bokeh_gain.ReadOnly = False
+		if PPG.use_polygonal_aperture.Value:
+			PPG.aperture_blades_.ReadOnly = False
+			PPG.aperture_blade_curvature_.ReadOnly = False
+			PPG.aperture_rotation_.ReadOnly = False
+		else:
+			PPG.aperture_blades_.ReadOnly = True
+			PPG.aperture_blade_curvature_.ReadOnly = True
+			PPG.aperture_rotation_.ReadOnly = True
+	else:
+		PPG.aperture_size_.ReadOnly = True
+		PPG.aperture_aspect_ratio_.ReadOnly = True
+		PPG.use_polygonal_aperture.ReadOnly = True
+		PPG.aperture_blades_.ReadOnly = True
+		PPG.aperture_blade_curvature_.ReadOnly = True
+		PPG.aperture_rotation_.ReadOnly = True
+		PPG.bokeh_invert.ReadOnly = True
+		PPG.bokeh_bias.ReadOnly = True
+		PPG.bokeh_gain.ReadOnly = True
 
 
 def updateUVSetOrigin():
@@ -755,12 +968,15 @@ def view_mode_OnChanged():
 		PPG.nuke_crop_info.Show(True)
 	else:
 		PPG.nuke_crop_info.Show(False)
-		
 	checkPolymeshes()
+	if PPG.view_mode.Value == 5:
+		PPG.use_dof.ReadOnly = True
+	else:
+		PPG.use_dof.ReadOnly = False
+	use_dof_OnChanged()
 	PPG.Refresh()
 
 def stereo_type_OnChanged():
-	
 	if PPG.stereo_type.Value == 1 :
 		PPG.zero_parallax_mode.ReadOnly = False
 		if PPG.zero_parallax_mode.Value == 1:
@@ -769,7 +985,7 @@ def stereo_type_OnChanged():
 			PPG.zero_parallax_distance.ReadOnly = True
 	else:
 		PPG.zero_parallax_mode.ReadOnly = True
-		PPG.zero_parallax_distance.ReadOnly = True
+		PPG.zero_parallax_distance.ReadOnly = False # use as focus distance
 	PPG.Refresh()
 
 def zero_parallax_mode_OnChanged():
@@ -836,9 +1052,9 @@ def checkPolymeshes():
 					PPG.polymeshes_status.Value = "!! Target polymesh is not constraining target camera !!"
 					
 			if originOK:
-				updateUVSetOrigin()
+				#updateUVSetOrigin()
 				if targetOK:
-					updateUVSetTarget()
+					#updateUVSetTarget()#updateUVSetOrigin()
 					PPG.polymeshes_status.Value = "!! Both meshes are valid !!"
 				elif not checkTarget:
 					PPG.polymeshes_status.Value = "!! Origin mesh is valid !!"
@@ -913,6 +1129,12 @@ def pickPolymeshes_OnClicked():
 				break
 
 	checkPolymeshes()
+	# fill uv list
+	if PPG.polymeshes_status.Value == "!! Both meshes are valid !!":
+		updateUVSetTarget()
+		updateUVSetOrigin()
+	elif PPG.polymeshes_status.Value == "!! Origin mesh is valid !!":
+		updateUVSetOrigin()
 	PPG.Refresh()
 
 

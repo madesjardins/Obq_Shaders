@@ -1146,6 +1146,13 @@ shader_evaluate
 				AiAOVSetRGBA (sg, data->ambient_fb_str, ambient_sum_color);
 			}
 		}
+		else if(sg->Rt & AI_RAY_CAMERA && AiAOVEnabled(data->ambient_fb_str, AI_TYPE_RGBA))
+		{
+			AtRGBA solidBlack = AI_RGBA_BLACK;
+			solidBlack.a = 1.0f;
+
+			AiAOVSetRGBA (sg, data->ambient_fb_str, solidBlack);
+		}
 
 		if(do_diffuse)
 		{	
@@ -1191,6 +1198,17 @@ shader_evaluate
 					diffuse_sum_color.a = 1.0f;
 				AiAOVSetRGBA (sg, data->diffuse_fb_str, diffuse_sum_color);
 			}
+		}
+		else if(sg->Rt & AI_RAY_CAMERA && AiAOVEnabled(data->diffuse_fb_str, AI_TYPE_RGBA))
+		{
+			AtRGBA solidBlack = AI_RGBA_BLACK;
+			
+			if(!data->putAlphaInFb)
+				solidBlack.a = 1.0f;
+			else
+				solidBlack.a = 0.0f;
+
+			AiAOVSetRGBA (sg, data->diffuse_fb_str, solidBlack);
 		}
 
 		if(do_highlight) 
@@ -1239,6 +1257,17 @@ shader_evaluate
 					highlight_sum_color.a = 1.0f;
 				AiAOVSetRGBA (sg, data->highlight_fb_str, highlight_sum_color);
 			}
+		}
+		else if(sg->Rt & AI_RAY_CAMERA && AiAOVEnabled(data->highlight_fb_str, AI_TYPE_RGBA))
+		{
+			AtRGBA solidBlack = AI_RGBA_BLACK;
+			
+			if(!data->putAlphaInFb)
+				solidBlack.a = 1.0f;
+			else
+				solidBlack.a = 0.0f;
+
+			AiAOVSetRGBA (sg, data->highlight_fb_str, solidBlack);
 		}
 
 		if(do_rimlight)
@@ -1314,6 +1343,17 @@ shader_evaluate
 					rimlight_sum_color.a = 1.0f;
 				AiAOVSetRGBA (sg, data->rimlight_fb_str, rimlight_sum_color);
 			}
+		}
+		else if(sg->Rt & AI_RAY_CAMERA && AiAOVEnabled(data->rimlight_fb_str, AI_TYPE_RGBA))
+		{
+			AtRGBA solidBlack = AI_RGBA_BLACK;
+			
+			if(!data->putAlphaInFb)
+				solidBlack.a = 1.0f;
+			else
+				solidBlack.a = 0.0f;
+
+			AiAOVSetRGBA (sg, data->rimlight_fb_str, solidBlack);
 		}
 
 		if(sg->Rt & AI_RAY_CAMERA && AiAOVEnabled(data->contour_fb_str, AI_TYPE_RGBA))

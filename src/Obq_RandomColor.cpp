@@ -40,8 +40,6 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRandomColorMethods);
 //
 enum ObqRandomColorParams {p_randMax, p_seed, p_color01, p_color02, p_color03, p_color04, p_color05, p_color06, p_color07, p_color08, p_color09, p_color10, p_color11, p_color12, p_color13, p_color14, p_color15, p_color16, p_stripModelName, p_stripFrameNumber, p_stripInstanceFrameNumber, p_stripInstanceID,p_stripInstanceShape, p_XtoA};
 
-enum ObqRandomXtoA {SITOA, MTOA, HTOA};
-
 typedef struct 
 {
 	const char* XtoA_name;

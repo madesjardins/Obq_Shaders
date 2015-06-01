@@ -19,8 +19,11 @@
 
 #include "Grid2DAS.h"
 
-CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspace)
+CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspace):
+	pAS(NULL),init(false)
 {
+	pAS = NULL;
+	init = false;
 	if(AiNodeIs(node, "polymesh"))
 	{
 		std::vector<AtUInt32> nsides;
@@ -46,13 +49,25 @@ CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspac
 		bool useDefaultUV = (std::strcmp(uvspace, "DefaultUV") == 0);
 
 		const char* uvspace_list = (useDefaultUV? "uvlist" : uvspace); // multi-uv support
-		AiMsgInfo("[Obq_KettleUVStereoLens] <%s> is using uv = %s",AiNodeGetName(node), uvspace_list);
 
 		AtArray* uvlist = AiNodeGetArray(node, uvspace_list);
 		if(uvlist)
-			readArnoldArray(mUVList, uvlist);
+		{
+			init = readArnoldArray(mUVList, uvlist);
+			if(!init)
+			{
+				AiMsgWarning("[Obq_KettleUVStereoLens] Node \"%s\" has problem reading UVs \"%s\"!",AiNodeGetName(node), uvspace_list);
+				return;
+			}
+			//throw(std::runtime_error("No UV is available!"));
+		}
 		else
-			throw(std::runtime_error("No UV is available!"));
+		{
+			//throw(std::runtime_error("No UV is available!"));
+			init = false;
+			AiMsgWarning("[Obq_KettleUVStereoLens] Node \"%s\" does not have UVs!",AiNodeGetName(node));
+			return;
+		}
 
 		// Doing the triangulation		
 
@@ -64,10 +79,14 @@ CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspac
 
 		char uvspace_idxs[256]; // multi-uv support
 		std::sprintf(uvspace_idxs,"%sidxs",(useDefaultUV?"uv":uvspace));
-		AiMsgInfo("[Obq_KettleUVStereoLens] <%s> is using uvidxs = %s",AiNodeGetName(node), uvspace_idxs);
 
 		std::vector<AtUInt32> uvidxs;
-		readArnoldArray(uvidxs, AiNodeGetArray(node, uvspace_idxs));
+		init = readArnoldArray(uvidxs, AiNodeGetArray(node, uvspace_idxs));
+		if(!init)
+		{
+			AiMsgWarning("[Obq_KettleUVStereoLens] Node \"%s\" does not have proper uvidxs \"%s\"!",AiNodeGetName(node), uvspace_idxs);
+			return;
+		}
 
 		AtUInt32 last_id = 0;
 		// count the exact count, so no constant vector reallocation, 
@@ -144,15 +163,22 @@ CKettleBaker::CKettleBaker(AtNode* node, AtNode* camera_node, const char* uvspac
 		//AtMatrix cmat;
 		//AiArrayGetMtx(cmarr, 0, cmat);
 		//AiM4Invert(cmat, mCMat);
-
         pAS = new CGrid2DAS(this, AiNodeGetInt(camera_node, "grid_size"));// Old : AiNodeGetInt(node, "grid_size"))
 	}
 	else
-		throw(std::runtime_error("Object is not a polymesh"));
+	{
+		AiMsgWarning("[Obq_KettleUVStereoLens] \"%s\" is not a polymesh.", AiNodeGetName(node));
+		return;
+	}
+		//throw(std::runtime_error("Object is not a polymesh"));
+		init = true;
 }
 
 CKettleBaker::~CKettleBaker()
 {
+	if(pAS != NULL)
+		delete pAS;
+	pAS = NULL;
 }
 
 inline bool findBarycentric(const AtPoint2& P, const AtPoint2& A, const AtPoint2& B, const AtPoint2& C, AtPoint2& bary)

@@ -56,16 +56,27 @@ node_initialize
 	AiMsgInfo("#### Node Info <Node Initialize> [%s]",AiNodeGetName(node));
 	AtNode* nodeToQuery;
 	int mode = AiNodeGetInt(node,"mode");
+	
+	ObqPluginName plugin = findPluginName();
+
 	switch(mode)
 	{
 	case OTHERNODE:		
 		{
 			// TODO :: check if MtoA, SItoA, HtoA, C4DtoA...
-			std::string nodeName(AiNodeGetName(AiUniverseGetCamera()));
-			std::size_t sitoaIndex = nodeName.rfind(".SItoA.");
-			std::string lastPartName(nodeName.substr(sitoaIndex));
-			AiMsgInfo("#### Node Info <Querying: %s>",std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
-			nodeToQuery = AiNodeLookUpByName(std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
+			if(plugin == SITOA)
+			{
+				std::string nodeName(AiNodeGetName(AiUniverseGetCamera()));
+				std::size_t sitoaIndex = nodeName.rfind(".SItoA.");
+				std::string lastPartName(nodeName.substr(sitoaIndex));
+				AiMsgInfo("#### Node Info <Querying: %s>",std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
+				nodeToQuery = AiNodeLookUpByName(std::string(AiNodeGetStr(node, "node_name")).append(lastPartName).c_str());
+			}
+			else
+			{
+				nodeToQuery = AiNodeLookUpByName(AiNodeGetStr(node, "node_name"));
+				AiMsgInfo("#### Node Info <Querying: %s>",AiNodeGetStr(node, "node_name"));
+			}
 			break;
 		}
 	case UNIVERSE:

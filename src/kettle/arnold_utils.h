@@ -42,14 +42,20 @@ inline AtUInt32 readArnoldArrayElement<AtUInt32>(const AtArray* ain, const AtUIn
 }
 
 template <typename T>
-inline void readArnoldArray(std::vector<T>& vout, const AtArray* ain)
+inline bool readArnoldArray(std::vector<T>& vout, const AtArray* ain)
 {
 	if(ain->nelements != 0)
 	{
 		vout.resize(ain->nelements);
 		for(register AtUInt64 i = 0; i < ain->nelements; ++i)
 			vout[i] = readArnoldArrayElement<T>(ain, i);
+
 	}
 	else
-		AiMsgWarning("[readArnoldArray] Trying to read an empty vector!");
+	{
+		AiMsgWarning("[readArnoldArray] Trying to read an empty AtArray!");
+		return false;
+	}
+	
+	return true;
 }

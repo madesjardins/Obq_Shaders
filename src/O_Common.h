@@ -56,6 +56,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 // enum for file type
 //
 enum ObqFileType {TYPE_CSV, TYPE_TXT, TYPE_SPD, TYPE_BAD};
+enum ObqPluginName { SITOA, MTOA, HTOA, C4DTOA };
 
 static const int c_ObqHemisphereThetaRes = 32;
 static const float c_ObqHemisphereThetaResM1f = c_ObqHemisphereThetaRes-1.0f;
@@ -970,6 +971,31 @@ inline void split(const  std::string& s, char c, std::vector<std::string>& v) {
       if (j == std::string::npos)
          v.push_back(s.substr(i, s.length( )));
    }
+}
+
+
+// Find what plugin is used SItoA, MtoA, HtoA, etc.
+inline ObqPluginName findPluginName()
+{
+	ObqPluginName plugin = SITOA;
+	AtMetaDataIterator *ppiter = AiNodeEntryGetMetaDataIterator(AiNodeGetNodeEntry(AiUniverseGetOptions()));
+	while (!AiMetaDataIteratorFinished(ppiter))
+	{
+		const AtMetaDataEntry *ppentry = AiMetaDataIteratorGetNext(ppiter);
+		if(std::string(ppentry->name).find("maya.id") != std::string::npos)
+		{
+			plugin=MTOA;
+			break;
+		}
+	}
+	AiMetaDataIteratorDestroy(ppiter);
+
+	if(plugin == SITOA)
+		AiMsgInfo("[Obq_NodeInfo] SItoA naming rules.");
+	else if(plugin == MTOA)
+		AiMsgInfo("[Obq_NodeInfo] MtoA naming rules.");
+
+	return plugin;
 }
 
 

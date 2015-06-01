@@ -1,5 +1,5 @@
-﻿Build started 27/05/2015 2:56:29 PM.
-     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
+﻿Build started 31/05/2015 11:23:38 PM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v305\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -122,16 +122,16 @@
             Creating library ..\..\bin\v305\Obq_Shaders__Core__v305.lib and object ..\..\bin\v305\Obq_Shaders__Core__v305.exp
          Generating code
          Finished generating code
-         Obq_Shaders__Core.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\..\..\bin\v305\Obq_Shaders__Core__v305.dll
+         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\..\..\bin\v305\Obq_Shaders__Core__v305.dll
        Manifest:
          C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v305\Obq_Shaders__Core__v305.dll;#2" /manifest x64\Release_v305\Obq_Shaders__Core__v305.dll.intermediate.manifest
        PostBuildEvent:
          del /F /Q x64\Release_v305\*.* ..\..\bin\v305\*.lib ..\..\bin\v305\*.exp
          :VCEnd
-         F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\x64\Release_v305\Obq_Shaders__Core.log
+         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\x64\Release_v305\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:28.71
+Time Elapsed 00:00:23.99

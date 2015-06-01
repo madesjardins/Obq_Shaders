@@ -102,23 +102,12 @@ node_initialize
 	data->focusDistance = 100.0f;
 	data->focusPlaneIsPlane = true;
 
-	// Set data
-	AiCameraInitialize(node, data);
-}
-
-node_update
-{
-	AiCameraUpdate(node, false);
-
-	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
-
 	// Update shaderData variables
 	AtNode* options = AiUniverseGetOptions();
 	
 	// Overscan
 	float w = float(AiNodeGetInt(options,"xres"));
 	float h = float(AiNodeGetInt(options,"yres"));
-	
 	switch(params[p_viewMode].INT)
 	{
 	case STEREOLR:
@@ -142,39 +131,59 @@ node_update
 	data->pixelRatio = 1.0f/AiNodeGetFlt(options,"aspect_ratio");
 	data->aspect = data->width/(data->height/data->pixelRatio);
 
+	ObqPluginName plugin = findPluginName();
+
 	// Get all 3 cameras and all 3 matrices
 	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix;
 	data->centerCamera = node;
-	AiNodeGetMatrix(node,"matrix",centerCameraMatrix);
-	std::string camNodeName(AiNodeGetName(node));
-	std::size_t sitoaIndex = camNodeName.rfind(".SItoA.");
+	if(plugin == SITOA)
+	{
+		std::string camNodeName(AiNodeGetName(node));
+		std::size_t sitoaIndex = camNodeName.rfind(".SItoA.");
 
-	data->leftCamera = AiNodeLookUpByName((std::string(params[p_leftCamera].STR).append(camNodeName.substr(sitoaIndex)).c_str()));
-	AiNodeGetMatrix(data->leftCamera,"matrix",leftCameraMatrix);
+		data->leftCamera = AiNodeLookUpByName((std::string(params[p_leftCamera].STR).append(camNodeName.substr(sitoaIndex)).c_str()));
+		data->rightCamera = AiNodeLookUpByName((std::string(params[p_rightCamera].STR).append(camNodeName.substr(sitoaIndex)).c_str()));
+		
+	}
+	else
+	{
+		data->leftCamera = AiNodeLookUpByName(params[p_leftCamera].STR);
+		data->rightCamera = AiNodeLookUpByName(params[p_rightCamera].STR);
+	}
 
-	data->rightCamera = AiNodeLookUpByName((std::string(params[p_rightCamera].STR).append(camNodeName.substr(sitoaIndex)).c_str()));
-	AiNodeGetMatrix(data->rightCamera,"matrix",rightCameraMatrix);
-
+	
 	data->viewMode = params[p_viewMode].INT;
 
 	if(data->centerCamera==NULL)
 	{
 		AiMsgError("Error with center camera... this is not normal...");
+		AiFree(data);
+		return;
 	}
 	else if( data->leftCamera==NULL)
 	{
 		AiMsgError("Left camera doesn't exist. Don't forget the Model name if any. ex: Model.LeftCamera");
+		AiFree(data);
+		return;
 	}
 	else if( data->rightCamera==NULL)
 	{
 		AiMsgError("Right camera doesn't exist. Don't forget the Model name if any. ex: Model.RightCamera");
+		AiFree(data);
+		return;
 	}
 	else
 	{
 
+		AiNodeGetMatrix(node,"matrix",centerCameraMatrix);
+		AiNodeGetMatrix(data->leftCamera,"matrix",leftCameraMatrix);
+		AiNodeGetMatrix(data->rightCamera,"matrix",rightCameraMatrix);
+
+
 		// Field of view
 		float fov = AiArrayGetFlt(AiNodeGetArray(node, "fov"),0); // good default value from current camera but left or right should be 
 		AtArray* aFov = NULL;
+
 		aFov = AiNodeGetArray(data->leftCamera, "fov"); // Get horizontal angle fov from left camera
 		if(aFov !=NULL)
 		{
@@ -182,6 +191,7 @@ node_update
 		}
 		else
 		{
+
 			aFov = AiNodeGetArray(data->rightCamera, "fov"); // If left camera doesn't have one, get horizontal angle from right camera
 			if(aFov !=NULL)
 			{
@@ -190,8 +200,7 @@ node_update
 			else
 				fov = AiArrayGetFlt(AiNodeGetArray(node, "fov"),0); // If neither left nor right, get fov from this camera (always good)
 		}
-		
-		
+
 		data->tan_myFov = std::tan(float(fov * AI_DTOR / 2.0));
 		
 		// Rotation and Translation Matrix
@@ -264,12 +273,23 @@ node_update
 		AiMsgInfo("----------------------------------------------------");
 	}
 
+	// Set data
+	AiCameraInitialize(node, data);
+
+}
+
+node_update
+{
+	AiCameraUpdate(node, false);
+	/*ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);*/
+	
 }
 
 node_finish
 {
 	ShaderData *data = (ShaderData*)AiCameraGetLocalData(node);
-	AiFree(data);
+	if(data !=NULL)
+		AiFree(data);
 	AiCameraDestroy(node);
 }
 

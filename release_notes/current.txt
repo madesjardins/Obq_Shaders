@@ -1,15 +1,16 @@
 v210 - win - 	SITOA 2.10.0- Arnold 4.0.16.4 by Marc-Antoine Desjardins
-v303 - win - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
+v303 - win - 	SITOA 3.3.0 - Arnold 4.2.2.0  by Marc-Antoine Desjardins
 v304 - win - 	SITOA 3.4.0 - Arnold 4.2.3.1  by Marc-Antoine Desjardins
 v305 - win - 	SITOA 3.5.0 - Arnold 4.2.4.2  by Marc-Antoine Desjardins
 v306 - win - 	SITOA 3.6.0 - Arnold 4.2.6.2  by Marc-Antoine Desjardins
 
 FIXES:
 	+ Blended AOVs.
-	+ Obq_Atmosphere.
+	+ Obq_Atmosphere : not broken anymore.
+	+ Obq_Toon/ToonSimple : Write alpha in AOV even if scale*color == 0.
 
 ADDITIONS:
-	+ Maya UI templates updated by Andrew Hazelden.
+	+ Maya UI templates updated by Andrew Hazelden. More to come.
 	+ Obq_Simbiont : easy replace libs paths button on all instances of Obq_Simbionts.
 	
 CHANGES:
@@ -23,8 +24,9 @@ NEW SHADERS:
 REMOVED SHADERS:
 
 TODO :
-	+ Lens shaders for Maya.
+	+ TO FIX : Lens shaders and randomColor/ID for Maya.
 	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
+	+ Documentation for new nodes.
 	+ Code Cleanup and optimisation.
 	+ Obq_MeasuredMaterial : Importance sampling.
 	

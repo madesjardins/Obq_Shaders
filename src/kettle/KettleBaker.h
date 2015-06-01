@@ -37,7 +37,7 @@ public:
 	void boundingBox(const unsigned int& element, float bbox[4]) const;
 	bool intersect(const unsigned int& element, 
 		const AtVector2& pt, AtVector2& bary) const;
-
+	bool isGood(){return init;}
 	static void* operator new(size_t s)	{return AiMalloc(s);}
 	static void operator delete(void* p){AiFree(p);}
 
@@ -45,7 +45,7 @@ private:
 	struct STriangleIndex{ // struct for storing the data indices for a triangle
 		AtUInt32 x,y,z;
 	};
-
+	
 	// Vertex Position Data
 	std::vector<AtVector> mVList;
 	std::vector<STriangleIndex> mVIdxs;
@@ -66,4 +66,6 @@ private:
 	AtUInt32 mTriangleCount;
 
 	CGrid2DAS* pAS;
+
+	bool init;
 };

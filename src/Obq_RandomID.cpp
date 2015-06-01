@@ -40,8 +40,6 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRandomIDMethods);
 //
 enum ObqRandomIDParams {p_randMax, p_seed, p_stripModelName, p_stripFrameNumber, p_stripInstanceFrameNumber, p_stripInstanceID,p_stripInstanceShape, p_XtoA};
 
-enum ObqRandomXtoA {SITOA, MTOA, HTOA};
-
 typedef struct 
 {
 	const char* XtoA_name;
