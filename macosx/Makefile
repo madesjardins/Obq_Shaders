@@ -1,18 +1,18 @@
-EXT = so
+EXT = dylib
 OBQVERSION = v307
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
-GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.7.0-linux
+GLMPATH = /Users/madesjardins/Softwares/glm
+ARNOLD = /Users/madesjardins/Arnold/Arnold-4.2.7.0-darwin
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
-CPP = g++-4.1
+CPP = g++
 COMMONFLAGS = 
 OPTIMIZE = -O3 -Wall
 # create dependency files: -MMD 
 CPPFLAGS = -c -fmessage-length=0 -fPIC -MMD $(OPTIMIZE) $(COMMONFLAGS) $(INCLUDES)
-LINKFLAGS = -shared -Wl,--no-undefined
+LINKFLAGS = -dynamiclib -Wl
 LIBS = -lai
 LINKING = $(LINKINCLUDES) $(LIBS)
 
@@ -33,6 +33,9 @@ Grid2DAS.o:
 
 KettleBaker.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/kettle/KettleBaker.cpp
+
+O_ISBrdf.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/O_ISBrdf.cpp
 
 Obq_AngularCamera.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_AngularCamera.cpp
@@ -190,11 +193,8 @@ Obq_UVRemapLensDistortion.o:
 Obq_VolumeThickness.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_VolumeThickness.cpp
 
-O_ISBrdf.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/O_ISBrdf.cpp
-
 spectrum.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/pbrt/spectrum.cpp
 
-$(BINPATH)/$(TARGETNAME).$(EXT): Grid2DAS.o KettleBaker.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o O_ISBrdf.o spectrum.o
-	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Grid2DAS.o KettleBaker.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o O_ISBrdf.o spectrum.o $(LINKING)
+$(BINPATH)/$(TARGETNAME).$(EXT): Grid2DAS.o KettleBaker.o O_ISBrdf.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o spectrum.o
+	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Grid2DAS.o KettleBaker.o O_ISBrdf.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o spectrum.o $(LINKING)
