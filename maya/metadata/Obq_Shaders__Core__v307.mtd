@@ -1,0 +1,3437 @@
+# 2015-05-27 08.05 pm
+
+[node Obq_AngularCamera]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD40
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_AngularCamera"
+  
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_AngularCamera"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_AngularCamera.html"
+  houdini.order                 STRING "angle flip overRender exposure"
+  
+  [attr is_perspective]
+    default                     BOOL   True
+  [attr angle]
+    desc                        STRING "Angle"
+    houdini.label               STRING "Angle"
+    min                         FLOAT   0.0
+    softmax                     FLOAT   360.0
+    default                     FLOAT   360.0
+  [attr flip]
+    desc                        STRING "Flip"
+    houdini.label               STRING "Flip"
+    default                     BOOL    True
+  [attr overRender]
+    desc                        STRING "Over Render"
+    houdini.label               STRING "Over Render"
+    default                     BOOL    False
+  [attr exposure]
+    desc                        STRING "Exposure"
+    houdini.label               STRING "Exposure"
+    default                     FLOAT   0
+
+[node Obq_Atmosphere]
+  maya.name                     STRING "Obq_Atmosphere"
+  maya.id                       INT     0x0011CD41
+  #maya.classification         STRING "shader/volume/atmosphere"
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Atmosphere"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Atmosphere.html"
+  houdini.order                 STRING "colorKd use3dKd absorption use3dAbsorption asymmetry radiusFalloffMode falloffStart falloffExponent useBiasGainDot biasDot gainDot objectCenter stepSize stepJitter useMaximumRayLength maximumRayLength useBiasGain bias gain compensateForCloudOpacity divideColorByOpacity secondaryTypesToo"
+
+  [attr colorKd]
+    desc                        STRING "Diffuse Color"
+    houdini.label               STRING "Diffuse Color"
+    default                     RGB     0.25 1.75 5.0
+    maya.channelbox             BOOL    True
+  [attr use3dKd]
+    desc                        STRING "Enable 3D color texture"
+    houdini.label               STRING "Enable 3D color texture"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+  [attr absorption]
+    desc                        STRING "Absorption Coefficient"
+    houdini.label               STRING "Absorption Coefficient"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   5
+    default                     FLOAT   0.1
+    maya.channelbox             BOOL    True
+  [attr use3dAbsorption]
+    desc                        STRING "Enable 3D absorption function"
+    houdini.label               STRING "Enable 3D absorption function"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+  [attr asymmetry]
+    desc                        STRING "Asymmetry"
+    houdini.label               STRING "Asymmetry"
+    min                         FLOAT  -1
+    max                         FLOAT   1
+    default                     FLOAT  -0.5
+    maya.channelbox             BOOL    True
+  [attr stepSize]
+    desc                        STRING "Size"
+    houdini.label               STRING "Size"
+    min                         FLOAT   0.001
+    softmin                     FLOAT   0.001
+    softmax                     FLOAT   5
+    default                     FLOAT   0.1
+    maya.channelbox             BOOL    True
+  [attr stepJitter]
+    desc                        STRING "Jitter ratio"
+    houdini.label               STRING "Jitter ratio"
+    min                         FLOAT   0
+    max                         FLOAT   0.999
+    default                     FLOAT   1
+    maya.channelbox             BOOL    True
+  [attr useBiasGain]
+    desc                        STRING "Enable"
+    houdini.label               STRING "Enable"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+  [attr bias]
+    desc                        STRING "Bias"
+    houdini.label               STRING "Bias"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.5
+    maya.channelbox             BOOL    True
+  [attr gain]
+    desc                        STRING "Gain"
+    houdini.label               STRING "Gain"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.5
+    maya.channelbox             BOOL    True
+  [attr useBiasGainDot]
+    desc                        STRING "Enable"
+    houdini.label               STRING "Enable"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+  [attr biasDot]
+    desc                        STRING "Bias"
+    houdini.label               STRING "Bias"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.7
+    maya.channelbox             BOOL    True
+  [attr gainDot]
+    desc                        STRING "Gain"
+    houdini.label               STRING "Gain"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.9
+    maya.channelbox             BOOL    True
+  [attr radiusFalloffMode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    min                         FLOAT   0
+    max                         FLOAT   2
+    default                     FLOAT   0
+    maya.channelbox             BOOL    True
+  [attr falloffStart]
+    desc                        STRING "Start"
+    houdini.label               STRING "Start"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.95
+    maya.channelbox             BOOL    True
+  [attr falloffExponent]
+    desc                        STRING "Speed"
+    houdini.label               STRING "Speed"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   5
+    default                     FLOAT   5
+    maya.channelbox             BOOL    True
+  [attr objectCenter]
+    desc                        STRING "Object Center"
+    houdini.label               STRING "Object Center"
+    default                     VECTOR  0 0 0
+    maya.channelbox             BOOL    True
+  [attr compensateForCloudOpacity]
+    desc                        STRING "Compensate"
+    houdini.label               STRING "Compensate"
+    min                         INT     0
+    max                         INT     2
+    default                     INT     2
+    maya.channelbox             BOOL    True
+  [attr divideColorByOpacity]
+    desc                        STRING "Divide"
+    houdini.label               STRING "Divide"
+    min                         INT     0
+    max                         INT     2
+    default                     INT     1
+    maya.channelbox             BOOL    True
+  [attr useMaximumRayLength]
+    desc                        STRING "Enable maximum ray length"
+    houdini.label               STRING "Enable maximum ray length"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+  [attr maximumRayLength]
+    desc                        STRING "Maximum ray length"
+    houdini.label               STRING "Maximum ray length"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   100
+    default                     FLOAT   10
+    maya.channelbox             BOOL    True
+  [attr secondaryTypesToo]
+    desc                        STRING "Enable for reflection and refraction rays"
+    houdini.label               STRING "Enable for reflection and refraction rays"
+    default                     BOOL    False
+    maya.channelbox             BOOL    True
+    
+[node Obq_Bend4Stereo]
+  maya.name                     STRING "Obq_Bend4Stereo"
+  maya.id                       INT     0x0011CD42
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Bend4Stereo"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Bend4Stereo.html"
+
+  # [attr shaderIn]
+  # desc                        STRING "Shader In"
+  # houdini.label               STRING "Shader In"
+  # default                     RGB    1 1 1
+  [attr bendMode]
+    desc                        STRING "Bend Mode"
+    houdini.label               STRING "Bend Mode"
+    min                         INT     0
+    max                         INT     3
+    default                     INT     0
+  [attr leftCamera]
+    desc                        STRING "Left Camera"
+    houdini.label               STRING "Left Camera"
+    default                     STRING "stereoCameraLeft"
+  [attr centerCamera]
+    desc                        STRING "Center Camera"
+    houdini.label               STRING "Center Camera"
+    default                     STRING "StereoCamera"
+  [attr rightCamera]
+    desc                        STRING "Right Camera"
+    houdini.label               STRING "Right Camera"
+    default                     STRING "stereoCameraRight"
+
+[node Obq_ChangeRange]
+  maya.name                     STRING "Obq_ChangeRange"
+  maya.id                       INT     0x0011CD43
+  #maya.classification         STRING "shader/utility"
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_ChangeRange"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ChangeRange.html"
+  
+  [attr input]
+    desc                        STRING "Input"
+    houdini.label               STRING "Input"
+    softmin                     FLOAT   0
+    softmax                     FLOAT   1
+    default                     FLOAT   0.5
+  [attr oStart]
+    desc                        STRING "Old Range Start"
+    houdini.label               STRING "Old Range Start"
+    softmin                     FLOAT   0
+    softmax                     FLOAT   1
+    default                     FLOAT   0
+  [attr oEnd]
+    desc                        STRING "Old Range End"
+    houdini.label               STRING "Old Range End"
+    softmin                     FLOAT   0
+    softmax                     FLOAT   1
+    default                     FLOAT   1
+  [attr nStart]
+    desc                        STRING "New Range Start"
+    houdini.label               STRING "New Range Start"
+    softmin                     FLOAT   0
+    softmax                     FLOAT   1
+    default                     FLOAT   0.2
+  [attr nEnd]
+    desc                        STRING "New Range End"
+    houdini.label               STRING "New Range End"
+    softmin                     FLOAT   0
+    softmax                     FLOAT   1
+    default                     FLOAT   0.8
+  [attr clamp]
+    desc                        STRING "Clamp"
+    houdini.label               STRING "Clamp"
+    default                     BOOL    True
+  [attr bias]
+    desc                        STRING "Bias"
+    houdini.label               STRING "Bias"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0.5
+  [attr gain]
+    desc                        STRING "Gain"
+    houdini.label               STRING "Gain"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   1
+
+[node Obq_Environment]
+  maya.name                     STRING "Obq_Environment"
+  maya.id                       INT     0x0011CD44
+  maya.classification           STRING "shader/surface"
+  #maya.classification         STRING "texture/environment"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Environment"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Environment.html"
+
+  [attr tex]
+    desc                        STRING "Image"
+    houdini.label               STRING "Image"
+    default                     RGB     0 0 0
+  [attr considerAlpha]
+    desc                        STRING "Use Alpha"
+    houdini.label               STRING "Use Alpha"
+    default                     BOOL    False
+  [attr mapMode]
+    desc                        STRING "Mapping Mode"
+    houdini.label               STRING "Mapping Mode"
+    min                         INT     0
+    max                         INT     3
+    default                     INT     2
+  [attr sampleLevel]
+    desc                        STRING "Sample Level"
+    houdini.label               STRING "Sample Level"
+    min                         INT     1
+    softmin                     INT     1
+    softmax                     INT     10
+    default                     INT     1
+  [attr coneAngle]
+    desc                        STRING "Cone Angle"
+    houdini.label               STRING "Cone Angle"
+    min                         FLOAT   0
+    max                         FLOAT   180
+    default                     FLOAT   12
+  [attr cosLobeGloss]
+    desc                        STRING "Cos Lobe Gloss"
+    houdini.label               STRING "Cos Lobe Gloss"
+    min                         FLOAT   0
+    max                         FLOAT   1
+    default                     FLOAT   0
+  [attr useSampleCount]
+    desc                        STRING "Clamp Sample Count"
+    houdini.label               STRING "Clamp Sample Count"
+    default                     BOOL    False
+  [attr sampleCount]
+    desc                        STRING "Max Sample Count"
+    houdini.label               STRING "Max Sample Count"
+    min                         FLOAT   0
+    softmin                     INT     1
+    softmax                     INT     10
+    default                     FLOAT   10
+  [attr sampleCountMultiplier]
+    desc                        STRING "Max Sample Count Multiplier"
+    houdini.label               STRING "Max Sample Count Multiplier"
+    min                         FLOAT   0
+    softmin                     FLOAT   1
+    softmax                     FLOAT   256
+    default                     FLOAT   1
+  [attr onSurfaceMode]
+    desc                        STRING "Direction"
+    houdini.label               STRING "Direction"
+    default                     INT     0
+  [attr ior]
+    desc                        STRING "IOR"
+    houdini.label               STRING "IOR"
+    min                         FLOAT   0
+    softmin                     FLOAT   1
+    softmax                     FLOAT   5
+    default                     FLOAT   1
+  [attr customDirection]
+    desc                        STRING "Custom Direction"
+    houdini.label               STRING "Custom Direction"
+    softmin                     VECTOR -1 -1 -1
+    softmax                     VECTOR  1 1 1
+    default                     VECTOR  0 1 0
+  [attr intensityCam]
+    desc                        STRING "Camera"
+    houdini.label               STRING "Camera"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   2
+    default                     FLOAT   1
+  [attr intensityDifGI]
+    desc                        STRING "Diffuse GI"
+    houdini.label               STRING "Diffuse GI"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   2
+    default                     FLOAT   1
+  [attr intensityRfl]
+    desc                        STRING "Reflection"
+    houdini.label               STRING "Reflection"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   2
+    default                     FLOAT   1
+  [attr intensityGlossy]
+    desc                        STRING "Glossy"
+    houdini.label               STRING "Glossy"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   2
+    default                     FLOAT   1
+  [attr intensityRfr]
+    desc                        STRING "Refraction"
+    houdini.label               STRING "Refraction"
+    min                         FLOAT   0
+    softmin                     FLOAT   0
+    softmax                     FLOAT   2
+    default                     FLOAT   1
+  [attr globalRotation]
+    desc                        STRING "Use rotation at a global scope"
+    houdini.label               STRING "Use rotation at a global scope"
+    default                     BOOL    True
+  [attr rotation]
+    desc                        STRING "Rotation"
+    houdini.label               STRING "Rotation"
+    softmin                     VECTOR -180 -180 -180
+    softmax                     VECTOR  180 180 180
+    default                     VECTOR  0 0 0
+  [attr flipU]
+    desc                        STRING "Flip U"
+    houdini.label               STRING "Flip U"
+    default                     BOOL    False
+  [attr flipV]
+    desc                        STRING "Flip V"
+    houdini.label               STRING "Flip V"
+    default                     BOOL    False
+  [attr opaque]
+    desc                        STRING "Opaque background"
+    houdini.label               STRING "Opaque background"
+    default                     BOOL    True
+
+[node Obq_Etching]
+  maya.name                     STRING "Obq_Etching"
+  maya.id                       INT     0x0011CD45
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Etching"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html"
+
+  [attr shading_input]
+    desc                        STRING "Shading Input"
+    houdini.label               STRING "Shading Input"
+    default                     RGB     1 1 1 
+  [attr coordinates_input]
+    desc                        STRING "Coordinates Input"
+    houdini.label               STRING "Coordinates Input"
+    default                     VECTOR  0 0 0
+  [attr use_linear_signal]
+    desc                        STRING "Use Linear Signal"
+    houdini.label               STRING "Use Linear Signal"
+    default                     BOOL    False
+  [attr bright_color]
+    desc                        STRING "Bright Color"
+    houdini.label               STRING "Bright Color"
+    default                     RGB     1 1 1
+  [attr bright_point]
+    desc                        STRING "Bright Point"
+    houdini.label               STRING "Bright Point"
+    default                     FLOAT   1
+  [attr dark_color]
+    desc                        STRING "Dark Color"
+    houdini.label               STRING "Dark Color"
+    default                     RGB     0 0 0
+  [attr dark_point]
+    desc                        STRING "Dark Point"
+    houdini.label               STRING "Dark Point"
+    default                     INT     1
+  [attr frequency]
+    desc                        STRING "Frequency"
+    houdini.label               STRING "Frequency"
+    default                     FLOAT   50
+  [attr offset]
+    desc                        STRING "Offset"
+    houdini.label               STRING "Offset"
+    default                     FLOAT   0
+  [attr feather]
+    desc                        STRING "Feather"
+    houdini.label               STRING "Feather"
+    default                     FLOAT   0
+  [attr use_average_rgb]
+    desc                        STRING "Use Average Rgb"
+    houdini.label               STRING "Use Average Rgb"
+    default                     BOOL    False
+  [attr multiply_bright_color]
+    desc                        STRING "Multiply Bright Color"
+    houdini.label               STRING "Multiply Bright Color"
+    default                     BOOL    False
+  [attr multiply_dark_color]
+    desc                        STRING "Multiply Dark Color"
+    houdini.label               STRING "Multiply Dark Color"
+    default                     BOOL    False
+  [attr normalized_black_color]
+    desc                        STRING "Normalized Black Color"
+    houdini.label               STRING "Normalized Black Color"
+    default                     RGB     0 0 0
+  [attr mix]
+    desc                        STRING "Mix"
+    houdini.label               STRING "Mix"
+    default                     FLOAT   0
+  [attr enable_dots]
+    desc                        STRING "Enable Dots"
+    houdini.label               STRING "Enable Dots"
+    default                     BOOL    False
+  [attr bright_dots_start]
+    desc                        STRING "Bright Dots Start"
+    houdini.label               STRING "Bright Dots Start"
+    default                     FLOAT   0.9
+  [attr dark_dots_start]
+    desc                        STRING "Dark Dots Start"
+    houdini.label               STRING "Dark Dots Start"
+    default                     FLOAT   0.1
+  [attr progressive_dots]
+    desc                        STRING "Progressive Dots"
+    houdini.label               STRING "Progressive Dots"
+    default                     BOOL    False
+  [attr aov_matte]
+    desc                        STRING "AOV Matte"
+    houdini.label               STRING "AOV Matte"
+    default                     STRING "Obq_Etching_Matte"
+  [attr aov_input]
+    desc                        STRING "AOV Input"
+    houdini.label               STRING "AOV Input"
+    default                     STRING "Obq_Etching_Input"
+  [attr autoFiltering]
+    desc                        STRING "Auto Filtering"
+    houdini.label               STRING "Auto Filtering"
+    default                     BOOL    False
+  [attr autoFilteringBias]
+    desc                        STRING "auto Filtering Bias"
+    houdini.label               STRING "auto Filtering Bias"
+    default                     FLOAT   0.725
+  [attr autoFilteringGain]
+    desc                        STRING "auto Filtering Gain"
+    houdini.label               STRING "auto Filtering Gain"
+    default                     FLOAT   0.125
+  [attr autoFilteringStart]
+    desc                        STRING "Auto Filtering Start"
+    houdini.label               STRING "Auto Filtering Start"
+    default                     FLOAT   0.002
+  [attr autoFilteringEnd]
+    desc                        STRING "Auto Filtering End"
+    houdini.label               STRING "Auto Filtering End"
+    default                     FLOAT   0.02
+  [attr autoFilteringOut]
+    desc                        STRING "Auto Filtering Out"
+    houdini.label               STRING "Auto Filtering Out"
+    default                     BOOL    False
+  [attr autoFilteringU]
+    desc                        STRING "Auto Filtering U"
+    houdini.label               STRING "Auto Filtering U"
+    default                     BOOL    False
+  [attr autoFilteringMode]
+    desc                        STRING "Auto Filtering Mode"
+    houdini.label               STRING "Auto Filtering Mode"
+    default                     INT     0
+  [attr autoFilteringAutoRange]
+    desc                        STRING "Auto Filtering Auto Range"
+    houdini.label               STRING "Auto Filtering Auto Range"
+    default                     BOOL    True
+
+[node Obq_Fresnel]
+  maya.name                     STRING "Obq_Fresnel"
+  maya.id                       INT     0x0011CD46
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Fresnel"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
+  
+  [attr mode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    default                     INT     1
+    min                         INT     0
+    max                         INT     3
+  [attr iorFilename]
+    desc                        STRING "IOR Filename"
+    houdini.label               STRING "IOR Filename"
+    default                     STRING ""
+  [attr lambdaUnits]
+    desc                        STRING "Lambda Units"
+    houdini.label               STRING "Lambda Units"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     1
+  [attr iorRGB]
+    desc                        STRING "IOR RGB"
+    houdini.label               STRING "IOR RGB"
+    default                     RGB     0.143021 0.403715 1.582013
+  [attr kRGB]
+    desc                        STRING "K RGB"
+    houdini.label               STRING "K RGB"
+    default                     RGB     3.299717 2.510240 1.766837
+  [attr method]
+    desc                        STRING "Method"
+    houdini.label               STRING "Method"
+    default                     INT     1
+    max                         INT     2
+  [attr iorInRGB]
+    desc                        STRING "IOR In RGB"
+    houdini.label               STRING "IOR In RGB"
+    default                     RGB     1 1 1
+  [attr ratioFsFp]
+    desc                        STRING "Ratio FS FP"
+    houdini.label               STRING "Ratio FS FP"
+    default                     FLOAT   0.5
+    min                         FLOAT   0
+    max                         FLOAT   1.0
+  [attr transmittance]
+    desc                        STRING "Transmittance"
+    houdini.label               STRING "Transmittance"
+    default                     BOOL    False
+  [attr backfaceMode]
+    desc                        STRING "Backfacemode"
+    houdini.label               STRING "Backfacemode"
+    default                     INT     1
+    min                         INT     0
+    max                         INT     3
+  [attr useLUT]
+    desc                        STRING "Use LUT"
+    houdini.label               STRING "Use LUT"
+    default                     BOOL    True
+  [attr LUTSampleSize]
+    desc                        STRING "LUTSampleSize"
+    houdini.label               STRING "LUTSampleSize"
+    default                     FLOAT   0.5
+    min                         FLOAT   0.001
+    max                         FLOAT   90
+  [attr useFullSpectrum]
+    desc                        STRING "useFullSpectrum"
+    houdini.label               STRING "useFullSpectrum"
+    default                     BOOL    True
+  [attr degamma]
+    desc                        STRING "Degamma"
+    houdini.label               STRING "Degamma"
+    default                     BOOL    False
+  [attr outputGamma]
+    desc                        STRING "outputGamma"
+    houdini.label               STRING "outputGamma"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     1
+  [attr lambdasStr]
+    desc                        STRING "Lambdas Str"
+    houdini.label               STRING "Lambdas Str"
+    default                     STRING "364.699982 375.700012 387.5 400.0 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 652.599976 688.799988 729.300049 774.900024 826.600037"
+  [attr etasStr]
+    desc                        STRING "Etas Str"
+    houdini.label               STRING "Etas Str"
+    default                     STRING "1.716 1.696 1.674 1.658 1.636 1.616 1.562 1.426 1.242 0.916 0.608 0.402 0.306 0.166 0.16 0.164 0.174 0.188"
+  [attr ksStr]
+    desc                        STRING "Ks Str"
+    houdini.label               STRING "Ks Str"
+    default                     STRING " 1.862 1.906 1.936 1.956 1.958 1.94 1.904 1.846 1.796 1.84 2.12 2.54 2.88 3.15 3.8 4.35 4.86 5.39"
+  [attr inputType]
+    desc                        STRING "Input Type"
+    houdini.label               STRING "Input Type"
+    default                     INT     0
+  [attr ccMode]
+    desc                        STRING "CC Mode"
+    houdini.label               STRING "CC Mode"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     2
+  [attr hueShift]
+    desc                        STRING "Hue Shift"
+    houdini.label               STRING "Hue Shift"
+    default                     FLOAT   0
+    min                         FLOAT  -360
+    max                         FLOAT   360
+  [attr saturationMod]
+    desc                        STRING "Saturation Mod"
+    houdini.label               STRING "Saturation Mod"
+    default                     FLOAT   1
+  [attr saturationOp]
+    desc                        STRING "saturation Op"
+    houdini.label               STRING "saturation Op"
+    default                     INT     1
+    min                         INT     0
+    max                         INT     2
+  [attr roughness]
+    desc                        STRING "Roughness"
+    houdini.label               STRING "Roughness"
+    default                     FLOAT   0
+    min                         FLOAT   0
+    max                         FLOAT   1
+  [attr roughnessSampleSize]
+    desc                        STRING "Roughness Sample Size"
+    houdini.label               STRING "Roughness Sample Size"
+    default                     FLOAT   0.05
+    min                         FLOAT   0
+    max                         FLOAT   1
+  [attr xyz2rgb]
+    desc                        STRING "XYZ 2 RGB"
+    houdini.label               STRING "XYZ 2 RGB"
+    default                     INT     1
+    min                         INT     0
+    max                         INT     2
+    
+[node Obq_Hair]
+  maya.name                     STRING "Obq_Hair"
+  maya.id                       INT     0x0011CD47
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Hair"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Hair.html"
+
+  [attr opacity]
+    desc                        STRING "Opacity"
+    houdini.label               STRING "Opacity"
+    default                     RGB     1 1 1
+  [attr alpha_R]
+    desc                        STRING "Alpha R"
+    houdini.label               STRING "Alpha R"
+    default                     FLOAT  -7.5
+  [attr alpha_TT]
+    desc                        STRING "Alpha TT"
+    houdini.label               STRING "Alpha TT"
+    default                     FLOAT   3.75
+   [attr alpha_TRT]
+    desc                        STRING "Alpha TRT"
+    houdini.label               STRING "Alpha TRT"
+    default                     FLOAT   11.25
+  [attr beta_R]
+    desc                        STRING "Beta R"
+    houdini.label               STRING "Beta R"
+    default                     FLOAT   7.5
+  [attr beta_TT]
+    desc                        STRING "Beta TT"
+    houdini.label               STRING "Beta TT"
+    default                     FLOAT   3.75
+  [attr beta_TRT]
+    desc                        STRING "Beta TRT"
+    houdini.label               STRING "Beta TRT"
+    default                     FLOAT   15
+  [attr color_R]
+    desc                        STRING "Color R"
+    houdini.label               STRING "Color R"
+    default                     RGB     1 1 1
+  [attr color_TT]
+    desc                        STRING "Color TT"
+    houdini.label               STRING "Color TT"
+    default                     RGB    0 0.867 0.667
+  [attr color_TRT]
+    desc                        STRING "Color TRT"
+    houdini.label               STRING "Color TRT"
+    default                     RGB     1 0.8 0.5
+  [attr color_g]
+    desc                        STRING "Color G"
+    houdini.label               STRING "Color G"
+    default                     RGB     1 0.733 0.333
+  [attr gamma_TT]
+    # desc                        STRING "γ TT"
+    desc                        STRING "Gamma TT"
+    houdini.label               STRING "Gamma TT"
+    label                       STRING "Gamma TT"
+    default                     FLOAT   7.5
+  [attr gamma_G]
+    # desc                        STRING "γ g"
+    desc                        STRING "Gamma G"
+    houdini.label               STRING "Gamma G"
+    label                       STRING "Gamma G"
+    default                     FLOAT   17.5
+  [attr phi_g]
+    # desc                        STRING "φ G"
+    desc                        STRING "Phi G"
+    houdini.label               STRING "Phi G"
+    label                       STRING "Phi G"
+    default                     FLOAT   37.5
+  [attr scale_R]
+    desc                        STRING "Scale R"
+    houdini.label               STRING "Scale R"
+    default                     FLOAT   0.154
+  [attr scale_TT]
+    desc                        STRING "Scale TT"
+    houdini.label               STRING "Scale TT"
+    default                     FLOAT   0.461
+  [attr scale_TRT]
+    desc                        STRING "Scale TRT"
+    houdini.label               STRING "Scale TRT"
+    default                     FLOAT   0.077
+  [attr scale_g]
+    desc                        STRING "Scale G"
+    houdini.label               STRING "Scale G"
+    default                     FLOAT   0.308
+  [attr alpha_R__pre]
+    desc                        STRING "Alpha R Pre"
+    houdini.label               STRING "Alpha R Pre"
+    default                     FLOAT  -7.5
+  [attr alpha_TT__pre]
+    desc                        STRING "Alpha TT Pre"
+    houdini.label               STRING "Alpha TT Pre"
+    default                     FLOAT   3.75
+  [attr alpha_TRT__pre]
+    desc                        STRING "Alpha TRT Pre"
+    houdini.label               STRING "Alpha TRT Pre"
+    default                     FLOAT   11.25
+  [attr beta_R__pre]
+    desc                        STRING "Beta R Pre"
+    houdini.label               STRING "Beta R Pre"
+    default                     FLOAT   7.5
+  [attr beta_TT__pre]
+    desc                        STRING "Beta TT Pre"
+    houdini.label               STRING "Beta TT Pre"
+    default                     FLOAT   3.75
+  [attr beta_TRT__pre]
+    desc                        STRING "Beta TRT Pre"
+    houdini.label               STRING "Beta TRT Pre"
+    default                     FLOAT   15
+  [attr color_R__pre]
+    desc                        STRING "Color R Pre"
+    houdini.label               STRING "Color R Pre"
+    default                     RGB     1 1 1
+  [attr color_TT__pre]
+    desc                        STRING "Color TT Pre"
+    houdini.label               STRING "Color TT Pre"
+    default                     RGB     0 0.867 0.667
+  [attr color_TRT__pre]
+    desc                        STRING "Color TRT Pre"
+    houdini.label               STRING "Color TRT Pre"
+    default                     RGB     1 0.8 0.5
+  [attr color_g__pre]
+    desc                        STRING "Color G Pre"
+    houdini.label               STRING "Color G Pre"
+    default                     RGB     1 0.733 0.333
+  [attr gamma_TT__pre]
+    # desc                        STRING "γ g"
+    desc                        STRING "Gamma TT Pre"
+    houdini.label               STRING "Gamma TT Pre"
+    default                     FLOAT   7.5
+  [attr gamma_g__pre]
+    # desc                        STRING "γ G Pre"
+    houdini.label               STRING "Gamma G Pre"
+    desc                        STRING "Gamma G Pre"
+    default                     FLOAT   17.5
+  [attr phi_g__pre]
+    # desc                        STRING "φ G Pre"
+    desc                        STRING "Phi G Pre"
+    houdini.label               STRING "Phi G Pre"
+    default                     FLOAT   37.5
+  [attr scale_R__pre]
+    desc                        STRING "Scale R Pre"
+    houdini.label               STRING "Scale R Pre"
+    default                     FLOAT   0.154
+  [attr scale_TT__pre]
+    desc                        STRING "Scale TT Pre"
+    houdini.label               STRING "Scale TT Pre"
+    default                     FLOAT   0.461
+  [attr scale_TRT__pre]
+    desc                        STRING "Scale TRT Pre"
+    houdini.label               STRING "Scale TRT Pre"
+    default                     FLOAT   0.077
+  [attr scale_g__pre]
+    desc                        STRING "Scale G Pre"
+    houdini.label               STRING "Scale G Pre"
+    default                     FLOAT   0.308
+  [attr samples]
+    desc                        STRING "Samples"
+    houdini.label               STRING "Samples"
+    default                     INT     4
+  [attr scale_direct]
+    desc                        STRING "Scale Direct"
+    houdini.label               STRING "Scale Direct"
+    default                     FLOAT   1
+  [attr color_direct]
+    desc                        STRING "Color Direct"
+    houdini.label               STRING "Color Direct"
+    default                     RGB     1 1 1
+  [attr scale_indirect]
+    desc                        STRING "Scale Indirect"
+    houdini.label               STRING "Scale Indirect"
+    default                     FLOAT   1
+  [attr color_indirect]
+    desc                        STRING "Color Indirect"
+    houdini.label               STRING "Color Indirect"
+    default                     RGB     1 1 1
+  [attr alpha_back]
+    desc                        STRING "Alpha Back"
+    houdini.label               STRING "Alpha Back"
+    default                     FLOAT   0
+  [attr beta_back]
+    desc                        STRING "Beta Back"
+    houdini.label               STRING "Beta Back"
+    default                     FLOAT   0
+  [attr scale_back]
+    desc                        STRING "Scale Back"
+    houdini.label               STRING "Scale Back"
+    default                     FLOAT   1
+  [attr color_back]
+    desc                        STRING "Color Back"
+    houdini.label               STRING "Color Back"
+    default                     RGB     1 1 1
+   [attr scale_forward]
+    desc                        STRING "Scale Forward"
+    houdini.label               STRING "Scale Forward"
+    default                     FLOAT   1
+  [attr color_forward]
+    desc                        STRING "Color Forward"
+    houdini.label               STRING "Color Forward"
+    default                     RGB     1 1 1
+  [attr use_pre_only]
+    desc                        STRING "Use Pre Only"
+    houdini.label               STRING "Use Pre Only"
+    default                     BOOL    True
+  [attr shadow_opacity]
+    desc                        STRING "Shadow Opacity"
+    houdini.label               STRING "Shadow Opacity"
+    default                     RGB     1 1 1
+  [attr numGMS_modifier]
+    desc                        STRING "Number GMS Modifier"
+    houdini.label               STRING "Number GMS Modifier"
+    default                     FLOAT   1
+  [attr normal_shifts_widths]
+    desc                        STRING "Normal Shifts Widths"
+    houdini.label               STRING "Normal Shifts Widths"
+    default                     BOOL    True
+  [attr color_ray_glossy]
+    desc                        STRING "Color Ray Glossy"
+    houdini.label               STRING "Color Ray Glossy"
+    default                     RGB     0 0 0
+  [attr mode_ray_glossy]
+    desc                        STRING "Mode Ray Glossy"
+    houdini.label               STRING "Mode Ray Glossy"
+    default                     INT     1
+  [attr color_ray_diffuse]
+    desc                        STRING "Color Ray Diffuse"
+    houdini.label               STRING "Color Ray Diffuse"
+    default                     RGB     0 0 0
+  [attr mode_ray_diffuse]
+    desc                        STRING "Mode Ray Diffuse"
+    houdini.label               STRING "Mode Ray Diffuse"
+    default                     INT     1
+  [attr d_f]
+    desc                        STRING "D F"
+    houdini.label               STRING "D F"
+    default                     FLOAT   0.7
+  [attr d_f__pre]
+    desc                        STRING "D F Pre"
+    houdini.label               STRING "D F Pre"
+    default                     FLOAT   0.7
+  [attr d_b]
+    desc                        STRING "D B"
+    houdini.label               STRING "D B"
+    default                     FLOAT   0.7
+  [attr d_b__pre]
+    desc                        STRING "D B Pre"
+    houdini.label               STRING "D B Pre"
+    default                     FLOAT   0.7
+  [attr aov_mode]
+    desc                        STRING "AOV Mode"
+    houdini.label               STRING "AOV Mode"
+    default                     INT     1
+  [attr singleScatteringMode]
+    desc                        STRING "Single Scattering Mode"
+    houdini.label               STRING "Single Scattering Mode"
+    default                     BOOL    True
+  [attr useImportanceSampling]
+    desc                        STRING "Use Importance Sampling"
+    houdini.label               STRING "Use Importance Sampling"
+    default                     BOOL    True
+  [attr unlinkOpacity]
+    desc                        STRING "Unlink Opacity"
+    houdini.label               STRING "Unlink Opacity"
+    default                     BOOL    False
+  [attr color_ray_reflected]
+    desc                        STRING "Color Ray Reflected"
+    houdini.label               STRING "Color Ray Reflected"
+    default                     RGB     0 0 0 
+  [attr mode_ray_reflected]
+    desc                        STRING "Mode Ray Reflected"
+    houdini.label               STRING "Mode Ray Reflected"
+    default                     INT     3
+  [attr color_ray_refracted]
+    desc                        STRING "Color Ray Refracted"
+    houdini.label               STRING "Color Ray Refracted"
+    default                     RGB     0 0 0 
+  [attr mode_ray_refracted]
+    desc                        STRING "Mode Ray Refracted"
+    houdini.label               STRING "Mode Ray Refracted"
+    default                     INT     3
+  [attr checkShaderNameToo]
+    desc                        STRING "Check Shader Name Too"
+    houdini.label               STRING "Check Shader Name Too"
+    default                     BOOL    False
+  [attr modeMIS]
+    desc                        STRING "Mode MIS"
+    houdini.label               STRING "Mode MIS"
+    default                     INT     0
+  [attr MISrandomLobeSamples]
+    desc                        STRING "MIS Random Lobe Samples"
+    houdini.label               STRING "MIS Random Lobe Samples"
+    default                     INT     1
+  [attr samples_R]
+    desc                        STRING "Samples R"
+    houdini.label               STRING "Samples R"
+    default                     INT     0
+  [attr samples_TT]
+    desc                        STRING "Samples TT"
+    houdini.label               STRING "Samples TT"
+    default                     INT     0
+  [attr samples_TRT]
+    desc                        STRING "Samples TRT"
+    houdini.label               STRING "Samples TRT"
+    default                     INT     0
+  [attr samples_G]
+    desc                        STRING "Samples G"
+    houdini.label               STRING "Samples G"
+    default                     INT     0
+  [attr samples_DS]
+    desc                        STRING "Samples DS"
+    houdini.label               STRING "Samples DS"
+    default                     INT     0
+  [attr modeMIS_DS]
+    desc                        STRING "Mode MIS DS"
+    houdini.label               STRING "Mode MIS DS"
+    default                     INT     0
+  [attr aov_dir_R]
+    desc                        STRING "AOV Direct R"
+    houdini.label               STRING "AOV Direct R"
+  [attr aov_dir_TRT]
+    desc                        STRING "AOV Direct TRT"
+    houdini.label               STRING "AOV Direct TRT"
+  [attr aov_dir_g]
+    desc                        STRING "AOV Direct G"        
+    houdini.label               STRING "AOV Direct G"        
+  [attr aov_dir_TT]
+    desc                        STRING "AOV Direct TT"
+    houdini.label               STRING "AOV Direct TT"
+  [attr aov_dir_back]
+    desc                        STRING "AOV Direct Back"             
+    houdini.label               STRING "AOV Direct Back"             
+  [attr aov_dir_scatter]
+    desc                        STRING "AOV Direct Scatter"
+    houdini.label               STRING "AOV Direct Scatter"
+  [attr aov_dir_scatter_back]
+    desc                        STRING "AOV Direct Scatter Back"
+    houdini.label               STRING "AOV Direct Scatter Back"
+  [attr aov_indir_R]
+    desc                        STRING "AOV Indirect R"         
+    houdini.label               STRING "AOV Indirect R"         
+  [attr aov_indir_TRT]
+    desc                        STRING "AOV Indirect TRT"
+    houdini.label               STRING "AOV Indirect TRT"
+  [attr aov_indir_TRT]
+    desc                        STRING "AOV Indirect TRT"
+    houdini.label               STRING "AOV Indirect TRT"
+  [attr aov_indir_g]
+    desc                        STRING "AOV Indirect G"                 
+    houdini.label               STRING "AOV Indirect G"                 
+  [attr aov_indir_TT]
+    desc                        STRING "AOV Indirect TT"
+    houdini.label               STRING "AOV Indirect TT"
+  [attr aov_indir_back]
+    desc                        STRING "AOV Indirect Back"        
+    houdini.label               STRING "AOV Indirect Back"        
+  [attr aov_indir_scatter]
+    desc                        STRING "AOVIndirect Scatter"         
+    houdini.label               STRING "AOVIndirect Scatter"         
+  [attr aov_indir_scatter_back]
+    desc                        STRING "AOV Indirect Scatter Back"
+    houdini.label               STRING "AOV Indirect Scatter Back"
+
+[node Obq_IESLightFilter]
+  maya.name                     STRING "Obq_IESLightFilter"
+  maya.id                       INT     0x0011CD48
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_IESLightFilter"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_IESLightFilter.html"
+
+  [attr filename]
+    desc                        STRING "IES Profile"
+    houdini.label               STRING "IES Profile"
+    default                     STRING "D:\\IES.ies"
+
+[node Obq_MeasuredMaterial]
+  maya.name                     STRING "Obq_MeasuredMaterial"
+  maya.id                       INT     0x0011CD49
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+  maya.output_shortname         STRING "out"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MeasuredMaterial"
+  houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+
+  [attr filename]
+    desc                        STRING "Filename"        
+    houdini.label               STRING "Filename"        
+  [attr resolution]
+    desc                        STRING "Resolution"
+    houdini.label               STRING "Resolution"
+    default                     INT     91
+  [attr samples]
+    desc                        STRING "Samples"
+    houdini.label               STRING "Samples"
+    default                     INT     4
+  [attr direct_color]
+    desc                        STRING "Direct Color"
+    houdini.label               STRING "Direct Color"
+    default                     RGB     1 1 1
+  [attr direct_scale]
+    desc                        STRING "Direct Scale"
+    houdini.label               STRING "Direct Scale"
+    default                     INT     1
+  [attr indirect_color]
+    desc                        STRING "Indirect Color"
+    houdini.label               STRING "Indirect Color"
+    default                     RGB     1 1 1
+  [attr indirect_scale]
+    desc                        STRING "Indirect Scale"
+    houdini.label               STRING "Indirect Scale"
+    default                     INT     0
+  [attr useImportanceSampling]
+    desc                        STRING "Use Importance Sampling"
+    houdini.label               STRING "Use Importance Sampling"
+    default                     BOOL    True
+  [attr useHalfs]
+    desc                        STRING "Use Halfs"
+    houdini.label               STRING "Use Halfs"
+    default                     BOOL    False
+  [attr useJitters]
+    desc                        STRING "Use Jitters"
+    houdini.label               STRING "Use Jitters"
+    default                     BOOL    False
+  [attr binMaxDif]
+    desc                        STRING "Bin Max Dif"
+    houdini.label               STRING "Bin Max Dif"
+    default                     INT     5
+  [attr useMIS]
+    desc                        STRING "Use MIS"
+    houdini.label               STRING "Use MIS"
+    default                     BOOL    True
+  [attr direct_AOV]
+    desc                        STRING "direct_AOV"
+    houdini.label               STRING "direct_AOV"
+  [attr direct_AOV]
+    desc                        STRING "direct_AOV"
+    houdini.label               STRING "direct_AOV"
+  [attr indirect_AOV]
+    desc                        STRING "indirect_AOV"
+    houdini.label               STRING "indirect_AOV"
+            
+[node Obq_MessageGetFlt]
+  maya.name                     STRING "Obq_MessageGetFlt"
+  maya.id                       INT     0x0011CD4A
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetFlt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetFlt.html"
+
+  [attr key]
+    desc                        STRING "Key"
+    houdini.label               STRING "Key"
+    default                     STRING "OToon"
+  [attr defaultValue]
+    desc                        STRING "Default Value"
+    houdini.label               STRING "Default Value"
+    default                     FLOAT   0.0
+    softmin                     FLOAT  -1.0
+    softmax                     FLOAT   1.0
+
+[node Obq_Opacity]
+  maya.name                     STRING "Obq_Opacity"
+  maya.id                       INT     0x0011CD4B
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Opacity"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
+
+  [attr color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr channel]
+    desc                        STRING "Channel"
+    houdini.label               STRING "Channel"
+    default                     INT     6
+    min                         INT     0
+    max                         INT     6
+  [attr opacityRGBA]
+    desc                        STRING "Opacity RGBA"
+    houdini.label               STRING "Opacity RGBA"
+    default                     RGB     1 1 1
+  [attr opacityScalar]
+    desc                        STRING "Opacity Scalar"
+    houdini.label               STRING "Opacity Scalar"
+    default                     FLOAT   1
+  [attr hard]
+    desc                        STRING "Use hard opacity"
+    houdini.label               STRING "Use hard opacity"
+    default                     BOOL    False
+  [attr threshold]
+    desc                        STRING "Threshold"
+    houdini.label               STRING "Threshold"
+    default                     FLOAT   0.0
+    softmin                     FLOAT   0.0
+    softmax                     FLOAT   1.0
+  [attr invert]
+    desc                        STRING "Invert"
+    houdini.label               STRING "Invert"
+    default                     BOOL    False
+                    
+[node Obq_RandomColor]
+  maya.name                     STRING "Obq_RandomColor"
+  maya.id                       INT     0x0011CD4C
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_RandomColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomColor.html"
+
+   [attr randMax]
+    desc                        STRING "Number of values"
+    houdini.label               STRING "Number of values"
+    default                     INT     8
+    min                         INT     1
+    max                         INT     16
+    maya.channelbox             BOOL    True
+  [attr seed]
+    desc                        STRING "Seed"
+    houdini.label               STRING "Seed"
+    default                     INT     13
+    min                         INT     1
+    maya.channelbox             BOOL    True
+  [attr color01]
+    desc                        STRING "Color 01"
+    houdini.label               STRING "Color 01"
+    default                     RGB     0 0 0
+    maya.channelbox             BOOL    True
+  [attr color02]
+    desc                        STRING "Color 02"
+    houdini.label               STRING "Color 02"
+    default                     RGB     1 0 0
+    maya.channelbox             BOOL    True
+  [attr color03]
+    desc                        STRING "Color 03"
+    houdini.label               STRING "Color 03"
+    default                     RGB     0 1 0
+    maya.channelbox             BOOL    True
+  [attr color04]
+    desc                        STRING "Color 04"
+    houdini.label               STRING "Color 04"
+    default                     RGB     0 0 1
+    maya.channelbox             BOOL    True
+  [attr color05]
+    desc                        STRING "Color 05"
+    houdini.label               STRING "Color 05"
+    default                     RGB     1 1 0
+    maya.channelbox             BOOL    True
+  [attr color06]
+    desc                        STRING "Color 06"
+    houdini.label               STRING "Color 06"
+    default                     RGB     1 0 1
+    maya.channelbox             BOOL    True
+  [attr color07]
+    desc                        STRING "Color 07"
+    houdini.label               STRING "Color 07"
+    default                     RGB     0 1 1
+    maya.channelbox             BOOL    True
+  [attr color08]
+    desc                        STRING "Color 08"
+    houdini.label               STRING "Color 08"
+    default                     RGB     1 0.5 0
+    maya.channelbox             BOOL    True
+  [attr color09]
+    desc                        STRING "Color 09"
+    houdini.label               STRING "Color 09"
+    default                     RGB     0.5 1 0
+    maya.channelbox             BOOL    True
+  [attr color10]
+    desc                        STRING "Color 10"
+    houdini.label               STRING "Color 10"
+    default                     RGB     0 1 0.5
+    maya.channelbox             BOOL    True
+  [attr color11]
+    desc                        STRING "Color 11"
+    houdini.label               STRING "Color 11"
+    default                     RGB     0 0.5 1
+    maya.channelbox             BOOL    True
+  [attr color12]
+    desc                        STRING "Color 12"
+    houdini.label               STRING "Color 12"
+    default                     RGB     0.5 0 1
+    maya.channelbox             BOOL    True
+  [attr color13]
+    desc                        STRING "Color 13"
+    houdini.label               STRING "Color 13"
+    default                     RGB     1 0 0.5
+    maya.channelbox             BOOL    True
+  [attr color14]
+    desc                        STRING "Color 14"
+    houdini.label               STRING "Color 14"
+    default                     RGB     1 1 1
+    maya.channelbox             BOOL    True
+  [attr color15]
+    desc                        STRING "Color 15"
+    houdini.label               STRING "Color 15"
+    default                     RGB     0.671 0.671 0.671
+    maya.channelbox             BOOL    True
+  [attr color16]
+    desc                        STRING "Color 16"
+    houdini.label               STRING "Color 16"
+    default                     RGB     0.231 0.231 0.231
+    maya.channelbox             BOOL    True
+  [attr stripModelName]
+    desc                        STRING "Strip Model Name"
+    houdini.label               STRING "Strip Model Name"
+    label                       STRING "Model"    
+    default                     BOOL    True
+  [attr stripFrameNumber]
+    desc                        STRING "Strip Frame Number"
+    houdini.label               STRING "Strip Frame Number"
+    label                       STRING "Frame"    
+    default                     BOOL    True
+  [attr stripInstanceFrameNumber]
+    desc                        STRING "Strip Instances Frame Number"
+    houdini.label               STRING "Strip Instances Frame Number"
+    label                       STRING "Frame"    
+    default                     BOOL    True
+  [attr stripInstanceID]
+    desc                        STRING "Strip Instances ID"
+    houdini.label               STRING "Strip Instances ID"
+    label                       STRING "ID"    
+    default                     BOOL    False
+  [attr stripInstanceShape]
+    desc                        STRING "Strip Instances Shape"
+    houdini.label               STRING "Strip Instances Shape"
+    label                       STRING "Shape"    
+    default                     BOOL    False
+
+[node Obq_RGBComEmit]
+  maya.name                     STRING "Obq_RGBComEmit"
+  maya.id                       INT     0x0011CD4D
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_RGBComEmit"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComEmit.html"
+
+  [attr Passthrough]
+    desc                        STRING "Passthrough"
+    houdini.label               STRING "Passthrough"
+    default                     RGB     1 1 1
+
+[node Obq_RGBComLightFilter]
+  maya.name                     STRING "Obq_RGBComLightFilter"
+  maya.id                       INT     0x0011CD4E
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_RGBComLightFilter"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComLightFilter.html"
+
+  [attr defaultColor]
+    desc                        STRING "Default Color"
+    houdini.label               STRING "Default Color"
+    default                     RGB     1 1 1
+  [attr Channel]
+    desc                        STRING "Channel"
+    houdini.label               STRING "Channel"
+    default                     INT     5
+
+[node Obq_Root2Tip]
+  maya.name                     STRING "Obq_Root2Tip"
+  maya.id                       INT     0x0011CD4F
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Root2Tip"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Root2Tip.html"
+
+  [attr root]
+    desc                        STRING "Root"
+    houdini.label               STRING "Root"
+    default                     RGB     0 0 0
+  [attr tip]
+    desc                        STRING "Tip"
+    houdini.label               STRING "Tip"
+    default                     RGB     1 1 1
+  [attr mode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    default                     INT     0
+
+[node Obq_Shadow]
+  maya.name                     STRING "Obq_Shadow"
+  maya.id                       INT     0x0011CD50
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Shadow"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Shadow.html"
+
+  [attr mode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    default                     INT     2
+  [attr traceType]
+    desc                        STRING "Trace Type"
+    houdini.label               STRING "Trace Type"
+    default                     INT     2
+  [attr opacity]
+    desc                        STRING "Opacity"
+    houdini.label               STRING "Opacity"
+    default                     RGB     1 1 1
+  [attr shadowsOnUnlit]
+    desc                        STRING "Shadows On Unlit"
+    houdini.label               STRING "Shadows On Unlit"
+    default                     BOOL    False
+
+
+# The Obq_Simbiont node info is stored in the separate Arnold metadata file: Obq_Simbiont__v301.mtd
+# [node Obq_Simbiont]
+  # maya.name                   STRING "Obq_Simbiont"
+  # maya.id                     INT 0x0011CD51
+  # maya.classification         STRING "shader/surface"
+
+  # houdini.category            STRING "OBQShaders"
+  # houdini.icon                STRING "SHOP_surface"
+  # houdini.label               STRING "Obq_Simbiont"
+  # houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
+
+[node Obq_StereoLens]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD52
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_StereoLens"
+  
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_StereoLens"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
+
+  [attr is_perspective]
+    default                     BOOL   True
+    default                     BOOL   True
+  [attr viewMode]
+    desc                        STRING "viewMode"
+    houdini.label               STRING "viewMode"
+    default                     INT     0
+  [attr leftCamera]
+    desc                        STRING "Left Camera"
+    houdini.label               STRING "Left Camera"
+    default                     STRING "StereoCamera_Left"
+  [attr rightCamera]
+    desc                        STRING "Right Camera"
+    houdini.label               STRING "Right Camera"
+    default                     STRING "StereoCamera_Right"
+  [attr filmbackX]
+    desc                        STRING "Filmback X"
+    houdini.label               STRING "Filmback X"
+    default                     FLOAT   0
+  [attr leftCenterOffset]
+    desc                        STRING "Left Optical Center Offset"
+    houdini.label               STRING "Left Optical Center Offset"
+    default                     FLOAT   0
+  [attr rightCenterOffset]
+    desc                        STRING "Right Optical Center Offset"
+    houdini.label               STRING "Right Optical Center Offset"
+    default                     FLOAT   0
+  [attr recalculateDistanceForSideCam]
+    desc                        STRING "Recalculate Distance For Side Cam"
+    houdini.label               STRING "Recalculate Distance For Side Cam"
+    default                     BOOL    True
+  [attr totalOverscanPixels]
+    desc                        STRING "Total Overscan Pixels"
+    houdini.label               STRING "Total Overscan Pixels"
+    default                     INT     0
+  [attr useDof]
+    desc                        STRING "Use DOF"
+    houdini.label               STRING "Use DOF"
+    default                     BOOL    False
+  [attr focusDistance]
+    desc                        STRING "Focus Distance"
+    houdini.label               STRING "Focus Distance"
+    default                     FLOAT   100
+  [attr apertureSize]
+    desc                        STRING "Aperture Size"
+    houdini.label               STRING "Aperture Size"
+    default                     FLOAT   0.1
+  [attr apertureAspectRatio]
+    desc                        STRING "Aperture Aspect Ratio"
+    houdini.label               STRING "Aperture Aspect Ratio"
+    default                     FLOAT   1
+  [attr usePolygonalAperture]
+    desc                        STRING "Use Polygonal Aperture"
+    houdini.label               STRING "Use Polygonal Aperture"
+    default                     BOOL    True
+  [attr apertureBlades]
+    desc                        STRING "Aperture Blades"
+    houdini.label               STRING "Aperture Blades"
+    default                     INT     5
+  [attr apertureBladeCurvature]
+    desc                        STRING "Aperture Blade Curvature"
+    houdini.label               STRING "Aperture Blade Curvature"
+    default                     FLOAT   0
+  [attr apertureRotation]
+    desc                        STRING "Aperture Rotation"
+    houdini.label               STRING "Aperture Rotation"
+    default                     FLOAT   0
+  [attr focusPlaneIsPlane]
+    desc                        STRING "Focus Plane is Plane"
+    houdini.label               STRING "Focus Plane is Plane"
+    default                     BOOL    True
+  [attr fov]
+    desc                        STRING "FOV"
+    houdini.label               STRING "FOV"
+  [attr position]
+    desc                        STRING "Position"
+    houdini.label               STRING "Position"
+    default                     POINT   0 0 -1
+  [attr look_at]
+    desc                        STRING "Look At"
+    houdini.label               STRING "Look At"
+    default                     POINT   0 0 1
+  [attr up]
+    desc                        STRING "Up"
+    houdini.label               STRING "Up"
+    default                     VECTOR  0 1 0
+  [attr matrix]
+    desc                        STRING "Matrix"    
+    houdini.label               STRING "Matrix"    
+  [attr near_clip]
+    desc                        STRING "Near Clip"
+    houdini.label               STRING "Near Clip"
+    default                     FLOAT   0.0001
+  [attr near_clip]
+    desc                        STRING "Far Clip"
+    houdini.label               STRING "Far Clip"
+    default                     FLOAT   1e+030
+   [attr shutter_start]
+    desc                        STRING "shutter_start"
+    houdini.label               STRING "shutter_start"
+    default                     FLOAT   0
+  [attr shutter_end]
+    desc                        STRING "shutter_end"
+    houdini.label               STRING "shutter_end"
+    default                     FLOAT   0
+  [attr shutter_type]
+    desc                        STRING "shutter_type"
+    houdini.label               STRING "shutter_type"
+  [attr shutter_curve]
+    desc                        STRING "shutter_curve"
+    houdini.label               STRING "shutter_curve"
+  [attr rolling_shutter]
+    desc                        STRING "rolling_shutter"
+    houdini.label               STRING "rolling_shutter"
+  [attr rolling_shutter_duration]
+    desc                        STRING "rolling_shutter_duration"
+    houdini.label               STRING "rolling_shutter_duration"
+    default                     FLOAT   0
+  [attr filtermap]
+    desc                        STRING "filtermap"
+    houdini.label               STRING "filtermap"
+  [attr handedness]
+    desc                        STRING "handedness"
+    houdini.label               STRING "handedness"
+  [attr time_samples]
+    desc                        STRING "time_samples"            
+    houdini.label               STRING "time_samples"            
+  [attr screen_window_min]
+    desc                        STRING "screen_window_min"
+    houdini.label               STRING "screen_window_min"
+    default                     POINT2  -1 -1
+  [attr screen_window_max]
+    desc                        STRING "screen_window_max"
+    houdini.label               STRING "screen_window_max"
+    default                     POINT2  1 1
+  [attr exposure]
+    desc                        STRING "exposure"
+    houdini.label               STRING "exposure"
+    default                     FLOAT   0
+
+[node Obq_SurfaceEnvironment]
+  maya.name                     STRING "Obq_SurfaceEnvironment"
+  maya.id                       INT     0x0011CD53
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_SurfaceEnvironment"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SurfaceEnvironment.html"
+
+  [attr tex]
+    desc                        STRING "Image"
+    houdini.label               STRING "Image"
+    default                     RGB     0 0 0
+  [attr considerAlpha]
+    desc                        STRING "alpha"
+    houdini.label               STRING "alpha"
+    default                     BOOL    False
+  [attr mapMode]
+    desc                        STRING "Map Mode"
+    houdini.label               STRING "Map Mode"
+    default                     INT     2
+  [attr usePassEnvShader]
+    desc                        STRING "Use Pass Env Shader"
+    houdini.label               STRING "Use Pass Env Shader"
+    default                     BOOL    False
+  [attr rayTypeEnv]
+    desc                        STRING "Ray Type Env"
+    houdini.label               STRING "Ray Type Env"
+    default                     INT     2
+  [attr useIntensityEnv]
+    desc                        STRING "Use Intensity Env"
+    houdini.label               STRING "Use Intensity Env"
+    default                     BOOL    False
+  [attr useTransformsEnv]
+    desc                        STRING "Use Transforms Env"
+    houdini.label               STRING "Use Transforms Env"
+    default                     BOOL    False
+  [attr useRoughnessEnv]
+    desc                        STRING "Use Roughness Env"
+    houdini.label               STRING "Use Roughness Env"
+    default                     BOOL    False
+  [attr sampleLevel]
+    desc                        STRING "Sample Level"
+    houdini.label               STRING "Sample Level"
+    default                     INT     1
+  [attr coneAngle]
+    desc                        STRING "Cone Angle"
+    houdini.label               STRING "Cone Angle"
+    default                     FLOAT   10
+  [attr cosLobeGloss]
+    desc                        STRING "COS Lobe Gloss"
+    houdini.label               STRING "COS Lobe Gloss"
+    default                     FLOAT   0
+  [attr useSampleCount]
+    desc                        STRING "Use Sample Count"
+    houdini.label               STRING "Use Sample Count"
+    default                     BOOL    False
+  [attr sampleCount]
+    desc                        STRING "Sample Count"
+    houdini.label               STRING "Sample Count"
+    default                     FLOAT   10
+  [attr sampleCountMultiplier]
+    desc                        STRING "Sample Count Multiplier"
+    houdini.label               STRING "Sample Count Multiplier"
+    default                     FLOAT   1
+  [attr onSurfaceMode]
+    desc                        STRING "On Surface Mode"
+    houdini.label               STRING "On Surface Mode"
+    default                     INT     0
+  [attr ior]
+    desc                        STRING "IOR"
+    houdini.label               STRING "IOR"
+    default                     FLOAT   1
+  [attr customDirection]
+    desc                        STRING "Custom Direction"
+    houdini.label               STRING "Custom Direction"
+    default                     VECTOR  0 1 0
+  [attr intensity]
+    desc                        STRING "Intensity"
+    houdini.label               STRING "Intensity"
+    default                     FLOAT   1
+  [attr globalRotation]
+    desc                        STRING "Global Rotation"
+    houdini.label               STRING "Global Rotation"
+    default                     BOOL    True
+  [attr rotation]
+    desc                        STRING "Rotation"
+    houdini.label               STRING "Rotation"
+    default                     VECTOR  0 0 0
+  [attr passthrough]
+    desc                        STRING "Passthrough"
+    houdini.label               STRING "Passthrough"
+    default                     BOOL    False
+  [attr passthroughShader]
+    desc                        STRING "Passthrough Shader"
+    houdini.label               STRING "Passthrough Shader"
+    default                     RGB     0 0 0
+  [attr renderChannel]
+    desc                        STRING "Render Channel"
+    houdini.label               STRING "Render Channel"
+  [attr flipU]
+    desc                        STRING "Flip U"
+    houdini.label               STRING "Flip U"
+    default                     BOOL    False
+  [attr flipV]
+    desc                        STRING "Flip V"
+    houdini.label               STRING "Flip V"
+    default                     BOOL    False             
+    
+[node Obq_Thickness]
+  maya.name                     STRING "Obq_Thickness"
+  maya.id                       INT     0x0011CD54
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Thickness"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Thickness.html"
+
+  [attr sampleLevel]
+    desc                        STRING "sampleLevel"
+    houdini.label               STRING "sampleLevel"
+    default                     INT     1
+  [attr coneAngle]
+    desc                        STRING "coneAngle"
+    houdini.label               STRING "coneAngle"
+    default                     FLOAT   25
+  [attr useVdotNForMaxAngle]
+    desc                        STRING "useVdotNForMaxAngle"
+    houdini.label               STRING "useVdotNForMaxAngle"
+    default                     BOOL    False
+  [attr cosLobeGloss]
+    desc                        STRING "cosLobeGloss"
+    houdini.label               STRING "cosLobeGloss"
+    default                     FLOAT   2
+  [attr useSampleCount]
+    desc                        STRING "useSampleCount"
+    houdini.label               STRING "useSampleCount"
+    default                     BOOL    False
+  [attr sampleCount]
+    desc                        STRING "sampleCount"
+    houdini.label               STRING "sampleCount"
+    default                     FLOAT   10
+  [attr sampleCountMultiplier]
+    desc                        STRING "sampleCountMultiplier"
+    houdini.label               STRING "sampleCountMultiplier"
+    default                     FLOAT   1
+  [attr backface]
+    desc                        STRING "backface"
+    houdini.label               STRING "backface"
+    default                     INT     1
+  [attr intersectOthers]
+    desc                        STRING "intersectOthers"
+    houdini.label               STRING "intersectOthers"
+    default                     BOOL    True
+  [attr maxRayDepth]
+    desc                        STRING "maxRayDepth"
+    houdini.label               STRING "maxRayDepth"
+    default                     INT     10
+  [attr normalizeMode]
+    desc                        STRING "normalizeMode"
+    houdini.label               STRING "normalizeMode"
+    default                     INT     2
+  [attr maxRayLength]
+    desc                        STRING "maxRayLength"
+    houdini.label               STRING "maxRayLength"
+    default                     FLOAT   10
+  [attr usemaxRayLength]
+    desc                        STRING "usemaxRayLength"
+    houdini.label               STRING "usemaxRayLength"
+    default                     BOOL    False
+  [attr dirMode]
+    desc                        STRING "dirMode"
+    houdini.label               STRING "dirMode"
+    default                     INT     0
+  [attr dirInverted]
+    desc                        STRING "dirInverted"
+    houdini.label               STRING "dirInverted"
+    default                     BOOL    False
+  [attr dirSmooth]
+    desc                        STRING "dirSmooth"
+    houdini.label               STRING "dirSmooth"
+    default                     BOOL    False
+  [attr dirGeometric]
+    desc                        STRING "dirGeometric"
+    houdini.label               STRING "dirGeometric"
+    default                     BOOL    False
+  [attr dirSafe]
+    desc                        STRING "dirSafe"
+    houdini.label               STRING "dirSafe"
+    default                     BOOL    True
+  [attr customDirection]
+    desc                        STRING "customDirection"
+    houdini.label               STRING "customDirection"
+    default                     VECTOR  0 1 0
+  [attr ior]
+    desc                        STRING "IOR"
+    houdini.label               STRING "IOR"
+    default                     FLOAT   1.33
+  [attr noHitMode]
+    desc                        STRING "noHitMode"
+    houdini.label               STRING "noHitMode"
+    default                     INT     1
+  [attr multNdotR]
+    desc                        STRING "multNdotR"
+    houdini.label               STRING "multNdotR"
+    default                     BOOL    False
+  [attr NdotRExp]
+    desc                        STRING "NdotRExp"
+    houdini.label               STRING "NdotRExp"
+    default                     FLOAT   4
+  [attr enterSurface]
+    desc                        STRING "enterSurface"
+    houdini.label               STRING "enterSurface"
+    default                     FLOAT   0
+  [attr geometricLimitMultiplier]
+    desc                        STRING "geometricLimitMultiplier"
+    houdini.label               STRING "geometricLimitMultiplier"
+    default                     FLOAT   1
+  [attr thicknessMode]
+    desc                        STRING "thicknessMode"
+    houdini.label               STRING "thicknessMode"
+    default                     INT     0
+  [attr multiplyByDepth]
+    desc                        STRING "multiplyByDepth"
+    houdini.label               STRING "multiplyByDepth"
+    default                     BOOL    False
+
+[node Obq_Toon]
+  maya.name                     STRING "Obq_Toon"
+  maya.id                       INT     0x0011CD55
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Toon"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Toon.html"
+
+  [attr global_loopLightMode]
+    desc                        STRING "Loop Light Mode"
+    houdini.label               STRING "Loop Light Mode"
+    default                     INT     0
+  [attr global_compMode]
+    desc                        STRING "Comp Mode"
+    houdini.label               STRING "Comp Mode"
+    default                     INT     1
+    default                     INT     1
+  [attr global_loopMode]
+    desc                        STRING "Loop Mode"
+    houdini.label               STRING "Loop Mode"
+    default                     FLOAT   0
+  [attr global_multByLightColor]
+    desc                        STRING "Multiply By Light Color"
+    houdini.label               STRING "Multiply By Light Color"
+    default                     BOOL    True
+  [attr ambient_color]
+    desc                        STRING "Ambient Color"
+    houdini.label               STRING "Ambient Color"
+    default                     RGB     1 1 1
+  [attr ambient_scale]
+    desc                        STRING "ambient_scale"
+    houdini.label               STRING "ambient_scale"
+    default                     FLOAT   0
+  [attr ambient_multAmbience]
+    desc                        STRING "ambient_multAmbience"
+    houdini.label               STRING "ambient_multAmbience"
+    default                     BOOL    False
+  [attr diffuse_color]
+    desc                        STRING "diffuse_color"
+    houdini.label               STRING "diffuse_color"
+    default                     RGB     1 1 1
+  [attr diffuse_scale]
+    desc                        STRING "diffuse_scale"
+    houdini.label               STRING "diffuse_scale"
+    default                     FLOAT   1
+  [attr diffuse_coverage]
+    desc                        STRING "diffuse_coverage"
+    houdini.label               STRING "diffuse_coverage"
+    default                     FLOAT   1
+  [attr diffuse_softness]
+    desc                        STRING "diffuse_softness"
+    houdini.label               STRING "diffuse_softness"
+    default                     FLOAT   1
+  [attr diffuse_mode]
+    desc                        STRING "diffuse_mode"
+    houdini.label               STRING "diffuse_mode"
+    default                     INT     0
+  [attr diffuse_gradient]
+    desc                        STRING "diffuse_gradient"
+    houdini.label               STRING "diffuse_gradient"
+    default                     RGB     1 1 1
+  [attr diffuse_image]
+    desc                        STRING "diffuse_image"
+    houdini.label               STRING "diffuse_image"
+    default                     RGB     1 1 1
+  [attr diffuse_imageType]
+    desc                        STRING "diffuse_imageType"
+    houdini.label               STRING "diffuse_imageType"
+    default                     INT     0
+  [attr highlight_color]
+    desc                        STRING "highlight_color"
+    houdini.label               STRING "highlight_color"
+    default                     RGB     1 1 1
+  [attr highlight_scale]
+    desc                        STRING "highlight_scale"
+    houdini.label               STRING "highlight_scale"
+    default                     FLOAT   0
+  [attr highlight_exponent]
+    desc                        STRING "highlight_exponent"
+    houdini.label               STRING "highlight_exponent"
+    default                     INT     50
+  [attr highlight_coverage]
+    desc                        STRING "highlight_coverage"
+    houdini.label               STRING "highlight_coverage"
+    default                     FLOAT   1
+  [attr highlight_softness]
+    desc                        STRING "highlight_softness"
+    houdini.label               STRING "highlight_softness"
+    default                     FLOAT   1
+  [attr highlight_mode]
+    desc                        STRING "highlight_mode"
+    houdini.label               STRING "highlight_mode"
+    default                     INT     0
+  [attr highlight_gradient]
+    desc                        STRING "highlight_gradient"
+    houdini.label               STRING "highlight_gradient"
+    default                     RGB     1 1 1
+  [attr highlight_image]
+    desc                        STRING "highlight_image"
+    houdini.label               STRING "highlight_image"
+    default                     RGB     1 1 1
+  [attr highlight_imageType]
+    desc                        STRING "highlight_imageType"
+    houdini.label               STRING "highlight_imageType"
+    default                     INT     0
+  [attr rimlight_color]
+    desc                        STRING "rimlight_color"
+    houdini.label               STRING "rimlight_color"
+    default                     RGB     1 1 1
+  [attr rimlight_scale]
+    desc                        STRING "rimlight_scale"
+    houdini.label               STRING "rimlight_scale"
+    default                     FLOAT   0
+  [attr rimlight_coverage]
+    desc                        STRING "rimlight_coverage"
+    houdini.label               STRING "rimlight_coverage"
+    default                     FLOAT   1
+  [attr rimlight_softness]
+    desc                        STRING "rimlight_softness"
+    houdini.label               STRING "rimlight_softness"
+    default                     FLOAT   1
+  [attr rimlight_mode]
+    desc                        STRING "rimlight_mode"
+    houdini.label               STRING "rimlight_mode"
+    default                     INT     0
+  [attr rimlight_gradient]
+    desc                        STRING "rimlight_gradient"
+    houdini.label               STRING "rimlight_gradient"
+    default                     RGB     1 1 1
+  [attr rimlight_image]
+    desc                        STRING "rimlight_image"
+    houdini.label               STRING "rimlight_image"
+    default                     RGB     1 1 1
+  [attr rimlight_imageType]
+    desc                        STRING "rimlight_imageType"
+    houdini.label               STRING "rimlight_imageType"
+    default                     INT     0
+  [attr ambient_fb_str]
+    desc                        STRING "ambient_fb_str"            
+    houdini.label               STRING "ambient_fb_str"            
+  [attr diffuse_fb_str]
+    desc                        STRING "diffuse_fb_str"
+    houdini.label               STRING "diffuse_fb_str"
+  [attr highlight_fb_str]
+    desc                        STRING "highlight_fb_str"
+    houdini.label               STRING "highlight_fb_str"
+  [attr rimlight_fb_str]
+    desc                        STRING "rimlight_fb_str"
+    houdini.label               STRING "rimlight_fb_str"
+  [attr contour_fb_str]
+    desc                        STRING "contour_fb_str"         
+    houdini.label               STRING "contour_fb_str"         
+  [attr putAlphaInFb]
+    desc                        STRING "putAlphaInFb"
+    houdini.label               STRING "putAlphaInFb"
+    default                     BOOL    False
+  [attr diffuse_autoRemap]
+    desc                        STRING "diffuse_autoRemap"
+    houdini.label               STRING "diffuse_autoRemap"
+    default                     BOOL    True
+  [attr diffuse_imageRemapLeft]
+    desc                        STRING "diffuse_imageRemapLeft"
+    houdini.label               STRING "diffuse_imageRemapLeft"
+    default                     FLOAT   0
+  [attr diffuse_imageRemapRight]
+    desc                        STRING "diffuse_imageRemapRight"
+    houdini.label               STRING "diffuse_imageRemapRight"
+    default                     FLOAT   1
+  [attr highlight_autoRemap]
+    desc                        STRING "highlight_autoRemap"
+    houdini.label               STRING "highlight_autoRemap"
+    default                     BOOL    True
+  [attr highlight_imageRemapLeft]
+    desc                        STRING "highlight_imageRemapLeft"
+    houdini.label               STRING "highlight_imageRemapLeft"
+    default                     FLOAT   0
+  [attr highlight_imageRemapRight]
+    desc                        STRING "highlight_imageRemapRight"
+    houdini.label               STRING "highlight_imageRemapRight"
+    default                     FLOAT   1
+  [attr rimlight_autoRemap]
+    desc                        STRING "rimlight_autoRemap"
+    houdini.label               STRING "rimlight_autoRemap"
+    default                     BOOL    True
+  [attr rimlight_imageRemapLeft]
+    desc                        STRING "rimlight_imageRemapLeft"
+    houdini.label               STRING "rimlight_imageRemapLeft"
+    default                     FLOAT   0
+  [attr rimlight_imageRemapRight]
+    desc                        STRING "rimlight_imageRemapRight"
+    houdini.label               STRING "rimlight_imageRemapRight"
+    default                     FLOAT   1
+  [attr diffuse_imageRemapBias]
+    desc                        STRING "diffuse_imageRemapBias"
+    houdini.label               STRING "diffuse_imageRemapBias"
+    default                     FLOAT   0.5
+  [attr diffuse_imageRemapGain]
+    desc                        STRING "diffuse_imageRemapGain"
+    houdini.label               STRING "diffuse_imageRemapGain"
+    default                     FLOAT   0.5
+  [attr highlight_imageRemapBias]
+    desc                        STRING "highlight_imageRemapBias"
+    houdini.label               STRING "highlight_imageRemapBias"
+    default                     FLOAT   0.5
+  [attr highlight_imageRemapGain]
+    desc                        STRING "highlight_imageRemapGain"
+    houdini.label               STRING "highlight_imageRemapGain"
+    default                     FLOAT   0.5
+  [attr rimlight_imageRemapBias]
+    desc                        STRING "rimlight_imageRemapBias"
+    houdini.label               STRING "rimlight_imageRemapBias"
+    default                     FLOAT   0.5
+  [attr rimlight_imageRemapGain]
+    desc                        STRING "rimlight_imageRemapGain"
+    houdini.label               STRING "rimlight_imageRemapGain"
+    default                     FLOAT   0.5
+  [attr output_imageOnUV]
+    desc                        STRING "output_imageOnUV"
+    houdini.label               STRING "output_imageOnUV"
+    default                     BOOL    False
+  [attr opacity]
+    desc                        STRING "opacity"
+    houdini.label               STRING "opacity"
+    default                     RGB     1 1 1
+  [attr normalizeObjectID]
+    desc                        STRING "normalizeObjectID"
+    houdini.label               STRING "normalizeObjectID"
+    default                     BOOL    True
+  [attr ambient_noInternal]
+    desc                        STRING "ambient_noInternal"
+    houdini.label               STRING "ambient_noInternal"
+    default                     BOOL    True
+  [attr diffuse_noInternal]
+    desc                        STRING "diffuse_noInternal"
+    houdini.label               STRING "diffuse_noInternal"
+    default                     BOOL    True
+  [attr highlight_noInternal]
+    desc                        STRING "highlight_noInternal"
+    houdini.label               STRING "highlight_noInternal"
+    default                     BOOL    True
+  [attr rimlight_noInternal]
+    desc                        STRING "rimlight_noInternal"
+    houdini.label               STRING "rimlight_noInternal"
+    default                     BOOL    True
+  [attr diffuse_linearDot]
+    desc                        STRING "diffuse_linearDot"
+    houdini.label               STRING "diffuse_linearDot"
+    default                     BOOL    False
+  [attr diffuse_linearDot]
+    desc                        STRING "diffuse_linearDot"
+    houdini.label               STRING "diffuse_linearDot"
+    default                     BOOL    False
+  [attr highlight_linearDot]
+    desc                        STRING "highlight_linearDot"
+    houdini.label               STRING "highlight_linearDot"
+    default                     BOOL    False
+  [attr rimlight_linearDot]
+    desc                        STRING "rimlight_linearDot"
+    houdini.label               STRING "rimlight_linearDot"
+    default                     BOOL    False
+  [attr diffuse_shaderInput]
+    desc                        STRING "diffuse_shaderInput"
+    houdini.label               STRING "diffuse_shaderInput"
+    default                     RGB     0 0 0
+  [attr highlight_shaderInput]
+    desc                        STRING "highlight_shaderInput"
+    houdini.label               STRING "highlight_shaderInput"
+    default                     RGB     0 0 0
+  [attr global_remapMode]
+    desc                        STRING "global_remapMode"
+    houdini.label               STRING "global_remapMode"
+    default                     INT     2
+  [attr global_remapMultByColor]
+    desc                        STRING "global_remapMultByColor"
+    houdini.label               STRING "global_remapMultByColor"
+    default                     BOOL    False
+  [attr global_clamp]
+    deesc                        STRING "global_clamp"
+    default                     BOOL    False
+
+[node Obq_ToonSimple]
+  maya.name                     STRING "Obq_ToonSimple"
+  maya.id                       INT     0x0011CD56
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_ToonSimple"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ToonSimple.html"
+
+  [attr global_compMode]
+    desc                        STRING "Compositing"
+    houdini.label               STRING "Compositing"
+    default                     INT     1
+  [attr multByLightColor]
+    desc                        STRING "Multiply by Light Color"
+    houdini.label               STRING "Multiply by Light Color"
+    default                     BOOL    True
+  [attr ambient_color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr ambient_scale]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     FLOAT   0
+  [attr ambient_multAmbience]
+    desc                        STRING "Multiply by scene ambience"
+    houdini.label               STRING "Multiply by scene ambience"
+    default                     BOOL    False
+  [attr diffuse_color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr diffuse_scale]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     FLOAT   1
+  [attr diffuse_coverage]
+    desc                        STRING "Coverage"
+    houdini.label               STRING "Coverage"
+    default                     FLOAT   1
+  [attr diffuse_softness]
+    desc                        STRING "Softness"
+    houdini.label               STRING "Softness"
+    default                     FLOAT   1
+  [attr highlight_color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr highlight_scale]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     FLOAT   0
+  [attr highlight_exponent]
+    desc                        STRING "Exponent"
+    houdini.label               STRING "Exponent"
+    default                     FLOAT   50
+  [attr highlight_coverage]
+    desc                        STRING "Coverage"
+    houdini.label               STRING "Coverage"
+    default                     FLOAT   1
+  [attr highlight_softness]
+    desc                        STRING "Softness"
+    houdini.label               STRING "Softness"
+    default                     FLOAT   1
+  [attr rimlight_color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr rimlight_scale]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     FLOAT   0
+  [attr rimlight_coverage]
+    desc                        STRING "Coverage"
+    houdini.label               STRING "Coverage"
+    default                     FLOAT   1
+  [attr rimlight_softness]
+    desc                        STRING "Softness"
+    default                     FLOAT   1
+  [attr ambient_fb_str]
+    desc                        STRING "Ambient"
+    houdini.label               STRING "Ambient"
+  [attr diffuse_fb_str]
+    desc                        STRING "Diffuse"
+    houdini.label               STRING "Diffuse"
+  [attr highlight_fb_str]
+    desc                        STRING "Highlight"
+    houdini.label               STRING "Highlight"
+  [attr rimlight_fb_str]
+    desc                        STRING "Rimlight"
+    houdini.label               STRING "Rimlight"
+  [attr contour_fb_str]
+    desc                        STRING "Contour"
+    houdini.label               STRING "Contour"
+  [attr putAlphaInFb]
+    desc                        STRING "Set Alpha to Over Alpha"
+    houdini.label               STRING "Set Alpha to Over Alpha"
+    default                     BOOL    False
+  [attr opacity]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr normalizeObjectID]
+    desc                        STRING "Normalize Object ID in Contour"
+    houdini.label               STRING "Normalize Object ID in Contour"
+    default                     BOOL    True 
+   [attr AOVprefix]
+    desc                        STRING "with prefix"
+    houdini.label               STRING "with prefix"
+    default                     STRING "ot"
+  [attr ambient_noInternal]
+    desc                        STRING "No Internal Ambient"
+    houdini.label               STRING "No Internal Ambient"
+    default                     BOOL    True
+  [attr diffuse_noInternal]
+    desc                        STRING "No Internal Diffuse"
+    houdini.label               STRING "No Internal Diffuse"
+    default                     BOOL    True
+   [attr highlight_noInternal]
+    desc                        STRING "No Internal Highlight"
+    houdini.label               STRING "No Internal Highlight"
+    default                     BOOL    True
+   [attr rimlight_noInternal]
+    desc                        STRING "No Internal Rimlight"
+    houdini.label               STRING "No Internal Rimlight"
+    default                     BOOL    True
+   [attr global_clamp]
+    desc                        STRING "Clamp Before Compositing"
+    houdini.label               STRING "Clamp Before Compositing"
+    default                     BOOL    False
+
+[node Obq_TransformUV]
+  maya.name                     STRING "Obq_TransformUV"
+  maya.id                       INT     0x0011CD57
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_TransformUV"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformUV.html"
+  
+  [attr tex]
+    desc                        STRING "Image"
+    houdini.label               STRING "Image"
+    default                     RGB     0 0 0
+  [attr mode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    default                     INT     4
+  [attr scaleX]
+    desc                        STRING "Scale X"
+    houdini.label               STRING "Scale X"
+    default                     FLOAT   1
+  [attr scaleY]
+    desc                        STRING "Scale Y"
+    houdini.label               STRING "Scale Y"
+    default                     FLOAT   1
+   [attr rotate]
+    desc                        STRING "Rotate"
+    houdini.label               STRING "Rotate"
+    default                     FLOAT   0
+  [attr translateX]
+    desc                        STRING "Translate X"
+    houdini.label               STRING "Translate X"
+    default                     FLOAT   0
+  [attr translateY]
+    desc                        STRING "Translate Y"
+    houdini.label               STRING "Translate Y"
+    default                     FLOAT   0
+  [attr pivotX]
+    desc                        STRING "Pivot X"
+    houdini.label               STRING "Pivot X"
+    default                     FLOAT   0.5
+  [attr pivotY]
+    desc                        STRING "Pivot Y"
+    houdini.label               STRING "Pivot Y"
+    default                     FLOAT   0.5
+
+[node Obq_UVRemapLensDistortion]
+  maya.name                     STRING "Obq_UVRemapLensDistortion"
+  maya.id                       INT     0x0011CD58
+  maya.classification           STRING "shader/surface"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_UVRemapLensDistortion"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_UVRemapLensDistortion.html"
+
+[node Obq_VolumeThickness]
+  maya.name                     STRING "Obq_VolumeThickness"
+  maya.id                       INT     0x0011CD59
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_VolumeThickness"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_VolumeThickness.html"
+
+#    [attr colorIn]
+#        desc                        STRING "Color In"
+#        houdini.label               STRING "Color In"
+#        default                     RGB 0 0 0
+  [attr emissionColor]
+    desc                        STRING "Emission Color"
+    houdini.label               STRING "Emission Color"
+    default                     RGB     0 0 0
+  [attr alphaMode]
+    desc                        STRING "Alpha Mode"
+    houdini.label               STRING "Alpha Mode"
+    default                     INT     0
+  [attr alpha]
+    desc                        STRING "Alpha"
+    houdini.label               STRING "Alpha"
+    default                     FLOAT   0
+  [attr thicknessMode]
+    desc                        STRING "Thickness Mode"
+    houdini.label               STRING "Thickness Mode"
+    default                     FLOAT   0
+  [attr accumulatedThicknessThreshold]
+    desc                        STRING "Accumulated Thickness Threshold"
+    houdini.label               STRING "Accumulated Thickness Threshold"
+    default                     FLOAT   1
+  [attr radius]
+    desc                        STRING "Radius"
+    houdini.label               STRING "Radius"
+    default                     FLOAT   1
+  [attr exponent]
+    desc                        STRING "Exponent"
+    houdini.label               STRING "Exponent"
+    default                     FLOAT   1
+  [attr useAbsorption]
+    desc                        STRING "Use Absorption"
+    houdini.label               STRING "Use Absorption"
+    default                     BOOL    False
+  [attr absorption]
+    desc                        STRING "Absorption"
+    houdini.label               STRING "Absorption"
+    default                     FLOAT   0
+  [attr diffuseMode]
+    desc                        STRING "Diffuse Mode"
+    houdini.label               STRING "Diffuse Mode"
+    default                     INT     3
+   [attr autoTransparencyMode]
+    desc                        STRING "Auto Transparency Mode"
+    houdini.label               STRING "Auto Transparency Mode"
+    default                     INT     0
+   [attr shadowModifier]
+    desc                        STRING "Shadow Modifier"
+    houdini.label               STRING "Shadow Modifier"
+    default                     FLOAT   1
+   [attr lightPropagationDistance]
+    desc                        STRING "Light Propagation Distance"
+    houdini.label               STRING "Light Propagation Distance"
+    default                     FLOAT   0.1
+  [attr doubleHemisphericalDiffuse]
+    desc                        STRING "Double Hemispherical Diffuse"
+    houdini.label               STRING "Double Hemispherical Diffuse"
+    default                     BOOL    True
+  [attr lightPropagationDistanceDiffuse]
+    desc                        STRING "Light Propagation Distance Diffuse"
+    houdini.label               STRING "Light Propagation Distance Diffuse"
+    default                     FLOAT   0.1
+
+[node Obq_LensDistortion]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD5A
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_LensDistortion"
+  
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_LensDistortion"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html"
+  
+  [attr is_perspective]
+    default                     BOOL   True
+  [attr useDof]
+    desc                        STRING "Enable"
+    houdini.label               STRING "Enable"
+    default                     BOOL    False
+  [attr focusDistance]
+    desc                        STRING "Distance"
+    houdini.label               STRING "Distance"
+    default                     FLOAT   100
+  [attr apertureSize]
+    desc                        STRING "Size"
+    houdini.label               STRING "Size"
+    default                     FLOAT   0.1
+  [attr apertureAspectRatio]
+    desc                        STRING "Aspect Ratio"
+    houdini.label               STRING "Aspect Ratio"
+    default                     FLOAT   1
+  [attr usePolygonalAperture]
+    desc                        STRING "Polygonal Aperture"
+    houdini.label               STRING "Polygonal Aperture"
+    default                     BOOL    True
+  [attr apertureBlades]
+    desc                        STRING "Blades"
+    houdini.label               STRING "Blades"
+    default                     INT     5
+  [attr apertureBladeCurvature]
+    desc                        STRING "Blade Curvature"
+    houdini.label               STRING "Blade Curvature"
+    default                     FLOAT   0
+  [attr apertureRotation]
+    desc                        STRING "Rotation"
+    houdini.label               STRING "Rotation"
+    default                     FLOAT   0
+  [attr focusPlaneIsPlane]
+    desc                        STRING "Focus Plane is a Plane"
+    houdini.label               STRING "Focus Plane is a Plane"
+    default                     BOOL    True
+  [attr bokehInvert]
+    desc                        STRING "Invert"
+    houdini.label               STRING "Invert"
+    default                     BOOL    False
+  [attr bokehBias]
+    desc                        STRING "Bias"
+    houdini.label               STRING "Bias"
+    default                     FLOAT   0.5
+  [attr bokehGain]
+    desc                        STRING "Gain"
+    houdini.label               STRING "Gain"
+    default                     FLOAT   0.5
+  [attr distortionModel]
+    desc                        STRING "Distortion Model"
+    houdini.label               STRING "Distortion Model"
+    default                     INT     0
+  [attr k1]
+    desc                        STRING "k1"
+    houdini.label               STRING "k1"
+    default                     FLOAT   0
+  [attr k2]
+    desc                        STRING "k2"
+    houdini.label               STRING "k2"
+    default                     FLOAT   0
+  [attr centerX]
+    desc                        STRING "Center X"
+    houdini.label               STRING "Center X"
+    default                     FLOAT   0
+  [attr centerY]
+    desc                        STRING "Center Y"
+    houdini.label               STRING "Center Y"
+    default                     FLOAT   0
+  [attr anamorphicSqueeze]
+    desc                        STRING "Anamorphic Squeeze"
+    houdini.label               STRING "Anamorphic Squeeze"
+    default                     FLOAT   1
+  [attr asymmetricDistortionX]
+    desc                        STRING "Asymmetric Distortion X"
+    houdini.label               STRING "Asymmetric Distortion X"
+    default                     FLOAT   0
+  [attr asymmetricDistortionY]
+    desc                        STRING "Asymmetric Distortion Y"
+    houdini.label               STRING "Asymmetric Distortion Y"
+    default                     FLOAT   0
+  [attr centerX3DEq]
+    desc                        STRING "CenterX 3DEq"
+    houdini.label               STRING "CenterX 3DEq"
+    default                     FLOAT   0
+  [attr centerY3DEq]
+    desc                        STRING "CenterY 3DEq"
+    houdini.label               STRING "CenterY 3DEq"
+    default                     FLOAT   0
+  [attr filmbackX3DEq]
+    desc                        STRING "Filmback X 3DEq"
+    houdini.label               STRING "Filmback X 3DEq"
+    default                     FLOAT   0.3465
+  [attr filmbackY3DEq]
+    desc                        STRING "Filmback Y 3DEq"
+    houdini.label               STRING "Filmback Y 3DEq"
+    default                     FLOAT   0.1949
+  [attr pixelRatio3DEq]
+    desc                        STRING "Pixel Ratio 3DEq"
+    houdini.label               STRING "Pixel Ratio 3DEq"
+    default                     FLOAT   1
+  [attr c3dc00]
+    desc                        STRING "c3dc00"
+    houdini.label               STRING "c3dc00"
+    default                     FLOAT   0
+  [attr c3dc01]
+    desc                        STRING "c3dc01"
+    houdini.label               STRING "c3dc01"
+    default                     FLOAT   1
+  [attr c3dc02]
+    desc                        STRING "c3dc02"
+    houdini.label               STRING "c3dc02"
+    default                     FLOAT   0
+  [attr c3dc03]
+    desc                        STRING "c3dc03"
+    houdini.label               STRING "c3dc03"
+    default                     FLOAT   0
+  [attr c3dc04]
+    desc                        STRING "c3dc04"
+    houdini.label               STRING "c3dc04"
+    default                     FLOAT   0
+  [attr ana6c00]
+    desc                        STRING "ana6c00"
+    houdini.label               STRING "ana6c00"
+    default                     FLOAT   0
+  [attr ana6c01]
+    desc                        STRING "ana6c01"
+    houdini.label               STRING "ana6c01"
+    default                     FLOAT   0
+  [attr ana6c02]
+    desc                        STRING "ana6c02"
+    houdini.label               STRING "ana6c02"
+    default                     FLOAT   0
+  [attr ana6c03]
+    desc                        STRING "ana6c03"
+    houdini.label               STRING "ana6c03"
+    default                     FLOAT   0
+  [attr ana6c04]
+    desc                        STRING "ana6c04"
+    houdini.label               STRING "ana6c04"
+    default                     FLOAT   0
+  [attr ana6c05]
+    desc                        STRING "ana6c05"
+    houdini.label               STRING "ana6c05"
+    default                     FLOAT   0
+  [attr ana6c06]
+    desc                        STRING "ana6c06"
+    houdini.label               STRING "ana6c06"
+    default                     FLOAT   0
+  [attr ana6c07]
+    desc                        STRING "ana6c07"
+    houdini.label               STRING "ana6c07"
+    default                     FLOAT   0
+  [attr ana6c08]
+    desc                        STRING "ana6c08"
+    houdini.label               STRING "ana6c08"
+    default                     FLOAT   0
+  [attr ana6c09]
+    desc                        STRING "ana6c09"
+    houdini.label               STRING "ana6c09"
+    default                     FLOAT   0
+  [attr ana6c10]
+    desc                        STRING "ana6c10"
+    houdini.label               STRING "ana6c10"
+    default                     FLOAT   0
+  [attr ana6c11]
+    desc                        STRING "ana6c11"
+    houdini.label               STRING "ana6c11"
+    default                     FLOAT   0
+  [attr ana6c12]
+    desc                        STRING "ana6c12"
+    houdini.label               STRING "ana6c12"
+    default                     FLOAT   0
+  [attr ana6c13]
+    desc                        STRING "ana6c13"
+    houdini.label               STRING "ana6c13"
+    default                     FLOAT   0
+  [attr ana6c14]
+    desc                        STRING "ana6c14"
+    houdini.label               STRING "ana6c14"
+    default                     FLOAT   0
+  [attr ana6c15]
+    desc                        STRING "ana6c15"
+    houdini.label               STRING "ana6c15"
+    default                     FLOAT   0
+  [attr ana6c16]
+    desc                        STRING "ana6c16"
+    houdini.label               STRING "ana6c16"
+    default                     FLOAT   0
+  [attr ana6c17]
+    desc                        STRING "ana6c17"
+    houdini.label               STRING "ana6c17"
+    default                     FLOAT   0
+  [attr fish8c00]
+    desc                        STRING "fish8c00"
+    houdini.label               STRING "fish8c00"
+    default                     FLOAT   0
+  [attr fish8c01]
+    desc                        STRING "fish8c01"
+    houdini.label               STRING "fish8c01"
+    default                     FLOAT   0
+  [attr fish8c02]
+    desc                        STRING "fish8c02"
+    houdini.label               STRING "fish8c02"
+    default                     FLOAT   0
+  [attr fish8c03]
+    desc                        STRING "fish8c03"
+    houdini.label               STRING "fish8c03"
+    default                     FLOAT   0
+  [attr stand4c00]
+    desc                        STRING "stand4c00"
+    houdini.label               STRING "stand4c00"
+    default                     FLOAT   0
+  [attr stand4c01]
+    desc                        STRING "stand4c01"
+    houdini.label               STRING "stand4c01"
+    default                     FLOAT   0
+  [attr stand4c02]
+    desc                        STRING "stand4c02"
+    houdini.label               STRING "stand4c02"
+    default                     FLOAT   0
+  [attr stand4c03]
+    desc                        STRING "stand4c03"
+    houdini.label               STRING "stand4c03"
+    default                     FLOAT   0
+  [attr stand4c04]
+    desc                        STRING "stand4c04"
+    houdini.label               STRING "stand4c04"
+    default                     FLOAT   0
+  [attr stand4c05]
+    desc                        STRING "stand4c05"
+    houdini.label               STRING "stand4c05"
+    default                     FLOAT   0
+  [attr raddec4c00]
+    desc                        STRING "raddec4c00"
+    houdini.label               STRING "raddec4c00"
+    default                     FLOAT   0
+  [attr raddec4c01]
+    desc                        STRING "raddec4c01"
+    houdini.label               STRING "raddec4c01"
+    default                     FLOAT   0
+  [attr raddec4c02]
+    desc                        STRING "raddec4c02"
+    houdini.label               STRING "raddec4c02"
+    default                     FLOAT   0
+  [attr raddec4c03]
+    desc                        STRING "raddec4c03"
+    houdini.label               STRING "raddec4c03"
+    default                     FLOAT   0
+  [attr raddec4c04]
+    desc                        STRING "raddec4c04"
+    houdini.label               STRING "raddec4c04"
+    default                     FLOAT   0
+  [attr raddec4c05]
+    desc                        STRING "raddec4c05"
+    houdini.label               STRING "raddec4c05"
+    default                     FLOAT   0
+  [attr raddec4c06]
+    desc                        STRING "raddec4c06"
+    houdini.label               STRING "raddec4c06"
+    default                     FLOAT   0
+  [attr raddec4c07]
+    desc                        STRING "raddec4c07"
+    houdini.label               STRING "raddec4c07"
+    default                     FLOAT   0
+  [attr ana4c00]
+    desc                        STRING "ana4c00"
+    houdini.label               STRING "ana4c00"
+    default                     FLOAT   0
+  [attr ana4c01]
+    desc                        STRING "ana4c01"
+    houdini.label               STRING "ana4c01"
+    default                     FLOAT   0
+  [attr ana4c02]
+    desc                        STRING "ana4c02"
+    houdini.label               STRING "ana4c02"
+    default                     FLOAT   0
+  [attr ana4c03]
+    desc                        STRING "ana4c03"
+    houdini.label               STRING "ana4c03"
+    default                     FLOAT   0
+  [attr ana4c04]
+    desc                        STRING "ana4c04"
+    houdini.label               STRING "ana4c04"
+    default                     FLOAT   0
+  [attr ana4c05]
+    desc                        STRING "ana4c05"
+    houdini.label               STRING "ana4c05"
+    default                     FLOAT   0
+  [attr ana4c06]
+    desc                        STRING "ana4c06"
+    houdini.label               STRING "ana4c06"
+    default                     FLOAT   0
+  [attr ana4c07]
+    desc                        STRING "ana4c07"
+    houdini.label               STRING "ana4c07"
+    default                     FLOAT   0
+  [attr ana4c08]
+    desc                        STRING "ana4c08"
+    houdini.label               STRING "ana4c08"
+    default                     FLOAT   0
+  [attr ana4c09]
+    desc                        STRING "ana4c09"
+    houdini.label               STRING "ana4c09"
+    default                     FLOAT   0
+  [attr ana4c10]
+    desc                        STRING "ana4c10"
+    houdini.label               STRING "ana4c10"
+    default                     FLOAT   0
+  [attr ana4c11]
+    desc                        STRING "ana4c11"
+    houdini.label               STRING "ana4c11"
+    default                     FLOAT   1
+  [attr ana4c12]
+    desc                        STRING "ana4c12"
+    houdini.label               STRING "ana4c12"
+    default                     FLOAT   1
+  [attr focal3DEq]
+    desc                        STRING "Focal 3DEq"
+    houdini.label               STRING "Focal 3DEq"
+    default                     FLOAT   5
+  [attr focusDistance3DEq]
+    desc                        STRING "Focus Distance 3DEq"
+    houdini.label               STRING "Focus Distance 3DEq"
+    default                     FLOAT   100
+  [attr pfC3]
+    desc                        STRING "pfC3"
+    houdini.label               STRING "pfC3"
+    default                     FLOAT   0
+  [attr pfC5]
+    desc                        STRING "pfC5"
+    houdini.label               STRING "pfC5"
+    default                     FLOAT   0
+  [attr pfSqueeze]
+    desc                        STRING "pf Squeeze"
+    houdini.label               STRING "pf Squeeze"
+    default                     FLOAT   1
+  [attr pfXp]
+    desc                        STRING "pfXp"
+    houdini.label               STRING "pfXp"
+    default                     FLOAT   0.5
+  [attr pfYp]
+    desc                        STRING "pfYp"
+    houdini.label               STRING "pfYp"
+    default                     FLOAT   0.5
+  [attr fov]
+    desc                        STRING "fov"
+    houdini.label               STRING "fov"
+  # [attr position]
+    # desc                        STRING "position"
+    # houdini.label               STRING "position"
+    # default                     POINT   0 0 0
+  # [attr look_at]
+    # desc                        STRING "look_at"
+    # houdini.label               STRING "look_at"
+    # default                     POINT   0 0 -1
+  # [attr up]
+    # desc                        STRING "up"
+    # houdini.label               STRING "up"
+    # default                     VECTOR  0 1 0
+  # [attr matrix]
+    # desc                        STRING "matrix"
+    # houdini.label               STRING "matrix"
+  # [attr near_clip]
+    # desc                        STRING "near_clip"
+    # houdini.label               STRING "near_clip"
+    # default                     FLOAT   0.0001
+  # [attr far_clip]
+    # desc                        STRING "far_clip"
+    # houdini.label               STRING "far_clip"
+    # default                     FLOAT   1e+030
+  # [attr shutter_start]
+    # desc                        STRING "shutter_start"
+    # houdini.label               STRING "shutter_start"
+    # default                     FLOAT   0
+  # [attr shutter_end]
+    # desc                        STRING "shutter_end"
+    # houdini.label               STRING "shutter_end"
+    # default                     FLOAT   0
+  # [attr shutter_type]
+    # desc                        STRING "shutter_type"
+    # houdini.label               STRING "shutter_type"
+  # [attr shutter_curve]
+    # desc                        STRING "shutter_curve"
+    # houdini.label               STRING "shutter_curve"
+  # [attr rolling_shutter]
+    # desc                        STRING "rolling_shutter"
+    # houdini.label               STRING "rolling_shutter"
+  # [attr rolling_shutter_duration]
+    # desc                        STRING "rolling_shutter_duration"
+    # houdini.label               STRING "rolling_shutter_duration"
+    # default                     FLOAT   0
+  # [attr filtermap]
+    # desc                        STRING "filtermap"
+    # houdini.label               STRING "filtermap"
+  # [attr handedness]
+    # desc                        STRING "handedness"
+    # houdini.label               STRING "handedness"
+  # [attr time_samples]
+    # desc                        STRING "time_samples"            
+    # houdini.label               STRING "time_samples"            
+  # [attr screen_window_min]
+    # desc                        STRING "screen_window_min"
+    # houdini.label               STRING "screen_window_min"
+    # default                     POINT2  -1 -1
+  # [attr screen_window_max]
+    # desc                        STRING "screen_window_max"
+    # houdini.label               STRING "screen_window_max"
+    # default                     POINT2  1 1
+  # [attr exposure]
+    # desc                        STRING "exposure"
+    # houdini.label               STRING "exposure"
+    # default                     FLOAT   0
+
+[node Obq_CameraProjectionSpace]
+  maya.name                     STRING "Obq_CameraProjectionSpace"
+  maya.id                       INT     0x0011CD5B
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_ChangeRange"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_CameraProjectionSpace.html"
+
+  [attr use_render_camera]
+    desc                        STRING "Use Render Camera"
+    houdini.label               STRING "Use Render Camera"
+    default                     BOOL    True
+  [attr projection_camera]
+    desc                        STRING "Projection Camera"
+    houdini.label               STRING "Projection Camera"
+    default                     STRING ""
+  [attr camera_aspect_ratio]
+    desc                        STRING "Camera Aspect Ratio"
+    houdini.label               STRING "Camera Aspect Ratio"
+    default                     FLOAT   1
+
+[node Obq_Color]
+  maya.name                     STRING "Obq_Color"
+  maya.id                       INT     0x0011CD5C
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outColor"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_Color"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Color.html"
+  
+  [attr color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+
+
+[node Obq_RandomID]
+  maya.name                     STRING "Obq_RandomID"
+  maya.id                       INT     0x0011CD5D
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_RandomID"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomID.html"
+
+  [attr randMax]
+    desc                        STRING "Number of values"
+    houdini.label               STRING "Number of values"
+    default                     INT     8
+    min                         INT     1
+    max                         INT     16
+    maya.channelbox             BOOL    True
+  [attr seed]
+    desc                        STRING "Seed"
+    houdini.label               STRING "Seed"
+    default                     INT     13
+    min                         INT     1
+    maya.channelbox             BOOL    True
+  [attr stripModelName]
+    desc                        STRING "Strip Model Name"
+    houdini.label               STRING "Strip Model Name"
+    label                       STRING "Model"    
+    default                     BOOL    True
+  [attr stripFrameNumber]
+    desc                        STRING "Strip Frame Number"
+    houdini.label               STRING "Strip Frame Number"
+    label                       STRING "Frame"    
+    default                     BOOL    True
+  [attr stripInstanceFrameNumber]
+    desc                        STRING "Strip Instances Frame Number"
+    houdini.label               STRING "Strip Instances Frame Number"
+    label                       STRING "Frame"    
+    default                     BOOL    True
+  [attr stripInstanceID]
+    desc                        STRING "Strip Instances ID"
+    houdini.label               STRING "Strip Instances ID"
+    label                       STRING "ID"    
+    default                     BOOL    False
+  [attr stripInstanceShape]
+    desc                        STRING "Strip Instances Shape"
+    houdini.label               STRING "Strip Instances Shape"
+    label                       STRING "Shape"    
+    default                     BOOL    False
+
+[node Obq_RayDepth]
+  maya.name                     STRING "Obq_RayDepth"
+  maya.id                       INT     0x0011CD5E
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_RayDepth"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RayDepth.html"
+  [attr type]
+    desc                        STRING "Type"
+    houdini.label               STRING "Type"
+    default                     INT     0
+
+# -----------------------------------------
+# New Obq nodes added in v303 - 2014-11-30     
+# -----------------------------------------    
+
+[node Obq_ColorspaceConverter] 
+  maya.name                     STRING "Obq_ColorspaceConverter"
+  maya.id                       INT     0x0011CD5F
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_ColorspaceConverter"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ColorspaceConverter.html"
+
+  [attr color]
+    desc                        STRING "Color"    
+    houdini.label               STRING "Color"    
+    default                     RGB     1 1 1
+  [attr csGammaIn]
+    desc                        STRING "Gamma In"
+    houdini.label               STRING "Gamma In"
+    default                     INT     3
+    min                         INT     0
+    max                         INT     6
+  [attr csGammaOut]
+    desc                        STRING "Gamma Out"
+    houdini.label               STRING "Gamma Out"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     6
+  [attr csIlluminantIn]
+    desc                        STRING "Illuminant In"
+    houdini.label               STRING "Illuminant In"
+    default                     INT     5
+    min                         INT     0
+    max                         INT     11
+  [attr csIlluminantOut]
+    desc                        STRING "Illuminant Out"
+    houdini.label               STRING "Illuminant Out"
+    default                     INT     5
+    min                         INT     0
+    max                         INT     11
+  [attr csPrimariesIn]
+    desc                        STRING "Primaries In"
+    houdini.label               STRING "Primaries In"
+    default                     INT     15
+    min                         INT     0
+    max                         INT     19
+  [attr csPrimariesOut]
+    desc                        STRING "Primaries Out"
+    houdini.label               STRING "Primaries Out"
+    default                     INT     15
+    min                         INT     0
+    max                         INT     19
+  [attr switchInOut]
+    desc                        STRING "Switch In and Out"
+    houdini.label               STRING "Switch In and Out"
+    default                     BOOL    False
+  [attr useBradford]
+    desc                        STRING "Use Bradford chromatic adaptation matrix"
+    houdini.label               STRING "Use Bradford chromatic adaptation matrix"
+    default                     BOOL    True
+  [attr clamp]
+    desc                        STRING "Clamp"
+    houdini.label               STRING "Clamp"
+    default                     BOOL    True
+  
+[node Obq_MessageSetFlt]
+  maya.name                     STRING "Obq_MessageSetFlt"
+  maya.id                       INT     0x0011CD60
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetFlt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetFlt.html"
+  
+  [attr passthrough]
+    desc                        STRING "Passthrough"
+    houdini.label               STRING "Passthrough"
+    default                     RGB     1 1 1
+  [attr key]
+    desc                        STRING "Key"
+    houdini.label               STRING "Key"
+    default                     STRING "01"
+  [attr value]
+    desc                        STRING "Value"
+    houdini.label               STRING "Value"
+    default                     FLOAT   0
+    softmin                     FLOAT  -1.0
+    softmax                     FLOAT   1.0
+  [attr setAfter]
+    desc                        STRING "Set value after passthrough evaluation"
+    houdini.label               STRING "Set value after passthrough evaluation"
+    default                     BOOL    False
+    
+[node Obq_MessageStoreFlt]
+  maya.name                     STRING "Obq_MessageStoreFlt"
+  maya.id                       INT     0x0011CD61
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreFlt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreFlt.html"
+   
+  [attr passthrough]
+    desc                        STRING "Passthrough"
+    houdini.label               STRING "Passthrough"
+    default                     RGB     1 1 1
+  [attr key]
+    desc                        STRING "Key"
+    houdini.label               STRING "Key"
+    default                     STRING "01"
+  [attr defaultValue]
+    desc                        STRING "Default Value"
+    houdini.label               STRING "Default Value"
+    default                     FLOAT   0
+    softmin                     FLOAT  -1.0
+    softmax                     FLOAT   1.0
+  [attr AOVName]
+    desc                        STRING "Store In"
+    houdini.label               STRING "Store In"
+    default                     STRING ""
+  [attr storeAfter]
+    desc                        STRING "Store value after passthrough evaluation"
+    houdini.label               STRING "Store value after passthrough evaluation"
+    default                     BOOL    True
+
+  
+[node Obq_SetAlpha]
+  maya.name                     STRING "Obq_SetAlpha"
+  maya.id                       INT     0x0011CD62
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_SetAlpha"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SetAlpha.html"
+
+[node Obq_SpectrumColor]
+  maya.name                     STRING "Obq_SpectrumColor"
+  maya.id                       INT     0x0011CD63
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_SpectrumColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SpectrumColor.html"
+  
+  [attr color]
+    desc                        STRING "Color"
+    houdini.label               STRING "Color"
+    default                     RGB     1 1 1
+  [attr alpha]
+    desc                        STRING "Alpha"  
+    houdini.label               STRING "Alpha"  
+    default                     FLOAT   1.0
+
+    
+[node Obq_TransformShadingPoint]
+  maya.name                     STRING "Obq_TransformShadingPoint"
+  maya.id                       INT     0x0011CD64
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_TransformShadingPoint"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformShadingPoint.html"
+  
+  [attr passthrough]
+    desc                        STRING "Passthrough"
+    houdini.label               STRING "Passthrough"
+    default                     RGB     1 1 1
+  [attr coordinates]
+    desc                        STRING "Coordinates"
+    houdini.label               STRING "Coordinates"
+    default                     INT     0
+  [attr transforms]
+    desc                        STRING "Transforms"
+    houdini.label               STRING "Transforms"
+  [attr scale]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     VECTOR  1 1 1
+  [attr rotation]
+    desc                        STRING "Scale"
+    houdini.label               STRING "Scale"
+    default                     VECTOR  0 0 0
+  [attr translation]
+    desc                        STRING "Translation"
+    houdini.label               STRING "Translation"
+    default                     VECTOR  0 0 0
+  [attr invert]
+    desc                        STRING "Invert"
+    houdini.label               STRING "Invert"
+    default                     BOOL    True
+  [attr mode]
+    desc                        STRING "Mode"
+    houdini.label               STRING "Mode"
+    default                     INT     0
+  [attr rotationOrder]
+    desc                        STRING "Rotation Order"
+    houdini.label               STRING "Rotation Order"
+    default                     INT     0
+
+    
+[node Obq_KettleUVStereoLens]
+  maya.name                     STRING "camera"
+  maya.id                       INT     0x0011CD65
+  maya.classification           STRING "shader/surface"
+  maya.type                     STRING "camera"
+  maya.translator               STRING "Obq_KettleUVStereoLens"
+  
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_KettleUVStereoLens"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html"
+  houdini.order                 STRING ""
+  
+  [attr is_perspective]
+    default                     BOOL    True
+  [attr origin_polymesh]
+    desc                        STRING "Origin Polymesh"
+    houdini.label               STRING "Origin Polymesh"
+    default                     STRING ""  
+  [attr origin_camera]
+    desc                        STRING "Origin Camera"
+    houdini.label               STRING "Origin Camera"
+    default                     STRING ""
+  [attr target_polymesh]
+    desc                        STRING "Target Polymesh"
+    houdini.label               STRING "Target Polymesh"
+    default                     STRING ""
+  [attr target_camera]
+    desc                        STRING "Target Camera"
+    houdini.label               STRING "Target Camera"
+    default                     STRING ""
+  # [attr polymeshes_status]
+    # desc                        STRING "Status"
+    # houdini.label               STRING "Status"
+    # default                     STRING "Not initialized"
+  [attr grid_size]
+    desc                        STRING "Grid Size"
+    houdini.label               STRING "Grid Size"
+    default                     INT     16
+    min                         INT     1
+    max                         INT     512
+    softmax                     INT     128
+  [attr view_mode]
+    desc                        STRING "View Mode"
+    houdini.label               STRING "View Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Center;1;Left;2;Right;3;Stereo <Left-Right>;4;Stereo <Down-Up>;5;Bake;6;Normal"
+    default                     INT     2
+    min                         INT     0
+    max                         INT     7
+  [attr stereo_type]
+    desc                        STRING "Stereo Type"
+    houdini.label               STRING "Stereo Type"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Neutral;1;Parallel;2;Converged"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     2
+  [attr interaxial_mode]
+    desc                        STRING "Interaxial Mode"
+    houdini.label               STRING "Interaxial Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Offset in U Coordinates;1;R Dominant, on Mesh (RED);2;R Dominant, not on Mesh (GREEN);3;No Dominance, not on Mesh (BLUE)"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     3
+  [attr interaxial_epsilon]
+    desc                        STRING "Interaxial Separation Epsilon"
+    houdini.label               STRING "Interaxial Separation Epsilon"
+    default                     FLOAT   0.001
+    min                         FLOAT   0.0001
+    max                         FLOAT   0.01
+  [attr interaxial_separation]
+    desc                        STRING "Interaxial Separation"
+    houdini.label               STRING "Interaxial Separation"
+    default                     FLOAT   -0.6
+    softmax                     FLOAT   -1.0
+    softmin                     FLOAT   1.0
+  [attr zero_parallax_mode]
+    desc                        STRING "Zero Parallax Mode"
+    houdini.label               STRING "Zero Parallax Mode"
+    houdini.type                STRING "menu:single:menu"
+    houdini.menu                STRING "0;Use Target Mesh;1;Use Distance"
+    default                     INT     0
+    min                         INT     0
+    max                         INT     1          
+  [attr zero_parallax_distance]
+    desc                        STRING "Zero Parallax Distance"
+    houdini.label               STRING "Zero Parallax Distance"
+    default                     FLOAT   100.0
+    min                         FLOAT   0.0
+    softmax                     FLOAT   200.0
+  # [attr target_resolution_x]
+    # desc                        STRING "Width"
+    # houdini.label               STRING "Width"
+    # default                     INT     1920
+    # min                         INT     1
+    # softmax                     INT     4096
+  # [attr target_resolution_y]
+    # desc                        STRING "Height"
+    # houdini.label               STRING "Height"
+    # default                     INT     1080
+    # min                         INT     1
+    # softmax                     INT     4096
+  # [attr filter_size]
+    # desc                        STRING "Filter Size"
+    # houdini.label               STRING "Filter Size"
+    # default                     FLOAT   3.0
+    # min                         FLOAT   0.0
+    # softmax                     FLOAT   5.0
+  # [attr render_resolution_x]
+    # desc                        STRING "Width"
+    # houdini.label               STRING "Width"
+    # default                     INT     1920
+    # min                         INT     1
+    # softmax                     INT     4096
+  # [attr render_resolution_y]
+    # desc                        STRING "Height"
+    # houdini.label               STRING "Height"
+    # default                     INT     1080
+    # min                         INT     1
+    # softmax                     INT     4096
+  # [attr nuke_crop_info]
+    # desc                        STRING "Nuke Crop"
+    # houdini.label               STRING "Nuke Crop"
+    # default                     STRING "Not Stereo"
+  [attr total_overscan_pixels]
+    desc                        STRING "Total Pixel Overscan"
+    houdini.label               STRING "Total Pixel Overscan"
+    default                     INT     0
+  # [attr update_pass_resolution]
+    # desc                        STRING "Automatic Update of Pass Output Resolution"
+    # houdini.label               STRING "Automatic Update of Pass Output Resolution"
+    # default                     BOOL    True
+  [attr use_render_region]
+    desc                        STRING "Render Region Only"
+    houdini.label               STRING "Render Region Only"
+    default                     BOOL    False
+  [attr regionU0]
+    desc                        STRING "U0"
+    houdini.label               STRING "U0"
+    default                     FLOAT   0.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionV0]
+    desc                        STRING "V0"
+    houdini.label               STRING "V0"
+    default                     FLOAT   0.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionU1]
+    desc                        STRING "U1"
+    houdini.label               STRING "U1"
+    default                     FLOAT   1.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0
+  [attr regionV1]
+    desc                        STRING "V1"
+    houdini.label               STRING "V1"
+    default                     FLOAT   1.0
+    min                         FLOAT   0.0
+    max                         FLOAT   1.0  
+  [attr crop_to_region]
+    desc                        STRING "Crop to Region"
+    houdini.label               STRING "Crop to Region"
+    default                     BOOL    False
+  [attr uv_set_origin]
+    desc                        STRING "UV Set"
+    houdini.label               STRING "UV Set"
+    default                     STRING "DefaultUV"
+  [attr uv_set_target]
+    desc                        STRING "UV Set"
+    houdini.label               STRING "UV Set"
+    default                     STRING "DefaultUV"
+[node Obq_LightSaturationFilter]
+  maya.name                     STRING "Obq_LightSaturationFilter"
+  maya.id                       INT     0x0011CD66
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_LightSaturationFilter"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LightSaturationFilter.html"
+[node Obq_MessageGetBool]
+  maya.name                     STRING "Obq_MessageGetBool"
+  maya.id                       INT     0x0011CD67
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetBool.html"
+[node Obq_MessageGetColor]
+  maya.name                     STRING "Obq_MessageGetColor"
+  maya.id                       INT     0x0011CD68
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetColor.html"
+[node Obq_MessageGetInt]
+  maya.name                     STRING "Obq_MessageGetInt"
+  maya.id                       INT     0x0011CD69
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetInt.html"
+[node Obq_MessageGetVector]
+  maya.name                     STRING "Obq_MessageGetVector"
+  maya.id                       INT     0x0011CD6A
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageGetVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetVector.html"
+  
+  
+  
+[node Obq_MessageSetBool]
+  maya.name                     STRING "Obq_MessageSetBool"
+  maya.id                       INT     0x0011CD6B
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetBool.html"
+[node Obq_MessageSetColor]
+  maya.name                     STRING "Obq_MessageSetColor"
+  maya.id                       INT     0x0011CD6C
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetColor.html"
+[node Obq_MessageSetInt]
+  maya.name                     STRING "Obq_MessageSetInt"
+  maya.id                       INT     0x0011CD6D
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetInt.html"
+[node Obq_MessageSetVector]
+  maya.name                     STRING "Obq_MessageSetVector"
+  maya.id                       INT     0x0011CD6E
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageSetVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetVector.html"
+[node Obq_MessageStoreBool]
+  maya.name                     STRING "Obq_MessageStoreBool"
+  maya.id                       INT     0x0011CD6F
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreBool"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreBool.html"
+[node Obq_MessageStoreColor]
+  maya.name                     STRING "Obq_MessageStoreColor"
+  maya.id                       INT     0x0011CD70
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreColor"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreColor.html"
+[node Obq_MessageStoreInt]
+  maya.name                     STRING "Obq_MessageStoreInt"
+  maya.id                       INT     0x0011CD71
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreInt"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreInt.html"
+[node Obq_MessageStoreVector]
+  maya.name                     STRING "Obq_MessageStoreVector"
+  maya.id                       INT     0x0011CD72
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_MessageStoreVector"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreVector.html"
+[node Obq_NodeInfo]
+  maya.name                     STRING "Obq_NodeInfo"
+  maya.id                       INT     0x0011CD3
+  maya.classification           STRING "shader/surface"
+  maya.output_name              STRING "outValue"
+
+  houdini.category              STRING "OBQShaders"
+  houdini.icon                  STRING "SHOP_surface"
+  houdini.label                 STRING "Obq_NodeInfo"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_NodeInfo.html"
+
+  

@@ -8,21 +8,6 @@ import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
 
-randomIDXtoAModeEnumOp = [
-    (0, 'SItoA'), 
-    (1, 'MtoA'), 
-    (2, 'HtoA'), 
-]
-
-def Obq_RandomIDCreateXtoAMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_RandomIDXtoAMode', attribute=attr, label="Software", 
-                               enumeratedItem=randomIDXtoAModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_RandomIDSetXtoAMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_RandomIDXtoAMode', edit=True, attribute=attr)
-
 def Obq_RandomIDHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_RandomID'
@@ -46,7 +31,6 @@ class AEObq_RandomIDTemplate(ShaderAETemplate):
         Obq_RandomIDHelpURL()
 
         self.beginLayout("Options", collapse=False)
-        self.addCustom("XtoA", Obq_RandomIDCreateXtoAMode, Obq_RandomIDSetXtoAMode)
         self.addControl("randMax", label="Number of values")
         self.addControl("seed", label="Seed")
         self.endLayout() #End Options

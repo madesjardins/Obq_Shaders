@@ -1,0 +1,37 @@
+v209 - win,linux,osx - 	SITOA 2.9.0  & MTOA 0.24.0  - Arnold 4.0.15.1
+v210 - win,linux,osx - 	SITOA 2.10.0 & MTOA 0.25.1  - Arnold 4.0.16.4
+v303 - win,linux,osx - 	SITOA 3.3.0  & MTOA 1.1.2.2 - Arnold 4.2.2.0
+v304 - win,linux,osx - 	SITOA 3.4.0  & MTOA 1.2.0.4 - Arnold 4.2.3.1
+v305 - win,linux,osx - 	SITOA 3.5.0  & MTOA 1.2.1.0 - Arnold 4.2.4.2
+v306 - win,linux,osx - 	SITOA 3.6.0  & MTOA 1.2.2.0 - Arnold 4.2.6.2
+v307 - win,linux,osx - 	SITOA 3.7.0  & MTOA 1.2.3.0 - Arnold 4.2.7.0
+
+FIXES:
+	+ Blended AOVs.
+	+ Obq_Atmosphere : not broken anymore.
+	+ Obq_Toon/ToonSimple : Write alpha in AOV even if scale*color == black.
+	+ Obq_RandomColor/ID : works in Maya.
+
+ADDITIONS:
+	+ Maya UI templates updated by Andrew Hazelden. More to come.
+	+ Obq_Simbiont : easy replace libs paths button on all instances of Obq_Simbionts.
+	+ Obq_GenerateMakefile.py to generate linux/macosx Makefile.
+	
+CHANGES:
+	
+NEW SHADERS:
+	+ Obq_LightSaturationFilter : change saturation of light based on object using message passing.
+	+ Obq_KettleUVCamera : from an object to another, UV to UV, in stereo, it's the fusion of KettleBake and Obq_StereoLens.
+	+ Obq_Message{Get, Set, Store}{Color, Vector, Int, Bool} : for message passing.
+	+ Obq_NodeInfo : Prints parameters of self or others nodes.
+	
+REMOVED SHADERS:
+
+TODO :
+	+ Documentation for new nodes.
+	+ TO FIX : Missing scripting/logic for Obq_StereoLens for Maya.
+	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
+	+ Use of SCons.
+	+ Code Cleanup and optimisation.
+	+ Obq_MeasuredMaterial : Importance sampling.
+	

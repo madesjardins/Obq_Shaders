@@ -16,7 +16,7 @@ import shutil
 ###########
 PATH_ARNOLD = "/home/madesjardins/Arnold"
 PATH_GLM = "/home/madesjardins/Softwares/glm"
-sitoa2arnold = {'v209': "4.0.15.1", 'v210': "4.0.16.6", 'v300': "4.1.3.5", 'v301': "4.2.0.5", 'v302': "4.2.1.3", 'v303': "4.2.2.0", 'v304': "4.2.3.1", 'v305': "4.2.4.3", 'v306': "4.2.6.2"}
+sitoa2arnold = {'v209': "4.0.15.1", 'v210': "4.0.16.6", 'v300': "4.1.3.5", 'v301': "4.2.0.5", 'v302': "4.2.1.3", 'v303': "4.2.2.0", 'v304': "4.2.3.1", 'v305': "4.2.4.3", 'v306': "4.2.6.2", 'v307': "4.2.7.0"}
 ignoredFiles = [".","..","src/Obq_Simbiont.cpp","src/kettle/kettle_bake.cpp",]
 
 def printHelp():

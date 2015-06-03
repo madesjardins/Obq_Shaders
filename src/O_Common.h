@@ -56,7 +56,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 // enum for file type
 //
 enum ObqFileType {TYPE_CSV, TYPE_TXT, TYPE_SPD, TYPE_BAD};
-enum ObqPluginName { SITOA, MTOA, HTOA, C4DTOA };
+enum ObqPluginID { SITOA, MTOA, HTOA, C4DTOA };
 
 static const int c_ObqHemisphereThetaRes = 32;
 static const float c_ObqHemisphereThetaResM1f = c_ObqHemisphereThetaRes-1.0f;
@@ -975,9 +975,9 @@ inline void split(const  std::string& s, char c, std::vector<std::string>& v) {
 
 
 // Find what plugin is used SItoA, MtoA, HtoA, etc.
-inline ObqPluginName findPluginName()
+inline ObqPluginID findPluginID()
 {
-	ObqPluginName plugin = SITOA;
+	ObqPluginID plugin = SITOA;
 	AtMetaDataIterator *ppiter = AiNodeEntryGetMetaDataIterator(AiNodeGetNodeEntry(AiUniverseGetOptions()));
 	while (!AiMetaDataIteratorFinished(ppiter))
 	{
@@ -991,13 +991,27 @@ inline ObqPluginName findPluginName()
 	AiMetaDataIteratorDestroy(ppiter);
 
 	if(plugin == SITOA)
-		AiMsgInfo("[Obq_NodeInfo] SItoA naming rules.");
+		AiMsgInfo("[Obq_Common] SItoA naming rules.");
 	else if(plugin == MTOA)
-		AiMsgInfo("[Obq_NodeInfo] MtoA naming rules.");
+		AiMsgInfo("[Obq_Common] MtoA naming rules.");
 
 	return plugin;
 }
 
+// Find what plugin is used SItoA, MtoA, HtoA, etc.
+inline ObqPluginID findPluginID(AtNode* node)
+{
+	ObqPluginID plugin = MTOA;
+	if(std::string(AiNodeGetName(node)).find(".SItoA.") != std::string::npos)
+		plugin = SITOA;
+
+	if(plugin == SITOA)
+		AiMsgInfo("[Obq_Common] SItoA naming rules.");
+	else if(plugin == MTOA)
+		AiMsgInfo("[Obq_Common] MtoA naming rules.");
+
+	return plugin;
+}
 
 /////////////////////////////////////////////////////////
 // OBQ CLASSES

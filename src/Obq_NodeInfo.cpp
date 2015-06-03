@@ -57,7 +57,7 @@ node_initialize
 	AtNode* nodeToQuery;
 	int mode = AiNodeGetInt(node,"mode");
 	
-	ObqPluginName plugin = findPluginName();
+	ObqPluginID plugin = findPluginID(node);
 
 	switch(mode)
 	{

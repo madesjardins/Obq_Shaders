@@ -1,10 +1,10 @@
 EXT = so
-OBQVERSION = v306
+OBQVERSION = v307
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.6.2-linux
+ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.7.0-linux
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++-4.1

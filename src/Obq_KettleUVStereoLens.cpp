@@ -258,12 +258,13 @@ node_initialize
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 	data->bakerOrigin = NULL;
 	data->bakerTarget = NULL;
+	ObqPluginID plugin = findPluginID(node);
 
 	// Get all nodes
 	std::string camNodeName(AiNodeGetName(node));
-	std::size_t sitoaIndex = camNodeName.rfind(".SItoA.");
+	std::size_t sitoaIndex = (plugin==SITOA?camNodeName.rfind(".SItoA."):camNodeName.length());
 
-	std::string lastPartName(camNodeName.substr(sitoaIndex));
+	std::string lastPartName(plugin==SITOA?camNodeName.substr(sitoaIndex):"");
 
 	data->viewMode = AiNodeGetInt(node,"view_mode");
 

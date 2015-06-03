@@ -1,5 +1,5 @@
-﻿Build started 21/05/2015 11:46:39 AM.
-     1>Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 2 (build target(s)).
+﻿Build started 02/06/2015 11:39:17 PM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v303\Obq_Simbiont.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -10,16 +10,16 @@
             Creating library ..\..\bin\v303\Obq_Simbiont__v303.lib and object ..\..\bin\v303\Obq_Simbiont__v303.exp
          Generating code
          Finished generating code
-         Obq_Simbiont.vcxproj -> F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\..\..\bin\v303\Obq_Simbiont__v303.dll
+         Obq_Simbiont.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\..\..\bin\v303\Obq_Simbiont__v303.dll
        Manifest:
          C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\v303\Obq_Simbiont__v303.dll;#2" /manifest x64\Release_v303\Obq_Simbiont__v303.dll.intermediate.manifest
        PostBuildEvent:
          del /F /Q x64\Release_v303\*.* ..\..\bin\v303\*.lib ..\..\bin\v303\*.exp
          :VCEnd
-         F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\x64\Release_v303\Obq_Simbiont.log
+         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\x64\Release_v303\Obq_Simbiont.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\Obq_Shaders\OBQ_ARNOLD_SHADERS_GIT\Obq_Arnold_Shaders--public-\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:01.24

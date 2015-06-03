@@ -2,7 +2,7 @@
 
 #######################################################
 # Author : Marc-Antoine Desjardins (ObliqueFX)
-# 2014
+# 2015
 #
 # This Python script generates the doc for Obq_Shaders
 #######################################################
@@ -295,6 +295,7 @@ def writeContentHelp(file, proj=0, cat=0, helpfile = ""):
 	elif cat == 5:
 		file.write('<h3>About</h3>\n')
 		file.write('<p>The Obq_Shaders collection will only grow stronger with the help of its users. Please address your questions, feature requests and bug reports to <span style="color:darkblue;">madesjardins(AT)obliquefx.com</span>.</p>')
+		file.write('<p>Special thanks to Andrew Hazelden for his constant effort in providing Maya and C4D templates and all the Solidangle team for their work.</p>')
 		file.write('<p class = "warning">The help files are in great need of your nice renders. If you\'re using an Obq_Shader and want to show your work, please send me a render along with a render tree screenshot and some infos (artist, description, machine, settings, render times).</p>')
 	file.write('</div>\n')
 
@@ -313,7 +314,7 @@ def writeContent(file, proj=0, cat=0, helpfile = ""):
 #--------------------
 #- FOOTER	
 def writeFooter(file, proj=0, cat=0):
-	file.write('<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>\n')
+	file.write('<div id="footer">Copyright &copy; 2011-2015, ObliqueFX. All Rights Reserved. </div>\n')
 
 
 #--------------------

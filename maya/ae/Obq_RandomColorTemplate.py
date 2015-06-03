@@ -8,22 +8,6 @@ import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
 
-randomColorXtoAModeEnumOp = [
-    (0, 'SItoA'), 
-    (1, 'MtoA'), 
-    (2, 'HtoA'), 
-]
-
-def Obq_RandomColorCreateXtoAMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_RandomColorXtoAMode', attribute=attr, label="Software", 
-                               enumeratedItem=randomColorXtoAModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_RandomColorSetXtoAMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_RandomColorXtoAMode', edit=True, attribute=attr)
-
-
 def Obq_RandomColorHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_RandomColor'
@@ -48,7 +32,6 @@ class AEObq_RandomColorTemplate(ShaderAETemplate):
 
 
         self.beginLayout("Options", collapse=False )
-        self.addCustom("XtoA", Obq_RandomColorCreateXtoAMode, Obq_RandomColorSetXtoAMode)
         self.addControl("randMax", label="Number of values")
         self.addControl("seed", label="Seed")
         self.endLayout()

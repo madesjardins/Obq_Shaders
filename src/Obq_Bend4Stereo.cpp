@@ -74,19 +74,19 @@ node_update
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 	
 	data->bendMode = params[p_bendMode].INT;
-	
+	ObqPluginID plugin = findPluginID(node);
 	// Get .SItoA. index
 	std::string camNodeName(AiNodeGetName(node));
 
-	size_t sitoaIndex = camNodeName.rfind(".SItoA.");
-	size_t lastPindex = camNodeName.rfind(".");
-	if(lastPindex > sitoaIndex+6)
+	size_t sitoaIndex = (plugin==SITOA?camNodeName.rfind(".SItoA."):camNodeName.length());
+	size_t lastPindex = (plugin==SITOA?camNodeName.rfind("."):camNodeName.length());
+	if(plugin==SITOA && lastPindex > sitoaIndex+6)
 		lastPindex-=sitoaIndex;
 
 	// Get all 3 cameras and all 3 matrices
 	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix;
 	AtNode* leftCamera = NULL, *centerCamera=NULL, *rightCamera = NULL;
-	std::string nameEnding(camNodeName.substr(sitoaIndex,lastPindex).c_str());
+	std::string nameEnding(plugin==SITOA?camNodeName.substr(sitoaIndex,lastPindex).c_str():"");
 	
 	leftCamera = AiNodeLookUpByName((std::string(params[p_leftCamera].STR).append(nameEnding).c_str()));
 	AiNodeGetMatrix(leftCamera,"matrix",leftCameraMatrix);
@@ -138,7 +138,8 @@ node_update
 node_finish
 {
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	AiFree(data);
+	if(data!=NULL)
+		AiFree(data);
 }
 
 shader_evaluate

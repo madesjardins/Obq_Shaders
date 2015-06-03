@@ -18,14 +18,6 @@
 
 %section :: Options
 
-%param :: Software <em>[XtoA]</em>
-%pp :: Different value input mode.
-%tableStart
-%tableItem :: 35 :: SItoA :: Softimage.
-%tableItem :: 35 :: MtoA :: Maya.
-%tableItem :: 35 :: HtoA :: Houdini.
-%tableEnd
-
 %param :: Number of values <em>[randMax]</em>
 %pp :: The maximum number of random colors.
 

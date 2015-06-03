@@ -97,20 +97,31 @@
 </table>
 <br>
 
-<h5>MtoA (not yet fully integrated):</h5>
+<h5>MtoA (not yet fully integrated, missing templates):</h5>
 <table class="install" cellspacing = 4 cellpadding = 0 borders = 0>
-<tr><td><p>Copy the content of "maya\metadata" into "solidangle\mtoadeploy\&lt;Maya Version&gt;\shaders".</p></td></tr>
-</table>
+<tr><td>Copy the content of "maya\metadata" into </td><td>"C:\solidangle\mtoadeploy\&lt;Maya Version&gt;\shaders".</td><td> [Windows] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"/opt/solidangle/mtoa/&lt;Maya Version&gt;/shaders".</td><td> [Linux] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"~/solidangle/mtoa/&lt;Maya Version&gt;/shaders".</td><td> [OSX] </td></tr>
+</table><br>
 <table class="install" cellspacing = 4 cellpadding = 0 borders = 0>
-<tr><td><p>Copy the content of "maya\ae" into "solidangle\mtoadeploy\&lt;Maya Version&gt;\scripts\mtoa\ui\ae".</p></td></tr>
-</table>
+<tr><td>Copy the content of "maya\ae" into </td><td>"C:\solidangle\mtoadeploy\&lt;Maya Version&gt;\scripts\mtoa\ui\ae".</td><td> [Windows] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"/opt/solidangle/mtoa/&lt;Maya Version&gt;/scripts/mtoa/ui/ae".</td><td> [Linux] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"~/opt/solidangle/mtoa/&lt;Maya Version&gt;/scripts/mtoa/ui/ae".</td><td> [OSX] </td></tr>
+</table><br>
 <table class="install" cellspacing = 4 cellpadding = 0 borders = 0>
-<tr><td><p>Copy the content of "maya\icons" into "solidangle\mtoadeploy\&lt;Maya Version&gt;\icons".</p></td></tr>
-</table>
+<tr><td>Copy the content of "maya\icons" into </td><td>"C:\solidangle\mtoadeploy\&lt;Maya Version&gt;\icons".</td><td> [Windows] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"/opt/solidangle/mtoa/&lt;Maya Version&gt;/icons".</td><td> [Linux] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td><td>"~/solidangle/mtoa/&lt;Maya Version&gt;/icons".</td><td> [OSX] </td></tr>
+</table><br>
+<table class="install" cellspacing = 4 cellpadding = 0 borders = 0>
+<tr><td width=260>Copy the content of "maya\attrPresets" into </td><td width = 300>"C:\Users\&lt;User Account&gt;\Documents\maya\&lt;Maya Version&gt;\presets\attrPresets".</td><td> [Windows] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td><td>"/home/&lt;User Account&gt;/maya/<br>&lt;Maya Version&gt;/presets/attrPresets".</td><td> [Linux] </td></tr>
+<tr><td>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</td><td>"~/Library/Preferences/Autodesk/maya/<br>&lt;Maya Version&gt;/presets/attrPresets".</td><td> [OSX] </td></tr>
+</table><br>
 <table class="install" cellspacing = 4 cellpadding = 0 borders = 0>
 <tr><td> Copy the .dll </td><td> in "bin\vXXX" </td><td> into "solidangle\mtoa\&lt;Maya Version&gt;\shaders". </td><td> [Windows] </td></tr>
-<tr><td> Copy the .so </td><td> in "bin\vXXX" </td><td> into "solidangle/mtoa/&lt;Maya Version&gt;/shaders". </td><td> [Linux] </td></tr>
-<tr><td> Copy the .dylib </td><td> in "bin\vXXX" </td><td> into "solidangle/mtoa/&lt;Maya Version&gt;/shaders". </td><td> [OSX] </td></tr>
+<tr><td> Copy the .so </td><td> in "bin\vXXX" </td><td> into "/opt/solidangle/mtoa/&lt;Maya Version&gt;/shaders". </td><td> [Linux] </td></tr>
+<tr><td> Copy the .dylib </td><td> in "bin\vXXX" </td><td> into "~/solidangle/mtoa/&lt;Maya Version&gt;/shaders". </td><td> [OSX] </td></tr>
 </table>
 <br>
 <h5>"Core" version :</h5>
@@ -142,20 +153,24 @@ For example, you can add : <br>
 <h5>Windows requirements :</h5>
 <p class = "install">Microsoft Visual C++ 2010 redistributable package (x64) </p>
 <br>
-<h5>SItoA <-> Arnold Versions</h5>
+<h5>SItoA & MtoA = Arnold Version</h5>
 <p class = "install">
-3.04 = 4.2.3.1<br>
-3.03 = 4.2.2.0<br>
-3.02 = 4.2.1.2<br>
-3.01 = 4.2.0.6<br>
-3.00 = 4.1.3.5<br>
-2.10 = 4.0.16.4<br>
+3.07 &nbsp;&&nbsp; 1.2.3.0 &nbsp;=&nbsp; 4.2.7.0<br>
+3.06 &nbsp;&&nbsp; 1.2.2.0 &nbsp;=&nbsp; 4.2.6.2<br>
+3.05 &nbsp;&&nbsp; 1.2.1.0 &nbsp;=&nbsp; 4.2.4.3<br>
+3.04 &nbsp;&&nbsp; 1.2.0.4 &nbsp;=&nbsp; 4.2.3.1<br>
+3.03 &nbsp;&&nbsp; 1.1.2.2 &nbsp;=&nbsp; 4.2.2.0<br>
+3.02 &nbsp;&&nbsp; 1.1.1.1 &nbsp;=&nbsp; 4.2.1.2<br>
+3.01 &nbsp;&&nbsp; 1.1.0.4 &nbsp;=&nbsp; 4.2.0.6<br>
+3.00 &nbsp;&&nbsp; 1.0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp; 4.1.3.5<br>
+2.10 &nbsp;&&nbsp; 0.25.1&nbsp;&nbsp;&nbsp;=&nbsp; 4.0.16.4<br>
+2.09 &nbsp;&&nbsp; 0.24.0&nbsp;&nbsp;&nbsp;=&nbsp; 4.0.15.1<br>
 </p>
 <br>
 <br>
 </div>
 </div>
-<div id="footer">Copyright &copy; 2011-2014, ObliqueFX. All Rights Reserved. </div>
+<div id="footer">Copyright &copy; 2011-2015, ObliqueFX. All Rights Reserved. </div>
 </div>
 </body>
 </html>
