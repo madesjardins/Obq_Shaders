@@ -106,7 +106,6 @@ PropertySet "Obq_KettleUVStereoLens"
 		flags = 1;
 		Value = 0.001;
 		Value Minimum = 0.0001;
-		Value Maximum = 0.01;
 		Texturable = off;
 		Animatable = Off;
 	}
@@ -460,6 +459,7 @@ Defaults
 	{
 		Name = "Interaxial Separation Epsilon";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+		UIRange = 0.0001 to 0.1;
 	}
 	interaxial_separation
 	{
