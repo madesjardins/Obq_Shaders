@@ -98,5 +98,4 @@ SItoA & MtoA = ARNOLD VERSION
 Enjoy.
 --
 Marc-Antoine Desjardins
-ObliqueFX
-madesjardins@obliquefx.com
+marcantoinedesjardins@gmail.com
