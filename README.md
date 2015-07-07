@@ -8,12 +8,12 @@ Registered for Oblique FX [Marc-Antoine Desjardins]
 
 Read the provided INSTALL.txt file to learn how to compile and/or install the shaders.
 
-To help us make better shaders and documentation, please report all bugs, send us comments or suggestions and send some renders with a short description of the project to madesjardins@obliquefx.com.
+To help us make better shaders and documentation, please report all bugs, send us comments or suggestions and send some renders with a short description of the project to marcantoinedesjardins@gmail.com.
 
 License
 ===========
 
-Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
