@@ -6,7 +6,7 @@ distortion maps on the fly. 3DEqualizer distortion models uses headers
 from the Science-D-Visions LDPK.
 
 *------------------------------------------------------------------------
-Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 LDPK : (C) 2013 - Science-D-Visions. Current version: 1.7
 PFBarrel  : Copyright (C) 2012 The Pixel Farm Ltd.  Current version: 1.3
 

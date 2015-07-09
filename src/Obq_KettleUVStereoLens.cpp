@@ -4,7 +4,7 @@ Obq_KettleUVStereoLens :
 A mesh to mesh or UV bake lens shader
 
 *------------------------------------------------------------------------
-Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2015 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 

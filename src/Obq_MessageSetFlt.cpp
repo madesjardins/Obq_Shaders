@@ -4,7 +4,7 @@ Obq_MessageSetFlt :
 	Sets the value in the message passing queue with message as key.
 
 *------------------------------------------------------------------------
-Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2013 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 

@@ -4,7 +4,7 @@ Obq_Bend4Stereo:
 	Fake incoming ray direction to give same specular for stereo
 
 *------------------------------------------------------------------------
-Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (madesjardins@obliquefx.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
