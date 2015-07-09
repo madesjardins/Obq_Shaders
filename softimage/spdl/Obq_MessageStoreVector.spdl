@@ -187,7 +187,7 @@ Sub AddValueChannel_OnClicked
 End Sub
 
 Sub OnInit
-	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreVector.html"
+	PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
 	FillChannelCombo siRenderChannelVectorType, "AOVName"
 	PPG.Refresh
 End Sub

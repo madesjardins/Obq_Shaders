@@ -1,0 +1,38 @@
+%shadername :: Obq_LightSaturationFilter
+
+%class :: Light Filter
+
+%synopsisStart
+
+%pp :: A light filter used for changing saturation (no clamping) of light based on float message.
+%image :: images/Obq_LightSaturationFilter_01.jpg :: Synopsis image :: 750
+%idesc :: Example of a bunny with a saturation controlling material resting on a grid with normal material.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Plug an Obq_LightSaturationFilter into a filter port of a light and use an Obq_MessageSetFlt on specific materials to trigger a saturation change.
+
+%usageEnd
+
+%param :: Mode <em>[mode]</em>
+%pp :: Different modes :
+%tableStart
+%tableItem :: 160 :: Simple saturation modifier :: Change saturation value no matter what.
+%tableItem :: 160 :: Use trigger message :: Use a specific value associated to a float message key to trigger a saturation change.
+%tableItem :: 160 :: Use message as saturation :: Use the value associated to a float message key as saturation.
+%tableEnd
+
+%param :: Key <em>[key]</em>
+%pp :: The key of the float message.
+
+%param :: Trigger Value <em>[triggerValue]</em>
+%pp :: When the value associated to the float message key is equal to this one, the new saturation will be the <em>Saturation</em> parameters.
+
+%param :: Saturation <em>[saturation]</em>
+%pp :: The saturation to use in case of a triggered saturation change.
+
+%param :: Default Saturation <em>[defaultSaturation]</em>
+%pp :: The default saturation value to use if no message is associated to <em>Key</em>.
+

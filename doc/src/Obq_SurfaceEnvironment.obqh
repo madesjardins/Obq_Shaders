@@ -13,7 +13,7 @@
 %usageStart
 
 %pp :: Obq_SurfaceEnvironement is great for mix in an object material or passthrough with a shader and calculate the result in an AOV. You can also use this node to have a per object environment rotation using overrides.
-%image :: src/images/Obq_Environment_01.jpg :: Usage image :: 768
+%image :: images/Obq_Environment_01.jpg :: Usage image :: 768
 %idesc :: In this example, we use the Obq_Environment of the pass shader to light the sphere, but we secretly render the reflections from the Obq_SurfaceEnvironment node and store it inside an AOV without affecting the main result.
 
 #%usageEnd

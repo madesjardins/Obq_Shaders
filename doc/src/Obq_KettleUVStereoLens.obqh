@@ -1,0 +1,213 @@
+﻿%shadername :: Obq_KettleUVLensDistortion
+
+%class :: Lens
+
+#%output ::
+
+%synopsisStart
+
+%pp :: A camera lens shader using the CKettleBaker class of Jules Stevenson that sends rays from a UV coordinate on a mesh to the same UV coordinate on a different mesh in mono or stereo. It's an enhanced combination of Obq_StereoLens and Kettle_Bake.
+%note :: This shader can also be used for baking (render mapping) textures using multiple UV sets.
+%image :: images/Obq_KettleUVStereoLens_01.jpg :: Synopsis image :: 750
+%idesc :: Not, it's not a mutilated animal, it's a Standford bunny rendered with an inward cylindrical stereo camera centered but not collapsed on its face.
+
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Follow these steps for full stereo features :
+%enumStart
+%enumItem :: Create the origin mesh with UVs and freeze modeling/transforms. 
+%enumItem :: Add an Arnold visibility property on the origin mesh and uncheck everything.
+%enumItem :: Duplicate origin mesh, rename properly, change scale/shape and freeze modeling/transforms.
+%enumItem :: Create origin camera of aspect ratio = 1, near clipping plane = 0.001, with an Arnold camera option property set to custom and put Obq_KettleUVStereoLens on it.
+%enumItem :: Pose constraint the origin mesh on the origin camera. 
+%enumItem :: Pose constraint the target mesh on origin camera or on a different camera if both meshes move separately.
+%enumItem :: Alternatively, you can pose constraint cameras on meshes instead.
+%enumItem :: Open the Obq_KettleUVStereoLens UI on the origin camera, click on "Pick Origin and Target Polymeshes" button and do so.
+%enumItem :: Select desired view mode and stereo parameters (including desired final target resolution of a mono frame).
+%enumItem :: Select origin camera as pass render camera.
+%enumItem :: Once rendered, copy paste the Nuke Crop info into Nuke to split the image into left-right images.
+%enumEnd
+
+%pp :: For baking/render mapping, simply use the object mesh as origin mesh in <em>Bake</em> view mode and no Arnold visibility property. Make sure the Epsilon parameter in the Advanced tab is bigger than near clipping plane of origin camera.
+
+%image :: images/Obq_KettleUVStereoLens_03.jpg :: Synopsis image :: 0
+%idesc :: Bake mode example, the camera is constrained to the origin mesh, which is the bunny.
+
+#%usageEnd
+%section :: Rendered View
+
+%image :: images/Obq_KettleUVStereoLens_02.jpg :: Synopsis image :: 0
+%idesc :: Converged on target mesh stereo view mode.
+
+%param :: View Mode <em>[view_mode]</em>
+%pp :: The view mode used :
+%tableStart
+%tableItem :: 120 :: Center :: Mono view centered on UV of origin mesh and in direction of same UV of target mesh.
+%tableItem :: 120 :: Left :: Left mono view of stereo pair.
+%tableItem :: 120 :: Right :: Right mono view of stereo pair.
+%tableItem :: 120 :: Stereo &lt;Left-Right&gt; :: Side-by-side stereo view.
+%tableItem :: 120 :: Stereo &lt;Down-Up&gt; :: Stacked stereo view.
+%tableItem :: 120 :: Bake :: View mode used for baking/render mapping textures, centered on UV of origin mesh but offset of an epsilon in the normal direction and looking in the inverted normal direction.
+%tableItem :: 120 :: Normal :: Like the <em>Bake</em> mode, but looking in the normal direction.
+%tableEnd
+
+%section :: Polymeshes
+
+%param :: Origin Polymesh <em>[origin_polymesh]</em>
+%pp :: The polymesh used for camera ray origin. 
+%warning :: The origin mesh must be constrained to a camera or a camera must be constrained to it.
+
+%param :: Origin UV Set <em>[uv_set_origin]</em>
+%pp :: The UV set used on origin polymesh.
+
+%param :: Target Polymesh <em>[target_polymesh]</em>
+%pp :: The polymesh used for camera ray direction. 
+%note :: You don't have to supply a target mesh in <em>Bake</em> nor in <em>Normal</em> view mode.
+%warning :: The target mesh must be constrained to a camera or a camera must be constrained to it.
+
+%param :: Target UV Set <em>[uv_set_target]</em>
+%pp :: The UV set used on target polymesh.
+
+%param :: Status <em>[polymeshes_status]</em>
+%pp :: Information on validity of meshes.
+
+%section :: Stereo Settings
+%param :: Stereo Type <em>[stereo_type]</em>
+%tableStart
+%tableItem :: 70 :: Parallel :: Both left and right eye rays will be parallel to the line between the UV coordinate on the origin mesh and the same UV coordinate on the target mesh.
+%tableItem :: 70 :: Converged :: Left and right rays will converge at a point define by the zero parallax mode.
+%tableEnd
+
+%param :: Interaxial Separation <em>[interaxial_separation]</em>
+%pp :: The distance in 3D units between the left and the right ray origin.
+
+%param :: Zero Parallax Mode <em>[zero_parallax_mode]</em>
+%pp :: Where the converging rays will intersect each other.
+%tableStart
+%tableItem :: 100 :: Use Target Mesh :: Left and right eye rays will converged on the UV coordinate on the target mesh.
+%tableItem :: 100 :: Distance :: Left and right eye rays will converge at a distance given by the zero parallax distance from the UV coordinate on the origin mesh.
+%tableEnd
+
+%param :: Zero Parallax Distance / Focus Distance <em>[zero_parallax_distance]</em>
+%pp :: The distance in 3D units where the left and right eye rays converge.
+%note :: This is also used for the focus distance when using depth of field.
+
+%section :: Automatic Overscan
+
+%pp :: Automatic overscan counters the blended lines of pixels by rendering just a few pixels wider.
+
+%param :: Filter Size <em>[filter_size;]</em>
+%pp :: The width of the filter in the render options &gt; Sampling &gt; Pixel Filtering &gt; Width.
+%note :: Because of filtering, the lines of pixels immediately next to the left-right border are blended, the floor(filter_width/2) lines in fact. To correct this, an automatic overscan mode was created. Make sure the render width and height are correct. Copy-paste the left/right crop text in Nuke to create the adequate crop nodes.
+
+%section :: Target Resolution
+
+%param :: Width <em>[target_resolution_x]</em>
+%pp :: The final width in pixels you want each left/right frame to have.
+
+%param :: Height <em>[target_resolution_y]</em>
+%pp :: The final height in pixels you want each left/right frame to have.
+
+%section :: Render Resolution
+
+%param :: Width <em>[render_resolution_x]</em>
+%pp :: The width in pixels needed to give the target width once cropped because of blended pixels.
+
+%param :: Height <em>[render_resolution_y]</em>
+%pp :: The height in pixels needed to give the target height once cropped because of blended pixels.
+
+%param :: Automatic update of pass output resolution <em>[update_pass_resolution]</em>
+%pp :: Checking this will enable the update of the resolution automatically in the pass options.
+
+%section :: Nuke Info
+
+%pp :: Copy-paste the text to create the proper crop nodes in Nuke.
+
+%section :: Render Region
+
+%param :: Render Region Only <em>[use_render_region]</em>
+%pp :: Allow the render of only a region of UVs.
+
+%param :: Render Region Only <em>[crop_to_region]</em>
+%pp :: If on, the size of the rendered image will be cropped around this region. If off, pixels will be black outside region.
+
+%param :: Lower Bound UV <em>[regionU0, regionV0]</em> 
+%pp :: The bottom-left corner of the UV region to render.
+
+%param :: Higher Bound UV <em>[regionU1, regionV1]</em>
+%pp :: The top-right corner of the UV region to render.
+
+%section :: Acceleration
+
+%param :: Grid Size <em>[grid_size]</em>
+%pp :: The acceleration grid's resolution used to store UV-vertex information.
+
+%section :: Other
+
+%param :: Epsilon <em>[interaxial_epsilon]</em>
+%pp :: The epsilon used for calculating left/right directions and the surface offset in <em>Bake</em> view mode.
+
+%section :: Depth of Field
+
+%param :: Enable <em>[use_dof]</em>
+%pp :: Enable the depth of field.
+%note :: If you enable this here, you don't need to enable it in the Render Options.
+%note :: The result is not exactly the same as Arnold's default DoF, but it's very similar.
+
+%param :: Size <em>[aperture_size_]</em>
+%pp :: This size controls the amount of blur (size of the iris).
+
+%param :: Aspect Ratio <em>[aperture_aspect_ratio_]</em>
+%pp :: The aspect ratio of the lens. Values smaller than 1 will give an horizontal elongated oval vand values greater than 1 will give a vertical elongated oval.
+
+%param :: Polygonal Aperture <em>[use_polygonal_aperture]</em>
+%pp :: The shape of the iris is polygonal instead of circular.
+
+%param :: Blades <em>[aperture_blades_]</em>
+%pp :: The number of blades the iris has. For example, using 5 blades will give a pentagon shaped iris.
+
+%param :: Blade Curvature <em>[aperture_blade_curvature_]</em>
+%pp :: A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.
+
+%image :: images/Obq_bokeh_04.jpg :: Blade curvature :: 512
+%idesc :: Blade curvature of 1, 0, -1, -2 and -3.
+
+%param :: Rotation <em>[aperture_rotation_]</em>
+%pp :: The rotation in degrees of the shape of the iris.
+
+%section :: Bokeh Quality
+
+%pp :: The bokeh "quality" look can be altered using a bias and gain parameters. This effectively changes the distribution of the rays. 
+%note :: These parameters will eventually be replaced by better sampling functions and image based bokeh.
+
+%param :: Invert <em>[bokeh_invert]</em>
+%pp :: Invert the output of the bias/gain operation.
+
+%param :: Bias <em>[bokeh_bias]</em>
+%pp :: Bias control of the bokeh.
+
+%param :: Gain <em>[bokeh_gain]</em>
+%pp :: Gain control of the bokeh.
+
+%tableStart
+%tableItem :: 90 :: Poor bokeh :: (invert, bias, gain)  values around (false, 0.7, 0.2 ).
+%tableItem :: 90 :: Neutral bokeh :: (invert, bias, gain)  = (false, 0.5, 0.5 ).
+%tableItem :: 90 :: Good bokeh :: (invert, bias, gain) values around (true, 0.33, 0.685 ).
+%tableEnd
+
+%image :: images/Obq_bokeh_03.jpg :: Bokeh looks2 :: 256
+%idesc :: Poor, Neutral and Good bokeh.
+
+#%image :: images/Obq_bokeh_01.jpg :: Bokeh looks :: 512
+#%idesc :: Bokeh looks with different bias and gain values (non inverted).
+
+#%image :: images/Obq_bokeh_02.jpg :: Bokeh looks2 :: 512
+#%idesc :: Bokeh looks with different bias and gain values (inverted).
+
+
+
+
+

@@ -12,7 +12,7 @@
 
 %usageStart
 
-%pp :: Multiple objects can share a material with this node and it will output different colors.
+%pp :: Simply use this node with a multi-switch or a scalar logic and a switch to branch depending on the current ray depth.
 
 #%usageEnd
 

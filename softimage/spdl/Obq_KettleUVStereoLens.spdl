@@ -104,7 +104,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		GUID = "{2A3F869B-EB7B-44DB-A7B4-9869073C95FD}";
 		Type = scalar;
 		flags = 1;
-		Value = 0.001;
+		Value = 0.002;
 		Value Minimum = 0.0001;
 		Texturable = off;
 		Animatable = Off;
@@ -457,7 +457,7 @@ Defaults
 	}
 	interaxial_epsilon
 	{
-		Name = "Interaxial Separation Epsilon";
+		Name = "Epsilon";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 0.0001 to 0.1;
 	}
@@ -896,8 +896,8 @@ def change_targetResolution():
 	tResolutionY = PPG.target_resolution_y.Value
 	
 	if PPG.use_render_region.Value and PPG.crop_to_region.Value:
-		tResolutionX = PPG.target_resolution_x.Value*math.abs(PPG.regionU1.Value - PPG.regionU0.Value)
-		tResolutionY = PPG.target_resolution_y.Value*math.abs(PPG.regionV1.Value - PPG.regionV0.Value)
+		tResolutionX = PPG.target_resolution_x.Value*abs(PPG.regionU1.Value - PPG.regionU0.Value)
+		tResolutionY = PPG.target_resolution_y.Value*abs(PPG.regionV1.Value - PPG.regionV0.Value)
 	
 	if PPG.view_mode.Value == 3:
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))

@@ -8,7 +8,7 @@
 
 %pp :: Obq_Simbiont is a fractal generator node that read DarkTree files.
 %note :: Check the installation guide of the documentation to properly install the needed library.
-%image :: src/images/Obq_Simbiont_01.jpg :: Synopsis image :: 768
+%image :: images/Obq_Simbiont_01.jpg :: Synopsis image :: 768
 %idesc :: A simple DarkTree file with displacement workflow. Use Elevation as Alpha output and a picker to select it and plug into the displacement port.
 
 %synopsisEnd

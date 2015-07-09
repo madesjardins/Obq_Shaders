@@ -13,7 +13,7 @@
 %usageStart
 
 %pp :: Use the Obq_Bend4Stereo on all materials as a passthrough right before the "Surface" port of the material node or the "camera" port of a "ray_switch" node.
-%image :: src/images/Obq_Bend4Stereo_01.jpg :: Usage image :: 768
+%image :: images/Obq_Bend4Stereo_01.jpg :: Usage image :: 768
 %idesc :: In this stereo frame, the magenta and green in the highlights represent disparities between the render with and without bending.
 
 #%usageEnd

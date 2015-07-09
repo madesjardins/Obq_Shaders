@@ -16,10 +16,10 @@
 
 %pp :: Before use, make sure all scale values of the Standard shaders are set to 0 and that all Fresnel features are turned off. If you're using 2 standards, you have to add them together and you need to change the names of the AOVs of one of the standard if you want to use AOVs.
 
-%image :: src/images/Obq_Fresnel2Standards_01.jpg :: Coated Metal :: 768
+%image :: images/Obq_Fresnel2Standards_01.jpg :: Coated Metal :: 768
 %idesc :: An example of coated metal render tree.
 
-%image :: src/images/Obq_Fresnel2Standards_02.jpg :: Coated diffuse material :: 768
+%image :: images/Obq_Fresnel2Standards_02.jpg :: Coated diffuse material :: 768
 %idesc :: An example of coated diffuse only material render tree with only standard.
 
 %pp :: The priority of energy consumption of parameters is in a top to bottom order in the compound gui. In other words, if visually the Ks is above the Kd, only what is not consumed by the specular scale will be passed down to the diffuse scale. The scales in the compounds does not represent absolute values like the ones in the Standard, they represent the ratio of the available energy.

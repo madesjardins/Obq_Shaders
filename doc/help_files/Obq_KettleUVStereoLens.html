@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Obq Arnold Shaders-Obq_KettleUVStereoLens</title>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Obq_Shaders for Arnold" />
+<meta name="keywords" content="Obq_Shaders" />
+<meta name="author" content="Marc-Antoine Desjardins - Oblique FX" />
+<style type="text/css" media="all">@import "../css/master.css";</style>
+</head>
+<body>
+<div id="page-container">
+<div id="banner"><img src="../images/banner.jpg" alt="Banner"></div>
+<div id="topMenu">
+<div id="topMenu-left">
+<a href="http://www.obliquefx.com"><img src="../images/oblique.png" alt="Oblique Logo" width = "150px"></a></div>
+<div id="topMenu-right"><table border="0" cellpadding="9" cellspacing="0"><tr>
+<td width="50"> </td>
+<td><a href="../index.html">Home</a></td>
+<td>|</td>
+<td><a href="../news.html">News</a></td>
+<td>|</td>
+<td><a href="../documentation.html">Documentation</a></td>
+<td>|</td>
+<td><a href="../downloads.html">Downloads</a></td>
+<td>|</td>
+<td><a href="../about.html">About</a></td>
+<td width="50"> </td>
+</tr></table>
+</div>
+</div>
+<div id="content">
+<div id="content-sidebar">
+<p align="left">Node Reference</p>
+<table border="0" cellpadding ="2" cellspacing ="0">
+<tr><td width="2"></td><td><a href="Obq_AngularCamera.html">Obq_AngularCamera</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Atmosphere.html">Obq_Atmosphere</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Bend4Stereo.html">Obq_Bend4Stereo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_CameraProjectionSpace.html">Obq_CameraProjectionSpace</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ChangeRange.html">Obq_ChangeRange</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Color.html">Obq_Color</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ColorspaceConverter.html">Obq_ColorspaceConverter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Environment.html">Obq_Environment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Etching.html">Obq_Etching</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel.html">Obq_Fresnel</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_KettleUVStereoLens.html">Obq_KettleUVStereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LightSaturationFilter.html">Obq_LightSaturationFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGet.html">Obq_MessageGet</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSet.html">Obq_MessageSet</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStore.html">Obq_MessageStore</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_NodeInfo.html">Obq_NodeInfo</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RayDepth.html">Obq_RayDepth</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComEmit.html">Obq_RGBComEmit</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_RGBComLightFilter.html">Obq_RGBComLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Root2Tip.html">Obq_Root2Tip</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SetAlpha.html">Obq_SetAlpha</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Shadow.html">Obq_Shadow</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Simbiont.html">Obq_Simbiont</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SpectrumColor.html">Obq_SpectrumColor</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_StereoLens.html">Obq_StereoLens</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_SurfaceEnvironment.html">Obq_SurfaceEnvironment</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Thickness.html">Obq_Thickness</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_Toon.html">Obq_Toon</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_ToonSimple.html">Obq_ToonSimple</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformShadingPoint.html">Obq_TransformShadingPoint</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_TransformUV.html">Obq_TransformUV</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_UVRemapLensDistortion.html">Obq_UVRemapLensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_VolumeThickness.html">Obq_VolumeThickness</a></td></tr>
+</table>
+</div>
+<div id="content-help"><br>
+<h5>Class</h5>
+<p>Lens</p>
+<br>
+<h5>Synopsis</h5>
+<p>A camera lens shader using the CKettleBaker class of Jules Stevenson that sends rays from a UV coordinate on a mesh to the same UV coordinate on a different mesh in mono or stereo. It's an enhanced combination of Obq_StereoLens and Kettle_Bake.</p>
+<p class="note" >Note : This shader can also be used for baking (render mapping) textures using multiple UV sets.</p>
+<br>
+<img src="images/Obq_KettleUVStereoLens_01.jpg" alt="Synopsis image" width=750 >
+<p class="idesc">Fig.1 : Not, it's not a mutilated animal, it's a Standford bunny rendered with an inward cylindrical stereo camera centered but not collapsed on its face.</p>
+<br>
+<h5>Usage</h5>
+<p>Follow these steps for full stereo features :</p>
+<ul>
+<li>Create the origin mesh with UVs and freeze modeling/transforms.</li>
+<li>Add an Arnold visibility property on the origin mesh and uncheck everything.</li>
+<li>Duplicate origin mesh, rename properly, change scale/shape and freeze modeling/transforms.</li>
+<li>Create origin camera of aspect ratio = 1, near clipping plane = 0.001, with an Arnold camera option property set to custom and put Obq_KettleUVStereoLens on it.</li>
+<li>Pose constraint the origin mesh on the origin camera.</li>
+<li>Pose constraint the target mesh on origin camera or on a different camera if both meshes move separately.</li>
+<li>Alternatively, you can pose constraint cameras on meshes instead.</li>
+<li>Open the Obq_KettleUVStereoLens UI on the origin camera, click on "Pick Origin and Target Polymeshes" button and do so.</li>
+<li>Select desired view mode and stereo parameters (including desired final target resolution of a mono frame).</li>
+<li>Select origin camera as pass render camera.</li>
+<li>Once rendered, copy paste the Nuke Crop info into Nuke to split the image into left-right images.</li>
+</ul>
+<p>For baking/render mapping, simply use the object mesh as origin mesh in <em>Bake</em> view mode and no Arnold visibility property. Make sure the Epsilon parameter in the Advanced tab is bigger than near clipping plane of origin camera.</p>
+<br>
+<img src="images/Obq_KettleUVStereoLens_03.jpg" alt="Synopsis image"  >
+<p class="idesc">Fig.2 : Bake mode example, the camera is constrained to the origin mesh, which is the bunny.</p>
+<br>
+<hr/>
+<h4>Rendered View</h4>
+<br>
+<img src="images/Obq_KettleUVStereoLens_02.jpg" alt="Synopsis image"  >
+<p class="idesc">Fig.3 : Converged on target mesh stereo view mode.</p>
+<br>
+<h5>View Mode <em>[view_mode]</em></h5>
+<p>The view mode used :</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Center</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Mono view centered on UV of origin mesh and in direction of same UV of target mesh.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Left</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Left mono view of stereo pair.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Right</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Right mono view of stereo pair.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Stereo &lt;Left-Right&gt;</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Side-by-side stereo view.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Stereo &lt;Down-Up&gt;</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Stacked stereo view.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Bake</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">View mode used for baking/render mapping textures, centered on UV of origin mesh but offset of an epsilon in the normal direction and looking in the inverted normal direction.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="120"><span class="enumElem">Normal</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Like the <em>Bake</em> mode, but looking in the normal direction.</td></tr>
+</table>
+<br>
+<hr/>
+<h4>Polymeshes</h4>
+<br>
+<h5>Origin Polymesh <em>[origin_polymesh]</em></h5>
+<p>The polymesh used for camera ray origin.</p>
+<p class="warning">Warning : The origin mesh must be constrained to a camera or a camera must be constrained to it.</p>
+<br>
+<h5>Origin UV Set <em>[uv_set_origin]</em></h5>
+<p>The UV set used on origin polymesh.</p>
+<br>
+<h5>Target Polymesh <em>[target_polymesh]</em></h5>
+<p>The polymesh used for camera ray direction.</p>
+<p class="note" >Note : You don't have to supply a target mesh in <em>Bake</em> nor in <em>Normal</em> view mode.</p>
+<p class="warning">Warning : The target mesh must be constrained to a camera or a camera must be constrained to it.</p>
+<br>
+<h5>Target UV Set <em>[uv_set_target]</em></h5>
+<p>The UV set used on target polymesh.</p>
+<br>
+<h5>Status <em>[polymeshes_status]</em></h5>
+<p>Information on validity of meshes.</p>
+<br>
+<hr/>
+<h4>Stereo Settings</h4>
+<br>
+<h5>Stereo Type <em>[stereo_type]</em></h5>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="70"><span class="enumElem">Parallel</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Both left and right eye rays will be parallel to the line between the UV coordinate on the origin mesh and the same UV coordinate on the target mesh.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="70"><span class="enumElem">Converged</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Left and right rays will converge at a point define by the zero parallax mode.</td></tr>
+</table>
+<br>
+<h5>Interaxial Separation <em>[interaxial_separation]</em></h5>
+<p>The distance in 3D units between the left and the right ray origin.</p>
+<br>
+<h5>Zero Parallax Mode <em>[zero_parallax_mode]</em></h5>
+<p>Where the converging rays will intersect each other.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="100"><span class="enumElem">Use Target Mesh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Left and right eye rays will converged on the UV coordinate on the target mesh.</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="100"><span class="enumElem">Distance</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">Left and right eye rays will converge at a distance given by the zero parallax distance from the UV coordinate on the origin mesh.</td></tr>
+</table>
+<br>
+<h5>Zero Parallax Distance / Focus Distance <em>[zero_parallax_distance]</em></h5>
+<p>The distance in 3D units where the left and right eye rays converge.</p>
+<p class="note" >Note : This is also used for the focus distance when using depth of field.</p>
+<br>
+<hr/>
+<h4>Automatic Overscan</h4>
+<p>Automatic overscan counters the blended lines of pixels by rendering just a few pixels wider.</p>
+<br>
+<h5>Filter Size <em>[filter_size;]</em></h5>
+<p>The width of the filter in the render options &gt; Sampling &gt; Pixel Filtering &gt; Width.</p>
+<p class="note" >Note : Because of filtering, the lines of pixels immediately next to the left-right border are blended, the floor(filter_width/2) lines in fact. To correct this, an automatic overscan mode was created. Make sure the render width and height are correct. Copy-paste the left/right crop text in Nuke to create the adequate crop nodes.</p>
+<br>
+<hr/>
+<h4>Target Resolution</h4>
+<br>
+<h5>Width <em>[target_resolution_x]</em></h5>
+<p>The final width in pixels you want each left/right frame to have.</p>
+<br>
+<h5>Height <em>[target_resolution_y]</em></h5>
+<p>The final height in pixels you want each left/right frame to have.</p>
+<br>
+<hr/>
+<h4>Render Resolution</h4>
+<br>
+<h5>Width <em>[render_resolution_x]</em></h5>
+<p>The width in pixels needed to give the target width once cropped because of blended pixels.</p>
+<br>
+<h5>Height <em>[render_resolution_y]</em></h5>
+<p>The height in pixels needed to give the target height once cropped because of blended pixels.</p>
+<br>
+<h5>Automatic update of pass output resolution <em>[update_pass_resolution]</em></h5>
+<p>Checking this will enable the update of the resolution automatically in the pass options.</p>
+<br>
+<hr/>
+<h4>Nuke Info</h4>
+<p>Copy-paste the text to create the proper crop nodes in Nuke.</p>
+<br>
+<hr/>
+<h4>Render Region</h4>
+<br>
+<h5>Render Region Only <em>[use_render_region]</em></h5>
+<p>Allow the render of only a region of UVs.</p>
+<br>
+<h5>Render Region Only <em>[crop_to_region]</em></h5>
+<p>If on, the size of the rendered image will be cropped around this region. If off, pixels will be black outside region.</p>
+<br>
+<h5>Lower Bound UV <em>[regionU0, regionV0]</em></h5>
+<p>The bottom-left corner of the UV region to render.</p>
+<br>
+<h5>Higher Bound UV <em>[regionU1, regionV1]</em></h5>
+<p>The top-right corner of the UV region to render.</p>
+<br>
+<hr/>
+<h4>Acceleration</h4>
+<br>
+<h5>Grid Size <em>[grid_size]</em></h5>
+<p>The acceleration grid's resolution used to store UV-vertex information.</p>
+<br>
+<hr/>
+<h4>Other</h4>
+<br>
+<h5>Epsilon <em>[interaxial_epsilon]</em></h5>
+<p>The epsilon used for calculating left/right directions and the surface offset in <em>Bake</em> view mode.</p>
+<br>
+<hr/>
+<h4>Depth of Field</h4>
+<br>
+<h5>Enable <em>[use_dof]</em></h5>
+<p>Enable the depth of field.</p>
+<p class="note" >Note : If you enable this here, you don't need to enable it in the Render Options.</p>
+<p class="note" >Note : The result is not exactly the same as Arnold's default DoF, but it's very similar.</p>
+<br>
+<h5>Size <em>[aperture_size_]</em></h5>
+<p>This size controls the amount of blur (size of the iris).</p>
+<br>
+<h5>Aspect Ratio <em>[aperture_aspect_ratio_]</em></h5>
+<p>The aspect ratio of the lens. Values smaller than 1 will give an horizontal elongated oval vand values greater than 1 will give a vertical elongated oval.</p>
+<br>
+<h5>Polygonal Aperture <em>[use_polygonal_aperture]</em></h5>
+<p>The shape of the iris is polygonal instead of circular.</p>
+<br>
+<h5>Blades <em>[aperture_blades_]</em></h5>
+<p>The number of blades the iris has. For example, using 5 blades will give a pentagon shaped iris.</p>
+<br>
+<h5>Blade Curvature <em>[aperture_blade_curvature_]</em></h5>
+<p>A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.</p>
+<br>
+<img src="images/Obq_bokeh_04.jpg" alt="Blade curvature" width=512 >
+<p class="idesc">Fig.4 : Blade curvature of 1, 0, -1, -2 and -3.</p>
+<br>
+<h5>Rotation <em>[aperture_rotation_]</em></h5>
+<p>The rotation in degrees of the shape of the iris.</p>
+<br>
+<hr/>
+<h4>Bokeh Quality</h4>
+<p>The bokeh "quality" look can be altered using a bias and gain parameters. This effectively changes the distribution of the rays.</p>
+<p class="note" >Note : These parameters will eventually be replaced by better sampling functions and image based bokeh.</p>
+<br>
+<h5>Invert <em>[bokeh_invert]</em></h5>
+<p>Invert the output of the bias/gain operation.</p>
+<br>
+<h5>Bias <em>[bokeh_bias]</em></h5>
+<p>Bias control of the bokeh.</p>
+<br>
+<h5>Gain <em>[bokeh_gain]</em></h5>
+<p>Gain control of the bokeh.</p>
+<table borders="0" cellpadding=0 cellspacing=0 width=700>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Poor bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain)  values around (false, 0.7, 0.2 ).</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Neutral bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain)  = (false, 0.5, 0.5 ).</td></tr>
+<tr><td width=15> </td><td width=20 valign="top" align="center">&bull;</td><td valign="top" align="left" width="90"><span class="enumElem">Good bokeh</span></td><td valign="top" align="center" width = 10>:</td><td valign="top" align="justify">(invert, bias, gain) values around (true, 0.33, 0.685 ).</td></tr>
+</table>
+<br>
+<img src="images/Obq_bokeh_03.jpg" alt="Bokeh looks2" width=256 >
+<p class="idesc">Fig.5 : Poor, Neutral and Good bokeh.</p>
+</div>
+</div>
+<div id="footer">Copyright &copy; 2011-2015, ObliqueFX. All Rights Reserved. </div>
+</div>
+</body>
+</html>

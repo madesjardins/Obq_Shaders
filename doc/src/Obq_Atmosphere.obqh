@@ -7,16 +7,17 @@
 %synopsisStart
 
 %pp :: A shader made for planetary atmosphere, but can also be used as a simple ray marcher.
-%image :: src/images/Obq_Atmosphere_01.jpg :: Synopsis image :: 768
+%warning :: This shader was created before Arnold went volume, so I suggest you go with the volume_collector.
+%image :: images/Obq_Atmosphere_01.jpg :: Synopsis image :: 768
 %idesc :: A planet's atmosphere.
-%note :: This shader was created before Arnold went volume, so I suggest you go with the volume_collector.
+
 
 %synopsisEnd
 
 %usageStart
 
 %pp :: This is a surface shader (surface port of a material), not a volume shader. You have to put an Arnold Parameter property on the shaded object and uncheck "Opaque".
-%image :: src/images/Obq_Atmosphere_02.jpg :: Usage image :: 512
+%image :: images/Obq_Atmosphere_02.jpg :: Usage image :: 512
 %idesc :: A cube in fractal smoky sphere.
 
 #%usageEnd

@@ -8,7 +8,7 @@
 
 %pp :: Obq_MeasuredMaterial is a shader that reads binary BRDF files (MERL database .binary or MaterialSketcher .mskbrdf).
 %warning :: This shader is in development right now and not all the parameters are active.
-%image :: src/images/Obq_MeasuredMaterial_01.jpg :: Synopsis image :: 768
+%image :: images/Obq_MeasuredMaterial_01.jpg :: Synopsis image :: 768
 %idesc :: In this example, the Stanford dragon is shaded using the MERL red metallic paint BRDF.
 
 %synopsisEnd

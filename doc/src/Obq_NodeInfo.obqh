@@ -1,0 +1,32 @@
+%shadername :: Obq_NodeInfo
+
+%class :: Texture [Passthrough &gt; Print]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Obq_NodeInfo prints all the parameters and metadata of the current, another, the universe options or the render camera node.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Simply use the node as a passthrough in a material and select <em>Warnings + info</em> as verbosity level of render options.
+%usageEnd
+
+%param :: Passthrough <em>[passthrough]</em>
+%pp :: Passthrough port, whatever comes in, comes out intact.
+
+%param :: Mode <em>[mode]</em>
+%pp :: What node to inspect :
+%tableStart
+%tableItem :: 105 :: This Node :: The Obq_NodeInfo
+%tableItem :: 105 :: Other Node :: A specific object in the scene, use the <em>Node Name</em> parameter to write full name.
+%tableItem :: 105 :: Universe Options :: The Arnold Universe Options node.
+%tableItem :: 105 :: Render Camera :: The current camera used to render.
+%tableEnd
+
+%param :: Node Name <em>[node_name]</em>
+%pp :: The full name (including model) of the object you want to inspect.
+

@@ -132,7 +132,7 @@ Logic
 	End Sub
 
 	Sub OnInit
-		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetInt.html"
+		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
 		mode_OnChanged()
 		PPG.Refresh
 	End Sub

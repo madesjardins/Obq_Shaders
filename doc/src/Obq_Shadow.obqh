@@ -7,7 +7,7 @@
 %synopsisStart
 
 %pp :: A shadow catcher shader capable of generating the colored shadows of image based lighting. Ideal for CG integration in live action, a few options are there to specify which objects were already casting shadows in the plate.
-%image :: src/images/Obq_Shadow_01.jpg :: Synopsis image :: 732
+%image :: images/Obq_Shadow_01.jpg :: Synopsis image :: 732
 %idesc :: In this example, a CG T-Rex is added to a live action scene in which a perforated box was resting a table. Additionnal shadows of the T-Rex are needed on both the box and the table, but one must be careful not the add shadows of the T-Rex where the box stops the light from hitting the T-Rex. From left to right : the scene, shadows of the T-Rex when lit with a downward distant light in ratio mode, shadows of the T-Rex when lit with an HDR plugged into a skydome in "Shadow Ratio" mode and then in "Shadow Difference" mode.
 
 %synopsisEnd
@@ -21,7 +21,7 @@
 %enumItem :: Then, on the CG partition, use an override to disable "Primary Ray Visibility".
 %enumItem :: On both partitions, you need to override the surface port of the materials with Obq_Shadow nodes. The one on the CG partition must have its "Trace Type" set to "Caster" and the one on the plate objects must be set to "Receiver". Use either the "Shadow Ratio" mode to multiply the plate or the "Shadow Difference" mode as mask in a grade node in Nuke.
 %enumEnd
-%image :: src/images/Obq_Shadow_02.jpg :: Synopsis image :: 0
+%image :: images/Obq_Shadow_02.jpg :: Synopsis image :: 0
 
 
 %usageEnd

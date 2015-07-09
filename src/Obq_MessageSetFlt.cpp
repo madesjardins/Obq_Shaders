@@ -69,19 +69,15 @@ node_parameters
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	data->key = "Of";
-	data->setAfter = false;
-	data->restoreValue = false;
 	AiNodeSetLocalData(node,data);
+
+	data->key = AiNodeGetStr(node,"key");
+	data->setAfter = AiNodeGetBool(node, "setAfter");
+	data->restoreValue = AiNodeGetBool(node, "restoreValue");
 }
 
 node_update
 {
-	// Access shader Data
-	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	data->key = params[p_key].STR;
-	data->setAfter = params[p_setAfter].BOOL;
-	data->restoreValue = params[p_restoreValue].BOOL;
 }
 
 node_finish

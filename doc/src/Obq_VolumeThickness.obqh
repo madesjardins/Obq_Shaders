@@ -15,7 +15,7 @@
 
 %pp :: Use it like any other shader and get the particle color with modified alpha based on the age percentage. You could also plug a fractal to modify the radius of the particles and give it a little bit of variation.
 %note :: This is a surface shader (surface port), not a volume shader.
-%image :: src/images/Obq_VolumeThickness_01.jpg :: Synopsis image :: 768
+%image :: images/Obq_VolumeThickness_01.jpg :: Synopsis image :: 768
 %idesc :: A thick gray smoke emanates from the ground.
 
 #%usageEnd

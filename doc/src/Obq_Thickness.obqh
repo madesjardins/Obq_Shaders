@@ -8,7 +8,7 @@
 
 %pp :: Obq_Thickness measures the thickness of a shading point in a chosen direction. 
 %warning :: It is not affected by opacity cutouts.
-%image :: src/images/Obq_Thickness_02.jpg :: Synopsis image :: 768
+%image :: images/Obq_Thickness_02.jpg :: Synopsis image :: 768
 %idesc :: Guess what's in the box.
 
 %synopsisEnd
@@ -16,7 +16,7 @@
 %usageStart
 
 %pp :: Simply use Obq_Thickness as is, or you can use it to drive another parameter like a gradient. 
-%image :: src/images/Obq_Thickness_01.jpg :: Usage image :: 768
+%image :: images/Obq_Thickness_01.jpg :: Usage image :: 768
 %idesc :: The thickness of smoke seen as a gradient.
 
 #%usageEnd

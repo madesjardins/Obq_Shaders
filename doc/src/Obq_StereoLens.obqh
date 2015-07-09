@@ -7,7 +7,7 @@
 %synopsisStart
 
 %pp :: A camera lens shader that allows you to render a pair of stereo images into a single frame.
-%image :: src/images/Obq_StereoLens_01.jpg :: Synopsis image :: 0
+%image :: images/Obq_StereoLens_01.jpg :: Synopsis image :: 0
 %idesc :: Example of lizard rendered with Obq_StereoLens.
 %warning :: Using SItoA 3.1.2 and up, you need to add an Arnold Camera Option property and select "Custom (lens shader)" as the camera type.
 
@@ -107,7 +107,7 @@
 %param :: Blade Curvature <em>[apertureBladeCurvature]</em>
 %pp :: A value representing how sharp is the shape of the iris. A value of 1 will give a perfect circle. A value of 0 will give a sharp shape. Values smaller than 0, will tend to give a star shape iris.
 
-%image :: src/images/Obq_bokeh_04.jpg :: Blade curvature :: 512
+%image :: images/Obq_bokeh_04.jpg :: Blade curvature :: 512
 %idesc :: Blade curvature of 1, 0, -1, -2 and -3.
 
 %param :: Rotation <em>[apertureRotation]</em>
@@ -133,13 +133,13 @@
 %tableItem :: 90 :: Good bokeh :: (invert, bias, gain) values around (true, 0.33, 0.685 ).
 %tableEnd
 
-%image :: src/images/Obq_bokeh_03.jpg :: Bokeh looks2 :: 256
+%image :: images/Obq_bokeh_03.jpg :: Bokeh looks2 :: 256
 %idesc :: Poor, Neutral and Good bokeh.
 
-#%image :: src/images/Obq_bokeh_01.jpg :: Bokeh looks :: 512
+#%image :: images/Obq_bokeh_01.jpg :: Bokeh looks :: 512
 #%idesc :: Bokeh looks with different bias and gain values (non inverted).
 
-#%image :: src/images/Obq_bokeh_02.jpg :: Bokeh looks2 :: 512
+#%image :: images/Obq_bokeh_02.jpg :: Bokeh looks2 :: 512
 #%idesc :: Bokeh looks with different bias and gain values (inverted).
 
 

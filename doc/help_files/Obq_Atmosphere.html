@@ -49,11 +49,14 @@
 <tr><td width="2"></td><td><a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Hair.html">Obq_Hair</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_IESLightFilter.html">Obq_IESLightFilter</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_KettleUVStereoLens.html">Obq_KettleUVStereoLens</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_LensDistortion.html">Obq_LensDistortion</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_LightSaturationFilter.html">Obq_LightSaturationFilter</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_MeasuredMaterial.html">Obq_MeasuredMaterial</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageGetFlt.html">Obq_MessageGetFlt</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageSetFlt.html">Obq_MessageSetFlt</a></td></tr>
-<tr><td width="2"></td><td><a href="Obq_MessageStoreFlt.html">Obq_MessageStoreFlt</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageGet.html">Obq_MessageGet</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageSet.html">Obq_MessageSet</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_MessageStore.html">Obq_MessageStore</a></td></tr>
+<tr><td width="2"></td><td><a href="Obq_NodeInfo.html">Obq_NodeInfo</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_Opacity.html">Obq_Opacity</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomColor.html">Obq_RandomColor</a></td></tr>
 <tr><td width="2"></td><td><a href="Obq_RandomID.html">Obq_RandomID</a></td></tr>
@@ -87,10 +90,10 @@
 <br>
 <h5>Synopsis</h5>
 <p>A shader made for planetary atmosphere, but can also be used as a simple ray marcher.</p>
+<p class="warning">Warning : This shader was created before Arnold went volume, so I suggest you go with the volume_collector.</p>
 <br>
 <img src="images/Obq_Atmosphere_01.jpg" alt="Synopsis image" width=768 >
 <p class="idesc">Fig.1 : A planet's atmosphere.</p>
-<p class="note" >Note : This shader was created before Arnold went volume, so I suggest you go with the volume_collector.</p>
 <br>
 <h5>Usage</h5>
 <p>This is a surface shader (surface port of a material), not a volume shader. You have to put an Arnold Parameter property on the shaded object and uncheck "Opaque".</p>

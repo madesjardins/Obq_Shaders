@@ -1,0 +1,35 @@
+%shadername :: Obq_MessageStore*
+
+%class :: Texture [Passthrough &gt; Message &gt; Store]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Instead of outputting the value attach to a key in the message bank like Obq_MessageGet*, this node is a passthrough node that stores that particular value in an AOV.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use an Obq_MessageSet* as a passthrough to attach a value to a key, pass it downstream and use an Obq_MessageGet* to fetch it. You can also use a Obq_MessageStore* to fetch and store that value in a AOV, this is useful for saving reflection matte.
+%image :: images/Obq_MessageStoreFlt_01.jpg :: Synopsis image :: 768
+%idesc :: In this example, we wanted to isolate the pixels on the ground influenced by the lizard, for glossy reflexion only.
+
+%usageEnd
+
+%param :: Passthrough <em>[passthrough]</em>
+%pp :: The passthrough port for the shader.
+
+%param :: Key <em>[key]</em>
+%pp :: The key (string).
+
+%param :: Store In <em>[AOVName]</em>
+%pp :: The AOV in which to store the value.
+
+%param :: Store value after passthrough evaluation <em>[setAfter]</em>
+%pp :: Instead of storing the value before evaluation, this allows to store it after, which is the proper way of doing things here.
+
+%param :: Default Value <em>[defaultValue]</em>
+%pp :: If the key doesn't exist, use this default value.
+

@@ -1,0 +1,35 @@
+%shadername :: Obq_MessageSet*
+
+%class :: Texture [Passthrough &gt; Message &gt; Set]
+
+%output :: Color RGBA
+
+%synopsisStart
+
+%pp :: Attaches a value to a key in the message bank. You can use the Obq_Message nodes to create reflection mattes, use different images, etc. depending on what object is hit first and stuff like that. These nodes are basically simplified version of Stefano's sja_radio shaders.
+
+%synopsisEnd
+
+%usageStart
+
+%pp :: Use an Obq_MessageSet* as a passthrough to attach a value to a key, pass it downstream and use an Obq_MessageGet* to fetch it. You can also use a Obq_MessageStore* to fetch and store that value in a AOV, this is useful for saving reflection matte.
+
+%usageEnd
+
+%param :: Passthrough <em>[passthrough]</em>
+%pp :: The passthrough port for the shader.
+
+%param :: Key <em>[key]</em>
+%pp :: The key (string).
+
+%param :: Value <em>[value]</em>
+%pp :: The value to attach to the key.
+
+%param :: Set value after passthrough evaluation <em>[setAfter]</em>
+%pp :: Instead of attaching the value before evaluation, attach it after.
+
+%param :: Restore value after if any <em>[restoreValue]</em>
+%pp :: Restore the value associated with the key to <em>Default restored value</em> after evaluation when <em>Set value after passthrough evaluation</em> is off.
+
+%param :: Default restored value <em>[defaultRestoredValue]</em>
+%pp :: Value restored.

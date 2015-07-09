@@ -9,7 +9,7 @@
 %pp :: Obq_Fresnel is a texture node that outputs colored proportion of light reflected/refracted from a surface based on the refractive indices and the extinction coefficients. Note that this shader is particularly useful for getting the right metal reflection color by driving the <em>ks_color</em> port of a standard shader. A lot of presets are available, but you can also import wavelength dependent complex IORs files (.spd, .csv, .txt) or enter them as strings directly. Creation of an energy conserving 2-layers material can also be done by using the <a href="Obq_Fresnel2Standards.html">Obq_Fresnel2Standards compound</a>.
 %note :: Even though this is a newer Obq_Fresnel, older Obq_Fresnel nodes will give the same look. You can press the "Load" preset button to update the look.
 %warning :: You should not use the Obq_Fresnel for dielectrics (material with refraction), the <em>Use IOR for Fresnel</em> parameter of the standard shader should be used instead. However, you can use the <em>Material Type : Refractive</em> for coatings.
-%image :: src/images/Obq_Fresnel_01.jpg :: Synopsis image :: 768
+%image :: images/Obq_Fresnel_01.jpg :: Synopsis image :: 768
 %idesc :: In this example, the Stanford dragon is shaded using an Obq_Fresnel with an iron preset plugged into the <em>specular color</em> port of the standard shader. Note that the Fresnel parameters of the standard must not be enabled.
 
 
@@ -18,7 +18,7 @@
 %usageStart
 
 %pp :: The simplest way is to use Obq_Fresnel is to plug the output in the <em>specular color</em> port of the standard shader like shown above. Using the Obq_Fresnel2standards compounds, you can also achieve multi-layered materials and respect energy conservation.
-%image :: src/images/Obq_Fresnel_02.jpg :: Usage image :: 768
+%image :: images/Obq_Fresnel_02.jpg :: Usage image :: 768
 %idesc :: Statues of Ajax from left to right : smooth gold, rough copper, rough osmium with silver flakes underneath a smooth acrylic layer, smooth ice and a vegetable oil covered rosewood. The gold and copper Ajax have been created with their respective preset and simply connected to the <em>specular color</em> port of the standard shader. The third and fifth Ajax are using the compounds shown below the render.
 
 #%usageEnd

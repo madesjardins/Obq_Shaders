@@ -13,7 +13,7 @@
 %usageStart
 
 %pp :: Obq_Environement is great for use with the environment port of an object's render tree when using the old Phong shader ( and Reflection shader ). But if you want to use it with the standard shader, you'll have to use it as a pass shader.
-%image :: src/images/Obq_Environment_01.jpg :: Usage image :: 768
+%image :: images/Obq_Environment_01.jpg :: Usage image :: 768
 %idesc :: In this example, we use the Obq_Environment of the pass shader to light the sphere, but we secretly render the reflections from the Obq_SurfaceEnvironment node and store it inside an AOV without affecting the main result.
 
 #%usageEnd

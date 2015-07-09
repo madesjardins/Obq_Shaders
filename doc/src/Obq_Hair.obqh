@@ -14,7 +14,7 @@
 
 %warning :: At the moment, there is a disparity between some Windows and Linux renders. I hope to have the time to address this soon.
 
-%image :: src/images/Obq_Hair_01.jpg :: Synopsis image :: 768
+%image :: images/Obq_Hair_01.jpg :: Synopsis image :: 768
 %idesc :: Images from the movie <em>"La belle et la b&ecirc;te"</em>. The face of the beast uses Obq_Hair.
 
 %synopsisEnd
@@ -49,13 +49,13 @@
 
 %param :: Shift(&deg;) <em>[alpha_R]</em>
 %pp :: The longitudinal shift in degrees towards the tip of the primary highlight. The hair is made up tilted scales and because of that, the highlight is shifted towards the root of the hair, which explains the negative value.
-%image :: src/images/Obq_Hair_02.jpg :: Shift :: 640
+%image :: images/Obq_Hair_02.jpg :: Shift :: 640
 %idesc :: From left to right, shifts of : -7.5&deg;, 0&deg; and 7.5&deg;. The root of the hair is at the top of the image and the tip at the bottom.
 %note :: Based on the papers, values between -10&deg; and -5&deg; are those of normal human hair. This parameter is known as alpha_R. The TT and TRT lobes are tilted towards the tip of the hair and their values are : alpha_TT = -alpha_R/2 and alpha_TRT = -3*alpha_R/2.
 
 %param :: Width(&deg;) <em>[beta_R]</em>
 %pp :: The longitudinal width in degrees of the lobe (standard deviation). This represent how fat is the highlight's lobe.
-%image :: src/images/Obq_Hair_03.jpg :: Width :: 640
+%image :: images/Obq_Hair_03.jpg :: Width :: 640
 %idesc :: From left to right, widths of : 7.5&deg;, 15&deg; and 3.75&deg;.
 %note :: Based on the papers, values between 5&deg; and 10&deg; are those of normal human hair. This parameter is known as beta_R. The TT and TRT lobes width can be derived from the beta_R value : beta_TT = beta_R/2 and beta_TRT = 2*beta_R.
 
@@ -82,7 +82,7 @@
 
 %pp :: The shift and the width parameters of the TRT component influences both the TRT-G and the glints, but the colors and scales are independent.
 
-%image :: src/images/Obq_Hair_04.jpg :: Width :: 426
+%image :: images/Obq_Hair_04.jpg :: Width :: 426
 %idesc :: From left to right, widths of TRT for glints : 15&deg; and 7.5&deg;.
 
 %param :: Color <em>[color_g]</em>
@@ -94,20 +94,20 @@
 %param :: Azimuthal width(&deg;) <em>[gamma_g]</em>
 %pp :: The azimutal width in degrees. This represents how fat the glints are perpendicularly to the direction of the hair.
 
-%image :: src/images/Obq_Hair_05.jpg :: Azimuthal width :: 426
+%image :: images/Obq_Hair_05.jpg :: Azimuthal width :: 426
 %idesc :: From left to right, azimuthal widths of glints : 17.5&deg; and 9&deg;.
 
 %param :: Half angle between peeks (&deg;) <em>[phi_g]</em>
 %pp :: The half angle between the glints. A higher value will seperate the 2 peeks and a smaller value will bring them closer.
 
-%image :: src/images/Obq_Hair_06.jpg :: Half angle between peeks :: 426
+%image :: images/Obq_Hair_06.jpg :: Half angle between peeks :: 426
 %idesc :: From left to right, half angle between peeks of glints : 37.5&deg; and 20&deg;.
 
 %section :: Rimlight (TT lobe)
 
 %pp :: The rimlight correspond to the light that is transmitted in the hair on one side and transmitted again on the other side, i.e. that goes through the hair. This is for an unshadowed hair, you need dual scattering or an opacity smaller than 1 to see the rimlight through more than one hair.
 
-%image :: src/images/Obq_Hair_07.jpg :: Rimlight :: 214
+%image :: images/Obq_Hair_07.jpg :: Rimlight :: 214
 %idesc :: A backlit lump of hair (red light, no dual scattering).
 
 %param :: Color <em>[color_TT]</em>
@@ -129,7 +129,7 @@
 %section :: Dual Scattering (B.S. and F.S. lobes)
 
 %pp :: Dual scattering simulates light bounces inside the volume of hair.
-%image :: src/images/Obq_Hair_08.jpg :: Dual Scattering :: 620
+%image :: images/Obq_Hair_08.jpg :: Dual Scattering :: 620
 %idesc :: A lump of hair lit from the front and the back. From left to right : single scattering, back scattering+forward scattering and final render.
 
 %param :: Single Scattering Mode <em>[singleScatteringMode]</em>
@@ -223,7 +223,7 @@
 %param :: Intersection modifier (^) <em>[numGMS_modifier]</em>
 %pp :: This exponent modifies the number of hair intersections during the forward scattering computation (num^modifier) to allow light to go furter into the hair volume.
 
-%image :: src/images/Obq_Hair_09.jpg :: Intersection modifier :: 768
+%image :: images/Obq_Hair_09.jpg :: Intersection modifier :: 768
 %idesc :: A cross section of a lump of hair lit from above. Values of modifier (exponent) from left to right : 1, 1/2, 1/4 and 1/8.
 
 %section :: Additionnal Options

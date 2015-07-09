@@ -108,7 +108,7 @@ node_parameters
 	AiParameterINT("view_mode", CENTER);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
 	AiParameterINT("stereo_type", CONVERGED);			// Parallel (align both on middle vector), Converged (to a specific distance )
 	AiParameterINT("interaxial_mode", BLUE);			// NOT USED BLUE is default
-	AiParameterFLT("interaxial_epsilon", 0.001f);		// value used to search
+	AiParameterFLT("interaxial_epsilon", 0.002f);		// value used to search
 	AiParameterFLT("interaxial_separation", -0.6f);		// in u coordinates typically, if >0 it goes to the left
 	AiParameterINT("zero_parallax_mode",USETARGET);		// 0 = use target, 1 = Use distance
 	AiParameterFLT("zero_parallax_distance", 100.0);	//
