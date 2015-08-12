@@ -34,6 +34,15 @@ HOW TO INSTALL
 	+ copy the .so    in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
 	+ copy the .dylib in "bin" into "~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
   
+  C4DtoA (not yet fully integrated)
+    + copy the content of the "cinema4d\metadata" folder into "C:\Program Files\MAXON\CINEMA 4D <Version>\plugins\C4DtoA\shaders",[Windows]
+	+ . . . . . . . . . . . . . . . . . . . . . . . . . . "/Application/MAXON/CINEMA 4D <Version>/plugins/C4DtoA/shaders",[OSX]
+    
+    + copy the content of the "cinema4d\res" folder into "C:\Program Files\MAXON\CINEMA 4D <Version>\plugins\C4DtoA\res",[Windows]
+	+ . . . . . . . . . . . . . . . . . . . . . . . . . . "/Application/MAXON/CINEMA 4D <Version>/plugins/C4DtoA/res",[OSX]
+    
+  	+ copy the .dll   in "bin" into "C:\Program Files\MAXON\CINEMA 4D R16\plugins\C4DtoA\shaders",[Windows]
+	+ copy the .dylib in "bin" into "/Application/MAXON/CINEMA 4D <Version>/plugins/C4DtoA/shaders",[OSX]
   
   Obq_Simbiont:
   
