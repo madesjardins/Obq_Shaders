@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_RandomID
+{
+   ainode_Obq_RandomID         "Arnold Obq_RandomID node";
+
+   C4DAI_OBQ_RANDOMID_MAIN_GRP                        "Main";
+}
+

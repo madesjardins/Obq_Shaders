@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Fresnel
+{
+   ainode_Obq_Fresnel         "Arnold Obq_Fresnel node";
+
+   C4DAI_OBQ_FRESNEL_MAIN_GRP                         "Main";
+}
+

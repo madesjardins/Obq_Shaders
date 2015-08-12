@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_MessageGetBool
+{
+   ainode_Obq_MessageGetBool         "Arnold Obq_MessageGetBool node";
+
+   C4DAI_OBQ_MESSAGEGETBOOL_MAIN_GRP                  "Main";
+}
+

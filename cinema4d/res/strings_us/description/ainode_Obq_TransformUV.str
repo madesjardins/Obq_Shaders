@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_TransformUV
+{
+   ainode_Obq_TransformUV         "Arnold Obq_TransformUV node";
+
+   C4DAI_OBQ_TRANSFORMUV_MAIN_GRP                     "Main";
+}
+

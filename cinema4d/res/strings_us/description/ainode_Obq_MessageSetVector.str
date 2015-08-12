@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_MessageSetVector
+{
+   ainode_Obq_MessageSetVector         "Arnold Obq_MessageSetVector node";
+
+   C4DAI_OBQ_MESSAGESETVECTOR_MAIN_GRP                "Main";
+}
+

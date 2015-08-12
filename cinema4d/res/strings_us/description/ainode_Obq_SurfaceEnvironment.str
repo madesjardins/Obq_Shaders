@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_SurfaceEnvironment
+{
+   ainode_Obq_SurfaceEnvironment         "Arnold Obq_SurfaceEnvironment node";
+
+   C4DAI_OBQ_SURFACEENVIRONMENT_MAIN_GRP              "Main";
+}
+

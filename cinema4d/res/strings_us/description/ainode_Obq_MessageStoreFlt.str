@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_MessageStoreFlt
+{
+   ainode_Obq_MessageStoreFlt         "Arnold Obq_MessageStoreFlt node";
+
+   C4DAI_OBQ_MESSAGESTOREFLT_MAIN_GRP                 "Main";
+}
+

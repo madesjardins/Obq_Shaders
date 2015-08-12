@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_SetAlpha
+{
+   ainode_Obq_SetAlpha         "Arnold Obq_SetAlpha node";
+
+   C4DAI_OBQ_SETALPHA_MAIN_GRP                        "Main";
+}
+

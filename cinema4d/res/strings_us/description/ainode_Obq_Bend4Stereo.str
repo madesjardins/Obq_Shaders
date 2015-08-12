@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Bend4Stereo
+{
+   ainode_Obq_Bend4Stereo         "Arnold Obq_Bend4Stereo node";
+
+   C4DAI_OBQ_BEND4STEREO_MAIN_GRP                     "Main";
+}
+

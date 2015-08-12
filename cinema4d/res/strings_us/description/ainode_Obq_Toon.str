@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Toon
+{
+   ainode_Obq_Toon         "Arnold Obq_Toon node";
+
+   C4DAI_OBQ_TOON_MAIN_GRP                            "Main";
+}
+

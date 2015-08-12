@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_RGBComEmit
+{
+   ainode_Obq_RGBComEmit         "Arnold Obq_RGBComEmit node";
+
+   C4DAI_OBQ_RGBCOMEMIT_MAIN_GRP                      "Main";
+}
+

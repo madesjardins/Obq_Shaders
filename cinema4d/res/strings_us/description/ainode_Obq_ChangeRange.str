@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_ChangeRange
+{
+   ainode_Obq_ChangeRange         "Arnold Obq_ChangeRange node";
+
+   C4DAI_OBQ_CHANGERANGE_MAIN_GRP                     "Main";
+}
+

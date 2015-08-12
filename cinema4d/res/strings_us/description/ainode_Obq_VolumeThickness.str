@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_VolumeThickness
+{
+   ainode_Obq_VolumeThickness         "Arnold Obq_VolumeThickness node";
+
+   C4DAI_OBQ_VOLUMETHICKNESS_MAIN_GRP                 "Main";
+}
+

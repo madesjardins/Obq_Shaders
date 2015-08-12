@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_MessageStoreColor
+{
+   ainode_Obq_MessageStoreColor         "Arnold Obq_MessageStoreColor node";
+
+   C4DAI_OBQ_MESSAGESTORECOLOR_MAIN_GRP               "Main";
+}
+

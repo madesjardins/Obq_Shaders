@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_ColorspaceConverter
+{
+   ainode_Obq_ColorspaceConverter         "Arnold Obq_ColorspaceConverter node";
+
+   C4DAI_OBQ_COLORSPACECONVERTER_MAIN_GRP             "Main";
+}
+

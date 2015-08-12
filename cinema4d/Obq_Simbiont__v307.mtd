@@ -1,13 +1,11 @@
-# 2014-11-30 02.06 pm
+# 2015-08-12 03.20 pm
 
 [node Obq_Simbiont]
   maya.name                     STRING "Obq_Simbiont"
   maya.id                       INT     0x0011CD51
   maya.classification           STRING "shader/surface"
-
   c4d.classification            STRING "surface"
   c4d.menu                      STRING "OBQShaders"
-
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Simbiont"

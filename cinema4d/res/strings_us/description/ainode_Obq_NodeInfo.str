@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_NodeInfo
+{
+   ainode_Obq_NodeInfo         "Arnold Obq_NodeInfo node";
+
+   C4DAI_OBQ_NODEINFO_MAIN_GRP                        "Main";
+}
+

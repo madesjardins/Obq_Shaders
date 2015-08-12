@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Atmosphere
+{
+   ainode_Obq_Atmosphere         "Arnold Obq_Atmosphere node";
+
+   C4DAI_OBQ_ATMOSPHERE_MAIN_GRP                      "Main";
+}
+

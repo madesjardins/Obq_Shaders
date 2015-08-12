@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Root2Tip
+{
+   ainode_Obq_Root2Tip         "Arnold Obq_Root2Tip node";
+
+   C4DAI_OBQ_ROOT2TIP_MAIN_GRP                        "Main";
+}
+

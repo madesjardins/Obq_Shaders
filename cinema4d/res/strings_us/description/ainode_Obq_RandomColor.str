@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_RandomColor
+{
+   ainode_Obq_RandomColor         "Arnold Obq_RandomColor node";
+
+   C4DAI_OBQ_RANDOMCOLOR_MAIN_GRP                     "Main";
+}
+

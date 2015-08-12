@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_RGBComLightFilter
+{
+   ainode_Obq_RGBComLightFilter         "Arnold Obq_RGBComLightFilter node";
+
+   C4DAI_OBQ_RGBCOMLIGHTFILTER_MAIN_GRP               "Main";
+}
+

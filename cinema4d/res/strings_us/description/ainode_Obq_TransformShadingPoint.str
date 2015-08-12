@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_TransformShadingPoint
+{
+   ainode_Obq_TransformShadingPoint         "Arnold Obq_TransformShadingPoint node";
+
+   C4DAI_OBQ_TRANSFORMSHADINGPOINT_MAIN_GRP           "Main";
+}
+

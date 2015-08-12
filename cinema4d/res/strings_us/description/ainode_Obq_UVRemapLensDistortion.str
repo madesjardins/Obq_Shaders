@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_UVRemapLensDistortion
+{
+   ainode_Obq_UVRemapLensDistortion         "Arnold Obq_UVRemapLensDistortion node";
+
+   C4DAI_OBQ_UVREMAPLENSDISTORTION_MAIN_GRP           "Main";
+}
+

@@ -1,0 +1,18 @@
+#ifndef _ainode_Obq_MessageSetFlt_h_
+#define _ainode_Obq_MessageSetFlt_h_
+
+enum
+{
+   C4DAI_OBQ_MESSAGESETFLT_MAIN_GRP                   = 2001,
+
+   C4DAIP_OBQ_MESSAGESETFLT_PASSTHROUGH               = 2028279939,
+   C4DAIP_OBQ_MESSAGESETFLT_KEY                       = 1391504396,
+   C4DAIP_OBQ_MESSAGESETFLT_VALUE                     = 788059432,
+   C4DAIP_OBQ_MESSAGESETFLT_SETAFTER                  = 1593633449,
+   C4DAIP_OBQ_MESSAGESETFLT_RESTOREVALUE              = 977728564,
+   C4DAIP_OBQ_MESSAGESETFLT_DEFAULTRESTOREDVALUE      = 1712732843,
+   C4DAIP_OBQ_MESSAGESETFLT_NAME                      = 1325098348,
+};
+
+#endif
+

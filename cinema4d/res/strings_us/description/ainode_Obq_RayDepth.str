@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_RayDepth
+{
+   ainode_Obq_RayDepth         "Arnold Obq_RayDepth node";
+
+   C4DAI_OBQ_RAYDEPTH_MAIN_GRP                        "Main";
+}
+

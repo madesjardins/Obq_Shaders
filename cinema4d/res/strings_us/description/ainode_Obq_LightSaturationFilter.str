@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_LightSaturationFilter
+{
+   ainode_Obq_LightSaturationFilter         "Arnold Obq_LightSaturationFilter node";
+
+   C4DAI_OBQ_LIGHTSATURATIONFILTER_MAIN_GRP           "Main";
+}
+

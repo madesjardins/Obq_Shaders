@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Color
+{
+   ainode_Obq_Color         "Arnold Obq_Color node";
+
+   C4DAI_OBQ_COLOR_MAIN_GRP                           "Main";
+}
+

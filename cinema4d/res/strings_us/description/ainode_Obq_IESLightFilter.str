@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_IESLightFilter
+{
+   ainode_Obq_IESLightFilter         "Arnold Obq_IESLightFilter node";
+
+   C4DAI_OBQ_IESLIGHTFILTER_MAIN_GRP                  "Main";
+}
+

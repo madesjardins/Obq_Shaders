@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Thickness
+{
+   ainode_Obq_Thickness         "Arnold Obq_Thickness node";
+
+   C4DAI_OBQ_THICKNESS_MAIN_GRP                       "Main";
+}
+

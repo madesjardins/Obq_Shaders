@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Etching
+{
+   ainode_Obq_Etching         "Arnold Obq_Etching node";
+
+   C4DAI_OBQ_ETCHING_MAIN_GRP                         "Main";
+}
+

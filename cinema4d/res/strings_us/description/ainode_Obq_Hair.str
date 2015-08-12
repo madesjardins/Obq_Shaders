@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Hair
+{
+   ainode_Obq_Hair         "Arnold Obq_Hair node";
+
+   C4DAI_OBQ_HAIR_MAIN_GRP                            "Main";
+}
+

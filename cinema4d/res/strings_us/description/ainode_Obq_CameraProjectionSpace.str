@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_CameraProjectionSpace
+{
+   ainode_Obq_CameraProjectionSpace         "Arnold Obq_CameraProjectionSpace node";
+
+   C4DAI_OBQ_CAMERAPROJECTIONSPACE_MAIN_GRP           "Main";
+}
+

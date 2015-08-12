@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_MeasuredMaterial
+{
+   ainode_Obq_MeasuredMaterial         "Arnold Obq_MeasuredMaterial node";
+
+   C4DAI_OBQ_MEASUREDMATERIAL_MAIN_GRP                "Main";
+}
+

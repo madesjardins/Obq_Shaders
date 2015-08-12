@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Opacity
+{
+   ainode_Obq_Opacity         "Arnold Obq_Opacity node";
+
+   C4DAI_OBQ_OPACITY_MAIN_GRP                         "Main";
+}
+

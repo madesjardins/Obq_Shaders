@@ -1,0 +1,7 @@
+STRINGTABLE ainode_Obq_Shadow
+{
+   ainode_Obq_Shadow         "Arnold Obq_Shadow node";
+
+   C4DAI_OBQ_SHADOW_MAIN_GRP                          "Main";
+}
+
