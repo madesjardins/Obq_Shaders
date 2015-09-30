@@ -1,0 +1,7 @@
+STRINGTABLE aitag_Obq_LensDistortion
+{
+   aitag_Obq_LensDistortion         "Arnold Obq_LensDistortion node";
+
+   C4DAI_OBQ_LENSDISTORTION_MAIN_GRP                  "Main";
+}
+

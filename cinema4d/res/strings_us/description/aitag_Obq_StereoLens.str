@@ -1,0 +1,7 @@
+STRINGTABLE aitag_Obq_StereoLens
+{
+   aitag_Obq_StereoLens         "Arnold Obq_StereoLens node";
+
+   C4DAI_OBQ_STEREOLENS_MAIN_GRP                      "Main";
+}
+

@@ -1,0 +1,7 @@
+STRINGTABLE aitag_Obq_KettleUVStereoLens
+{
+   aitag_Obq_KettleUVStereoLens         "Arnold Obq_KettleUVStereoLens node";
+
+   C4DAI_OBQ_KETTLEUVSTEREOLENS_MAIN_GRP              "Main";
+}
+

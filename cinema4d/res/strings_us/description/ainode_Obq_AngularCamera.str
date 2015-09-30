@@ -1,7 +1,0 @@
-STRINGTABLE ainode_Obq_AngularCamera
-{
-   ainode_Obq_AngularCamera         "Arnold Obq_AngularCamera node";
-
-   C4DAI_OBQ_ANGULARCAMERA_MAIN_GRP                   "Main";
-}
-
