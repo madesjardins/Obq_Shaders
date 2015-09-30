@@ -1,15 +1,15 @@
 STRINGTABLE aitag_Obq_AngularCamera
 {
-   aitag_Obq_AngularCamera         "Arnold Obq_AngularCamera node";
+  aitag_Obq_AngularCamera         "Arnold Obq_AngularCamera node";
 
-   C4DAI_OBQ_ANGULARCAMERA_MAIN_GRP                  "Main";
-   C4DAIP_OBQ_ANGULARCAMERA_MAIN_ATTRIBUTES_GRP      "Obq_AngularCamera";
-   C4DAIP_OBQ_ANGULARCAMERA_OPTIONS_ATTRIBUTES_GRP   "Options";
-   
-   C4DAIP_OBQ_ANGULARCAMERA_ANGLE "Angle";
-   C4DAIP_OBQ_ANGULARCAMERA_FLIP "Opposite View";
-   C4DAIP_OBQ_ANGULARCAMERA_OVERRENDER "Over Render";
-   
-   C4DAIP_OBQ_ANGULARCAMERA_EXPOSURE "Exposure";
+  C4DAIP_OBQ_ANGULARCAMERA_MAIN_GRP                 "Main";
+  C4DAIP_OBQ_ANGULARCAMERA_MAIN_ATTRIBUTES_GRP      "Obq_AngularCamera";
+  C4DAIP_OBQ_ANGULARCAMERA_OPTIONS_ATTRIBUTES_GRP   "Options";
+
+  C4DAIP_OBQ_ANGULARCAMERA_ANGLE                    "Angle";
+  C4DAIP_OBQ_ANGULARCAMERA_FLIP                     "Opposite View";
+  C4DAIP_OBQ_ANGULARCAMERA_OVERRENDER               "Over Render";
+
+  C4DAIP_OBQ_ANGULARCAMERA_EXPOSURE                 "Exposure";
 }
 
