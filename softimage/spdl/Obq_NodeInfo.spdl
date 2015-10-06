@@ -20,12 +20,10 @@ PropertySet "Obq_NodeInfo_pset"
 	Parameter "mode" input
 	{
 		GUID = "{18243D76-40AA-44CB-85BA-46705C38A521}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
 		Animatable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "This Node";
 	}
 	Parameter "node_name" input
 	{
@@ -64,10 +62,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"This Node" = 0,
-			"Other Node" = 1,
-			"Universe Options" = 2,
-			"Render Camera" = 3
+			"This Node" = "This Node",
+			"Other Node" = "Other Node",
+			"Universe Options" = "Universe Options",
+			"Render Camera" = "Render Camera"
 		}
 	}
 	node_name
@@ -95,7 +93,7 @@ Logic
 {
 
 Sub mode_OnChanged()
-	If PPG.mode.Value = 1 Then
+	If PPG.mode.Value = "Other Node" Then
 		PPG.node_name.Show(true)
 	Else
 		PPG.node_name.Show(false)

@@ -89,7 +89,7 @@ PropertySet "Obq_Atmosphere_pset"
 		Value Minimum = 0.0;
 		Value Maximum = 1.0;
 	}
-		Parameter "useBiasGainDot" input
+	Parameter "useBiasGainDot" input
 	{
 		GUID = "{2E5678AE-8E16-4E82-BDB0-B00E720ED2EE}";
 		Type = boolean;
@@ -117,11 +117,9 @@ PropertySet "Obq_Atmosphere_pset"
 	Parameter "radiusFalloffMode" input
 	{
 		GUID = "{7A42FB23-6177-445C-A4CA-13977313CAE2}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Don't Use Radius Falloff";
 	}
 	Parameter "falloffStart" input
 	{
@@ -150,20 +148,16 @@ PropertySet "Obq_Atmosphere_pset"
 	Parameter "compensateForCloudOpacity" input
 	{
 		GUID = "{26B92398-012E-4040-9611-198168066AE5}";
-		Type = integer;
-		Texturable = on;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Texturable = off;
+		Value = "By raising total opacity";
 	}
 	Parameter "divideColorByOpacity" input
 	{
 		GUID = "{F9F3D6F0-6A95-4BF9-86D6-75825C630057}";
-		Type = integer;
-		Texturable = on;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Texturable = off;
+		Value = "Before Bias-Gain";
 	}
 	Parameter "useMaximumRayLength" input
 	{
@@ -274,9 +268,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Don't Use Radius Falloff" = 0,
-			"Get Center From Object Matrix" = 1,
-			"Get Center From Object Center Vector" = 2
+			"Don't Use Radius Falloff" = "Don't Use Radius Falloff",
+			"Get Center From Object Matrix" = "Get Center From Object Matrix",
+			"Get Center From Object Center Vector" = "Get Center From Object Center Vector"
 		}
 	}
 	falloffStart
@@ -302,9 +296,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Never" = 0,
-			"By dropping max opacity" = 1,
-			"By raising total opacity" = 2
+			"Never" = "Never",
+			"By dropping max opacity" = "By dropping max opacity",
+			"By raising total opacity" = "By raising total opacity"
 		}
 	}
 	divideColorByOpacity
@@ -314,9 +308,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Never" = 0,
-			"Before Bias-Gain" = 1,
-			"After Bias-Gain" = 2
+			"Never" = "Never",
+			"Before Bias-Gain" = "Before Bias-Gain",
+			"After Bias-Gain" = "After Bias-Gain"
 		}
 	}
 	useMaximumRayLength
@@ -418,9 +412,9 @@ Layout "RenderTree"
 		Group "Volume"
 		{
 			colorKd;
-			use3dKd;
+			#use3dKd;
 			absorption;
-			use3dAbsorption;
+			#use3dAbsorption;
 			asymmetry;
 		}
 		Group "Radius Falloff"

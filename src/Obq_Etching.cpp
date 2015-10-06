@@ -35,6 +35,7 @@ typedef struct
    const char* aov_matte;
    const char* aov_input;
    bool autoFilteringOut;
+   int autoFilteringMode;
 }
 ShaderData;
 
@@ -78,7 +79,15 @@ enum ObqEtchingParams {
 	p_autoFilteringAutoRange
 };
 
-enum obqSignals{OBQ_BOX, OBQ_TRIANGLE, OBQ_WAVE};
+enum ObqSignals{OBQ_BOX, OBQ_TRIANGLE, OBQ_WAVE};
+enum ObqAutoFilteringMode{OBQ_FEATHER, OBQ_FEATHERANDMIX, OBQ_MIX};
+static const char* ObqAutoFilteringModeNames[] = 
+{
+	"Feather",
+	"Feather and Mix",
+	"Mix",
+    NULL
+};
 
 node_parameters
 {
@@ -110,7 +119,7 @@ node_parameters
 	AiParameterFLT("autoFilteringEnd",0.02f);
 	AiParameterBOOL("autoFilteringOut",false);
 	AiParameterBOOL("autoFilteringU",false);
-	AiParameterINT("autoFilteringMode",0);
+	AiParameterENUM("autoFilteringMode",OBQ_FEATHER, ObqAutoFilteringModeNames);
 	AiParameterBOOL("autoFilteringAutoRange",true);
 }
 
@@ -129,6 +138,7 @@ node_update
 	data->aov_matte = params[p_aov_matte].STR;
 	data->aov_input = params[p_aov_input].STR;
 	data->autoFilteringOut = params[p_autoFilteringOut].BOOL;
+	data->autoFilteringMode = params[p_autoFilteringMode].INT;
 
 	if(data->aov_matte && std::strlen(data->aov_matte))	AiAOVRegister(data->aov_matte,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
 	if(data->aov_input && std::strlen(data->aov_input))	AiAOVRegister(data->aov_input,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
@@ -208,11 +218,11 @@ shader_evaluate
 		}
 
 		// Apply to feather and or mix
-		int autoFilteringMode = AiShaderEvalParamBool(p_autoFilteringMode);
-		if(autoFilteringMode > 0 )
+		//int autoFilteringMode = AiShaderEvalParamBool(p_autoFilteringMode);
+		if(data->autoFilteringMode > OBQ_FEATHER )
 			mix += (1.0f-mix)*tf;
 
-		if(autoFilteringMode < 2)
+		if(data->autoFilteringMode < OBQ_MIX)
 			feather += (1.0f-feather)*tf;
 		
 	}

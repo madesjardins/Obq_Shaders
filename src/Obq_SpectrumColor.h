@@ -33,11 +33,21 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 
 // enum for units
-enum {UNITS_NANO, UNITS_MICRO};
-
+enum ObqSpectrumUnits{UNITS_NANO, UNITS_MICRO};
+static const char* ObqSpectrumUnitsNames[] = 
+{
+	"Nano (nm) [360-830]",
+    "Micro (um) [0.360-0.830]",
+    NULL
+};
 // enum for mode
-enum {MODE_FILES, MODE_STRING};
-
+enum ObqSpectrumMode{MODE_FILES, MODE_STRING};
+static const char* ObqSpectrumModeNames[] = 
+{
+	"File",
+    "String",
+    NULL
+};
 // shader data struct
 typedef struct 
 {

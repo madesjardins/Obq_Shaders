@@ -20,10 +20,8 @@ PropertySet "Obq_RGBComLightFilter_params"
    Parameter "channel" input
    {
       guid = "{B65A8A03-6920-4A0F-9DF3-E44317D046C6}";
-      Type = integer;
-	  Value = 5;
-	  Value Minimum = 0;
-	  Value Maximum = 5;
+      Type = string;
+	  Value = "Use Default";
       texturable = off;
    }
 }
@@ -51,12 +49,12 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Use Default" = 5,
-			"Red" = 0,
-			"Green" = 1,
-			"Blue" = 2,
-			"White" = 3,
-			"Black" = 4,
+			"Red" = "Red",
+			"Green" = "Green",
+			"Blue" = "Blue",
+			"White" = "White",
+			"Black" = "Black",
+			"Use Default" = "Use Default"
 		}
    }
 }

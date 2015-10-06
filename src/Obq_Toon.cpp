@@ -38,9 +38,9 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqToonMethods);
 
 node_parameters
 {
-	AiParameterINT("global_loopLightMode",0);
-	AiParameterINT("global_compMode",1);
-	AiParameterINT("global_loopMode",0);
+	AiParameterENUM("global_loopLightMode",0,Obq_LoopLightModeNames);
+	AiParameterENUM("global_compMode",1,Obq_CompModeNames);
+	AiParameterENUM("global_loopMode",0,Obq_LoopModeNames);
 	AiParameterBOOL("global_multByLightColor",true);
 
 	AiParameterRGB("ambient_color",1.0f,1.0f,1.0f);
@@ -51,29 +51,29 @@ node_parameters
 	AiParameterFLT("diffuse_scale",1.0f);
 	AiParameterFLT("diffuse_coverage",1.0f);
 	AiParameterFLT("diffuse_softness",1.0);
-	AiParameterINT("diffuse_mode",0);
+	AiParameterENUM("diffuse_mode",0,Obq_ModeNames);
 	AiParameterRGB("diffuse_gradient",1.0f,1.0f,1.0f);
 	AiParameterRGB("diffuse_image",1.0f,1.0f,1.0f);
-	AiParameterINT("diffuse_imageType",0);
+	AiParameterENUM("diffuse_imageType",0,Obq_ImageTypeNames);
 
 	AiParameterRGB("highlight_color",1.0f,1.0f,1.0f);
 	AiParameterFLT("highlight_scale",0.0f);
 	AiParameterFLT("highlight_exponent",50.0f);
 	AiParameterFLT("highlight_coverage",1.0f);
 	AiParameterFLT("highlight_softness",1.0f);
-	AiParameterINT("highlight_mode",0);
+	AiParameterENUM("highlight_mode",0,Obq_ModeNames);
 	AiParameterRGB("highlight_gradient",1.0f,1.0f,1.0f);
 	AiParameterRGB("highlight_image",1.0f,1.0f,1.0f);
-	AiParameterINT("highlight_imageType",0);
+	AiParameterENUM("highlight_imageType",0,Obq_ImageTypeNames);
 
 	AiParameterRGB("rimlight_color",1.0f,1.0f,1.0f);
 	AiParameterFLT("rimlight_scale",0.0f);
 	AiParameterFLT("rimlight_coverage",1.0f);
 	AiParameterFLT("rimlight_softness",1.0f);
-	AiParameterINT("rimlight_mode",0);
+	AiParameterENUM("rimlight_mode",0,Obq_ModeNames);
 	AiParameterRGB("rimlight_gradient",1.0f,1.0f,1.0f);
 	AiParameterRGB("rimlight_image",1.0f,1.0f,1.0f);
-	AiParameterINT("rimlight_imageType",0);
+	AiParameterENUM("rimlight_imageType",0,Obq_ImageTypeNames);
 
 	AiParameterSTR("ambient_fb_str","");
 	AiParameterSTR("diffuse_fb_str","");
@@ -116,7 +116,7 @@ node_parameters
 	AiParameterRGB("diffuse_shaderInput",0.0f,0.0f,0.0f);
 	AiParameterRGB("highlight_shaderInput",0.0f,0.0f,0.0f);
 
-	AiParameterINT("global_remapMode",OBQ_REMAPRGB);
+	AiParameterENUM("global_remapMode",OBQ_REMAPRGB,Obq_RemapModeNames);
 	AiParameterBool("global_remapMultByColor",false);
 
 	AiParameterBool("global_clamp",false);

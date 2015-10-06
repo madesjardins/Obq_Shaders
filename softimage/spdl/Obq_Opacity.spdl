@@ -20,10 +20,8 @@ PropertySet "Obq_Opacity_pset"
 	{
 		guid = "{A7025E64-0921-4D0D-90EA-AEFA298E51C8}";
 		texturable = off;
-		type = integer;
-		value = 6;
-		Value Minimum = 0;
-		Value Maximum = 6;
+		type = string;
+		value = "  Color : Alpha";
 	}
 	Parameter "opacityRGBA" input
 	{
@@ -91,13 +89,13 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"  Color : Alpha" = 6,
-			"Opacity : Red" = 0,
-			"Opacity : Green" = 1,
-			"Opacity : Blue" = 2,
-			"Opacity : Alpha" = 3,
-			"Opacity : RGB" = 4,
-			"Opacity : Scalar" = 5
+			"Opacity : Red" = "Opacity : Red",
+			"Opacity : Green" = "Opacity : Green",
+			"Opacity : Blue" = "Opacity : Blue",
+			"Opacity : Alpha" = "Opacity : Alpha",
+			"Opacity : RGB" = "Opacity : RGB",
+			"Opacity : Scalar" = "Opacity : Scalar",
+			"  Color : Alpha" = "  Color : Alpha"
 		}
 	}
 	opacityRGBA
@@ -165,10 +163,10 @@ Logic
 {
 
 sub channel_OnChanged()
-	IF PPG.channel.Value = 5 Then
+	IF PPG.channel.Value = "Opacity : Scalar" Then
 		PPG.opacityRGBA.Show(False)
 		PPG.opacityScalar.Show(True)
-	ElseIf PPG.channel.Value = 6 Then
+	ElseIf PPG.channel.Value = "  Color : Alpha" Then
 		PPG.opacityRGBA.Show(False)
 		PPG.opacityScalar.Show(False)
 	Else

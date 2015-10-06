@@ -37,7 +37,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 //
 node_parameters
 {
-	AiParameterINT("viewMode" , 0);
+	AiParameterENUM("viewMode" , THISCAMERA, ObqViewModeNames);
 	AiParameterSTR("leftCamera" , "Camera_L");
 	AiParameterSTR("rightCamera" , "Camera_R");
 	AiParameterFLT("filmbackX" , 0.0f);

@@ -18,12 +18,61 @@
 
 // Illuminant IDs
 enum OIlluminantID {ILMNT_A, ILMNT_B, ILMNT_C, ILMNT_D50, ILMNT_D55, ILMNT_D65, ILMNT_D75, ILMNT_E, ILMNT_F2, ILMNT_F7, ILMNT_F11};
-
+static const char* OIlluminantIDNames[] = 
+{
+	"A",
+	"B",
+	"C",
+	"D50",
+	"D55",
+	"D65",
+	"D75",
+	"E",
+	"F2",
+	"F7",
+	"F11",
+    NULL
+};
 // Gamma IDs
 enum OGammaID {G_LINEAR, G_1p8, G_2p2, G_sRGB, G_2p4, G_REC709, G_LSTAR, G_REC2020};
+static const char* OGammaIDNames[] = 
+{
+	"Linear",
+	"1.8 (Apple)",
+	"2.2",
+	"sRGB",
+	"2.4",
+	"Rec.709",
+	"L*",
+    NULL
+};
 
 // ColorSpace name
 enum OCSID {CS_LINEAR_RGB, CS_ADOBE_RGB_1998, CS_APPLE_RGB, CS_BEST_RGB, CS_BETA_RGB, CS_BRUCE_RGB, CS_CIE_RGB, CS_COLORMATCH_RGB, CS_DON_RGB_4, CS_ECI_RGB_V2, CS_EKTA_SPACE_PS5, CS_NTSC_RGB, CS_PAL_SECAM_RGB, CS_PROPHOTO_RGB, CS_SMPTE_C_RGB, CS_sRGB, CS_WIDE_GAMUT_RGB, CS_REC709, CS_REC2020, CS_CIE_XYZ};
+static const char* OCSIDNames[] = 
+{
+	"XSI Linear RGB",
+	"Adobe RGB 1998",
+	"Apple RGB",
+	"Best RGB",
+	"Beta RGB",
+	"Bruce RGB",
+	"CIE RGB",
+	"ColorMatch RGB",
+	"Don RGB 4",
+	"ECI RGB V2",
+	"EKTA Space PS5",
+	"NTSC RGB",
+	"PAL/SECAM RGB",
+	"ProPhoto",
+	"SMPTE_C",
+	"sRGB",
+	"Wide Gamut RGB",
+	"Rec.709",
+	"Rec.2020",
+	"CIE XYZ",
+    NULL
+};
 
 // Column major Bradford Matrix
 const glm::mat3 c_BradfordMatrix(0.8951f, -0.7502f, 0.0389f, 0.2664f, 1.7135f, -0.0685f, -0.1614f, 0.0367f,  1.0296f);

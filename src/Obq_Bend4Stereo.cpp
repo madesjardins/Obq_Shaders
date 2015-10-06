@@ -37,7 +37,14 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqBend4StereoMethods);
 enum ObqBend4StereoParams { p_shaderIn, p_bendMode, p_leftCamera, p_centerCamera, p_rightCamera };
 
 enum ObqBendModes {BEND_NONE, BEND_LEFT, BEND_RIGHT, BEND_CENTER};
-
+static const char* ObqBendModesNames[] = 
+{
+	"Don't bend",
+    "Bend from left",
+    "Bend from right",
+    "Bend from center",
+    NULL
+};
 // Shader Data Structure
 //
 typedef struct 
@@ -57,7 +64,7 @@ ShaderData;
 node_parameters
 {
 	AiParameterRGBA("shaderIn", 1.0f,1.0f,1.0f,1.0f);					// shaderIn
-	AiParameterINT("bendMode" , 0);
+	AiParameterENUM("bendMode" , BEND_NONE, ObqBendModesNames);
 	AiParameterSTR("leftCamera" , "StereoCamera_Left");
 	AiParameterSTR("centerCamera" , "StereoCamera");
 	AiParameterSTR("rightCamera" , "StereoCamera_Right");

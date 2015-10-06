@@ -42,25 +42,25 @@ node_parameters
 	AiParameterBOOL ( "useSampleCount",false);
 	AiParameterFLT ( "sampleCount",10.0f);
 	AiParameterFLT ( "sampleCountMultiplier",1.0f);
-	AiParameterINT("backface",1);						// backface options
+	AiParameterENUM("backface",1,ObqBackfaceModeNames);						// backface options
 	AiParameterBOOL("intersectOthers",true);			// thickness of object considering other objects inside
 	AiParameterINT("maxRayDepth", 10);					// maximum ray depth
-	AiParameterINT("normalizeMode",2);					// normalize with max ray lenght [0,1]
+	AiParameterENUM("normalizeMode",2,ObqNormalizeModeNames);					// normalize with max ray lenght [0,1]
 	AiParameterFLT("maxRayLength", 10.0f);				// maximum lenght of a thickness ray
 	AiParameterBOOL("usemaxRayLength",false);			// use maximum ray lenght (false = AI_BIG)
-	AiParameterINT("dirMode",0);						// direction of thickness mode
+	AiParameterENUM("dirMode",0,ObqDirViewModeNames);						// direction of thickness mode
 	AiParameterBOOL("dirInverted",false);				// invert direction
 	AiParameterBOOL("dirSmooth",false);					// use smooth normals
 	AiParameterBOOL("dirGeometric",false);				// use geometric normal
 	AiParameterBOOL("dirSafe",true);					// use safe reflections
 	AiParameterVEC("customDirection",0.0f,1.0f,0.0f);	// a custom vector for direction purposes
 	AiParameterFLT("ior", 1.33f);						// index of refraction for refracting ray
-	AiParameterINT("noHitMode",1);						// If no hit occurs, is it considered thick or thin ? 0 = thin, 1 = thick
+	AiParameterENUM("noHitMode",1,ObqNoHitModeNames);						// If no hit occurs, is it considered thick or thin ? 0 = thin, 1 = thick
 	AiParameterBOOL("multNdotR",false);					// multiply increment by n dot v ( good for spheres )
 	AiParameterFLT("NdotRExp",4.0f);					// exponent for NdotR
 	AiParameterFLT("enterSurface",0.0f);
 	AiParameterFLT("geometricLimitMultiplier",1.0f);
-	AiParameterINT("thicknessMode",0);
+	AiParameterENUM("thicknessMode",0,ObqThicknessModeNames);
 	AiParameterBOOL("multiplyByDepth",false);
 }
 

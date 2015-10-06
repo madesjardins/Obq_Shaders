@@ -34,7 +34,15 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 AI_SHADER_NODE_EXPORT_METHODS(ObqRayDepthMethods);
 
 enum OBQTYPE {ALL, REFL, REFR, DIFF, GLOSS};
-
+static const char* OBQTYPENames[] = 
+{
+	"All",
+    "Reflection",
+    "Refraction",
+    "Diffuse",
+    "Glossy",
+    NULL
+};
 typedef struct 
 {
 	int type;
@@ -50,7 +58,7 @@ enum ObqRayDepthParams
 
 node_parameters
 {
-	AiParameterINT("type",0);
+	AiParameterENUM("type",ALL,OBQTYPENames);
 }
 
 node_initialize

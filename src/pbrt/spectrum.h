@@ -28,13 +28,40 @@
 #include "O_Common.h"
 
 enum ObqXYZ2RGB { SRGB_ILLUM_E, SRGB_ILLUM_D65_BRADFORD_E, SRGB_ILLUM_D65, KEEP_XYZ };
+static const char* ObqFresnelXYZ2RGBNames[] = 
+{
+	"sRGB Illuminant E",
+    "sRGB Illuminant D65 <- E (Bradford)",
+	"sRGB Illuminant D65",
+    NULL
+};
+static const char* ObqFresnelXYZ2RGBFullNames[] = 
+{
+	"sRGB Illuminant E",
+    "sRGB Illuminant D65 <- E (Bradford)",
+	"sRGB Illuminant D65",
+	"XYZ",
+    NULL
+};
 
-// enum for backfacemode
-enum {OUTPUT_LINEAR, OUTPUT_SRGB};
+// enum for simple output gamma
+enum ObqOutputGamma{OUTPUT_LINEAR, OUTPUT_SRGB};
+static const char* ObqGammaNames[] = 
+{
+	"Linear",
+    "sRGB",
+    NULL
+};
 
 // enum for fresnel equations
 //
-enum {INPUT_RGB, INPUT_STRING};
+enum ObqInputMode{INPUT_RGB, INPUT_STRING};
+static const char* ObqInputModeNames[] = 
+{
+	"RGB (LEGACY)",
+    "String SPD",
+    NULL
+};
 
 template <int nSamples> class CoefficientSpectrum;
 class RGBSpectrum;

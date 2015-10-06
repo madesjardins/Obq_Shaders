@@ -62,7 +62,7 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 	p_grid_size,
 	p_view_mode,
 	p_stereo_type,
-	p_interaxial_mode,
+	//p_interaxial_mode,
 	p_interaxial_epsilon,
 	p_interaxial_separation,
 	p_zero_parallax_mode,
@@ -89,12 +89,42 @@ AI_CAMERA_NODE_EXPORT_METHODS(ObqKettleUVStereoLensMethods)
 };
 
 enum ViewMode{CENTER, LEFT, RIGHT, STEREOLR, STEREODU, BAKE, NORMAL};
+static const char* ViewModeNames[] = 
+{
+	"Center",
+    "Left",
+    "Right",
+    "Stereo <Left-Right>",
+    "Stereo <Down-Up>",
+	"Bake",
+	"Normal",
+    NULL
+};
 
 enum StereoType{PARALLEL, CONVERGED};
-
+static const char* StereoTypeNames[] = 
+{
+	"Parallel",
+    "Converged",
+    NULL
+};
 enum ZeroParallaxMode{USETARGET,USEDISTANCE};
+static const char* ZeroParallaxModeNames[] = 
+{
+	"Use Target Mesh",
+    "Use Distance",
+    NULL
+};
 
 enum InteraxialMode{INU,RED,GREEN,BLUE};
+static const char* InteraxialModeNames[] = 
+{
+	"Offset in U Coordinates",
+    "R Dominant, on Mesh (RED)",
+	"R Dominant, not on Mesh (GREEN)",
+	"No Dominance, not on Mesh (BLUE)",
+    NULL
+};
 
 node_parameters
 {
@@ -105,12 +135,12 @@ node_parameters
 
 	AiParameterINT("grid_size", 16);
 
-	AiParameterINT("view_mode", CENTER);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
-	AiParameterINT("stereo_type", CONVERGED);			// Parallel (align both on middle vector), Converged (to a specific distance )
-	AiParameterINT("interaxial_mode", BLUE);			// NOT USED BLUE is default
+	AiParameterENUM("view_mode", CENTER, ViewModeNames);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
+	AiParameterENUM("stereo_type", CONVERGED,StereoTypeNames);		// Parallel (align both on middle vector), Converged (to a specific distance )
+	//AiParameterENUM("interaxial_mode", BLUE, InteraxialModeNames);			// NOT USED BLUE is default
 	AiParameterFLT("interaxial_epsilon", 0.002f);		// value used to search
 	AiParameterFLT("interaxial_separation", -0.6f);		// in u coordinates typically, if >0 it goes to the left
-	AiParameterINT("zero_parallax_mode",USETARGET);		// 0 = use target, 1 = Use distance
+	AiParameterENUM("zero_parallax_mode",USETARGET,ZeroParallaxModeNames);		// 0 = use target, 1 = Use distance
 	AiParameterFLT("zero_parallax_distance", 100.0);	//
 	AiParameterINT("total_overscan_pixels",0);			// number of additional pixels needed to annihilate filtering
 

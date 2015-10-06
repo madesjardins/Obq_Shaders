@@ -61,11 +61,9 @@ PropertySet "Obq_Thickness_pset"
 	Parameter "backface" input
 	{
 		GUID = "{86EACD8E-6B5A-4D6D-ADB3-CCBF7BC387A4}";
-		Type = integer;
-		Texturable = on;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Type = string;
+		Texturable = off;
+		Value = "Always 1.0";
 	}
 	Parameter "intersectOthers" input
 	{
@@ -85,11 +83,9 @@ PropertySet "Obq_Thickness_pset"
 	Parameter "normalizeMode" input
 	{
 		GUID = "{13799FA3-00FB-46C5-88EE-471CE058C51E}";
-		Type = integer;
-		Texturable = on;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Texturable = off;
+		Value = "Inverse normalize with max ray lenght";
 	}
 	Parameter "maxRayLength" input
 	{
@@ -109,11 +105,9 @@ PropertySet "Obq_Thickness_pset"
 	Parameter "dirMode" input
 	{
 		GUID = "{6B774E1F-BE41-4992-B124-48DA2E704B8B}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 5;
+		Type = string;
+		Texturable = off;
+		Value = "View Direction";
 	}
 	Parameter "ior" input
 	{
@@ -133,11 +127,9 @@ PropertySet "Obq_Thickness_pset"
 	Parameter "noHitMode" input
 	{
 		GUID = "{628D8538-2025-4FD9-8B32-E76E0AB237FC}";
-		Type = integer;
-		Texturable = on;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Texturable = off;
+		Value = "Infinitely thick";
 	}
 	Parameter "multNdotR" input
 	{
@@ -206,11 +198,9 @@ PropertySet "Obq_Thickness_pset"
 	Parameter "thicknessMode" input
 	{
 		GUID = "{C7424A36-9D70-4671-B4D6-B7C70229B8C4}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Texturable = off;
+		Value = "Thickness of this object";
 	}
 	Parameter "multiplyByDepth" input
 	{
@@ -271,10 +261,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Always 0.0" = 0,
-			"Always 1.0" = 1,
-			"Equal to Maximum Ray Length" = 2,
-			"Considered normally" = 3
+			"Always 0.0" = "Always 0.0",
+			"Always 1.0" = "Always 1.0",
+			"Equal to Maximum Ray Length" = "Equal to Maximum Ray Length",
+			"Considered normally" = "Considered normally"
 		}
 	}
 	intersectOthers
@@ -295,9 +285,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Don't normalize" = 0,
-			"Normalize with max ray lenght" = 1,
-			"Inverse normalize with max ray lenght" = 2
+			"Don't normalize" = "Don't normalize",
+			"Normalize with max ray lenght" = "Normalize with max ray lenght",
+			"Inverse normalize with max ray lenght" = "Inverse normalize with max ray lenght"
 		}
 	}
 	maxRayLength
@@ -318,12 +308,12 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"View Direction" = 0,
-			"Surface Normal" = 1,
-			"Surface Normal (Face-Forward)" = 2,
-			"Reflection Direction" = 3,
-			"Refraction Direction" = 4,
-			"Custom Direction" = 5,
+			"View Direction" = "View Direction",
+			"Surface Normal" = "Surface Normal",
+			"Surface Normal (Face-Forward)" = "Surface Normal (Face-Forward)",
+			"Reflection Direction" = "Reflection Direction",
+			"Refraction Direction" = "Refraction Direction",
+			"Custom Direction" = "Custom Direction",
 		}
 	}
 	ior
@@ -344,8 +334,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Infinitely thin" = 0,
-			"Infinitely thick" = 1,
+			"Infinitely thin" = "Infinitely thin",
+			"Infinitely thick" = "Infinitely thick",
 		}
 	}
 	multNdotR
@@ -403,9 +393,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Thickness of this object" = 0,
-			"Count intersections" = 1,
-			"Accumulate distances inside volumes" = 2
+			"Thickness of this object" = "Thickness of this object",
+			"Count intersections" = "Count intersections",
+			"Accumulate distances inside volumes" = "Accumulate distances inside volumes"
 		}
 	}
 	multiplyByDepth
@@ -597,7 +587,7 @@ End sub
 
 'dir modes
 sub dirMode_OnChanged()
-	If PPG.dirMode.Value = 4 Then
+	If PPG.dirMode.Value = "Refraction Direction" Then
 		PPG.ior.Show(True)
 	Else
 		PPG.ior.Show(False)
@@ -613,11 +603,11 @@ sub useVdotNForMaxAngle_OnChanged()
 End sub
 
 sub thicknessMode_OnChanged()
-	If PPG.thicknessMode.Value = 0 Then
+	If PPG.thicknessMode.Value = "Thickness of this object" Then
 		PPG.multNdotR.ReadOnly = True
 		PPG.NdotRExp.ReadOnly = True
 		PPG.multiplyByDepth.ReadOnly = True
-	ElseIf PPG.thicknessMode.Value = 1 Then
+	ElseIf PPG.thicknessMode.Value = "Count intersections" Then
 		PPG.multNdotR.ReadOnly = False
 		PPG.NdotRExp.ReadOnly = False
 		PPG.multiplyByDepth.ReadOnly = True

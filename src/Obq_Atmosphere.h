@@ -40,22 +40,47 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqAtmosphereMethods);
 
 // enum of parameters
 //
-enum ObqAtmosphereParams { p_colorKd, p_use3dKd, p_absorption, p_use3dAbsorption, p_asymmetry, p_stepSize, p_stepJitter, p_useBiasGain, p_bias, p_gain,p_useBiasGainDot, p_biasDot, p_gainDot,p_radiusFalloffMode, p_falloffStart, p_falloffExponent, p_objectCenter, p_compensateForCloudOpacity, p_divideColorByOpacity, p_useMaximumRayLength, p_maximumRayLength, p_secondaryTypesToo};
+enum ObqAtmosphereParams { p_colorKd, /*p_use3dKd,*/ p_absorption, /*p_use3dAbsorption,*/ p_asymmetry, p_stepSize, p_stepJitter, p_useBiasGain, p_bias, p_gain,p_useBiasGainDot, p_biasDot, p_gainDot,p_radiusFalloffMode, p_falloffStart, p_falloffExponent, p_objectCenter, p_compensateForCloudOpacity, p_divideColorByOpacity, p_useMaximumRayLength, p_maximumRayLength, p_secondaryTypesToo};
 
 enum ObqAtmosphereFalloffMode {RFM_NONE, RFM_MATRIX, RFM_VECTOR};
+static const char* ObqAtmosphereFalloffModeNames[] = 
+{
+	"Don't Use Radius Falloff",
+    "Get Center From Object Matrix",
+    "Get Center From Object Center Vector",
+    NULL
+};
 
 enum ObqAtmo{ATMO_FIRST, ATMO_BF};
 
 enum ObqAtmoDivide{ATMO_NEVER, ATMO_BEFORE, ATMO_AFTER};
+static const char* ObqAtmoDivideNames[] = 
+{
+	"Never",
+    "Before Bias-Gain",
+    "After Bias-Gain",
+    NULL
+};
 
 enum ObqAtmoCompensate{ATMO_COMP_NEVER, ATMO_COMP_DROP, ATMO_COMP_RAISE};
+static const char* ObqAtmoCompensateNames[] = 
+{
+	"Never",
+    "By dropping max opacity",
+    "By raising total opacity",
+    NULL
+};
 
 // Shader Data Structure
 //
 typedef struct 
 {
 	int	falloffMode;
+	int compensateForCloudOpacity; 
+	int divideColorByOpacity;
 	bool secondaryTypesToo;
+	bool use3dKd;
+	bool use3dAbsorption;
 }
 ShaderData;
 

@@ -39,7 +39,17 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqRGBComLightFilterMethod);
 enum Obq_RGBComLightFilter_Params {p_defaultC, p_channel};
 
 const AtRGB colorArray[] = {AI_RGB_RED, AI_RGB_GREEN, AI_RGB_BLUE, AI_RGB_WHITE, AI_RGB_BLACK};
-
+#define USE_DEFAULT 5
+static const char* ObqColorNames[] = 
+{
+    "Red",
+    "Green",
+    "Blue",
+    "White",
+	"Black",
+	"Use Default",
+    NULL
+};
 //const char *enum_Obq_LightFilter[] = {"Obq_RGBComLightFilter"};
 
 typedef struct 
@@ -55,7 +65,7 @@ ShaderData;
 node_parameters
 {
    AiParameterRGB ( "defaultColor", 1.0f,1.0f,1.0f );
-   AiParameterInt ( "channel", 5 );
+   AiParameterENUM ( "channel", USE_DEFAULT, ObqColorNames );
 }
 
 
@@ -86,7 +96,7 @@ shader_evaluate
 	
 	// Unoccluded intensity
 	bool ret = false;
-	if(data->channel < 5)
+	if(data->channel < USE_DEFAULT)
 		if(AiStateGetMsgBool("ComRGB", &ret))
 			if(ret)
 			{

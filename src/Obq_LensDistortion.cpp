@@ -106,7 +106,7 @@ node_parameters
 	AiParameterFLT("bokehBias",0.5f);
 	AiParameterFLT("bokehGain",0.5f);
 
-	AiParameterINT("distortionModel" , 0);
+	AiParameterENUM("distortionModel" , PFBARREL, ObqDistortionModelNames);
 	AiParameterFLT("k1" , 0.0f);
 	AiParameterFLT("k2" , 0.0f);
 	AiParameterFLT("centerX" , 0.0f);

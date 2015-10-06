@@ -19,11 +19,9 @@ PropertySet "Obq_TransformShadingPoint_pset"
 	Parameter "coordinates" input
 	{
 		GUID = "{17D31061-238B-45AF-8E9E-2DD90E91344D}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Object" ;
 	}
 	Parameter "transforms" input
 	{
@@ -63,20 +61,16 @@ PropertySet "Obq_TransformShadingPoint_pset"
 	Parameter "rotationOrder" input
 	{
 		GUID = "{319E5EC2-272F-4D0B-BB00-CEBDD08E0368}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 5;
+		Value = "XYZ";
 	}
 	Parameter "mode" input
 	{
 		GUID = "{77608077-414F-45B5-BED1-0091F2B2C723}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "SRT";
 	}
 }
 
@@ -107,8 +101,8 @@ Defaults
 		UIType = "combo";
 		Items
 		{
-			"Object" = 0,
-			"World" = 1
+			"Object" = "Object",
+			"World" = "World"
 		}
 	}
 	transforms
@@ -143,12 +137,12 @@ Defaults
 		UIType = "combo";
 		Items
 		{
-			"XYZ" = 0,
-			"XZY" = 1,
-			"YXZ" = 2,
-			"YZX" = 3,
-			"ZXY" = 4,
-			"ZYX" = 5
+			"XYZ" = "XYZ",
+			"XZY" = "XZY",
+			"YXZ" = "YXZ",
+			"YZX" = "YZX",
+			"ZXY" = "ZXY",
+			"ZYX" = "ZYX"
 		}
 	}
 	mode
@@ -158,8 +152,8 @@ Defaults
 		UIType = "combo";
 		Items
 		{
-			"SRT" = 0,
-			"Matrix" = 1
+			"SRT" = "SRT",
+			"Matrix" = "Matrix"
 		}
 	}
 }
@@ -251,7 +245,7 @@ def btnUnLinkObject_OnClicked():
 
 
 def mode_OnChanged():
-	if PPG.mode.Value == 0:
+	if PPG.mode.Value == "SRT":
 		PPG.PPGLayout.Item( "btnUnLinkObject").SetAttribute("Label", "Unlink")
 		PPG.PPGLayout.Item( "btnLinkObject").SetAttribute("Label", "Link To Object")
 		PPG.scale.Show(True)

@@ -35,7 +35,14 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <map>
 
 enum Obq_CompMode{OBQ_COMPADD = 0, OBQ_COMPOVER, OBQ_COMPMAX, OBQ_COMPSCREEN}; // Screen mode : A+B-AB (if A and B [0,1], else A if A>B, else B)
-
+static const char* Obq_CompModeNames[] = 
+{
+	"Add",
+	"Over",
+	"Max",
+	"Screen",
+    NULL
+};
 // enum for parameters
 //
 enum ObqMessageGetFltParams { 

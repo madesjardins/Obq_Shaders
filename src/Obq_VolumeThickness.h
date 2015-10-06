@@ -38,15 +38,46 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqVolumeThicknessMethods);
 // enum of parameters
 //
 enum ObqVolumeThicknessParams {p_colorIn, p_emissionColor, p_alphaMode, p_alpha, p_thicknessMode, p_thickness, p_accumulatedThicknessThreshold, p_radius, p_exponent, p_useAbsorption, p_absorption, p_diffuseMode, p_autoTransparencyMode, p_shadowModifier, p_lightPropagationDistance, p_doubleHemisphericalDiffuse, p_lightPropagationDistanceDiffuse };
+
 enum ObqVTThicknessMode{SPHERE_MODE, THICKNESS_MODE};
+static const char* ObqVTThicknessModeNames[] = 
+{
+	"Sphere Particles",
+    "Custom Thickness",
+    NULL
+};
 
 enum OvtFlag{FIRST_IT, NEXT_IT, FRONTFACE_IT, BACKFACE_IT, DIFFUSE_IT, UNKNOWN_IT, RESET_IT};
 
 enum OvtAuto{AUTO_ALWAYS, AUTO_SHADOWONLY};
+static const char* OvtAutoNames[] = 
+{
+	"Always",
+	"Shadow-Only",
+    NULL
+};
 
 enum OvtDiffuse{ DIFFUSE_BLACK, DIFFUSE_DIRECT, DIFFUSE_DIRECTOPACITY, DIFFUSE_DIRECTSQRTOPACITY, DIFFUSE_NORMAL, DIFFUSE_EMISSION};
+static const char* OvtDiffuseNames[] = 
+{
+	"None",
+	"Direct",
+	"Direct*opacity",
+	"Direct*sqrt(opacity)",
+	"Full",
+	"Full (Emission only)",
+    NULL
+};
 
 enum ovtAlpha{ALPHA_ALPHA, ALPHA_DIFFUSE, ALPHA_EMISSION, ALPHA_MAX};
+static const char* ovtAlphaNames[] = 
+{
+	"Alpha Parameter",
+    "Diffuse Alpha",
+    "Emission Alpha",
+    "Max of Diffuse and Emission Alpha",
+    NULL
+};
 
 typedef struct 
 {

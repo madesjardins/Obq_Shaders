@@ -14,11 +14,11 @@ PropertySet "Obq_StereoLens"
 	Parameter "viewMode" input
 	{
 		GUID = "{03ED9264-541C-48AD-90CA-E0FB1DE425DF}";
-		Type = integer;
+		Type = string;
+		Texturable = off;
+		Animatable = off;
 		flags = 1;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 4;
+		Value = "Center Camera";
 	}
 	Parameter "leftCamera" input
 	{
@@ -272,11 +272,11 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Center Camera" = 0,
-			"Left Camera" = 1,
-			"Right Camera" = 2,
-			"Stereo Camera <left-right>" = 3,
-			"Stereo Camera <down-up>" = 4
+			"Center Camera" = "Center Camera",
+			"Left Camera" = "Left Camera",
+			"Right Camera" = "Right Camera",
+			"Stereo Camera <left-right>" = "Stereo Camera <left-right>",
+			"Stereo Camera <down-up>" = "Stereo Camera <down-up>"
 		}
 	}
 	leftCamera
@@ -598,7 +598,7 @@ Sub updatePassResolution_OnChanged()
 End Sub
 
 Sub change_targetResolution()
-	If PPG.viewMode.Value = 3 then
+	If PPG.viewMode.Value = "Stereo Camera <left-right>" then
 		If PPG.useOverscan.Value = true then
 			bleed = Floor( Ceil(PPG.filterSize)/2)
 			PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
@@ -615,7 +615,7 @@ Sub change_targetResolution()
 			rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right selected false xpos 50 ypos 40}"
 			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		End If
-	ElseIf PPG.viewMode.Value = 4 then
+	ElseIf PPG.viewMode.Value = "Stereo Camera <down-up>" then
 		If PPG.useOverscan.Value = true then
 			bleed = Floor( Ceil(PPG.filterSize.Value)/2)
 			PPG.renderResolutionX.Value = PPG.targetResolutionX 
@@ -655,7 +655,7 @@ End Sub
 
 Sub viewMode_OnChanged()
 	change_targetResolution()
-	If PPG.viewMode = 3 Or PPG.viewMode = 4 Then
+	If PPG.viewMode = "Stereo Camera <left-right>" Or PPG.viewMode = "Stereo Camera <down-up>" Then
 		PPG.nukeCropInfo.Show(True)
 		PPG.useOverscan.Readonly = False
 	Else

@@ -12,11 +12,9 @@ PropertySet "Obq_RayDepth_pset"
 	Parameter "type" input
 	{
 		GUID = "{8CB9B80A-2EE1-434A-8924-0A9C65AACA45}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 4;
+		Value = "All";
 	}
 }
 
@@ -41,11 +39,11 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"All" = 0,
-			"Reflection" = 1,
-			"Refraction" = 2,
-			"Diffuse" = 3,
-			"Glossy" = 4
+			"All" = "All",
+			"Reflection" = "Reflection",
+			"Refraction" = "Refraction",
+			"Diffuse" = "Diffuse",
+			"Glossy" = "Glossy"
 		}
 		
 	}

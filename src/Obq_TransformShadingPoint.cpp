@@ -34,9 +34,32 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 AI_SHADER_NODE_EXPORT_METHODS(ObqTransformShadingPointMethods);
 
 // coordinates space
-enum {OBJECT, WORLD};
-enum {MODE_SRT, MODE_MATRIX};
-enum {ROT_XYZ, ROT_XZY, ROT_YXZ, ROT_YZX, ROT_ZXY, ROT_ZYX};
+enum Coordinates{OBJECT, WORLD};
+static const char* CoordinatesNames[] = 
+{
+	"Object",
+	"World",
+    NULL
+};
+
+enum TransformMode{MODE_SRT, MODE_MATRIX};
+static const char* TransformModeNames[] = 
+{
+	"SRT",
+    "Matrix",
+    NULL
+};
+enum RotationOrder{ROT_XYZ, ROT_XZY, ROT_YXZ, ROT_YZX, ROT_ZXY, ROT_ZYX};
+static const char* RotationOrderNames[] = 
+{
+	"XYZ",
+	"XZY",
+	"YXZ",
+	"YZX",
+	"ZXY",
+	"ZYX",
+    NULL
+};
 typedef struct 
 {
 	int coordinates;
@@ -63,14 +86,14 @@ enum ObqTransformShadingParams
 node_parameters
 {
 	AiParameterRGBA("passthrough",1.0f,1.0f,1.0f,1.0f);
-	AiParameterINT("coordinates",OBJECT);
+	AiParameterENUM("coordinates",OBJECT,CoordinatesNames);
 	AiParameterMTX("transforms",AI_M4_IDENTITY);
 	AiParameterVEC("scale",1.0f,1.0f,1.0f);
 	AiParameterVEC("rotation",0.0f,0.0f,0.0f);
 	AiParameterVEC("translation",0.0f,0.0f,0.0f);
 	AiParameterBOOL("invert",true);
-	AiParameterINT("mode",0);
-	AiParameterINT("rotationOrder",ROT_XYZ);
+	AiParameterENUM("mode",MODE_SRT,TransformModeNames);
+	AiParameterENUM("rotationOrder",ROT_XYZ,RotationOrderNames);
 }
 
 node_initialize

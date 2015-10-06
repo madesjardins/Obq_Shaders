@@ -25,11 +25,9 @@ PropertySet "Obq_SurfaceEnvironment_params"
 	Parameter "mapMode" input
 	{
 		GUID = "{CA42B5FD-EB13-4E58-AE99-B32E7C80F65D}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Latitude-Longitude";
 	}
 	Parameter "usePassEnvShader" input
 	{
@@ -41,11 +39,9 @@ PropertySet "Obq_SurfaceEnvironment_params"
 	Parameter "rayTypeEnv" input
 	{
 		GUID = "{EEE2244D-881A-461B-83F1-D25A75ED2DBD}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 4;
+		Value = "Reflected";
 	}
 	Parameter "useIntensityEnv" input
 	{
@@ -120,11 +116,9 @@ PropertySet "Obq_SurfaceEnvironment_params"
 	Parameter "onSurfaceMode" input
 	{
 		GUID = "{90B16A43-B82A-49A6-8AB3-07236243E97A}";
-		Type = integer;
-		Texturable = On;
-		Value = 8;
-		Value Minimum = 0;
-		Value Maximum = 13;
+		Type = string;
+		Texturable = Off;
+		Value = "Reflection Direction";
 	}
 	Parameter "ior" input
 	{
@@ -225,10 +219,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Mirrored Ball" = 0,
-			"Angular Map" = 1,
-			"Latitude-Longitude" = 2,
-			"Vertical Cross" = 3,
+			"Mirrored Ball" = "Mirrored Ball",
+			"Angular Map" = "Angular Map",
+			"Latitude-Longitude" = "Latitude-Longitude",
+			"Vertical Cross" = "Vertical Cross",
 		}
 	}
 	usePassEnvShader
@@ -243,11 +237,11 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Camera" = 0,
-			"Diffuse (GI)" = 1,
-			"Reflected" = 2,
-			"Glossy" = 3,
-			"Refracted" = 4,
+			"Camera" = "Camera",
+			"Diffuse (GI)" = "Diffuse (GI)",
+			"Reflected" = "Reflected",
+			"Glossy" = "Glossy",
+			"Refracted" = "Refracted",
 		}
 	}
 	useIntensityEnv
@@ -305,19 +299,19 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"View Direction" = 0,
-			"View Direction (Inverted)"= 1,
-			"Surface Normal Direction" = 2,
-			"Surface Normal Direction (no bump)" = 3,
-			"Surface Normal Direction (Inverted)" = 4,
-			"Surface Normal Direction (no bump, Inverted)" = 5,
-			"Surface Normal Direction (Front-Facing)" = 6,
-			"Surface Normal Direction (Back-Facing)" = 7,
-			"Reflection Direction" = 8,
-			"Reflection Direction (no bump)" = 9,
-			"Refraction Direction" = 10,
-			"Refraction Direction (no bump)" = 11,
-			"Custom Direction" = 12,
+			"View Direction" = "View Direction",
+			"View Direction (Inverted)"= "View Direction (Inverted)",
+			"Surface Normal Direction" = "Surface Normal Direction",
+			"Surface Normal Direction (no bump)" = "Surface Normal Direction (no bump)",
+			"Surface Normal Direction (Inverted)" = "Surface Normal Direction (Inverted)",
+			"Surface Normal Direction (no bump, Inverted)" = "Surface Normal Direction (no bump, Inverted)",
+			"Surface Normal Direction (Front-Facing)" = "Surface Normal Direction (Front-Facing)",
+			"Surface Normal Direction (Back-Facing)" = "Surface Normal Direction (Back-Facing)",
+			"Reflection Direction" = "Reflection Direction",
+			"Reflection Direction (no bump)" = "Reflection Direction (no bump)",
+			"Refraction Direction" = "Refraction Direction",
+			"Refraction Direction (no bump)" = "Refraction Direction (no bump)",
+			"Custom Direction" = "Custom Direction",
 		}
 	}
 	ior
@@ -544,7 +538,7 @@ Logic
 	End Sub
 
 	Sub onSurfaceMode_OnChanged()
-		If PPG.onSurfaceMode.Value = 10 Or PPG.onSurfaceMode.Value = 11 Then
+		If PPG.onSurfaceMode.Value = "Refraction Direction" Or PPG.onSurfaceMode.Value = "Refraction Direction (no bump)" Then
 			PPG.ior.Show(True)
 		Else
 			PPG.ior.Show(False)

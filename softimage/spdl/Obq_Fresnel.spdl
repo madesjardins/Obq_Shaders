@@ -13,28 +13,23 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		guid = "{802A4B85-FB6E-45D8-919E-9A2FDAB32B8C}";
 		texturable = off;
-		type = integer;
-		value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		type = string;
+		value = "Custom";
 	}
 	Parameter "presets" input
 	{
 		GUID = "{9CD76B1A-E7BE-4807-8F9F-E926A6A06FE9}";
 		Texturable = off;
 		Animatable = off;
-		Type = integer;
-		Value = 6;
-		Value Minimum = 0;
-		Value Maximum = 45;
+		Type = string;
+		Value = "Gold (Au) [Palik]";
 	}
 	Parameter "method" input
 	{
 		GUID = "{FFABEE5D-A339-4FD4-BE02-566B4E83A59C}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Maximum = 2;
+		Value = "Metal";
 	}
 	Parameter "ratioFsFp" input
 	{
@@ -63,10 +58,8 @@ PropertySet "Obq_Fresnel_pset"
 	{
 		GUID = "{8C2251BF-A9F5-40A5-B5DE-A005BF1D6838}";
 		Texturable = off;
-		Type = integer;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Value = "Nano (nm) [360-830]";
 	}
 	Parameter "iorRGB" input
 	{
@@ -92,11 +85,9 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "backfaceMode" input
 	{
 		GUID = "{0136C375-8B95-43B3-8E84-007742B166F5}";
-		Type = Integer;
+		Type = string;
 		Texturable = Off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Swap IORs (Media In -> n2)";
 	}
 	Parameter "iorExpression" input
 	{
@@ -146,11 +137,9 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "outputGamma" input
 	{
 		GUID = "{71A48FD4-CF5E-488D-AD75-569E7FC0B910}";
-		Type = Integer;
+		Type = string;
 		Texturable = Off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Linear";
 	}
 	Parameter "lambdasStr" input
 	{
@@ -179,20 +168,18 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "inputType" input
 	{
 		GUID = "{51BE3212-8F54-461E-8EBF-2AC2ABB1906A}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
 		Animatable = On;
-		Value = 0;
+		Value = "RGB (LEGACY)";
 	}
 	Parameter "ccMode" input
 	{
 		GUID = "{0C04A610-E476-4DE7-BF0B-7260BD1A92FB}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
 		Animatable = On;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Off";
 	}
 	Parameter "hueShift" input
 	{
@@ -213,12 +200,10 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "saturationOp" input
 	{
 		GUID = "{FE214311-C0A3-4219-A438-4A89CF9C4778}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
 		Animatable = On;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Multiply";
 	}
 	Parameter "roughness" input
 	{
@@ -241,12 +226,10 @@ PropertySet "Obq_Fresnel_pset"
 	Parameter "xyz2rgb" input
 	{
 		GUID = "{8A3E018F-D4D9-4B25-99A8-7BC5DA317F60}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
 		Animatable = On;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "sRGB Illuminant D65 <- E (Bradford)";
 	}
 }
 
@@ -266,9 +249,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Custom" = 0,
-			"Custom (Please load new preset, DEPRICATED Presets mode)" = 1,
-			"File" = 2
+			"Custom" = "Custom",
+			"Custom (Please load new preset, DEPRICATED Presets mode)" = "Custom (Please load new preset, DEPRICATED Presets mode)",
+			"File" = "File"
 		}
 	}
 	#################################################################
@@ -282,52 +265,52 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"---------------------- METALS -----------------------" = 39,
-			"Aluminium (Al) [Rakic]" = 0,
-			"Aluminium Copper (AlCu)" = 1,
-			"Chromium (Cr) [Palik]" = 2,
-			"Chromium (Cr) [Sopra]" = 3,
-			"Cobalt (Co) [Sopra]" = 4,
-			"Copper (Cu) [Palik]" = 5,
-			"Copper (Cu) [Hagemann,Gudat,Kunz]" = 43,
-			"Gold (Au) [Palik]" = 6,
-			"Iridium (Ir) [Palik]" = 7,
-			"Iron (Fe) [Palik]" = 42,
-			"Iron (Fe) [Johnson&Christy]" = 45,
-			"Lithium (Li) [Sopra]" = 8,
-			"Mercury (Hg) [Palik]" = 9,
-			"Nickel (Ni) [Palik]" = 10,
-			"Osmium (Os) [Palik]" = 11,
-			"Palladium (Pd) [Sopra]" = 12,
-			"Platinum (Pt) [Palik]" = 13,
-			"Rhodium (Rh) [Palik]" = 14,
-			"Silver (Ag) [Palik]" = 15,
-			"Tantalum (Ta) [Sopra]" = 16,
-			"Titanium (Ti) [Sopra]" = 17,
-			"Tungsten (W) [Palik]" = 18,
-			"Vanadium (V) [Sopra]" = 44,
-			"---------------------- LIQUIDS ----------------------" = 41,
-			"Acetone (CH3COCH3) [Rheims]" = 19,
-			"Ethanol (C2H5OH) [Rheims]" = 20,
-			"Ethylene Glycol (C2H4(OH)2) [El-Kashef]" = 21,
-			"Glycerol (C3H5(OH)3) [Birkhoff]" = 22,
-			"Honey [RobinWood]" = 23,
-			"Milk [RobinWood]" = 24,
-			"Shampoo [RobinWood]" = 25,
-			"Vegetable Oil [RobinWood]" = 26,
-			"Water (H20) [Hale]" = 27,
-			"-------------------- CRYSTALS etc. ------------------" = 38,
-			"Acrylic (Plexiglass)" = 28,
-			"Crystal [RobinWood]" = 29,
-			"Diamond (C) [Handbook of Optics]" = 30,
-			"Emerald [RobinWood]" = 31,
-			"Garnet [RobinWood]" = 32,
-			"Glass (Schott N-KF9 crown/flint)" = 33,
-			"Ice (H20) [Warren]" = 34,
-			"Salt (NaCl) [Palik]" = 35,
-			"---------------------- PLASTICS ---------------------" = 40,
-			"Cellulose [Kasarova]" = 36,
-			"Polystyrene (PS) [Kasarova]" = 37
+			"---------------------- METALS -----------------------" = "---------------------- METALS -----------------------",
+			"Aluminium (Al) [Rakic]" = "Aluminium (Al) [Rakic]",
+			"Aluminium Copper (AlCu)" = "Aluminium Copper (AlCu)",
+			"Chromium (Cr) [Palik]" = "Chromium (Cr) [Palik]",
+			"Chromium (Cr) [Sopra]" = "Chromium (Cr) [Sopra]",
+			"Cobalt (Co) [Sopra]" = "Cobalt (Co) [Sopra]",
+			"Copper (Cu) [Palik]" = "Copper (Cu) [Palik]",
+			"Copper (Cu) [Hagemann,Gudat,Kunz]" = "Copper (Cu) [Hagemann,Gudat,Kunz]",
+			"Gold (Au) [Palik]" = "Gold (Au) [Palik]",
+			"Iridium (Ir) [Palik]" = "Iridium (Ir) [Palik]",
+			"Iron (Fe) [Palik]" = "Iron (Fe) [Palik]",
+			"Iron (Fe) [Johnson&Christy]" = "Iron (Fe) [Johnson&Christy]",
+			"Lithium (Li) [Sopra]" = "Lithium (Li) [Sopra]",
+			"Mercury (Hg) [Palik]" = "Mercury (Hg) [Palik]",
+			"Nickel (Ni) [Palik]" = "Nickel (Ni) [Palik]",
+			"Osmium (Os) [Palik]" = "Osmium (Os) [Palik]",
+			"Palladium (Pd) [Sopra]" = "Palladium (Pd) [Sopra]",
+			"Platinum (Pt) [Palik]" = "Platinum (Pt) [Palik]",
+			"Rhodium (Rh) [Palik]" = "Rhodium (Rh) [Palik]",
+			"Silver (Ag) [Palik]" = "Silver (Ag) [Palik]",
+			"Tantalum (Ta) [Sopra]" = "Tantalum (Ta) [Sopra]",
+			"Titanium (Ti) [Sopra]" = "Titanium (Ti) [Sopra]",
+			"Tungsten (W) [Palik]" = "Tungsten (W) [Palik]",
+			"Vanadium (V) [Sopra]" = "Vanadium (V) [Sopra]",
+			"---------------------- LIQUIDS ----------------------" = "---------------------- LIQUIDS ----------------------",
+			"Acetone (CH3COCH3) [Rheims]" = "Acetone (CH3COCH3) [Rheims]",
+			"Ethanol (C2H5OH) [Rheims]" = "Ethanol (C2H5OH) [Rheims]",
+			"Ethylene Glycol (C2H4(OH)2) [El-Kashef]" = "Ethylene Glycol (C2H4(OH)2) [El-Kashef]",
+			"Glycerol (C3H5(OH)3) [Birkhoff]" = "Glycerol (C3H5(OH)3) [Birkhoff]",
+			"Honey [RobinWood]" = "Honey [RobinWood]",
+			"Milk [RobinWood]" = "Milk [RobinWood]",
+			"Shampoo [RobinWood]" = "Shampoo [RobinWood]",
+			"Vegetable Oil [RobinWood]" = "Vegetable Oil [RobinWood]",
+			"Water (H20) [Hale]" = "Water (H20) [Hale]",
+			"-------------------- CRYSTALS etc. ------------------" = "-------------------- CRYSTALS etc. ------------------",
+			"Acrylic (Plexiglass)" = "Acrylic (Plexiglass)",
+			"Crystal [RobinWood]" = "Crystal [RobinWood]",
+			"Diamond (C) [Handbook of Optics]" = "Diamond (C) [Handbook of Optics]",
+			"Emerald [RobinWood]" = "Emerald [RobinWood]",
+			"Garnet [RobinWood]" = "Garnet [RobinWood]",
+			"Glass (Schott N-KF9 crown/flint)" = "Glass (Schott N-KF9 crown/flint)",
+			"Ice (H20) [Warren]" = "Ice (H20) [Warren]",
+			"Salt (NaCl) [Palik]" = "Salt (NaCl) [Palik]",
+			"---------------------- PLASTICS ---------------------" = "---------------------- PLASTICS ---------------------",
+			"Cellulose [Kasarova]" = "Cellulose [Kasarova]",
+			"Polystyrene (PS) [Kasarova]" = "Polystyrene (PS) [Kasarova]"
 			
 		}
 	}
@@ -338,8 +321,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Refractive" = 0,
-			"Metal" = 1
+			"Refractive" = "Refractive",
+			"Metal" = "Metal"
 		}
 	}
 	ratioFsFp
@@ -369,8 +352,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Nano (nm) [360-830]" = 0,
-			"Micro (um) [0.360-0.830]" = 1
+			"Nano (nm) [360-830]" = "Nano (nm) [360-830]",
+			"Micro (um) [0.360-0.830]" = "Micro (um) [0.360-0.830]"
 		}
 	}
 	iorRGB
@@ -398,10 +381,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Same as Frontface" = 0,
-			"Swap IORs (Media In -> n2)" = 1,
-			"Always White" = 2,
-			"Always Black" = 3,
+			"Same as Frontface" = "Same as Frontface",
+			"Swap IORs (Media In -> n2)" = "Swap IORs (Media In -> n2)",
+			"Always White" = "Always White",
+			"Always Black" = "Always Black",
 		}
 	}
 	iorExpression
@@ -436,8 +419,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Linear" = 0,
-			"sRGB" = 1
+			"Linear" = "Linear",
+			"sRGB" = "sRGB"
 		}
 	}
 	lambdasStr
@@ -462,8 +445,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"RGB (LEGACY)" = 0,
-			"String SPD" = 1
+			"RGB (LEGACY)" = "RGB (LEGACY)",
+			"String SPD" = "String SPD"
 			
 		}
 	}
@@ -474,9 +457,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Off" = 0, 
-			"HSV" = 1,
-			"HLS" = 2		
+			"Off" = "Off", 
+			"HSV" = "HSV",
+			"HLS" = "HLS"		
 		}
 	}
 	hueShift
@@ -497,9 +480,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Add" = 0,
-			"Multiply" = 1,
-			"Exponent" = 2
+			"Add" = "Add",
+			"Multiply" = "Multiply",
+			"Exponent" = "Exponent"
 		}
 	}
 	roughness
@@ -519,9 +502,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"sRGB Illuminant E" = 0,
-			"sRGB Illuminant D65 <- E (Bradford)" = 1,
-			"sRGB Illuminant D65" = 2			
+			"sRGB Illuminant E" = "sRGB Illuminant E",
+			"sRGB Illuminant D65 <- E (Bradford)" = "sRGB Illuminant D65 <- E (Bradford)",
+			"sRGB Illuminant D65" = "sRGB Illuminant D65"			
 		}
 	}
 }
@@ -662,7 +645,7 @@ End Function
 
 Sub iorExpression()
 	PPG.iorExpression.Value = PPG.ior4standard.Parent & ".ior4standard"
-	If PPG.method.Value = 1 Then
+	If PPG.method.Value = "Metal" Then
 		PPG.ior4standard.Value = 1.0
 	Else
 		PPG.ior4standard.Value = Min2(Min2(PPG.iorRGB.red.Value, PPG.iorRGB.green.Value),PPG.iorRGB.blue.Value)
@@ -674,8 +657,8 @@ Sub iorRGB_OnChanged()
 End Sub
 
 sub inputType_OnChanged()
-	If PPG.mode.Value <> 2 Then
-		If PPG.inputType.Value = 0 Then
+	If PPG.mode.Value <> "File" Then
+		If PPG.inputType.Value = "RGB (LEGACY)" Then
 				PPG.iorRGB.Show(True)
 				PPG.kRGB.Show(True)
 				PPG.lambdaUnits.Show(False)
@@ -697,7 +680,7 @@ sub inputType_OnChanged()
 End Sub
 
 Sub visibility()
-	If PPG.mode.Value = 2 Then
+	If PPG.mode.Value = "File" Then
 		PPG.presets.ReadOnly = True
 		PPG.iorFilename.Show(True)
 		PPG.lambdasStr.Show(False)
@@ -720,7 +703,7 @@ End Sub
 ' fresnel modes
 Sub mode_OnChanged()
 	visibility()
-	If PPG.Mode.Value = 2 Then
+	If PPG.Mode.Value = "File" Then
 		PPG.inputType.ReadOnly = True
 		PPG.PPGLayout.Item("btnLoadPreset").SetAttribute "Label", "    "
 	Else
@@ -731,18 +714,18 @@ Sub mode_OnChanged()
 End Sub
 
 Sub method_OnChanged()
-	If PPG.method.Value = 0 Then
+	If PPG.method.Value = "Refractive" Then
 		PPG.backfaceMode.ReadOnly = False
 		PPG.outputGamma.ReadOnly = False
 		PPG.useFullSpectrum.ReadOnly = True
-		PPG.inputType.Value = 0
+		PPG.inputType.Value = "RGB (LEGACY)"
 		PPG.inputType.ReadOnly = True
 		inputType_OnChanged()
 	Else
 		PPG.backfaceMode.ReadOnly = True
 		PPG.outputGamma.ReadOnly = False
 		PPG.useFullSpectrum.ReadOnly = False
-		If PPG.mode.Value = 2 Then
+		If PPG.mode.Value = "File" Then
 			PPG.inputType.ReadOnly = True
 			inputType_OnChanged()
 		Else
@@ -755,7 +738,7 @@ End Sub
 
 ' Color correction modes
 Sub ccMode_OnChanged()
-	If PPG.ccMode.Value = 0 Then
+	If PPG.ccMode.Value = "Off" Then
 		PPG.hueShift.ReadOnly = True
 		PPG.saturationMod.ReadOnly = True
 		PPG.saturationOp.ReadOnly = True
@@ -774,355 +757,355 @@ End Sub
 '# or http://refractiveindex.info/?group=METALS&material=Gold               #
 '############################################################################
 Sub btnLoadPreset_OnClicked()
-	If PPG.mode.Value <> 2 Then
-		PPG.mode.Value = 0
+	If PPG.mode.Value <> "File" Then
+		PPG.mode.Value = "Custom"
 		PPG.degamma.Value = False
-		If PPG.presets.Value = 0 Then			' Aluminium (Al) [Rakic]: 
+		If PPG.presets.Value = "Aluminium (Al) [Rakic]" Then			' Aluminium (Al) [Rakic]: 
 			iorCoeffs = ARRAY(1.434591,0.931848,0.578377, 7.797164,6.619770,5.337601)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.660004 370.109985 375.709991 381.48999 387.450012 393.600006 399.950012 406.51001 413.279999 420.290009 427.540009 435.040009 442.799988 450.859985 459.200012 467.869995 476.869995 486.220001 495.940002 506.059998 516.599976 527.599976 539.070007 551.049988 563.570007 576.679993 590.409973 604.809998 619.929993 635.820007 652.549988 670.190002 688.809998 708.48999 729.320007 751.429993 774.909973 799.900024 826.570007"
 			PPG.etasStr.Value = "0.407 0.4191 0.432 0.4457 0.46 0.4747 0.49 0.5062 0.523 0.5401 0.558 0.5773 0.598 0.6203 0.644 0.6686 0.695 0.7238 0.755 0.789 0.826 0.867 0.912 0.963 1.02 1.08 1.15 1.22 1.3 1.39 1.49 1.6 1.74 1.91 2.14 2.41 2.63 2.8 2.74"
 			PPG.ksStr.Value = "4.43 4.49375 4.56 4.63375 4.71 4.784375 4.86 4.938125 5.02 5.10875 5.2 5.29 5.38 5.48 5.58 5.69 5.8 5.915 6.03 6.15 6.28 6.42 6.55 6.7 6.85 7.0 7.15 7.31 7.48 7.65 7.82 8.01 8.21 8.39 8.57 8.62 8.6 8.45 8.31"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 1 Then		' Aluminium Copper (AlCu) [Sopra]: 
+		ElseIf PPG.presets.Value = "Aluminium Copper (AlCu)" Then		' Aluminium Copper (AlCu) [Sopra]: 
 			iorCoeffs = ARRAY(1.092965,0.720387,0.441944, 6.362835,5.401386,4.329066 )			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "360.0 370.0 380.0 390.0 400.0 410.0 420.0 430.0 440.0 450.0 460.0 470.0 480.0 490.0 500.0 510.0 520.0 530.0 540.0 550.0 560.0 570.0 580.0 590.0 600.0 610.0 620.0 630.0 640.0 650.0 660.0 670.0 680.0 690.0 700.0 710.0 720.0 730.0 740.0 750.0 760.0 770.0 780.0 790.0 800.0 810.0 820.0 830.0"
 			PPG.etasStr.Value = "0.284 0.31 0.319 0.336 0.371 0.378 0.39 0.427 0.443 0.483 0.496 0.523 0.546 0.564 0.604 0.627 0.659 0.676 0.697 0.738 0.778 0.804 0.846 0.88 0.912 0.936 0.992 1.054 1.087 1.145 1.176 1.209 1.292 1.355 1.408 1.459 1.529 1.609 1.677 1.755 1.844 1.892 1.974 2.048 2.114 2.152 2.157 2.137"
 			PPG.ksStr.Value = "3.458 3.561 3.672 3.78 3.885 3.996 4.122 4.221 4.342 4.446 4.533 4.656 4.751 4.859 4.969 5.086 5.172 5.27 5.348 5.43 5.532 5.626 5.735 5.857 5.953 6.022 6.093 6.202 6.266 6.352 6.43 6.508 6.583 6.656 6.727 6.805 6.858 6.896 6.955 7.002 7.037 7.05 7.056 7.047 7.02 6.974 6.949 6.864"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 2 Then		' Chromium (Cr) [Palik] : 
+		ElseIf PPG.presets.Value = "Chromium (Cr) [Palik]" Then		' Chromium (Cr) [Palik] : 
 			iorCoeffs = ARRAY(3.706064,3.080578,1.834408, 4.306451,4.461270,4.133945)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "362.514984 372.312012 385.031006 396.10202 409.175018 424.58902 438.09201 455.80899 471.406982 490.040009 512.314026 532.102966 558.468018 582.06604 610.739014 700.452026 815.65802 826.53302"
 			PPG.etasStr.Value = "1.39 1.43 1.44 1.48 1.54 1.65 1.8 1.99 2.22 2.49 2.75 2.98 3.18 3.34 3.48 3.84 4.23 4.27"
 			PPG.ksStr.Value = "3.24 3.31 3.4 3.54 3.71 3.89 4.06 4.22 4.36 4.44 4.46 4.45 4.41 4.38 4.36 4.37 4.34 4.33"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 					
-		ElseIf PPG.presets.Value = 3 Then		' Chromium (Cr) [Sopra]: 
+		ElseIf PPG.presets.Value = "Chromium (Cr) [Sopra]" Then		' Chromium (Cr) [Sopra]: 
 			iorCoeffs = ARRAY(3.241302,3.121522,2.264052, 3.287514,3.339501,3.115778)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.649994 375.700012 387.440002 399.940002 413.269989 427.519989 442.790009 459.190002 476.850006 495.920013 516.580017 539.039978 563.549988 590.380005 619.900024 652.530029 688.780029 729.289978 774.880005 826.53"
 			PPG.etasStr.Value = "1.86 1.9 1.95 2.01 2.08 2.17 2.27 2.4 2.56 2.75 2.91 3.11 3.22 3.21 3.16 3.1 3.06 3.06 3.11 3.21"
 			PPG.ksStr.Value = "2.68 2.72 2.77 2.85 2.93 3.02 3.1 3.18 3.26 3.3 3.33 3.33 3.32 3.3 3.3 3.33 3.37 3.4 3.44 3.48"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 4 Then		' Cobalt (Co) [Sopra]: 
+		ElseIf PPG.presets.Value = "Cobalt (Co) [Sopra]" Then		' Cobalt (Co) [Sopra]: 
 			iorCoeffs = ARRAY(2.900821,2.283875,1.662925, 4.389237,3.964236,3.328652)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "369.170013 380.0 390.829987 401.670013 412.5 423.329987 434.170013 445.0 455.829987 466.670013 477.5 488.329987 499.170013 510.0 520.830017 531.669983 542.5 553.330017 564.169983 575.0 585.830017 596.669983 607.5 618.330017 629.169983 640.0 650.830017 661.669983 672.5 683.330017 694.169983 705.0 715.830017 726.669983 737.5 748.330017 759.169983 770.0 780.830017 791.669983 802.5 813.330017 824.1699"
 			PPG.etasStr.Value = "1.3237 1.3544 1.414 1.4626 1.5169 1.5762 1.6353 1.6969 1.7669 1.8217 1.8837 1.9507 2.0202 2.0859 2.1465 2.206 2.2781 2.3316 2.4016 2.4613 2.531 2.5922 2.6648 2.7365 2.7956 2.8594 2.9161 2.9693 3.0299 3.0979 3.151 3.1983 3.2544 3.3076 3.3525 3.3964 3.4431 3.4911 3.5424 3.585 3.6279 3.6696 3.7257"
 			PPG.ksStr.Value = "2.6963 2.8135 2.918 3.0167 3.1037 3.1926 3.2793 3.3627 3.4387 3.509 3.5795 3.6435 3.7154 3.7772 3.8441 3.8923 3.9487 3.9965 4.0501 4.1014 4.1452 4.1877 4.2355 4.2681 4.2973 4.3356 4.3699 4.399 4.4196 4.4517 4.4619 4.4948 4.5207 4.5614 4.5646 4.5897 4.6094 4.6434 4.6647 4.6916 4.7181 4.7396 4.7706"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 5 Then		' Copper (Cu) [Palik]: 
+		ElseIf PPG.presets.Value = "Copper (Cu) [Palik]" Then		' Copper (Cu) [Palik]: 
 			iorCoeffs = ARRAY(0.075081,0.964192,1.207847, 3.340105,2.596150,2.355359)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 387.437988 413.266998 442.78598 476.846008 516.583008 539.044006 563.545044 590.381042 619.900024 652.526001 670.162048 688.778015 708.45697 729.294006 826.533020"
 			PPG.etasStr.Value = "1.27 1.18 1.18 1.17 1.15 1.12 1.04 0.826 0.468 0.272 0.214 0.215 0.213 0.214 0.223 0.26"
 			PPG.ksStr.Value = "1.95 2.21 2.21 2.36 2.5 2.6 2.59 2.6 2.81 3.24 3.67 3.86 4.05 4.24 4.43 5.26"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 6 Then		' Gold (Au) [Palik]: 
+		ElseIf PPG.presets.Value = "Gold (Au) [Palik]" Then		' Gold (Au) [Palik]: 
 			iorCoeffs = ARRAY(0.100899,0.401072,1.569860, 3.404634,2.516492,1.776652)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 375.700012 387.5 400.0 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 652.599976 688.799988 729.300049 774.900024 826.600037"
 			PPG.etasStr.Value = "1.716 1.696 1.674 1.658 1.636 1.616 1.562 1.426 1.242 0.916 0.608 0.402 0.306 0.166 0.16 0.164 0.174 0.188"
 			PPG.ksStr.Value = "1.862 1.906 1.936 1.956 1.958 1.94 1.904 1.846 1.796 1.84 2.12 2.54 2.88 3.15 3.8 4.35 4.86 5.39"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 7 Then		' Iridium (Ir) [Palik] : 
+		ElseIf PPG.presets.Value = "Iridium (Ir) [Palik]" Then		' Iridium (Ir) [Palik] : 
 			iorCoeffs = ARRAY(2.610997,2.198678,1.785252, 4.691352,4.291974,3.602541)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 375.696991 387.437988 399.935028 413.266998 427.516998 442.78598 459.185028 476.846008 495.920013 516.583008 539.044006 563.545044 590.381042 619.900024 652.526001 688.778015 729.294006 774.875 826.53302"
 			PPG.etasStr.Value = "1.53 1.57 1.62 1.68 1.73 1.77 1.81 1.85 1.91 1.98 2.07 2.18 2.29 2.4 2.5 2.57 2.64 2.69 2.68 2.65"
 			PPG.ksStr.Value = "3.05 3.15 3.26 3.35 3.43 3.51 3.61 3.73 3.86 4.0 4.14 4.26 4.38 4.48 4.57 4.68 4.81 4.92 5.08 5.39"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 8 Then		' Lithium (Li) [Sopra] : 
+		ElseIf PPG.presets.Value = "Lithium (Li) [Sopra]" Then		' Lithium (Li) [Sopra] : 
 			iorCoeffs = ARRAY(0.222134,0.206358,0.242736, 3.006439,2.441150,1.843373)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "393.587006 435.018036 486.196014 551.022034 635.795044 751.393982"
 			PPG.etasStr.Value = "0.304 0.247 0.217 0.206 0.221 0.265"
 			PPG.ksStr.Value = "1.6 1.82 2.11 2.48 2.94 3.55"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 9 Then		' Mercury (Hg) [Palik]: 
+		ElseIf PPG.presets.Value = "Mercury (Hg) [Palik]" Then		' Mercury (Hg) [Palik]: 
 			iorCoeffs = ARRAY(2.054545,1.522338,1.007273, 5.339259,4.615572,3.774994)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 387.437988 413.266998 442.78598 476.846008 516.583008 563.545044 619.900024 688.778015 774.875"
 			PPG.etasStr.Value = "0.713 0.798 0.898 1.027 1.186 1.384 1.62 1.91 2.284 2.746"
 			PPG.ksStr.Value = "3.074 3.294 3.538 3.802 4.09 4.407 4.751 5.15 5.582 6.054"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 10 Then		' Nickel (Ni) [Palik]: 
+		ElseIf PPG.presets.Value = "Nickel (Ni) [Palik]" Then		' Nickel (Ni) [Palik]: 
 			iorCoeffs = ARRAY(1.992429,1.755692,1.616139, 3.804098,3.220679,2.588332)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 375.696991 387.437988 399.935028 413.266998 427.516998 442.78598 459.185028 476.846008 495.920013 516.583008 539.044006 563.545044 590.381042 619.900024 635.795044 652.526001 670.162048 688.778015 708.45697 729.294006 751.393982 774.875 799.871033 826.53302"
 			PPG.etasStr.Value = "1.62 1.61 1.61 1.61 1.61 1.62 1.62 1.64 1.66 1.67 1.71 1.75 1.8 1.85 1.93 1.98 2.02 2.08 2.14 2.21 2.28 2.36 2.43 2.48 2.53"
 			PPG.ksStr.Value = "2.17 2.23 2.3 2.36 2.44 2.52 2.61 2.71 2.81 2.93 3.06 3.19 3.33 3.48 3.65 3.74 3.82 3.91 4.0 4.09 4.18 4.25 4.31 4.38 4.47"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 11 Then		' Osmium (Os) [Palik] : 
+		ElseIf PPG.presets.Value = "Osmium (Os) [Palik]" Then		' Osmium (Os) [Palik] : 
 			iorCoeffs = ARRAY(3.650771,4.858451,5.099260, 1.526318,1.679500,3.738135 )			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 375.700012 387.399994 399.899994 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.0 563.599976 590.399963 619.899963 635.799988 652.5 670.200012 688.799988 708.5 729.300049 751.400024 774.900024 789.699951 810.299988 826.5"
 			PPG.etasStr.Value = "2.93 3.15 3.29 3.51 4.05 4.65 5.05 5.3 5.36 5.28 5.1 4.84 4.58 4.26 3.98 3.88 3.81 3.79 3.78 3.76 3.7 3.57 3.36 3.21 2.99 2.84"
 			PPG.ksStr.Value = "3.79 3.88 3.96 4.21 4.4 4.18 3.78 3.38 2.82 2.38 2.01 1.76 1.62 1.54 1.6 1.67 1.75 1.81 1.83 1.8 1.75 1.66 1.62 1.63 1.7 1.8"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 12 Then		' Palladium (Pd) [Sopra]: 
+		ElseIf PPG.presets.Value = "Palladium (Pd) [Sopra]" Then		' Palladium (Pd) [Sopra]: 
 			iorCoeffs = ARRAY(1.796660,1.622686,1.388377, 4.372880,3.816302,3.193917)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "826.600037 799.900024 774.900024 751.400024 729.300049 708.5 688.799988 670.200012 652.5 635.799988 619.899963 604.799988 590.399963 576.699951 563.599976 551.0 539.099976 527.599976 516.600037 506.100006 495.899994 486.200012 476.900024 467.899994 459.199982 450.899994 442.799988 435.0 427.5 420.300018 413.300018 406.5 399.899994 393.599976 387.5 381.5 375.700012 370.100006 364.699982"
 			PPG.etasStr.Value = "2.082121 2.014081 1.974319 1.941803 1.902401 1.866608 1.837469 1.813076 1.792338 1.773848 1.75427 1.726494 1.69668 1.673256 1.658587 1.64347 1.617553 1.587592 1.558918 1.535173 1.52 1.499026 1.474894 1.451105 1.429733 1.41 1.393861 1.378884 1.363975 1.348044 1.33 1.316247 1.304579 1.290495 1.274589 1.26 1.250032 1.242453 1.237083"
 			PPG.ksStr.Value = "5.214392 5.093524 4.978076 4.869014 4.767202 4.669277 4.571035 4.475248 4.385938 4.304184 4.225546 4.145302 4.066112 3.99105 3.92101 3.853351 3.785291 3.718661 3.654907 3.595024 3.54 3.482723 3.424637 3.367486 3.312518 3.26 3.212413 3.166867 3.122114 3.076908 3.03 2.986595 2.945794 2.906372 2.867824 2.83 2.791976 2.75466 2.718694"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 13 Then		' Platinum (Pt) [Palik]: 
+		ElseIf PPG.presets.Value = "Platinum (Pt) [Palik]" Then		' Platinum (Pt) [Palik]: 
 			iorCoeffs = ARRAY(2.378476,2.110833,1.814942, 4.213428,3.686944,3.081867)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 375.700012 387.399994 399.899994 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.0 563.599976 590.399963 619.899963 652.5 688.799988 729.300049 774.900024 826.5"
 			PPG.etasStr.Value = "1.62 1.65 1.68 1.72 1.75 1.79 1.83 1.87 1.91 1.96 2.03 2.1 2.17 2.23 2.3 2.38 2.51 2.63 2.76 2.92"
 			PPG.ksStr.Value = "2.62 2.69 2.76 2.84 2.92 3.01 3.1 3.2 3.3 3.42 3.54 3.67 3.77 3.92 4.07 4.26 4.43 4.63 4.84 5.07"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 14 Then		' Rhodium (Rh) [Palik] : 
+		ElseIf PPG.presets.Value = "Rhodium (Rh) [Palik]" Then		' Rhodium (Rh) [Palik] : 
 			iorCoeffs = ARRAY(2.171363,1.963049,1.713220, 5.717932,4.964404,4.382431)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 375.700012 387.5 400.0 413.300018 427.5 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 590.399963 619.899963 652.599976 688.799988 729.300049 774.900024 826.600037"
 			PPG.etasStr.Value = "1.11 1.2 1.3 1.41 1.53 1.63 1.8 1.85 1.88 1.9 1.94 2.0 2.05 2.12 2.2 2.3 2.42 2.6 2.78"
 			PPG.ksStr.Value = "3.84 3.97 4.09 4.2 4.29 4.36 4.49 4.55 4.65 4.78 4.94 5.11 5.3 5.51 5.76 6.02 6.33 6.64 6.97"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 15 Then		' Silver (Ag) [Palik]: 
+		ElseIf PPG.presets.Value = "Silver (Ag) [Palik]" Then		' Silver (Ag) [Palik]: 
 			iorCoeffs = ARRAY(0.129518,0.123252,0.152054, 4.105114,3.297765,2.373066)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 375.700012 387.5 400.0 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 590.399963 619.899963 652.599976 688.799988 729.300049 774.900024 826.600037"
 			PPG.etasStr.Value = "0.186 0.2 0.192 0.173 0.173 0.16 0.157 0.144 0.132 0.13 0.13 0.129 0.12 0.121 0.131 0.14 0.14 0.148 0.143 0.145"
 			PPG.ksStr.Value = "1.61 1.67 1.81 1.95 2.11 2.26 2.4 2.56 2.72 2.88 3.07 3.25 3.45 3.66 3.88 4.15 4.44 4.74 5.09 5.5"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 16 Then		' Tantalum (Ta) [Sopra]: 
+		ElseIf PPG.presets.Value = "Tantalum (Ta) [Sopra]" Then		' Tantalum (Ta) [Sopra]: 
 			iorCoeffs = ARRAY(1.605157,2.517179,2.887926, 2.009766,1.836714,2.143219)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "360.0 370.0 380.0 390.0 400.0 410.0 420.0 430.0 440.0 450.0 460.0 470.0 480.0 490.0 500.0 510.0 520.0 530.0 540.0 550.0 560.0 570.0 580.0 590.0 600.0 610.0 620.0 630.0 640.0 650.0 660.0 670.0 680.0 690.0 700.0 710.0 720.0 730.0 740.0 750.0 760.0 770.0 780.0 790.0 800.0 810.0 820.0 830.0"
 			PPG.etasStr.Value = "2.576122 2.630314 2.68343 2.733411 2.776369 2.805519 2.827264 2.841735 2.848885 2.848305 2.839252 2.823172 2.80048 2.771415 2.737603 2.700764 2.657433 2.6069 2.548706 2.47794 2.391179 2.298247 2.201368 2.102607 2.006822 1.91713 1.830121 1.746458 1.666745 1.591944 1.522716 1.459061 1.401485 1.350147 1.308842 1.277696 1.251963 1.230646 1.212715 1.19474 1.176222 1.159275 1.143788 1.129663 1.117038 1.105745 1.095448 1.085986"
 			PPG.ksStr.Value = "2.323725 2.323869 2.31562 2.300048 2.27817 2.250694 2.219278 2.185115 2.149456 2.114728 2.084477 2.054883 2.025856 1.997324 1.967574 1.934722 1.903712 1.875862 1.852421 1.834908 1.824749 1.822568 1.829451 1.846289 1.877807 1.926347 1.985327 2.053735 2.130431 2.215719 2.308684 2.405752 2.505086 2.605323 2.70028 2.788593 2.875185 2.96012 3.043608 3.12641 3.208536 3.289673 3.369617 3.448425 3.525918 3.602155 3.677328 3.751492"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 17 Then		' Titanium (Ti) [Sopra]: 
+		ElseIf PPG.presets.Value = "Titanium (Ti) [Sopra]" Then		' Titanium (Ti) [Sopra]: 
 			iorCoeffs = ARRAY(2.186662,1.873381,1.664651, 2.993847,2.580519,2.228462)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 370.100006 375.700012 381.500000 387.500000 393.599976 399.899994 406.500000 413.300018 420.300018 427.500000 435.000000 442.799988 450.899994 459.199982 467.899994 476.900024 486.200012 495.899994 506.100006 516.600037 527.599976 539.099976 551.000000 563.599976 576.699951 590.399963 604.799988 619.899963 635.799988 652.500000 670.200012 688.799988 708.500000 729.300049 751.400024 774.900024 799.900024 826.600037"
 			PPG.etasStr.Value = "1.37 1.405625 1.44 1.47125 1.5 1.52625 1.55 1.570625 1.59 1.609375 1.63 1.655625 1.68 1.695625 1.71 1.73 1.75 1.765625 1.78 1.79375 1.81 1.833125 1.86 1.8875 1.92 1.9625 2.01 2.05875 2.11 2.1625 2.22 2.285625 2.36 2.44625 2.54 2.63625 2.74 2.860625 2.98 "
 			PPG.ksStr.Value = "2.06 2.07625 2.09 2.105 2.12 2.135625 2.15 2.159375 2.17 2.18875 2.21 2.23 2.25 2.269375 2.29 2.314375 2.34 2.363125 2.39 2.4275 2.47 2.513125 2.56 2.614375 2.67 2.72 2.77 2.824375 2.88 2.934375 2.99 3.049375 3.11 3.173125 3.23 3.27125 3.3 3.316875 3.32 "
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 18 Then		' Tungsten (W) [Palik] : 
+		ElseIf PPG.presets.Value = "Tungsten (W) [Palik]" Then		' Tungsten (W) [Palik] : 
 			iorCoeffs = ARRAY(3.647661,3.481405,3.300960, 2.927440,2.748171,2.503822 )			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.699982 370.100006 375.700012 381.5 387.5 393.599976 400.0 406.5 413.300018 420.300018 427.5 435.0 442.799988 450.899994 459.199982 467.899994 476.900024 486.200012 495.899994 506.100006 516.600037 527.599976 539.099976 551.0 563.599976 576.699951 590.399963 604.799988 619.899963 635.799988 652.599976 670.200012 688.799988 708.5 729.300049 751.400024 774.900024 799.900024 826.600037"
 			PPG.etasStr.Value = "3.39 3.43 3.45 3.45 3.43 3.41 3.39 3.37 3.35 3.33 3.32 3.31 3.3 3.31 3.31 3.32 3.34 3.35 3.38 3.42 3.45 3.48 3.5 3.5 3.49 3.51 3.54 3.57 3.6 3.65 3.7 3.76 3.82 3.85 3.84 3.78 3.67 3.56 3.48"
 			PPG.ksStr.Value = "2.66 2.6 2.55 2.49 2.45 2.43 2.41 2.42 2.42 2.43 2.45 2.47 2.49 2.53 2.55 2.59 2.62 2.64 2.68 2.71 2.72 2.72 2.72 2.73 2.75 2.81 2.84 2.86 2.89 2.92 2.94 2.95 2.91 2.86 2.78 2.72 2.68 2.73 2.79"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 			
-		ElseIf PPG.presets.Value = 19 Then		' Acetone (CH3COCH3) [Rheims] : 
+		ElseIf PPG.presets.Value = "Acetone (CH3COCH3) [Rheims]" Then		' Acetone (CH3COCH3) [Rheims] : 
 			iorCoeffs = ARRAY(1.36, 1.36, 1.36, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 20 Then		' Ethanol (C2H5OH) [Rheims] : 
+		ElseIf PPG.presets.Value = "Ethanol (C2H5OH) [Rheims]" Then		' Ethanol (C2H5OH) [Rheims] : 
 			iorCoeffs = ARRAY(1.36, 1.36, 1.36, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 21 Then		' Ethylene Glycol (C2H4(OH)2) [El-Kashef] : 
+		ElseIf PPG.presets.Value = "Ethylene Glycol (C2H4(OH)2) [El-Kashef]" Then		' Ethylene Glycol (C2H4(OH)2) [El-Kashef] : 
 			iorCoeffs = ARRAY(1.45, 1.45, 1.45, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 22 Then		' Glycerol (C3H5(OH)3) [Birkhoff] : 
+		ElseIf PPG.presets.Value = "Glycerol (C3H5(OH)3) [Birkhoff]" Then		' Glycerol (C3H5(OH)3) [Birkhoff] : 
 			iorCoeffs = ARRAY(1.47, 1.47, 1.47, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 23 Then		' Honey [RobinWood] : 
+		ElseIf PPG.presets.Value = "Honey [RobinWood]" Then		' Honey [RobinWood] : 
 			iorCoeffs = ARRAY(1.494,1.494,1.494,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 24 Then		' Milk [RobinWood] : 
+		ElseIf PPG.presets.Value = "Milk [RobinWood]" Then		' Milk [RobinWood] : 
 			iorCoeffs = ARRAY(1.35,1.35,1.35,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 25 Then		' Shampoo [RobinWood] : 
+		ElseIf PPG.presets.Value = "Shampoo [RobinWood]" Then		' Shampoo [RobinWood] : 
 			iorCoeffs = ARRAY(1.362,1.362,1.362,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 26 Then		' Vegetable Oil [RobinWood] : 
+		ElseIf PPG.presets.Value = "Vegetable Oil [RobinWood]" Then		' Vegetable Oil [RobinWood] : 
 			iorCoeffs = ARRAY(1.47,1.47,1.47,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 27 Then		' Water (H20) [Hale]: 
+		ElseIf PPG.presets.Value = "Water (H20) [Hale]" Then		' Water (H20) [Hale]: 
 			iorCoeffs = ARRAY(1.33, 1.33, 1.33, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 28 Then		' Acrylic (Plexiglass) : 
+		ElseIf PPG.presets.Value = "Acrylic (Plexiglass)" Then		' Acrylic (Plexiglass) : 
 			iorCoeffs = ARRAY(1.49, 1.49, 1.49, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 29 Then		' Crystal [RobinWood] : 
+		ElseIf PPG.presets.Value = "Crystal [RobinWood]" Then		' Crystal [RobinWood] : 
 			iorCoeffs = ARRAY(2.000,2.000,2.000,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 30 Then		' Diamond (C) [Handbook of Optics]: 
+		ElseIf PPG.presets.Value = "Diamond (C) [Handbook of Optics]" Then		' Diamond (C) [Handbook of Optics]: 
 			iorCoeffs = ARRAY(2.42, 2.42, 2.42, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 31 Then		' Emerald [RobinWood] : 
+		ElseIf PPG.presets.Value = "Emerald [RobinWood]" Then		' Emerald [RobinWood] : 
 			iorCoeffs = ARRAY(1.58,1.58,1.58,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 32 Then		' Garnet [RobinWood] : 
+		ElseIf PPG.presets.Value = "Garnet [RobinWood]" Then		' Garnet [RobinWood] : 
 			iorCoeffs = ARRAY(1.78,1.78,1.78,0.0,0.0,0.0)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 33 Then		' Glass (Schott N-KF9 crown/flint) : 
+		ElseIf PPG.presets.Value = "Glass (Schott N-KF9 crown/flint)" Then		' Glass (Schott N-KF9 crown/flint) : 
 			iorCoeffs = ARRAY(1.53, 1.53, 1.53, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 			
-		ElseIf PPG.presets.Value = 34 Then		' Ice (H20) [Warren]: 
+		ElseIf PPG.presets.Value = "Ice (H20) [Warren]" Then		' Ice (H20) [Warren]: 
 			iorCoeffs = ARRAY(1.31, 1.31, 1.31, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 		
-		ElseIf PPG.presets.Value = 35 Then		' Salt (NaCl) [Palik]: 
+		ElseIf PPG.presets.Value = "Salt (NaCl) [Palik]" Then		' Salt (NaCl) [Palik]: 
 			iorCoeffs = ARRAY(1.55, 1.55, 1.55, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 
-		ElseIf PPG.presets.Value = 36 Then		' Cellulose: 
+		ElseIf PPG.presets.Value = "Cellulose [Kasarova]" Then		' Cellulose: 
 			iorCoeffs = ARRAY(1.47, 1.47, 1.47, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 
-		ElseIf PPG.presets.Value = 37 Then		' Polystyrene: 
+		ElseIf PPG.presets.Value = "Polystyrene (PS) [Kasarova]" Then		' Polystyrene: 
 			iorCoeffs = ARRAY(1.6, 1.6, 1.6, 0.000000, 0.000000, 0.000000)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
-			PPG.method.Value = 0
+			PPG.method.Value = "Refractive"
 
-		ElseIf PPG.presets.Value = 42 Then		' Iron: 
+		ElseIf PPG.presets.Value = "Iron (Fe) [Palik]" Then		' Iron: 
 			iorCoeffs = ARRAY(2.331323,2.065119,1.798905, 3.227729,2.897254,2.559370)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "400.0 407.0 413.0 420.0 427.0 435.0 443.0 451.0 459.0 468.0 477.0 486.0 496.0 506.0 516.0 527.0 539.0 551.0 564.0 576.0 590.0 604.0 620.0 636.0 653.0 670.0 689.0 709.0 729.0 751.0"
 			PPG.etasStr.Value = "1.7 1.72 1.73 1.75 1.77 1.79 1.81 1.83 1.85 1.87 1.89 1.92 1.94 1.97 1.99 2.02 2.05 2.08 2.12 2.15 2.18 2.22 2.26 2.3 2.34 2.39 2.44 2.49 2.54 2.59"
 			PPG.ksStr.Value = "2.44 2.46 2.48 2.5 2.52 2.55 2.57 2.6 2.62 2.65 2.68 2.71 2.74 2.77 2.81 2.84 2.88 2.92 2.96 3.0 3.04 3.09 3.14 3.19 3.24 3.3 3.36 3.42 3.49 3.55"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 
-		ElseIf PPG.presets.Value = 43 Then		' Copper (Cu) [Hagemann,Gudat,Kunz]: 
+		ElseIf PPG.presets.Value = "Copper (Cu) [Hagemann,Gudat,Kunz]" Then		' Copper (Cu) [Hagemann,Gudat,Kunz]: 
 			iorCoeffs = ARRAY(0.075081,0.964192,1.207847, 3.340105,2.596150,2.355359)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 387.437988 413.266998 442.78598 476.846008 516.583008 539.044006 563.545044 590.381042 619.900024 652.526001 670.162048 688.778015 708.45697 729.294006 826.53302"
 			PPG.etasStr.Value = "1.27 1.18 1.18 1.17 1.15 1.12 1.04 0.826 0.468 0.272 0.214 0.215 0.213 0.214 0.223 0.26"
 			PPG.ksStr.Value = "1.95 2.21 2.21 2.36 2.5 2.6 2.59 2.6 2.81 3.24 3.67 3.86 4.05 4.24 4.43 5.26"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 
-		ElseIf PPG.presets.Value = 44 Then		' Vanadium (V) [Sopra]: 
+		ElseIf PPG.presets.Value = "Vanadium (V) [Sopra]" Then		' Vanadium (V) [Sopra]: 
 			iorCoeffs = ARRAY(0.075081,0.964192,1.207847, 3.340105,2.596150,2.355359)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "364.647003 387.437988 413.266998 442.78598 476.846008 516.583008 539.044006 563.545044 590.381042 619.900024 652.526001 670.162048 688.778015 708.45697 729.294006 826.53302"
 			PPG.etasStr.Value = "1.27 1.18 1.18 1.17 1.15 1.12 1.04 0.826 0.468 0.272 0.214 0.215 0.213 0.214 0.223 0.26"
 			PPG.ksStr.Value = "1.95 2.21 2.21 2.36 2.5 2.6 2.59 2.6 2.81 3.24 3.67 3.86 4.05 4.24 4.43 5.26"
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 		
-		ElseIf PPG.presets.Value = 45 Then		' Iron (Fe) [Johnson and Christy]: 
+		ElseIf PPG.presets.Value = "Iron (Fe) [Johnson&Christy]" Then		' Iron (Fe) [Johnson and Christy]: 
 			iorCoeffs = ARRAY(2.919659,2.921146,2.536223, 3.084672,2.939107,2.745184)			
 			SetValue PPG.iorRGB.Parent & ".iorRGB.red," & PPG.iorRGB.Parent & ".iorRGB.green," & PPG.iorRGB.Parent & ".iorRGB.blue," & PPG.kRGB.Parent & ".kRGB.red," & PPG.kRGB.Parent & ".kRGB.green," & PPG.kRGB.Parent & ".kRGB.blue", iorCoeffs			
 			PPG.lambdasStr.Value = "368.0 381.0 397.0 413.0 431.0 451.0 471.0 496.0 521.0 549.0 582.0 617.0 659.0 704.0 756.0 821.0 "
 			PPG.etasStr.Value = "2.02 2.12 2.24 2.35 2.48 2.59 2.67 2.74 2.86 2.95 2.94 2.88 2.92 2.86 2.87 2.94 "
 			PPG.ksStr.Value = "2.43 2.5 2.58 2.65 2.71 2.77 2.82 2.88 2.91 2.93 2.99 3.05 3.1 3.19 3.28 3.39 "
-			PPG.method.Value = 1
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 1
+			PPG.method.Value = "Metal"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "String SPD"
 			PPG.useFullSpectrum.Value = True
 
 		Else
@@ -1131,9 +1114,9 @@ Sub btnLoadPreset_OnClicked()
 			PPG.lambdasStr.Value = ""
 			PPG.etasStr.Value = ""
 			PPG.ksStr.Value = ""
-			PPG.method.Value = 0
-			PPG.lambdaUnits.Value = 0
-			PPG.inputType.Value = 0
+			PPG.method.Value = "Refractive"
+			PPG.lambdaUnits.Value = "Nano (nm) [360-830]"
+			PPG.inputType.Value = "RGB (LEGACY)"
 			PPG.useFullSpectrum.Value = False
 		End If
 		visibility() ' includes method_OnChanged()

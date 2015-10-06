@@ -13,12 +13,10 @@ PropertySet "Obq_LightSaturationFilter_params"
 	Parameter "mode" input
 	{
 		GUID = "{6CC707C1-91D9-42D0-95C2-0603C123B4E0}";
-		Type = integer;
-		Value = 0;
+		Type = string;
+		Value = "Simple saturation modifier";
 		Texturable = Off;
 		Animatable = Off;
-		Value Minimum = 0;
-		Value Maximum = 2;
 	}
 	Parameter "key" input
 	{
@@ -77,9 +75,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Simple saturation modifier" = 0,
-			"Use trigger message" = 1,
-			"Use message as saturation" = 2
+			"Simple saturation modifier" = "Simple saturation modifier",
+			"Use trigger message" = "Use trigger message",
+			"Use message as saturation" = "Use message as saturation"
 		}
 	}
    key
@@ -124,12 +122,12 @@ Logic
 {
 
 Sub mode_OnChanged()
-	IF PPG.mode.Value = 0 Then
+	IF PPG.mode.Value = "Simple saturation modifier" Then
 		PPG.key.Show(False)
 		PPG.triggerValue.Show(False)
 		PPG.saturation.Show(True)
 		PPG.defaultSaturation.Show(False)
-	ElseIf PPG.mode.Value = 1 Then
+	ElseIf PPG.mode.Value = "Use trigger message" Then
 		PPG.key.Show(True)
 		PPG.triggerValue.Show(True)
 		PPG.saturation.Show(True)

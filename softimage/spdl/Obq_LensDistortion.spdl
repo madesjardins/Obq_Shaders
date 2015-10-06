@@ -104,11 +104,9 @@ PropertySet "Obq_LensDistortion"
 	Parameter "distortionModel" input
 	{
 		GUID = "{1BAB0957-C1F7-4443-B2F3-B48FF1FCAF6B}";
-		Type = integer;
+		Type = string;
 		flags = 1;
-		Value = 7;
-		Value Minimum = 0;
-		Value Maximum = 8;
+		Value = "PFBarrel";
 		Texturable = Off;
 	}
 	Parameter "k1" input
@@ -806,15 +804,15 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"PFBarrel" = 7,
-			"Nuke" = 0,
-			"3DE Classic LD Model" = 1,
-			"3DE4 Anamorphic, Degree 6" = 2,
-			"3DE4 Radial - Fisheye, Degree 8" = 3,
-			"(DEPRICATED) 3DE4 Radial - Standard, Degree 4" = 4,
-			"3DE4 Radial - Decentered Cylindric, Degree 4" = 5,
-			"3DE4 Anamorphic Rotate Squeeze, Degree 4" = 6,
-			"None" = 8
+			"Nuke" = "Nuke",
+			"3DE Classic LD Model" = "3DE Classic LD Model",
+			"3DE4 Anamorphic, Degree 6" = "3DE4 Anamorphic, Degree 6",
+			"3DE4 Radial - Fisheye, Degree 8" = "3DE4 Radial - Fisheye, Degree 8",
+			"(DEPRICATED) 3DE4 Radial - Standard, Degree 4" = "(DEPRICATED) 3DE4 Radial - Standard, Degree 4",
+			"3DE4 Radial - Decentered Cylindric, Degree 4" = "3DE4 Radial - Decentered Cylindric, Degree 4",
+			"3DE4 Anamorphic Rotate Squeeze, Degree 4" = "3DE4 Anamorphic Rotate Squeeze, Degree 4",
+			"PFBarrel" = "PFBarrel",
+			"None" = "None"
 		}
 	}
 	k1
@@ -1441,7 +1439,7 @@ def btnBokehGood_OnClicked():
 	PPG.bokehGain.Value = 0.685
 
 def btnReset_OnClicked():
-	if PPG.distortionModel.Value == 7 :
+	if PPG.distortionModel.Value == "PFBarrel" :
 	
 		Application.RemoveAnimation( str(PPG.pfC3.Parent) + ".pfC3")
 		Application.RemoveAnimation( str(PPG.pfC5.Parent) + ".pfC5")
@@ -1456,7 +1454,7 @@ def btnReset_OnClicked():
 		PPG.pfYp.Value = PPG.pfYp.Default
 		pfbFile_OnChanged()
 		
-	elif PPG.distortionModel.Value == 0 :
+	elif PPG.distortionModel.Value == "Nuke" :
 	
 		Application.RemoveAnimation( str(PPG.k1.Parent) + ".k1")
 		Application.RemoveAnimation( str(PPG.anamorphicSqueeze.Parent) + ".anamorphicSqueeze")
@@ -1473,7 +1471,7 @@ def btnReset_OnClicked():
 		PPG.asymmetricDistortionY.Value = PPG.asymmetricDistortionY.Default
 		PPG.centerX.Value = PPG.centerX.Default
 		PPG.centerY.Value = PPG.centerY.Default
-	elif PPG.distortionModel.Value == 0 :
+	elif PPG.distortionModel.Value == "None" :
 		pass
 	else:
 	
@@ -1493,7 +1491,7 @@ def btnReset_OnClicked():
 		PPG.focal3DEq.Value = PPG.focal3DEq.Default
 		PPG.focusDistance3DEq.Value = PPG.focusDistance3DEq.Default
 
-		if PPG.distortionModel.Value == 1 :
+		if PPG.distortionModel.Value == "3DE Classic LD Model" :
 		
 			Application.RemoveAnimation( str(PPG.c3dc00.Parent) + ".c3dc00")
 			Application.RemoveAnimation( str(PPG.c3dc01.Parent) + ".c3dc01")
@@ -1507,7 +1505,7 @@ def btnReset_OnClicked():
 			PPG.c3dc03.Value = PPG.c3dc03.Default
 			PPG.c3dc04.Value = PPG.c3dc04.Default
 			
-		elif PPG.distortionModel.Value == 2 :
+		elif PPG.distortionModel.Value == "3DE4 Anamorphic, Degree 6" :
 		
 			Application.RemoveAnimation( str(PPG.ana6c00.Parent) + ".ana6c00")
 			Application.RemoveAnimation( str(PPG.ana6c01.Parent) + ".ana6c01")
@@ -1547,7 +1545,7 @@ def btnReset_OnClicked():
 			PPG.ana6c16.Value = PPG.ana6c16.Default
 			PPG.ana6c17.Value = PPG.ana6c17.Default
 			
-		elif PPG.distortionModel.Value == 3 :
+		elif PPG.distortionModel.Value == "3DE4 Radial - Fisheye, Degree 8" :
 		
 			Application.RemoveAnimation( str(PPG.fish8c00.Parent) + ".fish8c00")
 			Application.RemoveAnimation( str(PPG.fish8c01.Parent) + ".fish8c01")
@@ -1559,7 +1557,7 @@ def btnReset_OnClicked():
 			PPG.fish8c02.Value = PPG.fish8c02.Default
 			PPG.fish8c03.Value = PPG.fish8c03.Default
 			
-		elif PPG.distortionModel.Value == 4 :
+		elif PPG.distortionModel.Value == "(DEPRICATED) 3DE4 Radial - Standard, Degree 4" :
 		
 			Application.RemoveAnimation( str(PPG.stand4c00.Parent) + ".stand4c00")
 			Application.RemoveAnimation( str(PPG.stand4c01.Parent) + ".stand4c01")
@@ -1575,7 +1573,7 @@ def btnReset_OnClicked():
 			PPG.stand4c04.Value = PPG.stand4c04.Default
 			PPG.stand4c05.Value = PPG.stand4c05.Default
 			
-		elif PPG.distortionModel.Value == 5 :
+		elif PPG.distortionModel.Value == "3DE4 Radial - Decentered Cylindric, Degree 4" :
 			
 			Application.RemoveAnimation( str(PPG.raddec4c00.Parent) + ".raddec4c00")
 			Application.RemoveAnimation( str(PPG.raddec4c01.Parent) + ".raddec4c01")
@@ -1658,7 +1656,7 @@ def unlinkToCamera_OnClicked():
 	Application.RemoveAnimation( str(PPG.centerY.Parent) + ".centerY")
 
 def distortionModel_OnChanged():
-	if PPG.distortionModel.Value == 7 :
+	if PPG.distortionModel.Value == "PFBarrel" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reload")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -1734,7 +1732,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(True)
 		PPG.pfYp.Show(True)
 		PPG.pfbFile.Show(True)
-	elif PPG.distortionModel.Value == 0 :
+	elif PPG.distortionModel.Value == "Nuke" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(True)
 		PPG.k2.Show(True)
@@ -1810,7 +1808,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 1 :
+	elif PPG.distortionModel.Value == "3DE Classic LD Model" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -1886,7 +1884,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 2 :
+	elif PPG.distortionModel.Value == "3DE4 Anamorphic, Degree 6" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -1962,7 +1960,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 3 :
+	elif PPG.distortionModel.Value == "3DE4 Radial - Fisheye, Degree 8" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -2038,7 +2036,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 4 :
+	elif PPG.distortionModel.Value == "(DEPRICATED) 3DE4 Radial - Standard, Degree 4" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -2114,7 +2112,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 5 :
+	elif PPG.distortionModel.Value == "3DE4 Radial - Decentered Cylindric, Degree 4" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)
@@ -2190,7 +2188,7 @@ def distortionModel_OnChanged():
 		PPG.pfXp.Show(False)
 		PPG.pfYp.Show(False)
 		PPG.pfbFile.Show(False)
-	elif PPG.distortionModel.Value == 6 :
+	elif PPG.distortionModel.Value == "3DE4 Anamorphic Rotate Squeeze, Degree 4" :
 		PPG.PPGLayout.Item( "btnReset").SetAttribute("Label", "Reset")
 		PPG.k1.Show(False)
 		PPG.k2.Show(False)

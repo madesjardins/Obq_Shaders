@@ -58,12 +58,12 @@ ShaderData;
 node_parameters
 {
 	AiParameterRGBA("color",1.0f,1.0f,1.0f,1.0f);
-	AiParameterINT("csGammaIn",G_sRGB); 
-	AiParameterINT("csGammaOut",G_LINEAR); 
-	AiParameterINT("csIlluminantIn",ILMNT_D65); 
-	AiParameterINT("csIlluminantOut",ILMNT_D65); 
-	AiParameterINT("csPrimariesIn",CS_sRGB); 
-	AiParameterINT("csPrimariesOut",CS_sRGB); 
+	AiParameterENUM("csGammaIn",G_sRGB, OGammaIDNames); 
+	AiParameterENUM("csGammaOut",G_LINEAR,OGammaIDNames); 
+	AiParameterENUM("csIlluminantIn",ILMNT_D65,OIlluminantIDNames); 
+	AiParameterENUM("csIlluminantOut",ILMNT_D65,OIlluminantIDNames); 
+	AiParameterENUM("csPrimariesIn",CS_sRGB, OCSIDNames); 
+	AiParameterENUM("csPrimariesOut",CS_sRGB, OCSIDNames); 
 	AiParameterBOOL("switchInOut",false);
 	AiParameterBOOL("useBradford",true);
 	AiParameterBOOL("clamp",true);

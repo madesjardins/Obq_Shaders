@@ -12,29 +12,23 @@ PropertySet "Obq_Toon_pset"
 	Parameter "global_loopLightMode" input
 	{
 		GUID = "{24198F12-0AD9-4999-8CA2-B403EF912C79}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Add";
 	}
 	Parameter "global_compMode" input
 	{
 		GUID = "{F68896F2-6557-4009-B41F-F8E73015EC9B}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Over";
 	}
 	Parameter "global_loopMode" input
 	{
 		GUID = "{55CC52C4-5BAC-474B-9844-0DF0DE367674}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 4;
+		Value = "Add all values";
 	}
 	Parameter "global_multByLightColor" input
 	{
@@ -130,11 +124,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "diffuse_mode" input
 	{
 		GUID = "{CC19CE2A-A1B7-4A12-8C33-A521A35DE907}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Parameters";
 	}
 	Parameter "diffuse_gradient" input
 	{
@@ -153,11 +145,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "diffuse_imageType" input
 	{
 		GUID = "{ECEAD64B-4ABD-4BDC-B79C-0CA805E17944}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Texturable = off;
+		Value = "1D";
 	}
 	Parameter "highlight_color" input
 	{
@@ -204,11 +194,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "highlight_mode" input
 	{
 		GUID = "{7D76291D-09E1-4921-B57D-CF2B36FBAAAA}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Parameters";
 	}
 	Parameter "highlight_gradient" input
 	{
@@ -227,11 +215,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "highlight_imageType" input
 	{
 		GUID = "{124B64F6-C4DD-44D0-A42A-949F1F1B9A4E}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "1D";
 	}
 	Parameter "rimlight_color" input
 	{
@@ -270,11 +256,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "rimlight_mode" input
 	{
 		GUID = "{72C7CDA9-1EB3-466F-B9C9-3E6AA717C58D}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Parameters";
 	}
 	Parameter "rimlight_gradient" input
 	{
@@ -293,11 +277,9 @@ PropertySet "Obq_Toon_pset"
 	Parameter "rimlight_imageType" input
 	{
 		GUID = "{B7D7B795-65B8-4963-A25A-1A982F8E1DC2}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Texturable = off;
+		Value = "1D";
 	}
 	Parameter "ambient_fb_str" input
 	{
@@ -569,10 +551,10 @@ PropertySet "Obq_Toon_pset"
 	Parameter "global_remapMode" input
 	{
 		GUID = "{2D756DB1-A2EA-4535-BCD5-34A0FA11A672}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
 		Animatable = on;
-		Value = 2;
+		Value = "Use Each Channel";
 	}
 	Parameter "global_remapMultByColor" input
 	{
@@ -613,10 +595,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Add" = 0,
-			"Add (Clamped)" = 1,
-			"Maximum" = 2,
-			"Multiply" = 3
+			"Add" = "Add",
+			"Add (Clamped)" = "Add (Clamped)",
+			"Maximum" = "Maximum",
+			"Multiply" = "Multiply"
 		}
 	}
 	global_compMode
@@ -626,10 +608,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Add" = 0,
-			"Over" = 1,
-			"Max" = 2,
-			"Screen" = 3
+			"Add" = "Add",
+			"Over" = "Over",
+			"Max" = "Max",
+			"Screen" = "Screen"
 			
 		}
 	}
@@ -640,11 +622,11 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Add all values" = 0,
-			"Use sum for value" = 1,
-			"Use max for value" = 2,
-			"Remap value" = 3,
-			"Remap inputs" = 4
+			"Add all values" = "Add all values",
+			"Use sum for value" = "Use sum for value",
+			"Use max for value" = "Use max for value",
+			"Remap value" = "Remap value",
+			"Remap inputs" = "Remap inputs"
 		}
 	}
 	global_multByLightColor
@@ -706,9 +688,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Parameters" = 0,
-			"Image" = 1,
-			"Gradient" = 2
+			"Parameters" = "Parameters",
+			"Image" = "Image",
+			"Gradient" = "Gradient"
 		}
 	}
 	diffuse_gradient
@@ -730,8 +712,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"1D" = 0,
-			"2D" = 1
+			"1D" = "1D",
+			"2D" = "2D"
 		}
 	}
 	highlight_color
@@ -768,9 +750,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Parameters" = 0,
-			"Image" = 1,
-			"Gradient" = 2
+			"Parameters" = "Parameters",
+			"Image" = "Image",
+			"Gradient" = "Gradient"
 		}
 	}
 	highlight_gradient
@@ -792,8 +774,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"1D" = 0,
-			"2D" = 1
+			"1D" = "1D",
+			"2D" = "2D"
 		}
 	}
 	rimlight_color
@@ -824,9 +806,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Parameters" = 0,
-			"Image" = 1,
-			"Gradient" = 2
+			"Parameters" = "Parameters",
+			"Image" = "Image",
+			"Gradient" = "Gradient"
 		}
 	}
 	rimlight_gradient
@@ -848,8 +830,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"1D" = 0,
-			"2D" = 1
+			"1D" = "1D",
+			"2D" = "2D"
 		}
 	}
 	ambient_fb_str
@@ -1043,9 +1025,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Use Average" = 0,
-			"Use Luminance" = 1,
-			"Use Each Channel" = 2
+			"Use Average" = "Use Average",
+			"Use Luminance" = "Use Luminance",
+			"Use Each Channel" = "Use Each Channel"
 		}
 	}
 	global_remapMultByColor
@@ -1442,7 +1424,7 @@ End Sub
 
 
 Sub rimlight_mode_OnChanged()
-	If PPG.rimlight_mode.Value = 1 Then
+	If PPG.rimlight_mode.Value = "Image" Then
 		PPG.rimlight_image.Show(True)
 		PPG.rimlight_autoRemap.Show(True)
 		PPG.rimlight_imageRemapLeft.Show(True)
@@ -1462,7 +1444,7 @@ Sub rimlight_mode_OnChanged()
 End Sub
 
 Sub highlight_mode_OnChanged()
-	If PPG.highlight_mode.Value = 1 Then
+	If PPG.highlight_mode.Value = "Image" Then
 		PPG.highlight_image.Show(True)
 		PPG.highlight_autoRemap.Show(True)
 		PPG.highlight_imageRemapLeft.Show(True)
@@ -1481,7 +1463,7 @@ Sub highlight_mode_OnChanged()
 End Sub
 
 Sub diffuse_mode_OnChanged()
-	If PPG.diffuse_mode.Value = 1 Then
+	If PPG.diffuse_mode.Value = "Image" Then
 		PPG.diffuse_image.Show(True)
 		PPG.diffuse_autoRemap.Show(True)
 		PPG.diffuse_imageRemapLeft.Show(True)
@@ -1531,9 +1513,9 @@ Sub rimlight_autoRemap_OnChanged()
 End Sub
 
 Sub global_remapMode_OnChanged()
-	If PPG.global_loopMode.Value = 3 Or PPG.global_loopMode.Value = 4 Then
+	If PPG.global_loopMode.Value = "Remap value" Or PPG.global_loopMode.Value = "Remap inputs" Then
 		PPG.global_remapMode.Show(True)
-		If PPG.global_remapMode.Value = 2 Then
+		If PPG.global_remapMode.Value = "Use Each Channel" Then
 			PPG.global_remapMultByColor.Show(False)
 		Else
 			PPG.global_remapMultByColor.Show(True)
@@ -1546,7 +1528,7 @@ Sub global_remapMode_OnChanged()
 End Sub
 
 Sub global_loopMode_OnChanged()
-	If PPG.global_loopMode.Value = 1 Or PPG.global_loopMode.Value = 2 Then
+	If PPG.global_loopMode.Value = "Use sum for value" Or PPG.global_loopMode.Value = "Use max for value" Then
 		PPG.global_loopLightMode.Show(True)
 	Else
 		PPG.global_loopLightMode.Show(False)
@@ -1554,7 +1536,7 @@ Sub global_loopMode_OnChanged()
 
 	global_remapMode_OnChanged()
 	
-	If PPG.global_loopMode.Value = 4 Then
+	If PPG.global_loopMode.Value = "Remap inputs" Then
 		PPG.global_multByLightColor.Show(False)
 	Else
 		PPG.global_multByLightColor.Show(True)

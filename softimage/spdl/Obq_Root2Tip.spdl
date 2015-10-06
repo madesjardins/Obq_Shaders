@@ -27,10 +27,8 @@ PropertySet "Obq_Root2Tip_pset"
 	{
 		guid = "{A188917A-E437-4E9F-937F-114670824DD0}";
 		texturable = off;
-		type = integer;
-		value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		type = string;
+		value = "Linear";
 	}
 }
 
@@ -67,8 +65,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Linear" = 0,
-			"Hermite" = 1
+			"Linear" = "Linear",
+			"Hermite" = "Hermite"
 		}
 	}
 }

@@ -37,11 +37,56 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 static const char* c_ToonGradientMessage = "OToon";
 
 enum Obq_Mode{OBQ_MODEPARAMS = 0, OBQ_MODEIMAGE, OBQ_MODEGRADIENT}; 
+static const char* Obq_ModeNames[] = 
+{
+	"Parameters",
+	"Image",
+	"Gradient",
+    NULL
+};
 enum Obq_CompMode{OBQ_COMPADD = 0, OBQ_COMPOVER, OBQ_COMPMAX, OBQ_COMPSCREEN}; // Screen mode : A+B-AB (if A and B [0,1], else A if A>B, else B)
+static const char* Obq_CompModeNames[] = 
+{
+	"Add",
+	"Over",
+	"Max",
+	"Screen",
+    NULL
+};
 enum Obq_LoopMode{OBQ_LOOPADD = 0, OBQ_LOOPUSEADD, OBQ_LOOPUSEMAX,OBQ_LOOPREMAPCURVE, OBQ_LOOPREMAPCURVEINPUTS};
+static const char* Obq_LoopModeNames[] = 
+{
+	"Add all values",
+	"Use sum for value",
+	"Use max for value",
+	"Remap value",
+	"Remap inputs",
+    NULL
+};
 enum Obq_LoopLightMode{OBQ_LOOPLIGHTADD = 0, OBQ_LOOPLIGHTADDCLAMPED, OBQ_LOOPLIGHTMAX, OBQ_LOOPLIGHTMULT};
+static const char* Obq_LoopLightModeNames[] = 
+{
+	"Add",
+	"Add (Clamped)",
+	"Maximum",
+	"Multiply",
+    NULL
+};
 enum Obq_ImageType{OBQ_IT1D = 0, OBQ_IT2D};
+static const char* Obq_ImageTypeNames[] = 
+{
+	"1D",
+    "2D",
+    NULL
+};
 enum Obq_RemapMode{OBQ_REMAPAVERAGE = 0, OBQ_REMAPLUMINANCE, OBQ_REMAPRGB}; 
+static const char* Obq_RemapModeNames[] = 
+{
+	"Use Average",
+	"Use Luminance",
+	"Use Each Channel",
+    NULL
+};
 
 // enum for parameters
 //

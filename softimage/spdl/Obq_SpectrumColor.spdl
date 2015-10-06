@@ -13,10 +13,8 @@ PropertySet "Obq_SpectrumColor_pset"
 	{
 		guid = "{9526463A-7DC6-4146-B6AF-CF6D0319B3D9}";
 		texturable = off;
-		type = integer;
-		value = 1;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		type = string;
+		value = "String";
 	}
 	Parameter "filename" input
 	{
@@ -29,10 +27,8 @@ PropertySet "Obq_SpectrumColor_pset"
 	{
 		GUID = "{9437124E-7E4A-4477-B982-9D6AFA8B5827}";
 		Texturable = off;
-		Type = integer;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Value = "Nano (nm) [360-830]";
 	}
 	Parameter "lambdasStr" input
 	{
@@ -54,19 +50,15 @@ PropertySet "Obq_SpectrumColor_pset"
 	{
 		GUID = "{931AAEF3-F6E0-4AF8-8A9B-85F9B42D8367}";
 		Texturable = off;
-		Type = integer;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Type = string;
+		Value = "sRGB Illuminant D65";
 	}
 	Parameter "gamma" input
 	{
 		GUID = "{E117BFEC-98E0-4463-BD77-454546BC23D3}";
-		Type = Integer;
+		Type = string;
 		Texturable = Off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Linear";
 	}
 }
 
@@ -86,8 +78,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"String" = 1,
-			"File" = 0
+			"File" = "File",
+			"String" = "String"
 		}
 	}
 	filename
@@ -107,8 +99,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Nano (nm) [360-830]" = 0,
-			"Micro (um) [0.360-0.830]" = 1
+			"Nano (nm) [360-830]" = "Nano (nm) [360-830]",
+			"Micro (um) [0.360-0.830]" = "Micro (um) [0.360-0.830]"
 		}
 	}
 	lambdasStr
@@ -128,10 +120,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"sRGB Illuminant E" = 0,
-			"sRGB Illuminant D65 <- E (Bradford)" = 1,
-			"sRGB Illuminant D65" = 2,
-			"XYZ" = 3,	
+			"sRGB Illuminant E" = "sRGB Illuminant E",
+			"sRGB Illuminant D65 <- E (Bradford)" = "sRGB Illuminant D65 <- E (Bradford)",
+			"sRGB Illuminant D65" = "sRGB Illuminant D65",
+			"XYZ" = "XYZ"	
 		}
 	}
 	gamma
@@ -141,8 +133,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Linear" = 0,
-			"sRGB" = 1
+			"Linear" = "Linear",
+			"sRGB" = "sRGB"
 		}
 	}
 }
@@ -177,7 +169,7 @@ Logic
 {
 
 Sub mode_OnChanged()
-	If PPG.Mode.Value = 0 Then
+	If PPG.Mode.Value = "File" Then
 		PPG.lambdasStr.Show(False)
 		PPG.intensitiesStr.Show(False)
 		PPG.filename.Show(True)
@@ -190,7 +182,7 @@ Sub mode_OnChanged()
 End Sub
 
 Sub xyz2rgb_OnChanged()
-	If PPG.xyz2rgb.Value = 3 Then
+	If PPG.xyz2rgb.Value = "XYZ" Then
 		PPG.gamma.ReadOnly = True
 	Else
 		PPG.gamma.ReadOnly = False

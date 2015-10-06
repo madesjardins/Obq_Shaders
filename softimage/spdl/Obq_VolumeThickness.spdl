@@ -26,11 +26,9 @@ PropertySet "Obq_VolumeThickness_pset"
 	Parameter "alphaMode" input
 	{
 		GUID = "{96FF2802-36BB-4E6F-95E3-00A3EFEF9B1D}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Alpha Parameter";
 	}
 	Parameter "alpha" input
 	{
@@ -44,11 +42,9 @@ PropertySet "Obq_VolumeThickness_pset"
 	Parameter "thicknessMode" input
 	{
 		GUID = "{9A870104-A77F-4819-B58C-0EB96F0AECF1}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Custom Thickness";
 	}
 	Parameter "thickness" input
 	{
@@ -101,20 +97,16 @@ PropertySet "Obq_VolumeThickness_pset"
 	Parameter "diffuseMode" input
 	{
 		GUID = "{0F78326B-64B5-4AB6-BE07-DF1D82FE87DF}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 5;
+		Value = "Direct";
 	}
 	Parameter "autoTransparencyMode" input
 	{
 		GUID = "{0F267CF8-2A29-4186-94FD-A3ADC439E0CF}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Always";
 	}
 	Parameter "shadowModifier" input
 	{
@@ -178,10 +170,10 @@ Defaults
 	UIType = "Combo";
 		Items
 		{
-			"Alpha Parameter" = 0,
-			"Diffuse Alpha" = 1,
-			"Emission Alpha" = 2,
-			"Max of Diffuse and Emission Alpha" = 3
+			"Alpha Parameter" = "Alpha Parameter",
+			"Diffuse Alpha" = "Diffuse Alpha",
+			"Emission Alpha" = "Emission Alpha",
+			"Max of Diffuse and Emission Alpha" = "Max of Diffuse and Emission Alpha"
 		}
 	}
 	alpha
@@ -196,8 +188,8 @@ Defaults
 	UIType = "Combo";
 		Items
 		{
-			"Sphere Particles" = 0,
-			"Custom Thickness" = 1
+			"Sphere Particles" = "Sphere Particles",
+			"Custom Thickness" = "Custom Thickness"
 		}
 	}
 	thickness
@@ -240,12 +232,12 @@ Defaults
 	UIType = "Combo";
 		Items
 		{
-			"Full" = 4,
-			"Full (Emission only)" = 5,
-			"Direct*sqrt(opacity)" = 3,
-			"Direct*opacity" = 2,
-			"Direct" = 1,
-			"None" = 0
+			"None" = "None",
+			"Direct" = "Direct",
+			"Direct*opacity" = "Direct*opacity",
+			"Direct*sqrt(opacity)" = "Direct*sqrt(opacity)",
+			"Full" = "Full",
+			"Full (Emission only)" = "Full (Emission only)",
 		}
 	}
 	autoTransparencyMode
@@ -255,8 +247,8 @@ Defaults
 	UIType = "Combo";
 		Items
 		{
-			"Always" = 0,
-			"Shadow-Only" = 1
+			"Always" = "Always",
+			"Shadow-Only" = "Shadow-Only"
 		}
 	}
 	shadowModifier

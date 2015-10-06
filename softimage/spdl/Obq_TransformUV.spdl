@@ -67,11 +67,9 @@ PropertySet "Obq_TransformUV_pset"
 	Parameter "mode" input
 	{
 		GUID = "{310CA2B8-875E-4EFB-B488-5EEC37D59B7B}";
-		Type = integer;
-		Texturable = on;
-		Value = 3;
-		Value Minimum = 0;
-		Value Maximum = 5;
+		Type = string;
+		Texturable = off;
+		Value = "RTS";
 	}
 }
 
@@ -143,12 +141,12 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"SRT" = 0,
-			"STR" = 1,
-			"RST" = 2,
-			"RTS" = 3,
-			"TSR" = 4,
-			"TRS" = 5
+			"SRT" = "SRT",
+			"STR" = "STR",
+			"RST" = "RST",
+			"RTS" = "RTS",
+			"TSR" = "TSR",
+			"TRS" = "TRS"
 		}
 	}
 }

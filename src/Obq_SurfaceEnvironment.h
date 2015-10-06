@@ -41,15 +41,49 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqSurfaceEnvironmentMethods);
 //
 enum ObqSurfaceEnvironmentParams { p_tex, p_considerAlpha, p_mapMode, p_usePassEnvShader, p_rayTypeEnv, p_useIntensityEnv, p_useTransformsEnv, p_useRoughnessEnv, p_sampleLevel, p_coneAngle, p_cosLobeGloss, p_useSampleCount, p_sampleCount,p_sampleCountMultiplier, p_onSurfaceMode, p_ior, p_customDirection, p_intensity, p_globalRotation , p_rotation, p_passthrough, p_passthroughShader, p_renderChannel, p_flipU, p_flipV };
 
+// This is the enumeration for the rayTypeEnv
+//
+static const char* ObqRayTypeEnvNames[] = 
+{
+	"Camera",
+    "Diffuse (GI)",
+    "Reflected",
+    "Glossy",
+	"Refracted",
+    NULL
+};
 
 // This is the enumeration for the mapping mode
 //
 enum ObqMapMode { MIRROREDBALL,ANGULARMAP,LATLONG,CUBICMAP };
-
+static const char* ObqMapModeNames[] = 
+{
+	"Mirrored Ball",
+    "Angular Map",
+    "Latitude-Longitude",
+    "Vertical Cross",
+    NULL
+};
 // This is the enumeration for the possible directions in surface mode
 //
 enum ObqOnSurfaceMode { D_VIEW, D_VIEW_INV, D_NOR, D_NOR_SMOOTH, D_NOR_INV, D_NOR_INV_SMOOTH, D_NOR_FF, D_NOR_FF_INV, D_RFL, D_RFL_SMOOTH, D_RFR, D_RFR_SMOOTH, D_CUSTOM };
-
+static const char* ObqOnSurfaceModeNames[] = 
+{
+	"View Direction",
+	"View Direction (Inverted)",
+	"Surface Normal Direction",
+	"Surface Normal Direction (no bump)",
+	"Surface Normal Direction (Inverted)",
+	"Surface Normal Direction (no bump, Inverted)",
+	"Surface Normal Direction (Front-Facing)",
+	"Surface Normal Direction (Back-Facing)",
+	"Reflection Direction",
+	"Reflection Direction (no bump)",
+	"Refraction Direction",
+	"Refraction Direction (no bump)",
+	"Custom Direction",
+	NULL
+};
 
 // Shader Data Structure
 //

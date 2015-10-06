@@ -20,11 +20,9 @@ PropertySet "Obq_Bend4Stereo"
 	Parameter "bendMode" input
 	{
 		GUID = "{AAC54765-C318-4FC9-9312-601D3577CB97}";
-		Type = integer;
+		Type = string;
 		flags = 1;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Don't bend";
 		Texturable = Off;
 		Animatable = On;
 	}
@@ -92,10 +90,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Don't bend" = 0,
-			"Bend from left" = 1,
-			"Bend from right" = 2,
-			"Bend from center" = 3
+			"Don't bend" = "Don't bend",
+			"Bend from left" = "Bend from left",
+			"Bend from right" = "Bend from right",
+			"Bend from center" = "Bend from center"
 		}
 	}
 	leftCamera
@@ -180,9 +178,6 @@ Logic
 		checkCameras()
 	End Sub
 
-	Sub bendMode_OnChanged()
-	End Sub
-	
 	Sub pickCameras_OnClicked()	
 		dim leftC, rightC, centerC, button
 		DeselectAll
@@ -205,7 +200,6 @@ Logic
 		PPG.PPGLayout.SetAttribute "HelpFile","http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Bend4Stereo.html"
 		'Setting Expressions
 		checkCameras()
-		bendMode_OnChanged()
 		PPG.cameraStatus.ReadOnly = True
 		PPG.Refresh
 	End Sub

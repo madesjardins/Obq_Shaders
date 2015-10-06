@@ -88,31 +88,31 @@ node_parameters
 	AiParameterFLT("numGMS_modifier",1.0f);
 	AiParameterBOOL("normal_shifts_widths",true);
 	AiParameterRGB("color_ray_glossy",0.0f,0.0f,0.0f);
-	AiParameterINT("mode_ray_glossy",1);
+	AiParameterENUM("mode_ray_glossy",OBQ_HAIR_DIRECTNOSCAT,ObqHairRayModeNotFullNames);
 	AiParameterRGB("color_ray_diffuse",0.0f,0.0f,0.0f);
-	AiParameterINT("mode_ray_diffuse",1);
+	AiParameterENUM("mode_ray_diffuse",OBQ_HAIR_DIRECTNOSCAT,ObqHairRayModeNotFullNames);
 	AiParameterFLT("d_f",0.7f);
 	AiParameterFLT("d_f__pre",0.7f);
 	AiParameterFLT("d_b",0.7f);
 	AiParameterFLT("d_b__pre",0.7f);
-	AiParameterINT("aov_mode",1);
+	AiParameterENUM("aov_mode",OBQ_AOV_ALL,ObqAOVModeNames);
 	AiParameterBOOL("singleScatteringMode",true);
 	AiParameterBOOL("useImportanceSampling",true);
 	AiParameterBOOL("unlinkOpacity",false);
 	AiParameterRGB("color_ray_reflected",0.0f,0.0f,0.0f);
-	AiParameterINT("mode_ray_reflected",3);
+	AiParameterENUM("mode_ray_reflected",OBQ_HAIR_LIKECAMERA,ObqHairRayModeFullNames);
 	AiParameterRGB("color_ray_refracted",0.0f,0.0f,0.0f);
-	AiParameterINT("mode_ray_refracted",3);
+	AiParameterENUM("mode_ray_refracted",OBQ_HAIR_LIKECAMERA,ObqHairRayModeFullNames);
 	AiParameterBOOL("checkShaderNameToo",false);
 	//AiParameterBOOL("useCritical",false);
-	AiParameterINT("modeMIS",0);
+	AiParameterENUM("modeMIS",OBQ_MIS_NO, ObqModeMISNames);
 	AiParameterINT("MISrandomLobeSamples",1);
 	AiParameterINT("samples_R",0);
 	AiParameterINT("samples_TT",0);
 	AiParameterINT("samples_TRT",0);
 	AiParameterINT("samples_G",0);
 	AiParameterINT("samples_DS",0);
-	AiParameterINT("modeMIS_DS",0);
+	AiParameterENUM("modeMIS_DS",OBQ_MIS_DS_NO, ObqModeMISDSNames);
 	AiParameterSTR("aov_dir_R","");
 	AiParameterSTR("aov_dir_TRT","");
 	AiParameterSTR("aov_dir_g","");
@@ -135,20 +135,11 @@ node_initialize
 	AiNodeSetLocalData(node,data);
 	data->sampler = NULL;
 	//AiCritSecInit(&data->criticalSec);
-}
-
-node_update
-{
-	// Access shader Data
-	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-
-	//Precalculation
+		//Precalculation
 	data->hairData.evaluateParams(node);
 	data->hairData.precalculations();
 
-	AiSamplerDestroy(data->sampler);
 	data->samples = data->hairData.get_n_samples();
-	data->sampler = AiSampler(data->samples, 2);
 
 	data->aov_mode = AiNodeGetInt(node,"aov_mode");
 
@@ -156,7 +147,6 @@ node_update
 	
 	data->max_diffuse_depth = AiNodeGetInt(options, "GI_diffuse_depth");
 	data->max_glossy_depth  = AiNodeGetInt(options, "GI_glossy_depth");
-
 
 	data->aov_dir_R = AiNodeGetStr(node,"aov_dir_R");
 	data->aov_dir_TRT = AiNodeGetStr(node,"aov_dir_TRT");
@@ -189,6 +179,15 @@ node_update
 	if(data->aov_indir_scatter && std::strlen(data->aov_indir_scatter))		AiAOVRegister(data->aov_indir_scatter,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
 	if(data->aov_indir_scatter_back && std::strlen(data->aov_indir_scatter_back))		AiAOVRegister(data->aov_indir_scatter_back,		AI_TYPE_RGBA,AI_AOV_BLEND_OPACITY);
 
+}
+
+node_update
+{
+	// Access shader Data
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+
+	AiSamplerDestroy(data->sampler);
+	data->sampler = AiSampler(data->samples, 2);
 
 	srand (static_cast<unsigned int>(time(NULL)));
 }
@@ -623,7 +622,7 @@ shader_evaluate
 		{
 			//-----------------
 			// DIRECT LIGHTING
-			if(data->hairData.get_modeMIS() == 0)
+			if(data->hairData.get_modeMIS() == OBQ_MIS_NO)
 				hairData.direct_shading_full(loop_f_scatter,loop_f_back_scatter, loop_cR__direct, loop_cTT__direct, loop_cTRT__direct, loop_cg__direct,loop_f_back_direct,sg,data->hairData,/*&data->criticalSec,*/U,V,W,theta_r,phi_r);
 			else
 				hairData.direct_shading_full_MIS_Options(loop_f_scatter,loop_f_back_scatter, loop_cR__direct, loop_cTT__direct, loop_cTRT__direct, loop_cg__direct,loop_f_back_direct,sg,data->hairData,/*&data->criticalSec,*/U,V,W,theta_r,phi_r);
@@ -668,7 +667,7 @@ shader_evaluate
 		{
 			switch(data->aov_mode)
 			{
-			case 1:	// All
+			case OBQ_AOV_ALL:	// All
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct);
 				AiAOVSetRGB (sg,data->aov_dir_TT,loop_cTT__direct);
 				AiAOVSetRGB (sg,data->aov_dir_TRT,loop_cTRT__direct);
@@ -687,7 +686,7 @@ shader_evaluate
 				AiAOVSetRGB (sg,data->aov_indir_scatter,loop_Indirect_f_scatter);
 				AiAOVSetRGB (sg,data->aov_indir_scatter_back,loop_Indirect_f_back_scatter);
 				break;
-			case 2: // merge dir/indir
+			case OBQ_AOV_MERGE_D_I: // merge dir/indir
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct + loop_cR__indirect);
 				AiAOVSetRGB (sg,data->aov_dir_TT,loop_cTT__direct + loop_cTT__indirect);
 				AiAOVSetRGB (sg,data->aov_dir_TRT,loop_cTRT__direct + loop_cTRT__indirect);
@@ -697,7 +696,7 @@ shader_evaluate
 				AiAOVSetRGB (sg,data->aov_dir_scatter,loop_f_scatter + loop_Indirect_f_scatter);
 				AiAOVSetRGB (sg,data->aov_dir_scatter_back,loop_f_back_scatter + loop_Indirect_f_back_scatter);
 				break;
-			case 3: // merge lobes
+			case OBQ_AOV_MERGE_LOBES: // merge lobes
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct+loop_cTT__direct+loop_cTRT__direct+loop_cg__direct);
 
 				AiAOVSetRGB (sg,data->aov_dir_back,loop_f_back_direct);
@@ -710,25 +709,25 @@ shader_evaluate
 				AiAOVSetRGB (sg,data->aov_indir_scatter,loop_Indirect_f_scatter);
 				AiAOVSetRGB (sg,data->aov_indir_scatter_back,loop_Indirect_f_back_scatter);
 				break;
-			case 4: // merge lobes + merge dir/indir
+			case OBQ_AOV_MERGE_LOBES_D_I: // merge lobes + merge dir/indir
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct+loop_cTT__direct+loop_cTRT__direct+loop_cg__direct + loop_cR__indirect+loop_cTT__indirect+loop_cTRT__indirect+loop_cg__indirect);
 
 				AiAOVSetRGB (sg,data->aov_dir_back,loop_f_back_direct + loop_Indirect_f_back_direct);
 				AiAOVSetRGB (sg,data->aov_dir_scatter,loop_f_scatter + loop_Indirect_f_scatter);
 				AiAOVSetRGB (sg,data->aov_dir_scatter_back,loop_f_back_scatter + loop_Indirect_f_back_scatter);
 				break;
-			case 5:
+			case OBQ_AOV_MERGE_LOBES_SCAT:
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct+loop_cTT__direct+loop_cTRT__direct+loop_cg__direct);
 				AiAOVSetRGB (sg,data->aov_dir_scatter,loop_f_back_direct+loop_f_scatter+loop_f_back_scatter);
 
 				AiAOVSetRGB (sg,data->aov_indir_R,loop_cR__indirect+loop_cTT__indirect+loop_cTRT__indirect+loop_cg__indirect);
 				AiAOVSetRGB (sg,data->aov_indir_scatter,loop_Indirect_f_back_direct+loop_Indirect_f_scatter+loop_Indirect_f_back_scatter);
 				break;
-			case 6:
+			case OBQ_AOV_MERGE_LOBES_SCAT_D_I:
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct+loop_cTT__direct+loop_cTRT__direct+loop_cg__direct+loop_cR__indirect+loop_cTT__indirect+loop_cTRT__indirect+loop_cg__indirect);
 				AiAOVSetRGB (sg,data->aov_dir_scatter,loop_f_back_direct+loop_f_scatter+loop_f_back_scatter+loop_Indirect_f_back_direct+loop_Indirect_f_scatter+loop_Indirect_f_back_scatter);
 				break;
-			case 7:
+			case OBQ_AOV_MERGE_SCAT:
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct);
 				AiAOVSetRGB (sg,data->aov_dir_TT,loop_cTT__direct);
 				AiAOVSetRGB (sg,data->aov_dir_TRT,loop_cTRT__direct);
@@ -743,7 +742,7 @@ shader_evaluate
 
 				AiAOVSetRGB (sg,data->aov_indir_scatter,loop_Indirect_f_scatter+loop_Indirect_f_back_direct+loop_Indirect_f_back_scatter);
 				break;
-			case 8:
+			case OBQ_AOV_MERGE_SCAT_D_I:
 				AiAOVSetRGB (sg,data->aov_dir_R,loop_cR__direct+loop_cR__indirect);
 				AiAOVSetRGB (sg,data->aov_dir_TT,loop_cTT__direct+loop_cTT__indirect);
 				AiAOVSetRGB (sg,data->aov_dir_TRT,loop_cTRT__direct+loop_cTRT__indirect);

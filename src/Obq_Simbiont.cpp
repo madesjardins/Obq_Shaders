@@ -64,6 +64,81 @@ enum ObqSimbiontParams { p_filename,p_sampleSize,p_bumpScale,p_frameNumber,p_cam
 // p_tweakEnable0
 #define TWEAKS0 16
 
+static const char* ObqEvalRGBModeNames[] = 
+{
+	"Black",
+    "Color",
+    "Percent",
+    "Elevation",
+    "Diffuse level",
+	"Diffuse Func",
+	"Luminosity",
+	"Specular Level",
+	"Specular Func",
+	"Specular Color",
+	"Glossiness",
+	"Metal Level",
+	"Anisotropy",
+	"Aniso Dir",
+	"Reflectivity",
+	"Environment",
+	"Transparency",
+	"Refraction",
+	"Clear Coat Level",
+	"Clear Coat Glossiness",
+	"Clear Coat Thickness",
+	"Clear Coat Smoothness",
+	"Bump",
+	"Alpha",
+    NULL
+};
+
+static const char* ObqEvalAlphaModeNames[] = 
+{
+	"Solid",
+	"Color",
+	"Percent",
+	"Elevation",
+	"Diffuse level",
+	"Diffuse Func",
+	"Luminosity",
+	"Specular Level",			
+	"Specular Func",
+	"Specular Color",
+	"Glossiness",	
+	"Metal Level",		
+	"Anisotropy",
+	"Aniso Dir",
+	"Reflectivity",
+	"Environment",
+	"Transparency",
+	"Refraction",
+	"Clear Coat Level",
+	"Clear Coat Glossiness",
+	"Clear Coat Thickness",			
+	"Clear Coat Smoothness",
+	"Bump",
+	"Alpha",
+    NULL
+};
+enum ObqCoordinateSystem{
+	COORD_OBJECT,
+	COORD_WORLD,
+	COORD_UV,
+	COORD_CAMERA,
+	COORD_RASTER,
+	COORD_CUSTOM
+};
+static const char* ObqCoordinateSystemNames[] = 
+{
+	"Object Space",
+	"World Space",
+	"UV Space",
+	"Camera Space",
+	"Raster Space",
+	"Custom",
+    NULL
+};
 node_parameters
 {
 	AiParameterSTR("filename", "");
@@ -74,10 +149,10 @@ node_parameters
 	AiParameterFLT("cameraFar",1000.0f);
 	AiParameterFLT("continuousRep",0.0f);
 	AiParameterINT("regionRep",0);
-	AiParameterINT("evaluateRGB",0);
-	AiParameterINT("evaluateAlpha",-1);
+	AiParameterENUM("evaluateRGB",1,ObqEvalRGBModeNames);
+	AiParameterENUM("evaluateAlpha",0,ObqEvalAlphaModeNames);
 	AiParameterBOOL("outRRR",false);
-	AiParameterINT("coordinateSystem",0);
+	AiParameterENUM("coordinateSystem",COORD_OBJECT,ObqCoordinateSystemNames);
 	AiParameterVEC("customCoordinates",0.0f,0.0f,0.0f);
 	AiParameterVEC("coordinateScale",1.0f,1.0f,1.0f);
 	AiParameterBOOL("globalTweaksOnly",true);
@@ -113,6 +188,9 @@ typedef struct
 	unsigned int dynTweakNum;					// number of valid and active tweaks to build evaluated array
 	DSdte::DynamicTweakValue_struct *dynTweak;	// poi nter to array of dynamic tweaks structures to fill with tweak values
 	AtCritSec	critical_section;				// Critical section
+	int evalRGB;
+	int evalAlpha;
+	int coordinateSystem;
 }
 ShaderData;
 
@@ -179,9 +257,13 @@ node_update
 	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
 	AiCritSecEnter(&data->critical_section);
 
+	// get constant value
+	data->evalRGB = params[p_evaluateRGB].INT - 1;		// -1 to match DTE Constants
+	data->evalAlpha = params[p_evaluateAlpha].INT - 1;	// -1 to match DTE Constants
+	data->coordinateSystem = params[p_coordinateSystem].INT;
+
 	//load the file
 	data->fileLoaded = DSdte::Load(data->dte,AiNodeGetStr(node, "filename"));
-
 	///////////
 	// TWEAKS
 	///////////
@@ -402,24 +484,24 @@ shader_evaluate
 		// See the DTEngine reference for more info
 		DSdte::RenderState_struct rs;
 		AtVector v;
-		switch(AiShaderEvalParamInt(p_coordinateSystem))
+		switch(data->coordinateSystem)
 		{
-		case 0 : 
+		case COORD_OBJECT : 
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3(sg->Po.x, sg->Po.y, sg->Po.z));
 			break;
-		case 1:
+		case COORD_WORLD:
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3(sg->P.x, sg->P.y, sg->P.z));
 			break;
-		case 2 :
+		case COORD_UV :
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3( sg->u  , sg->v, 0.0f));
 			break;
-		case 3 :
+		case COORD_CAMERA :
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3( sg->sx  , sg->sy, 0.0f));
 			break;
-		case 4 :
+		case COORD_RASTER :
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3( float(sg->x)  , float(sg->y), 0.0f));
 			break;
-		case 5 :
+		case COORD_CUSTOM :
 			v = AiShaderEvalParamVec(p_customCoordinates);
 			rs.point = DSdte::Vec3ToStruct(DSmath::Vec3( v.x , v.y, v.z));
 			break;
@@ -447,8 +529,8 @@ shader_evaluate
 		rs.regionRep = AiShaderEvalParamInt(p_regionRep);;
 
 		// What do we have to evaluate
-		int evalRGB = AiShaderEvalParamInt(p_evaluateRGB);
-		int evalAlpha = AiShaderEvalParamInt(p_evaluateAlpha);
+		//int evalRGB = AiShaderEvalParamInt(p_evaluateRGB);
+		//int evalAlpha = AiShaderEvalParamInt(p_evaluateAlpha);
 
 		/////////
 		// TWEAKS
@@ -514,9 +596,9 @@ shader_evaluate
 			}
 			
 			// RGB evaluation
-			if(evalRGB >= 0)
+			if(data->evalRGB >= 0)
 			{
-				rs.evaluateAs = (DSdte::DTE_EVALUATE) evalRGB;
+				rs.evaluateAs = (DSdte::DTE_EVALUATE) data->evalRGB;
 				DSdte::Vec3_struct retVal = DSdte::Evaluate(data->dte, &rs,dynTweak,data->dynTweakNum);
 				sg->out.RGBA.r = retVal.n[0];
 				sg->out.RGBA.g = retVal.n[1];
@@ -526,9 +608,9 @@ shader_evaluate
 				sg->out.RGBA = AI_RGBA_BLACK;
 
 			// Alpha evaluation
-			if(evalAlpha >= 0)
+			if(data->evalAlpha >= 0)
 			{
-				rs.evaluateAs = (DSdte::DTE_EVALUATE) evalAlpha;
+				rs.evaluateAs = (DSdte::DTE_EVALUATE) data->evalAlpha;
 				DSdte::Vec3_struct retVal = DSdte::Evaluate(data->dte, &rs,dynTweak, data->dynTweakNum);
 				sg->out.RGBA.a = retVal.n[0];
 			} else 
@@ -548,9 +630,9 @@ shader_evaluate
 		{
 
 			// RGB evaluation
-			if(evalRGB >= 0)
+			if(data->evalRGB >= 0)
 			{
-				rs.evaluateAs = (DSdte::DTE_EVALUATE) evalRGB;
+				rs.evaluateAs = (DSdte::DTE_EVALUATE) data->evalRGB;
 				DSdte::Vec3_struct retVal = DSdte::Evaluate(data->dte, &rs,data->dynTweak,data->dynTweakNum);
 				sg->out.RGBA.r = retVal.n[0];
 				sg->out.RGBA.g = retVal.n[1];
@@ -560,9 +642,9 @@ shader_evaluate
 				sg->out.RGBA = AI_RGBA_BLACK;
 
 			// Alpha evaluation
-			if(evalAlpha >= 0)
+			if(data->evalAlpha >= 0)
 			{
-				rs.evaluateAs = (DSdte::DTE_EVALUATE) evalAlpha;
+				rs.evaluateAs = (DSdte::DTE_EVALUATE) data->evalAlpha;
 				DSdte::Vec3_struct retVal = DSdte::Evaluate(data->dte, &rs,data->dynTweak,data->dynTweakNum);
 				sg->out.RGBA.a = retVal.n[0];
 			} else 

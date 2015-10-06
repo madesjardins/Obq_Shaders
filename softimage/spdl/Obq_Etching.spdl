@@ -230,11 +230,9 @@ PropertySet "Obq_Etching_pset"
 	Parameter "autoFilteringMode" input
 	{
 		GUID = "{B37046FE-AC57-4817-826B-5B9E0F956E53}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Texturable = off;
+		Value = "Feather";
 	}
 	Parameter "autoFilteringAdvanced" input
 	{
@@ -419,9 +417,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Feather" = 0,
-			"Feather and Mix" = 1,
-			"Mix" = 2
+			"Feather"="Feather",
+			"Feather and Mix" = "Feather and Mix",
+			"Mix" = "Mix"
 		}
 	}
 	autoFilteringU

@@ -19,75 +19,58 @@ PropertySet "Obq_ColorspaceConverter_pset"
 	Parameter "colorspaceIn" input
 	{
 		GUID = "{D60400C1-C6FA-4361-845A-0CA05A0FA92F}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "XSI sRGB";
 	}
 	Parameter "colorspaceOut" input
 	{
 		GUID = "{D049E3EF-66FE-4116-9851-86CBEE19EC05}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "XSI Linear";
 	}
 	Parameter "csGammaIn" input
 	{
 		GUID = "{FFEF5E93-4406-41B7-8BA4-0139D658C080}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 3;
-		Value Minimum = 0;
-		Value Maximum = 6;
+		Value = "sRGB";
 	}
 	Parameter "csGammaOut" input
 	{
 		GUID = "{F3F22775-7703-4A94-9CDE-678FD7C13030}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 6;
+		Value = "Linear";
 	}
 	Parameter "csIlluminantIn" input
 	{
 		GUID = "{94ACB63B-A912-4FCE-BF40-AD6D48ABD457}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 5;
-		Value Minimum = 0;
-		Value Maximum = 11;
+		Value = "D65";
 	}
 	Parameter "csIlluminantOut" input
 	{
 		GUID = "{EF9E19E1-6051-4D5C-82C8-68705401F38B}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 5;
-		Value Minimum = 0;
-		Value Maximum = 11;
+		Value = "D65";
 	}
 	Parameter "csPrimariesIn" input
 	{
 		GUID = "{9112B628-9487-4672-ACA4-A760B481EEA1}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 15;
-		Value Minimum = 0;
-		Value Maximum = 19;
+		Value = "sRGB";
 	}
 	Parameter "csPrimariesOut" input
 	{
 		GUID = "{0649A846-DD98-49F8-9718-8C1F946C3BE9}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 15;
-		Value Minimum = 0;
-		Value Maximum = 19;
-
+		Value = "sRGB";
 	}
 	Parameter "switchInOut" input
 	{
@@ -139,10 +122,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"CIE XYZ" = 3,
-			"XSI Linear" = 0,
-			"XSI sRGB" = 1,
-			"CIE RGB" = 2
+			"XSI Linear" = "XSI Linear",
+			"XSI sRGB" = "XSI sRGB",
+			"CIE RGB" = "CIE RGB",
+			"CIE XYZ" = "CIE XYZ"
 			
 		}
 	}
@@ -153,10 +136,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"CIE XYZ" = 3,
-			"XSI Linear" = 0,
-			"XSI sRGB" = 1,
-			"CIE RGB" = 2
+			"XSI Linear" = "XSI Linear",
+			"XSI sRGB" = "XSI sRGB",
+			"CIE RGB" = "CIE RGB",
+			"CIE XYZ" = "CIE XYZ"
 		}
 	}
 	csGammaIn
@@ -166,13 +149,13 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Linear" = 0,
-			"sRGB" = 3,
-			"Rec.709" = 5,
-			"1.8 (Apple)" = 1,
-			"2.2" = 2,
-			"2.4" = 4,
-			"L*" = 6
+			"Linear" = "Linear",
+			"1.8 (Apple)" = "1.8 (Apple)",
+			"2.2" = "2.2",
+			"sRGB" = "sRGB",
+			"2.4" = "2.4",
+			"Rec.709" = "Rec.709",
+			"L*" = "L*"
 		}
 	}
 	csGammaOut 
@@ -182,13 +165,13 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Linear" = 0,
-			"sRGB" = 3,
-			"Rec.709" = 5,
-			"1.8 (Apple)" = 1,
-			"2.2" = 2,
-			"2.4" = 4,
-			"L*" = 6
+			"Linear" = "Linear",
+			"1.8 (Apple)" = "1.8 (Apple)",
+			"2.2" = "2.2",
+			"sRGB" = "sRGB",
+			"2.4" = "2.4",
+			"Rec.709" = "Rec.709",
+			"L*" = "L*"
 		}
 	}
 	csIlluminantIn
@@ -198,17 +181,17 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"A" = 0,
-			"B" = 1,
-			"C" = 2,
-			"D50" = 3,
-			"D55" = 4,
-			"D65" = 5,
-			"D75" = 6,
-			"E" = 7,
-			"F2" = 8,
-			"F7" = 9,
-			"F11" = 10
+			"A" = "A",
+			"B" = "B",
+			"C" = "C",
+			"D50" = "D50",
+			"D55" = "D55",
+			"D65" = "D65",
+			"D75" = "D75",
+			"E" = "E",
+			"F2" = "F2",
+			"F7" = "F7",
+			"F11" = "F11"
 		}
 	}
 	csIlluminantOut
@@ -218,17 +201,17 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"A" = 0,
-			"B" = 1,
-			"C" = 2,
-			"D50" = 3,
-			"D55" = 4,
-			"D65" = 5,
-			"D75" = 6,
-			"E" = 7,
-			"F2" = 8,
-			"F7" = 9,
-			"F11" = 10
+			"A" = "A",
+			"B" = "B",
+			"C" = "C",
+			"D50" = "D50",
+			"D55" = "D55",
+			"D65" = "D65",
+			"D75" = "D75",
+			"E" = "E",
+			"F2" = "F2",
+			"F7" = "F7",
+			"F11" = "F11"
 		}
 	}
 	csPrimariesIn
@@ -238,27 +221,26 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"CIE XYZ" = 19,
-			"XSI Linear RGB" = 0,
-			"Adobe RGB 1998" = 1,
-			"Apple RGB" = 2,
-			"Best RGB" = 3,
-			"Beta RGB" = 4,
-			"Bruce RGB" = 5,
-			"CIE RGB" = 6,
-			"ColorMatch RGB" = 7,
-			"Don RGB 4" = 8,
-			"ECI RGB V2" = 9,
-			"EKTA Space PS5" = 10,
-			"NTSC RGB" = 11,
-			"PAL/SECAM RGB" = 12,
-			"ProPhoto" = 13,
-			"SMPTE_C" = 14,
-			"sRGB" = 15,
-			"Wide Gamut RGB" = 16,
-			"Rec.709" = 17,
-			"Rec.2020" = 18,
-			"CIE XYZ" = 19
+			"XSI Linear RGB" = "XSI Linear RGB",
+			"Adobe RGB 1998" = "Adobe RGB 1998",
+			"Apple RGB" = "Apple RGB",
+			"Best RGB" = "Best RGB",
+			"Beta RGB" = "Beta RGB",
+			"Bruce RGB" = "Bruce RGB",
+			"CIE RGB" = "CIE RGB",
+			"ColorMatch RGB" = "ColorMatch RGB",
+			"Don RGB 4" = "Don RGB 4",
+			"ECI RGB V2" = "ECI RGB V2",
+			"EKTA Space PS5" = "EKTA Space PS5",
+			"NTSC RGB" = "NTSC RGB",
+			"PAL/SECAM RGB" = "PAL/SECAM RGB",
+			"ProPhoto" = "ProPhoto",
+			"SMPTE_C" = "SMPTE_C",
+			"sRGB" = "sRGB",
+			"Wide Gamut RGB" = "Wide Gamut RGB",
+			"Rec.709" = "Rec.709",
+			"Rec.2020" = "Rec.2020",
+			"CIE XYZ" = "CIE XYZ"
 		}
 	}
 	csPrimariesOut
@@ -268,27 +250,26 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"CIE XYZ" = 19,
-			"XSI Linear RGB" = 0,
-			"Adobe RGB 1998" = 1,
-			"Apple RGB" = 2,
-			"Best RGB" = 3,
-			"Beta RGB" = 4,
-			"Bruce RGB" = 5,
-			"CIE RGB" = 6,
-			"ColorMatch RGB" = 7,
-			"Don RGB 4" = 8,
-			"ECI RGB V2" = 9,
-			"EKTA Space PS5" = 10,
-			"NTSC RGB" = 11,
-			"PAL/SECAM RGB" = 12,
-			"ProPhoto" = 13,
-			"SMPTE_C" = 14,
-			"sRGB" = 15,
-			"Wide Gamut RGB" = 16,
-			"Rec.709" = 17,
-			"Rec.2020" = 18
-			
+			"XSI Linear RGB" = "XSI Linear RGB",
+			"Adobe RGB 1998" = "Adobe RGB 1998",
+			"Apple RGB" = "Apple RGB",
+			"Best RGB" = "Best RGB",
+			"Beta RGB" = "Beta RGB",
+			"Bruce RGB" = "Bruce RGB",
+			"CIE RGB" = "CIE RGB",
+			"ColorMatch RGB" = "ColorMatch RGB",
+			"Don RGB 4" = "Don RGB 4",
+			"ECI RGB V2" = "ECI RGB V2",
+			"EKTA Space PS5" = "EKTA Space PS5",
+			"NTSC RGB" = "NTSC RGB",
+			"PAL/SECAM RGB" = "PAL/SECAM RGB",
+			"ProPhoto" = "ProPhoto",
+			"SMPTE_C" = "SMPTE_C",
+			"sRGB" = "sRGB",
+			"Wide Gamut RGB" = "Wide Gamut RGB",
+			"Rec.709" = "Rec.709",
+			"Rec.2020" = "Rec.2020",
+			"CIE XYZ" = "CIE XYZ"			
 		}
 	}
 	switchInOut
@@ -362,43 +343,43 @@ Logic
 {
 
 sub btnLoadPresetIn_OnClicked()
-	If PPG.colorspaceIn.Value = 0 Then
-		PPG.csPrimariesIn.Value = 15
-		PPG.csGammaIn.Value = 0
-		PPG.csIlluminantIn.Value = 7
-	ElseIf PPG.colorspaceIn.Value = 1 Then
-		PPG.csPrimariesIn.Value = 15
-		PPG.csGammaIn.Value = 3
-		PPG.csIlluminantIn.Value = 7
-	ElseIf PPG.colorspaceIn.Value = 2 Then
-		PPG.csPrimariesIn.Value = 6
-		PPG.csGammaIn.Value = 2
-		PPG.csIlluminantIn.Value = 7
-	ElseIf PPG.colorspaceIn.Value = 3 Then
-		PPG.csPrimariesIn.Value = 19
-		PPG.csGammaIn.Value = 0
-		PPG.csIlluminantIn.Value = 7
+	If PPG.colorspaceIn.Value = "XSI Linear" Then
+		PPG.csPrimariesIn.Value = "sRGB"
+		PPG.csGammaIn.Value = "Linear"
+		PPG.csIlluminantIn.Value = "D65"
+	ElseIf PPG.colorspaceIn.Value = "XSI sRGB" Then
+		PPG.csPrimariesIn.Value = "sRGB"
+		PPG.csGammaIn.Value = "sRGB"
+		PPG.csIlluminantIn.Value = "D65"
+	ElseIf PPG.colorspaceIn.Value = "CIE RGB" Then
+		PPG.csPrimariesIn.Value = "CIE RGB"
+		PPG.csGammaIn.Value = "2.2"
+		PPG.csIlluminantIn.Value = "E"
+	ElseIf PPG.colorspaceIn.Value = "CIE XYZ" Then
+		PPG.csPrimariesIn.Value = "CIE XYZ"
+		PPG.csGammaIn.Value = "Linear"
+		PPG.csIlluminantIn.Value = "E"
 	End If
 	PPG.Refresh()
 End sub
 
 sub btnLoadPresetOut_OnClicked()
-	If PPG.colorspaceOut.Value = 0 Then
-		PPG.csPrimariesOut.Value = 15
-		PPG.csGammaOut.Value = 0
-		PPG.csIlluminantOut.Value = 7
-	ElseIf PPG.colorspaceOut.Value = 1 Then
-		PPG.csPrimariesOut.Value = 15
-		PPG.csGammaOut.Value = 3
-		PPG.csIlluminantOut.Value = 7
-	ElseIf PPG.colorspaceOut.Value = 2 Then
-		PPG.csPrimariesOut.Value = 6
-		PPG.csGammaOut.Value = 2
-		PPG.csIlluminantOut.Value = 7
-	ElseIf PPG.colorspaceOut.Value = 3 Then
-		PPG.csPrimariesOut.Value = 19
-		PPG.csGammaOut.Value = 0
-		PPG.csIlluminantOut.Value = 7
+	If PPG.colorspaceOut.Value = "XSI Linear" Then
+		PPG.csPrimariesOut.Value = "sRGB"
+		PPG.csGammaOut.Value = "Linear"
+		PPG.csIlluminantOut.Value = "D65"
+	ElseIf PPG.colorspaceOut.Value = "XSI sRGB" Then
+		PPG.csPrimariesOut.Value = "sRGB"
+		PPG.csGammaOut.Value = "sRGB"
+		PPG.csIlluminantOut.Value = "D65"
+	ElseIf PPG.colorspaceOut.Value = "CIE RGB" Then
+		PPG.csPrimariesOut.Value = "CIE RGB"
+		PPG.csGammaOut.Value = "2.2"
+		PPG.csIlluminantOut.Value = "E"
+	ElseIf PPG.colorspaceOut.Value = "CIE XYZ" Then
+		PPG.csPrimariesOut.Value = "CIE XYZ"
+		PPG.csGammaOut.Value = "Linear"
+		PPG.csIlluminantOut.Value = "E"
 	End If
 	PPG.Refresh()
 End sub

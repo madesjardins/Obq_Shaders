@@ -36,9 +36,9 @@ node_parameters
 
 	AiParameterRGBA("tex",0.0f,0.0f,0.0f,0.0f);
 	AiParameterBOOL ( "considerAlpha",false);
-	AiParameterINT ( "mapMode", 2 );
+	AiParameterENUM ( "mapMode", LATLONG, ObqMapModeNames );
 	AiParameterBOOL ( "usePassEnvShader",false);
-	AiParameterINT ( "rayTypeEnv", 2 );
+	AiParameterENUM ( "rayTypeEnv", 2, ObqRayTypeEnvNames );
 	AiParameterBOOL ( "useIntensityEnv",false); 
 	AiParameterBOOL ( "useTransformsEnv",false); 
 	AiParameterBOOL ( "useRoughnessEnv",false);
@@ -48,7 +48,7 @@ node_parameters
 	AiParameterBOOL ( "useSampleCount",false);
 	AiParameterFLT ( "sampleCount",10.0f);
 	AiParameterFLT ( "sampleCountMultiplier",1.0f);
-	AiParameterINT ( "onSurfaceMode", 0 );
+	AiParameterENUM ( "onSurfaceMode", D_VIEW,ObqOnSurfaceModeNames );
 	AiParameterFLT ( "ior"   , 1.0f );
 	AiParameterVEC ( "customDirection"   , 0.0f, 1.0f, 0.0f );
 	AiParameterFLT ( "intensity"   , 1.0f );

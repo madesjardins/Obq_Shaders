@@ -44,7 +44,15 @@ enum Obq_StereoLensParams { p_viewMode, p_leftCamera, p_rightCamera, p_filmbackX
 // View Mode enum
 //
 enum ObqViewMode{THISCAMERA,LEFTCAMERA, RIGHTCAMERA, STEREOLR,STEREODU};
-
+static const char* ObqViewModeNames[] = 
+{
+	"Center Camera",
+    "Left Camera",
+    "Right Camera",
+    "Stereo Camera <left-right>",
+    "Stereo Camera <down-up>",
+    NULL
+};
 
 // Shader Data Structure
 //

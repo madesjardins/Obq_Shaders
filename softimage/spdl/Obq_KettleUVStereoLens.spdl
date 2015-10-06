@@ -69,33 +69,27 @@ PropertySet "Obq_KettleUVStereoLens"
 	Parameter "view_mode" input
 	{
 		GUID = "{F51D6DB2-CFE4-406C-B4F6-8180E30E4263}";
-		Type = integer;
+		Type = string;
 		flags = 1;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 6;
+		Value = "Center";
 		Texturable = off;
 		Animatable = Off;
 	}
 	Parameter "stereo_type" input
 	{
 		GUID = "{B0CF6A2C-E955-4269-8A04-0A37D3C417E2}";
-		Type = integer;
+		Type = string;
 		flags = 1;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Converged";
 		Texturable = off;
 		Animatable = Off;
 	}
 	Parameter "interaxial_mode" input
 	{
 		GUID = "{5C0F37A6-FD76-4C3B-B451-6D4397826F93}";
-		Type = integer;
+		Type = string;
 		flags = 1;
-		Value = 3;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "No Dominance, not on Mesh (BLUE)";
 		Texturable = off;
 		Animatable = Off;
 	}
@@ -119,11 +113,9 @@ PropertySet "Obq_KettleUVStereoLens"
 	Parameter "zero_parallax_mode" input
 	{
 		GUID = "{30B138E0-DA3E-48CF-8EFE-7CC3DB23EBF9}";
-		Type = integer;
+		Type = string;
 		Texturable = Off;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Value = "Use Target Mesh";
 		Animatable = Off;
 	}
 	Parameter "zero_parallax_distance" input
@@ -421,13 +413,13 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Center" = 0,
-			"Left" = 1,
-			"Right" = 2,
-			"Stereo <Left-Right>" = 3,
-			"Stereo <Down-Up>" = 4,
-			"Bake" = 5,
-			"Normal" = 6
+			"Center" = "Center",
+			"Left" = "Left",
+			"Right" = "Right",
+			"Stereo <Left-Right>" = "Stereo <Left-Right>",
+			"Stereo <Down-Up>" = "Stereo <Down-Up>",
+			"Bake" = "Bake",
+			"Normal" = "Normal"
 			
 		}
 	}
@@ -438,8 +430,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Parallel" = 0,
-			"Converged" = 1
+			"Parallel" = "Parallel",
+			"Converged" = "Converged"
 		}
 	}
 	interaxial_mode
@@ -449,10 +441,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Offset in U Coordinates" = 0,
-			"R Dominant, on Mesh (RED)" = 1,
-			"R Dominant, not on Mesh (GREEN)" = 2,
-			"No Dominance, not on Mesh (BLUE)" = 3
+			"Offset in U Coordinates" = "Offset in U Coordinates",
+			"R Dominant, on Mesh (RED)" = "R Dominant, on Mesh (RED)",
+			"R Dominant, not on Mesh (GREEN)" = "R Dominant, not on Mesh (GREEN)",
+			"No Dominance, not on Mesh (BLUE)" = "No Dominance, not on Mesh (BLUE)"
 		}
 	}
 	interaxial_epsilon
@@ -474,8 +466,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Use Target Mesh" = 0,
-			"Use Distance" = 1
+			"Use Target Mesh" = "Use Target Mesh",
+			"Use Distance" = "Use Distance"
 		}
 	}
 	zero_parallax_distance
@@ -817,7 +809,7 @@ def use_polygonal_aperture_OnChanged():
 	use_dof_OnChanged()
 
 def use_dof_OnChanged():
-	if PPG.use_dof.Value and PPG.view_mode.Value != 5:
+	if PPG.use_dof.Value and PPG.view_mode.Value != "Bake":
 		PPG.aperture_size_.ReadOnly = False
 		PPG.aperture_aspect_ratio_.ReadOnly = False
 		PPG.use_polygonal_aperture.ReadOnly = False
@@ -899,7 +891,7 @@ def change_targetResolution():
 		tResolutionX = PPG.target_resolution_x.Value*abs(PPG.regionU1.Value - PPG.regionU0.Value)
 		tResolutionY = PPG.target_resolution_y.Value*abs(PPG.regionV1.Value - PPG.regionV0.Value)
 	
-	if PPG.view_mode.Value == 3:
+	if PPG.view_mode.Value == "Stereo <Left-Right>":
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = 2*(tResolutionX + 2*bleed)
 		PPG.render_resolution_y.Value = tResolutionY
@@ -907,7 +899,7 @@ def change_targetResolution():
 		leftCropInfo = "Crop { box {" + str(bleed) + " " + str(0) + " " + str(tResolutionX + bleed) + " " + str(tResolutionY) +"} reformat true crop false name Left selected false xpos -50 ypos 40}"
 		rightCropInfo = "Crop { box {" + str(PPG.render_resolution_x.Value - tResolutionX - bleed) + " " + str(0) + " " + str(PPG.render_resolution_x.Value - bleed) + " " + str(tResolutionY) +"} reformat true crop false name Right selected false xpos 50 ypos 40}"
 		PPG.nuke_crop_info.Value = 'Reformat { format "' + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 0 0 " + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 1 ObqStereoLens" + str(PPG.render_resolution_x.Value) +"x"+ str(PPG.render_resolution_y.Value) +'PAR1" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}\nset ObqNukeCropInfo [stack 0]\n'+ leftCropInfo + "\npush $ObqNukeCropInfo\n" + rightCropInfo
-	elif PPG.view_mode.Value == 4 :
+	elif PPG.view_mode.Value == "Stereo <Down-Up>" :
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = tResolutionX 
 		PPG.render_resolution_y.Value = 2*(tResolutionY + 2*bleed)
@@ -964,12 +956,12 @@ def target_resolution_y_OnChanged():
 
 def view_mode_OnChanged():
 	change_targetResolution()
-	if PPG.view_mode.Value == 3 or PPG.view_mode.Value == 4:
+	if PPG.view_mode.Value == "Stereo <Left-Right>" or PPG.view_mode.Value == "Stereo <Down-Up>":
 		PPG.nuke_crop_info.Show(True)
 	else:
 		PPG.nuke_crop_info.Show(False)
 	checkPolymeshes()
-	if PPG.view_mode.Value == 5:
+	if PPG.view_mode.Value == "Bake":
 		PPG.use_dof.ReadOnly = True
 	else:
 		PPG.use_dof.ReadOnly = False
@@ -977,9 +969,9 @@ def view_mode_OnChanged():
 	PPG.Refresh()
 
 def stereo_type_OnChanged():
-	if PPG.stereo_type.Value == 1 :
+	if PPG.stereo_type.Value == "Converged" :
 		PPG.zero_parallax_mode.ReadOnly = False
-		if PPG.zero_parallax_mode.Value == 1:
+		if PPG.zero_parallax_mode.Value == "Use Distance":
 			PPG.zero_parallax_distance.ReadOnly = False
 		else:
 			PPG.zero_parallax_distance.ReadOnly = True
@@ -995,7 +987,7 @@ def checkPolymeshes():
 
 	originOK = False
 	targetOK = False
-	checkTarget = (PPG.view_mode.Value < 5)
+	checkTarget = (PPG.view_mode.Value != "Bake" and PPG.view_mode.Value != "Normal")
 	
 	if len(PPG.origin_polymesh.Value) > 0 and len(PPG.origin_camera.Value) > 0 and ((len(PPG.target_polymesh.Value) > 0 and len(PPG.target_camera.Value) > 0) or not checkTarget):
 		oOriginO = Application.Dictionary.GetObject(PPG.origin_polymesh.Value,False)
@@ -1087,7 +1079,7 @@ def pickPolymeshes_OnClicked():
 	
 	if oPicked(0) > 0 and not originO is None and originO.Type == "polymsh":
 		doOrigin = True
-		if PPG.view_mode.Value < 5:
+		if PPG.view_mode.Value != "Bake" and PPG.view_mode.Value != "Normal":
 			oPicked = Application.PickElement( c.siPolyMeshFilter, "Select Target Polymesh", "Select Target Polymesh" )
 			targetO = oPicked(2)
 			

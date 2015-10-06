@@ -159,6 +159,21 @@ enum ObqHairRayMode{
 	OBQ_HAIR_DIRECTINDIRECTNOSCAT,
 	OBQ_HAIR_LIKECAMERA
 };
+static const char* ObqHairRayModeNotFullNames[] = 
+{
+	"Color",
+    "Direct (No Dual Scat)",
+    "Direct+Indirect (No Dual Scat)",
+    NULL
+};
+static const char* ObqHairRayModeFullNames[] = 
+{
+	"Color",
+    "Direct (No Dual Scat)",
+    "Direct+Indirect (No Dual Scat)",
+    "Same as Camera Ray",
+    NULL
+};
 
 enum ObqHairLobes{
 	OBQ_LOBE_R,
@@ -170,6 +185,56 @@ enum ObqHairLobes{
 	OBQ_LOBE_B
 };
 
+enum ObqAOVMode{
+	OBQ_AOV_NONE,
+	OBQ_AOV_ALL,
+	OBQ_AOV_MERGE_D_I,
+	OBQ_AOV_MERGE_LOBES,
+	OBQ_AOV_MERGE_SCAT,
+	OBQ_AOV_MERGE_LOBES_D_I,
+	OBQ_AOV_MERGE_SCAT_D_I,
+	OBQ_AOV_MERGE_LOBES_SCAT,
+	OBQ_AOV_MERGE_LOBES_SCAT_D_I
+};
+static const char* ObqAOVModeNames[] = 
+{
+	"None",
+    "All",
+    "Merge direct and indirect",
+    "Merge lobes",
+	"Merge scattering",
+	"Merge lobes and dir/indir",
+	"Merge scattering and dir/indir",
+	"Merge lobes and scattering",
+	"Merge lobes, scattering and dir/indir",
+    NULL
+};
+
+enum ObqModeMIS{
+	OBQ_MIS_NO,
+	OBQ_MIS_ALL_N,
+	OBQ_MIS_RANDOM_N,
+	OBQ_MIS_SAMPLING
+};
+static const char* ObqModeMISNames[] = 
+{
+	"No MIS",
+    "All lobes at once N times (Merges AOVs)",
+    "Randomly select N lobes",
+    "Additional lobes according to sampling",
+    NULL
+};
+
+enum ObqModeMISDS{
+	OBQ_MIS_DS_NO,
+	OBQ_MIS_DS_MERGE
+};
+static const char* ObqModeMISDSNames[] = 
+{
+	"No MIS",
+    "MIS (Merge D.S. AOVs)",
+    NULL
+};
 //-------------------------------------------------------------------------------------
 // Transform direction omega in cartesian coordinates to spherical for hair
 //-------------------------------------------------------------------------------------
@@ -504,17 +569,15 @@ public:
 
 		switch(m_modeMIS)
 		{
-		case 1:
+		case OBQ_MIS_ALL_N:
 			m_MISsamples = m_MISrandomLobeSamples;
 			break;
-		case 2:
+		case OBQ_MIS_RANDOM_N:
 			m_MISsamples = m_MISrandomLobeSamples;
 			break;
-		case 3:
-			if(m_modeMIS_DS == 1)
+		case OBQ_MIS_SAMPLING:
+			if(m_modeMIS_DS == OBQ_MIS_DS_MERGE)
 				m_MISsamples = m_samples_R + m_samples_TT + m_samples_TRT + m_samples_G + m_samples_DS;
-			else if(m_modeMIS_DS == 2)
-				m_MISsamples = m_samples_R + m_samples_TT + m_samples_TRT + m_samples_G;
 			else
 				m_MISsamples = m_samples_R + m_samples_TT + m_samples_TRT + m_samples_G;
 			break;
@@ -1657,7 +1720,7 @@ public:
 				///////////////////////////////////////////////////////////////
 				switch(m_modeMIS)
 				{
-				case 0 :
+				case OBQ_MIS_NO :
 					loop_f_back_scatter		+=  loopThis_f_back_scatter*lightC;
 					loop_f_scatter			+=  loopThis_f_scatter*lightC;
 					loop_f_back_direct		+=  loopThis_f_back_direct*lightC;
@@ -1666,10 +1729,10 @@ public:
 					loop_f_direct_cTRT		+=	loopThis_f_direct_cTRT*lightC;
 					loop_f_direct_cg		+=	loopThis_f_direct_cg*lightC;
 					break;
-				case 1:
+				case OBQ_MIS_ALL_N:
 					{
 
-						if(m_modeMIS_DS == 0)
+						if(m_modeMIS_DS == OBQ_MIS_DS_NO)
 						{
 
 							setMISspecialInfo((loopThis_f_direct_cR + loopThis_f_direct_cTT + loopThis_f_direct_cTRT + loopThis_f_direct_cg)*cosTheta,compute_pdf(theta_i,phi_i,m_theta_r, m_phi_r), nIntersections);
@@ -1734,7 +1797,7 @@ public:
 						}
 					}
 					break;
-				case 2:
+				case OBQ_MIS_RANDOM_N:
 					{
 
 						// ina any case, Lobes are calculated seperately
@@ -1775,7 +1838,7 @@ public:
 						loop_f_direct_cg		+=	(sampling[OBQ_LOBE_G]	!=0.0f?	color[OBQ_LOBE_G]/sampling[OBQ_LOBE_G]		:lightC*loopThis_f_direct_cg);
 
 
-						if(m_modeMIS_DS == 0 || m_samples_DS == 0)
+						if(m_modeMIS_DS == OBQ_MIS_DS_NO || m_samples_DS == 0)
 						{
 							// Separate non MIS DS
 							loop_f_back_scatter		+= loopThis_f_back_scatter*lightC;
@@ -1801,7 +1864,7 @@ public:
 						}
 						break;
 					}
-				case 3:
+				case OBQ_MIS_SAMPLING:
 					{
 						if(m_samples_R!=0)
 						{
@@ -1855,7 +1918,7 @@ public:
 							loop_f_direct_cg	+= lightC*loopThis_f_direct_cg;
 	
 
-						if(m_modeMIS_DS == 0 || m_samples_DS==0)
+						if(m_modeMIS_DS == OBQ_MIS_DS_NO || m_samples_DS==0)
 						{
 							loop_f_back_scatter		+= loopThis_f_back_scatter*lightC;
 							loop_f_scatter			+= loopThis_f_scatter*lightC;
@@ -1887,7 +1950,7 @@ public:
 			}
 
 			// DIVISION for sampling parameter
-			if(m_modeMIS == 3)
+			if(m_modeMIS == OBQ_MIS_SAMPLING)
 			{
 				if(m_samples_R>1)
 					loop_f_direct_cR/=static_cast<float>(m_samples_R);
@@ -1898,7 +1961,7 @@ public:
 				if(m_samples_G>1)
 					loop_f_direct_cg/=static_cast<float>(m_samples_G);
 
-				if(m_modeMIS_DS == 1 && m_samples_DS>1)
+				if(m_modeMIS_DS == OBQ_MIS_DS_MERGE && m_samples_DS>1)
 					loop_f_scatter/=static_cast<float>(m_samples_DS);
 			}
 
@@ -1941,7 +2004,7 @@ public:
 			//////////////
 			switch(m_modeMIS)
 			{
-			case 0: // NO_MIS
+			case OBQ_MIS_NO: // NO_MIS
 				while(AiLightsGetSample(sg))
 				{
 
@@ -1962,7 +2025,7 @@ public:
 
 				}
 				break;
-			case 1: // ALL N times
+			case OBQ_MIS_ALL_N: // ALL N times
 				{
 					while(AiLightsGetSample(sg))
 					{
@@ -1986,7 +2049,7 @@ public:
 					loop_f_direct_R/=static_cast<float>(m_MISrandomLobeSamples);
 				}
 				break;
-			case 2: // N times RANDOM   (faster if we chose the lobes at the beginning, but... should be tested)
+			case OBQ_MIS_RANDOM_N: // N times RANDOM   (faster if we chose the lobes at the beginning, but... should be tested)
 				while(AiLightsGetSample(sg))
 				{
 					// Calculate the non mis part
@@ -2037,7 +2100,7 @@ public:
 					loop_f_direct_g		+=	(sampling[OBQ_LOBE_G]!=0.0f?color[OBQ_LOBE_G]/sampling[OBQ_LOBE_G]:lightC*cg);
 				}
 				break;
-			case 3:
+			case OBQ_MIS_SAMPLING:
 				{
 					bool sampleR = m_samples_R!=0, 
 						sampleTT = m_samples_TT!=0,

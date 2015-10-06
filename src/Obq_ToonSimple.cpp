@@ -38,7 +38,7 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqToonSimpleMethods);
 
 node_parameters
 {
-	AiParameterINT("global_compMode",1);
+	AiParameterENUM("global_compMode",1,Obq_CompModeNames);
 	AiParameterBOOL("global_multByLightColor",true);
 
 	AiParameterRGB("ambient_color",1.0f,1.0f,1.0f);

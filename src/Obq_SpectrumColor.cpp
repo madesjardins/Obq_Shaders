@@ -37,13 +37,13 @@ enum ObqSpectrumColorParams { p_mode, p_filename, p_lambdaUnits, p_lambdasStr, p
 
 node_parameters
 {
-   AiParameterINT("mode", 1);						// Files or String
-   AiParameterSTR("filename","");					// filename
-   AiParameterINT("lambdaUnits", 0);				// 0 = nano, 1 = micro (*1000)
-   AiParameterSTR("lambdasStr","460.0 530.0 650.0");	// SPDs strings space separated
-   AiParameterSTR("intensitiesStr","0.0 1.0 0.0");	// ""
-   AiParameterINT("xyz2rgb", SRGB_ILLUM_D65);		// primaries and illuminant
-   AiParameterINT("gamma", OUTPUT_LINEAR);			// gamma
+   AiParameterENUM("mode", MODE_STRING, ObqSpectrumModeNames);				// Files or String
+   AiParameterSTR("filename","");											// filename
+   AiParameterENUM("lambdaUnits", UNITS_NANO,ObqSpectrumUnitsNames);		// 0 = nano, 1 = micro (*1000)
+   AiParameterSTR("lambdasStr","460.0 530.0 650.0");						// SPDs strings space separated
+   AiParameterSTR("intensitiesStr","0.0 1.0 0.0");							// ""
+   AiParameterENUM("xyz2rgb", SRGB_ILLUM_D65, ObqFresnelXYZ2RGBFullNames);	// primaries and illuminant
+   AiParameterENUM("gamma", OUTPUT_LINEAR,ObqGammaNames);					// gamma
 }
 
 node_initialize

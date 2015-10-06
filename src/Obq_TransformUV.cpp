@@ -39,10 +39,23 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqTransformUVMethods);
 //
 enum ObqTransformUVParams {p_tex, p_mode,p_scaleX, p_scaleY, p_rotate, p_translateX, p_translateY, p_pivotX, p_pivotY};
 
+// enum mode
+enum ObqTransformUVMode {SRT,STR,RST,RTS,TSR,TRS};
+static const char* ObqTransformUVModeNames[] = 
+{
+	"SRT",
+	"STR",
+	"RST",
+	"RTS",
+	"TSR",
+	"TRS",
+    NULL
+};
+
 node_parameters
 {
 	AiParameterRGBA("tex",0.0f,0.0f,0.0f,0.0f);
-	AiParameterINT("mode", 4);
+	AiParameterENUM("mode", 4, ObqTransformUVModeNames);
 	AiParameterFLT("scaleX", 1.0f);
 	AiParameterFLT("scaleY", 1.0f);
 	AiParameterFLT("rotate", 0.0f);
@@ -51,9 +64,6 @@ node_parameters
 	AiParameterFLT("pivotX", 0.5f);
 	AiParameterFLT("pivotY", 0.5f);
 }
-
-// enum mode
-enum ObqTransformUVMode {SRT,STR,RST,RTS,TSR,TRS};
 
 node_initialize
 {  

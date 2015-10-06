@@ -89,20 +89,16 @@ PropertySet "Obq_Simbiont_pset"
 	Parameter "evaluateRGB" input
 	{
 		GUID = "{67EC84B9-42CE-44F5-9D49-3BD0E1D1561D}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = -1;
-		Value Maximum = 22;
+		Type = string;
+		Texturable = Off;
+		Value = "Color";
 	}
 	Parameter "evaluateAlpha" input
 	{
 		GUID = "{7216863C-7713-497E-840F-2CDB8D0FEF69}";
-		Type = integer;
-		Texturable = on;
-		Value = -1;
-		Value Minimum = -1;
-		Value Maximum = 22;
+		Type = string;
+		Texturable = Off;
+		Value = "Solid";
 	}
 	Parameter "outRRR" input
 	{
@@ -114,11 +110,9 @@ PropertySet "Obq_Simbiont_pset"
 	Parameter "coordinateSystem" input
 	{
 		GUID = "{534C1515-3CDD-45B7-9F6C-177CFEABE3CC}";
-		Type = integer;
-		Texturable = on;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 5;
+		Type = string;
+		Texturable = off;
+		Value = "Object Space";
 	}
 	Parameter "customCoordinates" input
 	{
@@ -712,30 +706,30 @@ Defaults
 		Description = "Description";
 		UIType = "Combo";
 		Items {
-			"Black"				= -1,
-			"Color"				= 0,
-			"Percent"			= 1,
-			"Elevation"			= 2,
-			"Diffuse level"		= 3,
-			"Diffuse Func"		= 4,
-			"Luminosity"		= 5,
-			"Specular Level"	= 6,			
-			"Specular Func"		= 7,
-			"Specular Color"	= 8,
-			"Glossiness"		= 9,	
-			"Metal Level"		= 10,		
-			"Anisotropy"		= 11,
-			"Aniso Dir"			= 12,
-			"Reflectivity"		= 13,
-			"Environment"		= 14,
-			"Transparency"		= 15,
-			"Refraction"		= 16,
-			"Clear Coat Level"		= 17,
-			"Clear Coat Glossiness"	= 18,
-			"Clear Coat Thickness"	= 19,			
-			"Clear Coat Smoothness"	= 20,
-			"Bump"				= 21,
-			"Alpha"				= 22,	
+			"Black"				= "Black",
+			"Color"				= "Color",
+			"Percent"			= "Percent",
+			"Elevation"			= "Elevation",
+			"Diffuse level"		= "Diffuse level",
+			"Diffuse Func"		= "Diffuse Func",
+			"Luminosity"		= "Luminosity",
+			"Specular Level"	= "Specular Level",			
+			"Specular Func"		= "Specular Func",
+			"Specular Color"	= "Specular Color",
+			"Glossiness"		= "Glossiness",	
+			"Metal Level"		= "Metal Level",		
+			"Anisotropy"		= "Anisotropy",
+			"Aniso Dir"			= "Aniso Dir",
+			"Reflectivity"		= "Reflectivity",
+			"Environment"		= "Environment",
+			"Transparency"		= "Transparency",
+			"Refraction"		= "Refraction",
+			"Clear Coat Level"		= "Clear Coat Level",
+			"Clear Coat Glossiness"	= "Clear Coat Glossiness",
+			"Clear Coat Thickness"	= "Clear Coat Thickness",			
+			"Clear Coat Smoothness"	= "Clear Coat Smoothness",
+			"Bump"				= "Bump",
+			"Alpha"				= "Alpha"	
 		}
 	}	
 	evaluateAlpha
@@ -743,31 +737,31 @@ Defaults
 		Name = "Alpha";
 		Description = "Patate";
 		UIType = "Combo";
-				Items {
-			"Solid"				= -1,
-			"Color"				= 0,
-			"Percent"			= 1,
-			"Elevation"			= 2,
-			"Diffuse level"		= 3,
-			"Diffuse Func"		= 4,
-			"Luminosity"		= 5,
-			"Specular Level"	= 6,			
-			"Specular Func"		= 7,
-			"Specular Color"	= 8,
-			"Glossiness"		= 9,	
-			"Metal Level"		= 10,		
-			"Anisotropy"		= 11,
-			"Aniso Dir"			= 12,
-			"Reflectivity"		= 13,
-			"Environment"		= 14,
-			"Transparency"		= 15,
-			"Refraction"		= 16,
-			"Clear Coat Level"		= 17,
-			"Clear Coat Glossiness"	= 18,
-			"Clear Coat Thickness"	= 19,			
-			"Clear Coat Smoothness"	= 20,
-			"Bump"				= 21,
-			"Alpha"				= 22,	
+		Items {
+			"Solid"				= "Solid",
+			"Color"				= "Color",
+			"Percent"			= "Percent",
+			"Elevation"			= "Elevation",
+			"Diffuse level"		= "Diffuse level",
+			"Diffuse Func"		= "Diffuse Func",
+			"Luminosity"		= "Luminosity",
+			"Specular Level"	= "Specular Level",			
+			"Specular Func"		= "Specular Func",
+			"Specular Color"	= "Specular Color",
+			"Glossiness"		= "Glossiness",	
+			"Metal Level"		= "Metal Level",		
+			"Anisotropy"		= "Anisotropy",
+			"Aniso Dir"			= "Aniso Dir",
+			"Reflectivity"		= "Reflectivity",
+			"Environment"		= "Environment",
+			"Transparency"		= "Transparency",
+			"Refraction"		= "Refraction",
+			"Clear Coat Level"		= "Clear Coat Level",
+			"Clear Coat Glossiness"	= "Clear Coat Glossiness",
+			"Clear Coat Thickness"	= "Clear Coat Thickness",			
+			"Clear Coat Smoothness"	= "Clear Coat Smoothness",
+			"Bump"				= "Bump",
+			"Alpha"				= "Alpha"	
 		}
 	}
 	outRRR
@@ -780,12 +774,12 @@ Defaults
 		Name = "Coordinate System";
 		UIType = "Combo";
 		Items {
-			"Object Space"	= 0,
-			"World Space"	= 1,
-			"UV Space"		= 2,
-			"Camera Space"	= 3,
-			"Raster Space"	= 4,
-			"Custom"		= 5,
+			"Object Space"	= "Object Space",
+			"World Space"	= "World Space",
+			"UV Space"		= "UV Space",
+			"Camera Space"	= "Camera Space",
+			"Raster Space"	= "Raster Space",
+			"Custom"		= "Custom"
 
 		}
 	}
@@ -1493,7 +1487,7 @@ Logic
 {
 #Coordinates System
 def	coordinateSystem_OnChanged():
-	if PPG.coordinateSystem.Value == 5:
+	if PPG.coordinateSystem.Value == "Custom":
 		PPG.customCoordinates.Enable(True)
 	else:
 		PPG.customCoordinates.Enable(False)

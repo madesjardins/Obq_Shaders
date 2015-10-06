@@ -42,12 +42,19 @@ enum ObqNodeInfoParams
 	p_node_name
 };
 
-enum {	THISNODE, OTHERNODE, UNIVERSE, CAMERA };
-
+enum ObqNodeInfoMode{	THISNODE, OTHERNODE, UNIVERSE, CAMERA };
+static const char* ObqNodeInfoModeNames[] = 
+{
+	"This Node",
+    "Other Node",
+    "Universe Options",
+    "Render Camera",
+    NULL
+};
 node_parameters
 {
 	AiParameterRGBA("passthrough",1.0f,1.0f,1.0f,1.0f);
-	AiParameterINT("mode",0);
+	AiParameterENUM("mode",THISNODE,ObqNodeInfoModeNames);
 	AiParameterSTR("node_name","");
 }
 

@@ -389,10 +389,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{0E1AD299-F062-4931-A459-55E17FE4F2C8}";
 		Texturable = off;
-		Type = integer;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Value = "Direct (No Dual Scat)";
 	}
 	Parameter "color_ray_diffuse" input
 	{
@@ -405,10 +403,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{8630D8A7-5C7B-4D0D-A980-EEE0CD29DB96}";
 		Texturable = off;
-		Type = integer;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Type = string;
+		Value = "Direct (No Dual Scat)";
 	}
 	Parameter "d_f" input
 	{
@@ -456,10 +452,8 @@ PropertySet "Obq_Hair_pset"
 		GUID = "{954BC756-F1C1-49B9-A241-652B08EAAF70}";
 		Texturable = off;
 		Animatable = off;
-		Type = integer;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 8;
+		Type = string;
+		Value = "All";
 	}
 	Parameter "aov_dir_R" input
 	{
@@ -605,10 +599,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{3E91C8E6-E68A-4C76-B801-B811B5A2A755}";
 		Texturable = off;
-		Type = integer;
-		Value = 3;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Type = string;
+		Value = "Same as Camera Ray";
 	}
 	Parameter "color_ray_reflected" input
 	{
@@ -621,10 +613,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{F34E4A71-8F72-4BAE-AA2C-0E131603C6AC}";
 		Texturable = off;
-		Type = integer;
-		Value = 3;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Type = string;
+		Value = "Same as Camera Ray";
 	}
 	Parameter "checkShaderNameToo" input
 	{
@@ -644,10 +634,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{D04CBDE5-A26C-4CE3-B612-744F351877E8}";
 		Texturable = off;
-		Type = integer;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Type = string;
+		Value = "No MIS";
 	}
 	Parameter "MISrandomLobeSamples" input
 	{
@@ -701,10 +689,8 @@ PropertySet "Obq_Hair_pset"
 	{
 		GUID = "{BB8193D9-B874-4296-8C57-D194549CBA35}";
 		Texturable = off;
-		Type = integer;
-		Value = 0;
-		Value Minimum = 0;
-		Value Maximum = 1;
+		Type = string;
+		Value = "No MIS";
 	}
 }
 
@@ -1029,9 +1015,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Color" = 0,
-			"Direct No Dual Scat" = 1,
-			"Direct+Indirect No Dual Scat" = 2,
+			"Color" = "Color",
+			"Direct (No Dual Scat)" = "Direct (No Dual Scat)",
+			"Direct+Indirect (No Dual Scat)" = "Direct+Indirect (No Dual Scat)"
 		}
 	}
 	color_ray_diffuse
@@ -1047,9 +1033,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Color" = 0,
-			"Direct (No Dual Scat)" = 1,
-			"Direct+Indirect (No Dual Scat)" = 2,
+			"Color" = "Color",
+			"Direct (No Dual Scat)" = "Direct (No Dual Scat)",
+			"Direct+Indirect (No Dual Scat)" = "Direct+Indirect (No Dual Scat)"
 		}
 	}
 	d_f
@@ -1088,15 +1074,15 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"None" = 0,
-			"All" = 1,
-			"Merge direct and indirect" = 2,
-			"Merge lobes" = 3,
-			"Merge scattering" = 7,
-			"Merge lobes and dir/indir" = 4,
-			"Merge scattering and dir/indir" = 8,
-			"Merge lobes and scattering" = 5,
-			"Merge lobes, scattering and dir/indir" = 6
+			"None" = "None",
+			"All" = "All",
+			"Merge direct and indirect" = "Merge direct and indirect",
+			"Merge lobes" = "Merge lobes",
+			"Merge scattering" = "Merge scattering",
+			"Merge lobes and dir/indir" = "Merge lobes and dir/indir",
+			"Merge scattering and dir/indir" = "Merge scattering and dir/indir",
+			"Merge lobes and scattering" = "Merge lobes and scattering",
+			"Merge lobes, scattering and dir/indir" = "Merge lobes, scattering and dir/indir"
 		}
 	}
 	aov_dir_R
@@ -1197,10 +1183,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Color" = 0,
-			"Direct No Dual Scat" = 1,
-			"Direct+Indirect No Dual Scat" = 2,
-			"Same as Camera Ray" = 3
+			"Color" = "Color",
+			"Direct (No Dual Scat)" = "Direct (No Dual Scat)",
+			"Direct+Indirect (No Dual Scat)" = "Direct+Indirect (No Dual Scat)",
+			"Same as Camera Ray" = "Same as Camera Ray"
 		}
 	}
 	color_ray_reflected
@@ -1216,10 +1202,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Color" = 0,
-			"Direct No Dual Scat" = 1,
-			"Direct+Indirect No Dual Scat" = 2,
-			"Same as Camera Ray" = 3
+			"Color" = "Color",
+			"Direct (No Dual Scat)" = "Direct (No Dual Scat)",
+			"Direct+Indirect (No Dual Scat)" = "Direct+Indirect (No Dual Scat)",
+			"Same as Camera Ray" = "Same as Camera Ray"
 		}
 	}
 	checkShaderNameToo
@@ -1239,10 +1225,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"No MIS" = 0,
-			"All lobes at once N times (Merges AOVs)" = 1,
-			"Randomly select N lobes" = 2,
-			"Additional lobes according to sampling" = 3
+			"No MIS" = "No MIS",
+			"All lobes at once N times (Merges AOVs)" = "All lobes at once N times (Merges AOVs)",
+			"Randomly select N lobes" = "Randomly select N lobes",
+			"Additional lobes according to sampling" = "Additional lobes according to sampling"
 		}
 	}
 	MISrandomLobeSamples
@@ -1288,8 +1274,8 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"No MIS" = 0,
-			"MIS (Merge D.S. AOVs)" = 1
+			"No MIS" = "No MIS",
+			"MIS (Merge D.S. AOVs)" = "MIS (Merge D.S. AOVs)"
 		}
 	}
 }
@@ -1615,7 +1601,7 @@ sub modeMIS_DS_OnChanged()
 End sub
 
 sub modeMIS_OnChanged()
-	If PPG.modeMIS.Value = 0 Then
+	If PPG.modeMIS.Value = "No MIS" Then
 		PPG.modeMIS_DS.Show(false)
 		PPG.MISrandomLobeSamples.Show(false)
 		PPG.samples_R.Show(false)
@@ -1623,26 +1609,26 @@ sub modeMIS_OnChanged()
 		PPG.samples_TRT.Show(false)
 		PPG.samples_G.Show(false)
 		PPG.samples_DS.Show(false)
-	ElseIf PPG.modeMIS.Value = 1 Then
+	ElseIf PPG.modeMIS.Value = "All lobes at once N times (Merges AOVs)" Then
 		PPG.modeMIS_DS.Show(true)
 		PPG.MISrandomLobeSamples.Show(true)
 		PPG.samples_R.Show(false)
 		PPG.samples_TT.Show(false)
 		PPG.samples_TRT.Show(false)
 		PPG.samples_G.Show(false)
-		If PPG.modeMIS_DS.Value = 0 Then
+		If PPG.modeMIS_DS.Value = "No MIS" Then
 			PPG.samples_DS.Show(false)
 		Else
 			PPG.samples_DS.Show(true)
 		End If
-	ElseIf PPG.modeMIS.Value = 2 Then
+	ElseIf PPG.modeMIS.Value = "Randomly select N lobes" Then
 		PPG.modeMIS_DS.Show(true)
 		PPG.MISrandomLobeSamples.Show(true)
 		PPG.samples_R.Show(false)
 		PPG.samples_TT.Show(false)
 		PPG.samples_TRT.Show(false)
 		PPG.samples_G.Show(false)
-		If PPG.modeMIS_DS.Value = 0 Then
+		If PPG.modeMIS_DS.Value = "No MIS" Then
 			PPG.samples_DS.Show(false)
 		Else
 			PPG.samples_DS.Show(true)
@@ -1654,7 +1640,7 @@ sub modeMIS_OnChanged()
 		PPG.samples_TT.Show(true)
 		PPG.samples_TRT.Show(true)
 		PPG.samples_G.Show(true)
-		If PPG.modeMIS_DS.Value = 0 Then
+		If PPG.modeMIS_DS.Value = "No MIS" Then
 			PPG.samples_DS.Show(false)
 		Else
 			PPG.samples_DS.Show(true)
@@ -1664,7 +1650,7 @@ sub modeMIS_OnChanged()
 End sub
 
 sub aov_mode_OnChanged()
-	If PPG.aov_mode.Value = 0 Then
+	If PPG.aov_mode.Value = "None" Then
 		PPG.aov_dir_R.Value = ""
 		PPG.aov_dir_TRT.Value = ""
 		PPG.aov_dir_g.Value = ""
@@ -1679,7 +1665,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = ""
 		PPG.aov_indir_scatter.Value = ""
 		PPG.aov_indir_scatter_back.Value = ""
-	ElseIf PPG.aov_mode.Value = 1 Then
+	ElseIf PPG.aov_mode.Value = "All" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Secondary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Glints"
@@ -1694,7 +1680,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Indirect_Back"
 		PPG.aov_indir_scatter.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Indirect_ScatterBack"
-	ElseIf PPG.aov_mode.Value = 2 Then
+	ElseIf PPG.aov_mode.Value = "Merge direct and indirect" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Secondary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Glints"
@@ -1709,7 +1695,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Direct_Back"
 		PPG.aov_indir_scatter.Value = "Hair_Direct_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Direct_ScatterBack"
-	ElseIf PPG.aov_mode.Value = 3 Then
+	ElseIf PPG.aov_mode.Value = "Merge lobes" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Primary"
@@ -1724,7 +1710,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Indirect_Back"
 		PPG.aov_indir_scatter.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Indirect_ScatterBack"
-	ElseIf PPG.aov_mode.Value = 4 Then
+	ElseIf PPG.aov_mode.Value = "Merge lobes and dir/indir" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Primary"
@@ -1739,7 +1725,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Direct_Back"
 		PPG.aov_indir_scatter.Value = "Hair_Direct_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Direct_ScatterBack"
-	ElseIf PPG.aov_mode.Value = 5 Then
+	ElseIf PPG.aov_mode.Value = "Merge lobes and scattering" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Primary"
@@ -1754,7 +1740,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Indirect_Scatter"
-	ElseIf PPG.aov_mode.Value = 6 Then
+	ElseIf PPG.aov_mode.Value = "Merge lobes, scattering and dir/indir" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Primary"
@@ -1769,7 +1755,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Direct_Scatter"
 		PPG.aov_indir_scatter.Value = "Hair_Direct_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Direct_Scatter"
-	ElseIf PPG.aov_mode.Value = 7 Then
+	ElseIf PPG.aov_mode.Value = "Merge scattering" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Secondary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Glints"
@@ -1784,7 +1770,7 @@ sub aov_mode_OnChanged()
 		PPG.aov_indir_back.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter.Value = "Hair_Indirect_Scatter"
 		PPG.aov_indir_scatter_back.Value = "Hair_Indirect_Scatter"
-	ElseIf PPG.aov_mode.Value = 8 Then
+	ElseIf PPG.aov_mode.Value = "Merge scattering and dir/indir" Then
 		PPG.aov_dir_R.Value = "Hair_Direct_Primary"
 		PPG.aov_dir_TRT.Value = "Hair_Direct_Secondary"
 		PPG.aov_dir_g.Value = "Hair_Direct_Glints"
@@ -1824,6 +1810,28 @@ sub presetNormalize_OnClicked()
 	PPG.scale_TRT__pre.Value = PPG.scale_TRT__pre.Value/sum
 	PPG.scale_g__pre.Value = PPG.scale_g__pre.Value/sum
 End Sub
+
+Function aovModeStringToInt(aovModeString)
+	If aovModeString = "None" Then
+		aovModeStringToInt = 0
+	ElseIf aovModeString = "All" Then
+		aovModeStringToInt = 1
+	ElseIf aovModeString = "Merge direct and indirect" Then
+		aovModeStringToInt = 2
+	ElseIf aovModeString = "Merge lobes" Then
+		aovModeStringToInt = 3
+	ElseIf aovModeString = "Merge scattering" Then
+		aovModeStringToInt = 4
+	ElseIf aovModeString = "Merge lobes and dir/indir" Then
+		aovModeStringToInt = 5
+	ElseIf aovModeString = "Merge scattering and dir/indir" Then
+		aovModeStringToInt = 6
+	ElseIf aovModeString = "Merge lobes and scattering" Then
+		aovModeStringToInt = 7
+	Else
+		aovModeStringToInt = 8
+	End If
+End Function
 
 Sub AddChannel(aov)
 	Dim      sName
@@ -1898,19 +1906,20 @@ Sub setPassHairFramebuffers_OnClicked()
 	AOVmodeArray(1) = Array(True,	True,	True,	True,	True,	True,	True,	True,	True,	True,	True,	True,	True,	True)	'All
 	AOVmodeArray(2) = Array(True,	True,	True,	True,	True,	True,	True,	False,	False,	False,	False,	False,	False,	False)	'Merge dir and indir
 	AOVmodeArray(3) = Array(True,	False,	False,	False,	True,	True,	True,	True,	False,	False,	False,	True,	True,	True)	'Merge lobes
-	AOVmodeArray(4) = Array(True,	False,	False,	False,	True,	True,	True,	True,	False,	False,	False,	False,	False,	False)	'Merge lobes and dir/indir
-	AOVmodeArray(5) = Array(True,	False,	False,	False,	False,	True,	False,	True,	False,	False,	False,	False,	True,	False)	'Merge lobes and scattering
-	AOVmodeArray(6) = Array(True,	False,	False,	False,	False,	True,	False,	False,	False,	False,	False,	False,	False,	False)	'Merge lobes, scattering and dir/indir
-	AOVmodeArray(7) = Array(True,	True,	True,	True,	False,	True,	False,	True,	True,	True,	True,	False,	True,	False)	'Merge scattering
-	AOVmodeArray(8) = Array(True,	True,	True,	True,	False,	True,	False,	False,	False,	False,	False,	False,	False,	False)	'Merge scattering and dir/indir
-
+	AOVmodeArray(4) = Array(True,	True,	True,	True,	False,	True,	False,	True,	True,	True,	True,	False,	True,	False)	'Merge scattering
+	AOVmodeArray(5) = Array(True,	False,	False,	False,	True,	True,	True,	True,	False,	False,	False,	False,	False,	False)	'Merge lobes and dir/indir
+	AOVmodeArray(6) = Array(True,	True,	True,	True,	False,	True,	False,	False,	False,	False,	False,	False,	False,	False)	'Merge scattering and dir/indir
+	AOVmodeArray(7) = Array(True,	False,	False,	False,	False,	True,	False,	True,	False,	False,	False,	False,	True,	False)	'Merge lobes and scattering
+	AOVmodeArray(8) = Array(True,	False,	False,	False,	False,	True,	False,	False,	False,	False,	False,	False,	False,	False)	'Merge lobes, scattering and dir/indir
+	
+	
 	For i = 0 To 13
 		If InStr(tFramebuffers,channelArray(i)) > 0 Then
-			If Not AOVmodeArray(PPG.aov_mode.Value)(i) Then
+			If Not AOVmodeArray(aovModeStringToInt(PPG.aov_mode.Value))(i) Then
 				DeleteObj oPass.FullName & "." & channelArray(i)
 			End If
 		Else
-			If AOVmodeArray(PPG.aov_mode.Value)(i) Then
+			If AOVmodeArray(aovModeStringToInt(PPG.aov_mode.Value))(i) Then
 				oPass.CreateFramebuffer(channelArray(i))
 			End If
 		End If

@@ -34,57 +34,45 @@ using namespace std;
 
 node_parameters
 {
-	AiParameterINT("mode", MODE_CUSTOM);						// Fresnel Mode, custom legacy, presets, files
+	AiParameterENUM("mode", MODE_CUSTOM, ObqFresnelModeNames);						// Fresnel Mode, custom legacy, presets, files
 	AiParameterSTR("iorFilename","");						// eta filename
-	AiParameterINT("lambdaUnits", 0);						// 0 = nano, 1 = micro (*1000)
+	AiParameterENUM("lambdaUnits", UNITS_NANO, ObqFresnelLambdaUnitsNames);						// 0 = nano, 1 = micro (*1000)
 	AiParameterRGB("iorRGB",0.100899f,0.401072f,1.569860f);	// refractive indices Default is Gold
 	AiParameterRGB("kRGB",3.404634f,2.516492f,1.776652f);	// extinction coeffs
-	AiParameterINT("method", 1);								// Method to compute IOR
+	AiParameterENUM("method", METALS,ObqFresnelMethodNames );								// Method to compute IOR
 	AiParameterRGB("iorInRGB",1.0f,1.0f,1.0f);				// Media in which the object is
 	AiParameterFLT("ratioFsFp", 0.5f);						// Ratio Fs Fp
 	AiParameterBOOL("transmittance", false);					// T = 1 - R
-	AiParameterINT("backfaceMode",1);						// backface mode
+	AiParameterENUM("backfaceMode",BACKFACE_SWAP,ObqFresnelBackfaceModeNames );						// backface mode
 	AiParameterBOOL("useLUT",true);							// use LUT for metals
 	AiParameterFLT("LUTSampleSize", 0.5f);					// size of a sample, default 0.5°
 	AiParameterBOOL("useFullSpectrum", true);				// use full spectrum in equation
 	AiParameterBOOL("degamma",false);						// old and bad linear workflow degamma
-	AiParameterINT("outputGamma",0);							// gamma operation None
+	AiParameterENUM("outputGamma",OUTPUT_LINEAR, ObqFresnelGammaNames);							// gamma operation None
 	AiParameterSTR("lambdasStr","364.699982 375.700012 387.5 400.0 413.300018 427.5 442.799988 459.199982 476.900024 495.899994 516.600037 539.099976 563.599976 652.599976 688.799988 729.300049 774.900024 826.600037");	// SPDs strings space separated for gold
 	AiParameterSTR("etasStr","1.716 1.696 1.674 1.658 1.636 1.616 1.562 1.426 1.242 0.916 0.608 0.402 0.306 0.166 0.16 0.164 0.174 0.188");																					// ""
 	AiParameterSTR("ksStr","1.862 1.906 1.936 1.956 1.958 1.94 1.904 1.846 1.796 1.84 2.12 2.54 2.88 3.15 3.8 4.35 4.86 5.39");																								// ""
-	AiParameterINT("inputType",INPUT_RGB);					// RGB Legacy or string SPD
-	AiParameterINT("ccMode",CC_OFF);						// Color correction mode
+	AiParameterENUM("inputType",INPUT_RGB,ObqInputModeNames);					// RGB Legacy or string SPD
+	AiParameterENUM("ccMode",CC_OFF,ObqFresnelCCModeNames);						// Color correction mode
 	AiParameterFLT("hueShift", 0.0f);						// hue shift
 	AiParameterFLT("saturationMod", 1.0f);					// saturation modifier
-	AiParameterINT("saturationOp",CC_MUL);					// saturation operator
+	AiParameterENUM("saturationOp",CC_MUL, ObqFresnelCCOpNames);					// saturation operator
 	AiParameterFLT("roughness", 0.0f);						// roughness parameter for GTR2 (GGX) filtering
 	AiParameterFLT("roughnessSampleSize", 0.05f);			// LUT roughness sample size
-	AiParameterINT("xyz2rgb",SRGB_ILLUM_D65_BRADFORD_E);	// XYZ to RGB Matrix
+	AiParameterENUM("xyz2rgb",SRGB_ILLUM_D65_BRADFORD_E,ObqFresnelXYZ2RGBNames);	// XYZ to RGB Matrix
 
 }
 
 node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
-	
-	data->eta[0] = 1.0;	data->eta[1] = 1.0;	data->eta[2] = 1.0;
-	data->k[0] = 0.0;	data->k[1] = 0.0;	data->k[2] = 0.0;
-	Spectrum r;
 
-	data->LUT = NULL;
-	data->lambdas = NULL ;
-	data->etas = NULL;
-	data->ks = NULL;
+	//data->LUT = NULL;
+	//data->lambdas = NULL ;
+	//data->etas = NULL;
+	//data->ks = NULL;
 	AiNodeSetLocalData(node,data);
-}
 
-
-node_update
-{
-
-	// Access shader Data
-	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-	
 	data->eta[0] = 1.0;	data->eta[1] = 1.0;	data->eta[2] = 1.0;
 	data->k[0] = 0.0;	data->k[1] = 0.0;	data->k[2] = 0.0;
 
@@ -622,6 +610,15 @@ node_update
 			delete[] weights;
 		}
 	}
+}
+
+
+node_update
+{
+
+	// Access shader Data
+	//ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+
 }
 
 node_finish

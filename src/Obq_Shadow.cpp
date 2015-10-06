@@ -49,12 +49,28 @@ typedef struct
 ShaderData;
 
 enum ObqShadowModes {MODE_SHADOWED, MODE_UNSHADOWED, MODE_RATIO, MODE_DIFFERENCE};
+static const char* ObqShadowModesNames[] = 
+{
+	"Diffuse Shadowed",
+    "Diffuse Unshadowed",
+    "Shadow Ratio",
+    "Shadow Difference",
+    NULL
+};
+
 enum ObqShadowTraceType {TRACE_RECEIVER, TRACE_CASTER, TRACE_BOTH};
+static const char* ObqShadowTraceTypeNames[] = 
+{
+	"Receiver",
+    "Caster",
+    "Caster and Receiver",
+    NULL
+};
 
 node_parameters
 {
-	AiParameterINT("mode",2);
-	AiParameterINT("traceType", TRACE_BOTH);
+	AiParameterENUM("mode",MODE_RATIO,ObqShadowModesNames);
+	AiParameterENUM("traceType", TRACE_BOTH,ObqShadowTraceTypeNames);
 	AiParameterRGB("opacity", 1.0f,1.0f,1.0f);
 	AiParameterBOOL("shadowsOnUnlit",false);
 }

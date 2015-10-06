@@ -12,11 +12,9 @@ PropertySet "Obq_ToonSimple_pset"
 	Parameter "global_compMode" input
 	{
 		GUID = "{30C77950-439E-4442-98BE-B665875E2AB1}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 1;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Over";
 	}
 	Parameter "global_multByLightColor" input
 	{
@@ -293,11 +291,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Add" = 0,
-			"Over" = 1,
-			"Max" = 2,
-			"Screen" = 3
-			
+			"Add" = "Add",
+			"Over" = "Over",
+			"Max" = "Max",
+			"Screen" = "Screen"
 		}
 	}
 	global_multByLightColor

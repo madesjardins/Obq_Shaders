@@ -36,27 +36,27 @@ node_parameters
 {
 
 	AiParameterRGBA("tex",0.0f,0.0f,0.0f,0.0f);
-	AiParameterBOOL ( "considerAlpha",false);
-	AiParameterINT ( "mapMode", 2 );
-	AiParameterINT ( "sampleLevel", 1 );
-	AiParameterFLT ( "coneAngle", 10.0f );
-	AiParameterFLT ( "cosLobeGloss", 0.0f );
-	AiParameterBOOL ( "useSampleCount",false);
-	AiParameterFLT ( "sampleCount",10.0f);
-	AiParameterFLT ( "sampleCountMultiplier",1.0f);
-	AiParameterINT ( "onSurfaceMode", 0 );
-	AiParameterFLT ( "ior"   , 1.0f );
-	AiParameterVEC ( "customDirection"   , 0.0f, 1.0f, 0.0f );
-	AiParameterFLT ( "intensityCam"   , 1.0f );
-	AiParameterFLT ( "intensityDifGI"   , 1.0f );
-	AiParameterFLT ( "intensityRfl"   , 1.0f );
-	AiParameterFLT ( "intensityGlossy", 1.0f);
-	AiParameterFLT ( "intensityRfr"   , 1.0f );
-	AiParameterBOOL ( "globalRotation", true);
-	AiParameterVEC ( "rotation"   , 0.0f, 0.0f, 0.0f );
-	AiParameterBOOL ( "flipU", false);
-	AiParameterBOOL ( "flipV", false);
-	AiParameterBOOL ( "opaque", true);
+	AiParameterBOOL( "considerAlpha",false);
+	AiParameterENUM( "mapMode", LATLONG, ObqMapModeNames );
+	AiParameterINT( "sampleLevel", 1 );
+	AiParameterFLT( "coneAngle", 10.0f );
+	AiParameterFLT( "cosLobeGloss", 0.0f );
+	AiParameterBOOL( "useSampleCount",false);
+	AiParameterFLT( "sampleCount",10.0f);
+	AiParameterFLT( "sampleCountMultiplier",1.0f);
+	AiParameterENUM( "onSurfaceMode", D_RFL, ObqOnSurfaceModeNames );
+	AiParameterFLT( "ior"   , 1.0f );
+	AiParameterVEC( "customDirection"   , 0.0f, 1.0f, 0.0f );
+	AiParameterFLT( "intensityCam"   , 1.0f );
+	AiParameterFLT( "intensityDifGI"   , 1.0f );
+	AiParameterFLT( "intensityRfl"   , 1.0f );
+	AiParameterFLT( "intensityGlossy", 1.0f);
+	AiParameterFLT( "intensityRfr"   , 1.0f );
+	AiParameterBOOL( "globalRotation", true);
+	AiParameterVEC( "rotation"   , 0.0f, 0.0f, 0.0f );
+	AiParameterBOOL( "flipU", false);
+	AiParameterBOOL( "flipV", false);
+	AiParameterBOOL( "opaque", true);
 }
 
 

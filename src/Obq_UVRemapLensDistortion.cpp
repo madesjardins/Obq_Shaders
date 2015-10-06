@@ -94,7 +94,7 @@ enum ObqUVRemapLensDistortionParams {p_distortionModel, p_k1, p_k2, p_centerX, p
 
 node_parameters
 {
-	AiParameterINT("distortionModel" , 0);
+	AiParameterENUM("distortionModel" , PFBARREL, ObqDistortionModelNotNoneNames);
 	AiParameterFLT("k1" , 0.0f);
 	AiParameterFLT("k2" , 0.0f);
 	AiParameterFLT("centerX" , 0.0f);

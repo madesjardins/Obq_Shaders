@@ -12,20 +12,16 @@ PropertySet "Obq_Shadow_pset"
 	Parameter "mode" input
 	{
 		GUID = "{7E4BFDA1-81BA-4F63-AA12-79DD4BC045E6}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 3;
+		Value = "Shadow Ratio";
 	}
 	Parameter "traceType" input
 	{
 		GUID = "{63B83627-E444-4021-A4B3-077B44D6E599}";
-		Type = integer;
+		Type = string;
 		Texturable = off;
-		Value = 2;
-		Value Minimum = 0;
-		Value Maximum = 2;
+		Value = "Caster and Receiver";
 	}
 	Parameter "opacity" input
 	{
@@ -64,10 +60,10 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Diffuse Shadowed" = 0,
-			"Diffuse Unshadowed" = 1,
-			"Shadow Ratio" = 2,
-			"Shadow Difference" = 3
+			"Diffuse Shadowed" = "Diffuse Shadowed",
+			"Diffuse Unshadowed" = "Diffuse Unshadowed",
+			"Shadow Ratio" = "Shadow Ratio",
+			"Shadow Difference" = "Shadow Difference"
 		}
 	}
 	traceType
@@ -77,9 +73,9 @@ Defaults
 		UIType = "Combo";
 		Items
 		{
-			"Receiver" = 0,
-			"Caster" = 1,
-			"Caster and Receiver" = 2
+			"Receiver" = "Receiver",
+			"Caster" = "Caster",
+			"Caster and Receiver" = "Caster and Receiver"
 		}
 	}
 	opacity
@@ -120,10 +116,10 @@ Logic
 {
 
 Sub mode_OnChanged()
-	If PPG.mode.Value = 0 Then
+	If PPG.mode.Value = "Diffuse Shadowed" Then
 		PPG.traceType.Show(False)
 		PPG.shadowsOnUnlit.Show(False)
-	ElseIf PPG.mode.Value = 1 Then
+	ElseIf PPG.mode.Value = "Diffuse Unshadowed" Then
 		PPG.traceType.Show(False)
 		PPG.shadowsOnUnlit.Show(True)
 	Else
