@@ -208,8 +208,9 @@ node_initialize
 		AiM4Mult(data->center2rightCameraMatrix,rightCameraMatrix, iCenterCameraMatrix);
 
 		// Optical Center Offsets
-		data->leftCenterOffset  = 2.0f*AiNodeGetFlt(node,"leftCenterOffset")/AiNodeGetFlt(node,"filmbackX");
-		data->rightCenterOffset = 2.0f*AiNodeGetFlt(node,"rightCenterOffset")/AiNodeGetFlt(node,"filmbackX");
+		float filmbackX = AiNodeGetFlt(node,"filmbackX");
+		data->leftCenterOffset  = (filmbackX != 0.0 ? 2.0f*AiNodeGetFlt(node,"leftCenterOffset")/filmbackX:0.0f);
+		data->rightCenterOffset = (filmbackX != 0.0 ? 2.0f*AiNodeGetFlt(node,"rightCenterOffset")/filmbackX:0.0f);
 
 		// DOF
 		data->useDof = AiNodeGetBool(node,"useDof");

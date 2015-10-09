@@ -1,5 +1,5 @@
-﻿Build started 06/10/2015 1:28:16 AM.
-     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 3 (rebuild target(s)).
+﻿Build started 09/10/2015 12:11:22 AM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v4.2.9.0\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -130,8 +130,8 @@
          :VCEnd
          F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\x64\Release_v4.2.9.0\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (rebuild target(s)).
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:25.45
+Time Elapsed 00:00:24.94
