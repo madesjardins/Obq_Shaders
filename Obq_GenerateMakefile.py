@@ -18,15 +18,15 @@ HOME_LINUX = "/home"
 HOME_MACOSX = "/Users"
 PATH_ARNOLD = "/madesjardins/Arnold"
 PATH_GLM = "/madesjardins/Softwares/glm"
-sitoa2arnold = {'v209': "4.0.15.1", 'v210': "4.0.16.6", 'v300': "4.1.3.5", 'v301': "4.2.0.5", 'v302': "4.2.1.3", 'v303': "4.2.2.0", 'v304': "4.2.3.1", 'v305': "4.2.4.3", 'v306': "4.2.6.2", 'v307': "4.2.7.0"}
+#sitoa2arnold = {'v209': "4.0.15.1", 'v210': "4.0.16.6", 'v300': "4.1.3.5", 'v301': "4.2.0.5", 'v302': "4.2.1.3", 'v303': "4.2.2.0", 'v304': "4.2.3.1", 'v305': "4.2.4.3", 'v306': "4.2.6.2", 'v307': "4.2.7.0"}
 ignoredFiles = [".","..","src/Obq_Simbiont.cpp","src/kettle/kettle_bake.cpp",]
 
 def printHelp():
 	global sitoa2arnold
-	print('Help : Simply call "python Obq_GenerateMakefile {linux|macosx} vXXX ARNOLD_PARENT_PATH GLM_PATH" to create Linux or OSX Makefiles.')
-	versions = sitoa2arnold.keys()
-	versions.sort()
-	print('Allowed versions : '+str(versions))
+	print('Help : Simply call "python Obq_GenerateMakefile {linux|macosx} 4.x.y.z ARNOLD_PARENT_PATH GLM_PATH" to create Linux or OSX Makefiles with Arnold version 4.x.y.z.')
+	#versions = sitoa2arnold.keys()
+	#versions.sort()
+	#print('Allowed versions : '+str(versions))
 
 def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 
@@ -41,12 +41,12 @@ def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 		arnoldOs = "-darwin"
 	
 	file.write("EXT = " + extension +"""
-OBQVERSION = """+version+"""
+OBQVERSION = a"""+version.replace(".","_")+"""
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = """+glmPath+"""
-ARNOLD = """+arnoldPath+"/Arnold-"+str(sitoa2arnold[version])+arnoldOs+"""
+ARNOLD = """+arnoldPath+"/Arnold-"+version+arnoldOs+"""
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = """+cpp+"""
@@ -114,50 +114,50 @@ def main():
 	
 	version = sys.argv[2]
 	
-	if sitoa2arnold.has_key(version):
+	#if sitoa2arnold.has_key(version):
 		
-		#-- Get all non Ignored files, then keep cpp only
-		cppFiles = getAllSourceFiles()
-				
-		#--- Write Makefiles Headers 
-		filename = systemBuild+"/Makefile"
-		with open(filename,'w') as file:
-		
-			arnoldPath = ""
-			glmPath = ""
-			if sys.argv[1] == "linux":
-				arnoldPath = HOME_LINUX + PATH_ARNOLD
-				glmPath = HOME_LINUX + PATH_GLM
-			else :
-				arnoldPath = HOME_MACOSX + PATH_ARNOLD
-				glmPath = HOME_MACOSX + PATH_GLM
+	#-- Get all non Ignored files, then keep cpp only
+	cppFiles = getAllSourceFiles()
+			
+	#--- Write Makefiles Headers 
+	filename = systemBuild+"/Makefile"
+	with open(filename,'w') as file:
+	
+		arnoldPath = ""
+		glmPath = ""
+		if sys.argv[1] == "linux":
+			arnoldPath = HOME_LINUX + PATH_ARNOLD
+			glmPath = HOME_LINUX + PATH_GLM
+		else :
+			arnoldPath = HOME_MACOSX + PATH_ARNOLD
+			glmPath = HOME_MACOSX + PATH_GLM
 
-			if len(sys.argv) == 5:
-				arnoldPath = sys.argv[3]
-				glmPath = sys.argv[4]
-				
-			writeMakefileHeader(file,systemBuild, version, arnoldPath, glmPath )
+		if len(sys.argv) == 5:
+			arnoldPath = sys.argv[3]
+			glmPath = sys.argv[4]
+			
+		writeMakefileHeader(file,systemBuild, version, arnoldPath, glmPath )
+	
+		targetDep = ""
+		for f in cppFiles:
+			nameIndex = f.rfind("/")
+			name_o = f[nameIndex+1:-4]+".o"
+			targetDep += " "+name_o
+			name_cpp = f.replace("src/","$(SRCPATH)/")
+			file.write(name_o+":\n")
+			file.write("\t$(CPP) $(CPPFLAGS) "+name_cpp+"\n")
+			file.write("\n")
 		
-			targetDep = ""
-			for f in cppFiles:
-				nameIndex = f.rfind("/")
-				name_o = f[nameIndex+1:-4]+".o"
-				targetDep += " "+name_o
-				name_cpp = f.replace("src/","$(SRCPATH)/")
-				file.write(name_o+":\n")
-				file.write("\t$(CPP) $(CPPFLAGS) "+name_cpp+"\n")
-				file.write("\n")
-			
-			file.write("$(BINPATH)/$(TARGETNAME).$(EXT):"+targetDep+"\n")
-			file.write("\t$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS)"+targetDep+" $(LINKING)\n")
-		
-			file.close()
+		file.write("$(BINPATH)/$(TARGETNAME).$(EXT):"+targetDep+"\n")
+		file.write("\t$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS)"+targetDep+" $(LINKING)\n")
+	
+		file.close()
 			
 			
-	else:
-		print('Version "'+str(version)+'" doesn\'t exist in dictionary.')
-		printHelp()
-		quit()
+	#else:
+		#print('Version "'+str(version)+'" doesn\'t exist in dictionary.')
+		#printHelp()
+		#quit()
 	
 
 if __name__ == "__main__":

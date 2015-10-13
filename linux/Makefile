@@ -1,10 +1,10 @@
 EXT = so
-OBQVERSION = v307
+OBQVERSION = a4_2_10_0
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.7.0-linux
+ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.10.0-linux
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++-4.1
@@ -28,53 +28,59 @@ clobber: clean
 
 # common
 
-Grid2DAS.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/kettle/Grid2DAS.cpp
-
-KettleBaker.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/kettle/KettleBaker.cpp
-
-Obq_AngularCamera.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_AngularCamera.cpp
-
-Obq_Atmosphere.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Atmosphere.cpp
-
-Obq_Bend4Stereo.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Bend4Stereo.cpp
-
-Obq_CameraProjectionSpace.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_CameraProjectionSpace.cpp
-
-Obq_ChangeRange.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ChangeRange.cpp
-
-Obq_Color.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Color.cpp
-
-Obq_ColorspaceConverter.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ColorspaceConverter.cpp
-
-Obq_Environment.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Environment.cpp
-
-Obq_Etching.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Etching.cpp
+Obq_RandomID.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomID.cpp
 
 Obq_Fresnel.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Fresnel.cpp
 
+Obq_ChangeRange.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ChangeRange.cpp
+
+Obq_ColorspaceConverter.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ColorspaceConverter.cpp
+
+Obq_MessageStoreInt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreInt.cpp
+
+Obq_RayDepth.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RayDepth.cpp
+
+Obq_TransformShadingPoint.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_TransformShadingPoint.cpp
+
+Obq_MessageGetFlt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetFlt.cpp
+
 Obq_Hair.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Hair.cpp
 
-Obq_IESLightFilter.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_IESLightFilter.cpp
+Obq_MessageStoreColor.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreColor.cpp
 
-Obq_KettleUVStereoLens.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_KettleUVStereoLens.cpp
+Obq_VolumeThickness.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_VolumeThickness.cpp
 
-Obq_LensDistortion.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LensDistortion.cpp
+Obq_MessageGetVector.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetVector.cpp
+
+Obq_RandomColor.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomColor.cpp
+
+Obq_Color.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Color.cpp
+
+Obq_MessageStoreBool.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreBool.cpp
+
+Obq_MessageSetBool.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetBool.cpp
+
+Obq_MessageSetInt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetInt.cpp
+
+Obq_SurfaceEnvironment.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_SurfaceEnvironment.cpp
 
 Obq_LightSaturationFilter.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LightSaturationFilter.cpp
@@ -82,119 +88,113 @@ Obq_LightSaturationFilter.o:
 Obq_MeasuredMaterial.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MeasuredMaterial.cpp
 
-Obq_MessageGetBool.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetBool.cpp
+Obq_Etching.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Etching.cpp
 
-Obq_MessageGetColor.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetColor.cpp
+Obq_KettleUVStereoLens.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_KettleUVStereoLens.cpp
 
-Obq_MessageGetFlt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetFlt.cpp
+Grid2DAS.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/kettle/Grid2DAS.cpp
 
-Obq_MessageGetInt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetInt.cpp
-
-Obq_MessageGetVector.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetVector.cpp
-
-Obq_MessageSetBool.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetBool.cpp
-
-Obq_MessageSetColor.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetColor.cpp
-
-Obq_MessageSetFlt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetFlt.cpp
-
-Obq_MessageSetInt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetInt.cpp
-
-Obq_MessageSetVector.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetVector.cpp
-
-Obq_MessageStoreBool.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreBool.cpp
-
-Obq_MessageStoreColor.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreColor.cpp
-
-Obq_MessageStoreFlt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreFlt.cpp
-
-Obq_MessageStoreInt.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreInt.cpp
-
-Obq_MessageStoreVector.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreVector.cpp
-
-Obq_NodeInfo.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_NodeInfo.cpp
-
-Obq_Opacity.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Opacity.cpp
-
-Obq_RandomColor.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomColor.cpp
-
-Obq_RandomID.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RandomID.cpp
-
-Obq_RayDepth.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RayDepth.cpp
-
-Obq_RGBComEmit.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RGBComEmit.cpp
-
-Obq_RGBComLightFilter.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RGBComLightFilter.cpp
-
-Obq_Root2Tip.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Root2Tip.cpp
-
-Obq_SetAlpha.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_SetAlpha.cpp
-
-Obq_Shaders__Core.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Shaders__Core.cpp
+KettleBaker.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/kettle/KettleBaker.cpp
 
 Obq_Shadow.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Shadow.cpp
 
+Obq_Opacity.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Opacity.cpp
+
+Obq_MessageSetVector.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetVector.cpp
+
 Obq_SpectrumColor.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_SpectrumColor.cpp
 
-Obq_StereoLens.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_StereoLens.cpp
+Obq_Shaders__Core.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Shaders__Core.cpp
 
-Obq_SurfaceEnvironment.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_SurfaceEnvironment.cpp
+Obq_NodeInfo.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_NodeInfo.cpp
 
-Obq_Thickness.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Thickness.cpp
+Obq_Atmosphere.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Atmosphere.cpp
 
-Obq_Toon.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Toon.cpp
+Obq_AngularCamera.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_AngularCamera.cpp
 
-Obq_ToonSimple.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ToonSimple.cpp
+Obq_Bend4Stereo.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Bend4Stereo.cpp
 
-Obq_TransformShadingPoint.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_TransformShadingPoint.cpp
-
-Obq_TransformUV.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_TransformUV.cpp
-
-Obq_UVRemapLensDistortion.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_UVRemapLensDistortion.cpp
-
-Obq_VolumeThickness.o:
-	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_VolumeThickness.cpp
+Obq_MessageSetColor.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetColor.cpp
 
 O_ISBrdf.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/O_ISBrdf.cpp
 
+Obq_MessageGetColor.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetColor.cpp
+
+Obq_MessageStoreVector.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreVector.cpp
+
+Obq_RGBComEmit.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RGBComEmit.cpp
+
+Obq_MessageGetInt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetInt.cpp
+
+Obq_ToonSimple.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_ToonSimple.cpp
+
+Obq_StereoLens.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_StereoLens.cpp
+
+Obq_CameraProjectionSpace.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_CameraProjectionSpace.cpp
+
+Obq_TransformUV.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_TransformUV.cpp
+
+Obq_Thickness.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Thickness.cpp
+
+Obq_SetAlpha.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_SetAlpha.cpp
+
+Obq_MessageSetFlt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageSetFlt.cpp
+
+Obq_Root2Tip.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Root2Tip.cpp
+
+Obq_LensDistortion.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LensDistortion.cpp
+
+Obq_Environment.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Environment.cpp
+
+Obq_IESLightFilter.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_IESLightFilter.cpp
+
+Obq_Toon.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_Toon.cpp
+
 spectrum.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/pbrt/spectrum.cpp
 
-$(BINPATH)/$(TARGETNAME).$(EXT): Grid2DAS.o KettleBaker.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o O_ISBrdf.o spectrum.o
-	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Grid2DAS.o KettleBaker.o Obq_AngularCamera.o Obq_Atmosphere.o Obq_Bend4Stereo.o Obq_CameraProjectionSpace.o Obq_ChangeRange.o Obq_Color.o Obq_ColorspaceConverter.o Obq_Environment.o Obq_Etching.o Obq_Fresnel.o Obq_Hair.o Obq_IESLightFilter.o Obq_KettleUVStereoLens.o Obq_LensDistortion.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_MessageGetBool.o Obq_MessageGetColor.o Obq_MessageGetFlt.o Obq_MessageGetInt.o Obq_MessageGetVector.o Obq_MessageSetBool.o Obq_MessageSetColor.o Obq_MessageSetFlt.o Obq_MessageSetInt.o Obq_MessageSetVector.o Obq_MessageStoreBool.o Obq_MessageStoreColor.o Obq_MessageStoreFlt.o Obq_MessageStoreInt.o Obq_MessageStoreVector.o Obq_NodeInfo.o Obq_Opacity.o Obq_RandomColor.o Obq_RandomID.o Obq_RayDepth.o Obq_RGBComEmit.o Obq_RGBComLightFilter.o Obq_Root2Tip.o Obq_SetAlpha.o Obq_Shaders__Core.o Obq_Shadow.o Obq_SpectrumColor.o Obq_StereoLens.o Obq_SurfaceEnvironment.o Obq_Thickness.o Obq_Toon.o Obq_ToonSimple.o Obq_TransformShadingPoint.o Obq_TransformUV.o Obq_UVRemapLensDistortion.o Obq_VolumeThickness.o O_ISBrdf.o spectrum.o $(LINKING)
+Obq_MessageStoreFlt.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageStoreFlt.cpp
+
+Obq_UVRemapLensDistortion.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_UVRemapLensDistortion.cpp
+
+Obq_RGBComLightFilter.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_RGBComLightFilter.cpp
+
+Obq_MessageGetBool.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_MessageGetBool.cpp
+
+$(BINPATH)/$(TARGETNAME).$(EXT): Obq_RandomID.o Obq_Fresnel.o Obq_ChangeRange.o Obq_ColorspaceConverter.o Obq_MessageStoreInt.o Obq_RayDepth.o Obq_TransformShadingPoint.o Obq_MessageGetFlt.o Obq_Hair.o Obq_MessageStoreColor.o Obq_VolumeThickness.o Obq_MessageGetVector.o Obq_RandomColor.o Obq_Color.o Obq_MessageStoreBool.o Obq_MessageSetBool.o Obq_MessageSetInt.o Obq_SurfaceEnvironment.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_Etching.o Obq_KettleUVStereoLens.o Grid2DAS.o KettleBaker.o Obq_Shadow.o Obq_Opacity.o Obq_MessageSetVector.o Obq_SpectrumColor.o Obq_Shaders__Core.o Obq_NodeInfo.o Obq_Atmosphere.o Obq_AngularCamera.o Obq_Bend4Stereo.o Obq_MessageSetColor.o O_ISBrdf.o Obq_MessageGetColor.o Obq_MessageStoreVector.o Obq_RGBComEmit.o Obq_MessageGetInt.o Obq_ToonSimple.o Obq_StereoLens.o Obq_CameraProjectionSpace.o Obq_TransformUV.o Obq_Thickness.o Obq_SetAlpha.o Obq_MessageSetFlt.o Obq_Root2Tip.o Obq_LensDistortion.o Obq_Environment.o Obq_IESLightFilter.o Obq_Toon.o spectrum.o Obq_MessageStoreFlt.o Obq_UVRemapLensDistortion.o Obq_RGBComLightFilter.o Obq_MessageGetBool.o
+	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Obq_RandomID.o Obq_Fresnel.o Obq_ChangeRange.o Obq_ColorspaceConverter.o Obq_MessageStoreInt.o Obq_RayDepth.o Obq_TransformShadingPoint.o Obq_MessageGetFlt.o Obq_Hair.o Obq_MessageStoreColor.o Obq_VolumeThickness.o Obq_MessageGetVector.o Obq_RandomColor.o Obq_Color.o Obq_MessageStoreBool.o Obq_MessageSetBool.o Obq_MessageSetInt.o Obq_SurfaceEnvironment.o Obq_LightSaturationFilter.o Obq_MeasuredMaterial.o Obq_Etching.o Obq_KettleUVStereoLens.o Grid2DAS.o KettleBaker.o Obq_Shadow.o Obq_Opacity.o Obq_MessageSetVector.o Obq_SpectrumColor.o Obq_Shaders__Core.o Obq_NodeInfo.o Obq_Atmosphere.o Obq_AngularCamera.o Obq_Bend4Stereo.o Obq_MessageSetColor.o O_ISBrdf.o Obq_MessageGetColor.o Obq_MessageStoreVector.o Obq_RGBComEmit.o Obq_MessageGetInt.o Obq_ToonSimple.o Obq_StereoLens.o Obq_CameraProjectionSpace.o Obq_TransformUV.o Obq_Thickness.o Obq_SetAlpha.o Obq_MessageSetFlt.o Obq_Root2Tip.o Obq_LensDistortion.o Obq_Environment.o Obq_IESLightFilter.o Obq_Toon.o spectrum.o Obq_MessageStoreFlt.o Obq_UVRemapLensDistortion.o Obq_RGBComLightFilter.o Obq_MessageGetBool.o $(LINKING)
