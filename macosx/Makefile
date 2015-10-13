@@ -1,10 +1,10 @@
 EXT = dylib
-OBQVERSION = v307
+OBQVERSION = a4_2_10_0
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = /Users/madesjardins/Softwares/glm
-ARNOLD = /Users/madesjardins/Arnold/Arnold-4.2.7.0-darwin
+ARNOLD = /Users/madesjardins/Arnold/Arnold-4.2.10.0-darwin
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++
