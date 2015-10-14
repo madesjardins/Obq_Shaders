@@ -21,6 +21,8 @@
 #include <exception>
 #include <stdexcept>
 #include <string>
+#include <cstring>
+#include <cstdio>
 
 #include "arnold_utils.h"
 

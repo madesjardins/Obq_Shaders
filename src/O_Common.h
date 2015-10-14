@@ -40,6 +40,7 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <cstring>
 
 #ifdef _WIN32
 	#include <glm\glm.hpp>
