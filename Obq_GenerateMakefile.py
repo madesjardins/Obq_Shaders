@@ -7,6 +7,7 @@
 # This Python script generates the Makefiles for Obq_Shaders
 #######################################################
 
+import os
 import sys
 import glob
 import shutil
@@ -14,31 +15,29 @@ import shutil
 ###########
 # CONSTANT
 ###########
-HOME_LINUX = "/home"
-HOME_MACOSX = "/Users"
-PATH_ARNOLD = "/madesjardins/Arnold"
-PATH_GLM = "/madesjardins/Softwares/glm"
-#sitoa2arnold = {'v209': "4.0.15.1", 'v210': "4.0.16.6", 'v300': "4.1.3.5", 'v301': "4.2.0.5", 'v302': "4.2.1.3", 'v303': "4.2.2.0", 'v304': "4.2.3.1", 'v305': "4.2.4.3", 'v306': "4.2.6.2", 'v307': "4.2.7.0"}
 ignoredFiles = [".","..","src/Obq_Simbiont.cpp","src/kettle/kettle_bake.cpp",]
 
 def printHelp():
 	global sitoa2arnold
-	print('Help : Simply call "python Obq_GenerateMakefile {linux|macosx} 4.x.y.z ARNOLD_PARENT_PATH GLM_PATH" to create Linux or OSX Makefiles with Arnold version 4.x.y.z.')
-	#versions = sitoa2arnold.keys()
-	#versions.sort()
-	#print('Allowed versions : '+str(versions))
+	print('Help : Simply call "python Obq_GenerateMakefile 4.x.y.z [arnold_parent_path] [glm_path]" to create Linux or OSX Makefiles with Arnold version 4.x.y.z.\nIf ARNOLD_PARENT_PATH or GLM_PATH are set as environment variables, they will be used.')
 
 def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 
 	extension = "so"
-	cpp = "g++-4.1"
+	cpp = "g++-4.8"
 	linkFlags = "-shared -Wl,--no-undefined"
-	arnoldOs = "-linux"
-	if systemBuild == "macosx":
+	if systemBuild == "darwin":
 		extension = "dylib"
 		cpp = "g++"
 		linkFlags = "-dynamiclib -Wl"
-		arnoldOs = "-darwin"
+	# check if path exists
+	arnold_version_path = arnoldPath+"/Arnold-"+version+"-"+systemBuild
+	if not os.path.exists(arnold_version_path):
+		print("Arnold version not found : '%s'."%arnold_version_path)
+		quit()
+	if not os.path.exists(glmPath):
+		print("GLM path is not valid : '%s'"%glmPath)
+		quit()
 	
 	file.write("EXT = " + extension +"""
 OBQVERSION = a"""+version.replace(".","_")+"""
@@ -46,7 +45,7 @@ TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSION)
 GLMPATH = """+glmPath+"""
-ARNOLD = """+arnoldPath+"/Arnold-"+version+arnoldOs+"""
+ARNOLD = """+arnold_version_path+"""
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = """+cpp+"""
@@ -103,19 +102,44 @@ def main():
 	global PATH_ARNOLD
 	global PATH_GLM
 	
-	if len(sys.argv) < 3:
-		printHelp()
-		quit()
-		
-	systemBuild = sys.argv[1]
-	if systemBuild not in ["linux","macosx"]:
+	if len(sys.argv) < 2:
+		print("Error : Version of build is missing.")
 		printHelp()
 		quit()
 	
-	version = sys.argv[2]
+	# Check platform
+	if "linux" in sys.platform:
+		systemBuild = "linux"
+	elif "darwin" in sys.platform:
+		systemBuild = "darwin"
+	else:
+		print("Error : This script is for use with linux or macosx only, this is '%s'."%sys.platform)
+		quit()
 	
-	#if sitoa2arnold.has_key(version):
+	# environment variables or arguments
+	if os.getenv('ARNOLD_PARENT_PATH') is not None:
+		arnoldPath = os.getenv('ARNOLD_PARENT_PATH')
+	elif len(sys.argv) > 2:
+		arnoldPath = sys.argv[2]
+	else:
+		print("Error : No path for arnold specified as argument and no ARNOLD_PARENT_PATH environment variable set.")
+		printHelp()
+		quit()
 		
+	if os.getenv('GLM_PATH') is not None:
+		glmPath = os.getenv('GLM_PATH')
+	elif len(sys.argv) == 3:
+		glmPath = sys.argv[2]
+	elif len(sys.argv) == 4:
+		glmPath = sys.argv[3]
+	else:
+		print("Error : No path for glm specified as argument and no GLM_PATH environment variable set.")
+		printHelp()
+		quit()
+		
+	# arnold version
+	version = sys.argv[1]
+			
 	#-- Get all non Ignored files, then keep cpp only
 	cppFiles = getAllSourceFiles()
 			
@@ -123,18 +147,6 @@ def main():
 	filename = systemBuild+"/Makefile"
 	with open(filename,'w') as file:
 	
-		arnoldPath = ""
-		glmPath = ""
-		if sys.argv[1] == "linux":
-			arnoldPath = HOME_LINUX + PATH_ARNOLD
-			glmPath = HOME_LINUX + PATH_GLM
-		else :
-			arnoldPath = HOME_MACOSX + PATH_ARNOLD
-			glmPath = HOME_MACOSX + PATH_GLM
-
-		if len(sys.argv) == 5:
-			arnoldPath = sys.argv[3]
-			glmPath = sys.argv[4]
 			
 		writeMakefileHeader(file,systemBuild, version, arnoldPath, glmPath )
 	
