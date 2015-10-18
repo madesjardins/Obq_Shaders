@@ -18,8 +18,7 @@ import shutil
 ignoredFiles = [".","..","src/Obq_Simbiont.cpp","src/kettle/kettle_bake.cpp",]
 
 def printHelp():
-	global sitoa2arnold
-	print('Help : Simply call "python Obq_GenerateMakefile 4.x.y.z [arnold_parent_path] [glm_path]" to create Linux or OSX Makefiles with Arnold version 4.x.y.z.\nIf ARNOLD_PARENT_PATH or GLM_PATH are set as environment variables, they will be used.')
+	print('Help : python Obq_GenerateMakefile w.x.y.z [arnold_parent_path] [glm_path]\n For Linux or OSX Makefiles with Arnold version w.x.y.z.\nARNOLD_PARENT_PATH or GLM_PATH will be used if set as environment variables.')
 
 def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 
@@ -98,9 +97,6 @@ def getAllSourceFiles():
 	return allFiles
 
 def main():
-	global sitoa2arnold
-	global PATH_ARNOLD
-	global PATH_GLM
 	
 	if len(sys.argv) < 2:
 		print("Error : Version of build is missing.")
