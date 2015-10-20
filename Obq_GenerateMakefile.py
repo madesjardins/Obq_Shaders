@@ -23,11 +23,10 @@ def printHelp():
 def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 
 	extension = "so"
-	cpp = "g++-4.8"
+	cpp = "g++"
 	linkFlags = "-shared -Wl,--no-undefined"
 	if systemBuild == "darwin":
 		extension = "dylib"
-		cpp = "g++"
 		linkFlags = "-dynamiclib -Wl"
 	# check if path exists
 	arnold_version_path = arnoldPath+"/Arnold-"+version+"-"+systemBuild
