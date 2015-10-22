@@ -20,7 +20,7 @@ ignoredFiles = [".","..","src/Obq_Simbiont.cpp","src/kettle/kettle_bake.cpp",]
 def printHelp():
 	print('Help : python Obq_GenerateMakefile w.x.y.z [arnold_parent_path] [glm_path]\n For Linux or OSX Makefiles with Arnold version w.x.y.z.\nARNOLD_PARENT_PATH or GLM_PATH will be used if set as environment variables.')
 
-def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
+def writeMakefileHeader(makefile, systemBuild, version, arnoldPath, glmPath):
 
 	extension = "so"
 	cpp = "g++"
@@ -37,11 +37,16 @@ def writeMakefileHeader(file, systemBuild, version, arnoldPath, glmPath):
 		print("GLM path is not valid : '%s'"%glmPath)
 		quit()
 	
-	file.write("EXT = " + extension +"""
-OBQVERSION = a"""+version.replace(".","_")+"""
+	# names
+	obq_version = "a"+version.replace(".","_") 						# a4_2_10_1
+	obq_version_bin = obq_version[0:obq_version.rindex("_")+1]+"x"	# a4_2_10_x
+
+	makefile.write("EXT = " + extension +"""
+OBQVERSION = """+obq_version+"""
+OBQVERESIONBIN = """+obq_version_bin+"""
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
-BINPATH = ../bin/$(OBQVERSION)
+BINPATH = ../bin/$(OBQVERESIONBIN)
 GLMPATH = """+glmPath+"""
 ARNOLD = """+arnold_version_path+"""
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
@@ -105,8 +110,10 @@ def main():
 	# Check platform
 	if "linux" in sys.platform:
 		systemBuild = "linux"
+		systemName = "linux"
 	elif "darwin" in sys.platform:
 		systemBuild = "darwin"
+		systemName = "macosx"
 	else:
 		print("Error : This script is for use with linux or macosx only, this is '%s'."%sys.platform)
 		quit()
@@ -139,11 +146,11 @@ def main():
 	cppFiles = getAllSourceFiles()
 			
 	#--- Write Makefiles Headers 
-	filename = systemBuild+"/Makefile"
-	with open(filename,'w') as file:
+	filename = systemName+"/Makefile"
+	with open(filename,'w') as makefile:
 	
 			
-		writeMakefileHeader(file,systemBuild, version, arnoldPath, glmPath )
+		writeMakefileHeader(makefile,systemBuild, version, arnoldPath, glmPath )
 	
 		targetDep = ""
 		for f in cppFiles:
@@ -151,14 +158,14 @@ def main():
 			name_o = f[nameIndex+1:-4]+".o"
 			targetDep += " "+name_o
 			name_cpp = f.replace("src/","$(SRCPATH)/")
-			file.write(name_o+":\n")
-			file.write("\t$(CPP) $(CPPFLAGS) "+name_cpp+"\n")
-			file.write("\n")
+			makefile.write(name_o+":\n")
+			makefile.write("\t$(CPP) $(CPPFLAGS) "+name_cpp+"\n")
+			makefile.write("\n")
 		
-		file.write("$(BINPATH)/$(TARGETNAME).$(EXT):"+targetDep+"\n")
-		file.write("\t$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS)"+targetDep+" $(LINKING)\n")
+		makefile.write("$(BINPATH)/$(TARGETNAME).$(EXT):"+targetDep+"\n")
+		makefile.write("\t$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS)"+targetDep+" $(LINKING)\n")
 	
-		file.close()
+		makefile.close()
 			
 			
 	#else:
