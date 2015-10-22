@@ -6,21 +6,6 @@ import maya.mel as mel
 import mtoa.utils as utils
 import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
-
-autoFilteringModeEnumOp = [
-    (0, 'Feather'), 
-    (1, 'Feather and Mix'), 
-    (2, 'Mix'), 
-]
-
-def Obq_EtchingCreateAutoFilteringMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_EtchingAutoFilteringMode', attribute=attr, label="Apply to", 
-                               enumeratedItem=autoFilteringModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-
-def Obq_EtchingSetAutoFilteringMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_EtchingAutoFilteringMode', edit=True, attribute=attr)
     
 def Obq_EtchingHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
@@ -71,8 +56,7 @@ class AEObq_EtchingTemplate(ShaderAETemplate):
         self.beginLayout("Advanced", collapse=False )
         self.addControl("autoFilteringAdvanced", label="Show advanced options")
         self.addControl("autoFilteringOut", label="Show auto-filter level")
-        #self.addControl("autoFilteringMode", label="Apply to")
-        self.addCustom("autoFilteringMode", Obq_EtchingCreateAutoFilteringMode, Obq_EtchingSetAutoFilteringMode)
+        self.addControl("autoFilteringMode", label="Apply to")
         self.addControl("autoFilteringU", label="Also affected by U")
         self.addControl("autoFilteringBias", label="Bias")
         self.addControl("autoFilteringGain", label="Gain")

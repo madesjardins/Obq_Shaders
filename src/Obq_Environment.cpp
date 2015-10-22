@@ -30,6 +30,34 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "Obq_Environment.h"
 
+// ENUM MENU
+static const char* ObqEnvMapModeNames[] = 
+{
+	"Mirrored Ball",
+    "Angular Map",
+    "Latitude-Longitude",
+    "Vertical Cross",
+    NULL
+};
+
+static const char* ObqEnvOnSurfaceModeNames[] = 
+{
+	"View Direction",
+	"View Direction (Inverted)",
+	"Surface Normal Direction",
+	"Surface Normal Direction (no bump)",
+	"Surface Normal Direction (Inverted)",
+	"Surface Normal Direction (no bump, Inverted)",
+	"Surface Normal Direction (Front-Facing)",
+	"Surface Normal Direction (Back-Facing)",
+	"Reflection Direction",
+	"Reflection Direction (no bump)",
+	"Refraction Direction",
+	"Refraction Direction (no bump)",
+	"Custom Direction",
+	NULL
+};
+
 // node_parameters
 //
 node_parameters
@@ -37,14 +65,14 @@ node_parameters
 
 	AiParameterRGBA("tex",0.0f,0.0f,0.0f,0.0f);
 	AiParameterBOOL( "considerAlpha",false);
-	AiParameterENUM( "mapMode", LATLONG, ObqMapModeNames );
+	AiParameterENUM( "mapMode", LATLONG, ObqEnvMapModeNames );
 	AiParameterINT( "sampleLevel", 1 );
 	AiParameterFLT( "coneAngle", 10.0f );
 	AiParameterFLT( "cosLobeGloss", 0.0f );
 	AiParameterBOOL( "useSampleCount",false);
 	AiParameterFLT( "sampleCount",10.0f);
 	AiParameterFLT( "sampleCountMultiplier",1.0f);
-	AiParameterENUM( "onSurfaceMode", D_RFL, ObqOnSurfaceModeNames );
+	AiParameterENUM( "onSurfaceMode", D_RFL, ObqEnvOnSurfaceModeNames );
 	AiParameterFLT( "ior"   , 1.0f );
 	AiParameterVEC( "customDirection"   , 0.0f, 1.0f, 0.0f );
 	AiParameterFLT( "intensityCam"   , 1.0f );

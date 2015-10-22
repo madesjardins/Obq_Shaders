@@ -54,6 +54,61 @@ typedef struct
 }
 ShaderData;
 
+// ENUM MENU
+static const char* OIlluminantIDNames[] = 
+{
+	"A",
+	"B",
+	"C",
+	"D50",
+	"D55",
+	"D65",
+	"D75",
+	"E",
+	"F2",
+	"F7",
+	"F11",
+    NULL
+};
+// Gamma IDs
+static const char* OGammaIDNames[] = 
+{
+	"Linear",
+	"1.8 (Apple)",
+	"2.2",
+	"sRGB",
+	"2.4",
+	"Rec.709",
+	"L*",
+    NULL
+};
+
+// ColorSpace name
+static const char* OCSIDNames[] = 
+{
+	"XSI Linear RGB",
+	"Adobe RGB 1998",
+	"Apple RGB",
+	"Best RGB",
+	"Beta RGB",
+	"Bruce RGB",
+	"CIE RGB",
+	"ColorMatch RGB",
+	"Don RGB 4",
+	"ECI RGB V2",
+	"EKTA Space PS5",
+	"NTSC RGB",
+	"PAL/SECAM RGB",
+	"ProPhoto",
+	"SMPTE_C",
+	"sRGB",
+	"Wide Gamut RGB",
+	"Rec.709",
+	"Rec.2020",
+	"CIE XYZ",
+    NULL
+};
+
 
 node_parameters
 {

@@ -35,10 +35,19 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 //
 AI_SHADER_NODE_EXPORT_METHODS(ObqToonSimpleMethods);
 
+// ENUM MENU
+static const char* Obq_SimpleCompModeNames[] = 
+{
+	"Add",
+	"Over",
+	"Max",
+	"Screen",
+    NULL
+};
 
 node_parameters
 {
-	AiParameterENUM("global_compMode",1,Obq_CompModeNames);
+	AiParameterENUM("global_compMode",1,Obq_SimpleCompModeNames);
 	AiParameterBOOL("global_multByLightColor",true);
 
 	AiParameterRGB("ambient_color",1.0f,1.0f,1.0f);

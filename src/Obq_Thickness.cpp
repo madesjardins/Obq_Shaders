@@ -30,32 +30,75 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 */
 #include "Obq_Thickness.h"
 
+// MENU ENUM
+static const char* ObqDirViewModeNames[] = 
+{
+	"View Direction",
+    "Surface Normal",
+	"Surface Normal (Face-Forward)",
+	"Reflection Direction",
+	"Refraction Direction",
+	"Custom Direction",
+    NULL
+};
+static const char* ObqBackfaceModeNames[] = 
+{
+	"Always 0.0",
+    "Always 1.0",
+	"Equal to Maximum Ray Length",
+	"Considered normally",
+    NULL
+};
+
+
+static const char* ObqNormalizeModeNames[] = 
+{
+	"Don't normalize",
+    "Normalize with max ray lenght",
+	"Inverse normalize with max ray lenght",
+    NULL
+};
+
+static const char* ObqNoHitModeNames[] = 
+{
+	"Infinitely thin",
+    "Infinitely thick",
+    NULL
+};
+
+static const char* ObqThicknessModeNames[] = 
+{
+	"Thickness of this object",
+    "Count intersections",
+	"Accumulate distances inside volumes",
+    NULL
+};
 
 // parameters
 //
 node_parameters
 {
-	AiParameterINT("sampleLevel", 1);						// number of ray shot ^ 2
+	AiParameterINT("sampleLevel", 1);					// number of ray shot ^ 2
 	AiParameterFLT("coneAngle", 25.0f);					// cone angle
 	AiParameterBOOL ("useVdotNForMaxAngle",false);		// limit max angle with geometric normal
 	AiParameterFLT("cosLobeGloss", 0.0f );				// cos^n
 	AiParameterBOOL ( "useSampleCount",false);
 	AiParameterFLT ( "sampleCount",10.0f);
 	AiParameterFLT ( "sampleCountMultiplier",1.0f);
-	AiParameterENUM("backface",1,ObqBackfaceModeNames);						// backface options
+	AiParameterENUM("backface",1,ObqBackfaceModeNames);	// backface options
 	AiParameterBOOL("intersectOthers",true);			// thickness of object considering other objects inside
 	AiParameterINT("maxRayDepth", 10);					// maximum ray depth
-	AiParameterENUM("normalizeMode",2,ObqNormalizeModeNames);					// normalize with max ray lenght [0,1]
+	AiParameterENUM("normalizeMode",2,ObqNormalizeModeNames);	// normalize with max ray lenght [0,1]
 	AiParameterFLT("maxRayLength", 10.0f);				// maximum lenght of a thickness ray
 	AiParameterBOOL("usemaxRayLength",false);			// use maximum ray lenght (false = AI_BIG)
-	AiParameterENUM("dirMode",0,ObqDirViewModeNames);						// direction of thickness mode
+	AiParameterENUM("dirMode",0,ObqDirViewModeNames);	// direction of thickness mode
 	AiParameterBOOL("dirInverted",false);				// invert direction
 	AiParameterBOOL("dirSmooth",false);					// use smooth normals
 	AiParameterBOOL("dirGeometric",false);				// use geometric normal
 	AiParameterBOOL("dirSafe",true);					// use safe reflections
 	AiParameterVEC("customDirection",0.0f,1.0f,0.0f);	// a custom vector for direction purposes
 	AiParameterFLT("ior", 1.33f);						// index of refraction for refracting ray
-	AiParameterENUM("noHitMode",1,ObqNoHitModeNames);						// If no hit occurs, is it considered thick or thin ? 0 = thin, 1 = thick
+	AiParameterENUM("noHitMode",1,ObqNoHitModeNames);	// If no hit occurs, is it considered thick or thin ? 0 = thin, 1 = thick
 	AiParameterBOOL("multNdotR",false);					// multiply increment by n dot v ( good for spheres )
 	AiParameterFLT("NdotRExp",4.0f);					// exponent for NdotR
 	AiParameterFLT("enterSurface",0.0f);

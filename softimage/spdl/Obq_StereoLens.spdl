@@ -275,8 +275,8 @@ Defaults
 			"Center Camera" = "Center Camera",
 			"Left Camera" = "Left Camera",
 			"Right Camera" = "Right Camera",
-			"Stereo Camera <left-right>" = "Stereo Camera <left-right>",
-			"Stereo Camera <down-up>" = "Stereo Camera <down-up>"
+			"Stereo Camera <Side-by-Side>" = "Stereo Camera <Side-by-Side>",
+			"Stereo Camera <Over-Under>" = "Stereo Camera <Over-Under>"
 		}
 	}
 	leftCamera

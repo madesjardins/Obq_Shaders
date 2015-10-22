@@ -35,6 +35,52 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 //
 AI_SHADER_NODE_EXPORT_METHODS(ObqToonMethods);
 
+// ENUM MENU
+static const char* Obq_ModeNames[] = 
+{
+	"Parameters",
+	"Image",
+	"Gradient",
+    NULL
+};
+static const char* Obq_CompModeNames[] = 
+{
+	"Add",
+	"Over",
+	"Max",
+	"Screen",
+    NULL
+};
+static const char* Obq_LoopModeNames[] = 
+{
+	"Add all values",
+	"Use sum for value",
+	"Use max for value",
+	"Remap value",
+	"Remap inputs",
+    NULL
+};
+static const char* Obq_LoopLightModeNames[] = 
+{
+	"Add",
+	"Add (Clamped)",
+	"Maximum",
+	"Multiply",
+    NULL
+};
+static const char* Obq_ImageTypeNames[] = 
+{
+	"1D",
+    "2D",
+    NULL
+};
+static const char* Obq_RemapModeNames[] = 
+{
+	"Use Average",
+	"Use Luminance",
+	"Use Each Channel",
+    NULL
+};
 
 node_parameters
 {

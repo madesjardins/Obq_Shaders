@@ -44,48 +44,7 @@ enum ObqThicknessParams { p_sampleLevel, p_coneAngle, p_useVdotNForMaxAngle, p_c
 // enum for direction mode
 //
 enum ObqDirViewMode{ D_VIEW, D_NOR, D_NOR_FF, D_RFL, D_RFR, D_CUSTOM };
-static const char* ObqDirViewModeNames[] = 
-{
-	"View Direction",
-    "Surface Normal",
-	"Surface Normal (Face-Forward)",
-	"Reflection Direction",
-	"Refraction Direction",
-	"Custom Direction",
-    NULL
-};
-static const char* ObqBackfaceModeNames[] = 
-{
-	"Always 0.0",
-    "Always 1.0",
-	"Equal to Maximum Ray Length",
-	"Considered normally",
-    NULL
-};
 
-
-static const char* ObqNormalizeModeNames[] = 
-{
-	"Don't normalize",
-    "Normalize with max ray lenght",
-	"Inverse normalize with max ray lenght",
-    NULL
-};
-
-static const char* ObqNoHitModeNames[] = 
-{
-	"Infinitely thin",
-    "Infinitely thick",
-    NULL
-};
-
-static const char* ObqThicknessModeNames[] = 
-{
-	"Thickness of this object",
-    "Count intersections",
-	"Accumulate distances inside volumes",
-    NULL
-};
 // Shader Data Structure
 //
 typedef struct 

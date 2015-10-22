@@ -61,31 +61,6 @@ MUST DO with newer ldpk in public :
 // Enum for distortion model
 //
 enum ObqDistortionModel{NUKE,CLASSIC3DE,ANAMORPHIC6,FISHEYE8,STANDARD4,RADIAL_DECENTERED_CYLINDRIC4, ANAMORPHIC4, PFBARREL, NONE};
-static const char* ObqDistortionModelNames[] = 
-{
-	"Nuke",
-    "3DE Classic LD Model",
-    "3DE4 Anamorphic, Degree 6",
-    "3DE4 Radial - Fisheye, Degree 8",
-    "(DEPRICATED) 3DE4 Radial - Standard, Degree 4",
-	"3DE4 Radial - Decentered Cylindric, Degree 4",
-	"3DE4 Anamorphic Rotate Squeeze, Degree 4",
-	"PFBarrel",
-	"None",
-    NULL
-};
-static const char* ObqDistortionModelNotNoneNames[] = 
-{
-	"Nuke",
-    "3DE Classic LD Model",
-    "3DE4 Anamorphic, Degree 6",
-    "3DE4 Radial - Fisheye, Degree 8",
-    "(DEPRICATED) 3DE4 Radial - Standard, Degree 4",
-	"3DE4 Radial - Decentered Cylindric, Degree 4",
-	"3DE4 Anamorphic Rotate Squeeze, Degree 4",
-	"PFBarrel",
-    NULL
-};
 
 /////////////////
 //        PFTRACK

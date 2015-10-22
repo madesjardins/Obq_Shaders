@@ -30,15 +30,50 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "Obq_SurfaceEnvironment.h"
 
+// ENUM MENU
+static const char* ObqSERayTypeEnvNames[] = 
+{
+	"Camera",
+    "Diffuse (GI)",
+    "Reflected",
+    "Glossy",
+	"Refracted",
+    NULL
+};
+static const char* ObqSEMapModeNames[] = 
+{
+	"Mirrored Ball",
+    "Angular Map",
+    "Latitude-Longitude",
+    "Vertical Cross",
+    NULL
+};
+static const char* ObqSEOnSurfaceModeNames[] = 
+{
+	"View Direction",
+	"View Direction (Inverted)",
+	"Surface Normal Direction",
+	"Surface Normal Direction (no bump)",
+	"Surface Normal Direction (Inverted)",
+	"Surface Normal Direction (no bump, Inverted)",
+	"Surface Normal Direction (Front-Facing)",
+	"Surface Normal Direction (Back-Facing)",
+	"Reflection Direction",
+	"Reflection Direction (no bump)",
+	"Refraction Direction",
+	"Refraction Direction (no bump)",
+	"Custom Direction",
+	NULL
+};
 
 node_parameters
 {
 
 	AiParameterRGBA("tex",0.0f,0.0f,0.0f,0.0f);
 	AiParameterBOOL ( "considerAlpha",false);
-	AiParameterENUM ( "mapMode", LATLONG, ObqMapModeNames );
+	AiParameterENUM ( "mapMode", LATLONG, ObqSEMapModeNames );
 	AiParameterBOOL ( "usePassEnvShader",false);
-	AiParameterENUM ( "rayTypeEnv", 2, ObqRayTypeEnvNames );
+	AiParameterENUM ( "rayTypeEnv", 2, ObqSERayTypeEnvNames );
 	AiParameterBOOL ( "useIntensityEnv",false); 
 	AiParameterBOOL ( "useTransformsEnv",false); 
 	AiParameterBOOL ( "useRoughnessEnv",false);
@@ -48,7 +83,7 @@ node_parameters
 	AiParameterBOOL ( "useSampleCount",false);
 	AiParameterFLT ( "sampleCount",10.0f);
 	AiParameterFLT ( "sampleCountMultiplier",1.0f);
-	AiParameterENUM ( "onSurfaceMode", D_VIEW,ObqOnSurfaceModeNames );
+	AiParameterENUM ( "onSurfaceMode", D_VIEW,ObqSEOnSurfaceModeNames );
 	AiParameterFLT ( "ior"   , 1.0f );
 	AiParameterVEC ( "customDirection"   , 0.0f, 1.0f, 0.0f );
 	AiParameterFLT ( "intensity"   , 1.0f );
@@ -189,19 +224,19 @@ shader_evaluate
 				intensity=1.0f;
 
 			switch(AiShaderEvalParamInt(p_rayTypeEnv)){
-			case 0:
+			case RAY_CAMERA:
 				rayType = AI_RAY_CAMERA;
 				break;
-			case 1:
+			case RAY_DIFFUSE:
 				rayType = AI_RAY_DIFFUSE;
 				break;
-			case 2:
+			case RAY_REFLECTED:
 				rayType = AI_RAY_REFLECTED;
 				break;
-			case 3:
+			case RAY_GLOSSY:
 				rayType = AI_RAY_GLOSSY;
 				break;
-			case 4:
+			case RAY_REFRACTED:
 				rayType = AI_RAY_REFRACTED;
 				break;
 			default:

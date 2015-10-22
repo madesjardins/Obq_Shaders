@@ -39,75 +39,12 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqFresnelMethods);
 //
 enum ObqFresnelParams { p_mode, p_iorFilename, p_lambdaUnits, p_iorRGB, p_kRGB, p_method, p_iorInRGB, p_ratioFsFp, p_transmittance, p_backfaceMode, p_useLUT, p_LUTSampleSize, p_useFullSpectrum, p_degamma, p_outputGamma, p_lambdasStr, p_etasStr, p_ksStr, p_inputType, p_ccMode, p_hueShift, p_saturationMod, p_satOp, p_roughness, p_roughnessSampleSize, p_xyz2rgb};
 
-// enum for fresnel equations
-//
 enum ObqFresnelMethod {REFRACTIVE, METALS};
-static const char* ObqFresnelMethodNames[] = 
-{
-	"Refractive",
-    "Metal",
-    NULL
-};
-
-enum ObqFresnelGamma {GAMMA_LINEAR, GAMMA_sRGB};
-static const char* ObqFresnelGammaNames[] = 
-{
-	"Linear",
-    "sRGB",
-    NULL
-};
-
-// enum for units
-//
-enum ObqFresnelLambdaUnits{UNITS_NANO, UNITS_MICRO};
-static const char* ObqFresnelLambdaUnitsNames[] = 
-{
-	"Nano (nm) [360-830]",
-    "Micro (um) [0.360-0.830]",
-    NULL
-};
-
-// enum for mode
-//
-enum ObqFresnelMode{MODE_CUSTOM, MODE_PRESET_LEGACY, MODE_FILES};
-static const char* ObqFresnelModeNames[] = 
-{
-	"Custom",
-    "Custom (Please load new preset, DEPRICATED Presets mode)",
-	"File",
-    NULL
-};
-
-// enum for backfacemode
+enum ObqFresnelMode{MODE_CUSTOM, MODE_PRESET_LEGACY, MODE_FILE};
+enum ObqInputMode{INPUT_RGB, INPUT_STRING};
 enum ObqFresnelBackfaceMode{BACKFACE_SAME, BACKFACE_SWAP, BACKFACE_WHITE, BACKFACE_BLACK};
-static const char* ObqFresnelBackfaceModeNames[] = 
-{
-	"Same as Frontface",
-    "Swap IORs (Media In -> n2)",
-	"Always White",
-	"Always Black",
-    NULL
-};
-
-// enum for colorcorrection
 enum ObqFresnelCCMode{CC_OFF, CC_HSV, CC_HLS};
-static const char* ObqFresnelCCModeNames[] = 
-{
-	"Off",
-    "HSV",
-	"HLS",
-    NULL
-};
-
-// enum for colorcorrection
 enum ObqFresnelCCOp{CC_ADD, CC_MUL, CC_POW};
-static const char* ObqFresnelCCOpNames[] = 
-{
-	"Add",
-    "Multiply",
-	"Exponent",
-    NULL
-};
 
 // shader data struct
 //

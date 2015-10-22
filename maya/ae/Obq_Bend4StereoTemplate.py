@@ -7,21 +7,6 @@ import mtoa.utils as utils
 import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
-blendEnumOp = [
-    (0, "Don't bend"), 
-    (1, "Bend from left"), 
-    (2, "Bend from right"),
-    (3, "Bend from center")
-]
-
-def Obq_Bend4StereoCreateBlendMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_Bend4StereoBlendMode', attribute=attr, label="Bend Mode", enumeratedItem=blendEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-
-def Obq_Bend4StereoSetBlendMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_Bend4StereoBlendMode', edit=True, attribute=attr)
-
 def Obq_Bend4StereoHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_Bend4Stereo'
@@ -48,7 +33,7 @@ class AEObq_Bend4StereoTemplate(ShaderAETemplate):
 
         #self.beginLayout("Main", collapse=False)
         self.beginLayout("Bend Mode", collapse=False)
-        self.addCustom('bendMode', Obq_Bend4StereoCreateBlendMode, Obq_Bend4StereoSetBlendMode)
+        self.addControl("bendMode",  label="Bend Mode")#self.addCustom('bendMode', Obq_Bend4StereoCreateBlendMode, Obq_Bend4StereoSetBlendMode)
         self.endLayout()
 
         self.beginLayout("Cameras", collapse=False)

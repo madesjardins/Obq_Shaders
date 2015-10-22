@@ -30,6 +30,29 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "Obq_Atmosphere.h"
 
+// Menu Enums
+static const char* ObqAtmosphereFalloffModeNames[] = 
+{
+	"Don't Use Radius Falloff",
+    "Get Center From Object Matrix",
+    "Get Center From Object Center Vector",
+    NULL
+};
+static const char* ObqAtmoDivideNames[] = 
+{
+	"Never",
+    "Before Bias-Gain",
+    "After Bias-Gain",
+    NULL
+};
+static const char* ObqAtmoCompensateNames[] = 
+{
+	"Never",
+    "By dropping max opacity",
+    "By raising total opacity",
+    NULL
+};
+
 // parameters
 //
 node_parameters

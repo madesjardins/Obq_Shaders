@@ -7,47 +7,6 @@ import mtoa.utils as utils
 import mtoa.ui.ae.utils as aeUtils
 from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 
-envMappingModeEnumOp = [
-    (0, 'Mirrored Ball'), 
-    (1, 'Angular Map'), 
-    (2, 'Latitude-Longitude'), 
-    (3, 'Vertical Cross'), 
-]
-
-def Obq_EnvironmentCreateMappingMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_EnvironmentMappingMode', attribute=attr, label="Mapping Mode", 
-                               enumeratedItem=envMappingModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-
-def Obq_EnvironmentSetMappingMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_EnvironmentMappingMode', edit=True, attribute=attr)
-
-OnSurfaceModeEnumOp = [
-    (0, 'View Direction'), 
-    (1, 'View Direction (Inverted)'), 
-    (2, 'Surface Normal Direction'), 
-    (3, 'Surface Normal Direction (no bump)'), 
-    (4, 'Surface Normal Direction (Inverted)'), 
-    (5, 'Surface Normal Direction (no bump, Inverted)'), 
-    (6, 'Surface Normal Direction (Front-Facing)'), 
-    (7, 'Surface Normal Direction (Back-Facing)'), 
-    (8, 'Reflection Direction'), 
-    (9, 'Reflection Direction (no bump)'), 
-    (10, 'Refraction Direction'), 
-    (11, 'Refraction Direction (no bump)'), 
-    (12, 'Custom Direction'), 
-]
-
-def Obq_EnvironmentCreateOnSurfaceMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_EnvironmentOnSurfaceMode', attribute=attr, label="Direction", 
-                               enumeratedItem=OnSurfaceModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-
-def Obq_EnvironmentSetOnSurfaceMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_EnvironmentOnSurfaceMode', edit=True, attribute=attr)
-
 def Obq_EnvironmentHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_Environment'
@@ -75,14 +34,14 @@ class AEObq_EnvironmentTemplate(ShaderAETemplate):
         self.addControl("tex", label="Image")
         self.addControl("considerAlpha", label="Use Alpha")
         self.addControl("opaque", label="Opaque background")
-        self.addCustom("mapMode", Obq_EnvironmentCreateMappingMode, Obq_EnvironmentSetMappingMode)
+        self.addControl("mapMode", label="Mapping Mode")
         self.addControl("flipU", label="Flip U")
         self.addControl("flipV", label="Flip V")
         self.endNoOptimize()
         self.endLayout()
 
         self.beginLayout("Ray Options", collapse=False)
-        self.addCustom("onSurfaceMode", Obq_EnvironmentCreateOnSurfaceMode, Obq_EnvironmentSetOnSurfaceMode)
+        self.addControl("onSurfaceMode", label="Direction")
         self.addControl("ior", label="IOR")
         self.addControl("customDirection", label="Custom Direction")
         self.endLayout()

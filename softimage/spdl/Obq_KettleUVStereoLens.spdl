@@ -416,8 +416,8 @@ Defaults
 			"Center" = "Center",
 			"Left" = "Left",
 			"Right" = "Right",
-			"Stereo <Left-Right>" = "Stereo <Left-Right>",
-			"Stereo <Down-Up>" = "Stereo <Down-Up>",
+			"Stereo <Side-By-Side>" = "Stereo <Side-By-Side>",
+			"Stereo <Over-Under>" = "Stereo <Over-Under>",
 			"Bake" = "Bake",
 			"Normal" = "Normal"
 			

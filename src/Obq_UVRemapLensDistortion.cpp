@@ -90,7 +90,19 @@ AI_SHADER_NODE_EXPORT_METHODS(ObqUVRemapLensDistortionMethods);
 //
 enum ObqUVRemapLensDistortionParams {p_distortionModel, p_k1, p_k2, p_centerX, p_centerY, p_anamorphicSqueeze, p_asymmetricDistortionX,  p_asymmetricDistortionY, p_centerX3DEq, p_centerY3DEq,p_filmbackX3DEq, p_filmbackY3DEq,p_pixelRatio3DEq, p_c3dc00, p_c3dc01, p_c3dc02, p_c3dc03, p_c3dc04, p_ana6c00, p_ana6c01,p_ana6c02,p_ana6c03,p_ana6c04,p_ana6c05,p_ana6c06,p_ana6c07,p_ana6c08,p_ana6c09, p_ana6c10, p_ana6c11,p_ana6c12,p_ana6c13,p_ana6c14,p_ana6c15,p_ana6c16,p_ana6c17, p_fish8c00, p_fish8c01, p_fish8c02, p_fish8c03, p_stand4c00, p_stand4c01, p_stand4c02, p_stand4c03, p_stand4c04, p_stand4c05, p_raddec4c00, p_raddec4c01, p_raddec4c02, p_raddec4c03, p_raddec4c04, p_raddec4c05, p_raddec4c06, p_raddec4c07, p_ana4c00, p_ana4c01,p_ana4c02,p_ana4c03,p_ana4c04,p_ana4c05,p_ana4c06,p_ana4c07,p_ana4c08,p_ana4c09, p_ana4c10, p_ana4c11,p_ana4c12, p_focal3DEq, p_focusDistance3DEq,p_pfC3, p_pfC5, p_pfSqueeze, p_pfXp, p_pfYp};
 
-
+// ENUM MENU
+static const char* ObqDistortionModelNotNoneNames[] = 
+{
+	"Nuke",
+    "3DE Classic LD Model",
+    "3DE4 Anamorphic, Degree 6",
+    "3DE4 Radial - Fisheye, Degree 8",
+    "(DEPRICATED) 3DE4 Radial - Standard, Degree 4",
+	"3DE4 Radial - Decentered Cylindric, Degree 4",
+	"3DE4 Anamorphic Rotate Squeeze, Degree 4",
+	"PFBarrel",
+    NULL
+};
 
 node_parameters
 {

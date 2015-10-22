@@ -29,6 +29,37 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 */
 #include "Obq_VolumeThickness.h"
 
+// ENUM MENU
+static const char* ObqVTThicknessModeNames[] = 
+{
+	"Sphere Particles",
+    "Custom Thickness",
+    NULL
+};
+static const char* OvtAutoNames[] = 
+{
+	"Always",
+	"Shadow-Only",
+    NULL
+};
+static const char* OvtDiffuseNames[] = 
+{
+	"None",
+	"Direct",
+	"Direct*opacity",
+	"Direct*sqrt(opacity)",
+	"Full",
+	"Full (Emission only)",
+    NULL
+};
+static const char* ovtAlphaNames[] = 
+{
+	"Alpha Parameter",
+    "Diffuse Alpha",
+    "Emission Alpha",
+    "Max of Diffuse and Emission Alpha",
+    NULL
+};
  
 // parameters
 //

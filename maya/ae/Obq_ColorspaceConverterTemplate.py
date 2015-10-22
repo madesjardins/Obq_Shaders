@@ -41,160 +41,7 @@ def Obq_ColorspaceConverterCreateColorspaceOutMode(attr):
 def Obq_ColorspaceConverterSetColorspaceOutMode(attr):
     cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConverterColorspaceOutMode', edit=True, attribute=attr)
     
-csGammaInModeEnumOp = [
-    (0, 'Linear'), 
-    (3, 'sRGB'), 
-    (5, 'Rec.709'), 
-    (1, '1.8 (Apple)'), 
-    (2, '2.2'), 
-    (4, '2.4'), 
-    (6, 'L*'), 
-]
-
-def Obq_ColorspaceConverterCreatecsGammaInMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsGammaInMode', attribute=attr, label="Gamma In", 
-                               enumeratedItem=csGammaInModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsGammaInMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsGammaInMode', edit=True, attribute=attr)
-    
-    
-csGammaOutModeEnumOp = [
-    (0, 'Linear'), 
-    (3, 'sRGB'), 
-    (5, 'Rec.709'), 
-    (1, '1.8 (Apple)'), 
-    (2, '2.2'), 
-    (4, '2.4'), 
-    (6, 'L*'), 
-]
-
-def Obq_ColorspaceConverterCreatecsGammaOutMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsGammaOutMode', attribute=attr, label="Gamma Out", 
-                               enumeratedItem=csGammaOutModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsGammaOutMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsGammaOutMode', edit=True, attribute=attr)
-        
-csIlluminantInModeEnumOp = [
-    (0, 'A'), 
-    (1, 'B'), 
-    (2, 'C'), 
-    (3, 'D50'), 
-    (4, 'D55'), 
-    (5, 'D65'), 
-    (6, 'D75'), 
-    (7, 'E'), 
-    (8, 'F2'), 
-    (9, 'F7'), 
-    (10, 'F11'), 
-]
-
-def Obq_ColorspaceConverterCreatecsIlluminantInMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsIlluminantInMode', attribute=attr, label="Illuminant In", 
-                               enumeratedItem=csIlluminantInModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsIlluminantInMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsIlluminantInMode', edit=True, attribute=attr)
-    
-csIlluminantOutModeEnumOp = [
-    (0, 'A'), 
-    (1, 'B'), 
-    (2, 'C'), 
-    (3, 'D50'), 
-    (4, 'D55'), 
-    (5, 'D65'), 
-    (6, 'D75'), 
-    (7, 'E'), 
-    (8, 'F2'), 
-    (9, 'F7'), 
-    (10, 'F11'), 
-]
-
-def Obq_ColorspaceConverterCreatecsIlluminantOutMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsIlluminantOutMode', attribute=attr, label="Illuminant Out", 
-                               enumeratedItem=csIlluminantOutModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsIlluminantOutMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsIlluminantOutMode', edit=True, attribute=attr)
-
-csPrimariesInModeEnumOp = [
-    (19, 'CIE XYZ'), 
-    (0, 'CIE XYZ'), 
-    (1, 'Adobe RGB 1998'), 
-    (2, 'Apple RGB'), 
-    (3, 'Best RGB'), 
-    (4, 'Beta RGB'), 
-    (5, 'Bruce RGB'), 
-    (6, 'CIE RGB'), 
-    (7, 'ColorMatch RGB'), 
-    (8, 'Don RGB 4'), 
-    (9, 'ECI RGB V2'), 
-    (10, 'EKTA Space PS5'), 
-    (11, 'NTSC RGB'), 
-    (12, 'PAL/SECAM RGB'), 
-    (13, 'ProPhoto'), 
-    (14, 'SMPTE_C'), 
-    (15, 'sRGB'), 
-    (16, 'Wide Gamut RGB'), 
-    (17, 'Rec.709'), 
-    (18, 'Rec.2020'), 
-    (19, 'CIE XYZ'), 
-]
-
-def Obq_ColorspaceConverterCreatecsPrimariesInMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsPrimariesInMode', attribute=attr, label="Primaries In", 
-                               enumeratedItem=csPrimariesInModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsPrimariesInMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsPrimariesInMode', edit=True, attribute=attr)
-    
-    
-csPrimariesOutModeEnumOp = [
-    (19, 'CIE XYZ'), 
-    (0, 'CIE XYZ'), 
-    (1, 'Adobe RGB 1998'), 
-    (2, 'Apple RGB'), 
-    (3, 'Best RGB'), 
-    (4, 'Beta RGB'), 
-    (5, 'Bruce RGB'), 
-    (6, 'CIE RGB'), 
-    (7, 'ColorMatch RGB'), 
-    (8, 'Don RGB 4'), 
-    (9, 'ECI RGB V2'), 
-    (10, 'EKTA Space PS5'), 
-    (11, 'NTSC RGB'), 
-    (12, 'PAL/SECAM RGB'), 
-    (13, 'ProPhoto'), 
-    (14, 'SMPTE_C'), 
-    (15, 'sRGB'), 
-    (16, 'Wide Gamut RGB'), 
-    (17, 'Rec.709'), 
-    (18, 'Rec.2020'), 
-    (19, 'CIE XYZ'), 
-]
-
-def Obq_ColorspaceConverterCreatecsPrimariesOutMode(attr):
-    cmds.setUITemplate('attributeEditorPresetsTemplate', pushTemplate=True)
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsPrimariesOutMode', attribute=attr, label="Primaries Out", 
-                               enumeratedItem=csPrimariesOutModeEnumOp)    
-    cmds.setUITemplate(popTemplate=True)
-    
-def Obq_ColorspaceConverterSetcsPrimariesOutMode(attr):
-    cmds.attrEnumOptionMenuGrp('Obq_ColorspaceConvertercsPrimariesOutMode', edit=True, attribute=attr)
-    
-    
-    
+   
 def Obq_ColorspaceConverterHelpURL():
     # Add the Obq_Shader docs URL to the Attribute Editor help menu
     ObqNodeType = 'Obq_ColorspaceConverter'
@@ -220,15 +67,15 @@ class AEObq_ColorspaceConverterTemplate(ShaderAETemplate):
          
         self.beginLayout("Input", collapse=False)
         self.addControl("color", label="Color")
-        self.addCustom("csPrimariesIn", Obq_ColorspaceConverterCreatecsPrimariesInMode, Obq_ColorspaceConverterSetcsPrimariesInMode)
-        self.addCustom("csGammaIn", Obq_ColorspaceConverterCreatecsGammaInMode, Obq_ColorspaceConverterSetcsGammaInMode)
-        self.addCustom("csIlluminantIn", Obq_ColorspaceConverterCreatecsIlluminantInMode, Obq_ColorspaceConverterSetcsIlluminantInMode)
+        self.addControl("csPrimariesIn", label="Primaries")
+        self.addControl("csGammaIn", label="Gamma")
+        self.addControl("csIlluminantIn", label="Illuminant")
         self.endLayout()
         
         self.beginLayout("Output", collapse=False )
-        self.addCustom("csPrimariesOut", Obq_ColorspaceConverterCreatecsPrimariesOutMode, Obq_ColorspaceConverterSetcsPrimariesOutMode)
-        self.addCustom("csGammaOut", Obq_ColorspaceConverterCreatecsGammaOutMode, Obq_ColorspaceConverterSetcsGammaOutMode)
-        self.addCustom("csIlluminantOut", Obq_ColorspaceConverterCreatecsIlluminantOutMode, Obq_ColorspaceConverterSetcsIlluminantOutMode)
+        self.addControl("csPrimariesOut", label="Primaries")
+        self.addControl("csGammaOut", label="Gamma")
+        self.addControl("csIlluminantOut", label="Illuminant")
         self.endLayout()
         
         self.beginLayout("Options", collapse=False)

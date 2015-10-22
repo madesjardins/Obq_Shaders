@@ -1,5 +1,5 @@
-﻿Build started 06/10/2015 1:28:16 AM.
-     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 2 (rebuild target(s)).
+﻿Build started 21/10/2015 11:51:13 PM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v4.2.9.0\Obq_Simbiont.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -18,8 +18,8 @@
          :VCEnd
          F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\x64\Release_v4.2.9.0\Obq_Simbiont.log
          The process cannot access the file because it is being used by another process.
-     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (rebuild target(s)).
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:00.82

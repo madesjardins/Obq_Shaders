@@ -32,22 +32,9 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 #include "pbrt/spectrum.h"
 
 
-// enum for units
-enum ObqSpectrumUnits{UNITS_NANO, UNITS_MICRO};
-static const char* ObqSpectrumUnitsNames[] = 
-{
-	"Nano (nm) [360-830]",
-    "Micro (um) [0.360-0.830]",
-    NULL
-};
 // enum for mode
-enum ObqSpectrumMode{MODE_FILES, MODE_STRING};
-static const char* ObqSpectrumModeNames[] = 
-{
-	"File",
-    "String",
-    NULL
-};
+enum ObqSpectrumMode{MODE_FILE, MODE_STRING};
+
 // shader data struct
 typedef struct 
 {

@@ -94,8 +94,8 @@ static const char* ViewModeNames[] =
 	"Center",
     "Left",
     "Right",
-    "Stereo <Left-Right>",
-    "Stereo <Down-Up>",
+    "Stereo <Side-by-Side>",
+    "Stereo <Over-Under>",
 	"Bake",
 	"Normal",
     NULL

@@ -32,6 +32,16 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 
 #include "Obq_StereoLens.h"
 
+// ENUM MENU
+static const char* ObqViewModeNames[] = 
+{
+	"Center Camera",
+    "Left Camera",
+    "Right Camera",
+    "Stereo Camera <Side-by-Side>",
+    "Stereo Camera <Over-Under>",
+    NULL
+};
 
 // Parameters
 //

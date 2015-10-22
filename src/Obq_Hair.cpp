@@ -34,6 +34,52 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 //
 AI_SHADER_NODE_EXPORT_METHODS(ObqHairMethods);
 
+// MENU ENUM
+
+static const char* ObqHairRayModeNotFullNames[] = 
+{
+	"Color",
+    "Direct (No Dual Scat)",
+    "Direct+Indirect (No Dual Scat)",
+    NULL
+};
+static const char* ObqHairRayModeFullNames[] = 
+{
+	"Color",
+    "Direct (No Dual Scat)",
+    "Direct+Indirect (No Dual Scat)",
+    "Same as Camera Ray",
+    NULL
+};
+
+static const char* ObqAOVModeNames[] = 
+{
+	"None",
+    "All",
+    "Merge direct and indirect",
+    "Merge lobes",
+	"Merge scattering",
+	"Merge lobes and dir/indir",
+	"Merge scattering and dir/indir",
+	"Merge lobes and scattering",
+	"Merge lobes, scattering and dir/indir",
+    NULL
+};
+static const char* ObqModeMISNames[] = 
+{
+	"No MIS",
+    "All lobes at once N times (Merges AOVs)",
+    "Randomly select N lobes",
+    "Additional lobes according to sampling",
+    NULL
+};
+
+static const char* ObqModeMISDSNames[] = 
+{
+	"No MIS",
+    "MIS (Merge D.S. AOVs)",
+    NULL
+};
 
 node_parameters
 {

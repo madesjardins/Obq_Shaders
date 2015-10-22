@@ -159,21 +159,6 @@ enum ObqHairRayMode{
 	OBQ_HAIR_DIRECTINDIRECTNOSCAT,
 	OBQ_HAIR_LIKECAMERA
 };
-static const char* ObqHairRayModeNotFullNames[] = 
-{
-	"Color",
-    "Direct (No Dual Scat)",
-    "Direct+Indirect (No Dual Scat)",
-    NULL
-};
-static const char* ObqHairRayModeFullNames[] = 
-{
-	"Color",
-    "Direct (No Dual Scat)",
-    "Direct+Indirect (No Dual Scat)",
-    "Same as Camera Ray",
-    NULL
-};
 
 enum ObqHairLobes{
 	OBQ_LOBE_R,
@@ -196,19 +181,6 @@ enum ObqAOVMode{
 	OBQ_AOV_MERGE_LOBES_SCAT,
 	OBQ_AOV_MERGE_LOBES_SCAT_D_I
 };
-static const char* ObqAOVModeNames[] = 
-{
-	"None",
-    "All",
-    "Merge direct and indirect",
-    "Merge lobes",
-	"Merge scattering",
-	"Merge lobes and dir/indir",
-	"Merge scattering and dir/indir",
-	"Merge lobes and scattering",
-	"Merge lobes, scattering and dir/indir",
-    NULL
-};
 
 enum ObqModeMIS{
 	OBQ_MIS_NO,
@@ -216,25 +188,12 @@ enum ObqModeMIS{
 	OBQ_MIS_RANDOM_N,
 	OBQ_MIS_SAMPLING
 };
-static const char* ObqModeMISNames[] = 
-{
-	"No MIS",
-    "All lobes at once N times (Merges AOVs)",
-    "Randomly select N lobes",
-    "Additional lobes according to sampling",
-    NULL
-};
 
 enum ObqModeMISDS{
 	OBQ_MIS_DS_NO,
 	OBQ_MIS_DS_MERGE
 };
-static const char* ObqModeMISDSNames[] = 
-{
-	"No MIS",
-    "MIS (Merge D.S. AOVs)",
-    NULL
-};
+
 //-------------------------------------------------------------------------------------
 // Transform direction omega in cartesian coordinates to spherical for hair
 //-------------------------------------------------------------------------------------
