@@ -43,10 +43,10 @@ def writeMakefileHeader(makefile, systemBuild, version, arnoldPath, glmPath):
 
 	makefile.write("EXT = " + extension +"""
 OBQVERSION = """+obq_version+"""
-OBQVERESIONBIN = """+obq_version_bin+"""
+OBQVERSIONBIN = """+obq_version_bin+"""
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
-BINPATH = ../bin/$(OBQVERESIONBIN)
+BINPATH = ../bin/$(OBQVERSIONBIN)
 GLMPATH = """+glmPath+"""
 ARNOLD = """+arnold_version_path+"""
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
