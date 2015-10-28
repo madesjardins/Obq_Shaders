@@ -1,4 +1,4 @@
-﻿Build started 21/10/2015 11:51:13 PM.
+﻿Build started 27/10/2015 11:15:51 PM.
      1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_v4.2.9.0\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -63,7 +63,7 @@
          Obq_VolumeThickness.cpp
          spectrum.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.9.0-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.lib" /MACHINE:X64 /DLL x64\Release_v4.2.9.0\Grid2DAS.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.9.0-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.lib" /MACHINE:X64 /DLL x64\Release_v4.2.9.0\Grid2DAS.obj
          x64\Release_v4.2.9.0\KettleBaker.obj
          x64\Release_v4.2.9.0\Obq_AngularCamera.obj
          x64\Release_v4.2.9.0\Obq_Color.obj
@@ -119,14 +119,14 @@
          x64\Release_v4.2.9.0\Obq_UVRemapLensDistortion.obj
          x64\Release_v4.2.9.0\Obq_VolumeThickness.obj
          x64\Release_v4.2.9.0\spectrum.obj
-            Creating library ..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.lib and object ..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.exp
+            Creating library ..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.lib and object ..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.exp
          Generating code
          Finished generating code
-         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.dll
+         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.dll
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\a4_2_9_0\Obq_Shaders__Core__a4_2_9_0.dll;#2" /manifest x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\a4_2_9_x\Obq_Shaders__Core__a4_2_9_0.dll;#2" /manifest x64\Release_v4.2.9.0\Obq_Shaders__Core__a4_2_9_0.dll.intermediate.manifest
        PostBuildEvent:
-         del /F /Q x64\Release_v4.2.9.0\*.* ..\..\bin\a4_2_9_0\*.lib ..\..\bin\a4_2_9_0\*.exp
+         del /F /Q x64\Release_v4.2.9.0\*.* ..\..\bin\a4_2_9_x\*.lib ..\..\bin\a4_2_9_x\*.exp
          :VCEnd
          F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\x64\Release_v4.2.9.0\Obq_Shaders__Core.log
          The process cannot access the file because it is being used by another process.
@@ -134,4 +134,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:25.53
+Time Elapsed 00:00:24.67

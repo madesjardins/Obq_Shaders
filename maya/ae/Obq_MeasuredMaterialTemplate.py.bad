@@ -34,17 +34,20 @@ class AEObq_MeasuredMaterialTemplate(ShaderAETemplate):
 		self.addControl("filename", label="Filename")
 		self.addControl("resolution", label="Resolution")
 		self.endLayout() # End BRDF
+		
 		self.beginLayout("Direct", collapse=False )
-		self.addControl("direct_color", label="Color")
-		self.addControl("direct_scale", label="Scale")
+		self.addControl("direct_color", label="Direct Color")
+		self.addControl("direct_scale", label="Direct Scale")
 		self.addControl("useMIS", label="Use MIS (test)")
 		self.endLayout() # End Direct
+		
 		self.beginLayout("Indirect", collapse=False )
-		self.addControl("indirect_color", label="Color")
-		self.addControl("indirect_scale", label="Scale")
+		self.addControl("indirect_color", label="Indirect Color")
+		self.addControl("indirect_scale", label="Indirect Scale")
 		self.addControl("useImportanceSampling", label="Use importance sampling (test)")
-		self.addControl("samples", label="Resolution")
+		self.addControl("samples", label="Samples")
 		self.endLayout() # End Indirect
+		
 		self.beginLayout("Options", collapse=False )
 		self.addControl("binMaxDif", label="Stop binary search when in range of")
 		self.addControl("useJitters", label="Use jitters")
@@ -54,8 +57,8 @@ class AEObq_MeasuredMaterialTemplate(ShaderAETemplate):
 		self.endLayout() # End Main
 		
 		self.beginLayout("AOVs", collapse=False )
-		self.addControl("direct_AOV", label="Direct")
-		self.addControl("indirect_AOV", label="Indirect")
+		self.addControl("direct_AOV", label="Direct AOV")
+		self.addControl("indirect_AOV", label="Indirect AOV")
 		self.endLayout()
 		
 

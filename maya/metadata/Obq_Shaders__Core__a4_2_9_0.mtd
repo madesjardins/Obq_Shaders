@@ -37,7 +37,7 @@
 [node Obq_Atmosphere]
   maya.name                     STRING "Obq_Atmosphere"
   maya.id                       INT     0x0011CD41
-  #maya.classification         STRING "shader/volume/atmosphere"
+  #maya.classification           STRING "shader/volume/atmosphere"
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
@@ -219,7 +219,7 @@
 [node Obq_ChangeRange]
   maya.name                     STRING "Obq_ChangeRange"
   maya.id                       INT     0x0011CD43
-  #maya.classification         STRING "shader/utility"
+  #maya.classification          STRING "shader/utility"
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
@@ -279,7 +279,7 @@
   maya.name                     STRING "Obq_Environment"
   maya.id                       INT     0x0011CD44
   maya.classification           STRING "shader/surface"
-  #maya.classification         STRING "texture/environment"
+  #maya.classification           STRING "texture/environment"
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
@@ -729,19 +729,16 @@
     houdini.label               STRING "Color G"
     default                     RGB     1 0.733 0.333
   [attr gamma_TT]
-    # desc                        STRING "γ TT"
     desc                        STRING "Gamma TT"
     houdini.label               STRING "Gamma TT"
     label                       STRING "Gamma TT"
     default                     FLOAT   7.5
   [attr gamma_G]
-    # desc                        STRING "γ g"
     desc                        STRING "Gamma G"
     houdini.label               STRING "Gamma G"
     label                       STRING "Gamma G"
     default                     FLOAT   17.5
   [attr phi_g]
-    # desc                        STRING "φ G"
     desc                        STRING "Phi G"
     houdini.label               STRING "Phi G"
     label                       STRING "Phi G"
@@ -803,17 +800,14 @@
     houdini.label               STRING "Color G Pre"
     default                     RGB     1 0.733 0.333
   [attr gamma_TT__pre]
-    # desc                        STRING "γ g"
     desc                        STRING "Gamma TT Pre"
     houdini.label               STRING "Gamma TT Pre"
     default                     FLOAT   7.5
   [attr gamma_g__pre]
-    # desc                        STRING "γ G Pre"
     houdini.label               STRING "Gamma G Pre"
     desc                        STRING "Gamma G Pre"
     default                     FLOAT   17.5
   [attr phi_g__pre]
-    # desc                        STRING "φ G Pre"
     desc                        STRING "Phi G Pre"
     houdini.label               STRING "Phi G Pre"
     default                     FLOAT   37.5
@@ -1064,9 +1058,9 @@
   maya.output_shortname         STRING "out"
 
   houdini.category              STRING "OBQShaders"
-  houdini.icon                STRING "SHOP_surface"
+  houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MeasuredMaterial"
-  houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
 
   [attr filename]
     desc                        STRING "Filename"        
@@ -1096,35 +1090,34 @@
     houdini.label               STRING "Indirect Scale"
     default                     INT     0
   [attr useImportanceSampling]
-    desc                        STRING "Use Importance Sampling"
-    houdini.label               STRING "Use Importance Sampling"
-    default                     BOOL    True
+    desc                        STRING "Use importance sampling (test)"
+    houdini.label               STRING "Use importance sampling (test)"
+    default                     BOOL    False
   [attr useHalfs]
-    desc                        STRING "Use Halfs"
-    houdini.label               STRING "Use Halfs"
+    desc                        STRING "Use half hints"
+    houdini.label               STRING "Use half hints"
     default                     BOOL    False
   [attr useJitters]
-    desc                        STRING "Use Jitters"
-    houdini.label               STRING "Use Jitters"
+    desc                        STRING "Use jitters"
+    houdini.label               STRING "Use jitters"
     default                     BOOL    False
   [attr binMaxDif]
-    desc                        STRING "Bin Max Dif"
-    houdini.label               STRING "Bin Max Dif"
+    desc                        STRING "Stop binary search when in range of"
+    houdini.label               STRING "Stop binary search when in range of"
     default                     INT     5
   [attr useMIS]
-    desc                        STRING "Use MIS"
-    houdini.label               STRING "Use MIS"
-    default                     BOOL    True
+    desc                        STRING "Use MIS (test)"
+    houdini.label               STRING "Use MIS (test)"
+    default                     BOOL    False
   [attr direct_AOV]
-    desc                        STRING "direct_AOV"
-    houdini.label               STRING "direct_AOV"
-  [attr direct_AOV]
-    desc                        STRING "direct_AOV"
-    houdini.label               STRING "direct_AOV"
+    desc                        STRING "Direct AOV"
+    houdini.label               STRING "Direct AOV"
+    default                     STRING ""
   [attr indirect_AOV]
-    desc                        STRING "indirect_AOV"
-    houdini.label               STRING "indirect_AOV"
-            
+    desc                        STRING "Indirect AOV"
+    houdini.label               STRING "Indirect AOV"
+    default                     STRING ""
+
 [node Obq_MessageGetFlt]
   maya.name                     STRING "Obq_MessageGetFlt"
   maya.id                       INT     0x0011CD4A
@@ -1134,7 +1127,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetFlt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
 
   [attr key]
     desc                        STRING "Key"
@@ -2072,7 +2065,7 @@
     houdini.label               STRING "global_remapMultByColor"
     default                     BOOL    False
   [attr global_clamp]
-    deesc                        STRING "global_clamp"
+    desc                        STRING "global_clamp"
     default                     BOOL    False
 
 [node Obq_ToonSimple]
@@ -2945,7 +2938,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetFlt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
   
   [attr passthrough]
     desc                        STRING "Passthrough"
@@ -2975,7 +2968,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreFlt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
    
   [attr passthrough]
     desc                        STRING "Passthrough"
@@ -3292,14 +3285,14 @@
     desc                        STRING "Saturation"
     houdini.label               STRING "Saturation"
     default                     FLOAT  0.0
-	min							FLOAT  0.0
-	max							FLOAT  1.0
+    min							FLOAT  0.0
+    max							FLOAT  1.0
   [attr defaultSaturation]
     desc                        STRING "Default Saturation"
     houdini.label               STRING "Default Saturation"
     default                     FLOAT  1.0
-	min							FLOAT  0.0
-	max							FLOAT  1.0
+    min							FLOAT  0.0
+    max							FLOAT  1.0
 [node Obq_MessageGetBool]
   maya.name                     STRING "Obq_MessageGetBool"
   maya.id                       INT     0x0011CD67
@@ -3309,7 +3302,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetBool.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
 [node Obq_MessageGetColor]
   maya.name                     STRING "Obq_MessageGetColor"
   maya.id                       INT     0x0011CD68
@@ -3319,7 +3312,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetColor.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
 [node Obq_MessageGetInt]
   maya.name                     STRING "Obq_MessageGetInt"
   maya.id                       INT     0x0011CD69
@@ -3329,7 +3322,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetInt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
 [node Obq_MessageGetVector]
   maya.name                     STRING "Obq_MessageGetVector"
   maya.id                       INT     0x0011CD6A
@@ -3339,7 +3332,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGetVector.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
   
   
   
@@ -3352,7 +3345,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetBool.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
 [node Obq_MessageSetColor]
   maya.name                     STRING "Obq_MessageSetColor"
   maya.id                       INT     0x0011CD6C
@@ -3362,7 +3355,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetColor.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
 [node Obq_MessageSetInt]
   maya.name                     STRING "Obq_MessageSetInt"
   maya.id                       INT     0x0011CD6D
@@ -3372,7 +3365,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetInt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
 [node Obq_MessageSetVector]
   maya.name                     STRING "Obq_MessageSetVector"
   maya.id                       INT     0x0011CD6E
@@ -3382,7 +3375,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSetVector.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
 [node Obq_MessageStoreBool]
   maya.name                     STRING "Obq_MessageStoreBool"
   maya.id                       INT     0x0011CD6F
@@ -3392,7 +3385,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreBool.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
 [node Obq_MessageStoreColor]
   maya.name                     STRING "Obq_MessageStoreColor"
   maya.id                       INT     0x0011CD70
@@ -3402,7 +3395,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreColor.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
 [node Obq_MessageStoreInt]
   maya.name                     STRING "Obq_MessageStoreInt"
   maya.id                       INT     0x0011CD71
@@ -3412,7 +3405,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreInt.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
 [node Obq_MessageStoreVector]
   maya.name                     STRING "Obq_MessageStoreVector"
   maya.id                       INT     0x0011CD72
@@ -3422,7 +3415,7 @@
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStoreVector.html"
+  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
 [node Obq_NodeInfo]
   maya.name                     STRING "Obq_NodeInfo"
   maya.id                       INT     0x0011CD3
