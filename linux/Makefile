@@ -1,11 +1,11 @@
 EXT = so
-OBQVERSION = a4_2_10_1
-OBQVERSIONBIN = a4_2_10_x
+OBQVERSION = a4_2_11_0
+OBQVERSIONBIN = a4_2_11_x
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSIONBIN)
 GLMPATH = /home/madesjardins/Softwares/glm
-ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.10.1-linux
+ARNOLD = /home/madesjardins/Arnold/Arnold-4.2.11.0-linux
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++
