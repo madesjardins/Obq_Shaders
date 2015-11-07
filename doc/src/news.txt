@@ -1,3 +1,8 @@
+[2015-11-07]
+Versions have chaned from Softimage vXXX to Arnold aW.X.Y.Z.
+INT parameters representing drop down menu have been changed to ENUM, this will break previous versions.
+All Maya templates are there, but scripted logic is missing.
+
 [2015-07-08]
 Node reference is up-to-date.
 

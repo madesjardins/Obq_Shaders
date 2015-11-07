@@ -9,9 +9,9 @@ HOW TO INSTALL
 
 	+ copy the content of "softimage\compounds" into "Addons\SItoA\Data\RTcompounds",
 
-	+ copy the .dll   in "bin\aW.X.Y.Z" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",[Windows]
-	+ copy the .so    in "bin\aW.X.Y.Z" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
-	+ copy the .dylib in "bin\aW.X.Y.Z" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
+	+ copy the .dll   in "bin" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",[Windows]
+	+ copy the .so    in "bin" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
+	+ copy the .dylib in "bin" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
 
   MtoA (not yet fully integrated, missing templates):
 	+ copy the content of the "maya\metadata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]

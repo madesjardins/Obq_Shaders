@@ -9,7 +9,7 @@
 %pp :: A camera lens shader using the CKettleBaker class of Jules Stevenson that sends rays from a UV coordinate on a mesh to the same UV coordinate on a different mesh in mono or stereo. It's an enhanced combination of Obq_StereoLens and Kettle_Bake.
 %note :: This shader can also be used for baking (render mapping) textures using multiple UV sets.
 %image :: images/Obq_KettleUVStereoLens_01.jpg :: Synopsis image :: 750
-%idesc :: Not, it's not a mutilated animal, it's a Standford bunny rendered with an inward cylindrical stereo camera centered but not collapsed on its face.
+%idesc :: Not, it's not a mutilated animal, it's a Stanford bunny rendered with an inward cylindrical stereo camera centered but not collapsed on its face.
 
 
 %synopsisEnd
@@ -99,7 +99,7 @@
 
 %pp :: Automatic overscan counters the blended lines of pixels by rendering just a few pixels wider.
 
-%param :: Filter Size <em>[filter_size;]</em>
+%param :: Filter Size <em>[filter_size]</em>
 %pp :: The width of the filter in the render options &gt; Sampling &gt; Pixel Filtering &gt; Width.
 %note :: Because of filtering, the lines of pixels immediately next to the left-right border are blended, the floor(filter_width/2) lines in fact. To correct this, an automatic overscan mode was created. Make sure the render width and height are correct. Copy-paste the left/right crop text in Nuke to create the adequate crop nodes.
 
