@@ -94,9 +94,10 @@ node_update
 	if(data->brdf != NULL)
 		delete data->brdf;
 
-	AiSamplerDestroy(data->sampler);
 	data->samples = params[p_samples].INT;
+	AiSamplerDestroy(data->sampler);
 	data->sampler = AiSampler(data->samples, 2);
+
 	data->useJitters = params[p_useJitters].BOOL;
 	data->binMaxDif = params[p_binMaxDif].INT;
 	data->direct_aov = params[p_direct_aov].STR;
@@ -105,7 +106,10 @@ node_update
 	data->Rr = AiNodeGetInt(options,"GI_total_depth");
 	data->Rr_diff = AiNodeGetInt(options, "GI_diffuse_depth");
 
-	data->brdf = new ISBrdf(params[p_filename].STR, static_cast<AtUInt32>(std::max(params[p_resolution].INT,3)),params[p_useHalfs].BOOL, USELUMINANCE);
+	if(params[p_filename].STR != "")
+		data->brdf = new ISBrdf(params[p_filename].STR, static_cast<AtUInt32>(std::max(params[p_resolution].INT,3)),params[p_useHalfs].BOOL, USELUMINANCE);
+	else
+		AiMsgError("No File to load, aborting render.");
 
 	if(data->direct_aov && std::strlen(data->direct_aov))	AiAOVRegister(data->direct_aov,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);
 	if(data->indirect_aov && std::strlen(data->indirect_aov))	AiAOVRegister(data->indirect_aov,	AI_TYPE_RGBA, AI_AOV_BLEND_OPACITY);

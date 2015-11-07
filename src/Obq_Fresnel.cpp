@@ -131,10 +131,10 @@ node_initialize
 {
 	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
 
-	//data->LUT = NULL;
-	//data->lambdas = NULL ;
-	//data->etas = NULL;
-	//data->ks = NULL;
+	data->LUT = NULL;
+	data->lambdas = NULL ;
+	data->etas = NULL;
+	data->ks = NULL;
 	AiNodeSetLocalData(node,data);
 
 	data->eta[0] = 1.0;	data->eta[1] = 1.0;	data->eta[2] = 1.0;

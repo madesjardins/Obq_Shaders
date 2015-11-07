@@ -1089,9 +1089,9 @@
   maya.output_shortname         STRING "out"
 
   houdini.category              STRING "OBQShaders"
-  houdini.icon                STRING "SHOP_surface"
+  houdini.icon                	STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MeasuredMaterial"
-  houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+  houdini.help_url            	STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
 
   [attr filename]
     desc                        STRING "Filename"        
@@ -1143,12 +1143,11 @@
   [attr direct_AOV]
     desc                        STRING "direct_AOV"
     houdini.label               STRING "direct_AOV"
-  [attr direct_AOV]
-    desc                        STRING "direct_AOV"
-    houdini.label               STRING "direct_AOV"
+	default						STRING ""
   [attr indirect_AOV]
     desc                        STRING "indirect_AOV"
     houdini.label               STRING "indirect_AOV"
+	default						STRING ""
             
 [node Obq_MessageGetFlt]
   maya.name                     STRING "Obq_MessageGetFlt"
