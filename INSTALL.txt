@@ -9,9 +9,9 @@ HOW TO INSTALL
 
 	+ copy the content of "softimage\compounds" into "Addons\SItoA\Data\RTcompounds",
 
-	+ copy the .dll   in "bin\vXXX" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",[Windows]
-	+ copy the .so    in "bin\vXXX" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
-	+ copy the .dylib in "bin\vXXX" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
+	+ copy the .dll   in "bin\aW.X.Y.Z" into "Addons\SItoA\Application\Plugins\bin\nt-x86-64",[Windows]
+	+ copy the .so    in "bin\aW.X.Y.Z" into "Addons/SItoA/Application/Plugins/bin/linux64", 	[Linux]
+	+ copy the .dylib in "bin\aW.X.Y.Z" into "Addons/SItoA/Application/Plugins/bin/??",	[OSX]
 
   MtoA (not yet fully integrated, missing templates):
 	+ copy the content of the "maya\metadata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
@@ -77,7 +77,7 @@ HOW TO COMPILE
 	Windows SDK [windows]
 	Arnold SDK  [all OS]
 	GLM 0.9.4.3 (or above)  [all OS]
-	GCC 4.1.2 (recommended) [Linux, Mac OSX]
+	GCC 4.8.2 (recommended) [Linux, Mac OSX]
 
 
   On Windows, simply open the VC++ solution (Obq_Shaders.sln) in the folder "win_VC++" and build a Release x64 version of all projects.
@@ -86,13 +86,17 @@ HOW TO COMPILE
   When compiling for linux and macosx, please use the Makefiles from within the folders.
   Simply change the OBQVERSION, GLMPATH and ARNOLD path before running make or use the Obq_GenerateMakefile.py script to generate a new version:
   
-	python Obq_GenerateMakefile linux v307 ARNOLD_PARENT_PATH GLM_PATH
+	python Obq_GenerateMakefile 4.2.11.0 ARNOLD_PARENT_PATH GLM_PATH
 	
 	ARNOLD_PARENT_PATH is the folder that contains all the different folders of versions of Arnold.
 	
 
 SItoA & MtoA = ARNOLD VERSION
 ====================
+3.11 & 1.2.4.3 = 4.2.11.0
+3.10 & 1.2.4.2 = 4.2.10.0
+3.09 & 1.2.4.0 = 4.2.9.0
+3.08 & 1.2.3.1 = 4.2.7.5
 3.07 & 1.2.3.0 = 4.2.7.0
 3.06 & 1.2.2.0 = 4.2.6.2
 3.05 & 1.2.1.0 = 4.2.4.3
