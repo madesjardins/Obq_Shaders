@@ -1,7 +1,7 @@
 # 2014-11-30 02.06 pm
 
 [node Obq_Simbiont]
-  c4d.classification            STRING "generic"
+  c4d.classification            STRING "surface"
   c4d.menu                      STRING "OBQShaders"
 
   maya.name                     STRING "Obq_Simbiont"
