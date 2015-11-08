@@ -1,6 +1,7 @@
-# 2015-05-27 08.05 pm
-
 [node Obq_AngularCamera]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD40
   maya.classification           STRING "shader/surface"
@@ -35,6 +36,9 @@
     default                     FLOAT   0
 
 [node Obq_Atmosphere]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Atmosphere"
   maya.id                       INT     0x0011CD41
   #maya.classification           STRING "shader/volume/atmosphere"
@@ -186,6 +190,9 @@
     maya.channelbox             BOOL    True
     
 [node Obq_Bend4Stereo]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Bend4Stereo"
   maya.id                       INT     0x0011CD42
   maya.classification           STRING "shader/surface"
@@ -217,6 +224,9 @@
     default                     STRING "StereoCamera_Right"
 
 [node Obq_ChangeRange]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_ChangeRange"
   maya.id                       INT     0x0011CD43
   #maya.classification          STRING "shader/utility"
@@ -276,6 +286,9 @@
     default                     FLOAT   1
 
 [node Obq_Environment]
+  c4d.classification            STRING "environment"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Environment"
   maya.id                       INT     0x0011CD44
   maya.classification           STRING "shader/surface"
@@ -413,6 +426,9 @@
     default                     BOOL    True
 
 [node Obq_Etching]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Etching"
   maya.id                       INT     0x0011CD45
   maya.classification           STRING "shader/surface"
@@ -546,6 +562,9 @@
     default                     BOOL    True
 
 [node Obq_Fresnel]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Fresnel"
   maya.id                       INT     0x0011CD46
   maya.classification           STRING "shader/surface"
@@ -673,6 +692,9 @@
     default                     STRING "sRGB Illuminant D65 <- E (Bradford)"
     
 [node Obq_Hair]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Hair"
   maya.id                       INT     0x0011CD47
   maya.classification           STRING "shader/surface"
@@ -1034,6 +1056,9 @@
     houdini.label               STRING "AOV Indirect Scatter Back"
 
 [node Obq_IESLightFilter]
+  c4d.classification            STRING "light_filter"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_IESLightFilter"
   maya.id                       INT     0x0011CD48
   maya.classification           STRING "shader/surface"
@@ -1051,6 +1076,9 @@
     default                     STRING "D:\\IES.ies"
 
 [node Obq_MeasuredMaterial]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_MeasuredMaterial"
   maya.id                       INT     0x0011CD49
   maya.classification           STRING "shader/surface"
@@ -1119,6 +1147,9 @@
     default                     STRING ""
 
 [node Obq_MessageGetFlt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageGetFlt"
   maya.id                       INT     0x0011CD4A
   maya.classification           STRING "shader/surface"
@@ -1141,6 +1172,9 @@
     softmax                     FLOAT   1.0
 
 [node Obq_Opacity]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Opacity"
   maya.id                       INT     0x0011CD4B
   maya.classification           STRING "shader/surface"
@@ -1182,6 +1216,9 @@
     default                     BOOL    False
                     
 [node Obq_RandomColor]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_RandomColor"
   maya.id                       INT     0x0011CD4C
   maya.classification           STRING "shader/surface"
@@ -1311,6 +1348,9 @@
     default                     BOOL    False
 
 [node Obq_RGBComEmit]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_RGBComEmit"
   maya.id                       INT     0x0011CD4D
   maya.classification           STRING "shader/surface"
@@ -1326,6 +1366,9 @@
     default                     RGB     1 1 1
 
 [node Obq_RGBComLightFilter]
+  c4d.classification            STRING "light_filter"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_RGBComLightFilter"
   maya.id                       INT     0x0011CD4E
   maya.classification           STRING "shader/surface"
@@ -1345,6 +1388,9 @@
     default                     STRING "Use Default"
 
 [node Obq_Root2Tip]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Root2Tip"
   maya.id                       INT     0x0011CD4F
   maya.classification           STRING "shader/surface"
@@ -1368,6 +1414,9 @@
     default                     STRING "Linear"
 
 [node Obq_Shadow]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Shadow"
   maya.id                       INT     0x0011CD50
   maya.classification           STRING "shader/surface"
@@ -1407,6 +1456,9 @@
   # houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
 
 [node Obq_StereoLens]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD52
   maya.classification           STRING "shader/surface"
@@ -1559,6 +1611,9 @@
     default                     FLOAT   0
 
 [node Obq_SurfaceEnvironment]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_SurfaceEnvironment"
   maya.id                       INT     0x0011CD53
   maya.classification           STRING "shader/surface"
@@ -1669,6 +1724,9 @@
     default                     BOOL    False             
     
 [node Obq_Thickness]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Thickness"
   maya.id                       INT     0x0011CD54
   maya.classification           STRING "shader/surface"
@@ -1788,6 +1846,9 @@
     default                     BOOL    False
 
 [node Obq_Toon]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Toon"
   maya.id                       INT     0x0011CD55
   maya.classification           STRING "shader/surface"
@@ -2069,6 +2130,9 @@
     default                     BOOL    False
 
 [node Obq_ToonSimple]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_ToonSimple"
   maya.id                       INT     0x0011CD56
   maya.classification           STRING "shader/surface"
@@ -2202,6 +2266,9 @@
     default                     BOOL    False
 
 [node Obq_TransformUV]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_TransformUV"
   maya.id                       INT     0x0011CD57
   maya.classification           STRING "shader/surface"
@@ -2250,6 +2317,9 @@
     default                     FLOAT   0.5
 
 [node Obq_UVRemapLensDistortion]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_UVRemapLensDistortion"
   maya.id                       INT     0x0011CD58
   maya.classification           STRING "shader/surface"
@@ -2265,6 +2335,9 @@
     default                     STRING "PFBarrel"
   
 [node Obq_VolumeThickness]
+  c4d.classification            STRING "volume"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_VolumeThickness"
   maya.id                       INT     0x0011CD59
   maya.classification           STRING "shader/surface"
@@ -2341,6 +2414,9 @@
     default                     FLOAT   0.1
 
 [node Obq_LensDistortion]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD5A
   maya.classification           STRING "shader/surface"
@@ -2768,6 +2844,9 @@
     # default                     FLOAT   0
 
 [node Obq_CameraProjectionSpace]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_CameraProjectionSpace"
   maya.id                       INT     0x0011CD5B
   maya.classification           STRING "shader/surface"
@@ -2792,6 +2871,9 @@
     default                     FLOAT   1
 
 [node Obq_Color]
+  c4d.classification            STRING "texture"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_Color"
   maya.id                       INT     0x0011CD5C
   maya.classification           STRING "shader/surface"
@@ -2809,6 +2891,9 @@
 
 
 [node Obq_RandomID]
+  c4d.classification            STRING "texture"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_RandomID"
   maya.id                       INT     0x0011CD5D
   maya.classification           STRING "shader/surface"
@@ -2859,6 +2944,9 @@
     default                     BOOL    False
 
 [node Obq_RayDepth]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_RayDepth"
   maya.id                       INT     0x0011CD5E
   maya.classification           STRING "shader/surface"
@@ -2878,6 +2966,9 @@
 # -----------------------------------------    
 
 [node Obq_ColorspaceConverter] 
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_ColorspaceConverter"
   maya.id                       INT     0x0011CD5F
   maya.classification           STRING "shader/surface"
@@ -2930,6 +3021,9 @@
     default                     BOOL    True
   
 [node Obq_MessageSetFlt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageSetFlt"
   maya.id                       INT     0x0011CD60
   maya.classification           STRING "shader/surface"
@@ -2960,6 +3054,9 @@
     default                     BOOL    False
     
 [node Obq_MessageStoreFlt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageStoreFlt"
   maya.id                       INT     0x0011CD61
   maya.classification           STRING "shader/surface"
@@ -2995,6 +3092,9 @@
 
   
 [node Obq_SetAlpha]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_SetAlpha"
   maya.id                       INT     0x0011CD62
   maya.classification           STRING "shader/surface"
@@ -3006,6 +3106,9 @@
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SetAlpha.html"
 
 [node Obq_SpectrumColor]
+  c4d.classification            STRING "texture"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_SpectrumColor"
   maya.id                       INT     0x0011CD63
   maya.classification           STRING "shader/surface"
@@ -3046,6 +3149,9 @@
     default                     STRING "Linear"
     
 [node Obq_TransformShadingPoint]
+  c4d.classification            STRING "surface"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_TransformShadingPoint"
   maya.id                       INT     0x0011CD64
   maya.classification           STRING "shader/surface"
@@ -3094,6 +3200,9 @@
 
     
 [node Obq_KettleUVStereoLens]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "camera"
   maya.id                       INT     0x0011CD65
   maya.classification           STRING "shader/surface"
@@ -3259,7 +3368,11 @@
     desc                        STRING "UV Set"
     houdini.label               STRING "UV Set"
     default                     STRING "DefaultUV"
+
 [node Obq_LightSaturationFilter]
+  c4d.classification            STRING "light_filter"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_LightSaturationFilter"
   maya.id                       INT     0x0011CD66
   maya.classification           STRING "shader/surface"
@@ -3293,7 +3406,11 @@
     default                     FLOAT  1.0
     min							FLOAT  0.0
     max							FLOAT  1.0
+
 [node Obq_MessageGetBool]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageGetBool"
   maya.id                       INT     0x0011CD67
   maya.classification           STRING "shader/surface"
@@ -3303,7 +3420,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetBool"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+
 [node Obq_MessageGetColor]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageGetColor"
   maya.id                       INT     0x0011CD68
   maya.classification           STRING "shader/surface"
@@ -3313,7 +3434,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetColor"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+
 [node Obq_MessageGetInt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageGetInt"
   maya.id                       INT     0x0011CD69
   maya.classification           STRING "shader/surface"
@@ -3323,7 +3448,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetInt"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+
 [node Obq_MessageGetVector]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageGetVector"
   maya.id                       INT     0x0011CD6A
   maya.classification           STRING "shader/surface"
@@ -3333,10 +3462,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetVector"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
-  
-  
-  
+    
 [node Obq_MessageSetBool]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageSetBool"
   maya.id                       INT     0x0011CD6B
   maya.classification           STRING "shader/surface"
@@ -3346,7 +3476,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetBool"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+
 [node Obq_MessageSetColor]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageSetColor"
   maya.id                       INT     0x0011CD6C
   maya.classification           STRING "shader/surface"
@@ -3356,7 +3490,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetColor"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+
 [node Obq_MessageSetInt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageSetInt"
   maya.id                       INT     0x0011CD6D
   maya.classification           STRING "shader/surface"
@@ -3366,7 +3504,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetInt"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+
 [node Obq_MessageSetVector]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageSetVector"
   maya.id                       INT     0x0011CD6E
   maya.classification           STRING "shader/surface"
@@ -3376,7 +3518,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetVector"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+
 [node Obq_MessageStoreBool]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageStoreBool"
   maya.id                       INT     0x0011CD6F
   maya.classification           STRING "shader/surface"
@@ -3386,7 +3532,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreBool"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+
 [node Obq_MessageStoreColor]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageStoreColor"
   maya.id                       INT     0x0011CD70
   maya.classification           STRING "shader/surface"
@@ -3396,7 +3546,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreColor"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+
 [node Obq_MessageStoreInt]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageStoreInt"
   maya.id                       INT     0x0011CD71
   maya.classification           STRING "shader/surface"
@@ -3406,7 +3560,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreInt"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+
 [node Obq_MessageStoreVector]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders/messages"
+
   maya.name                     STRING "Obq_MessageStoreVector"
   maya.id                       INT     0x0011CD72
   maya.classification           STRING "shader/surface"
@@ -3416,7 +3574,11 @@
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreVector"
   houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+
 [node Obq_NodeInfo]
+  c4d.classification            STRING "generic"
+  c4d.menu                      STRING "OBQShaders"
+
   maya.name                     STRING "Obq_NodeInfo"
   maya.id                       INT     0x0011CD3
   maya.classification           STRING "shader/surface"
