@@ -62,6 +62,7 @@ static const char* OIlluminantIDNames[] =
 	"C",
 	"D50",
 	"D55",
+	"D60",
 	"D65",
 	"D75",
 	"E",
@@ -106,6 +107,8 @@ static const char* OCSIDNames[] =
 	"Rec.709",
 	"Rec.2020",
 	"CIE XYZ",
+	"Alexa Wide Gammut RGB",
+	"ACEScg",
     NULL
 };
 
