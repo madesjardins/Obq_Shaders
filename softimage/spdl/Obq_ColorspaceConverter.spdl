@@ -186,6 +186,7 @@ Defaults
 			"C" = "C",
 			"D50" = "D50",
 			"D55" = "D55",
+			"D60" = "D60",
 			"D65" = "D65",
 			"D75" = "D75",
 			"E" = "E",
@@ -206,6 +207,7 @@ Defaults
 			"C" = "C",
 			"D50" = "D50",
 			"D55" = "D55",
+			"D60" = "D60",
 			"D65" = "D65",
 			"D75" = "D75",
 			"E" = "E",
@@ -240,7 +242,9 @@ Defaults
 			"Wide Gamut RGB" = "Wide Gamut RGB",
 			"Rec.709" = "Rec.709",
 			"Rec.2020" = "Rec.2020",
-			"CIE XYZ" = "CIE XYZ"
+			"CIE XYZ" = "CIE XYZ",
+			"Alexa Wide Gammut RGB" = "Alexa Wide Gammut RGB",
+			"ACEScg" = "ACEScg"
 		}
 	}
 	csPrimariesOut
@@ -269,7 +273,9 @@ Defaults
 			"Wide Gamut RGB" = "Wide Gamut RGB",
 			"Rec.709" = "Rec.709",
 			"Rec.2020" = "Rec.2020",
-			"CIE XYZ" = "CIE XYZ"			
+			"CIE XYZ" = "CIE XYZ",
+			"Alexa Wide Gammut RGB" = "Alexa Wide Gammut RGB",
+			"ACEScg" = "ACEScg"
 		}
 	}
 	switchInOut
