@@ -62,13 +62,13 @@ static const char* OIlluminantIDNames[] =
 	"C",
 	"D50",
 	"D55",
-	"D60",
 	"D65",
 	"D75",
 	"E",
 	"F2",
 	"F7",
 	"F11",
+	"D60",
     NULL
 };
 // Gamma IDs
