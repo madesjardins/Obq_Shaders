@@ -68,6 +68,7 @@ static const char* OIlluminantIDNames[] =
 	"F2",
 	"F7",
 	"F11",
+	"D60",
     NULL
 };
 // Gamma IDs
@@ -106,6 +107,8 @@ static const char* OCSIDNames[] =
 	"Rec.709",
 	"Rec.2020",
 	"CIE XYZ",
+	"Alexa Wide Gammut RGB",
+	"ACEScg",
     NULL
 };
 

@@ -17,13 +17,13 @@
 // 2 5 8
 
 // Illuminant IDs
-enum OIlluminantID {ILMNT_A, ILMNT_B, ILMNT_C, ILMNT_D50, ILMNT_D55, ILMNT_D65, ILMNT_D75, ILMNT_E, ILMNT_F2, ILMNT_F7, ILMNT_F11};
+enum OIlluminantID {ILMNT_A, ILMNT_B, ILMNT_C, ILMNT_D50, ILMNT_D55, ILMNT_D65, ILMNT_D75, ILMNT_E, ILMNT_F2, ILMNT_F7, ILMNT_F11, ILMNT_D60};
 
 // Gamma IDs
 enum OGammaID {G_LINEAR, G_1p8, G_2p2, G_sRGB, G_2p4, G_REC709, G_LSTAR, G_REC2020};
 
 // ColorSpace name
-enum OCSID {CS_LINEAR_RGB, CS_ADOBE_RGB_1998, CS_APPLE_RGB, CS_BEST_RGB, CS_BETA_RGB, CS_BRUCE_RGB, CS_CIE_RGB, CS_COLORMATCH_RGB, CS_DON_RGB_4, CS_ECI_RGB_V2, CS_EKTA_SPACE_PS5, CS_NTSC_RGB, CS_PAL_SECAM_RGB, CS_PROPHOTO_RGB, CS_SMPTE_C_RGB, CS_sRGB, CS_WIDE_GAMUT_RGB, CS_REC709, CS_REC2020, CS_CIE_XYZ};
+enum OCSID {CS_LINEAR_RGB, CS_ADOBE_RGB_1998, CS_APPLE_RGB, CS_BEST_RGB, CS_BETA_RGB, CS_BRUCE_RGB, CS_CIE_RGB, CS_COLORMATCH_RGB, CS_DON_RGB_4, CS_ECI_RGB_V2, CS_EKTA_SPACE_PS5, CS_NTSC_RGB, CS_PAL_SECAM_RGB, CS_PROPHOTO_RGB, CS_SMPTE_C_RGB, CS_sRGB, CS_WIDE_GAMUT_RGB, CS_REC709, CS_REC2020, CS_CIE_XYZ, CS_ALEXA_WIDE_GAMMUT_RGB, CS_ACES_CG};
 
 // Column major Bradford Matrix
 const glm::mat3 c_BradfordMatrix(0.8951f, -0.7502f, 0.0389f, 0.2664f, 1.7135f, -0.0685f, -0.1614f, 0.0367f,  1.0296f);
@@ -59,6 +59,11 @@ void illuminantID2XYZ(OIlluminantID ilmnt, float &X, float &Y, float &Z)
 		X = 0.95682f;
 		Y = 1.00000f;
 		Z = 0.92149f;
+		break;
+	case ILMNT_D60:
+		X = 0.95264f;
+		Y = 1.00000f;
+		X = 1.00882f;
 		break;
 	case ILMNT_D65:
 		X = 0.95047f;
@@ -113,6 +118,8 @@ const char* illuminantID2text(OIlluminantID ilmnt)
 		return "D50";
 	case ILMNT_D55:
 		return "D55";
+	case ILMNT_D60:
+		return "D60";
 	case ILMNT_D65:
 		return "D65";
 	case ILMNT_D75:
@@ -159,6 +166,9 @@ OIlluminantID illuminantFromCSID(OCSID cs)
 		return ILMNT_E;
 	case CS_NTSC_RGB:
 		return ILMNT_C;
+	case CS_ALEXA_WIDE_GAMMUT_RGB:
+	case CS_ACES_CG:
+		return ILMNT_D60;
 	default:
 		return ILMNT_D65;
 	}
@@ -209,6 +219,10 @@ OGammaID gammaFromCSID(OCSID cs)
 		return G_REC709;
 	case CS_REC2020:
 		return G_REC2020;
+	case CS_ALEXA_WIDE_GAMMUT_RGB:
+		return G_2p2;
+	case CS_ACES_CG:
+		return G_2p2;
 	default:
 		return G_sRGB;
 	}
@@ -259,6 +273,10 @@ const char* primariesID2text(OCSID cs)
 		return "Rec.2020";
 	case CS_CIE_XYZ:
 		return "CIE XYZ";
+	case CS_ALEXA_WIDE_GAMMUT_RGB:
+		return "Alexa Wide Gammut RGB";
+	case CS_ACES_CG:
+		return "ACEScg";
 	default:
 		return "sRGB";
 	}
@@ -456,6 +474,10 @@ glm::mat3 primariesFromCSID(OCSID cs)
 		return glm::mat3(0.7350f,0.2650f,0.258187f,0.1150f,0.8260f,0.724938f,0.1570f,0.046f,0.0f);
 	case CS_REC2020:
 		return glm::mat3(0.708f,0.292f,0.0f, 0.170f,0.797f,0.0f, 0.131f,0.0180f,0.0);
+	case CS_ALEXA_WIDE_GAMMUT_RGB:
+		return glm::mat3(0.6840f,0.3130f,0.291954f,0.2210f,0.8480f,0.823841f,0.0861f,-0.102f,-0.115795f);
+	case CS_ACES_CG:
+		return glm::mat3(0.713f,0.293f,0.27222872f,0.165f,0.83f,0.67408177f,0.128f,0.044f,0.05368952f);
 	default:
 		return glm::mat3(0.6400f,0.3300f,0.212656f,0.3000f,0.6000f,0.715158f,0.1500f,0.0600f,0.072186f);
 	}
