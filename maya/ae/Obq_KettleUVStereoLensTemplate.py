@@ -28,7 +28,7 @@ class Obq_KettleUVStereoLensTemplate(templates.AttributeTemplate):
 		self.beginLayout("Main", collapse=False)
 		
 		self.beginLayout("Rendered View", collapse=False)
-		self.addControl("aiViewMode",  label="View Mode")
+		self.addControl("aiViewMode2",  label="View Mode")
 		self.endLayout() # end Rendered View Layout
 		
 		self.beginLayout("Polymeshes", collapse=False)

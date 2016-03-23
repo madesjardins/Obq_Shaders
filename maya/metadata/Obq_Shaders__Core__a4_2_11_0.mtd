@@ -3244,7 +3244,7 @@
     min                         INT     1
     max                         INT     512
     softmax                     INT     128
-  [attr view_mode]
+  [attr view_mode2]
     desc                        STRING "View Mode"
     houdini.label               STRING "View Mode"
     #houdini.type                STRING "menu:single:menu"
