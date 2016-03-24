@@ -1473,9 +1473,9 @@
   [attr is_perspective]
     default                     BOOL   True
     default                     BOOL   True
-  [attr viewMode]
-    desc                        STRING "viewMode"
-    houdini.label               STRING "viewMode"
+  [attr viewMode1]
+    desc                        STRING "View Mode"
+    houdini.label               STRING "View Mode"
     default                     STRING "Center Camera"
   [attr leftCamera]
     desc                        STRING "Left Camera"

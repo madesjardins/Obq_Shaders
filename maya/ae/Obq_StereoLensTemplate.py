@@ -22,7 +22,7 @@ class Obq_StereoLensTemplate(templates.AttributeTemplate):
 		self.beginLayout("Main", collapse=False)
 		
 		self.beginLayout("View Mode", collapse=False)
-		self.addControl('aiViewMode', "View Mode")
+		self.addControl('aiViewMode1', "View Mode")
 		self.endLayout()
 
 		self.beginLayout("Cameras", collapse=False)

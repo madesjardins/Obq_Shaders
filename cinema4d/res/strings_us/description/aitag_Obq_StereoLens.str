@@ -4,7 +4,7 @@ STRINGTABLE aitag_Obq_StereoLens
 
   C4DAIP_OBQ_STEREOLENS_MAIN_GRP                      "Main";
   C4DAIP_OBQ_STEREOLENS_MAIN_ATTRIBUTES_GRP           "Obq_StereoLens";
-  C4DAIP_OBQ_STEREOLENS_VIEWMODE_GRP                  "View Mode";
+  C4DAIP_OBQ_STEREOLENS_VIEWMODE1_GRP                  "View Mode";
   C4DAIP_OBQ_STEREOLENS_CAMERAS_GRP                   "Cameras";
   C4DAIP_OBQ_STEREOLENS_AUTOMATIC_OVERSCAN_GRP        "Automatic Overscan";
   C4DAIP_OBQ_STEREOLENS_AUTOMATIC_TARGET_RESOLUTION_GRP   "Target Resolution";
@@ -19,7 +19,7 @@ STRINGTABLE aitag_Obq_StereoLens
   C4DAIP_OBQ_STEREOLENS_AUTOMATIC_OPTIONS_GRP         "Options";
   
   
-  C4DAIP_OBQ_STEREOLENS_VIEWMODE                      "View Mode";
+  C4DAIP_OBQ_STEREOLENS_VIEWMODE1                      "View Mode";
   C4DAIP_OBQ_STEREOLENS_LEFTCAMERA                    "Left";
   C4DAIP_OBQ_STEREOLENS_RIGHTCAMERA                   "Right";
 

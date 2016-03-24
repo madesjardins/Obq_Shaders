@@ -1,0 +1,139 @@
+﻿Build started 24/03/2016 6:22:30 AM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "..\..\bin\a4_2_13_x\".
+       InitializeBuildStatus:
+         Creating "x64\Release_a4.2.13.x\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.13.3-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\kettle /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release_a4.2.13.x\\" /Fd"x64\Release_a4.2.13.x\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\kettle\Grid2DAS.cpp ..\..\src\kettle\KettleBaker.cpp ..\..\src\Obq_AngularCamera.cpp ..\..\src\Obq_Color.cpp ..\..\src\Obq_KettleUVStereoLens.cpp ..\..\src\Obq_LensDistortion.cpp ..\..\src\Obq_LightSaturationFilter.cpp ..\..\src\Obq_MessageGetBool.cpp ..\..\src\Obq_MessageGetColor.cpp ..\..\src\Obq_MessageGetInt.cpp ..\..\src\Obq_MessageGetVector.cpp ..\..\src\Obq_MessageSetBool.cpp ..\..\src\Obq_MessageSetColor.cpp ..\..\src\Obq_MessageSetFlt.cpp ..\..\src\Obq_MessageSetInt.cpp ..\..\src\Obq_MessageSetVector.cpp ..\..\src\Obq_MessageStoreBool.cpp ..\..\src\Obq_MessageStoreColor.cpp ..\..\src\Obq_MessageStoreFlt.cpp ..\..\src\Obq_MessageStoreInt.cpp ..\..\src\Obq_MessageStoreVector.cpp ..\..\src\Obq_NodeInfo.cpp ..\..\src\Obq_SetAlpha.cpp ..\..\src\Obq_StereoLens.cpp ..\..\src\Obq_TransformShadingPoint.cpp ..\..\src\O_ISBrdf.cpp ..\..\src\Obq_Atmosphere.cpp ..\..\src\Obq_Bend4Stereo.cpp ..\..\src\Obq_CameraProjectionSpace.cpp ..\..\src\Obq_ChangeRange.cpp ..\..\src\Obq_ColorspaceConverter.cpp ..\..\src\Obq_Environment.cpp ..\..\src\Obq_Etching.cpp ..\..\src\Obq_Fresnel.cpp ..\..\src\Obq_Hair.cpp ..\..\src\Obq_IESLightFilter.cpp ..\..\src\Obq_MeasuredMaterial.cpp ..\..\src\Obq_MessageGetFlt.cpp ..\..\src\Obq_Opacity.cpp ..\..\src\Obq_RandomColor.cpp ..\..\src\Obq_RandomID.cpp ..\..\src\Obq_RayDepth.cpp ..\..\src\Obq_RGBComEmit.cpp ..\..\src\Obq_RGBComLightFilter.cpp ..\..\src\Obq_Root2Tip.cpp ..\..\src\Obq_Shaders__Core.cpp ..\..\src\Obq_Shadow.cpp ..\..\src\Obq_SpectrumColor.cpp ..\..\src\Obq_SurfaceEnvironment.cpp ..\..\src\Obq_Thickness.cpp ..\..\src\Obq_Toon.cpp ..\..\src\Obq_ToonSimple.cpp ..\..\src\Obq_TransformUV.cpp ..\..\src\Obq_UVRemapLensDistortion.cpp ..\..\src\Obq_VolumeThickness.cpp ..\..\src\pbrt\spectrum.cpp
+         Grid2DAS.cpp
+         KettleBaker.cpp
+         Obq_AngularCamera.cpp
+         Obq_Color.cpp
+         Obq_KettleUVStereoLens.cpp
+         Obq_LensDistortion.cpp
+         Obq_LightSaturationFilter.cpp
+         Obq_MessageGetBool.cpp
+         Obq_MessageGetColor.cpp
+         Obq_MessageGetInt.cpp
+         Obq_MessageGetVector.cpp
+         Obq_MessageSetBool.cpp
+         Obq_MessageSetColor.cpp
+         Obq_MessageSetFlt.cpp
+         Obq_MessageSetInt.cpp
+         Obq_MessageSetVector.cpp
+         Obq_MessageStoreBool.cpp
+         Obq_MessageStoreColor.cpp
+         Obq_MessageStoreFlt.cpp
+         Obq_MessageStoreInt.cpp
+         Compiling...
+         Obq_MessageStoreVector.cpp
+         Obq_NodeInfo.cpp
+         Obq_SetAlpha.cpp
+         Obq_StereoLens.cpp
+         Obq_TransformShadingPoint.cpp
+         O_ISBrdf.cpp
+         Obq_Atmosphere.cpp
+         Obq_Bend4Stereo.cpp
+         Obq_CameraProjectionSpace.cpp
+         Obq_ChangeRange.cpp
+         Obq_ColorspaceConverter.cpp
+         Obq_Environment.cpp
+         Obq_Etching.cpp
+         Obq_Fresnel.cpp
+         Obq_Hair.cpp
+         Obq_IESLightFilter.cpp
+         Obq_MeasuredMaterial.cpp
+         Obq_MessageGetFlt.cpp
+         Obq_Opacity.cpp
+         Obq_RandomColor.cpp
+         Compiling...
+         Obq_RandomID.cpp
+         Obq_RayDepth.cpp
+         Obq_RGBComEmit.cpp
+         Obq_RGBComLightFilter.cpp
+         Obq_Root2Tip.cpp
+         Obq_Shaders__Core.cpp
+         Obq_Shadow.cpp
+         Obq_SpectrumColor.cpp
+         Obq_SurfaceEnvironment.cpp
+         Obq_Thickness.cpp
+         Obq_Toon.cpp
+         Obq_ToonSimple.cpp
+         Obq_TransformUV.cpp
+         Obq_UVRemapLensDistortion.cpp
+         Obq_VolumeThickness.cpp
+         spectrum.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.13.3-windows\lib" /LIBPATH:..\..\lib ai.lib /MANIFEST /ManifestFile:"x64\Release_a4.2.13.x\Obq_Shaders__Core__a4_2_13_3.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\Release_a4.2.13.x\Obq_Shaders__Core__a4_2_13_3.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.lib" /MACHINE:X64 /DLL x64\Release_a4.2.13.x\Grid2DAS.obj
+         x64\Release_a4.2.13.x\KettleBaker.obj
+         x64\Release_a4.2.13.x\Obq_AngularCamera.obj
+         x64\Release_a4.2.13.x\Obq_Color.obj
+         x64\Release_a4.2.13.x\Obq_KettleUVStereoLens.obj
+         x64\Release_a4.2.13.x\Obq_LensDistortion.obj
+         x64\Release_a4.2.13.x\Obq_LightSaturationFilter.obj
+         x64\Release_a4.2.13.x\Obq_MessageGetBool.obj
+         x64\Release_a4.2.13.x\Obq_MessageGetColor.obj
+         x64\Release_a4.2.13.x\Obq_MessageGetInt.obj
+         x64\Release_a4.2.13.x\Obq_MessageGetVector.obj
+         x64\Release_a4.2.13.x\Obq_MessageSetBool.obj
+         x64\Release_a4.2.13.x\Obq_MessageSetColor.obj
+         x64\Release_a4.2.13.x\Obq_MessageSetFlt.obj
+         x64\Release_a4.2.13.x\Obq_MessageSetInt.obj
+         x64\Release_a4.2.13.x\Obq_MessageSetVector.obj
+         x64\Release_a4.2.13.x\Obq_MessageStoreBool.obj
+         x64\Release_a4.2.13.x\Obq_MessageStoreColor.obj
+         x64\Release_a4.2.13.x\Obq_MessageStoreFlt.obj
+         x64\Release_a4.2.13.x\Obq_MessageStoreInt.obj
+         x64\Release_a4.2.13.x\Obq_MessageStoreVector.obj
+         x64\Release_a4.2.13.x\Obq_NodeInfo.obj
+         x64\Release_a4.2.13.x\Obq_SetAlpha.obj
+         x64\Release_a4.2.13.x\Obq_StereoLens.obj
+         x64\Release_a4.2.13.x\Obq_TransformShadingPoint.obj
+         x64\Release_a4.2.13.x\O_ISBrdf.obj
+         x64\Release_a4.2.13.x\Obq_Atmosphere.obj
+         x64\Release_a4.2.13.x\Obq_Bend4Stereo.obj
+         x64\Release_a4.2.13.x\Obq_CameraProjectionSpace.obj
+         x64\Release_a4.2.13.x\Obq_ChangeRange.obj
+         x64\Release_a4.2.13.x\Obq_ColorspaceConverter.obj
+         x64\Release_a4.2.13.x\Obq_Environment.obj
+         x64\Release_a4.2.13.x\Obq_Etching.obj
+         x64\Release_a4.2.13.x\Obq_Fresnel.obj
+         x64\Release_a4.2.13.x\Obq_Hair.obj
+         x64\Release_a4.2.13.x\Obq_IESLightFilter.obj
+         x64\Release_a4.2.13.x\Obq_MeasuredMaterial.obj
+         x64\Release_a4.2.13.x\Obq_MessageGetFlt.obj
+         x64\Release_a4.2.13.x\Obq_Opacity.obj
+         x64\Release_a4.2.13.x\Obq_RandomColor.obj
+         x64\Release_a4.2.13.x\Obq_RandomID.obj
+         x64\Release_a4.2.13.x\Obq_RayDepth.obj
+         x64\Release_a4.2.13.x\Obq_RGBComEmit.obj
+         x64\Release_a4.2.13.x\Obq_RGBComLightFilter.obj
+         x64\Release_a4.2.13.x\Obq_Root2Tip.obj
+         x64\Release_a4.2.13.x\Obq_Shaders__Core.obj
+         x64\Release_a4.2.13.x\Obq_Shadow.obj
+         x64\Release_a4.2.13.x\Obq_SpectrumColor.obj
+         x64\Release_a4.2.13.x\Obq_SurfaceEnvironment.obj
+         x64\Release_a4.2.13.x\Obq_Thickness.obj
+         x64\Release_a4.2.13.x\Obq_Toon.obj
+         x64\Release_a4.2.13.x\Obq_ToonSimple.obj
+         x64\Release_a4.2.13.x\Obq_TransformUV.obj
+         x64\Release_a4.2.13.x\Obq_UVRemapLensDistortion.obj
+         x64\Release_a4.2.13.x\Obq_VolumeThickness.obj
+         x64\Release_a4.2.13.x\spectrum.obj
+            Creating library ..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.lib and object ..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.exp
+         Generating code
+         Finished generating code
+         Obq_Shaders__Core.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.dll
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\a4_2_13_x\Obq_Shaders__Core__a4_2_13_3.dll;#2" /manifest x64\Release_a4.2.13.x\Obq_Shaders__Core__a4_2_13_3.dll.intermediate.manifest
+       PostBuildEvent:
+         del /F /Q x64\Release_a4.2.13.x\*.* ..\..\bin\a4_2_13_x\*.lib ..\..\bin\a4_2_13_x\*.exp
+         :VCEnd
+         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\x64\Release_a4.2.13.x\Obq_Shaders__Core.log
+         The process cannot access the file because it is being used by another process.
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:24.95
