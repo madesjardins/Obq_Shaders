@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_generic_distortion_base_sdv
@@ -14,8 +14,6 @@
 #include <functional>
 #include <iostream>
 #include <vector>
-#include <string>
-#include <sstream>
 
 namespace ldpk
 	{
@@ -51,8 +49,10 @@ namespace ldpk
 			{
 			if((i < 0) || (i >= N))
 				{
-				AiMsgError("ldpk::error: index out of range :\t %i, range [ %i , %i ]",i,0,N-1);
-				//throw error_index_out_of_range(i,0,N - 1);
+                // OBQ:
+                AiMsgError("ldpk::error: index out of range :\t %i, range [ %i , %i ]",i,0,N-1);
+                // LDPK
+				// throw error_index_out_of_range(i,0,N - 1);
 				}
 			}
 	public:
@@ -123,8 +123,10 @@ namespace ldpk
 //! Not all distortion functions will support this
 		virtual void derive(double* dg,int n_parameters,const vec2_type& p_dn) const
 			{
-				AiMsgWarning("ldpk::generic_distortion_base::derive: not implemented");
-				//std::cout << "ldpk::generic_distortion_base::derive: not implemented" << std::endl;
+            // OBQ:
+            AiMsgWarning("ldpk::generic_distortion_base::derive: not implemented");
+            // LDPK:
+			// std::cout << "ldpk::generic_distortion_base::derive: not implemented" << std::endl;
 			}
 //! @brief Inverse mapping by solving the fixed point equation without providing initial values.
 //! Virtual, because the derived class might use some smart data structure for calculating an initial value.

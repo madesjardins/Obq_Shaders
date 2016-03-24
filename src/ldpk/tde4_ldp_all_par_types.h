@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_all_par_types_sdv
@@ -68,15 +68,24 @@ private:
 // therefore we have to prepare the concatenated extenders here.
 		_rot_sqx_sqy_pa.set(_rotation,_squeeze_x,_squeeze_y,_pa);
 		if(_squeeze_x.get_sq() == 0)
-			{ AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-X is 0."); }
+        {
+                // LDPK:
+                // std::cerr << "tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-X is 0." << std::endl;
+                // OBQ:
+                AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-X is 0.");
+        }
 		if(_squeeze_y.get_sq() == 0)
-			{ AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0."); }
+        {
+                // LDPK:
+                // std::cerr << "tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0." << std::endl;
+                AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0.");
+        }
 		_pa_rot.set(_pa,_rotation);
 		_anamorphic.prepare();
-		/*if(_debugging_enabled && _debugging_fout.is_open())
+		if(_debugging_enabled && _debugging_fout.is_open())
 			{
 			_debugging_fout << "initializeParameters()" << std::endl;
-			}*/
+			}
 		return true;
 		}
 	bool getNumParameters(int& n)

@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_radial_deg_8_sdv
@@ -8,8 +8,6 @@
 
 #include <ldpk/ldpk_ldp_builtin.h>
 #include <ldpk/ldpk_generic_radial_distortion.h>
-
-#define M_PI 3.14159265358979
 
 //! @file tde4_ldp_radial_deg_8.h
 //! @brief Plugin class for radial distortion
@@ -238,11 +236,15 @@ public:
 		m = d2u * m * u2d;
 		m00 = m[0][0];m01 = m[0][1];m10 = m[1][0];m11 = m[1][1];
 		}
-*/	
-	bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
-	bool initializeParameters2(){return initializeParameters();}
-	bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
-};
+*/
+        
+        
+        
+        ///////////// OBQ_ADD ////////////////
+        bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
+        bool initializeParameters2(){return initializeParameters();}
+        bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
+    };
 
 template <class VEC2,class MAT2>
 const char* tde4_ldp_radial_deg_8<VEC2,MAT2>::_para[4] = {

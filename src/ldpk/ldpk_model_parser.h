@@ -1,8 +1,8 @@
-//// This file is part of the Lens Distortion Plugin Kit
-//// Software is provided "as is" - no warranties implied.
-//// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
-//
-//
+// This file is part of the Lens Distortion Plugin Kit
+// Software is provided "as is" - no warranties implied.
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
+
+
 #ifndef ldpk_model_parser_sdv
 #define ldpk_model_parser_sdv
 

@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldp_builtin_sdv
@@ -11,7 +11,6 @@
 #include <ldpk/ldpk_lookup_table.h>
 #include <algorithm>
 #include <string.h>
-#include <ai.h>
 
 namespace ldpk
 	{
@@ -117,7 +116,12 @@ namespace ldpk
 			for(int i = 0;i < n_out;++i)
 				{
 				if((t_out[i] <= 0.0) || (t_out[i] >= 1.0))
-					{ AiMsgError("ldpk::ldp_builtin: extend_box_by_spline: implementation error, needs fix."); }
+					{
+                    // OBQ:
+                    AiMsgError("ldpk::ldp_builtin: extend_box_by_spline: implementation error, needs fix.");
+                    // LDPK:
+                    // std::cerr << "ldpk::ldp_builtin: extend_box_by_spline: implementation error, needs fix." << std::endl;
+                    }
 				vec2_type qt,pt;
 				pt = (1.0 - t_out[i]) * pa + t_out[i] * pb;
 				qt = apply_mapping<I>(pt);
@@ -284,13 +288,33 @@ namespace ldpk
 		void check_builtin_parameters()
 			{
 			if(w_fb_cm() == 0)
-				{ AiMsgError("ldp_builtin: filmback width is 0."); }
+				{
+                // OBQ:
+                AiMsgError("ldp_builtin: filmback width is 0.");
+                // LDPK:
+                // std::cerr << "ldp_builtin: filmback width is 0." << std::endl;
+                }
 			if(h_fb_cm() == 0)
-				{ AiMsgError("ldp_builtin: filmback height is 0."); }
+				{
+                // OBQ:
+                AiMsgError("ldp_builtin: filmback height is 0.");
+                // LDPK:
+                // std::cerr << "ldp_builtin: filmback height is 0." << std::endl;
+                }
 			if(fl_cm() == 0)
-				{ AiMsgError("ldp_builtin: focal length is 0."); }
+				{
+                // OBQ:
+                AiMsgError("ldp_builtin: focal length is 0.");
+                // LDPK:
+                // std::cerr << "ldp_builtin: focal length is 0." << std::endl;
+                }
 			if(pa() == 0)
-				{ AiMsgError("ldp_builtin: pixel aspect is 0."); }
+				{
+                // OBQ:
+                AiMsgError("ldp_builtin: pixel aspect is 0.");
+                // LDPK:
+                std::cerr << "ldp_builtin: pixel aspect is 0." << std::endl;
+                }
 			_r_fb_cm = sqrt(w_fb_cm() * w_fb_cm() + h_fb_cm() * h_fb_cm()) / 2.0;
 			}
 //@}
@@ -329,7 +353,12 @@ namespace ldpk
 #else
 			int r = pthread_mutex_init(&_mutex,NULL);
 			if(r)
-				{ AiMsgError("ldpk::ldp_builtin::pthread_mutex_init: %s",strerror(r));}
+				{
+                    // OBK:
+                    AiMsgError("ldpk::ldp_builtin::pthread_mutex_init: %s",strerror(r));
+                    // LDPK:
+                    // std::cerr << "ldpk::ldp_builtin::pthread_mutex_init: " << strerror(r) << std::endl;
+                }
 #endif
 // We set all built-in parameters to zero. That way we can reliably find out
 // if the application initializies properly (i.e. pixel aspect needs to be set).
@@ -343,7 +372,12 @@ namespace ldpk
 #else
 			int r = pthread_mutex_destroy(&_mutex);
 			if(r)
-				{ AiMsgError("ldpk::ldp_builtin::pthread_mutex_destroy: ", strerror(r)); }
+				{
+                // OBQ:
+                AiMsgError("ldpk::ldp_builtin::pthread_mutex_destroy: ", strerror(r));
+                // LDPK:
+                // std::cerr << "ldpk::ldp_builtin::pthread_mutex_destroy: " << strerror(r) << std::endl;
+                }
 #endif
 			}
 //! @name Filmback, Lens Center Offset, Focal Length and Pixel Aspect.

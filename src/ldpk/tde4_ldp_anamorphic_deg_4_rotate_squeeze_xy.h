@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy_xy_sdv
@@ -11,6 +11,10 @@
 #include <ldpk/ldpk_rotation_extender.h>
 #include <ldpk/ldpk_squeeze_extender.h>
 #include <ldpk/ldpk_linear_extender.h>
+
+#ifndef M_PI
+#define M_PI 3.1415926535
+#endif
 
 //! @file tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h
 //! Degree-4 anamorphic model with anamorphic lens rotation
@@ -60,9 +64,19 @@ private:
 // therefore we have to prepare the concatenated extenders here.
 		_rot_sqx_sqy_pa.set(_rotation,_squeeze_x,_squeeze_y,_pa);
 		if(_squeeze_x.get_sq() == 0)
-			{ AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-X is 0."); }
+        {
+        // LDPK:
+        // std::cerr << "tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-X is 0." << std::endl;
+        // OBQ:
+        AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0.");
+        }
 		if(_squeeze_y.get_sq() == 0)
-			{ AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0."); }
+        {
+        // LDPK:
+        // std::cerr << "tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0." << std::endl;
+        // OBQ:
+        AiMsgError("tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy::initializeParameters, error: Squeeze-Y is 0.");
+        }
 		_pa_rot.set(_pa,_rotation);
 		_anamorphic.prepare();
 		return true;
@@ -325,11 +339,15 @@ public:
 			b = 1.1;
 			}
 		else
-			{
-			AiMsgError("getParameterRange: i = %i, out of range",i);
-			}
+        {
+            // LDPK:
+			// std::cerr << "getParameterRange: i out of range" << std::endl;
+            // OBQ:
+            AiMsgError("getParameterRange: i = %i, out of range",i);
+        }
 		return true;
 		}
+        
 //! Tested against difference quotients.
 	bool getJacobianMatrix(double x0,double y0,double& m00,double& m01,double& m10,double& m11)
 		{
@@ -346,9 +364,13 @@ public:
 		return true;
 		}
 
-		bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
-		bool initializeParameters2(){return initializeParameters();}
-		bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
+        
+        
+        
+        ///////////// OBQ_ADD ////////////////
+        bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
+        bool initializeParameters2(){return initializeParameters();}
+        bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
 	};
 
 template <class VEC2,class MAT2>

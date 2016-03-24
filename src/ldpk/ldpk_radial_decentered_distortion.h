@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_radial_decentered_distortion_sdv
@@ -163,7 +163,10 @@ namespace ldpk
 			dg[k++] = r2 * (r2 + 2.0 * y2);
 			if(k == size) return;
 // Unreachable
-			AiMsgError("radial_decentered_distortion: n_parameters out of range");
+            // OBQ:
+            AiMsgError("radial_decentered_distortion: n_parameters out of range");
+            // LDPK:
+			// std::cerr << "radial_decentered_distortion: n_parameters out of range" << std::endl;
 			}
 		std::ostream& out(std::ostream& cout) const
 			{
