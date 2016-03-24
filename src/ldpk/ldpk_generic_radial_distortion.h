@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_generic_radial_distortion_sdv
@@ -12,8 +12,6 @@
 #include <ldpk/ldpk_generic_distortion_base.h>
 #include <ldpk/ldpk_power_ct.h>
 #include <iostream>
-#include <string>
-#include <sstream>
 
 namespace ldpk
 	{
@@ -97,11 +95,14 @@ namespace ldpk
 				if(k == size) return;
 				}
 // Unreachable
-			AiMsgError("example_radial_distortion: n_parameters out of range");
+            // OBQ:
+            AiMsgError("example_radial_distortion: n_parameters out of range");
+            // LDPK:
+			// std::cerr << "example_radial_distortion: n_parameters out of range" << std::endl;
 			}
 		std::ostream& out(std::ostream& cout) const
 			{
-			int p = static_cast<int>(cout.precision());
+			int p = cout.precision();
 			cout.precision(5);
 			for(int i = 0;i < N;++i)
 				{

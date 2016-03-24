@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_anamorphic_deg_6_sdv
@@ -192,23 +192,13 @@ public:
 		t0 = t[0] * (bt::h_fb_cm() / (bt::r_fb_cm()));t1 = t[1] * (bt::w_fb_cm() / (bt::r_fb_cm()));
 		return true;
 		}
-
-	///////////// OBQ_ADD ////////////////
-	bool setParameterValue2(const char *identifier,double v)
-	{
-		return setParameterValue(identifier, v);
-	}
-
-	bool initializeParameters2()
-	{
-		return initializeParameters();
-	}
-
-	bool undistort2(double x0,double y0,double &x1,double &y1)
-	{
-		return undistort(x0,y0,x1,y1);
-	}
-
+        
+        
+        
+        ///////////// OBQ_ADD ////////////////
+        bool setParameterValue2(const char *identifier,double v){return setParameterValue(identifier, v);}
+        bool initializeParameters2(){return initializeParameters();}
+        bool undistort2(double x0,double y0,double &x1,double &y1){return undistort(x0,y0,x1,y1);}
 	};
 
 template <class VEC2,class MAT2>

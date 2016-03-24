@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_classic_3de_mixed_distortion_sdv
@@ -10,8 +10,6 @@
 //! @brief Degree-2 anamorphic and degree-4 radial mixed model.
 
 #include <ldpk/ldpk_generic_distortion_base.h>
-#include <string>
-#include <sstream>
 
 namespace ldpk
 	{

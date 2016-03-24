@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_generic_anamorphic_distortion_sdv
@@ -67,8 +67,12 @@ namespace ldpk
 					}
 				}
 			if(k != base_type::get_num_parameters())
-				{
-				AiMsgError("generic_anamorphic_distortion: bad implementation for N = %i. This needs to be fixed.",N);
+                {
+                // OBQ:
+                AiMsgError("generic_anamorphic_distortion: bad implementation for N = %i. This needs to be fixed.",N);
+                // LDPK:
+				// std::cerr << "generic_anamorphic_distortion: bad implementation for N = " << N;
+				// std::cerr << ". This needs to be fixed." << std::endl;
 				}
 			}
 //! Get coefficient as demanded by base class

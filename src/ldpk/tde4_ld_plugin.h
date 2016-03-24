@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 //
@@ -16,7 +16,6 @@
 #pragma once
 #include <cmath>
 #include <iostream>
-#include <ai.h>
 
 #define TDE4_LDP_VERSION "1.0.8"
 
@@ -50,22 +49,28 @@ public:
 	virtual bool getParameterDefaultValue(const char *identifier, double &v) = 0;
 	virtual bool getParameterDefaultValue(const char *identifier, char *v)
 		{
-		//std::cerr << "getParameterDefaultValue(" << identifier << ",char*): unimplemented method." << std::endl;
-		AiMsgError("getParameterDefaultValue(%s,char*): unimplemented method.", identifier);
+        // LDPK:
+		// std::cerr << "getParameterDefaultValue(" << identifier << ",char*): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("getParameterDefaultValue(%s,char*): unimplemented method.", identifier);
 		v[0] = 0;
 		return false;
 		}
 	virtual bool getParameterDefaultValue(const char *identifier, int &v)
 		{
-		//std::cerr << "getParameterDefaultValue(" << identifier << ",int&): unimplemented method." << std::endl;
-		AiMsgError("getParameterDefaultValue(%s,int&): unimplemented method.", identifier);
+        // LDPK:
+		// std::cerr << "getParameterDefaultValue(" << identifier << ",int&): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("getParameterDefaultValue(%s,int&): unimplemented method.", identifier);
 		v = 0;
 		return false;
 		}
 	virtual bool getParameterDefaultValue(const char *identifier, bool &v)
 		{
-		//std::cerr << "getParameterDefaultValue(" << identifier << ",bool&): unimplemented method." << std::endl;
-		AiMsgError("getParameterDefaultValue(%s,bool&): unimplemented method.", identifier);
+        // LDPK:
+		// std::cerr << "getParameterDefaultValue(" << identifier << ",bool&): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("getParameterDefaultValue(%s,bool&): unimplemented method.", identifier);
 		v = false;
 		return false;
 		}
@@ -79,20 +84,26 @@ public:
 	virtual bool setParameterValue(const char *identifier, double v) = 0;
 	virtual bool setParameterValue(const char *identifier, const char *v)
 		{
-		//std::cerr << "setParameterValue(" << identifier << ",const char* " << v << "): unimplemented method." << std::endl;
-		AiMsgError("setParameterValue(%s,const char* \"%s\"): unimplemented method.", identifier,v);
+        // LDPK:
+		// std::cerr << "setParameterValue(" << identifier << ",const char* " << v << "): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("setParameterValue(%s,const char* \"%s\"): unimplemented method.", identifier,v);
 		return false;
 		}
 	virtual bool setParameterValue(const char *identifier, int v)
 		{
-		//std::cerr << "setParameterValue(" << identifier << ",int " << v << "): unimplemented method." << std::endl;
-		AiMsgError("setParameterValue(%s,const char* \"%i\"): unimplemented method.", identifier,v);
+        // LDPK:
+		// std::cerr << "setParameterValue(" << identifier << ",int " << v << "): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("setParameterValue(%s,const char* \"%i\"): unimplemented method.", identifier,v);
 		return false;
 		}
 	virtual bool setParameterValue(const char *identifier, bool v)
 		{
-		AiMsgError("setParameterValue(%s,const char* \"%s\"): unimplemented method.", identifier,(v?"True":"False"));
-		//std::cerr << "setParameterValue(" << identifier << ",bool " << v << "): unimplemented method." << std::endl;
+        // LDPK:
+		// std::cerr << "setParameterValue(" << identifier << ",bool " << v << "): unimplemented method." << std::endl;
+        // OBQ:
+        AiMsgError("setParameterValue(%s,const char* \"%s\"): unimplemented method.", identifier,(v?"True":"False"));
 		return false;
 		}
 	
