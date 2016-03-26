@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy_xy_sdv
@@ -11,6 +11,10 @@
 #include <ldpk/ldpk_rotation_extender.h>
 #include <ldpk/ldpk_squeeze_extender.h>
 #include <ldpk/ldpk_linear_extender.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979
+#endif
 
 //! @file tde4_ldp_anamorphic_deg_4_rotate_squeeze_xy.h
 //! Degree-4 anamorphic model with anamorphic lens rotation

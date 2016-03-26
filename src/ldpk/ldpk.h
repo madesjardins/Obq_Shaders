@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef ldpk_ldpk_sdv
@@ -21,7 +21,7 @@
 //! @mainpage LDPK - The Lens Distortion Plugin Kit
 //!
 //! @section About
-//! The current version of LDPK is 1.7
+//! The current version of LDPK is 1.8.1
 //! The <a href="../../tex/ldpk.pdf">PDF-document</a> contains some information on the underlying mathematics
 //! of the built-in lens distortion models.
 //!
@@ -39,10 +39,11 @@
 //! - <code>tde4_plugin_info.osx</code>
 //!
 //! @section Python
-//! As of version 1.6 of the LDPK there are python bindings for the five built-in lens distortion models:
+//! As of version 1.6 of the LDPK there are python bindings for the five built-in lens distortion models (OSX, Linux):
 //! - <code>$LDPK/compiled/ldpk/&lt;arch&gt;/python/lens_distortion_plugins.so</code>
 //!
-//! In <code style="color:#a00">$LDPK/source</code> there is a source <code>file tde4_ldp.module.C</code> for building python bindings.
+//! In <code style="color:#a00">$LDPK/source</code> there is a source
+//! <code>tde4_lens_distortion_plugins.module.C</code> for building python bindings.
 //! If the pre-compiled version does not meet your requirements you can compile them yourself.
 //! In order to do this please run the appropriate script make_python_bindings.&lt;arch&gt;.csh in <code style="color:#a00">$LDPK/script</code>.
 //! The make-script will create a file named <code>$LDPK/python/&lt;arch&gt;/lens_distortion_plugins.so</code>.
@@ -67,7 +68,7 @@
 //! - <code>$LDPK/compiled/nuke/&lt;arch&gt;/Nuke&lt;X.Y&gt;/LD_3DE_Classic_LD_Model.[so,dylib,dll]</code>
 //!
 //! They are fairly easy to install, you simply copy them to your Nuke plugin directory.
-//! Currently, Nuke versions 6.2, 6.3, 7.0 and 8.0 on Linux and OSX are supported (Windows: 6.3, 7.0, 8.0).
+//! Currently, Nuke versions 6.2, 6.3, 7.0, 8.0 and 9.0 on Linux and OSX are supported (Windows: 6.3, 7.0, 8.0, 9.0).
 //! If you need to compile the Nuke plugins yourself, please have a look at the scripts
 //! <code>make_nuke_nodes.&lt;arch&gt;.csh</code> in <code style="color:#a00">$LDPK/script</code>.
 //! Please insert the paths to your Nuke installation directory and consult The Foundry's documentation

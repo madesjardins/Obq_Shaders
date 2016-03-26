@@ -1,6 +1,6 @@
 // This file is part of the Lens Distortion Plugin Kit
 // Software is provided "as is" - no warranties implied.
-// (C) 2011,2012,2013 - Science-D-Visions. Current version: 1.7
+// (C) 2011,2012,2013,2014 - Science-D-Visions. Current version: 1.8.1
 
 
 #ifndef tde4_ldp_radial_decentered_deg_4_cylindric_sdv
