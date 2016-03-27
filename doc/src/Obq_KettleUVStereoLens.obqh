@@ -48,8 +48,8 @@
 %tableItem :: 120 :: Center :: Mono view centered on UV of origin mesh and in direction of same UV of target mesh.
 %tableItem :: 120 :: Left :: Left mono view of stereo pair.
 %tableItem :: 120 :: Right :: Right mono view of stereo pair.
-%tableItem :: 120 :: Stereo &lt;Left-Right&gt; :: Side-by-side stereo view.
-%tableItem :: 120 :: Stereo &lt;Down-Up&gt; :: Stacked stereo view.
+%tableItem :: 120 :: Stereo &lt;Side-by-Side&gt; :: Side-by-side stereo view.
+%tableItem :: 120 :: Stereo &lt;over-under&gt; :: Stacked stereo view.
 %tableItem :: 120 :: Bake :: View mode used for baking/render mapping textures, centered on UV of origin mesh but offset of an epsilon in the normal direction and looking in the inverted normal direction.
 %tableItem :: 120 :: Normal :: Like the <em>Bake</em> mode, but looking in the normal direction.
 %tableEnd

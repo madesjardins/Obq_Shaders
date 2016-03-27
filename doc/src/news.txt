@@ -1,3 +1,6 @@
+[2016-03-27]
+Obq_StereoLens and Obq_KettleUVStereoLens "View Mode" parameters do not conflict with Maya parameter anymore.
+
 [2015-11-07]
 Versions have chaned from Softimage vXXX to Arnold aW.X.Y.Z.
 INT parameters representing drop down menu have been changed to ENUM, this will break previous versions.

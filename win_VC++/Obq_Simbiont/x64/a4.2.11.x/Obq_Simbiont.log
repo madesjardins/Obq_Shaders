@@ -1,0 +1,25 @@
+﻿Build started 27/03/2016 10:04:23 AM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "x64\a4.2.11.x\Obq_Simbiont.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-4.2.11.0-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SIMBIONT_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\a4.2.11.x\\" /Fd"x64\a4.2.11.x\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Simbiont.cpp
+         Obq_Simbiont.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"F:\Arnold\Arnold-4.2.11.0-windows\lib" /LIBPATH:..\..\lib ai.lib dte_2600_64.lib /MANIFEST /ManifestFile:"x64\a4.2.11.x\Obq_Simbiont__a4_2_11_0.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"x64\a4.2.11.x\Obq_Simbiont__a4_2_11_0.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.lib" /MACHINE:X64 /DLL x64\a4.2.11.x\Obq_Simbiont.obj
+            Creating library ..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.lib and object ..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.exp
+         Generating code
+         Finished generating code
+         Obq_Simbiont.vcxproj -> F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.dll
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\a4_2_11_x\Obq_Simbiont__a4_2_11_0.dll;#2" /manifest x64\a4.2.11.x\Obq_Simbiont__a4_2_11_0.dll.intermediate.manifest
+       PostBuildEvent:
+         del /F /Q x64\a4.2.11.x\*.* ..\..\bin\a4_2_11_x\*.lib ..\..\bin\a4_2_11_x\*.exp
+         :VCEnd
+         F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\x64\a4.2.11.x\Obq_Simbiont.log
+         The process cannot access the file because it is being used by another process.
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.87
