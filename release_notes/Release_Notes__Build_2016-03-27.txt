@@ -6,6 +6,7 @@ a4.2.13.3 - win,linux,osx - SITOA 3.13 & MTOA 1.2.7.2
 
 FIXES:
 	+ Obq_StereoLens and Obq_KettleUVStereoLens "View Mode" parameters do not conflict with Maya parameter anymore.
+	+ 3DE Model Names do not conflict anymore. (LDPK 1.8.1)
 
 ADDITIONS:
 	

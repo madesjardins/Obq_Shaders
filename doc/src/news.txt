@@ -1,5 +1,6 @@
 [2016-03-27]
 Obq_StereoLens and Obq_KettleUVStereoLens "View Mode" parameters do not conflict with Maya parameter anymore.
+3DE distortion models do not conflict anymore. (LDPK 1.8.1)
 
 [2015-11-07]
 Versions have chaned from Softimage vXXX to Arnold aW.X.Y.Z.
