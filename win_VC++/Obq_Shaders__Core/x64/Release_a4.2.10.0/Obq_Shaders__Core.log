@@ -1,4 +1,4 @@
-﻿Build started 06/11/2015 11:07:46 PM.
+﻿Build started 24/03/2016 6:16:40 AM.
      1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\Release_a4.2.10.0\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -134,4 +134,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:24.67
+Time Elapsed 00:00:24.92

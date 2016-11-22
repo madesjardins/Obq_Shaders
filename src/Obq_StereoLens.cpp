@@ -47,7 +47,7 @@ static const char* ObqViewModeNames[] =
 //
 node_parameters
 {
-	AiParameterENUM("viewMode" , THISCAMERA, ObqViewModeNames);
+	AiParameterENUM("viewMode1" , THISCAMERA, ObqViewModeNames);
 	AiParameterSTR("leftCamera" , "Camera_L");
 	AiParameterSTR("rightCamera" , "Camera_R");
 	AiParameterFLT("filmbackX" , 0.0f);
@@ -119,7 +119,7 @@ node_initialize
 	float w = float(AiNodeGetInt(options,"xres"));
 	float h = float(AiNodeGetInt(options,"yres"));
 
-	data->viewMode = AiNodeGetInt(node, "viewMode");
+	data->viewMode = AiNodeGetInt(node, "viewMode1");
 
 	switch(data->viewMode)
 	{
@@ -272,7 +272,7 @@ node_initialize
 		AiMsgInfo("%f %f %f %f", data->center2leftCameraMatrix[1][0], data->center2leftCameraMatrix[1][1], data->center2leftCameraMatrix[1][2], data->center2leftCameraMatrix[1][3]);
 		AiMsgInfo("%f %f %f %f", data->center2leftCameraMatrix[2][0], data->center2leftCameraMatrix[2][1], data->center2leftCameraMatrix[2][2], data->center2leftCameraMatrix[2][3]);
 		AiMsgInfo("%f %f %f %f", data->center2leftCameraMatrix[3][0], data->center2leftCameraMatrix[3][1], data->center2leftCameraMatrix[3][2], data->center2leftCameraMatrix[3][3]);
-		AiMsgInfo("CenterToLeftCameraMatrix :");
+		AiMsgInfo("CenterToRightCameraMatrix :");
 		AiMsgInfo("%f %f %f %f", data->center2rightCameraMatrix[0][0], data->center2rightCameraMatrix[0][1], data->center2rightCameraMatrix[0][2], data->center2rightCameraMatrix[0][3]);
 		AiMsgInfo("%f %f %f %f", data->center2rightCameraMatrix[1][0], data->center2rightCameraMatrix[1][1], data->center2rightCameraMatrix[1][2], data->center2rightCameraMatrix[1][3]);
 		AiMsgInfo("%f %f %f %f", data->center2rightCameraMatrix[2][0], data->center2rightCameraMatrix[2][1], data->center2rightCameraMatrix[2][2], data->center2rightCameraMatrix[2][3]);

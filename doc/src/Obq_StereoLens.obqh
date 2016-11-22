@@ -21,14 +21,14 @@
 
 %section :: View Mode
 
-%param :: View Mode <em>[viewMode]</em>
+%param :: View Mode <em>[viewMode1]</em>
 %pp :: This is the type of frame that will be rendered :
 %tableStart
 %tableItem :: 160 :: Center Camera :: because the lens shader is applied to the center camera, this is the view as is.
 %tableItem :: 160 :: Left Camera :: renders what the left camera views.
 %tableItem :: 160 :: Right Camera :: renders what the right camera views.
-%tableItem :: 160 :: Stereo Camera &lt;left-right&gt; :: renders a single frame of the stereo camera pair, the left camera subframe to the left side and the right camera subframe to the right.
-%tableItem :: 160 :: Stereo Camera &lt;down-up&gt; :: like the previous option, but the left camera subframe will be at the bottom and the right camera subframe will be on top. This is the prefered rendering mode for stereo image pair.
+%tableItem :: 160 :: Stereo Camera &lt;Side-by-Side&gt; :: renders a single frame of the stereo camera pair, the left camera subframe to the left side and the right camera subframe to the right.
+%tableItem :: 160 :: Stereo Camera &lt;over-under&gt; :: like the previous option, but the left camera subframe will be at the bottom and the right camera subframe will be on top. This is the prefered rendering mode for stereo image pair.
 %tableEnd
 %note :: Whenever you use a Stereo Camera &lt;...&gt; view mode, the output resolution in the proper dimension will be doubled.
 

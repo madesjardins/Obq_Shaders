@@ -1,9 +1,10 @@
-// requires maya "2014";
+// requires maya "2016";
 startAttrPreset( "Obq_Fresnel" );
 blendAttrStr "iorFilename" ""; 
 blendAttrStr "lambdasStr" ""; 
 blendAttrStr "etasStr" ""; 
 blendAttrStr "ksStr" ""; 
+blendAttr "frozen" 0; 
 blendAttr "normalCameraX" 0; 
 blendAttr "normalCameraY" 0; 
 blendAttr "normalCameraZ" 0; 

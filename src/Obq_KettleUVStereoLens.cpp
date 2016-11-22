@@ -135,7 +135,7 @@ node_parameters
 
 	AiParameterINT("grid_size", 16);
 
-	AiParameterENUM("view_mode", CENTER, ViewModeNames);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
+	AiParameterENUM("view_mode2", CENTER, ViewModeNames);				// Center, Left, Right, Stereo <left-right>, Stereo <down-up>, Bake, Normals
 	AiParameterENUM("stereo_type", CONVERGED,StereoTypeNames);		// Parallel (align both on middle vector), Converged (to a specific distance )
 	//AiParameterENUM("interaxial_mode", BLUE, InteraxialModeNames);			// NOT USED BLUE is default
 	AiParameterFLT("interaxial_epsilon", 0.002f);		// value used to search
@@ -296,7 +296,7 @@ node_initialize
 
 	std::string lastPartName(plugin==SITOA?camNodeName.substr(sitoaIndex):"");
 
-	data->viewMode = AiNodeGetInt(node,"view_mode");
+	data->viewMode = AiNodeGetInt(node,"view_mode2");
 
 	AtNode* origin_polymesh_node = AiNodeLookUpByName(std::string(AiNodeGetStr(node, "origin_polymesh")).append(lastPartName).c_str());
 	data->origin_camera_node = AiNodeLookUpByName(std::string(AiNodeGetStr(node, "origin_camera")).append(lastPartName).c_str());
@@ -381,7 +381,7 @@ node_initialize
 	float h = static_cast<float>(AiNodeGetInt(options,"yres"));
 
 	
-	data->interaxialMode = AiNodeGetInt(node,"interaxial_mode");
+	//data->interaxialMode = AiNodeGetInt(node,"interaxial_mode");
 	data->interaxialEpsilon = AiNodeGetFlt(node,"interaxial_epsilon");
 	
 	data->interaxialSeparation = ( (data->viewMode != CENTER &&  data->viewMode < BAKE) ? AiNodeGetFlt(node,"interaxial_separation"):0.0f);

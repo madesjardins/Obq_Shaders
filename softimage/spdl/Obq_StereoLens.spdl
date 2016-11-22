@@ -11,7 +11,7 @@ PropertySet "Obq_StereoLens"
 		flags = 1;
 	}
 
-	Parameter "viewMode" input
+	Parameter "viewMode1" input
 	{
 		GUID = "{03ED9264-541C-48AD-90CA-E0FB1DE425DF}";
 		Type = string;
@@ -265,7 +265,7 @@ MetaShader "Obq_StereoLens_params_meta"
 
 Defaults
 {
-	viewMode
+	viewMode1
 	{
 		Name = "View Mode";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
@@ -435,7 +435,7 @@ Layout "Default"
 	{
 		Group "View Mode"
 		{
-			viewMode;
+			viewMode1;
 		}
 		Group "Cameras"
 		{
@@ -598,7 +598,7 @@ Sub updatePassResolution_OnChanged()
 End Sub
 
 Sub change_targetResolution()
-	If PPG.viewMode.Value = "Stereo Camera <left-right>" then
+	If PPG.viewMode1.Value = "Stereo Camera <Side-by-Side>" then
 		If PPG.useOverscan.Value = true then
 			bleed = Floor( Ceil(PPG.filterSize)/2)
 			PPG.renderResolutionX.Value = 2*(PPG.targetResolutionX + 2*bleed)
@@ -615,7 +615,7 @@ Sub change_targetResolution()
 			rightCropInfo = "Crop { box {" & PPG.renderResolutionX - PPG.targetResolutionX & " 0 " & PPG.renderResolutionX & " " & PPG.targetResolutionY &"} reformat true crop false name Right selected false xpos 50 ypos 40}"
 			PPG.nukeCropInfo = "Reformat { format """ & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 0 0 " & PPG.renderResolutionX.Value & " " & PPG.renderResolutionY.Value & " 1 ObqStereoLens"& PPG.renderResolutionX.Value &"x"& PPG.renderResolutionY.Value &"PAR1"" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}" & vbCrLf & "set ObqNukeCropInfo [stack 0]" & vbCrLf & leftCropInfo& vbCrLf & "push $ObqNukeCropInfo" & vbCrLf & rightCropInfo
 		End If
-	ElseIf PPG.viewMode.Value = "Stereo Camera <down-up>" then
+	ElseIf PPG.viewMode1.Value = "Stereo Camera <Over-Under>" then
 		If PPG.useOverscan.Value = true then
 			bleed = Floor( Ceil(PPG.filterSize.Value)/2)
 			PPG.renderResolutionX.Value = PPG.targetResolutionX 
@@ -653,9 +653,9 @@ Sub targetResolutionY_OnChanged()
 	change_targetResolution()
 End Sub
 
-Sub viewMode_OnChanged()
+Sub viewMode1_OnChanged()
 	change_targetResolution()
-	If PPG.viewMode = "Stereo Camera <left-right>" Or PPG.viewMode = "Stereo Camera <down-up>" Then
+	If PPG.viewMode1 = "Stereo Camera <Side-by-Side>" Or PPG.viewMode1 = "Stereo Camera <Over-Under>" Then
 		PPG.nukeCropInfo.Show(True)
 		PPG.useOverscan.Readonly = False
 	Else
@@ -750,7 +750,7 @@ Sub OnInit
 	leftCamera_onChanged()
 	rightCamera_OnChanged()
 	useOverscan_OnChanged()
-	viewMode_OnChanged()
+	viewMode1_OnChanged()
 	PPG.cameraStatus.ReadOnly = True
 	PPG.renderResolutionX.ReadOnly = True
 	PPG.renderResolutionY.ReadOnly = True

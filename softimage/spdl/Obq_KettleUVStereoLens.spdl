@@ -66,7 +66,7 @@ PropertySet "Obq_KettleUVStereoLens"
 		Texturable = Off;
 		Animatable = Off;
 	}
-	Parameter "view_mode" input
+	Parameter "view_mode2" input
 	{
 		GUID = "{F51D6DB2-CFE4-406C-B4F6-8180E30E4263}";
 		Type = string;
@@ -406,7 +406,7 @@ Defaults
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
 		UIRange = 1 to 128;
 	}
-	view_mode
+	view_mode2
 	{
 		Name = "View Mode";
 		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
@@ -416,7 +416,7 @@ Defaults
 			"Center" = "Center",
 			"Left" = "Left",
 			"Right" = "Right",
-			"Stereo <Side-By-Side>" = "Stereo <Side-By-Side>",
+			"Stereo <Side-by-Side>" = "Stereo <Side-by-Side>",
 			"Stereo <Over-Under>" = "Stereo <Over-Under>",
 			"Bake" = "Bake",
 			"Normal" = "Normal"
@@ -632,7 +632,7 @@ Layout "Default"
 	{
 		Group "Rendered View"
 		{
-			view_mode;
+			view_mode2;
 			use_default_uv_set;
 		}
 		Group "Polymeshes"
@@ -809,7 +809,7 @@ def use_polygonal_aperture_OnChanged():
 	use_dof_OnChanged()
 
 def use_dof_OnChanged():
-	if PPG.use_dof.Value and PPG.view_mode.Value != "Bake":
+	if PPG.use_dof.Value and PPG.view_mode2.Value != "Bake":
 		PPG.aperture_size_.ReadOnly = False
 		PPG.aperture_aspect_ratio_.ReadOnly = False
 		PPG.use_polygonal_aperture.ReadOnly = False
@@ -891,7 +891,7 @@ def change_targetResolution():
 		tResolutionX = PPG.target_resolution_x.Value*abs(PPG.regionU1.Value - PPG.regionU0.Value)
 		tResolutionY = PPG.target_resolution_y.Value*abs(PPG.regionV1.Value - PPG.regionV0.Value)
 	
-	if PPG.view_mode.Value == "Stereo <Left-Right>":
+	if PPG.view_mode2.Value == "Stereo <Left-Right>":
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = 2*(tResolutionX + 2*bleed)
 		PPG.render_resolution_y.Value = tResolutionY
@@ -899,7 +899,7 @@ def change_targetResolution():
 		leftCropInfo = "Crop { box {" + str(bleed) + " " + str(0) + " " + str(tResolutionX + bleed) + " " + str(tResolutionY) +"} reformat true crop false name Left selected false xpos -50 ypos 40}"
 		rightCropInfo = "Crop { box {" + str(PPG.render_resolution_x.Value - tResolutionX - bleed) + " " + str(0) + " " + str(PPG.render_resolution_x.Value - bleed) + " " + str(tResolutionY) +"} reformat true crop false name Right selected false xpos 50 ypos 40}"
 		PPG.nuke_crop_info.Value = 'Reformat { format "' + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 0 0 " + str(PPG.render_resolution_x.Value) + " " + str(PPG.render_resolution_y.Value) + " 1 ObqStereoLens" + str(PPG.render_resolution_x.Value) +"x"+ str(PPG.render_resolution_y.Value) +'PAR1" resize distort center false filter Impulse name ReformatPAR1 selected false xpos 0 ypos 0}\nset ObqNukeCropInfo [stack 0]\n'+ leftCropInfo + "\npush $ObqNukeCropInfo\n" + rightCropInfo
-	elif PPG.view_mode.Value == "Stereo <Down-Up>" :
+	elif PPG.view_mode2.Value == "Stereo <Down-Up>" :
 		bleed = int(math.floor( math.ceil(PPG.filter_size.Value)/2))
 		PPG.render_resolution_x.Value = tResolutionX 
 		PPG.render_resolution_y.Value = 2*(tResolutionY + 2*bleed)
@@ -954,14 +954,14 @@ def target_resolution_x_OnChanged():
 def target_resolution_y_OnChanged():
 	change_targetResolution()
 
-def view_mode_OnChanged():
+def view_mode2_OnChanged():
 	change_targetResolution()
-	if PPG.view_mode.Value == "Stereo <Left-Right>" or PPG.view_mode.Value == "Stereo <Down-Up>":
+	if PPG.view_mode2.Value == "Stereo <Left-Right>" or PPG.view_mode2.Value == "Stereo <Down-Up>":
 		PPG.nuke_crop_info.Show(True)
 	else:
 		PPG.nuke_crop_info.Show(False)
 	checkPolymeshes()
-	if PPG.view_mode.Value == "Bake":
+	if PPG.view_mode2.Value == "Bake":
 		PPG.use_dof.ReadOnly = True
 	else:
 		PPG.use_dof.ReadOnly = False
@@ -987,7 +987,7 @@ def checkPolymeshes():
 
 	originOK = False
 	targetOK = False
-	checkTarget = (PPG.view_mode.Value != "Bake" and PPG.view_mode.Value != "Normal")
+	checkTarget = (PPG.view_mode2.Value != "Bake" and PPG.view_mode2.Value != "Normal")
 	
 	if len(PPG.origin_polymesh.Value) > 0 and len(PPG.origin_camera.Value) > 0 and ((len(PPG.target_polymesh.Value) > 0 and len(PPG.target_camera.Value) > 0) or not checkTarget):
 		oOriginO = Application.Dictionary.GetObject(PPG.origin_polymesh.Value,False)
@@ -1079,7 +1079,7 @@ def pickPolymeshes_OnClicked():
 	
 	if oPicked(0) > 0 and not originO is None and originO.Type == "polymsh":
 		doOrigin = True
-		if PPG.view_mode.Value != "Bake" and PPG.view_mode.Value != "Normal":
+		if PPG.view_mode2.Value != "Bake" and PPG.view_mode2.Value != "Normal":
 			oPicked = Application.PickElement( c.siPolyMeshFilter, "Select Target Polymesh", "Select Target Polymesh" )
 			targetO = oPicked(2)
 			
@@ -1150,7 +1150,7 @@ def OnInit():
 	PPG.target_camera.ReadOnly = True
 	checkPolymeshes()
 	Application.SetExpr(str(PPG.filter_size.Parent.FullName) + ".filter_size", "Passes.Arnold_Render_Options.output_filter_width")
-	view_mode_OnChanged()
+	view_mode2_OnChanged()
 	#stereo_type_OnChanged()
 	zero_parallax_mode_OnChanged()
 	PPG.render_resolution_x.ReadOnly = True

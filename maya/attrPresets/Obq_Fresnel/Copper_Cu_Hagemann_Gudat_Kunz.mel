@@ -1,9 +1,10 @@
-// requires maya "2014";
+// requires maya "2016";
 startAttrPreset( "Obq_Fresnel" );
 blendAttrStr "iorFilename" ""; 
 blendAttrStr "lambdasStr" "364.647003 387.437988 413.266998 442.78598 476.846008 516.583008 539.044006 563.545044 590.381042 619.900024 652.526001 670.162048 688.778015 708.45697 729.294006 826.53302"; 
 blendAttrStr "etasStr" "1.27 1.18 1.18 1.17 1.15 1.12 1.04 0.826 0.468 0.272 0.214 0.215 0.213 0.214 0.223 0.26"; 
 blendAttrStr "ksStr" "1.95 2.21 2.21 2.36 2.5 2.6 2.59 2.6 2.81 3.24 3.67 3.86 4.05 4.24 4.43 5.26"; 
+blendAttr "frozen" 0; 
 blendAttr "normalCameraX" 0; 
 blendAttr "normalCameraY" 0; 
 blendAttr "normalCameraZ" 0; 

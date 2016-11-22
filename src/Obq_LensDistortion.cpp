@@ -44,12 +44,12 @@ enum Obq_LensDistortionParams { p_useDof, p_focusDistance, p_apertureSize, p_ape
 static const char* ObqDistortionModelNames[] = 
 {
 	"Nuke",
-    "3DE Classic LD Model",
-    "3DE4 Anamorphic, Degree 6",
-    "3DE4 Radial - Fisheye, Degree 8",
-    "(DEPRICATED) 3DE4 Radial - Standard, Degree 4",
-	"3DE4 Radial - Decentered Cylindric, Degree 4",
-	"3DE4 Anamorphic Rotate Squeeze, Degree 4",
+    "(3DE-1) Classic LD Model",
+    "(3DE-2) Anamorphic, Degree 6",
+    "(3DE-3) Radial - Fisheye, Degree 8",
+    "(3DE-4) Radial - Standard, Degree 4 (DEPRICATED)",
+	"(3DE-5) Radial - Decentered Cylindric, Degree 4",
+	"(3DE-6) Anamorphic Rotate Squeeze, Degree 4",
 	"PFBarrel",
 	"None",
     NULL
