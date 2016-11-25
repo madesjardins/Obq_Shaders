@@ -1,0 +1,23 @@
+a4.2.0.6  - win,linux,osx - SITOA 3.1  & MTOA 1.1.0.4
+a4.2.9.0  - win,linux,osx - SITOA 3.9  & MTOA 1.2.4.0
+a4.2.13.3 - win,linux,osx - SITOA 3.13 & MTOA 1.3.1
+a4.2.15.1 - win,linux,osx - SITOA 3.15 & MTOA 1.4.0
+a4.2.16.0 - win,linux,osx - SITOA 3.16 & MTOA 1.4.1
+
+FIXES:
+	+ Illuminant D60 XYZ values.
+
+ADDITIONS:
+	
+CHANGES:
+	
+NEW SHADERS:
+	
+REMOVED SHADERS:
+
+TODO :
+	+ TO FIX : Missing scripting/logic for templates in Maya.
+	+ TO FIX : Difference between Obq_Hair in Windows and Linux.
+	+ Code Cleanup and optimisation.
+	+ Obq_MeasuredMaterial : Importance sampling.
+	
