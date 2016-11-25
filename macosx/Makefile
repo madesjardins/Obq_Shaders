@@ -1,11 +1,11 @@
 EXT = dylib
-OBQVERSION = a4_2_13_3
-OBQVERSIONBIN = a4_2_13_x
+OBQVERSION = a4_2_16_0
+OBQVERSIONBIN = a4_2_16_x
 TARGETNAME = Obq_Shaders__Core__$(OBQVERSION)
 SRCPATH = ../src
 BINPATH = ../bin/$(OBQVERSIONBIN)
-GLMPATH = /Users/madesjardins/Softwares/glm/
-ARNOLD = /Users/madesjardins/Arnold//Arnold-4.2.13.3-darwin
+GLMPATH = /Users/madesjardins/Softwares/glm
+ARNOLD = /Users/madesjardins/Arnold/Arnold-4.2.16.0-darwin
 INCLUDES = -I$(ARNOLD)/include -I. -I$(SRCPATH) -I$(GLMPATH) -I$(SRCPATH)/dte -I$(SRCPATH)/ldpk 
 LINKINCLUDES = -L$(ARNOLD)/bin
 CPP = g++
