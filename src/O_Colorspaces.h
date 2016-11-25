@@ -63,7 +63,7 @@ void illuminantID2XYZ(OIlluminantID ilmnt, float &X, float &Y, float &Z)
 	case ILMNT_D60:
 		X = 0.95264f;
 		Y = 1.00000f;
-		X = 1.00882f;
+		Z = 1.00882f;
 		break;
 	case ILMNT_D65:
 		X = 0.95047f;
