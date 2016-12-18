@@ -1,4 +1,4 @@
-# 2014-11-30 02.06 pm
+# 2016-12-18 5.58 AM
 
 [node Obq_Simbiont]
   c4d.classification            STRING "generic"
@@ -8,10 +8,12 @@
   maya.id                       INT     0x0011CD51
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Simbiont"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Simbiont"
 
   [attr filename]
     desc                        STRING "Filename"

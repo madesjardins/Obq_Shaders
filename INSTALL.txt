@@ -34,6 +34,10 @@ HOW TO INSTALL
 	+ copy the .so    in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
 	+ copy the .dylib in "bin" into "/Applications/solidangle/mtoa/<Maya Version>/shaders",[OSX]
   
+  MAXtoA Beta (not yet fully integrated)
+  + copy the .dll   in "bin" into "C:\Program Files\Autodesk\3ds Max <MAX Version>\Plugins",[Windows]
+  + copy the content of the "3dsmax\metadata" folder into "C:\Program Files\Autodesk\3ds Max <MAX Version>\Plugins\en-US",[Windows]
+  
   C4DtoA (not yet fully integrated)
 	+ copy the content of the "cinema4d\metadata" folder into "C:\Program Files\MAXON\CINEMA 4D <Version>\plugins\C4DtoA\shaders",[Windows]
 	+ . . . . . . . . . . . . . . . . . . . . . . . . . . "/Application/MAXON/CINEMA 4D <Version>/plugins/C4DtoA/shaders",[OSX]
