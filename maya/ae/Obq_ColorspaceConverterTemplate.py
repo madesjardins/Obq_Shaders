@@ -1,4 +1,4 @@
-# 2014-11-30 12.54 pm
+# 2016-12-18 5.46 AM
 # Todo:
 # Implement the ColorspaceIn and Colorspace Out UI elements
 
@@ -45,7 +45,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 def Obq_ColorspaceConverterHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_ColorspaceConverter'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ColorspaceConverter.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_ColorspaceConverter'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
 

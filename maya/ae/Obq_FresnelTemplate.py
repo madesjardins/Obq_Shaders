@@ -1,4 +1,4 @@
-# 2014-12-02 02.44 am
+# 2016-12-18 5.46 AM
 # Note: Presets have been done as Maya stock attrPresets
 #       ior4standard and iorExpression are not yet implemented
 
@@ -12,7 +12,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 def Obq_FresnelHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_Fresnel'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Fresnel'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
 
