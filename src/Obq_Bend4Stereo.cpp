@@ -56,6 +56,8 @@ typedef struct
 	AtMatrix right2centerCameraMatrix;
 	AtMatrix left2rightCameraMatrix;
 	AtMatrix right2leftCameraMatrix;
+	AtMatrix iLeftCameraMatrix;
+	AtMatrix iRightCameraMatrix;
 }
 ShaderData;
 
@@ -91,7 +93,7 @@ node_update
 		lastPindex-=sitoaIndex;
 
 	// Get all 3 cameras and all 3 matrices
-	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix;
+	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix,right2leftCameraMatrix2;
 	AtNode* leftCamera = NULL, *centerCamera=NULL, *rightCamera = NULL;
 	std::string nameEnding(plugin==SITOA?camNodeName.substr(sitoaIndex,lastPindex).c_str():"");
 	
@@ -121,14 +123,14 @@ node_update
 		////////////////////////////////////////////
 		// calculate leftToCenter and rightToCenter
 		////////////////////////////////////////////
-		AtMatrix iLeftCameraMatrix, iRightCameraMatrix;
-		AiM4Invert(leftCameraMatrix, iLeftCameraMatrix);
-		AiM4Invert(rightCameraMatrix, iRightCameraMatrix);
+		//AtMatrix iLeftCameraMatrix, iRightCameraMatrix;
+		AiM4Invert(leftCameraMatrix, data->iLeftCameraMatrix);
+		AiM4Invert(rightCameraMatrix, data->iRightCameraMatrix);
 
-		AiM4Mult(data->left2centerCameraMatrix, centerCameraMatrix,iLeftCameraMatrix);
-		AiM4Mult(data->right2centerCameraMatrix, centerCameraMatrix, iRightCameraMatrix);
-		AiM4Mult(data->left2rightCameraMatrix, rightCameraMatrix,iLeftCameraMatrix);
-		AiM4Mult(data->right2leftCameraMatrix, leftCameraMatrix, iRightCameraMatrix);
+		AiM4Mult(data->left2centerCameraMatrix, data->iLeftCameraMatrix, centerCameraMatrix);
+		AiM4Mult(data->right2centerCameraMatrix, data->iRightCameraMatrix, centerCameraMatrix);
+		AiM4Mult(data->left2rightCameraMatrix, data->iLeftCameraMatrix, rightCameraMatrix);
+		AiM4Mult(data->right2leftCameraMatrix, data->iRightCameraMatrix, leftCameraMatrix);
 
 		data->leftCameraPos.x = leftCameraMatrix[3][0];
 		data->leftCameraPos.y = leftCameraMatrix[3][1];
@@ -173,7 +175,7 @@ shader_evaluate
 				AiM4PointByMatrixMult(&newOrigin,data->right2centerCameraMatrix,&sg->Ro);
 			break;
 		case BEND_LEFT : 
-				AiM4PointByMatrixMult(&newOrigin,data->right2leftCameraMatrix,&sg->Ro);
+			AiM4PointByMatrixMult(&newOrigin,data->right2leftCameraMatrix,&sg->Ro);
 			break;
 		case BEND_RIGHT:
 			AiM4PointByMatrixMult(&newOrigin,data->left2rightCameraMatrix,&sg->Ro);
