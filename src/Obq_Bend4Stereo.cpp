@@ -56,8 +56,6 @@ typedef struct
 	AtMatrix right2centerCameraMatrix;
 	AtMatrix left2rightCameraMatrix;
 	AtMatrix right2leftCameraMatrix;
-	AtMatrix iLeftCameraMatrix;
-	AtMatrix iRightCameraMatrix;
 }
 ShaderData;
 
@@ -93,7 +91,7 @@ node_update
 		lastPindex-=sitoaIndex;
 
 	// Get all 3 cameras and all 3 matrices
-	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix,right2leftCameraMatrix2;
+	AtMatrix centerCameraMatrix,leftCameraMatrix,rightCameraMatrix;
 	AtNode* leftCamera = NULL, *centerCamera=NULL, *rightCamera = NULL;
 	std::string nameEnding(plugin==SITOA?camNodeName.substr(sitoaIndex,lastPindex).c_str():"");
 	
@@ -123,14 +121,14 @@ node_update
 		////////////////////////////////////////////
 		// calculate leftToCenter and rightToCenter
 		////////////////////////////////////////////
-		//AtMatrix iLeftCameraMatrix, iRightCameraMatrix;
-		AiM4Invert(leftCameraMatrix, data->iLeftCameraMatrix);
-		AiM4Invert(rightCameraMatrix, data->iRightCameraMatrix);
+		AtMatrix iLeftCameraMatrix, iRightCameraMatrix;
+		AiM4Invert(leftCameraMatrix, iLeftCameraMatrix);
+		AiM4Invert(rightCameraMatrix, iRightCameraMatrix);
 
-		AiM4Mult(data->left2centerCameraMatrix, data->iLeftCameraMatrix, centerCameraMatrix);
-		AiM4Mult(data->right2centerCameraMatrix, data->iRightCameraMatrix, centerCameraMatrix);
-		AiM4Mult(data->left2rightCameraMatrix, data->iLeftCameraMatrix, rightCameraMatrix);
-		AiM4Mult(data->right2leftCameraMatrix, data->iRightCameraMatrix, leftCameraMatrix);
+		AiM4Mult(data->left2centerCameraMatrix, iLeftCameraMatrix, centerCameraMatrix);
+		AiM4Mult(data->right2centerCameraMatrix, iRightCameraMatrix, centerCameraMatrix);
+		AiM4Mult(data->left2rightCameraMatrix, iLeftCameraMatrix, rightCameraMatrix);
+		AiM4Mult(data->right2leftCameraMatrix, iRightCameraMatrix, leftCameraMatrix);
 
 		data->leftCameraPos.x = leftCameraMatrix[3][0];
 		data->leftCameraPos.y = leftCameraMatrix[3][1];
