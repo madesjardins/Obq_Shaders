@@ -1,4 +1,4 @@
-# 2014-11-30 11.50 pm
+# 2016-12-18 5.46 AM
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -11,7 +11,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 def Obq_TransformShadingPointHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_TransformShadingPoint'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformShadingPoint.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_TransformShadingPoint'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
 

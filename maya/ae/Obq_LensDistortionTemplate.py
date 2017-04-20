@@ -1,4 +1,4 @@
-# 2015-04-25 10.57 am
+# 2016-12-18 5.46 AM
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -31,7 +31,7 @@ import mtoa.ui.ae.templates as templates
 def Obq_LensDistortionHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_LensDistortion'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_LensDistortion'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
  

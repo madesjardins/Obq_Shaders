@@ -1,4 +1,4 @@
-# 2014-09-11 01.00 pm
+# 2016-12-18 5.46 AM
 
 import pymel.core as pm
 import maya.cmds as cmds
@@ -10,7 +10,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 def Obq_LightSaturationFilterHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_LightSaturationFilter'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LightSaturationFilter.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_LightSaturationFilter'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
 

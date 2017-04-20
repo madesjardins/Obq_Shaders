@@ -1,5 +1,7 @@
 [2016-11-25]
 Fix Illuminant D60 XYZ values.
+New build for Arnold 4.2.16.0 - win, linux, osx - SITOA 3.16 &amp; MTOA 1.4.1
+Online GitHub Wiki pages added
 
 [2016-03-27]
 Obq_StereoLens and Obq_KettleUVStereoLens "View Mode" parameters do not conflict with Maya parameter anymore.

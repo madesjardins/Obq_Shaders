@@ -1,3 +1,5 @@
+# 2016-12-18 5.58 AM
+
 [node Obq_AngularCamera]
   c4d.classification            STRING "generic"
   c4d.menu                      STRING "OBQShaders"
@@ -8,10 +10,12 @@
   maya.type                     STRING "camera"
   maya.translator               STRING "Obq_AngularCamera"
   
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_AngularCamera"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_AngularCamera.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_AngularCamera"
   houdini.order                 STRING "angle flip overRender exposure"
   
   [attr is_perspective]
@@ -46,10 +50,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Atmosphere"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Atmosphere.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Atmosphere"
   houdini.order                 STRING "colorKd use3dKd absorption use3dAbsorption asymmetry radiusFalloffMode falloffStart falloffExponent useBiasGainDot biasDot gainDot objectCenter stepSize stepJitter useMaximumRayLength maximumRayLength useBiasGain bias gain compensateForCloudOpacity divideColorByOpacity secondaryTypesToo"
 
   [attr colorKd]
@@ -197,10 +203,12 @@
   maya.id                       INT     0x0011CD42
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Bend4Stereo"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Bend4Stereo.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Bend4Stereo"
 
   # [attr shaderIn]
   # desc                        STRING "Shader In"
@@ -233,10 +241,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_ChangeRange"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ChangeRange.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_ChangeRange"
   
   [attr input]
     desc                        STRING "Input"
@@ -296,10 +306,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Environment"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Environment.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Environment"
 
   [attr tex]
     desc                        STRING "Image"
@@ -435,10 +447,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Etching"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Etching.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Etching"
 
   [attr shading_input]
     desc                        STRING "Shading Input"
@@ -571,10 +585,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Fresnel"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Fresnel.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Fresnel"
   
   [attr mode]
     desc                        STRING "Mode"
@@ -701,10 +717,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Hair"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Hair.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Hair"
 
   [attr opacity]
     desc                        STRING "Opacity"
@@ -1065,10 +1083,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_IESLightFilter"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_IESLightFilter.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_IESLightFilter"
 
   [attr filename]
     desc                        STRING "IES Profile"
@@ -1085,10 +1105,12 @@
   maya.output_name              STRING "outColor"
   maya.output_shortname         STRING "out"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MeasuredMaterial"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MeasuredMaterial.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MeasuredMaterial"
 
   [attr filename]
     desc                        STRING "Filename"        
@@ -1155,10 +1177,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageGet"
 
   [attr key]
     desc                        STRING "Key"
@@ -1179,10 +1203,12 @@
   maya.id                       INT     0x0011CD4B
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Opacity"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Opacity.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Opacity"
 
   [attr color]
     desc                        STRING "Color"
@@ -1223,10 +1249,12 @@
   maya.id                       INT     0x0011CD4C
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_RandomColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomColor.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_RandomColor"
 
    [attr randMax]
     desc                        STRING "Number of values"
@@ -1355,10 +1383,12 @@
   maya.id                       INT     0x0011CD4D
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_RGBComEmit"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComEmit.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_RGBComEmit"
 
   [attr Passthrough]
     desc                        STRING "Passthrough"
@@ -1373,10 +1403,12 @@
   maya.id                       INT     0x0011CD4E
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_RGBComLightFilter"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RGBComLightFilter.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_RGBComLightFilter"
 
   [attr defaultColor]
     desc                        STRING "Default Color"
@@ -1395,10 +1427,12 @@
   maya.id                       INT     0x0011CD4F
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Root2Tip"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Root2Tip.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Root2Tip"
 
   [attr root]
     desc                        STRING "Root"
@@ -1421,10 +1455,12 @@
   maya.id                       INT     0x0011CD50
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Shadow"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Shadow.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Shadow"
 
   [attr mode]
     desc                        STRING "Mode"
@@ -1450,10 +1486,12 @@
   # maya.id                     INT 0x0011CD51
   # maya.classification         STRING "shader/surface"
 
+  #max.category                  STRING "Shading"
+  
   # houdini.category            STRING "OBQShaders"
   # houdini.icon                STRING "SHOP_surface"
   # houdini.label               STRING "Obq_Simbiont"
-  # houdini.help_url            STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Simbiont.html"
+  # houdini.help_url            STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Simbiont"
 
 [node Obq_StereoLens]
   c4d.classification            STRING "generic"
@@ -1464,11 +1502,14 @@
   maya.classification           STRING "shader/surface"
   maya.type                     STRING "camera"
   maya.translator               STRING "Obq_StereoLens"
+  maya.swatch                   BOOL   False
+  
+  max.category                  STRING "Shading"
   
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_StereoLens"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_StereoLens.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_StereoLens"
 
   [attr is_perspective]
     default                     BOOL   True
@@ -1618,10 +1659,12 @@
   maya.id                       INT     0x0011CD53
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_SurfaceEnvironment"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SurfaceEnvironment.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_SurfaceEnvironment"
 
   [attr tex]
     desc                        STRING "Image"
@@ -1731,10 +1774,12 @@
   maya.id                       INT     0x0011CD54
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Thickness"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Thickness.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Thickness"
 
   [attr sampleLevel]
     desc                        STRING "sampleLevel"
@@ -1853,10 +1898,12 @@
   maya.id                       INT     0x0011CD55
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Toon"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Toon.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Toon"
 
   [attr global_loopLightMode]
     desc                        STRING "Loop Light Mode"
@@ -2137,10 +2184,12 @@
   maya.id                       INT     0x0011CD56
   maya.classification           STRING "shader/surface"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_ToonSimple"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ToonSimple.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_ToonSimple"
 
   [attr global_compMode]
     desc                        STRING "Compositing"
@@ -2274,10 +2323,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outColor"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_TransformUV"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformUV.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_TransformUV"
   
   [attr tex]
     desc                        STRING "Image"
@@ -2323,11 +2374,14 @@
   maya.name                     STRING "Obq_UVRemapLensDistortion"
   maya.id                       INT     0x0011CD58
   maya.classification           STRING "shader/surface"
+  maya.swatch                   BOOL   False
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_UVRemapLensDistortion"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_UVRemapLensDistortion.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_UVRemapLensDistortion"
 
   [attr distortionModel]
     desc                        STRING "Lens Distortion Model"
@@ -2343,10 +2397,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outColor"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_VolumeThickness"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_VolumeThickness.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_VolumeThickness"
 
 #    [attr colorIn]
 #        desc                        STRING "Color In"
@@ -2422,11 +2478,14 @@
   maya.classification           STRING "shader/surface"
   maya.type                     STRING "camera"
   maya.translator               STRING "Obq_LensDistortion"
+  maya.swatch                   BOOL   False
+  
+  max.category                  STRING "Shading"
   
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_LensDistortion"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LensDistortion.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_LensDistortion"
   
   [attr is_perspective]
     default                     BOOL   True
@@ -2852,10 +2911,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_ChangeRange"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_CameraProjectionSpace.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_CameraProjectionSpace"
 
   [attr use_render_camera]
     desc                        STRING "Use Render Camera"
@@ -2879,10 +2940,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outColor"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_Color"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_Color.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_Color"
   
   [attr color]
     desc                        STRING "Color"
@@ -2899,10 +2962,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_RandomID"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RandomID.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_RandomID"
 
   [attr randMax]
     desc                        STRING "Number of values"
@@ -2952,10 +3017,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_RayDepth"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_RayDepth.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_RayDepth"
   [attr type]
     desc                        STRING "Type"
     houdini.label               STRING "Type"
@@ -2974,10 +3041,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_ColorspaceConverter"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_ColorspaceConverter.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_ColorspaceConverter"
 
   [attr color]
     desc                        STRING "Color"    
@@ -3029,10 +3098,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageSet"
   
   [attr passthrough]
     desc                        STRING "Passthrough"
@@ -3062,10 +3133,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreFlt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore"
    
   [attr passthrough]
     desc                        STRING "Passthrough"
@@ -3100,10 +3173,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_SetAlpha"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SetAlpha.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_SetAlpha"
 
 [node Obq_SpectrumColor]
   c4d.classification            STRING "texture"
@@ -3114,10 +3189,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_SpectrumColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_SpectrumColor.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_SpectrumColor"
   
   [attr mode]
     desc                        STRING "Mode"
@@ -3157,10 +3234,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_TransformShadingPoint"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_TransformShadingPoint.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_TransformShadingPoint"
   
   [attr passthrough]
     desc                        STRING "Passthrough"
@@ -3208,11 +3287,14 @@
   maya.classification           STRING "shader/surface"
   maya.type                     STRING "camera"
   maya.translator               STRING "Obq_KettleUVStereoLens"
+  maya.swatch                   BOOL   False
+    
+  max.category                  STRING "Shading"
   
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_KettleUVStereoLens"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_KettleUVStereoLens.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_KettleUVStereoLens"
   houdini.order                 STRING ""
   
   [attr is_perspective]
@@ -3378,10 +3460,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_LightSaturationFilter"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_LightSaturationFilter.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_LightSaturationFilter"
  [attr mode]
     desc                        STRING "Mode"
     houdini.label               STRING "Mode"
@@ -3398,14 +3482,14 @@
     desc                        STRING "Saturation"
     houdini.label               STRING "Saturation"
     default                     FLOAT  0.0
-    min							FLOAT  0.0
-    max							FLOAT  1.0
+    min             FLOAT  0.0
+    max             FLOAT  1.0
   [attr defaultSaturation]
     desc                        STRING "Default Saturation"
     houdini.label               STRING "Default Saturation"
     default                     FLOAT  1.0
-    min							FLOAT  0.0
-    max							FLOAT  1.0
+    min             FLOAT  0.0
+    max             FLOAT  1.0
 
 [node Obq_MessageGetBool]
   c4d.classification            STRING "generic"
@@ -3416,10 +3500,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageGet"
 
 [node Obq_MessageGetColor]
   c4d.classification            STRING "generic"
@@ -3430,10 +3516,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageGet"
 
 [node Obq_MessageGetInt]
   c4d.classification            STRING "generic"
@@ -3444,10 +3532,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageGet"
 
 [node Obq_MessageGetVector]
   c4d.classification            STRING "generic"
@@ -3458,10 +3548,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageGetVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageGet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageGet"
     
 [node Obq_MessageSetBool]
   c4d.classification            STRING "generic"
@@ -3472,10 +3564,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageSet"
 
 [node Obq_MessageSetColor]
   c4d.classification            STRING "generic"
@@ -3486,10 +3580,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageSet"
 
 [node Obq_MessageSetInt]
   c4d.classification            STRING "generic"
@@ -3500,10 +3596,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageSet"
 
 [node Obq_MessageSetVector]
   c4d.classification            STRING "generic"
@@ -3514,10 +3612,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageSetVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageSet.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageSet"
 
 [node Obq_MessageStoreBool]
   c4d.classification            STRING "generic"
@@ -3528,10 +3628,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreBool"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore"
 
 [node Obq_MessageStoreColor]
   c4d.classification            STRING "generic"
@@ -3542,10 +3644,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreColor"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore"
 
 [node Obq_MessageStoreInt]
   c4d.classification            STRING "generic"
@@ -3556,10 +3660,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreInt"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore"
 
 [node Obq_MessageStoreVector]
   c4d.classification            STRING "generic"
@@ -3570,10 +3676,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+  
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_MessageStoreVector"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore"
 
 [node Obq_NodeInfo]
   c4d.classification            STRING "generic"
@@ -3584,10 +3692,12 @@
   maya.classification           STRING "shader/surface"
   maya.output_name              STRING "outValue"
 
+  max.category                  STRING "Shading"
+
   houdini.category              STRING "OBQShaders"
   houdini.icon                  STRING "SHOP_surface"
   houdini.label                 STRING "Obq_NodeInfo"
-  houdini.help_url              STRING "http://s3aws.obliquefx.com/public/shaders/help_files/Obq_NodeInfo.html"
+  help_url                      STRING "https://github.com/madesjardins/Obq_Shaders/wiki/Obq_NodeInfo"
 
   [attr passthrough]
     desc                        STRING "Passthrough"

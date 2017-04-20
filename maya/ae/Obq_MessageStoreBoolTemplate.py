@@ -1,4 +1,4 @@
-# 2014-12-01 12.50 am
+# 2016-12-18 5.46 AM
 # Note:   AOVName button not enabled
 
 import pymel.core as pm
@@ -11,7 +11,7 @@ from mtoa.ui.ae.shaderTemplate import ShaderAETemplate
 def Obq_MessageStoreBoolHelpURL():
 	# Add the Obq_Shader docs URL to the Attribute Editor help menu
 	ObqNodeType = 'Obq_MessageStoreBool'
-	ObqNodeHelpURL = 'http://s3aws.obliquefx.com/public/shaders/help_files/Obq_MessageStore.html'
+	ObqNodeHelpURL = 'https://github.com/madesjardins/Obq_Shaders/wiki/Obq_MessageStore'
 	ObqHelpCommand = 'addAttributeEditorNodeHelp("' + ObqNodeType + '", "showHelp -absolute \\"' +ObqNodeHelpURL +'\\"");'
 	mel.eval(ObqHelpCommand)
 

@@ -24,7 +24,7 @@
 
 %pp :: The priority of energy consumption of parameters is in a top to bottom order in the compound gui. In other words, if visually the Ks is above the Kd, only what is not consumed by the specular scale will be passed down to the diffuse scale. The scales in the compounds does not represent absolute values like the ones in the Standard, they represent the ratio of the available energy.
 
-%pp :: Simply connect the outputs of the compound to the coresponding port of the standards.
+%pp :: Simply connect the outputs of the compound to the corresponding port of the standards.
 
 %note :: Because SSS scale doesn't depend on the Fresnel term at the shading point, I would suggest to lower the scale of the surface's Kd to account for scattered light.
 

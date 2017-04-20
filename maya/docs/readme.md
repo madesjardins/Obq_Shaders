@@ -4,23 +4,23 @@
 
         + copy the content of the "metadata" folder into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
         + copy the content of the "metadata" folder into "/opt/solidangle/mtoa/<Maya Version>/shaders/",[Linux]
-        + copy the content of the "metadata" folder into "~/solidangle/mtoa/<Maya Version>/shaders/",[OSX]
+        + copy the content of the "metadata" folder into "/Applications/solidangle/mtoa/<Maya Version>/shaders/",[OSX]
 
         + copy the content of the "ae" folder into "C:\solidangle\mtoadeploy\<Maya Version>\scripts\mtoa\ui\ae",[Windows]
         + copy the content of the "ae" folder into "/opt/solidangle/mtoa/<Maya Version>/scripts/mtoa/ui/ae",[Linux]
-        + copy the content of the "ae" folder into "~/solidangle/mtoa/<Maya Version>/scripts/mtoa/ui/ae",[OSX]
+        + copy the content of the "ae" folder into "/Applications/solidangle/mtoa/<Maya Version>/scripts/mtoa/ui/ae",[OSX]
 
         + copy the content of the "icons" folder into "C:\solidangle\mtoadeploy\<Maya Version>\icons",[Windows]
         + copy the content of the "icons" folder into "/opt/solidangle/mtoa/<Maya Version/icons",[Linux]
-        + copy the content of the "icons" folder into "~/solidangle/mtoa/<Maya Version/icons",[OSX]
+        + copy the content of the "icons" folder into "/Applications/solidangle/mtoa/<Maya Version/icons",[OSX]
 
 		+ copy the content of the "attrPresets" folder into "C:\Users\<User Account>\Documents\maya\<Maya Version>\presets\attrPresets",[Windows]
 		+ copy the content of the "attrPresets" folder into "/home/<User Account>/maya/<Maya Version>/presets/attrPresets",[Linux]
 		+ copy the content of the "attrPresets" folder into "~/Library/Preferences/Autodesk/maya/<Maya Version>/presets/attrPresets",[OSX]
 
-        + copy the .dll   in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Windows]
+        + copy the .dll   in "bin" into "C:\solidangle\mtoadeploy\<Maya Version>\shaders",[Windows]
         + copy the .so    in "bin" into "/opt/solidangle/mtoa/<Maya Version>/shaders",[Linux]
-        + copy the .dylib in "bin" into " ~/solidangle/mtoa/<Maya Version>/shaders",[OSX]
+        + copy the .dylib in "bin" into "/Applications/solidangle/mtoa/<Maya Version>/shaders",[OSX]
 
 
 Windows requirements:  
