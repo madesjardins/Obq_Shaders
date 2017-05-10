@@ -1,0 +1,217 @@
+﻿Build started 19/04/2017 2:07:25 AM.
+     1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "x64\a5.0.0.0.a3\Obq_Simbiont.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"F:\Arnold\Arnold-5.0.0.0.alpha3-windows\include" /IF:\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SIMBIONT_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\a5.0.0.0.a3\\" /Fd"x64\a5.0.0.0.a3\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Simbiont.cpp
+         Obq_Simbiont.cpp
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(47): error C2526: 'AiM4Identity' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(48): error C2526: 'AiM4Translation' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(49): error C2526: 'AiM4RotationX' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(50): error C2526: 'AiM4RotationY' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(51): error C2526: 'AiM4RotationZ' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(52): error C2526: 'AiM4Scaling' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(53): error C2526: 'AiM4Frame' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(58): error C2526: 'AiM4Mult' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(59): error C2526: 'AiM4Transpose' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(60): error C2526: 'AiM4Invert' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\arnold\arnold-5.0.0.0.alpha3-windows\include\ai_matrix.h(62): error C2526: 'AiM4Lerp' : C linkage function cannot return C++ class 'AtMatrixBase<ROWS,COLS,T>'
+                 with
+                 [
+                     ROWS=4,
+                     COLS=4,
+                     T=float
+                 ]
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(195): error C2552: 'ret' : non-aggregates cannot be initialized with initializer list
+                 'AtVector' : Types with user defined constructors are not aggregate
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(207): error C2552: 'ret' : non-aggregates cannot be initialized with initializer list
+                 'AtVector' : Types with user defined constructors are not aggregate
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(220): error C2552: 'ret' : non-aggregates cannot be initialized with initializer list
+                 'AtVector' : Types with user defined constructors are not aggregate
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(411): error C2146: syntax error : missing ';' before identifier 'colorChannelMax'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(411): error C2433: 'AtColor' : 'inline' not permitted on data declarations
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(411): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(411): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(411): error C2143: syntax error : missing ',' before '&'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(412): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2146: syntax error : missing ';' before identifier 'ret'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2059: syntax error : '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2143: syntax error : missing ';' before '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2228: left of '.b' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(413): error C2143: syntax error : missing ';' before '}'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(414): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C2146: syntax error : missing ';' before identifier 'colorChannelPow'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C2433: 'AtColor' : 'inline' not permitted on data declarations
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C2086: 'int AtColor' : redefinition
+                 f:\vs_projects\obq_shaders\src\O_Common.h(411) : see declaration of 'AtColor'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(420): error C2143: syntax error : missing ',' before '&'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(421): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2146: syntax error : missing ';' before identifier 'ret'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2059: syntax error : '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2143: syntax error : missing ';' before '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2228: left of '.b' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(422): error C2143: syntax error : missing ';' before '}'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(423): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C2146: syntax error : missing ';' before identifier 'colorChannelPow'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C2433: 'AtColor' : 'inline' not permitted on data declarations
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C2086: 'int AtColor' : redefinition
+                 f:\vs_projects\obq_shaders\src\O_Common.h(411) : see declaration of 'AtColor'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(425): error C2143: syntax error : missing ',' before '&'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(426): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(426): error C2084: function 'int colorChannelPow(const int)' already has a body
+                 f:\vs_projects\obq_shaders\src\O_Common.h(420) : see previous definition of 'colorChannelPow'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2146: syntax error : missing ';' before identifier 'ret'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2059: syntax error : '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2143: syntax error : missing ';' before '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2228: left of '.b' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2065: 'value' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(427): error C2143: syntax error : missing ';' before '}'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(428): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C2146: syntax error : missing ';' before identifier 'colorChannelSqrt'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C2433: 'AtColor' : 'inline' not permitted on data declarations
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C2086: 'int AtColor' : redefinition
+                 f:\vs_projects\obq_shaders\src\O_Common.h(411) : see declaration of 'AtColor'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(434): error C2143: syntax error : missing ',' before '&'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(435): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2146: syntax error : missing ';' before identifier 'ret'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2059: syntax error : '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2143: syntax error : missing ';' before '{'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2065: 'color' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2228: left of '.b' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(436): error C2143: syntax error : missing ';' before '}'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(437): error C2065: 'ret' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(456): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(456): error C2143: syntax error : missing ',' before '&'
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C2228: left of '.b' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C3861: 'MIN': identifier not found
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(460): error C3861: 'MIN': identifier not found
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): error C2228: left of '.r' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): error C2228: left of '.g' must have class/struct/union
+                 type is ''unknown-type''
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): error C2065: 'rgb' : undeclared identifier
+     1>f:\vs_projects\obq_shaders\src\O_Common.h(461): fatal error C1003: error count exceeds 100; stopping compilation
+     1>Done Building Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Simbiont\Obq_Simbiont.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.87

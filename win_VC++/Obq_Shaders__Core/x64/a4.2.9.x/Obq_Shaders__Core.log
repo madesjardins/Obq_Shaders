@@ -1,4 +1,4 @@
-﻿Build started 25/11/2016 12:26:46 AM.
+﻿Build started 20/04/2017 12:14:33 AM.
      1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core\Obq_Shaders__Core.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "x64\a4.2.9.x\Obq_Shaders__Core.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -33,6 +33,7 @@
          O_ISBrdf.cpp
          Obq_Atmosphere.cpp
          Obq_Bend4Stereo.cpp
+     1>..\..\src\Obq_Bend4Stereo.cpp(96): warning C4101: 'right2leftCameraMatrix2' : unreferenced local variable
          Obq_CameraProjectionSpace.cpp
          Obq_ChangeRange.cpp
          Obq_ColorspaceConverter.cpp
@@ -134,4 +135,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:26.47
+Time Elapsed 00:00:27.49
