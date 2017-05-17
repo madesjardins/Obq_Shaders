@@ -1,10 +1,10 @@
 /*
-Obq_Shaders__Core5.cpp :
+Obq_Color :
 
-This is the main for Obq_Shaders.dll. It's a node loader.
+A simple RGBA color
 
 *------------------------------------------------------------------------
-Copyright (c) 2017 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
+Copyright (c) 2012-2014 Marc-Antoine Desjardins, ObliqueFX (marcantoinedesjardins@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -27,51 +27,70 @@ SOFTWARE.
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 *------------------------------------------------------------------------
 */
-
 #include "O_Common5.h"
 
-extern const AtNodeMethods* ObqLensDistortionMethods;
-extern const AtNodeMethods* ObqColorMethods;
-extern const AtNodeMethods* ObqColorspaceConverterMethods;
+// Arnold stuff
+//
+AI_SHADER_NODE_EXPORT_METHODS(ObqColorMethods);
 
-enum SHADERS
+
+// enum for parameters
+//
+enum ObqColorParams
 {
-	OBQ_LENSDISTORTION = 0,
-	OBQ_COLOR = 1,
-	OBQ_COLORSPACECONVERTER = 2
+	p_color
 };
 
-node_loader
+typedef struct 
 {
-	switch (i) 
-	{     
-	case OBQ_LENSDISTORTION:
-		node->methods     = ObqLensDistortionMethods;
-		node->output_type = AI_TYPE_UNDEFINED;
-		node->name        = "Obq_LensDistortion";
-		node->node_type   = AI_NODE_CAMERA;
-		break;
-	case OBQ_COLOR:
-		node->methods      = ObqColorMethods;
-		node->output_type  = AI_TYPE_RGBA;
-		node->name         = "Obq_Color";
-		node->node_type    = AI_NODE_SHADER;
-		break;
-	case OBQ_COLORSPACECONVERTER:
-		node->methods      = ObqColorspaceConverterMethods;
-		node->output_type  = AI_TYPE_RGBA;
-		node->name         = "Obq_ColorspaceConverter";
-		node->node_type    = AI_NODE_SHADER;
-		break;
-	default:
-		return false;      
-	}
-
-#ifdef _WIN32
-	strcpy(node->version, AI_VERSION);
-#else
-	sprintf(node->version, AI_VERSION);
-#endif
-
-	return true;
+	AtRGBA color;
 }
+ShaderData;
+
+node_parameters
+{
+	AiParameterRGBA("color",1.0f,1.0f,1.0f,1.0f);
+}
+
+node_initialize
+{
+	ShaderData *data = (ShaderData*) AiMalloc(sizeof(ShaderData));
+	AiNodeSetLocalData(node,data);
+	data->color = AI_RGBA_WHITE;
+}
+
+node_update
+{
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+	data->color = AiNodeGetRGBA(node, "color");
+}
+
+node_finish
+{
+	ShaderData *data = (ShaderData*) AiNodeGetLocalData(node);
+	AiFree(data);
+}
+
+shader_evaluate
+{
+	ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
+	sg->out.RGBA() = data->color;
+}
+
+//node_loader
+//{
+//	if (i > 0)
+//		return false;
+//
+//	node->methods      = ObqColorMethods;
+//	node->output_type  = AI_TYPE_RGBA;
+//	node->name         = "Obq_Color";
+//	node->node_type    = AI_NODE_SHADER;
+//#ifdef _WIN32
+//	strcpy_s(node->version, AI_VERSION);
+//#else
+//	strcpy(node->version, AI_VERSION);
+//#endif
+//
+//	return true;
+//}
