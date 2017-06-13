@@ -1,19 +1,10 @@
-﻿Build started 16/05/2017 9:11:25 PM.
+﻿Build started 13/06/2017 12:05:43 AM.
      1>Project "F:\VS_Projects\Obq_Shaders\win_VC++\Obq_Shaders__Core5\Obq_Shaders__Core5.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "x64\a5.0.0.2\Obq_Shaders__Core5.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "x64\a5.0.0.2\Obq_Shaders__Core5.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"..\..\..\..\Arnold\Arnold-5.0.0.2-windows\include" /I..\..\..\..\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\kettle /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\a5.0.0.2\\" /Fd"x64\a5.0.0.2\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_Color5.cpp ..\..\src\Obq_ColorspaceConverter5.cpp ..\..\src\Obq_LensDistortion5.cpp ..\..\src\Obq_Shaders__Core5.cpp
-         Obq_Color5.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h(12): warning C4005: '_ALLOW_KEYWORD_MACROS' : macro redefinition
-                 f:\arnold\arnold-5.0.0.2-windows\include\ai_api.h(77) : see previous definition of '_ALLOW_KEYWORD_MACROS'
-         Obq_ColorspaceConverter5.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h(12): warning C4005: '_ALLOW_KEYWORD_MACROS' : macro redefinition
-                 f:\arnold\arnold-5.0.0.2-windows\include\ai_api.h(77) : see previous definition of '_ALLOW_KEYWORD_MACROS'
-         Obq_LensDistortion5.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h(12): warning C4005: '_ALLOW_KEYWORD_MACROS' : macro redefinition
-                 f:\arnold\arnold-5.0.0.2-windows\include\ai_api.h(77) : see previous definition of '_ALLOW_KEYWORD_MACROS'
-         Obq_Shaders__Core5.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I"..\..\..\..\Arnold\Arnold-5.0.0.2-windows\include" /I..\..\..\..\Softwares\glm /I..\..\src /I..\..\src\dte /I..\..\src\ldpk /I..\..\src\pbrt /I..\..\src\kettle /I..\..\src\yafaray /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D OBQ_SHADERS__CORE_EXPORTS /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\a5.0.0.2\\" /Fd"x64\a5.0.0.2\vcWindows7.1SDK.pdb" /Gd /TP /errorReport:prompt ..\..\src\Obq_StereoLens5.cpp
+         Obq_StereoLens5.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h(12): warning C4005: '_ALLOW_KEYWORD_MACROS' : macro redefinition
                  f:\arnold\arnold-5.0.0.2-windows\include\ai_api.h(77) : see previous definition of '_ALLOW_KEYWORD_MACROS'
        Link:
@@ -21,6 +12,7 @@
          x64\a5.0.0.2\Obq_ColorspaceConverter5.obj
          x64\a5.0.0.2\Obq_LensDistortion5.obj
          x64\a5.0.0.2\Obq_Shaders__Core5.obj
+         x64\a5.0.0.2\Obq_StereoLens5.obj
             Creating library ..\..\bin\a5_0_0_x\Obq_Shaders__Core__a5_0_0_2.lib and object ..\..\bin\a5_0_0_x\Obq_Shaders__Core__a5_0_0_2.exp
          Generating code
          Finished generating code
@@ -36,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.35
+Time Elapsed 00:00:02.40

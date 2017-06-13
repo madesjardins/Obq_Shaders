@@ -185,9 +185,11 @@
     <ClCompile Include="..\..\src\Obq_ColorspaceConverter5.cpp" />
     <ClCompile Include="..\..\src\Obq_LensDistortion5.cpp" />
     <ClCompile Include="..\..\src\Obq_Shaders__Core5.cpp" />
+    <ClCompile Include="..\..\src\Obq_StereoLens5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Obq_LensDistortion5.h" />
+    <ClInclude Include="..\..\src\Obq_StereoLens5.h" />
     <ClInclude Include="..\..\src\O_Colorspaces5.h" />
     <ClInclude Include="..\..\src\O_Common5.h" />
   </ItemGroup>

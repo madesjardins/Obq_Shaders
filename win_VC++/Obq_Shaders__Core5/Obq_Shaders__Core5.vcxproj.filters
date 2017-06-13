@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\src\Obq_ColorspaceConverter5.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_StereoLens5.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\O_Common5.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\O_Colorspaces5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Obq_StereoLens5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -489,7 +489,7 @@ node_finish
 	delete data->radial4cylindric;
 	delete data->anamorphicDeg4Sq;
 
-	delete(data);
+	delete data;
 }
 
 camera_create_ray 

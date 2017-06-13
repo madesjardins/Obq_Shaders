@@ -33,12 +33,14 @@ Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.p
 extern const AtNodeMethods* ObqLensDistortionMethods;
 extern const AtNodeMethods* ObqColorMethods;
 extern const AtNodeMethods* ObqColorspaceConverterMethods;
+extern const AtNodeMethods* ObqStereoLensMethods;
 
 enum SHADERS
 {
 	OBQ_LENSDISTORTION = 0,
 	OBQ_COLOR = 1,
-	OBQ_COLORSPACECONVERTER = 2
+	OBQ_COLORSPACECONVERTER = 2,
+	OBQ_STEREOLENS = 3
 };
 
 node_loader
@@ -62,6 +64,12 @@ node_loader
 		node->output_type  = AI_TYPE_RGBA;
 		node->name         = "Obq_ColorspaceConverter";
 		node->node_type    = AI_NODE_SHADER;
+		break;
+	case OBQ_STEREOLENS:
+		node->methods     = ObqStereoLensMethods;
+		node->output_type = AI_TYPE_UNDEFINED;
+		node->name        = "Obq_StereoLens";
+		node->node_type   = AI_NODE_CAMERA;
 		break;
 	default:
 		return false;      
