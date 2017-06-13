@@ -41,5 +41,8 @@ Obq_ColorspaceConverter5.o:
 Obq_LensDistortion5.o:
 	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_LensDistortion5.cpp
 
-$(BINPATH)/$(TARGETNAME).$(EXT): Obq_Shaders__Core5.o Obq_Color5.o Obq_ColorspaceConverter5.o Obq_LensDistortion5.o
-	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Obq_Shaders__Core5.o Obq_Color5.o Obq_ColorspaceConverter5.o Obq_LensDistortion5.o $(LINKING)
+Obq_StereoLens5.o:
+	$(CPP) $(CPPFLAGS) $(SRCPATH)/Obq_StereoLens5.cpp
+
+$(BINPATH)/$(TARGETNAME).$(EXT): Obq_Shaders__Core5.o Obq_Color5.o Obq_ColorspaceConverter5.o Obq_LensDistortion5.o Obq_StereoLens5.o
+	$(CPP) -o $(BINPATH)/$(TARGETNAME).$(EXT) $(LINKFLAGS) Obq_Shaders__Core5.o Obq_Color5.o Obq_ColorspaceConverter5.o Obq_LensDistortion5.o Obq_StereoLens5.o $(LINKING)
