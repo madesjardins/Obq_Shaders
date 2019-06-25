@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\src\Obq_StereoLens5.cpp">
       <Filter>Source Files\Obq</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Obq_Bend4Stereo5.cpp">
+      <Filter>Source Files\Obq</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\O_Common5.h">

@@ -34,13 +34,15 @@ extern const AtNodeMethods* ObqLensDistortionMethods;
 extern const AtNodeMethods* ObqColorMethods;
 extern const AtNodeMethods* ObqColorspaceConverterMethods;
 extern const AtNodeMethods* ObqStereoLensMethods;
+extern const AtNodeMethods* ObqBend4StereoMethods;
 
 enum SHADERS
 {
 	OBQ_LENSDISTORTION = 0,
 	OBQ_COLOR = 1,
 	OBQ_COLORSPACECONVERTER = 2,
-	OBQ_STEREOLENS = 3
+	OBQ_STEREOLENS = 3,
+	OBQ_BEND4STEREO = 4
 };
 
 node_loader
@@ -70,6 +72,12 @@ node_loader
 		node->output_type = AI_TYPE_UNDEFINED;
 		node->name        = "Obq_StereoLens";
 		node->node_type   = AI_NODE_CAMERA;
+		break;
+	case OBQ_BEND4STEREO:
+		node->methods      = ObqBend4StereoMethods;
+		node->output_type  = AI_TYPE_CLOSURE;
+		node->name         = "Obq_Bend4Stereo";
+		node->node_type    = AI_NODE_SHADER;
 		break;
 	default:
 		return false;      

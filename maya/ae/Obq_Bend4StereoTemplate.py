@@ -41,6 +41,11 @@ class AEObq_Bend4StereoTemplate(ShaderAETemplate):
 		self.addControl("leftCamera",  label="Left")
 		self.addControl("rightCamera",  label="Right")
 		self.endLayout()
+		
+		self.beginLayout("Passthrough", collapse=False)
+		self.addControl("shaderIn",  label="Shader In")
+		self.endLayout()
+	   
 	   #self.endLayout() # End Main
 
 		# include/call base class/node attributes
